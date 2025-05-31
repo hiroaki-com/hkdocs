@@ -1,7 +1,6 @@
 ---
-slug: first-blog-post
 title: First Blog Post
-authors: [slorber, yangshun]
+authors: [hk]
 tags: [hola, docusaurus]
 ---
 
