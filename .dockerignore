@@ -1,0 +1,21 @@
+# .dockerignore
+.DS_Store
+.git
+.gitignore
+node_modules
+build
+.docusaurus
+Dockerfile
+.dockerignore
+deploy.sh
+.env
+*.local
+*.log
+pnpm-debug.log*
+# Docker Compose関連ファイル (もしあれば)
+docker-compose.yml
+docker-compose.*.yml
+.vscode/
+.idea/
+# .nvmrc # Dockerビルド時には不要
+# pnpm-lock.yaml # Dockerfile内でコピーするので、ビルドコンテキストには含めても良いが、除外しても良い
