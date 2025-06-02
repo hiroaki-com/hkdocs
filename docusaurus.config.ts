@@ -88,9 +88,17 @@ const config: Config = {
 ],
   // ↑↑↑ 日記用にここまでを追加 ↑↑↑
 
-  themeConfig: {
+themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+      announcementBar: {
+        id: 'site_release_20250601',
+        content:
+          '🚀 2025年6月1日、当Webサイトが正式にリリースされました 🚀',
+        backgroundColor: '#fafbfc',
+        textColor: '#091E42',
+        isCloseable: false,
+      },    
     navbar: {
       title: 'Hk Docs',
       logo: {
@@ -159,7 +167,7 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
+      theme: prismThemes.github, 
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
