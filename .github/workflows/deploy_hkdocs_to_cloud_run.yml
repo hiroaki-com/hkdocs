@@ -1,0 +1,89 @@
+name: Deploy hkdocs to Cloud Run
+
+on:
+  push:
+    branches:
+      - main # mainブランチへのpushで実行
+
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_ARTIFACT_REGISTRY_REGION: "asia-northeast1" # Artifact Registryのリージョン
+  GCP_CLOUD_RUN_REGION: "asia-northeast1"     # Cloud Runサービスのリージョン
+  AR_REPO_NAME: "hkdocs-images"               # Artifact Registryのリポジトリ名
+  IMAGE_BASE_NAME: "hkdocs-app"               # Dockerイメージのベース名 (例: hkdocs-app)
+  CR_SERVICE_NAME: "hkdocs-service"           # Cloud Runサービス名
+
+jobs:
+  build-and-deploy:
+    name: Build, Push, and Deploy hkdocs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'    # リポジトリのコンテンツをチェックアウトするために必要
+      id-token: 'write'   # Workload Identity Federationによる認証に必要
+
+    steps:
+      - name: Checkout hkdocs repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Set up Google Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+
+      - name: Configure Docker for Artifact Registry (${{ env.GCP_ARTIFACT_REGISTRY_REGION }})
+        run: gcloud auth configure-docker ${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev --quiet
+
+      - name: Prepare image tag for hkdocs
+        id: image_tag
+        run: |
+          SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
+          FULL_IMAGE_TAG="${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.AR_REPO_NAME }}/${{ env.IMAGE_BASE_NAME }}:${SHORT_SHA}"
+          echo "FULL_IMAGE_TAG=${FULL_IMAGE_TAG}" >> $GITHUB_ENV
+          echo "Generated Image Tag: ${FULL_IMAGE_TAG}"
+
+      # TODO : リントやテストのステップをここに追加
+      # - name: Setup Node.js and pnpm for hkdocs
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version-file: '.nvmrc'
+      # - uses: pnpm/action-setup@v4
+      #
+      # - name: Install dependencies for hkdocs
+      #   run: pnpm install --frozen-lockfile
+      #
+      # - name: Run Linter for hkdocs
+      #   run: pnpm run lint
+      #
+      # - name: Run Tests for hkdocs
+      #   run: pnpm run test
+
+      - name: Build Docker image for hkdocs
+        run: |
+          docker build --platform linux/amd64 \
+            -t ${{ env.FULL_IMAGE_TAG }} \
+            --label "app-name=hkdocs" \
+            --label "commit-sha=${GITHUB_SHA}" \
+            .
+
+      - name: Push hkdocs Docker image to Artifact Registry
+        run: docker push ${{ env.FULL_IMAGE_TAG }}
+
+      - name: Deploy hkdocs to Cloud Run service (${{ env.CR_SERVICE_NAME }})
+        run: |
+          gcloud run deploy ${{ env.CR_SERVICE_NAME }} \
+            --image=${{ env.FULL_IMAGE_TAG }} \
+            --platform=managed \
+            --region=${{ env.GCP_CLOUD_RUN_REGION }} \
+            --port=8080 \
+            --allow-unauthenticated \
+            --quiet
+          
+          SERVICE_URL=$(gcloud run services describe ${{ env.CR_SERVICE_NAME }} --platform=managed --region="${{ env.GCP_CLOUD_RUN_REGION }}" --format='value(status.url)')
+          echo "✅ hkdocs service deployed successfully. URL: ${SERVICE_URL}"
