@@ -7,10 +7,10 @@ on:
 
 env:
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  GCP_ARTIFACT_REGISTRY_REGION: "asia-northeast1" # Artifact Registryのリージョン
-  GCP_CLOUD_RUN_REGION: "asia-northeast1"     # Cloud Runサービスのリージョン
+  GCP_ARTIFACT_REGISTRY_REGION: "asia-northeast1"
+  GCP_CLOUD_RUN_REGION: "asia-northeast1"
   AR_REPO_NAME: "hkdocs-images"               # Artifact Registryのリポジトリ名
-  IMAGE_BASE_NAME: "hkdocs-app"               # Dockerイメージのベース名 (例: hkdocs-app)
+  IMAGE_BASE_NAME: "hkdocs-app"               # Dockerイメージのベース名
   CR_SERVICE_NAME: "hkdocs-service"           # Cloud Runサービス名
 
 jobs:
