@@ -1,56 +1,75 @@
+// hkdocs/src/components/HomepageFeatures/index.tsx
+
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
+  link: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Tutorial',
+    // TODO: チュートリアルセクションに適したSVGに置き換えてください
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        このサイトの基礎的な使い方や主要な機能を学ぶことができます。 {/* 「学無」を「学ぶ」に修正しました */}
       </>
     ),
+    link: '/docs/intro',
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Blog',
+    // TODO: ブログセクションに適したSVGに置き換えてください
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        技術的な学びの整理場所です。
       </>
     ),
+    link: '/blog',
   },
   {
-    title: 'Powered by React',
+    title: 'Diary',
+    // TODO: ダイアリーセクションに適したSVGに置き換えてください
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        日々の記録や個人的な雑記メモはこちらから。
       </>
     ),
+    link: '/diary',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+// Featureコンポーネントを修正し、SVG画像のみをLinkでラップ
+function Feature({title, Svg, description, link}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
+      {/* SVG画像部分のみをLinkで囲む */}
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <Link to={link} aria-label={title}> {/* titleをaria-labelに指定 */}
+          <Svg className={styles.featureSvg} role="img" />
+        </Link>
       </div>
       <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
+        <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
         <p>{description}</p>
+        {/* 必要であれば、ここにもテキストリンクを追加できます */}
+        {/*
+        <div style={{ marginTop: '1rem' }}>
+          <Link className="button button--secondary button--sm" to={link}>
+            {title} へ
+          </Link>
+        </div>
+        */}
       </div>
     </div>
   );
