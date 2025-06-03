@@ -3,6 +3,7 @@ slug: welcome
 title: Index
 authors: [hk]
 tags: [facebook, hello, docusaurus]
+hide_table_of_contents: false # TOCを表示する
 ---
 
 [Docusaurus blogging features](https://docusaurus.io/docs/blog) are powered by the [blog plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog).
@@ -10,6 +11,10 @@ tags: [facebook, hello, docusaurus]
 Here are a few tips you might find useful.
 
 <!-- truncate -->
+
+## 見出し
+
+### 見出し
 
 Simply add Markdown files (or folders) to the `blog` directory.
 
