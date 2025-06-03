@@ -88,19 +88,19 @@ const config: Config = {
 ],
   // ↑↑↑ 日記用にここまでを追加 ↑↑↑
 
-themeConfig: {
+  themeConfig: { // ここから themeConfig
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
-      announcementBar: {
-        id: 'site_release_20250601',
-        content:
-          '🚀 2025年6月1日、当Webサイトが正式にリリースされました 🚀',
-        backgroundColor: '#fafbfc',
-        textColor: '#091E42',
-        isCloseable: false,
-      },    
+    announcementBar: {
+      id: 'site_release_20250601',
+      content:
+        '🚀 2025年6月1日、当Webサイトが正式にリリースされました 🚀',
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42',
+      isCloseable: false,
+    },
     navbar: {
-      title: 'Hk Docs',
+      title: 'HkDocs',
       logo: {
         alt: 'Hk Docs Logo',
         src: 'img/logo.svg',
@@ -160,7 +160,7 @@ themeConfig: {
             {
               label: 'Diary',
               to: '/diary',
-            },            
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/hiroaki-com/hkdocs',
@@ -171,10 +171,16 @@ themeConfig: {
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github, 
+      theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-  } satisfies Preset.ThemeConfig,
+    // ↓↓↓ ここに tableOfContents の設定を追加します ↓↓↓
+    tableOfContents: {
+      minHeadingLevel: 2, // 表示を開始する見出しレベル (例: ## H2)
+      maxHeadingLevel: 5, // 表示を終了する見出しレベル (例: #### H4 まで表示する場合)
+    },
+    // ↑↑↑ ここまで ↑↑↑
+  } satisfies Preset.ThemeConfig, // satisfies Preset.ThemeConfig は themeConfig オブジェクトの最後に置きます
 };
 
 export default config;
