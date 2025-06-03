@@ -158,6 +158,10 @@ themeConfig: {
               to: '/blog',
             },
             {
+              label: 'Diary',
+              to: '/diary',
+            },            
+            {
               label: 'GitHub',
               href: 'https://github.com/hiroaki-com/hkdocs',
             },
