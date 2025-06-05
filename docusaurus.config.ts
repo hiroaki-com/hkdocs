@@ -114,6 +114,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/diary', label: 'Diary', position: 'left'}, // 新しい日記へのリンク
+        {to: '/blog/authors/hk', label: 'Profile', position: 'left'}, // TODO:リンク先は暫定
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           label: 'GitHub',
