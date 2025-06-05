@@ -15,8 +15,8 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Tutorial',
-    // TODO: チュートリアルセクションに適したSVGに置き換えてください
+    title: 'Tech',
+    // TODO: Techセクションに適したSVGに置き換えてください
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
