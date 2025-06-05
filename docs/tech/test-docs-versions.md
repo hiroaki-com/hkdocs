@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Manage Docs Versions
+# Test Docs Versions
 
 Docusaurus can manage multiple versions of your docs.
 
