@@ -3,7 +3,7 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
-import Link from '@docusaurus/Link';
+import Link from '@docusaurus/Link'; // DocusaurusのLinkコンポーネント（内部リンク用）
 import styles from './styles.module.css';
 
 type FeatureItem = {
@@ -84,6 +84,48 @@ export default function HomepageFeatures(): ReactNode {
             <Feature key={idx} {...props} />
           ))}
         </div>
+
+        {/* --- 作業用ドキュメントリンク (一時的) - 開始 --- */}
+        {/* このセクションは作業完了後に削除してください。 */}
+        <div
+          className="row"
+          style={{
+            marginTop: '3rem',
+            padding: '1.5rem',
+            border: '2px dashed #e0e0e0',
+            backgroundColor: '#f9f9f9',
+            borderRadius: '8px',
+          }}
+          id="temp-work-links" // 削除時に特定しやすくするためのID
+        >
+          <div className="col col--12 text--center">
+            <Heading as="h3" style={{ marginBottom: '1.5rem', color: '#555' }}>
+              作業用ドキュメントリンク (一時利用)
+            </Heading>
+            <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+              <li style={{ marginBottom: '0.75rem' }}>
+                <a href="https://docusaurus.io/docs" target="_blank" rel="noopener noreferrer">
+                  Docusaurus Docs
+                </a>
+              </li>
+              <li style={{ marginBottom: '0.75rem' }}>
+                <a href="https://docusaurus.io/showcase" target="_blank" rel="noopener noreferrer">
+                  Docusaurus Showcase
+                </a>
+              </li>
+              <li style={{ marginBottom: '0.75rem' }}>
+                <a href="https://docusaurus.io/community/support" target="_blank" rel="noopener noreferrer">
+                  Docusaurus Community Support
+                </a>
+              </li>
+            </ul>
+            <p style={{ fontSize: '0.9em', color: '#888', marginTop: '1rem' }}>
+              <strong>注意:</strong> これらのリンクは一時的なもので、作業完了後に削除されます。
+            </p>
+          </div>
+        </div>
+        {/* --- 作業用ドキュメントリンク (一時的) - 終了 --- */}
+
       </div>
     </section>
   );

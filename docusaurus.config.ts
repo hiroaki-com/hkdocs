@@ -7,7 +7,7 @@ import type * as PluginContentBlog from '@docusaurus/plugin-content-blog';
 
 const config: Config = {
   title: 'Hk Docs',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Hk Docs is My Tech Memo',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
