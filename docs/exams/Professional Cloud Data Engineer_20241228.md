@@ -1,0 +1,165 @@
+---
+sidebar_position: 3
+---
+
+**合格🌸 2024 年 12 月 28 日** 
+
+**関連：**
+- [[Professional Cloud Data Engineer_20241228]]
+- [認定試験一覧](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
+
+新Webassessor へのログイン方法
+https://cp.certmetrics.com/google/ja/login
+
+※ 旧：以下のメモではログイン不可のため別案を
+```
+ID: komukaihiroaki
+Pass: Hiro****!
+add: h.komukai@kiyono-co.jp
+
+以下、画像情報がProへ保存されていたので記載
+試験名: Professional Data Engineer Exam
+Candidate ID: 0046a8ac-6f03-4936-bb71-fae5eafdd84a （受験者ID）
+```
+#####  2024/11/22 新Webassessor へのログイン情報 ⭐️
+```
+https://cp.certmetrics.com/google/en/login
+new email: komukai.hiroaki1@gmail.com
+new pass: quoo5biiMak5Jei2
+```
+
+
+
+### 受験情報 2024 年 12 月 28 日
+受験経緯：クーポンの期限が上記日程であり、現在最も知見があり、可能性がある試験であるため受験を決定。また、日程制限によりオンライン受験を選択した
+[メール](https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQXKWpQvDDKSZlRgJtwTcbXPSfp)
+
+⭐️TIPS：日程変更によりクーポンの有効期限も伸びた！！
+
+試験名: Google Cloud Certified - Professional Data Engineer (Japanese)
+**日付**: 2024 年 12 月 28 日  
+**時刻**: 09:15 AM
+受験方法: 遠隔監視オンライン試験
+
+準備：
+- キッチンで実施するための準備。シーツを壁に貼り付けて実施するのが良さそう
+- セキュアブラウザのダウンロード（自宅でやろう）
+- 免許証／保険証／クレジットカード
+
+
+### 受験 2024 年 12 月 28 日 合格メモ
+🔥 TODO：余力のある時に、以下を使用して、書籍を改善か新規作成したい
+```
+Cloud Data Fusion のユースケース：https://cloud.google.com/data-fusion?hl=ja#use-cases
+
+dataflowのプログラミング言語:https://cloud.google.com/dataflow/docs/overview?hl=ja#portable
+
+composerのプログラミング言語:https://cloud.google.com/composer/docs/concepts/overview?hl=ja
+
+Dataplex の概要:https://cloud.google.com/dataplex/docs/introduction?hl=ja
+
+Datastreamのユースケース：https://cloud.google.com/datastream/docs/implementing-datastream-dataflow-analytics?hl=ja
+
+BIGレイクのユースケース：https://www.topgate.co.jp/blog/google-service/23159
+
+Cloud Strage の保存期間や保存オプション
+- 保存期間最新：https://cloud.google.com/storage/docs/storage-classes?hl=ja#classes
+- バケット保持ポリシー：https://cloud.google.com/storage/docs/bucket-lock?hl=ja#retention-policy
+- Autoclass：https://cloud.google.com/storage/docs/autoclass?hl=ja
+
+Bigqueryのタイムトラベル:https://cloud.google.com/bigquery/docs/time-travel?hl=ja
+
+
+試験メモ
+- 企業の事例問題が無くなった
+- ウィンドウの応用問題多数
+- データプロップのシステム的な問題多数
+- ネットワーク、デプロイ自動化、セキュリティに関してもちょいちょいデータサービスと絡めて登場
+
+
+dataproc の中間システムの活用がオンプレかメモリかをはっきりさせたい
+→ 中間のデータセットをHDFSに使用する
+https://cloud.google.com/blog/ja/topics/developers-practitioners/dataproc-best-practices-guide
+```
+
+### 🔥受験に向けた戦略🔥
+
+ネットワーク試験の不合格を受けて
+- 模擬試験を完璧にする（何周も） 〜12/15 
+	- [x] 12/9 正答率は約 59.26%（16/27） 
+
+- 試験範囲の研究と自作問題集を学習、ドキュメントも確認 〜12/15
+	- 模擬試験の出題傾向をもとに、問題集を改善してもいいかも。弱点を重点的に
+- 模擬試験の感覚から他の試験問題集が必要であれば購入して実施 〜12/21
+	- 以下のサイトで無料で50問学習する 
+	- https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-11-20
+		- [Google Cloud Professional Data Engineer 問題集 1-10](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-1-10)
+			- [x] 1 周目
+		- [Google Cloud Professional Data Engineer 問題集 11-20](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-11-20)
+			- [x] 1 周目
+		-  [Google Cloud Professional Data Engineer 問題集 21-30](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-21-30)
+			- [x] 1 周目
+		- [Google Cloud Professional Data Engineer 問題集 41-50](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-41-50)
+			- [x] 1 周目
+		- [x] [Google Cloud Professional Data Engineer 問題集 51-60](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-51-60)
+			- [x] 1 周目
+- Udemyを制覇
+	- https://www.udemy.com/course/google-cloud-professional-data-engineer-s/learn/quiz/5452330/test#overview
+
+---
+
+### 問題集作成用プロンプトメモ
+
+2024/11/30
+- GPTs で専用のプロンプトを設定完了している。しかし、作業時には適宜、プロンプトの補強を実施する必要がある。例えば、長文で生成した後半部分の補強や、複数回のプロンプト時には新規のページで作業が必要など、生成AIの弱点を補う必要がある
+
+**最終的に完成した作業用プロンプト**
+- 最悪の場合、問題の番号と問題の文章を指示に盛り込むことで乗り切ったことも
+```
+「知識」の「第4章: データパイプラインの構築と運用 (問題151～200)」の問題について、
+次に質問 165 以降の5問を指示の通り改善してください。必ず確認のために「知識」を「検索」し、改善前と改善後の問題の対応関係や指示（フォーマットや解説の改善）の意図を正しく理解すること。
+- 解説はGoogleCloud初学者にとって有益となるよう丁寧に努めること。
+- 解説箇所については問題で登場するGoogle Cloud の重要なサービス名については、「正式名称（日本語訳名）」のように記述すること。
+
+``「知識」内の該当問題を検索する際の参考情報
+質問 165
+Dataflowでのストリーミング処理において、状態管理を行う際に使用される最も一般的な概念は何ですか？
+``
+```
+
+##### GPTs チップス
+
+長文生成時の最大効果策
+- 出力が乱れてきたら、**新規ページを作成**して再度プロンプトする
+	- → プロンプトの改善よりもシステムの負荷が減るのか効果的
+
+長文生成時の次点の効果策
+- 知識に登録する資料を**分割**する
+	- → 得に元資料の順番や内容を踏襲した修正作業やフォーマット改善作業時には効果的と推察
+
+矛盾発生時の魔法の言葉（プロンプト）：
+- **必ず確認のために「知識」を「検索」すること**
+	- GTPsへ登録した資料を検索させることで、参考資料のフォーマットや内容・順序・指示に準じた生成を実行させることが可能
+
+王道の対策
+- プロンプトは具体的に的確に
+	- → GPTs では事前に指示を登録できるので、その時点で明確な指示の登録を心がける
+	- → 作業時の画面に置いて、登録済みの指示を補う指示をすることも重要
+
+
+
+##### 応用問題生成のTIPS
+
+2024/12/14 
+
+**模試の改善：**
+模擬試験を公式サイトからコピーして、テキストファイルで保存
+↓
+GPTs へ登録して、フォーマットを整理
+↓
+Gemini（studio）へSystemプロンプトを設定の上、順次改善していく
+
+**基礎問題の改善：**
+GPTs で試験範囲に準じた基礎問題集を生成する
+↓
+Gemini（studio）へSystemプロンプトを設定の上、順次応用問題に改善していく
