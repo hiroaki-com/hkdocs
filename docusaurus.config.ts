@@ -3,7 +3,10 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type * as PluginContentBlog from '@docusaurus/plugin-content-blog';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+// 数式サポートのために remark-math と rehype-katex をインポート
+// docusaurus.config.js (または .ts) はNode.js環境で実行されるため、requireを使用します。
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 const config: Config = {
   title: 'Hk Docs',
@@ -16,7 +19,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://your-docusaurus-site.example.com', // TODO: ご自身のサイトURLに置き換えてください
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -47,6 +50,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/hiroaki-com/hkdocs',
+          remarkPlugins: [math], // 数式サポートを追加
+          rehypePlugins: [katex], // 数式サポートを追加
         },
         blog: {
           showReadingTime: true,
@@ -62,6 +67,8 @@ const config: Config = {
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
+          remarkPlugins: [math], // 数式サポートを追加
+          rehypePlugins: [katex], // 数式サポートを追加
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -83,10 +90,22 @@ const config: Config = {
         showReadingTime: false,
         // editUrl: 'https://github.com/hiroaki-com/hkdocs/tree/main/diary/', // 必要ならコメント解除
         authorsMapPath: '../blog/authors.yml', // 著者情報の共通化のためblogから引用
+        remarkPlugins: [math], // 数式サポートを追加 (日記でも使う場合)
+        rehypePlugins: [katex], // 数式サポートを追加 (日記でも使う場合)
       } satisfies PluginContentBlog.Options,
     ],
-],
+  ],
   // ↑↑↑ 日記用にここまでを追加 ↑↑↑
+
+  // KaTeXのCSSを読み込むための設定
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css', // バージョンは適宜最新のものを確認してください
+      type: 'text/css',
+      integrity: 'sha384-wcIxkf4k558sdO6R2bvKte0ZiVEcHGlfxHrgoDae90SSsgkIERV36PksnAqcVB2Q', // integrityも合わせてください
+      crossorigin: 'anonymous',
+    },
+  ],
 
   themeConfig: { // ここから themeConfig
     // Replace with your project's social card
