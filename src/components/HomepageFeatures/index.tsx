@@ -20,7 +20,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        このサイトの基礎的な使い方や主要な機能を学ぶことができます。 {/* 「学無」を「学ぶ」に修正しました */}
+        ブログ記事や日常の学びを整理する場所です。 {/* 「学無」を「学ぶ」に修正しました */}
       </>
     ),
     link: '/docs/intro',
@@ -31,7 +31,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        技術的な学びの整理場所です。
+        技術的な学びに関するフランクなブログ記事です。
       </>
     ),
     link: '/blog',
@@ -42,7 +42,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        日々の記録や個人的な雑記メモはこちらから。
+        日々の記録や個人的な雑記メモです。
       </>
     ),
     link: '/diary',
