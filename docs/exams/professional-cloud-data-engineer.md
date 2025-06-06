@@ -1,9 +1,10 @@
 ---
 sidebar_position: 3
+title: Professional Cloud Data Engineer
 tags: [google cloud, 認定資格, 合格記]
 ---
 
-**合格 🌸: 2024 年 12 月 28 日** 
+**🌸 合格:2024年12月28日** 
 
 **関連：**
 - [[Professional Cloud Data Engineer_20241228]]

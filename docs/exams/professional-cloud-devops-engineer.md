@@ -1,5 +1,6 @@
 ---
 sidebar_position: 6
+title: Professional Cloud DevOps Engineer
 tags: [google cloud, 認定資格, 合格記]
 ---
 
