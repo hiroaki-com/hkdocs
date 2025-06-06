@@ -1,9 +1,9 @@
 ---
 sidebar_position: 4
+title: 「改ページ（文字列検知）」AppScript - Google Docs 用
 ---
 
 # Google Docs 用「改ページ（文字列検知）」AppScript
-
 
 ### 作成の経緯
 - 超長文なドキュメントの編集作業の中で、改ページの編集のために`⌘＋Enter`を繰り返し使用していたが、あまりにも時間がかかっていた
