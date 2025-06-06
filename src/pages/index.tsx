@@ -21,7 +21,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="https://hkdocs-service-101489112208.asia-northeast1.run.app">
-            Hk Docs Website - Hosted on Cloud Run 🚀
+            Hosted on Cloud Run 🚀
           </Link>
         </div>
       </div>
