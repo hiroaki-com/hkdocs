@@ -1,5 +1,6 @@
 ---
 sidebar_position: 10
+title: Case Studies
 tags: [google cloud, 認定資格, 合格記]
 ---
 
