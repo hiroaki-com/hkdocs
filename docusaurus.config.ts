@@ -44,7 +44,7 @@ const config: Config = {
     [
       'classic',
       {
-        docs: {
+        docs: { // ここには sidebar 設定を記述しません
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -195,12 +195,16 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-    // ↓↓↓ ここに tableOfContents の設定を追加します ↓↓↓
-    tableOfContents: {
+    docs: {
+      sidebar: {
+        hideable: true, // サイドバーを折りたたみ可能にする
+        // autoCollapseCategories: false, // 必要に応じてこちらも設定
+      },
+    },
+    tableOfContents: { // これは既存の設定
       minHeadingLevel: 2, // 表示を開始する見出しレベル (例: ## H2)
       maxHeadingLevel: 5, // 表示を終了する見出しレベル (例: #### H4 まで表示する場合)
     },
-    // ↑↑↑ ここまで ↑↑↑
   } satisfies Preset.ThemeConfig, // satisfies Preset.ThemeConfig は themeConfig オブジェクトの最後に置きます
 };
 
