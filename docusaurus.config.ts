@@ -10,7 +10,7 @@ const katex = require('rehype-katex');
 
 const config: Config = {
   title: 'Hk Docs',
-  tagline: 'Hk Docs is My Tech Memo',
+  tagline: 'My Tech Memo',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -19,7 +19,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com', // TODO: ご自身のサイトURLに置き換えてください
+  url: 'https://hkdocs-service-101489112208.asia-northeast1.run.app/', // TODO: ご自身のサイトURLに置き換えてください
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
