@@ -1,9 +1,10 @@
 ---
 sidebar_position: 7
+title: Professional Cloud Network Engineer
 tags: [google cloud, 認定資格, 合格記]
 ---
 
-**🌸 合格：2025年01月25**
+**🌸 合格：2025年01月25日**
 
 ネットワーク試験メモ
 ```

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 9
+title: Professional Machine Learning Engineer
 tags: [google cloud, 認定資格, 合格記]
 ---
 
