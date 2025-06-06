@@ -1,9 +1,9 @@
 ---
 sidebar_position: 10
+tags: [google cloud, 認定資格, 合格記]
 ---
 
-本紙について：
-PROFESSIONAL CLOUD ARCHITECT の 試験で使用する Case studies（ケーススタディーズ）の翻訳。公式では英語のみ掲載のため`Gemini`で翻訳したものです。
+本紙は Professional Cloud Architect の 試験で使用する Case studies（ケーススタディーズ）の翻訳。公式では英語のみ掲載のため`Gemini`で翻訳したものです。
 
 Source URL：
 https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf?hl=ja
