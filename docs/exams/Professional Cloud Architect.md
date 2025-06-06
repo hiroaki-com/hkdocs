@@ -1,8 +1,9 @@
 ---
 sidebar_position: 2
+tags: [google cloud, 認定資格, 合格記]
 ---
 
-🌸合格🌸 2025 年 1 月 31 日
+**🌸 合格：2025 年 1 月 31 日**
 
 **試験概要：**
 - [Professional Cloud Architect](https://cloud.google.com/learn/certification/cloud-architect?hl=ja)
@@ -42,14 +43,10 @@ VMの移行に関する問題もあった。難しかったというか解いた
 
 ```
 
-
-
-
-
 ### 🔥受験に向けた戦略🔥
  - [Case studies](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf?hl=ja) の４つの事例を把握する 
- - → 翻訳版 [[４事例：PROFESSIONAL CLOUD ARCHITECT]]
-
+ - 翻訳版：[Case studies - Professional Cloud Architect](/docs/exams/case-studies-professional-cloud-architect)
+ 
 
 #####  受験当日のTODO（PSE / PNE 受験時の成功事例） ⭐️
 前日

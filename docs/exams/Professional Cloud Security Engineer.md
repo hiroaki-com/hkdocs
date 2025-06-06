@@ -1,8 +1,9 @@
 ---
 sidebar_position: 8
+tags: [google cloud, 認定資格, 合格記]
 ---
 
-**合格 🥳**
+**🌸 合格：2025年01月17日**
 
 **試験概要：**
 - https://cloud.google.com/learn/certification/cloud-security-engineer?hl=ja
