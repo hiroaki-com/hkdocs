@@ -1,9 +1,9 @@
 ---
 sidebar_position: 5
+title: 「水平線の検知／置換」AppScript - Google Docs 用
 ---
 
 # Google Docs 用「水平線の検知／置換」AppScript
-
 
 ### 作成の経緯
 - ドキュメント内で区切りとして使用していた水平線を、特定のテキスト表記（例：「置換後の」）に一括で変更する必要があった。
