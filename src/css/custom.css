@@ -36,8 +36,8 @@
 html:root {
   background-color: var(--ifm-background-color);
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -74,8 +74,8 @@ html:root {
 html[data-theme='dark'] {
   background-color: var(--ifm-background-color);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.025) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 2px, transparent 2px);
   background-size: 20px 20px;
 }
 
