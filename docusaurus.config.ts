@@ -146,28 +146,19 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Tech',
           items: [
             {
-              label: 'Tech',
+              label: 'Tech - Notes',
               to: '/docs/intro',
             },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Exams',
+              to: '/docs/category/exams',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Blog',
+              to: '/blog',
             },
           ],
         },
@@ -175,12 +166,12 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
               label: 'Diary',
               to: '/diary',
+            },
+            {
+              label: 'Profile',
+              to: '/profile',
             },
             {
               label: 'GitHub',
