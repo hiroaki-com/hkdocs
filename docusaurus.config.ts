@@ -132,9 +132,9 @@ const config: Config = {
           label: 'Tech',
         },
         {to: '/docs/category/exams', label: 'Exams', position: 'left'},
-        {to: '/blog/authors/hk', label: 'Profile', position: 'left'}, // TODO:リンク先は暫定
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/diary', label: 'Diary', position: 'left'},
+        {to: '/profile', label: 'Profile', position: 'left'},        
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           label: 'GitHub',
