@@ -10,7 +10,7 @@ const katex = require('rehype-katex');
 
 const config: Config = {
   title: 'Hk Docs',
-  tagline: 'My Tech Memo',
+  tagline: 'Tech Memo',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -59,8 +59,6 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/hiroaki-com/hkdocs',
           // Useful options to enforce blogging best practices
@@ -113,8 +111,8 @@ const config: Config = {
     announcementBar: {
       id: 'site_release_20250601',
       content:
-        '🚀 2025年6月1日、当Webサイトが正式にリリースされました 🚀',
-      backgroundColor: '#fafbfc',
+        '2025年6月1日、当サイトを正式リリースしました 🚀',
+      backgroundColor: '#ffffff',
       textColor: '#091E42',
       isCloseable: false,
     },
@@ -124,6 +122,7 @@ const config: Config = {
         alt: 'Hk Docs Logo',
         src: 'img/logo.svg',
       },
+      hideOnScroll: true,
       items: [
         {
           type: 'docSidebar',
