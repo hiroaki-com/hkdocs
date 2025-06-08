@@ -23,15 +23,16 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  /* Primary color for dark mode (Material Blue 300/200 shades for better contrast) */
-  --ifm-color-primary: #90caf9; /* Light blue for dark backgrounds */
-  --ifm-color-primary-dark: #64b5f6; /* Darker shade in dark mode palette */
-  --ifm-color-primary-darker: #42a5f5; /* Even darker */
-  --ifm-color-primary-darkest: #2196f3; /* Darkest */
-  --ifm-color-primary-light: #bbdefb; /* Lighter */
-  --ifm-color-primary-lighter: #e3f2fd; /* Even lighter */
-  --ifm-color-primary-lightest: #ffffff; /* White or very light */
+  /* Primary color for dark mode - A clear, yet refined blue */
+  --ifm-color-primary: #7aa0da;          /* A clearer, soft blue with good definition */
+  --ifm-color-primary-dark: #688cc7;      /* Slightly deeper, maintaining clarity */
+  --ifm-color-primary-darker: #5678b4;    /* Darker shade for more emphasis */
+  --ifm-color-primary-darkest: #4564a1;   /* Deepest blue in this palette, still clear */
+  --ifm-color-primary-light: #8fb3e3;     /* Lighter, airy blue, preserving the clear tone */
+  --ifm-color-primary-lighter: #a4c5ed;   /* Even lighter, soft and clear blue */
+  --ifm-color-primary-lightest: #bad8f6;  /* Palest clear blue for subtle accents */
 
-  /* Highlighted code line background using dark mode primary color with transparency */
-  --docusaurus-highlighted-code-line-bg: rgba(144, 202, 249, 0.1); /* #90caf9 with 10% opacity */
+  /* Highlighted code line background using a clear, soft blue tone */
+  /* Using --ifm-color-primary-light with a gentle opacity */
+  --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13); /* #8fb3e3 with 13% opacity for a clear, subtle highlight */
 }
