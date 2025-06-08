@@ -1,9 +1,10 @@
 ---
 sidebar_position: 3
+title: Professional Cloud Data Engineer
 tags: [google cloud, 認定資格, 合格記]
 ---
 
-**合格 🌸: 2024 年 12 月 28 日** 
+**🌸 合格：2024年12月28日** 
 
 **関連：**
 - [[Professional Cloud Data Engineer_20241228]]
@@ -12,9 +13,6 @@ tags: [google cloud, 認定資格, 合格記]
 
 ### 受験情報 2024 年 12 月 28 日
 受験経緯：クーポンの期限が上記日程であり、現在最も知見があり、可能性がある試験であるため受験を決定。また、日程制限によりオンライン受験を選択した
-[メール](https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQXKWpQvDDKSZlRgJtwTcbXPSfp)
-
-⭐️TIPS：日程変更によりクーポンの有効期限も伸びた！！
 
 試験名: Google Cloud Certified - Professional Data Engineer (Japanese)
 **日付**: 2024 年 12 月 28 日  
@@ -28,7 +26,6 @@ tags: [google cloud, 認定資格, 合格記]
 
 
 ### 受験 2024 年 12 月 28 日 合格メモ
-🔥 TODO：余力のある時に、以下を使用して、書籍を改善か新規作成したい
 ```
 Cloud Data Fusion のユースケース：https://cloud.google.com/data-fusion?hl=ja#use-cases
 

@@ -1,9 +1,10 @@
 ---
 sidebar_position: 7
+title: Professional Cloud Network Engineer
 tags: [google cloud, 認定資格, 合格記]
 ---
 
-**🌸 合格：2025年01月25**
+**🌸 合格：2025年01月25日**
 
 ネットワーク試験メモ
 ```
@@ -118,11 +119,9 @@ NGFWに関数する問題はなかった記憶
 
 ### 受験情報 2024 年 12 月 08 日
 日程は変更可能なため随時チェックするべし
-[メール](https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQXKNDCLxjCgBFjnvlWfRFwMgjq)
 - 試験名: Google Cloud Certified - Professional Cloud Network Engineer (Japanese)
 - 日付: 2024 年 12 月 08 日
 - 時刻: 03:00 PM
-- 受験者承認コード: bca2fnnz15078402
 - 北区北7条西5丁目8-1 北7条ヨシヤビル4階
 - 持ち物：メールと身分証
 	- 免許証➕クレジットカード
