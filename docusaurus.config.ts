@@ -98,14 +98,14 @@ const config: Config = {
   // KaTeXのCSSを読み込むための設定
   stylesheets: [
     {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css', // バージョンは適宜最新のものを確認してください
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css', // バージョンは適宜最新のものを確認
       type: 'text/css',
-      integrity: 'sha384-wcIxkf4k558sdO6R2bvKte0ZiVEcHGlfxHrgoDae90SSsgkIERV36PksnAqcVB2Q', // integrityも合わせてください
+      integrity: 'sha384-wcIxkf4k558sdO6R2bvKte0ZiVEcHGlfxHrgoDae90SSsgkIERV36PksnAqcVB2Q',
       crossorigin: 'anonymous',
     },
   ],
 
-  themeConfig: { // ここから themeConfig
+  themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     announcementBar: {
