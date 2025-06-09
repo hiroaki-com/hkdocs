@@ -8,11 +8,11 @@ tags: [docusaurus]
 
 **前提環境:**
 
-*   **ドメイン:** `hkdocs.com` ((Value Domain)[https://www.value-domain.com/] で取得済み)
+*   **ドメイン:** `hkdocs.com` ([Value Domain](https://www.value-domain.com/) で取得済み)
 *   **ホスティング:** Google Cloud Run
 *   **サイトジェネレーター:** Docusaurus
 
----
+
 
 ### ステップ1: Docusaurus 設定ファイルの更新
 
@@ -33,7 +33,7 @@ tags: [docusaurus]
 3.  `organizationName` (例: `hiroaki-com`) や `projectName` (例: `hkdocs`) が、GitHub リポジトリの `editUrl` と整合性が取れるように正しく設定されているか確認します。
 4.  ファイルを保存します。
 
----
+
 
 ### ステップ2: Cloud Run でカスタムドメインマッピングを開始
 
@@ -45,7 +45,7 @@ tags: [docusaurus]
 4.  Cloud Run は、ドメインの所有権を確認するための **TXT レコード**情報を提示します。この値を正確にメモしておきます。
     *   例: ホスト名 `@` (または `hkdocs.com.`)、値 `google-site-verification=ランダムな文字列`
 
----
+ 
 
 ### ステップ3: Value Domain でDNSレコードを設定 (TXTレコードによる所有権確認)
 
@@ -63,7 +63,7 @@ Value Domain の管理画面で、Cloud Run から指示されたTXTレコード
         *(`google-site-verification=` の値は実際に表示されたものを使用)*
 4.  DNS設定を保存します。DNSの変更がインターネット全体に反映されるまで数分～数時間待ちます。
 
----
+
 
 ### ステップ4: Cloud Run で所有権確認完了とA/AAAAレコード取得
 
@@ -75,7 +75,7 @@ Cloud Run がTXTレコードを認識すると、次に設定すべきAレコー
     *   **AAAAレコードの例 (ダミー):** `2001:db8:2::1a`, `2001:db8:2::1b`, `2001:db8:2::1c`, `2001:db8:2::1d`
     *(これらのIPアドレスはあくまで例であり、実際にはCloud Runから提供される固有のIPアドレスを使用してください)*
 
----
+ 
 
 ### ステップ5: Value Domain でDNSレコードを設定 (A/AAAAレコード)
 
@@ -101,7 +101,7 @@ Cloud Run がTXTレコードを認識すると、次に設定すべきAレコー
         ```
 4.  DNS設定を保存します。DNSの変更が反映されるまで待ちます。
 
----
+
 
 ### ステップ6: Cloud Run で最終確認と SSL 証明書発行
 
@@ -109,7 +109,7 @@ Cloud Run が新しいDNS設定を認識し、SSL証明書を発行するのを�
 
 1.  **Google Cloud Console** の Cloud Run カスタムドメインマッピング画面で、`hkdocs.com` のステータスが「有効」になり、SSL証明書が発行されていることを確認します。これには少し時間がかかる場合があります。
 
----
+ 
 
 ### ステップ7: Docusaurus サイトの再ビルドとデプロイ
 
@@ -119,7 +119,7 @@ Docusaurus の設定変更を反映させるため、サイトを再ビルドし
 2.  ビルドコマンドを実行します (例: `pnpm build`, `npm run build`, `yarn build`)。
 3.  ビルドされた静的ファイルを、Cloud Run サービスにデプロイします。
 
----
+
 
 ### ステップ8: 動作確認
 
@@ -130,4 +130,4 @@ Docusaurus の設定変更を反映させるため、サイトを再ビルドし
 3.  サイト内のリンクや機能が意図通りに動作するかテストします。
 4.  必要であれば、`https://hkdocs.com/sitemap.xml` などのSEO関連ファイルも確認します。
 
----
+
