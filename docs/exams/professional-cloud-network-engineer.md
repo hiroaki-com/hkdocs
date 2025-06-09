@@ -122,7 +122,6 @@ NGFWに関数する問題はなかった記憶
 - 試験名: Google Cloud Certified - Professional Cloud Network Engineer (Japanese)
 - 日付: 2024 年 12 月 08 日
 - 時刻: 03:00 PM
-- 北区北7条西5丁目8-1 北7条ヨシヤビル4階
 - 持ち物：メールと身分証
 	- 免許証➕クレジットカード
 
