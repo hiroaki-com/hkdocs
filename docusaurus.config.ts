@@ -50,8 +50,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/hiroaki-com/hkdocs',
-          remarkPlugins: [math], // 数式サポートを追加
-          rehypePlugins: [katex], // 数式サポートを追加
+          remarkPlugins: [math], // 数式サポートを追加 (docs/ で使用)
+          rehypePlugins: [katex], // 数式サポートを追加 (docs/ で使用)
         },
         blog: {
           showReadingTime: true,
@@ -65,8 +65,8 @@ const config: Config = {
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
-          remarkPlugins: [math], // 数式サポートを追加
-          rehypePlugins: [katex], // 数式サポートを追加
+          remarkPlugins: [math], // 数式サポートを追加 (blog/ で使用)
+          rehypePlugins: [katex], // 数式サポートを追加 (blog/ で使用)
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -88,8 +88,8 @@ const config: Config = {
         showReadingTime: false,
         // editUrl: 'https://github.com/hiroaki-com/hkdocs/tree/main/diary/', // 必要ならコメント解除
         authorsMapPath: '../blog/authors.yml', // 著者情報の共通化のためblogから引用
-        remarkPlugins: [math], // 数式サポートを追加 (日記でも使う場合)
-        rehypePlugins: [katex], // 数式サポートを追加 (日記でも使う場合)
+        // remarkPlugins: [math], // diary/ では現状数式は不要
+        // rehypePlugins: [katex], // diary/ では現状数式は不要
       } satisfies PluginContentBlog.Options,
     ],
   ],
@@ -133,7 +133,7 @@ const config: Config = {
         {to: '/docs/category/exams', label: 'Exams', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/diary', label: 'Diary', position: 'left'},
-        {to: '/profile', label: 'Profile', position: 'left'},        
+        {to: '/profile', label: 'Profile', position: 'left'},
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           label: 'GitHub',

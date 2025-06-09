@@ -146,7 +146,7 @@ tags: [google cloud, 認定資格, 合格記]
 	- [cloud architecture center](https://cloud.google.com/architecture?hl=ja)
 - Google Cloud の画面
 
-##### 苦手項目
+### 苦手項目
 
 初見項目
 - [Assured Workloads とは](https://cloud.google.com/assured-workloads/docs/overview?hl=ja)
