@@ -15,7 +15,7 @@ tags: [docusaurus]
     *   **メールアドレス**
 *   申請後のAlgoliaチームからの承認、および設定情報（`apiKey`, `indexName`, `appId`）記載メールの受信待ち
 
-
+<!-- truncate -->
 
 ### 2. Docusaurus 設定ファイルの更新
 
