@@ -3,11 +3,11 @@
   padding: 2rem 2rem 1rem 2rem;
   text-align: center;
   position: relative;
-  overflow: hidden; /* グラデーションや装飾がはみ出さないように */
-  /* 淡い放射状グラデーションを背景に追加 */
+  overflow: hidden;
+  /* 淡い放射状グラデーション */
   background:
-    radial-gradient(ellipse at 50% 0%, hsla(210, 80%, 98%, 1) 0%, hsla(210, 80%, 98%, 0) 70%),
-    linear-gradient(180deg, var(--ifm-background-color), var(--ifm-background-color) 80%);
+    radial-gradient(ellipse at 50% 0%, rgb(180, 216, 252) 0%, transparent 70%),
+    var(--ifm-background-color);
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
@@ -20,7 +20,7 @@
 }
 
 .heroTitle {
-  font-size: 3.5rem; /* 少し大きくしてインパクトを */
+  font-size: 3.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--ifm-heading-color);
@@ -28,7 +28,7 @@
 }
 
 .heroSubtitle {
-  font-size: 1.2rem; /* サブタイトルも少し大きく */
+  font-size: 1.0rem;
   color: var(--ifm-font-color-secondary);
   margin-top: 1rem;
   max-width: 600px;

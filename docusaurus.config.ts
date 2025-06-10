@@ -8,8 +8,8 @@ const katex = require('rehype-katex');
 
 const config: Config = {
   title: 'Hk Docs',
-  tagline: 'Tech Memo',
-  // favicon: 'img/favicon.ico',
+  tagline: 'My Tech Memo',
+  favicon: 'img/favicon.ico',
 
   future: {
     v4: true,
@@ -90,17 +90,17 @@ const config: Config = {
     announcementBar: {
       id: 'site_release_20250601',
       content:
-        '2025年6月1日、当サイトを正式リリースしました 🚀',
-      backgroundColor: '#ffffff',
-      textColor: '#091E42',
-      isCloseable: false,
+        '🚀 2025年6月1日、当サイトを正式リリースしました',
+      backgroundColor: '#73a8e6',
+      textColor: '#fcf3f0',
+      isCloseable: true,
     },
     navbar: {
-      title: 'HkDocs',
-      // logo: {
-      //   alt: 'Hk Docs Logo',
-      //   src: 'img/logo.svg',
-      // },
+      // title: 'HkDocs',
+      logo: {
+        alt: 'Hk Docs Logo',
+        src: 'img/logo.svg',
+      },
       hideOnScroll: true,
       items: [
         {
