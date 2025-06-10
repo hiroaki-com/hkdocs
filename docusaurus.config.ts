@@ -9,7 +9,7 @@ const katex = require('rehype-katex');
 const config: Config = {
   title: 'Hk Docs',
   tagline: 'Tech Memo',
-  favicon: 'img/favicon.ico',
+  // favicon: 'img/favicon.ico',
 
   future: {
     v4: true,
@@ -97,10 +97,10 @@ const config: Config = {
     },
     navbar: {
       title: 'HkDocs',
-      logo: {
-        alt: 'Hk Docs Logo',
-        src: 'img/logo.svg',
-      },
+      // logo: {
+      //   alt: 'Hk Docs Logo',
+      //   src: 'img/logo.svg',
+      // },
       hideOnScroll: true,
       items: [
         {
