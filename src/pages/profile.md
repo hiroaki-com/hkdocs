@@ -1,5 +1,5 @@
 ---
-title: わたしのプロフィール
+title: プロフィール
 description: HkDocs管理者の自己紹介ページです。
 ---
 

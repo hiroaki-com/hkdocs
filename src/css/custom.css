@@ -32,7 +32,7 @@
   --ifm-background-color: #ffffff;
 
   /* Navbar Background (Light Mode) */
-  --ifm-navbar-background-color: rgba(245, 245, 245, 0.95); /* #f5f5f5 with 95% opacity */
+  --ifm-navbar-background-color: rgba(246, 248, 250, 0.95); /* #f6f8fa with 95% opacity */
   /* Consider adding a subtle blur effect if navbar is fixed and content scrolls under it */
   /* .navbar { backdrop-filter: blur(8px); } */
 }
@@ -63,7 +63,7 @@ html:root {
   --ifm-link-hover-color: var(--ifm-color-primary-lighter);
 
   /* Heading Font Sizes (Dark Mode) */
---ifm-heading-font-size-1: 2.0rem;  /* h1 */
+  --ifm-heading-font-size-1: 2.0rem;  /* h1 */
   --ifm-heading-font-size-2-rsdE: 1.8rem; /* h2.title_rsdE */
 
   /* Code Block (Dark Mode) */
@@ -74,7 +74,7 @@ html:root {
   --ifm-background-color: #0d1117;
 
   /* Navbar Background (Dark Mode) */
-  --ifm-navbar-background-color: rgba(36, 37, 38, 0.95); /* #242526 with 95% opacity */
+  --ifm-navbar-background-color: rgba(22, 27, 34, 0.95); /* #161b22 with 95% opacity */
   /* Consider adding a subtle blur effect if navbar is fixed and content scrolls under it */
   /* .navbar { backdrop-filter: blur(8px); } */
 }
