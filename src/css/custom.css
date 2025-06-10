@@ -84,10 +84,7 @@ html[data-theme='dark'] {
 
 /* Navbar */
 .navbar {
-  border-bottom: 1px solid var(--ifm-navbar-border-color);
-  /* 背景をぼかす効果を追加 (Safari対応も含む) */
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ifm-navbar-border-color); /* 下部に下線を設置 */
 }
 
 /* Headings */
