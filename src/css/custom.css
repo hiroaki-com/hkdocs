@@ -1,9 +1,10 @@
 /**
- * Global CSS. Infima is bundled by default.
+ * Docusaurus
+ * Global Custom CSS
  */
 
 :root {
-  /* Primary Colors (Light Mode) */
+  /* --- Colors: Light Mode --- */
   --ifm-color-primary: #1e88e5;
   --ifm-color-primary-dark: #1976d2;
   --ifm-color-primary-darker: #1769c0;
@@ -12,30 +13,54 @@
   --ifm-color-primary-lighter: #64b5f6;
   --ifm-color-primary-lightest: #90caf9;
 
-  /* Font Colors (Light Mode) */
+  /* --- Fonts: Light Mode --- */
   --ifm-font-color-base: #24292e;
   --ifm-font-color-secondary: #586069;
   --ifm-heading-color: #1c2024;
   --ifm-link-color: var(--ifm-color-primary);
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
+  
+  /* --- Sizing --- */
+  --ifm-heading-font-size-1: 2.0rem;
+  --ifm-heading-font-size-2-rsdE: 1.8rem;
 
-  /* Heading Font Sizes (Light Mode) */
-  --ifm-heading-font-size-1: 2.0rem;  /* h1 */
-  --ifm-heading-font-size-2-rsdE: 1.8rem; /* h2.title_rsdE */
-
-  /* Code Block (Light Mode) */
+  /* --- Components: Light Mode --- */
+  --ifm-background-color: #ffffff;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85); /* 透明度を少し調整 */
+  --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
   --ifm-code-font-size: 95%;
   --ifm-code-background: #f6f8fa;
   --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
-
-  /* Page Background (Light Mode) */
-  --ifm-background-color: #ffffff;
-
-  /* Navbar Background (Light Mode) */
-  --ifm-navbar-background-color: rgba(246, 248, 250, 0.95); /* #f6f8fa with 95% opacity */
-  /* Consider adding a subtle blur effect if navbar is fixed and content scrolls under it */
-  /* .navbar { backdrop-filter: blur(8px); } */
 }
+
+[data-theme='dark'] {
+  /* --- Colors: Dark Mode --- */
+  --ifm-color-primary: #7aa0da;
+  --ifm-color-primary-dark: #688cc7;
+  --ifm-color-primary-darker: #5678b4;
+  --ifm-color-primary-darkest: #4564a1;
+  --ifm-color-primary-light: #8fb3e3;
+  --ifm-color-primary-lighter: #a4c5ed;
+  --ifm-color-primary-lightest: #bad8f6;
+
+  /* --- Fonts: Dark Mode --- */
+  --ifm-font-color-base: #c9d1d9;
+  --ifm-font-color-secondary: #8b949e;
+  --ifm-heading-color: #f0f6fc;
+  --ifm-link-color: var(--ifm-color-primary-light);
+  --ifm-link-hover-color: var(--ifm-color-primary-lighter);
+
+  /* --- Components: Dark Mode --- */
+  --ifm-background-color: #0d1117;
+  --ifm-navbar-background-color: rgba(13, 17, 23, 0.85);
+  --ifm-navbar-border-color: rgba(255, 255, 255, 0.209);
+  --ifm-code-background: #161b22;
+  --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13);
+}
+
+/*
+ * Global Styles
+ */
 
 html:root {
   background-color: var(--ifm-background-color);
@@ -45,58 +70,36 @@ html:root {
   background-size: 20px 20px;
 }
 
-[data-theme='dark'] {
-  /* Primary Colors (Dark Mode) */
-  --ifm-color-primary: #7aa0da;
-  --ifm-color-primary-dark: #688cc7;
-  --ifm-color-primary-darker: #5678b4;
-  --ifm-color-primary-darkest: #4564a1;
-  --ifm-color-primary-light: #8fb3e3;
-  --ifm-color-primary-lighter: #a4c5ed;
-  --ifm-color-primary-lightest: #bad8f6;
-
-  /* Font Colors (Dark Mode) */
-  --ifm-font-color-base: #c9d1d9;
-  --ifm-font-color-secondary: #8b949e;
-  --ifm-heading-color: #f0f6fc;
-  --ifm-link-color: var(--ifm-color-primary-light);
-  --ifm-link-hover-color: var(--ifm-color-primary-lighter);
-
-  /* Heading Font Sizes (Dark Mode) */
-  --ifm-heading-font-size-1: 2.0rem;  /* h1 */
-  --ifm-heading-font-size-2-rsdE: 1.8rem; /* h2.title_rsdE */
-
-  /* Code Block (Dark Mode) */
-  --ifm-code-background: #161b22;
-  --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13);
-
-  /* Page Background (Dark Mode) */
-  --ifm-background-color: #0d1117;
-
-  /* Navbar Background (Dark Mode) */
-  --ifm-navbar-background-color: rgba(22, 27, 34, 0.95); /* #161b22 with 95% opacity */
-  /* Consider adding a subtle blur effect if navbar is fixed and content scrolls under it */
-  /* .navbar { backdrop-filter: blur(8px); } */
-}
-
 html[data-theme='dark'] {
   background-color: var(--ifm-background-color);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 2px, transparent 2px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), /* 線の太さを1pxに統一 */
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); /* 線の太さを1pxに統一 */
   background-size: 20px 20px;
 }
 
-/* Heading font-size settings */
+/*
+ * Component Overrides
+ */
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid var(--ifm-navbar-border-color);
+  /* 背景をぼかす効果を追加 (Safari対応も含む) */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Headings */
 h1 { font-size: var(--ifm-heading-font-size-1); }
 h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); }
 
-/* Hero Banner Adjustments */
-.hero--primary .hero__title {
+/* Hero Banner */
+.hero--primary .hero__title,
+.hero--primary .hero__subtitle {
   color: #ffffff;
 }
 
 .hero--primary .hero__subtitle {
-  color: #ffffff;
   margin-bottom: 0;
 }
