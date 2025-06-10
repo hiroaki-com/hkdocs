@@ -1,23 +1,37 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
+/* ヒーローセクション */
 .heroBanner {
-  padding: 4rem 0;
+  padding: 2rem 2rem 1rem 2rem;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* グラデーションや装飾がはみ出さないように */
+  /* 淡い放射状グラデーションを背景に追加 */
+  background:
+    radial-gradient(ellipse at 50% 0%, hsla(210, 80%, 98%, 1) 0%, hsla(210, 80%, 98%, 0) 70%),
+    linear-gradient(180deg, var(--ifm-background-color), var(--ifm-background-color) 80%);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+[data-theme='dark'] .heroBanner {
+  /* ダークモード用のグラデーション */
+  background:
+    radial-gradient(ellipse at 50% 0%, hsla(210, 100%, 15%, 0.5) 0%, hsla(210, 100%, 15%, 0) 70%),
+    linear-gradient(180deg, hsl(220, 13%, 15%), var(--ifm-background-color) 80%);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.heroTitle {
+  font-size: 3.5rem; /* 少し大きくしてインパクトを */
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ifm-heading-color);
+  line-height: 1.1;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem; /* サブタイトルも少し大きく */
+  color: var(--ifm-font-color-secondary);
+  margin-top: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }

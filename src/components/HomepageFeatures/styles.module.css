@@ -1,11 +1,144 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+/*
+ * HomepageFeatures/styles.module.css
+ * ハイブリッド改善バージョン
+ */
+
+.featuresSection {
+  padding: 4rem 0 5rem;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.featureCardLink {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  
+  /* V1のデザイン：シンプルなボーダーと背景 */
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-card-background-color);
+  
+  /* V2の動き：滑らかなアニメーション設定 */
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.featureCardLink:hover {
+  /* V2の動き：少しダイナミックな浮き上がりと柔らかい影 */
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px -15px hsla(220, 20%, 50%, 0.2);
+  /* V1のデザイン：ホバー時にボーダー色を変更 */
+  border-color: var(--ifm-color-primary);
+}
+
+/* V1のデザイン：ホバー時の背景グラデーション */
+.featureCardLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, var(--ifm-color-primary-lightest), var(--ifm-color-primary-light));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.featureCardLink:hover::before {
+  opacity: 0.1;
+}
+
+/* --- ダークモード --- */
+[data-theme='dark'] .featureCardLink {
+  border-color: var(--ifm-color-emphasis-400);
+  background: var(--ifm-background-surface-color);
+}
+[data-theme='dark'] .featureCardLink:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 20px 40px -15px hsla(0, 0%, 0%, 0.4);
+}
+[data-theme='dark'] .featureCardLink:hover::before {
+  background: linear-gradient(45deg, var(--ifm-color-primary-dark), var(--ifm-color-primary-darker));
+  opacity: 0.15;
+}
+
+
+/* --- カード内コンテンツ --- */
+/* V1のデザイン：グラデーションの上にコンテンツを配置 */
+.cardHeader,
+.featureDescription {
+  position: relative;
+  z-index: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cardIconWrapper {
+  /* V1のデザイン：アイコン背景 */
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  margin-right: 1rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--ifm-color-primary-lightest), var(--ifm-color-primary-light));
+  color: var(--ifm-color-primary);
+  /* V2の動き：アニメーションのためのtransitionを追加 */
+  transition: box-shadow 0.3s ease;
+}
+
+.cardIcon {
+  width: 24px;
+  height: 24px;
+  /* V2の動き：アニメーションのためのtransitionを追加 */
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* V2の動き：ホバー時のアイコンアニメーション */
+.featureCardLink:hover .cardIconWrapper {
+  box-shadow: 0 4px 12px -4px hsla(210, 80%, 60%, 0.3);
+}
+.featureCardLink:hover .cardIcon {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+/* --- ダークモードのアイコン --- */
+[data-theme='dark'] .cardIconWrapper {
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark), var(--ifm-color-primary-darker));
+  color: var(--ifm-color-primary-lightest);
+}
+[data-theme='dark'] .featureCardLink:hover .cardIconWrapper {
+  box-shadow: 0 6px 16px -4px hsla(210, 90%, 50%, 0.25);
+}
+
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.featureDescription {
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1; /* カードの高さを揃える */
 }
