@@ -96,7 +96,7 @@ const config: Config = {
       isCloseable: true,
     },
     navbar: {
-      // title: 'HkDocs',
+      title: 'HkDocs',
       logo: {
         alt: 'Hk Docs Logo',
         src: 'img/logo.svg',
