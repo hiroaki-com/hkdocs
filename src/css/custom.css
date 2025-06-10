@@ -19,6 +19,10 @@
   --ifm-link-color: var(--ifm-color-primary);
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
 
+  /* Heading Font Sizes (Light Mode) */
+  --ifm-heading-font-size-1: 2.0rem;  /* h1 */
+  --ifm-heading-font-size-2-rsdE: 1.8rem; /* h2.title_rsdE */
+
   /* Code Block (Light Mode) */
   --ifm-code-font-size: 95%;
   --ifm-code-background: #f6f8fa;
@@ -58,6 +62,10 @@ html:root {
   --ifm-link-color: var(--ifm-color-primary-light);
   --ifm-link-hover-color: var(--ifm-color-primary-lighter);
 
+  /* Heading Font Sizes (Dark Mode) */
+--ifm-heading-font-size-1: 2.0rem;  /* h1 */
+  --ifm-heading-font-size-2-rsdE: 1.8rem; /* h2.title_rsdE */
+
   /* Code Block (Dark Mode) */
   --ifm-code-background: #161b22;
   --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13);
@@ -78,6 +86,10 @@ html[data-theme='dark'] {
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 2px, transparent 2px);
   background-size: 20px 20px;
 }
+
+/* Heading font-size settings */
+h1 { font-size: var(--ifm-heading-font-size-1); }
+h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); }
 
 /* Hero Banner Adjustments */
 .hero--primary .hero__title {
