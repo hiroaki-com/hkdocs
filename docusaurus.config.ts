@@ -8,7 +8,7 @@ const katex = require('rehype-katex');
 
 const config: Config = {
   title: 'Hk Docs',
-  tagline: 'My Tech Memo',
+  tagline: 'My Knowledge Imprint',
   favicon: 'img/favicon.ico',
 
   future: {
