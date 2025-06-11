@@ -4,7 +4,7 @@ authors: [hk]
 tags: [docusaurus]
 ---
 
-この記事では、Algolia DocSearch を使用して、サイト内検索機能を設定した際の手順を整理します。
+この記事では、Algolia DocSearch を使用して、サイト内検索機能を設定した際の手順と課題解決の経緯を整理します。
 
 ### DocusaurusにAlgolia DocSearchを実装した際の記録
 
@@ -14,6 +14,8 @@ tags: [docusaurus]
 
 採用サービス：
 - [Algolia DocSearch](https://docsearch.algolia.com/)
+
+<!-- truncate -->
 
 #### 1. Algolia DocSearchへの申請
 
