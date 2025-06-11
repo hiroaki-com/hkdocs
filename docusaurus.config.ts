@@ -173,6 +173,22 @@ const config: Config = {
       minHeadingLevel: 2,
       maxHeadingLevel: 5,
     },
+    // Algolia Search 設定
+    algolia: {
+      appId: 'S30V6IHD5V',
+      apiKey: 'adbade7d0089113887a2a706a77f72f8',
+      indexName: 'hkcom',
+      placeholder: 'サイト内検索', // 例:「サイト内検索」
+      // オプション：詳細はドキュメントセクションを参照
+      contextualSearch: true,
+      // オプション：Algoliaの検索パラメータ
+      searchParameters: {},
+      // オプション：デフォルトで有効になっている検索ページのパス（無効にする場合は`false`）
+      searchPagePath: 'search',
+      // オプション：DocSearchでインサイト機能が有効かどうか（デフォルトは`false`）
+      insights: false,
+
+    },
   } satisfies Preset.ThemeConfig,
 };
 
