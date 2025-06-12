@@ -1,21 +1,33 @@
-# .dockerignore
-.DS_Store
+# Git
 .git
 .gitignore
+
+# Node.js
 node_modules
+
+# Docusaurus build output and cache
 build
 .docusaurus
+
+# Docker related files (prevent from being sent to Docker daemon)
 Dockerfile
-.dockerignore
+Dockerfile.dev
+docker-compose.yml
+docker-compose.*.yml
+
+# Deployment scripts & environment specific files
 deploy.sh
 .env
 *.local
+
+# Logs
 *.log
 pnpm-debug.log*
-# Docker Compose関連ファイル (もしあれば)
-docker-compose.yml
-docker-compose.*.yml
+
+# IDE/Editor specific
+.DS_Store
 .vscode/
 .idea/
-# .nvmrc # Dockerビルド時には不要
-# pnpm-lock.yaml # Dockerfile内でコピーするので、ビルドコンテキストには含めても良いが、除外しても良い
+
+# Other project specific files not needed in build context
+# .nvmrc # Already ignored by default if not copied in Dockerfile
