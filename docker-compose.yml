@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: hkdocs_dev_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app:cached # Use ':cached' for macOS performance improvement
+      - /app/node_modules
+      - /app/.docusaurus
+    environment:
+      - NODE_ENV=development
+      # Uncomment if hot-reloading is unstable
+      # CHOKIDAR_USEPOLLING=true
+    tty: true
+    stdin_open: true
+    
