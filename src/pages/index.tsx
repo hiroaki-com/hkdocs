@@ -27,7 +27,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={siteConfig.title}
-      description="A Developer-First Knowledge Base for Tech Notes and more.">
+      description="My Tech Blog">
       <HomepageHeader />
       <main>
         {/* HomepageFeatures にすべてのコンテンツへのリンクを集約 */}

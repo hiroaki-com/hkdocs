@@ -91,7 +91,7 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/hkdocs-social-card.jpg',
     announcementBar: {
       id: 'site_release_20250601',
       content:
