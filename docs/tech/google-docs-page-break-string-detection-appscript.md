@@ -1,20 +1,20 @@
 ---
 sidebar_position: 4
-title: 「改ページ（文字列検知）」AppScript - Google Docs 用
+title: 「改ページ（文字列検知）」AppScript - Googleドキュメント用
 ---
 
-# Google Docs 用「改ページ（文字列検知）」AppScript
+# Googleドキュメント用「改ページ（文字列検知）」AppScript
 
 ### 作成の経緯
 - 超長文なドキュメントの編集作業の中で、改ページの編集のために`⌘＋Enter`を繰り返し使用していたが、あまりにも時間がかかっていた
 - [Chrome拡張機能](https://chromewebstore.google.com/category/extensions?hl=ja) などで目的の機能を提供しているサービスが無さそうであったため、自作
 
 ### ユースケース
-- 書籍など超長文のGoogle Docs 編集作業の効率化
+- 書籍など超長文のGoogleドキュメント 編集作業の効率化
 - 指定した複数の文字列のいずれかで始まる段落の前に改ページを挿入するスクリプト（前方一致）
 
 ### 使い方
- 1. Google Docsのシートで、以下のAppScriptを貼り付けて、コメントのとおり実行するだけで使用可能
+ 1. Googleドキュメントのシートで、以下のAppScriptを貼り付けて、コメントのとおり実行するだけで使用可能
 
 
  ```Javascript
