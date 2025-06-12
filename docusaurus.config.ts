@@ -86,6 +86,11 @@ const config: Config = {
   ],
 
   themeConfig: {
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     image: 'img/docusaurus-social-card.jpg',
     announcementBar: {
       id: 'site_release_20250601',
@@ -127,8 +132,8 @@ const config: Config = {
           title: 'Tech',
           items: [
             {
-              label: 'Tech - Notes',
-              to: '/docs/intro',
+              label: 'Tech',
+              to: '/docs/category/tech',
             },
             {
               label: 'Exams',
