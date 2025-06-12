@@ -1,82 +1,123 @@
 # Hk Docs
 
 This website is built using [Docusaurus](https://docusaurus.io/), a static website generator.
+The live production site can be viewed at [hkdocs.com](https://hkdocs.com/).
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
+Ensure you have Git installed for cloning the repository.
+Other dependencies depend on the setup method you choose (Traditional or Docker).
 
 *   **Git**: For cloning the repository.
-*   **Node Version Manager (nvm)**: To manage Node.js versions. If not installed, follow the instructions [here](https://github.com/nvm-sh/nvm#install--update-script).
-*   **Corepack**: Enabled in Node.js to manage package managers like pnpm. If not enabled, run `corepack enable pnpm` after installing Node.js (often `npm install -g corepack@latest` is recommended first).
 
-## Setup
-
-Follow these steps to set up the project locally:
+## Project Setup
 
 1.  **Clone the repository:**
-    Open your terminal and navigate to the directory where you want to place the project. Then, clone the repository:
+    Open your terminal, navigate to your desired directory, and clone the repository:
     ```bash
-    # Example: Navigate to your development folder
-    mkdir -p ~/dev
-    cd ~/dev
-
+    # Example:
+    # mkdir -p ~/dev
+    # cd ~/dev
     git clone https://github.com/hiroaki-com/hkdocs.git
-    ```
-
-2.  **Navigate to the project directory:**
-    ```bash
     cd hkdocs
     ```
 
-3.  **Apply the correct Node.js version:**
-    This project uses a specific Node.js version defined in the `.nvmrc` file. Use nvm to apply it:
+Now, choose one of the following methods for setting up your local development environment:
+
+### Method 1: Local Environment Setup (Traditional)
+
+This method requires installing Node.js and pnpm directly on your machine.
+
+**Prerequisites for Traditional Setup:**
+
+*   **Node Version Manager (nvm)**: Recommended for managing Node.js versions. Install from [here](https://github.com/nvm-sh/nvm#install--update-script) if you don't have it.
+*   **Node.js**: Version `22.16.0` (as specified in `.nvmrc`).
+*   **pnpm**: Version `10.11.0` (as specified in `package.json`'s `packageManager` field). Corepack (usually bundled with Node.js >= 16.10) should be enabled.
+
+**Setup Steps (Traditional):**
+
+1.  **Set up Node.js version:**
+    Navigate to the project directory (`hkdocs`) and use nvm:
     ```bash
     nvm use
-    # If the required version is not installed, nvm will prompt you to install it. Follow the instructions.
+    # If the required version is not installed, nvm will prompt you to install it.
     ```
-    *(Ensure nvm is correctly sourced in your shell profile, e.g., `~/.zshrc`)*
+    Ensure nvm is correctly sourced in your shell profile (e.g., `~/.bashrc`, `~/.zshrc`).
 
-4.  **Install project dependencies:**
-    This project uses pnpm as its package manager. With Corepack enabled and the correct Node.js version active, install the dependencies:
+2.  **Enable Corepack (if not already enabled):**
+    Corepack manages pnpm.
     ```bash
-    pnpm install
+    corepack enable pnpm
     ```
-    *(Corepack will automatically use the pnpm version specified in `package.json`)*
 
-## Local Development
+3.  **Install project dependencies:**
+    This project uses pnpm. Corepack will use the version specified in `package.json`.
+    ```bash
+    pnpm install --frozen-lockfile
+    ```
 
-To start the local development server and preview the website:
+### Method 2: Docker Compose Setup (Recommended)
 
+This method uses Docker to create an isolated development environment.
+
+**Prerequisites for Docker Compose Setup:**
+
+*   **Docker Desktop** (or a compatible Docker environment): Install from [Docker's official website](https://www.docker.com/products/docker-desktop/).
+
+**Setup Steps (Docker Compose):**
+
+1.  Ensure Docker Desktop is running.
+2.  Navigate to the project directory (`hkdocs`).
+3.  Build the Docker image and start the development server:
+    ```bash
+    docker-compose up --build
+    ```
+    For subsequent starts (if `Dockerfile.dev` or `docker-compose.yml` haven't changed), you can simply run:
+    ```bash
+    docker-compose up
+    ```
+
+## Local Development Server
+
+### For Traditional Setup:
+
+Start the Docusaurus development server:
 ```bash
 pnpm start
 ```
+This typically opens the site at `http://localhost:3000`.
 
-This command starts a local development server (typically at `http://localhost:3000`) and opens up a browser window. Most changes you make to the files will be reflected live without having to restart the server.
+### For Docker Compose Setup:
+
+The `docker-compose up` command already starts the development server.
+Access the site in your browser at:
+`http://localhost:3000`
+
+Most changes to source files will be reflected live in the browser for both setup methods.
+
+### Stopping the Development Server
+
+*   **Traditional Setup**: Press `Ctrl+C` in the terminal where `pnpm start` is running.
+*   **Docker Compose Setup**: Press `Ctrl+C` in the terminal where `docker-compose up` is running. Then, to stop and remove containers:
+    ```bash
+    docker-compose down
+    ```
 
 ## Build
 
-To build the static website content for deployment:
+To generate the static website content for production:
+
+### For Traditional Setup:
 
 ```bash
 pnpm build
 ```
 
-This command generates static content into the `build` directory. The contents of this directory can be served using any static contents hosting service (e.g., Netlify, Vercel, GitHub Pages).
+### For Docker Compose Setup:
 
-## Deployment
-
-If you are using Docusaurus's built-in deployment script (often configured for GitHub Pages or similar services), you can use the following command. The exact command depends on your site's configuration (e.g., SSH vs HTTPS for Git push).
-
-Using SSH:
-
+Execute the build command inside the Docker container:
 ```bash
-USE_SSH=true pnpm deploy
+docker-compose exec app pnpm build
 ```
 
-Not using SSH (requires GitHub username):
-
-```bash
-GIT_USER=<Your GitHub username> pnpm deploy
-```
-
+This command generates static content into the `build` directory. The contents of this directory can then be deployed to any static content hosting service.
