@@ -23,10 +23,11 @@
   /* --- Sizing --- */
   --ifm-heading-font-size-1: 2.0rem;
   --ifm-heading-font-size-2-rsdE: 1.8rem;
+  --doc-card-title-font-size: 1.0rem; /* Font size for DocCard titles */
 
   /* --- Components: Light Mode --- */
   --ifm-background-color: #ffffff;
-  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85); /* 透明度を少し調整 */
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
   --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
   --ifm-code-font-size: 95%;
   --ifm-code-background: #f6f8fa;
@@ -73,8 +74,8 @@ html:root {
 html[data-theme='dark'] {
   background-color: var(--ifm-background-color);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), /* 線の太さを1pxに統一 */
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); /* 線の太さを1pxに統一 */
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -84,12 +85,12 @@ html[data-theme='dark'] {
 
 /* Navbar */
 .navbar {
-  border-bottom: 1px solid var(--ifm-navbar-border-color); /* 下部に下線を設置 */
+  border-bottom: 1px solid var(--ifm-navbar-border-color);
 }
 
 /* Headings */
 h1 { font-size: var(--ifm-heading-font-size-1); }
-h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); }
+h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); } 
 
 /* Hero Banner */
 .hero--primary .hero__title,
@@ -99,4 +100,9 @@ h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); }
 
 .hero--primary .hero__subtitle {
   margin-bottom: 0;
+}
+
+/* DocCard Title */
+a[class*="cardContainer_"] h2[class*="cardTitle_"] {
+  font-size: var(--doc-card-title-font-size);
 }

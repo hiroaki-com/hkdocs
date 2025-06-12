@@ -53,10 +53,10 @@ export default function HomepageFeatures(): JSX.Element {
       <div className="container">
         <div className={styles.featureGrid}>
           <FeatureCard
-            title="Tech Memo"
+            title="Tech"
             Icon={IconBook}
             description={<>日常の学びやブログ記事を整理する場所。</>}
-            link="/docs/intro"
+            link="/docs/category/tech"
           />
           <FeatureCard
             title="Exams"
