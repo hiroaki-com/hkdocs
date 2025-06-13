@@ -1,3 +1,4 @@
+// docusaurus.config.ts
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
@@ -15,11 +16,11 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://hkdocs.com/', // サイトのプロダクションURL
+  url: 'https://hkdocs.com/',
   baseUrl: '/',
 
-  organizationName: 'hiroaki-com', // GitHubのユーザー名/組織名
-  projectName: 'hkdocs', // リポジトリ名
+  organizationName: 'hiroaki-com',
+  projectName: 'hkdocs',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -91,7 +92,13 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
+    // サイト全体のデフォルトOGP画像。記事固有の画像がない場合に使用。
+    // `static/img/hkdocs-social-card.jpg` に対応する画像を配置。
     image: 'img/hkdocs-social-card.jpg',
+    // (任意) Xカードのタイプを明示的に指定する場合など。
+    // metadata: [
+    //   {name: 'twitter:card', content: 'summary_large_image'},
+    // ],
     announcementBar: {
       id: 'site_release_20250601',
       content:
@@ -178,21 +185,11 @@ const config: Config = {
       minHeadingLevel: 2,
       maxHeadingLevel: 5,
     },
-    // Algolia Search 設定
     algolia: {
       appId: 'S30V6IHD5V',
       apiKey: 'adbade7d0089113887a2a706a77f72f8',
       indexName: 'hkcom',
-      placeholder: 'サイト内検索', // 例:「サイト内検索」
-      // // オプション：詳細はドキュメントセクションを参照
-      // contextualSearch: true,
-      // // オプション：Algoliaの検索パラメータ
-      // searchParameters: {},
-      // // オプション：デフォルトで有効になっている検索ページのパス（無効にする場合は`false`）
-      // searchPagePath: 'search',
-      // // オプション：DocSearchでインサイト機能が有効かどうか（デフォルトは`false`）
-      // insights: false,
-
+      placeholder: 'サイト内検索',
     },
   } satisfies Preset.ThemeConfig,
 };
