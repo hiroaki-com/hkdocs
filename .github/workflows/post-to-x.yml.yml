@@ -1,0 +1,54 @@
+# .github/workflows/post-to-x.yml
+name: Post New Articles to X
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'blog/**.md'
+      - 'blog/**.mdx'
+      - 'docs/**.md'
+      - 'docs/**.mdx'
+      - '!diary/**'
+
+jobs:
+  post_to_x:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          node-version: ${{ vars.NODE_VERSION || '20' }} # リポジトリ変数またはデフォルト
+          cache: 'pnpm'
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: '10.11.0' # プロジェクトで使用しているpnpmバージョン
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Find New Posts and Post to X
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+        run: node ./.github/scripts/post-new-articles.js
