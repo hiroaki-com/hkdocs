@@ -54,4 +54,5 @@ description: HkDocs管理者の自己紹介ページです。
 
 
 ## SNS
-- GitHub: [hiroaki-com](https://github.com/hiroaki-com)
+- 𝕏: https://x.com/hkdocs ↗
+- GitHub: [hiroaki-com](https://github.com/hiroaki-com) ↗

@@ -31,9 +31,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.16.0' # Node.jsバージョンを直接指定
+          node-version: '22.16.0'
           # cache: 'pnpm' # Corepack利用時はキャッシュの挙動が変わる可能性があるため、一旦削除またはコメントアウト
-                          # 必要であれば後で actions/cache を使ったキャッシュ設定を検討
 
       - name: Enable Corepack and Set up PNPM
         run: |
