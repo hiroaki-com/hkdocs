@@ -31,14 +31,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          node-version: ${{ vars.NODE_VERSION || '20' }} # リポジトリ変数またはデフォルト
-          cache: 'pnpm'
+          node-version: '22.16.0' # Node.jsバージョンを直接指定
+          # cache: 'pnpm' # Corepack利用時はキャッシュの挙動が変わる可能性があるため、一旦削除またはコメントアウト
+                          # 必要であれば後で actions/cache を使ったキャッシュ設定を検討
 
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v3
-        with:
-          version: '10.11.0' # プロジェクトで使用しているpnpmバージョン
+      - name: Enable Corepack and Set up PNPM
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.11.0 --activate # プロジェクトのpackage.jsonのpackageManagerフィールドと合わせる
+        shell: bash
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
