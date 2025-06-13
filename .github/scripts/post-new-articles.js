@@ -7,7 +7,7 @@ const { TwitterApi } = require('twitter-api-v2');
 
 const MAX_POST_LENGTH = 280;
 const ELLIPSIS = '...';
-const ARTICLE_PREFIX = '【新規記事】';
+const ARTICLE_PREFIX = '【News】';
 const LOG_PREFIX = '[PostToX]';
 const TARGET_DIRS = ['blog/', 'docs/'];
 const TARGET_EXTS = ['.md', '.mdx'];
