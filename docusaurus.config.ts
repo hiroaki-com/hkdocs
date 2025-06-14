@@ -92,13 +92,7 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
-    // サイト全体のデフォルトOGP画像。記事固有の画像がない場合に使用。
-    // `static/img/hkdocs-social-card.jpg` に対応する画像を配置。
     image: 'img/hkdocs-social-card.jpg',
-    // (任意) Xカードのタイプを明示的に指定する場合など。
-    // metadata: [
-    //   {name: 'twitter:card', content: 'summary_large_image'},
-    // ],
     announcementBar: {
       id: 'site_release_20250601',
       content:
@@ -116,15 +110,25 @@ const config: Config = {
       hideOnScroll: true,
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
+          // type: 'docSidebar',
+          // sidebarId: 'tutorialSidebar',
+          to: '/docs/category/tech',
           label: 'Tech',
+          position: 'left',
+          activeBasePath: 'docs/tech',
         },
         {to: '/docs/category/exams', label: 'Exams', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/diary', label: 'Diary', position: 'left'},
         {to: '/profile', label: 'Profile', position: 'left'},
+        {
+          href: 'https://x.com/hkdocs',
+          label: '𝕏',
+          position: 'right',
+          target: '_blank',
+          rel: 'noopener noreferrer',
+          'aria-label': 'Follow on 𝕏',
+        },
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           label: 'GitHub',
@@ -162,6 +166,14 @@ const config: Config = {
             {
               label: 'Profile',
               to: '/profile',
+            },
+            {
+              label: '𝕏',
+              href: 'https://x.com/hkdocs',
+              props: {
+                target: '_blank',
+                rel: 'noopener noreferrer',
+              },
             },
             {
               label: 'GitHub',
