@@ -122,17 +122,17 @@ const config: Config = {
         {to: '/diary', label: 'Diary', position: 'left'},
         {to: '/profile', label: 'Profile', position: 'left'},
         {
+          href: 'https://github.com/hiroaki-com/hkdocs',
+          label: 'GitHub',
+          position: 'right',
+        },
+        {
           href: 'https://x.com/hkdocs',
           label: '𝕏',
           position: 'right',
           target: '_blank',
           rel: 'noopener noreferrer',
           'aria-label': 'Follow on 𝕏',
-        },
-        {
-          href: 'https://github.com/hiroaki-com/hkdocs',
-          label: 'GitHub',
-          position: 'right',
         },
       ],
     },
@@ -167,6 +167,15 @@ const config: Config = {
               label: 'Profile',
               to: '/profile',
             },
+          ],
+        },
+        {
+          title: 'SNS',
+          items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/hiroaki-com/hkdocs',
+            },
             {
               label: '𝕏',
               href: 'https://x.com/hkdocs',
@@ -174,10 +183,6 @@ const config: Config = {
                 target: '_blank',
                 rel: 'noopener noreferrer',
               },
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/hiroaki-com/hkdocs',
             },
           ],
         },
