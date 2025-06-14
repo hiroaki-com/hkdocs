@@ -41,6 +41,25 @@ description: HkDocs管理者の自己紹介ページです。
 - Obsidian（ローカル環境で使用してるメモ帳）
 
 
+## 資格
+- Google Cloud Certified - Professional Data Engineer (Ja)
+  - `2024年12月28日 ~ 2027年12月28日`
+- Google Cloud Certified - Professional Cloud Security Engineer (Ja)
+  - `2025年1月17日 ~ 2028年1月17日`
+- Google Cloud Certified - Professional Cloud Network Engineer (Ja)
+  - `2025年1月25日 ~ 2028年1月25日`
+- Google Cloud Certified - Professional Cloud Architect (Ja)
+  - `2025年1月31日 ~ 2028年1月31日`
+- Google Cloud Certified - Professional Cloud Developer (Ja)
+  - `2025年2月27日 ~ 2028年2月27日`
+- Google Cloud Certified - Professional Cloud Database Engineer(En)
+  - `2025年3月7日 ~ 2028年3月7日`
+- Google Cloud Certified - Professional Cloud DevOps Engineer (Ja)
+  - `2025年3月30日 ~ 2028年3月30日`
+- Google Cloud Certified - Professional Machine Learning Engineer(En)
+  - `2025年4月18日 ~ 2028年4月18日`
+
+
 ## 趣味
 - 街中散歩, サイクリング
 - 旅行
@@ -56,3 +75,5 @@ description: HkDocs管理者の自己紹介ページです。
 ## SNS
 - 𝕏: https://x.com/hkdocs ↗
 - GitHub: [hiroaki-com](https://github.com/hiroaki-com) ↗
+
+
