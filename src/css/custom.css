@@ -84,9 +84,9 @@ html[data-theme='dark'] {
  */
 
 /* Navbar */
-.navbar {
+/* .navbar {
   border-bottom: 1px solid var(--ifm-navbar-border-color);
-}
+} */
 
 /* Headings */
 h1 { font-size: var(--ifm-heading-font-size-1); }
