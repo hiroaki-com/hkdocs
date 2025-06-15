@@ -120,7 +120,12 @@ const config: Config = {
         {to: '/docs/category/exams', label: 'Exams', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/diary', label: 'Diary', position: 'left'},
-        {to: '/profile', label: 'Profile', position: 'left'},
+        {
+          to: '/browser-memo', // src/pages/browser-memo.tsx に対応
+          label: 'Browser Memo',
+          position: 'left',
+        },
+        {to: '/profile', label: 'Profile', position: 'right'},
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           label: 'GitHub',
@@ -166,6 +171,10 @@ const config: Config = {
             {
               label: 'Profile',
               to: '/profile',
+            },
+            {
+              label: 'Browser Memo',
+              to: '/browser-memo',
             },
           ],
         },
