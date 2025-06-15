@@ -3,8 +3,8 @@ import React, { useState, useEffect, useCallback, ReactElement, useRef } from 'r
 import Layout from '@theme/Layout';
 
 const MEMO_COUNT = 5;
-const STORAGE_KEY = 'hkdocs-browser-memo-v7-data';
-const DEFAULT_TEXTAREA_MIN_HEIGHT = 150; // px
+const STORAGE_KEY = 'hkdocs-browser-memo-v8-data'; // キー名を更新
+const DEFAULT_TEXTAREA_MIN_HEIGHT = 150;
 
 interface MemoItem {
   text: string;
@@ -31,10 +31,18 @@ const formatDate = (timestamp: number | null): string => {
 export default function BrowserMemoPage(): ReactElement {
   const [memoItems, setMemoItems] = useState<MemoItem[]>(createInitialMemoItems);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [copiedStates, setCopiedStates] = useState<boolean[]>(Array(MEMO_COUNT).fill(false)); // コピー状態管理
   const textareaRefs = useRef<(HTMLTextAreaElement | null)[]>([]);
+  const copyTimeoutRefs = useRef<(NodeJS.Timeout | null)[]>(Array(MEMO_COUNT).fill(null));
 
   useEffect(() => {
     textareaRefs.current = textareaRefs.current.slice(0, MEMO_COUNT);
+    // Cleanup timeouts on unmount
+    return () => {
+      copyTimeoutRefs.current.forEach(timeoutId => {
+        if (timeoutId) clearTimeout(timeoutId);
+      });
+    };
   }, []);
 
   const adjustTextareaHeight = useCallback((index: number) => {
@@ -124,11 +132,40 @@ export default function BrowserMemoPage(): ReactElement {
     }
   }, []);
 
+  const handleCopy = useCallback(async (index: number, textToCopy: string) => {
+    if (!navigator.clipboard) {
+      // Clipboard API not available (e.g., insecure context)
+      alert('クリップボード機能はこの環境では利用できません。');
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setCopiedStates(prev => prev.map((val, i) => i === index ? true : val));
+
+      // Clear previous timeout if any
+      if (copyTimeoutRefs.current[index]) {
+        clearTimeout(copyTimeoutRefs.current[index] as NodeJS.Timeout);
+      }
+
+      copyTimeoutRefs.current[index] = setTimeout(() => {
+        setCopiedStates(prev => prev.map((val, i) => i === index ? false : val));
+        copyTimeoutRefs.current[index] = null;
+      }, 1500); // 1.5秒後に元に戻す
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+      alert('テキストのコピーに失敗しました。');
+    }
+  }, []);
+
   return (
-    <Layout title="ブラウザメモ" description="ブラウザ内に一時的にテキストを保存できるシンプルなメモページ。">
+    <Layout title="ブラウザメモ" description="ブラウザ内に一時的にテキストを保存できるシンプルなメモ帳。">
       <div style={{ padding: '2rem' }}>
         <h1>ブラウザ メモ</h1>
         <p>ご自由にお使いください。入力内容は自動で保存され、次回もすぐに使えます。</p>
+        <p style={{ fontSize: '0.9em', color: 'var(--ifm-color-secondary-darkest)' }}>
+          <strong>※ 安全性について：</strong> このメモの内容は、お使いのブラウザのローカルストレージにのみ保存されます。
+          データが外部のサーバーに送信されることは一切ありません。
+        </p>
         <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'flex-end' }}>
           <button
             type="button"
@@ -146,7 +183,24 @@ export default function BrowserMemoPage(): ReactElement {
             : `クリックして最小化 (${DEFAULT_TEXTAREA_MIN_HEIGHT}px)`;
 
           return (
-            <div key={index} style={{ marginBottom: '1.5rem' }}>
+            <div key={index} style={{ marginBottom: '1.5rem', position: 'relative' }}>
+              <button
+                type="button"
+                onClick={() => handleCopy(index, item.text)}
+                className={`button ${copiedStates[index] ? 'button--success' : 'button--secondary'} button--xs`}
+                style={{
+                  position: 'absolute',
+                  top: '8px',
+                  right: '8px',
+                  zIndex: 1, // 他の要素より手前に表示
+                  padding: '2px 6px', // Docusaurusのbutton--xsより少し小さく
+                  fontSize: '0.75em',
+                }}
+                disabled={!item.text.trim()} // テキストが空か空白のみの場合は無効化
+                aria-label={copiedStates[index] ? "コピーしました" : `メモ ${index + 1} をコピー`}
+              >
+                {copiedStates[index] ? 'Copied!' : 'Copy'}
+              </button>
               <textarea
                 ref={el => textareaRefs.current[index] = el}
                 value={item.text}
@@ -157,6 +211,7 @@ export default function BrowserMemoPage(): ReactElement {
                   width: '100%',
                   minHeight: `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`,
                   padding: '10px',
+                  paddingTop: '36px', // コピーボタンと重ならないように上パディングを増やす
                   fontSize: '16px',
                   border: '1px solid var(--ifm-color-emphasis-300)',
                   borderBottom: 'none',
