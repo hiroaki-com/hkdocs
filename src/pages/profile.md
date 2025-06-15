@@ -42,6 +42,7 @@ description: HkDocs管理者の自己紹介ページです。
 
 
 ## 資格
+関連：[Exams](/docs/category/exams)
 - Google Cloud Certified - Professional Data Engineer (Ja)
   - `2024年12月28日 ~ 2027年12月28日`
 - Google Cloud Certified - Professional Cloud Security Engineer (Ja)
