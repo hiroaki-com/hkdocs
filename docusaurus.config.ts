@@ -110,8 +110,6 @@ const config: Config = {
       hideOnScroll: true,
       items: [
         {
-          // type: 'docSidebar',
-          // sidebarId: 'tutorialSidebar',
           to: '/docs/category/tech',
           label: 'Tech',
           position: 'left',
@@ -121,7 +119,7 @@ const config: Config = {
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/diary', label: 'Diary', position: 'left'},
         {
-          to: '/browser-memo', // src/pages/browser-memo.tsx に対応
+          to: '/browser-memo',
           label: 'Browser Memo',
           position: 'left',
         },
@@ -196,7 +194,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} hkdocs. All Rights Reserved.`,
+      copyright: `Copyright © ${new Date().getFullYear()} hkdocs. All Rights Reserved.<br>The code is licensed under MIT, and the content is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
     },
     prism: {
       theme: prismThemes.github,
