@@ -213,7 +213,7 @@ const config: Config = {
     },
     algolia: {
       appId: 'S30V6IHD5V',
-      apiKey: 'adbade7d0089113887a2a706a77f72f8',
+      apiKey: 'adbade7d0089113887a2a706a77f72f8', // Search-Only API Key
       indexName: 'hkcom',
       placeholder: 'サイト内検索',
     },
