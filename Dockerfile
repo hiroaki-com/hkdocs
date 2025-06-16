@@ -4,7 +4,6 @@ FROM node:22.16.0-alpine AS builder
 WORKDIR /app
 
 # Enable Corepack to use pnpm version from package.json's "packageManager" field
-# Ensure "packageManager": "pnpm@10.11.0" (or your version) is in package.json
 RUN corepack enable pnpm
 
 # Copy package manifests for optimized layer caching
@@ -19,9 +18,6 @@ COPY . .
 # Build the Docusaurus site
 RUN pnpm build
 
-# Remove devDependencies for smaller production node_modules
-RUN pnpm prune --prod
-
 # ---- Final Stage ----
 # Base image: Node.js Alpine
 FROM node:22.16.0-alpine
@@ -31,11 +27,11 @@ WORKDIR /app
 RUN apk add --no-cache curl
 
 # Enable Corepack to use pnpm version from package.json's "packageManager" field
-# This ensures 'pnpm run serve' can find the correct pnpm version
 RUN corepack enable pnpm
 
-# Set production environment
+# Set production environment and PORT for Cloud Run
 ENV NODE_ENV=production
+ENV PORT=8080
 
 # Switch to non-root user for security
 USER node
@@ -48,16 +44,16 @@ COPY --from=builder --chown=node:node /app/build ./build
 # Copy production-ready node_modules and package.json
 COPY --from=builder --chown=node:node /app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/package.json ./package.json
-# pnpm-lock.yaml is not strictly required in the final image if node_modules is fully populated
-# and no 'pnpm install' is run. Omitting can slightly reduce image size.
 
-# Expose application port
+# Expose application port (Cloud Run automatically uses the PORT env var)
 EXPOSE 8080
 
 # Application health check for Cloud Run
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD curl -f http://localhost:8080/ || exit 1
 
-# Start application using "serve" script from package.json
-# Assumes "scripts": { "serve": "serve -s build -l tcp://0.0.0.0:${PORT:-8080}" } in package.json
-CMD ["pnpm", "run", "serve"]
+# --- highlight-start ---
+# Start application using Docusaurus's official serve command for production
+# This correctly handles multi-language routing.
+CMD ["pnpm", "docusaurus", "serve", "--build", "--host", "0.0.0.0", "--port", "8080"]
+# --- highlight-end ---

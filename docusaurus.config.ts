@@ -1,4 +1,3 @@
-// docusaurus.config.ts
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
@@ -25,10 +24,24 @@ const config: Config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
+  // ========= ▼ここから変更▼ =========
   i18n: {
     defaultLocale: 'ja',
-    locales: ['ja'],
+    locales: ['en', 'ja'], // 英語を追加
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+      },
+      ja: {
+        label: '日本語',
+        direction: 'ltr',
+        htmlLang: 'ja-JP',
+      },
+    },
   },
+  // ========= ▲ここまで変更▲ =========
 
   presets: [
     [
@@ -124,6 +137,12 @@ const config: Config = {
           position: 'left',
         },
         {to: '/profile', label: 'Profile', position: 'right'},
+        // ========= ▼ここから変更▼ =========
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        // ========= ▲ここまで変更▲ =========
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           label: 'GitHub',
