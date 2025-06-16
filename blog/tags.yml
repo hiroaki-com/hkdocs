@@ -1,19 +1,79 @@
 facebook:
   label: Facebook
   permalink: /facebook
-  description: Facebook tag description
+  description: Articles related to the Facebook platform or its API integration.
 
 hello:
   label: Hello
   permalink: /hello
-  description: Hello tag description
+  description: General introductory posts or Docusaurus blog initial setup.
 
 docusaurus:
   label: Docusaurus
   permalink: /docusaurus
-  description: Docusaurus tag description
+  description: Articles on Docusaurus - setup, customization, features, and troubleshooting.
 
 hola:
   label: Hola
   permalink: /hola
-  description: Hola tag description
+  description: Sample posts, potentially for multilingual examples or greetings.
+
+docker:
+  label: Docker
+  permalink: /docker
+  description: Content on Docker - containerization, Dockerfiles, and related setups.
+
+docker-compose:
+  label: Docker Compose
+  permalink: /docker-compose
+  description: Using Docker Compose for multi-container application management.
+
+react:
+  label: React
+  permalink: /react
+  description: React.js development, especially for Docusaurus components and customization.
+
+typescript:
+  label: TypeScript
+  permalink: /typescript
+  description: Using TypeScript for static typing in JavaScript projects, often with Docusaurus.
+
+localStorage:
+  label: localStorage
+  permalink: /localstorage
+  description: Utilizing browser's localStorage API for client-side data persistence.
+
+ブラウザ機能:
+  label: ブラウザ機能
+  permalink: /ブラウザ機能
+  description: Discussions on various web browser APIs and functionalities.
+
+Github Actions:
+  label: Github Actions
+  permalink: /github-actions
+  description: Automating workflows, CI/CD, and deployments using GitHub Actions.
+
+Twitter API:
+  label: Twitter API
+  permalink: /twitter-api
+  description: Interacting with the Twitter (X) API for automation or data retrieval.
+
+Twitter Card:
+  label: Twitter Card
+  permalink: /twitter-card
+  description: Configuring rich content previews (Twitter Cards) for shared links on Twitter/X.
+
+アイコン:
+  label: アイコン
+  permalink: /アイコン
+  description: Working with icons - SVG, CSS, and general usage in web design.
+
+css:
+  label: CSS
+  permalink: /css
+  description: Cascading Style Sheets - styling, layout, and web design techniques.
+
+svg:
+  label: SVG
+  permalink: /svg
+  description: Scalable Vector Graphics (SVG) - usage for icons, illustrations, and web graphics.

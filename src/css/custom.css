@@ -98,6 +98,11 @@ h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); }
   color: #ffffff;
 }
 
+/* --- Top Page Hero Title Specific Style --- */
+header.hero .container h1 {
+  letter-spacing: 0.03em;
+}
+
 .hero--primary .hero__subtitle {
   margin-bottom: 0;
 }

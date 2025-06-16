@@ -1,7 +1,7 @@
 ---
 title: Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装の記録
 authors: [hk]
-tags: [Github Actions, Twitter API, Twiter Card, Docuzaurus]
+tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
 この記事では、Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装した際の手順とトラブルシューティングの記録を整理します。
