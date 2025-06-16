@@ -111,3 +111,29 @@ header.hero .container h1 {
 a[class*="cardContainer_"] h2[class*="cardTitle_"] {
   font-size: var(--doc-card-title-font-size);
 }
+
+/* --- Announcement Bar Customization --- */
+.theme-announcement-bar {
+  /* Fixed stripe colors, based on light mode's palette */
+  --site-announcement-bar-stripe-color1: #90caf9; /* Light blue, from light mode's --ifm-color-primary-lightest */
+  --site-announcement-bar-stripe-color2: #e3f2fd; /* Custom very light blue */
+  
+  background: repeating-linear-gradient(
+    35deg, 
+    var(--site-announcement-bar-stripe-color1), 
+    var(--site-announcement-bar-stripe-color1) 20px, 
+    var(--site-announcement-bar-stripe-color2) 20px,
+    var(--site-announcement-bar-stripe-color2) 40px
+  );
+  font-size: 16px;
+  font-weight: 700;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-align: center;
+}
+
+.theme-announcement-bar div[class*="announcementBarContent_"],
+.theme-announcement-bar div[class*="announcementBarContent_"] > div,
+.theme-announcement-bar div[class*="announcementBarContent_"] p {
+  color: #24292e; /* Fixed dark text color for readability */
+}
