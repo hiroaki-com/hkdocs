@@ -8,7 +8,7 @@ const math = require('remark-math');
 const katex = require('rehype-katex');
 
 const config: Config = {
-  title: 'Hk Docs',
+  title: 'HkDocs',
   tagline: 'My Knowledge Imprint',
   favicon: 'img/favicon.ico',
 
