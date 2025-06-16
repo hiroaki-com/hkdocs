@@ -1,9 +1,12 @@
-// src/pages/browser-memo.tsx
 import React, { useState, useEffect, useCallback, ReactElement, useRef } from 'react';
 import Layout from '@theme/Layout';
+// --- highlight-start ---
+import Translate, { translate } from '@docusaurus/Translate';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+// --- highlight-end ---
 
 const MEMO_COUNT = 5;
-const STORAGE_KEY = 'hkdocs-browser-memo-v8-data'; // キー名を更新
+const STORAGE_KEY = 'hkdocs-browser-memo-v8-data';
 const DEFAULT_TEXTAREA_MIN_HEIGHT = 150;
 
 interface MemoItem {
@@ -19,25 +22,34 @@ const createInitialMemoItems = (): MemoItem[] =>
     isManuallyMinimized: false,
   }));
 
-const formatDate = (timestamp: number | null): string => {
-  if (!timestamp) return '保存データなし';
+const formatDate = (timestamp: number | null, locale: string): string => {
+  // --- highlight-start ---
+  if (!timestamp) return translate({
+    id: 'browserMemo.noData',
+    message: '保存データなし'
+  });
   const date = new Date(timestamp);
-  return date.toLocaleString('ja-JP', {
+  // Use the current locale for date formatting
+  return date.toLocaleString(locale, {
     year: 'numeric', month: '2-digit', day: '2-digit',
     hour: '2-digit', minute: '2-digit',
   });
+  // --- highlight-end ---
 };
 
 export default function BrowserMemoPage(): ReactElement {
+  // --- highlight-start ---
+  const { i18n: { currentLocale } } = useDocusaurusContext();
+  // --- highlight-end ---
+
   const [memoItems, setMemoItems] = useState<MemoItem[]>(createInitialMemoItems);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [copiedStates, setCopiedStates] = useState<boolean[]>(Array(MEMO_COUNT).fill(false)); // コピー状態管理
+  const [copiedStates, setCopiedStates] = useState<boolean[]>(Array(MEMO_COUNT).fill(false));
   const textareaRefs = useRef<(HTMLTextAreaElement | null)[]>([]);
   const copyTimeoutRefs = useRef<(NodeJS.Timeout | null)[]>(Array(MEMO_COUNT).fill(null));
 
   useEffect(() => {
     textareaRefs.current = textareaRefs.current.slice(0, MEMO_COUNT);
-    // Cleanup timeouts on unmount
     return () => {
       copyTimeoutRefs.current.forEach(timeoutId => {
         if (timeoutId) clearTimeout(timeoutId);
@@ -127,22 +139,32 @@ export default function BrowserMemoPage(): ReactElement {
   }, []);
 
   const handleClearAllMemos = useCallback(() => {
-    if (window.confirm('すべてのメモをクリアしますか？この操作は元に戻せません。')) {
+    // --- highlight-start ---
+    const confirmationMessage = translate({
+      id: 'browserMemo.clearAllConfirmation',
+      message: 'すべてのメモをクリアしますか？この操作は元に戻せません。'
+    });
+    if (window.confirm(confirmationMessage)) {
       setMemoItems(createInitialMemoItems());
     }
+    // --- highlight-end ---
   }, []);
 
   const handleCopy = useCallback(async (index: number, textToCopy: string) => {
     if (!navigator.clipboard) {
-      // Clipboard API not available (e.g., insecure context)
-      alert('クリップボード機能はこの環境では利用できません。');
+      // --- highlight-start ---
+      const alertMessage = translate({
+        id: 'browserMemo.clipboardUnavailable',
+        message: 'クリップボード機能はこの環境では利用できません。'
+      });
+      alert(alertMessage);
+      // --- highlight-end ---
       return;
     }
     try {
       await navigator.clipboard.writeText(textToCopy);
       setCopiedStates(prev => prev.map((val, i) => i === index ? true : val));
 
-      // Clear previous timeout if any
       if (copyTimeoutRefs.current[index]) {
         clearTimeout(copyTimeoutRefs.current[index] as NodeJS.Timeout);
       }
@@ -150,21 +172,37 @@ export default function BrowserMemoPage(): ReactElement {
       copyTimeoutRefs.current[index] = setTimeout(() => {
         setCopiedStates(prev => prev.map((val, i) => i === index ? false : val));
         copyTimeoutRefs.current[index] = null;
-      }, 1500); // 1.5秒後に元に戻す
+      }, 1500);
     } catch (err) {
       console.error('Failed to copy text: ', err);
-      alert('テキストのコピーに失敗しました。');
+      // --- highlight-start ---
+      const alertMessage = translate({
+        id: 'browserMemo.copyFailed',
+        message: 'テキストのコピーに失敗しました。'
+      });
+      alert(alertMessage);
+      // --- highlight-end ---
     }
   }, []);
 
   return (
-    <Layout title="ブラウザメモ" description="ブラウザ内に一時的にテキストを保存できるシンプルなメモ帳。">
+    // --- highlight-start ---
+    <Layout
+      title={translate({ id: 'browserMemo.pageTitle', message: 'ブラウザメモ' })}
+      description={translate({
+        id: 'browserMemo.pageDescription',
+        message: 'ブラウザ内に一時的にテキストを保存できるシンプルなメモ帳。'
+      })}
+    >
       <div style={{ padding: '2rem' }}>
-        <h1>ブラウザ メモ</h1>
-        <p>ご自由にお使いください。入力内容は自動で保存され、次回もすぐに使えます。</p>
+        <h1><Translate id="browserMemo.h1">ブラウザ メモ</Translate></h1>
+        <p><Translate id="browserMemo.intro">ご自由にお使いください。入力内容は自動で保存され、次回もすぐに使えます。</Translate></p>
         <p style={{ fontSize: '0.9em', color: 'var(--ifm-color-secondary-darkest)' }}>
-          <strong>※ 安全性について：</strong> このメモの内容は、お使いのブラウザのローカルストレージにのみ保存されます。
-          データが外部のサーバーに送信されることは一切ありません。
+          <strong><Translate id="browserMemo.security.title">※ 安全性について：</Translate></strong>
+          <Translate id="browserMemo.security.body">
+            このメモの内容は、お使いのブラウザのローカルストレージにのみ保存されます。
+            データが外部のサーバーに送信されることは一切ありません。
+          </Translate>
         </p>
         <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'flex-end' }}>
           <button
@@ -172,15 +210,38 @@ export default function BrowserMemoPage(): ReactElement {
             className="button button--warning button--sm"
             onClick={handleClearAllMemos}
           >
-            全てクリア
+            <Translate id="browserMemo.clearAllButton">全てクリア</Translate>
           </button>
         </div>
         <hr style={{ margin: '2rem 0' }} />
 
         {memoItems.map((item, index) => {
           const titleText = item.isManuallyMinimized
-            ? "クリックして自動高さ調整に戻す"
-            : `クリックして最小化 (${DEFAULT_TEXTAREA_MIN_HEIGHT}px)`;
+            ? translate({
+                id: 'browserMemo.tooltip.expand',
+                message: 'クリックして自動高さ調整に戻す'
+              })
+            : translate({
+                id: 'browserMemo.tooltip.minimize',
+                message: `クリックして最小化 (${DEFAULT_TEXTAREA_MIN_HEIGHT}px)`
+              });
+          
+          const copyButtonAriaLabel = copiedStates[index]
+            ? translate({
+                id: 'browserMemo.aria.copied',
+                message: 'コピーしました'
+              })
+            : translate({
+                id: 'browserMemo.aria.copy',
+                message: 'メモ {number} をコピー',
+                description: 'The ARIA label for the copy button of a memo'
+              }, { number: index + 1 });
+            
+          const textareaPlaceholder = translate({
+            id: 'browserMemo.placeholder',
+            message: 'メモ {number}',
+            description: 'The placeholder for the memo textarea'
+          }, { number: index + 1 });
 
           return (
             <div key={index} style={{ marginBottom: '1.5rem', position: 'relative' }}>
@@ -192,26 +253,28 @@ export default function BrowserMemoPage(): ReactElement {
                   position: 'absolute',
                   top: '8px',
                   right: '8px',
-                  zIndex: 1, // 他の要素より手前に表示
-                  padding: '2px 6px', // Docusaurusのbutton--xsより少し小さく
+                  zIndex: 1,
+                  padding: '2px 6px',
                   fontSize: '0.75em',
                 }}
-                disabled={!item.text.trim()} // テキストが空か空白のみの場合は無効化
-                aria-label={copiedStates[index] ? "コピーしました" : `メモ ${index + 1} をコピー`}
+                disabled={!item.text.trim()}
+                aria-label={copyButtonAriaLabel}
               >
-                {copiedStates[index] ? 'Copied!' : 'Copy'}
+                {copiedStates[index]
+                  ? <Translate id="browserMemo.copyButton.copied">Copied!</Translate>
+                  : <Translate id="browserMemo.copyButton.copy">Copy</Translate>}
               </button>
               <textarea
                 ref={el => textareaRefs.current[index] = el}
                 value={item.text}
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdate(index, e.target.value)}
-                placeholder={`メモ ${index + 1}`}
+                placeholder={textareaPlaceholder}
                 rows={1}
                 style={{
                   width: '100%',
                   minHeight: `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`,
                   padding: '10px',
-                  paddingTop: '36px', // コピーボタンと重ならないように上パディングを増やす
+                  paddingTop: '36px',
                   fontSize: '16px',
                   border: '1px solid var(--ifm-color-emphasis-300)',
                   borderBottom: 'none',
@@ -251,11 +314,12 @@ export default function BrowserMemoPage(): ReactElement {
                 }}
                 title={titleText}
               >
-                最終更新: {formatDate(item.lastUpdated)}
+                <Translate id="browserMemo.lastUpdated">最終更新:</Translate> {formatDate(item.lastUpdated, currentLocale)}
               </div>
             </div>
           );
         })}
+        {/* --- highlight-end --- */}
       </div>
     </Layout>
   );
