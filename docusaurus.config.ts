@@ -96,7 +96,7 @@ const config: Config = {
     announcementBar: {
       id: 'site_release_20250601',
       content:
-        '🚀 2025年6月1日、当サイトを正式リリースしました',
+        '2025年6月1日、当サイトを正式リリースしました 🥳️',
       backgroundColor: '#73a8e6',
       textColor: '#fcf3f0',
       isCloseable: true,
