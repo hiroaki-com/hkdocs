@@ -4,25 +4,24 @@ import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-// lucide-react からアイコンと型をインポート
 import {
   BookText,
   GraduationCap,
   FilePenLine,
   Clock,
   UserCircle,
+  NotebookPen,
   type LucideProps,
 } from 'lucide-react';
 
-// lucide-react のアイコンコンポーネントの型
 type SvgIconType = ComponentType<LucideProps>;
 
-// アイコンコンポーネントを lucide-react のものに置き換え
 const IconBook: SvgIconType = BookText;
 const IconEdit: SvgIconType = FilePenLine;
 const IconClock: SvgIconType = Clock;
 const IconGraduationCap: SvgIconType = GraduationCap;
 const IconUser: SvgIconType = UserCircle;
+const IconBrowserMemo: SvgIconType = NotebookPen;
 
 type FeatureCardProps = {
   title: string;
@@ -55,31 +54,37 @@ export default function HomepageFeatures(): JSX.Element {
           <FeatureCard
             title="Tech"
             Icon={IconBook}
-            description={<>日常の学びやブログ記事を整理する場所。</>}
+            description={<>日常の学びやブログ記事を整理します。</>}
             link="/docs/category/tech"
           />
           <FeatureCard
             title="Exams"
             Icon={IconGraduationCap}
-            description={<>資格試験の学習ノートやまとめ。</>}
+            description={<>資格試験の学習ノートやまとめます。</>}
             link="/docs/category/exams"
           />
           <FeatureCard
             title="Blog"
             Icon={IconEdit}
-            description={<>技術的な学びに関するフランクな記事。</>}
+            description={<>技術的な学びに関するフランクな記事です。</>}
             link="/blog"
           />
           <FeatureCard
             title="Diary"
             Icon={IconClock}
-            description={<>日々の記録や個人的な雑記メモ。</>}
+            description={<>日々の記録や個人的な雑記メモです。</>}
             link="/diary"
+          />
+          <FeatureCard
+            title="Browser Memo"
+            Icon={IconBrowserMemo}
+            description={<>ブラウザだけで使える軽量メモ機能。</>}
+            link="/browser-memo"
           />
           <FeatureCard
             title="Profile"
             Icon={IconUser}
-            description={<>私のプロフィールなど。</>}
+            description={<>私について。</>}
             link="/profile"
           />
         </div>
