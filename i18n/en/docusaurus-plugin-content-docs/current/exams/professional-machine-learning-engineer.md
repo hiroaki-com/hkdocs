@@ -1,0 +1,886 @@
+---
+sidebar_position: 9
+title: Professional Machine Learning Engineer
+tags: [google cloud, 認定資格, 合格記]
+---
+
+**☔️ 不合格：2025年3月30日｜🌸 合格：2025年4月18日**
+
+##### 受験情報
+
+試験名: Professional Machine Learning Engineer
+- Date: 18 April 2025
+- Time: 01:30 PM
+
+---
+
+#### 受験後回想メモ_2025/04/19
+
+**試験情報／感想など：**
+
+```
+- 問題数50、120分、英語
+- 試験の難易度は2回目なのか1回目よりも簡単に感じたが、それでも、MLの基礎知識＋Google Cloud のMLサービスのユースケースを複合的に問うような高難易度の試験の部類に入る印象
+- 少なくとも、Professional試験の中で最難関であることは間違いない
+- 1周目を110分程度ギリギリで解き終わり、見直しは数問しかできなかった
+- 後回しにした問題は１問程度だったため、なんとか、1周目の回答で合格できてよかったという感じ
+- 得点率の感覚としては、70%ギリギリだったと思う。
+```
+
+**出題傾向：**
+
+```
+基礎知識：
+- Interpretability-Explainability-AI に関する問題 が複数
+	- Integrated gradients
+	- Shapley Explanation
+- 回帰、分類問題 の使い分けの理解を問う複合問題多数
+- 画像認識／異常検知に関するツールの選定に関する問題多数
+- 混合行列に関する問題多数
+- 正解ではない選択肢に Matrix Factorization（リコメンド） の記述が複数
+
+サービス知識：
+- BQML全般
+- VertexAI全般
+- Model Garden
+- Vertex AI Workbench
+- Vertex AI Vizier
+- TensorFlow Lite（複数）
+- TensorFlow の AIアクセサレータ（TPU/GPU/CPU）の選定に関する問題
+- データパイプライン／CI・CDの技術選定／設計に関する問題
+- Scikit-learn から google cloud への移行？移植？に関する問題
+- Request-Response Logging /サンプリングレートの調整に関する問題
+
+補足：
+- 強化学習に関する問題はあんまり出なかった印象
+```
+
+---
+
+#### 受験当日のTODO（PSE / PNE / PDE / PCA 受験時の成功事例） ⭐️
+
+**前日**
+- [x] しっかり寝る
+    - アイマスク、耳栓、枕のセッティング
+
+**当日**
+- [x] 9時までに起きる（疲労が回復していることが重要）
+- [x] 受験メールを印刷する
+	- [x] アプリにメールを転送
+	- [x] コンビニで印刷
+- [x] カフェで試験前の確認を実施
+    - 気分的にドトール札幌駅前店？
+	    - [x] [公式模試](https://cloud.google.com/learn/certification?hl=ja) の間違った問題を復習
+	    - 苦手項目の復習
+	    - [x] 苦手項目一覧を一通り見る。イメージを膨らませる
+		    - [x] [機械学習の用語集](https://developers.google.com/machine-learning/glossary?hl=ja#logistic-regression) を本能的に読書した。
+	    - [x] 問題集で間違った問題の復習
+- [x] 会場到着前に仮眠を10分程度取り、十分に脳をリフレッシュさせる
+	- [x] 糖分も十分にとる
+- [x] テスト開始の30分前には会場に到着して受付を完了させる
+	- 選択肢から読むことを意識する
+	- 見直しの時間を確保するよう意識する
+	- 英語の翻訳ができない場合や、難問の場合には勇気を持って飛ばす
+
+---
+
+### 🔥受験に向けた戦略🔥
+
+- [認定試験一覧](https://cloud.google.com/learn/certification?hl=ja)
+- 公式の参考資料を読む
+	- [Professional Machine Learning Engineer](https://cloud.google.com/learn/certification/machine-learning-engineer/)
+- 公式：MLコース（基礎／上級／用語）｜必読
+	- [機械学習](https://developers.google.com/machine-learning?hl=ja)
+- 一般動画｜英語かつ短時間まとめの有料教材
+	- [Google Cloud Professional Machine Learning Engineer Exam Questions 2024](https://www.youtube.com/watch?v=Fa_V9fP2tpU&t=551s)
+- 参考になった図書（図書館で読書）
+	- [本質を捉えたデータ分析のための分析モデル入門](https://amzn.to/44aoMVS)
+		- 結構網羅的にMLの基礎モデルを紹介し、数学レベルでの解釈性が高い
+	- [Google Colaboratoryで学ぶ! あたらしい人工知能技術の教科書](https://amzn.to/4jjFHd1)
+		- MLの基礎をある程度の網羅性で簡単なコードで概要を理解できる
+
+##### 学習戦略：
+
+- 参考資料
+	- [公式: Professional Cloud DevOps Engineer](https://cloud.google.com/learn/certification/cloud-devops-engineer/) （※ML Engineer の資料と重複している可能性があるため確認推奨）
+- 一般学習資料
+	- 日本のオンラインAI学習動画
+		- [AI・データサイエンス・プログラミングを動画で学ぶSTEAM Video Library](https://www.steam-library.go.jp/lectures/132)
+	- MLの短時間整理
+		- [Machine Learning in 5 Minutes | What Is Machine Learning? | Simplilearn](https://www.youtube.com/watch?v=yN7ypxC7838)
+	- elastic search｜AI学習の基礎
+		- [機械学習とは？](https://www.elastic.co/jp/what-is/machine-learning#machine-learning-definition)
+- 旧問題集｜間違った問題の復習に費やす（2025/04/07〜）
+	- [Google Cloud Certified Professional Machine Learning Engineer Practice Tests](https://www.whizlabs.com/learn/course/professional-machine-learning-engineer/394)
+	- 1周目：
+		- [x] Freeテスト｜85%｜2025/03/12
+		- [x] Practice Test I｜40%｜2025/03/10
+		- [x] Practice Test 2｜40%｜2025/03/12
+		- [x] SectionTest｜50%程度｜2025/03/17
+	- 復習：
+		- [x] Freeテスト
+		- [x] Practice Test I｜2025/03/11
+		- [x] Practice Test 2
+		- [x] SectionTest｜問題を解く形式で復習｜70~80%平均で解けている
+	- 2周目：
+		- [x] Freeテスト｜2025/03/21｜95%
+		- [x] Practice Test I｜2025/03/21｜65%
+		- [x] Practice Test 2｜2025/03/21｜75%
+		- [x] SectionTest｜
+	- 3周目：ー不合格後の学習ー
+		- [x] Freeテスト｜2025/04/05｜90%
+		- [x] Practice Test I｜2025/04/04｜76% ⤴︎
+		- [x] Practice Test 2｜2025/04/04｜73%｜⤵️
+		- [x] SectionTest｜2025/04/03｜平均80% Over
+	- 苦手項目の復習：適宜整理
+		- [x] 2025/03/17
+		- [x] 2025/03/22
+	- 模擬試験
+		- [Google Cloud Professional Machine Learning Engineer Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSeYmkCANE81qSBqLW0g2X7RoskBX9yGYQu-m1TtsjMvHabGqg/viewform)
+		- [x] 2025/03/17｜🔥 26.67%
+		- [x] 2025/03/22｜60%
+		- [x] 2025/03/31｜45%｜恐らく問題が更新された
+			- [x] 復習｜2025/04/01
+- 新問題集（2025/04/07〜）
+	- [Google GCP ML Engineer Certification Practice Updated Exam](https://www.udemy.com/course/google-gcp-ml-engineer-certification-practice-updated-exam/learn/quiz/6273578#overview)
+		- 最新傾向の強い、No5から逆に実施
+	- 1周目：テストの順番がおかしくなったのでざっくり
+		- [x] Practice Test I｜2025/04/15｜50%
+		- [x] Practice Test 2｜｜40%
+		- [x] Practice Test 3｜｜30%
+		- [x] Practice Test 4｜2025/04/09｜37%........
+		- [x] Practice Test 5｜2025/04/08｜55% ...
+	- 2周目：
+		- [ ] Practice Test I｜｜
+		- [x] Practice Test 2｜2025/04/16｜30%...
+		- [ ] Practice Test 3｜｜
+		- [ ] Practice Test 4｜｜
+		- [ ] Practice Test 5｜｜
+	- 復習：
+		- [x] Practice Test I｜2025/04/15｜PerplexityAIを使うと便利Z
+		- [x] Practice Test 2｜2025/04/16｜2週目を復習とみなす
+		- [x] Practice Test 3｜2025/04/17｜いい感じの復習ができている
+		- [x] Practice Test 4｜2025/04/17｜いい感じの復習ができている
+		- [x] Practice Test 5｜2025/04/17｜いい感じか。間違いの問題も多くてめんどい
+
+---
+
+### 苦手項目
+
+##### 機械学習用語の画像検索リンク
+
+**公式参考：**
+- [機械学習の用語集](https://developers.google.com/machine-learning/glossary?hl=ja#logistic-regression)
+- [Machine Learning](https://developers.google.com/machine-learning)
+- [Auto ML](https://cloud.google.com/automl?hl=ja)
+- [Vertex AI](https://cloud.google.com/vertex-ai/docs/pipelines/model-endpoint-component?hl=ja)
+	- [ ] サービスの各コンポーネントの役割などドキュメントを網羅的に一読
+
+**有益サイト：**
+- [主要なモデル一覧](https://www.ai-souken.com/article/machine-learning-methods-introduction)
+- [チートシート｜Microsoft](https://learn.microsoft.com/ja-jp/azure/machine-learning/algorithm-cheat-sheet?view=azureml-api-1)
+- [機械学習一覧｜scikit-learn](https://scikit-learn.org/stable/user_guide.html)
+
+**MLパイプライン設計図**
+- [Building a scalable MLOps system with Vertex AI, AutoML, and Pipeline](https://cloud.google.com/blog/topics/developers-practitioners/building-scalable-mlops-system-vertex-ai-automl-and-pipeline?hl=en)
+- [Model training CI/CD system: Part I - with TFX and Vertex AI Pipelines](https://cloud.google.com/blog/topics/developers-practitioners/model-training-cicd-system-part-i?hl=en)
+- [MLOps: ML における継続的デリバリーと自動化のパイプライン](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ja)
+	- 🔥👀 必読
+
+---
+
+**重要英単語**
+
+**Anomaly**
+> 「アノマリー」（Anomaly）には、英語と機械学習（ML）で異なる意味がありますが、基本的には「異常」や「例外」といった意味を持つ。
+
+**Annotation**
+> 英語では「注釈」や「説明」を指し、機械学習の文脈では「ラベル付け」や「データへの追加情報」の意味で使われる。
+
+**skew**
+> 英語的な意味: 「傾き」や「歪み」。物が真っ直ぐでなく、斜めになっている状態。
+> ML的な意味: データの分布が偏っていること。特に、正規分布が歪んでいる場合などに使われる。
+
+**drift**
+> 英語的な意味：移動、傾向、偏り
+> ML的な意味：モデルやデータ分布が時間とともに変化し、予測精度が低下する現象。特に、トレーニングデータと実際のデータの分布がずれること
+
+**Curation**
+> 英語での意味: 「Curation」は、主に情報やアイテムを整理、選定、管理する行為
+> 機械学習（ML）の意味: 「キュレーション」は、学習データセットの選定、整理、品質管理のプロセスを指す
+
+**Pickle**
+> 英語での意味: 「Pickle」は、食べ物（特に野菜や果物）を酢や塩などで漬けて保存すること
+> 機械学習（ML）の意味: 「Pickled model」は、学習したモデルをPythonの`pickle`ライブラリでシリアライズし、後で再利用するために保存したもの
+
+**Heuristic**
+> 英語の意味: 「ヒューリスティック」は、問題解決や意思決定を行う際に、直感や経験則に基づいて迅速に解を得る方法
+> 機械学習（ML）の意味: 「ヒューリスティック」は、最適解を求めるための近似的な手法や戦略で、計算資源を節約しつつ効率的に解決策を導く手法
+
+**Oscillations**
+> 英語的な意味: 「振動」や「揺れ」。物がある点を中心に前後に繰り返し動く現象。
+> ML的な意味: モデルの予測や学習過程において、誤差や値が安定せず、繰り返し上下に揺れ動く現象。特に学習率が高すぎる場合や過学習に関連して使われる。
+> 対策：学習率を小さくすることで、予測の揺れを抑える。
+
+**Holdout data**
+[Holdout data - Machine Learning Glossary](https://developers.google.com/machine-learning/glossary?hl=ja#holdout-data)
+> 英語的な意味（Holdout）：協調や妥協を拒む人、抵抗・拒否行為
+> ML的な意味：トレーニング中に意図的に使用されない（「ホールドアウト」）サンプル。
+> 例）検証データセットとテストデータセット（トレーニングにあえて含めないデータ）
+
+###### model-interpretability-Explainability-AI
+> - **注意機構の可視化 (Attention Mechanisms)**: モデルが入力のどの部分に注目しているかを示すことで、特に自然言語処理（NLP）や画像認識での解釈性を向上。
+>   ※ 機械翻訳や画像キャプション生成における、単語や画像領域への重み付けの可視化による判断根拠特定。
+> - **SHAP値（シャープレイ値）**: 各特徴量が予測に与える影響をゲーム理論に基づいて定量化し、予測の説明を提供。
+>   ※ 個別予測に対する各特徴量の寄与度（シャープレイ値）の定量化と、ブラックボックスモデルの説明。
+> - **線形回帰 (Linear Regression)**: 特徴量と予測値が線形関係にあるため、特徴量の係数から予測の根拠を解釈しやすい。
+>   ※ 特徴量の係数を用いた、結果への直接的な影響度の解釈と予測モデリング。
+> - **決定木 (Decision Tree)**: 分岐条件が明示的で、予測過程をツリー構造で追跡できるため、意思決定プロセスを理解しやすい。
+>   ※ 分岐ルールが明示的なツリー構造に基づく分類・回帰、および意思決定プロセスの可視化。
+> - **ロジスティック回帰 (Logistic Regression)**: 二項分類において、特徴量の重みがクラス予測に与える影響を解釈可能。
+>   ※ 二値分類問題における、各特徴量のオッズ比を用いたクラス予測への影響度評価。
+> - **k近傍法 (k-NN)**: 新しいデータの予測を最も近い訓練データに基づいて行うため、予測に寄与した具体的な事例を示せる。
+>   ※ 近傍データ点に基づく分類・回帰、および予測根拠となる類似インスタンスの提示。
+> - **一般化加法モデル (GAM)**: 各特徴量が予測に与える影響を独立して評価できるため、複雑な関係でも解釈が容易。
+>   ※ 平滑化関数等を用いた各特徴量の非線形な効果の解釈と、加法性を仮定した予測モデリング。
+> - **ランダムフォレスト (Random Forest)**: 複数の決定木を組み合わせたモデルで、特徴量の重要度を評価し、予測の理解を助ける。
+>   ※ 高精度なアンサンブル予測と、特徴量重要度（例: 平均不純度減少量）による予測要因の特定。
+> - **Grad-CAM（グラディエント重み付きクラス活性化マッピング）**: CNNが特定のクラスを予測する際に注目している画像領域をヒートマップで可視化し、画像認識モデルの判断根拠を示す。
+>   ※ CNNによる画像分類における、勾配情報を用いた判断根拠領域のヒートマップ可視化。
+> - **LIME（局所解釈可能なモデル不変説明）**: 複雑なモデルの予測を局所的に解釈可能なモデルで近似し、ブラックボックスモデルの決定を説明する。
+>   ※ ブラックボックスモデルの個別予測に対する、局所的な代理モデル（例: 線形モデル）を用いた解釈。
+> - **特徴量可視化 (Feature Visualization)**: ニューラルネットワークの各層やニューロンが反応する入力パターンを生成し、ネットワークの内部表現を視覚的に理解できる。
+>   ※ ニューラルネットワーク内部の特定ニューロンや層を最大活性化させる入力パターンの生成による、学習済み特徴の視覚的理解。
+> - **顕著性マップ (Saliency Maps)**: 入力画像の各ピクセルが分類結果に与える影響度を可視化し、重要な視覚的特徴を特定する。
+>   ※ 画像分類における、出力に対する入力の勾配を用いたピクセルレベルでの重要度可視化。
+> - **X線画像のクラス活性化マッピング (Grad-CAM for X-ray Images)**: X線画像の異常検出において、モデルが注目している解剖学的領域を可視化し、医師が診断根拠を確認できるようにする。
+>   ※ 医療画像AIにおける、Grad-CAMを用いた診断根拠となる特定解剖学的領域の可視化による医師の判断支援。
+> - **不確実性推定 (Uncertainty Estimation)**: 予測の不確実性を定量化・可視化し、モデルの信頼度を評価することで信頼性の高い意思決定をサポートする。
+>   ※ ベイズ推定やアンサンブル法、モンテカルロ・ドロップアウトなどを用いたモデル予測の信頼度評価と、高リスク予測の特定による意思決定支援。
+> - **反事実的説明 (Counterfactual Explanations)**: 「この予測結果を変えるためには入力をどう変更すべきか」を示し、実用的な洞察を提供する。
+>   ※ 最適化アルゴリズムを用いた、予測結果を変更するための最小限の入力摂動の探索と、具体的なアクション示唆。
+
+**関連：**
+[BigQuery Explainable AI の概要](https://cloud.google.com/bigquery/docs/xai-overview?hl=ja)
+> Explainable AI （XAI とも呼ばれる）は、データ行の各特徴がどのように予測結果に影響を与えるかを定義することで、予測 ML モデルが分類タスクと回帰タスクに対して生成する結果の理解を容易にする。
+> 👀 一覧表を要確認
+
+---
+
+##### 教師あり学習 (Supervised Learning)
+
+- [サポートベクターマシン](https://www.google.com/search?sca_esv=135b3a2f70348576&sxsrf=AHTn8zr9ho9flvarVPI5_CIPinEO-yygzw:1744000834639&q=SVM&udm=2&fbs=ABzOT_AABzd37aYAeSF7AP8P5LYpZDmaYxPKmw5BRgASW8c5DDCgio-40pgO_erfaeuX8PCdiN5TplLqDlOmND6BZDE3uvMIZI9pNBjPuTL5hV4pmv98DilbHeix4zcSltwYYiK0CEVyvxHvoWlOTu-081nNZiixlFsRmguMPG17d1cCVn9CRMiRvOiU8d1qRCFf3iiTD91Dw9cwW6P9XReqmsRL43fV3XuVqjqCMdZaI9EiY1jtRIE&sa=X&ved=2ahUKEwiujPKxjcWMAxXt1zQHHd_BEn0QtKgLegQIGBAB&biw=1090&bih=760&dpr=2)（support-vector machine, SVM）
+    ※機械学習のアルゴリズムで、データの分類や回帰に用いられます。特に、2つのクラスを区別する境界線（超平面）を最大のマージンで決定することで、高い汎用性を実現する手法
+- [Naive Bayes](https://www.google.com/search?q=Naive+Bayes) (ナイーブベイズ)
+    ※ 主にカテゴリ分類に用いられる確率論的手法
+- [KNN (K-nearest neighbor)](https://www.google.com/search?q=KNN+K-nearest+neighbor) (K近傍法)
+    ※ クラス分類が一般的な用途
+- [Logistic Regression](https://www.google.com/search?q=Logistic+Regression) (ロジスティック回帰)
+    ※ 名前に「回帰」とありますが、確率的なクラス分類を目的
+- [Feedforward Neural Network](https://www.google.com/search?q=Feedforward+Neural+Network) (フィードフォワードニューラルネットワーク)
+    ※ 入力層から出力層へ情報を順番に伝播させるニューラルネットワーク。層ごとの計算を行い、最終的に出力を生成する。
+    ※ 主に分類問題や回帰問題で使用。例えば、顧客の購買予測や、株価予測モデルなどのタスクで活用される。
+- [CNN (Convolutional Neural Network)](https://www.google.com/search?q=CNN+Convolutional+Neural+Network) (畳み込みニューラルネットワーク)
+    ※ 画像認識をはじめとした分類タスクで多用されます
+- [Ensemble](https://www.google.com/search?q=Ensemble+learning) (アンサンブル)
+    ※ 複数の分類器を組み合わせて予測精度を向上させる手法（バギング、ブースティング、スタッキングなど）
+- [XGBoost](https://www.google.com/search?q=XGBoost) (Extreme Gradient Boosting)
+    ※ 勾配ブースティングの手法で、分類問題でもよく使われます
+- [ROC-AUC](https://www.google.co.jp/search?sca_esv=4b64fb292c50f957&sxsrf=AHTn8zoikn7eObnaCmvbzM63SIdAMyMdxQ:1742542961300&q=ROC-AUC&source=lnms&fbs=ABzOT_CucqjzeqoF57Lsz-_gmNX4V0dhyA88aF6LbX6X-QfI64xBSAfY7B2uyLpCUMoaXnLYmNbg0UmaouHBLTSBdBdyPoHjxWN7Wyg1-quIycDHC6ede04ylf9GDLqoF_iX2ZfVIVUlbKg70MSTUnIJEUJGIz4fvDaJSTdifcI6MFIzco2qdkIoK6g96sqtl1NZsQoSFKX-BgQawzuv02ytt_E6Vj35cTH4LjdVUWgoGkM9iAe96TKi67364L-ssA8VjrG7smqr&sa=X&ved=2ahUKEwiOhdux1pqMAxWCja8BHd3YCXoQ0pQJegQIEhAB&biw=1440&bih=760&dpr=2)
+    ※ 分類モデルの評価指標（ROC曲線下面積）
+- [attention based models](https://www.google.co.jp/search?sca_esv=ea7911cd1c52328e&sxsrf=AHTn8zoOwfxrtUglC5mbO2cJKU2N-Qvh9Q:1742205917449&q=attention+based+models&source=lnms&fbs=ABzOT_BnEle7e--umZvAycCP899s9UFLKzMHlJrnnhimy6fGnxpX6pFtBEKYg5QlYkLypNpwwnk3yoYyMYiW4TEalSwm922Lh_jI16NC4u-vivkPp0Vl2h3P3qYNyl40DejvGnANX7L0zg5ijwqgHu85UMJZPuAjrpxY_rvMr5A5h1ExUV6pbl68NFD1BoRKofEp6NTcujAWYa5h9jrOLY8kpxfgv5rhdx8G022yoJ2r-0-RkIEJ8r4RS_hug63joNGdV-lFZfDt&sa=X&ved=2ahUKEwjE89bm7pCMAxVzh68BHdvzFPMQ0pQJegQIFBAB&biw=621&bih=760&dpr=2)
+    ※ 特にテキストや画像の分類タスクで利用例が多い
+- [[混合行列（Confusion Matrix）]]_別紙 🔥
+	- [Classification Metrics](https://www.google.com/search?q=Classification+Metrics) (分類指標)
+
+##### 教師なし学習 (Unsupervised Learning)
+
+- [**K-means**](https://www.google.com/search?q=K-means) (K-平均法｜クラスタリング)
+    ※ 与えられたデータをK個のクラスタに自動的に分類する手法。各クラスタの中心点（セントロイド）を計算し、データを最も近い中心点に割り当てることでクラスタリングを行う。主に無監督学習で用いられる。
+- [**PCA (Principal Component Analysis)**](https://www.google.com/search?q=PCA+Principal+Component+Analysis) (主成分分析)
+    ※ 多次元データの特徴を保持しつつ、次元を削減する手法。データの分散を最大化する新しい基底を見つけ、最も重要な特徴を抽出することで、データの可視化や処理の効率化に役立つ。
+- [**N-gram**](https://www.google.com/search?q=N-gram) (N-グラム)
+    ※ 連続するN個の単語や文字を一つの単位として捉える手法。自然言語処理において、テキストの文脈を解析するためによく用いられ、テキスト生成や感情分析などで活用される。
+- [**Feature Clipping**](https://www.google.com/search?q=Feature+Clipping) (特徴量クリッピング｜Gradient Clipping｜勾配クリッピング)
+    ※ 特徴量や勾配が一定の閾値を超えた場合に、過度な値を制限する手法。これにより、学習の安定性が向上し、勾配消失や爆発といった問題を防ぐことができる。
+- [**Log Scaling Normalization**](https://www.google.com/search?q=Log+Scaling+Normalization) (対数スケーリング正規化)
+    ※ 特に右に偏った分布を持つデータに対して、対数変換を行い、スケールを調整する手法。広範囲の数値を均等に扱うことで、モデルの学習を効率化する。
+- [**Feature Crosses**](https://www.google.com/search?q=Feature+Crosses) (特徴量クロス)
+    ※ 複数の特徴量を掛け合わせて新たな特徴量を生成する手法。モデルに非線形の関係を取り入れることで、予測精度を向上させることができる。
+- [SMOTE (Synthetic Minority Over-sampling Technique)](https://www.google.co.jp/search?q=SMOTE%EF%BC%88Synthetic+Minority+Over-sampling+Technique%EF%BC%89&sca_esv=38528723608d6ebc&sxsrf=AHTn8zo9P2bUnrt4UBLXNAwNgv1OwbOxnQ%3A1744007906454&ei=4nLzZ8K7G8-fvr0Pjr-G0Ao&ved=0ahUKEwjCtP_dp8WMAxXPj68BHY6fAaoQ4dUDCBA&uact=5&oq=SMOTE%EF%BC%88Synthetic+Minority+Over-sampling+Technique%EF%BC%89&gs_lp=Egxnd3Mtd2l6LXNlcnAiNVNNT1RF77yIU3ludGhldGljIE1pbm9yaXR5IE92ZXItc2FtcGxpbmcgVGVjaG5pcXVl77yJMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgUQABjvBTIIEAAYgAQYogRI-QdQtgRYtgRwAXgBkAEAmAGMAaABjAGqAQMwLjG4AQPIAQD4AQL4AQGYAgKgAqYBwgIKEAAYsAMY1gQYR5gDAIgGAZAGCpIHAzEuMaAHwgWyBwMwLjG4B54B&sclient=gws-wiz-serp)｜オーバーサンプリング手法
+	※ 不正利用のデータが少ない場合、SMOTEで不正利用のサンプルを増やし、モデルが不正利用を正確に検出できるようにする。二値分類、多クラス分類（クレジットカード不正検出など）
+
+##### 強化学習 (Reinforcement Learning)
+
+- [Q learning](https://www.google.com/search?q=Q+learning) (Q学習)
+
+  $$
+  Q(s, a) \leftarrow (1 - \alpha) Q(s, a) + \alpha \left( R(s, a) + \gamma \max_{a'} Q(s', a') \right)
+  $$
+	この式はQ学習の更新式で、「経験から学ぶ」プロセスを表しています。左辺は更新後のQ値、右辺は「現在の知識を保持する部分」と「新しい情報を取り入れる部分」の重み付き平均です。$\alpha$ は学習率（0〜1）で、値が大きいほど新しい経験を重視します。$R$ は即時報酬、$\gamma$ は将来の報酬の重要度（割引率）、$\max_{a'} Q(s', a')$ は次の状態での最適行動の価値を表します。この更新を繰り返すことで、エージェントは最適な行動戦略を学習します。
+
+- [**SARSA (State-Action-Reward-State-Action)**](https://www.google.com/search?q=SARSA+State-Action-Reward-State-Action):
+    ※ オンポリシー型の強化学習アルゴリズム。選択した行動に基づいて価値関数を更新するため、より安全な探索が可能。**Q学習とは異なり、次の行動を実際に選んだ結果を使用して更新する点が特徴。**
+  $$
+  Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha(r_{t+1} + \gamma Q(s_{t+1},a_{t+1}) - Q(s_t,a_t))
+  $$
+	SARSAアルゴリズムでは、行動価値関数 `Q(s_t, a_t)` を更新する際、現在の状態 `s_t` と行動 `a_t` に対する価値を、次の状態 `s_{t+1}` とその行動 `a_{t+1}` に基づいて調整します。更新式は、現在の価値と次の状態での価値との差を反映させ、学習率 `α` と割引率 `γ` を使って次の状態の影響を調整します。これにより、エージェントは報酬を得るたびに価値関数を改善していきます。
+
+- [**モンテカルロ法 (Monte Carlo Methods)**](https://www.google.com/search?q=Monte+Carlo+Methods):
+    ※ 完全なエピソードの結果に基づいて行動価値関数を更新する手法。エピソード全体の報酬を平均化し、各行動の評価を行うことで学習を進める。モンテカルロ法とはシミュレーションや数値計算を**乱数**を用いて行う手法の総称。元々は、中性子が物質中を動き回る様子を探るためにスタニスワフ・ウラムが考案しジョン・フォン・ノイマンにより命名された手法
+
+- [**深層強化学習 (Deep Reinforcement Learning)**](https://www.google.com/search?q=Deep+Reinforcement+Learning):
+    ※ 深層学習と強化学習を組み合わせることで、高次元データを直接処理できる手法。複雑な環境における学習を実現し、自動運転やゲームなどの分野で注目されている。
+
+- [**Actor-Critic法**](https://www.google.com/search?q=Actor-Critic+method):
+    ※ **強化学習**における重要な手法で、ポリシーと価値関数を同時に学習するアプローチ。
+    方策（Actor）と価値関数（Critic）を同時に学習する手法。方策改善と価値評価を並行して行うことで、学習の安定性と効率性を向上させる。
+    方策勾配法などの方策ベースの RL アルゴリズムと、値反復、Q 学習、SARSA、TD 学習などの値ベースの RL アルゴリズムを組み合わせた強化学習 (RL) アルゴリズムのファミリー。
+
+- [**DQN (Deep Q-Network)**](https://www.google.com/search?q=Deep+Q-Network):
+    ※ Q学習と深層学習を融合した手法。高次元の入力データから直接Q値を推定し、Atariゲームなどで人間を超えるプレイを実現。
+
+##### ニューラルネットワーク（NN）関連
+
+- [**DNN training**](https://www.google.com/search?q=DNN+training) (ディープニューラルネットワークのトレーニング)
+    ※ 多層のニューラルネットワークを用いてモデルを学習させるプロセス。データを前向きに伝播させて誤差を逆伝播し、重みを最適化することでモデルの予測精度を向上させる。
+- [**Neural Networks**](https://www.google.com/search?q=Neural+Networks) (ニューラルネットワーク)
+    ※ 生物の神経回路に触発された計算モデルで、入力層から出力層へと情報を伝達し、隠れ層で処理を行う。複雑な関数を近似する能力があり、画像認識や音声認識などに広く使われる。
+- [**RNN (Recurrent Neural Network)**](https://www.google.com/search?q=RNN+Recurrent+Neural+Network) (再帰型ニューラルネットワーク)
+    ※ 時系列データや順序を持つデータの処理に特化したニューラルネットワーク。隠れ層の出力が次の時間ステップの入力にも利用され、時間的依存性を学習することができる。
+- [**LSTM (Long Short Term Memory)**](https://www.google.com/search?q=LSTM+Long+Short+Term+Memory) (長短期記憶ネットワーク、RNNの一種)
+    ※ RNNの一種で、長期的な依存関係を学習する能力を持つ。通常のRNNでは学習が難しい長期間の情報を保持するため、ゲート機構を用いて重要な情報を選別して保持する。
+
+**活性化関数：**
+
+- [Sigmoid in Machine Learning](https://www.google.com/search?q=Sigmoid+in+Machine+Learning) (シグモイド関数)
+  $$
+  f(x) = \frac{1}{1 + e^{-x}}
+  $$
+	- 入力 $x$ の値を0から1の範囲に変換するS字型の活性化関数です。ニューラルネットワークでは、出力が確率として解釈される場合に使用されます（特に分類タスクで活用）。ロジスティック回帰で使用される確率的解釈に由来。
+	- **二項分類問題**（例: ロジスティック回帰、スパムフィルタリングなど）での使用。
+
+- [ReLU (Rectified Linear Unit)](https://www.google.com/search?q=ReLU+Rectified+Linear+Unit) (整流線形単位)
+  $$
+  f(x) = \max(0, x)
+  $$
+	- ReLU（Rectified Linear Unit）は、入力が0より大きければそのまま出力し、0以下なら0を出力するニューラルネットワークの活性化関数。シグモイド関数やTanh関数は勾配消失問題に悩まされた。ReLUはこの問題を解決するために登場。
+	- CNNや深層学習（**隠れ層に強み**）のモデルで広く使用され、高速な学習と勾配消失問題の軽減に寄与。
+
+- [Tanh (Hyperbolic Tangent)](https://www.google.com/search?q=Tanh+Hyperbolic+Tangent) (双曲線正接)
+  $$
+  f(x) = \tanh(x)
+  $$
+	- 入力値を-1から1の範囲に変換する関数です。シグモイド関数と似ていますが、出力の範囲が0から1ではなく、-1から1の範囲に収束する。シグモイド関数に似た挙動を持ちながら、よりバランスの取れた範囲（-1から1）を提供し、特にRNNで使われることが多い。
+	- RNN（時系列データを処理する）での使用、特に**隠れ層**の活性化関数としての利用。
+
+- [Softmax](https://www.google.com/search?q=Softmax) (ソフトマックス関数)
+  $$
+  f(\mathbf{x})_i = \frac{e^{x_i}}{\sum_{j=1}^{K} e^{x_j}}
+  $$
+	- ソフトマックス関数や正規化指数関数は、シグモイド関数を多次元に拡張した関数。**多クラス分類問題**において、ニューラルネットワークの出力を確率分布に変換することができるので、最後の活性化関数としてよく用いられる。
+	- 各出力値は **0から1** の間に収束し、全ての出力の合計は **1** になります。
+
+- [NLP Transformers](https://www.google.com/search?q=NLP+Transformers) (自然言語処理用トランスフォーマーモデル)
+    - 自然言語処理（NLP）タスクに特化したアーキテクチャ。自己注意機構（Self-Attention）を利用して文脈を捉える。従来のRNNやLSTMに代わる強力なモデルとして並列計算に優れ、長文処理に対応可能。
+    - 機械翻訳、文章要約、質問応答、BERT、GPTシリーズなど、最新NLPモデルで使用。
+
+- [GAN (Generative Adversarial Network)](https://www.google.com/search?q=GAN+Generative+Adversarial+Network) (生成的敵対ネットワーク)｜教師なし学習
+    - GANは、二つのニューラルネットワーク（生成器と識別器）を対抗的に訓練し、データを生成するモデル。生成器が新しいデータを作り、識別器が本物か偽物かを判断。損失関数を最小化することを目指す。
+    - 画像生成（DeepFake、Art Generation）、データ拡張、画像修復や変換（画像のノイズ除去、スタイル転送など）。
+
+- [Embeddings](https://www.google.com/search?q=Embeddings) ([埋め込み](https://www.elastic.co/jp/what-is/word-embedding))
+    - 言語データや画像データ、音声データなどをコンピュータが理解しやすい**数値形式**に変換する手法。言語データを数値で表現し、語彙の意味的な関係をモデルが学習。
+    - 単語の類似度計算（Word2Vec, GloVe）、テキスト分類、推薦システム。
+
+- [One-hot Encoding](https://www.google.com/search?q=One-hot+Encoding) (ワンホットエンコーディング)
+    - カテゴリカルデータを数値ベクトルに変換する手法。各カテゴリをベクトルの中で1つだけ1にし、残りは全て0にする。
+    - カテゴリカルな特徴量をニューラルネットワークに入力する際に使用。機械学習の分類問題で、ラベルを数値化する際に利用。
+
+- [Original Encoding](https://www.google.com/search?sca_esv=9125ad77ffe94f9c&sxsrf=AHTn8zqPHbCX0r4KWYNDae0C_rk4f_9x8g:1742188539897&q=Original+Encoding+in+machine+learning&udm=2&fbs=ABzOT_BnEle7e--umZvAycCP899sN5Y2rYl33A6dmEus4otCnO_f8v2G90dQdw2q_hF8mQGJowomjAVrH1jytjNmdx9Uz-DXxCNmcWNAxWRtHu5J5aIBQP7ML4p3_s_PrhRa3yMo3_KscRX_zqhR2dwX7qNv6URPnRMUPcY71qJZrEhJk5zodkfCjCLaeALAC9TVKkm2X-VDN4JgS5s98olrKRNKXXUgBJf5M1PGfHsfL2kU8UhESlg&sa=X&ved=2ahUKEwjyp7WIrpCMAxXpdvUHHa2_IQoQtKgLegQIFBAB&biw=655&bih=685&dpr=2.2) (オリジナルエンコーディング)
+    - 入力データの特徴量を元の状態で数値に変換する方法。データの本来の意味や値を損なわずに数値化し、必要最小限の変換を行う。
+    - 数値データのままで機械学習モデルに入力する場合や、標準化や正規化が必要な場合に使用。
+
+- [word2vec](https://www.google.co.jp/search?q=word2vec&sca_esv=51482c3aa25c1847&sxsrf=AHTn8zpZCtPWAgHFhOTsYkYCHhsBqktK6Q%3A1744171244488&ei=7PD1Z4zLHb3N1e8Pw_iDoQ8&ved=0ahUKEwiM8dGbiMqMAxW9ZvUHHUP8IPQQ4dUDCBA&uact=5&oq=word2vec&gs_lp=Egxnd3Mtd2l6LXNlcnAiCHdvcmQydmVjMgQQIxgnMgoQIxiABBgnGIoFMgoQABiABBhDGIoFMgUQABiABDIFEAAYgAQyChAAGIAEGEMYigUyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAESMQTUOoOWOoOcAF4AZABAJgBqAGgAagBqgEDMC4xuAEDyAEA-AEBmAICoAK5AcICChAAGLADGNYEGEeYAwCIBgGQBgqSBwMxLjGgB80FsgcDMC4xuAexAQ&sclient=gws-wiz-serp)｜自然言語処理
+	- Word2Vecは、単語の意味を数値ベクトル（埋め込み）で表現するための自然言語処理手法の一つ。
+	- この手法では、単語がどのような文脈で使われるかに基づいて、各単語に対して密なベクトル（多次元空間の座標）を割り当てる。これにより、言語の意味的な関係を数値で捉えることができる。
+
+##### **モデル評価**
+
+- [**Cosine Similarity**](https://www.google.com/search?q=Cosine+Similarity) (コサイン類似度)
+    ※ ベクトル空間内の2つのベクトル間の角度を測定し、類似度を計算する手法。テキストデータや推薦システムにおいて、アイテム間の類似性を評価する際に用いられる。
+- [**Precision and Recall**](https://www.google.com/search?q=Precision+and+Recall) (適合率と再現率)
+    ※ 不均衡データにおいて重要な評価指標。Precisionは正確性を、Recallはカバー範囲を示し、両者のバランスが評価される。
+- [**F1 Score**](https://www.google.com/search?q=F1+Score) (F1スコア)
+    ※ 精度（Precision）と再現率（Recall）の調和平均。特に不均衡なデータセットでのモデル評価に有効。
+- [**ROC Curve**](https://www.google.com/search?q=ROC+Curve) (ROC曲線)
+    ※ 真陽性率と偽陽性率をプロットした曲線。モデルの性能を直感的に評価するために使用される。
+- [**AUC (Area Under the Curve)**](https://www.google.com/search?q=AUC+Area+Under+the+Curve) (AUC：曲線下面積)
+    ※ ROC曲線の下の面積。AUCが高いほど、モデルは異常を正しく識別できる能力が高い。
+
+**損失関数：**
+- [**Mean Absolute Error (MAE)**](https://www.google.com/search?q=Mean+Absolute+Error) (平均絶対誤差)
+    ※ 回帰モデルの評価指標で、予測値と実測値の絶対誤差の平均を示す。モデルの精度を直感的に理解しやすい。
+- [**Mean Squared Error (MSE)**](https://www.google.com/search?q=Mean+Squared+Error) (平均二乗誤差)
+    ※ 回帰モデルにおける誤差評価指標。誤差を二乗して平均を求め、誤差の大きさを強調する。
+- [**Logarithmic Loss (Log Loss)**](https://www.google.com/search?q=Logarithmic+Loss) (対数損失)
+    ※ 確率的な出力を持つ**分類モデル**の性能を測る指標。確率的に正しいクラスに近いほど低い値を取る。
+- [**Hinge Loss**](https://www.google.com/search?q=Hinge+Loss) (ヒンジ損失)
+    ※ 主にサポートベクターマシン（SVM）で使用される分類問題の損失関数。クラス間のマージンを最大化するように最適化される。
+- [**Lift and Gain Charts**](https://www.google.com/search?q=Lift+and+Gain+Charts) (リフトチャートとゲインチャート)
+    ※ モデルのパフォーマンスを評価するためのツール。特にマーケティングや営業の予測で、ターゲットの抽出の有効性を確認するために使われる。モデルがターゲットクラスを効果的に予測しているか、またランダム予測と比較してどれくらい改善されているかを視覚化するために使用。
+- [**Calibration Curve**](https://www.google.com/search?q=Calibration+Curve) (キャリブレーション曲線)
+    ※ モデルの確率的出力がどれほど信頼できるかを評価するための手法。予測確率が実際の発生確率に一致しているかを示す。
+
+---
+
+##### **モデル解釈／説明**
+→ [model interpretability｜Explainability AI](#model-interpretability-explainability-ai)
+
+- [**Cross-validation**](https://www.google.com/search?q=Cross-validation) (交差検証)
+    ※ モデルの汎用性を確認するための手法。データを複数のサブセットに分けて学習・検証を繰り返し、過学習を防ぎ、モデルの性能を安定的に評価する。
+- [nested cross-validation](https://www.google.co.jp/search?sca_esv=3efceaf071fd96ef&sxsrf=AHTn8zqrCto43jpV7zSORelfrY6Sr6GPTg:1744614908726&q=nested+cross-validation&udm=2&fbs=ABzOT_DEpBzaHaQPd4v0Pv-nliGvR65uQsP8EiW5BkdlyNSEfT5KiKXnSW8Gms-WN4s-7SAjW49dUWc3WGew2dsI2-VbB2kZruIS79SgUPiKSMjnG6jDPXEV8THIf_sDePWkj7blizcxQklbnE1RQ0ncOcuUu8ep8A8bBygWz5P6CTqDoxNNQdrUxKzjEQH8_RkH1dCdQ08uRMECbjolMPgA-dOaUXXlwcOu0o2blYk1o5EFDhvNOH4&sa=X&ved=2ahUKEwj16p3__NaMAxWhYPUHHcUKMbwQtKgLegQIFxAB&biw=902&bih=691&dpr=2.2#vhid=-QYUvBI-y_Q1cM&vssid=mosaic)（ネストされた交差検証）は、ハイパーパラメータの最適化を行う際に、データリーケージ（**データ漏洩**）を防ぎ、より信頼性の高い性能評価を行いたい場合に適する。2重の交差検証ループ（インナー／アウター）を実施。
+- [**What-If Tool**](https://www.google.com/search?q=What-If+Tool) (What-Ifツール)
+    ※ モデルの性能をさまざまな入力に対してテストし、データの特徴の重要性を分析し、複数のモデルやデータセットにおけるモデルの挙動を視覚化。GoolgeのOSS。
+- [**Learning Interpretability Tool (LIT)**](https://www.google.com/search?q=Learning+Interpretability+Tool+LIT) (学習解釈ツール)
+    ※ モデルの予測や学習過程を視覚的に解釈するためのツール。特徴量の重要度やモデルの挙動を説明可能にする。
+- [**Integrated gradients**](https://www.google.co.jp/search?q=Integrated+gradients&sca_esv=c4fe9279b750d491&biw=1108&bih=691&sxsrf=AHTn8zqaFkN52m2VDP2xIBOLmJ0WJ-g68w%3A1743567757535&ei=jbvsZ7uvINDi1e8PtNLhiQE&ved=0ahUKEwj7qdGGwLiMAxVQcfUHHTRpOBEQ4dUDCBA&uact=5&oq=Integrated+gradients&gs_lp=Egxnd3Mtd2l6LXNlcnAiFEludGVncmF0ZWQgZ3JhZGllbnRzMgQQIxgnMgwQIxiABBgTGCcYigUyBRAAGIAEMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeSNViULBhWLBhcAJ4AZABAJgBeaABeaoBAzAuMbgBA8gBAPgBAZgCA6ACgwHCAgcQIxiwAxgnwgIKEAAYsAMY1gQYR5gDAIgGAZAGCpIHAzIuMaAH6QayBwMwLjG4B30&sclient=gws-wiz-serp)（統合勾配方式｜[Google cloud](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview?hl=ja#integrated-gradients) ）
+    ※ モデルの予測に対する各**特徴量の寄与度を定量化**する手法で、入力特徴量と基準値（通常はゼロ）との間を直線的に変化させ、その間の勾配を積分することで特徴量の重要度を評価。大規模なネットワークや**画像**などの特徴空間への拡張を可能にする代替アプローチと比較した場合に、あらゆる微分可能モデル（画像、テキスト、構造化データなど）への用途性の高さ、実装しやすさ、理論的正当性、および計算効率性により、利用者の多い解釈可能性テクニックとなった。特徴量重要度の理解、データの歪みの識別、およびモデル性能のデバッグなど、多様なユースケースがある。
+- [**Shapley Explanation**](https://www.google.com/search?q=Shapley+Explanation) (シャープリー値による説明｜[Google Cloud](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview?hl=ja#sampled-shapley) )
+    ※ 各特徴量がモデルの予測にどれほど貢献しているかを定量的に示す手法。ゲーム理論に基づき、予測の公平な分配を行う。Shapley 値サンプリング方式は、**ツリーとニューラル ネットワーク**を使用したメタ **アンサンブル学習**を行うこのモデルでよく機能。
+- [**XRAI in Machine Learning**](https://www.google.com/search?q=XRAI+in+Machine+Learning) (機械学習におけるXRAI｜[Google Cloud](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview?hl=ja#xrai) )
+    ※ 深層学習モデルにおける予測結果の解釈を提供する技術。特に画像やテキストデータに対して、どの部分が予測に影響を与えたのかを視覚的に説明する。
+
+##### **その他の技術**
+
+| 方法              | 正則化タイプ  | 特徴選択 | 係数の挙動       | 主な利点                           | 主な欠点                  |
+| --------------- | ------- | ---- | ----------- | ------------------------------ | --------------------- |
+| **Lasso回帰**     | L1      | 可能   | ゼロに縮小       | 特徴選択を自動で行う。重要な特徴だけ残る           | 相関の強い特徴が選ばれない可能性がある   |
+| **Ridge回帰**     | L2      | 不可   | 小さくなる       | 特徴量の縮小。全特徴量を使う                 | 特徴選択は行わず、すべての特徴量を使う   |
+| **Elastic Net** | L1 + L2 | 可能   | ゼロに縮小/小さくなる | LassoとRidgeの良いとこ取り。相関の強い特徴量に対応 | ハイパーパラメータの調整が難しいことがある |
+
+- [**Federated Learning**](https://www.google.com/search?q=Federated+Learning) (フェデレート学習)
+    ※ 分散型機械学習手法。データを中央集約せず、各デバイスでローカルにモデルを学習し、その結果を集約することでプライバシーを保護しつつ学習を行う。
+- [**Collaborative Filtering using Matrix Factorization**](https://www.google.com/search?q=Collaborative+Filtering+using+Matrix+Factorization) (行列分解を用いた協調フィルタリング)
+    ※ ユーザーとアイテムの相互作用に基づいて、未知のアイテムを予測する手法。行列分解を使って、ユーザーとアイテムの潜在的な特徴を抽出し、推薦システムに利用される。
+- [**tf.distribute.Strategy**](https://www.google.com/search?q=tf.distribute.Strategy) (TensorFlow 分散戦略)
+    ※ TensorFlowで分散学習を行うためのAPI。複数のGPUやTPU、分散環境を利用して、大規模なデータセットの学習を効率的に行うための手法。
+- [**Maximum Likelihood**](https://www.google.co.jp/search?sca_esv=4b64fb292c50f957&sxsrf=AHTn8zqfA7VDYnd7UDs-lfckrHnx_fMMww:1742543683839&q=maximum+likelihood&source=lnms&fbs=ABzOT_D2k6MNEmHCczqZM6bKks6bX9NETrPdxpZKwDWL-fLVT_rhE7lityZ7TEOWDQVt-ShZvC2XhR1JXJS7IFR4TksMFUoBZCfvoxb3N8lsNGqRIOBRIAA4rnxI1pqNXNKWW20_d5S9PNJDUP1bweKBBQdfBmJ1C7dmVpMQiF3WwcTgwiRh2Mj3RJVQ6SA21DPq75ZplTnjONHwRyDPd9msvYIZjxL40f2U4D4qf9wE7i-25mPyM28QKSpJuwnZ3NbYc42Pvhh3&sa=X&ved=2ahUKEwjdpZ-K2ZqMAxWvmq8BHX37AN8Q0pQJegQIExAB&biw=1440&bih=760&dpr=2) (最尤推定｜さいゆうすいてい)
+    ※ 統計学における推定方法の一つ。観測データが最も高い確率で発生するパラメータを推定する手法。確率モデルのパラメータ推定に広く使用される。観測されたデータからそれを生んだ母集団を説明しようとする際に広く使用。
+  $$
+  L(\theta) = P(X = \{x_1, x_2, \ldots, x_n\} \mid \theta) = \prod_{i=1}^{n} f(x_i; \theta)
+  $$
+  観測データ $X$ は実際に観測されたデータの集合です。確率分布 $f(x; \theta)$ はデータが従うと仮定する確率分布で、パラメータ $\theta$ によって特徴付けられます。尤度関数 $L(\theta)$ は、与えられたデータ $X$ がパラメータ $\theta$ の下で観測される確率を示す関数です。積の記号 $\prod_{i=1}^{n}$ は、データポイントごとの確率をすべて掛け合わせることを示します。尤度関数は、観測データが最も「尤もらしく」得られるパラメータ $\theta$ を推定する際に使用されます。
+
+[Parametric and Nonparametric](https://machinelearningmastery.com/parametric-and-nonparametric-machine-learning-algorithms/)｜MLモデルの分類
+
+**パラメトリック機械学習アルゴリズム**
+> - 特徴: 学習する関数の形を事前に仮定し、その仮定に基づいてパラメータを学習するアルゴリズム。パラメータの数は固定されており、データの量には関係なく変わらない。
+> - 学習: 少ないデータで高速に学習、柔軟性: 仮定した関数形に制約があり、複雑な問題には不向き
+> - 代表例:
+>   - **線形回帰 (Linear Regression)**
+>   - **ロジスティック回帰 (Logistic Regression)**
+>   - **ナイーブベイズ (Naive Bayes)**
+>   - **単純なニューラルネットワーク (Simple Neural Networks)**
+
+**非パラメトリック機械学習アルゴリズム**
+> - 特徴: 関数の形を仮定せず、データからその関数を柔軟に学習するアルゴリズム。パラメータ数はデータ量に依存し、データが多いほど複雑な関数を学習できる。
+> - 学習: 大量のデータと計算リソースが必要、学習速度が遅い 、柔軟性: 複雑な関数形にも適応可能
+> - 代表的例:
+>   - **k近傍法 (k-Nearest Neighbors)**
+>   - **決定木 (Decision Trees)**
+>   - **SVM (Support Vector Machines)**
+
+**Lazy learning（遅延学習）｜モデルの分類**
+> Lazy learning（遅延学習）は、モデルが訓練データを事前に学習するのではなく、予測の際にデータをその都度利用して推論を行う手法です。特徴的なのは、モデルの構築に時間がかからず、訓練データの保持と参照のみを行う点です。そのため、学習の段階ではほとんど処理を行わず、予測時に計算量が増加することがあります。
+> 代表例：
+> - **k-近傍法（k-NN）**
+> - **局所回帰（Local Regression）**
+> - **遅延ナイーブベイズ（Lazy Naive Bayes）**
+> - **Lazy Decision Trees**
+
+---
+
+##### Google AI サービス関連
+
+[Vertex AI の概要](https://cloud.google.com/vertex-ai/docs/predictions/overview?hl=ja#get_predictions_from_models)｜まずはここから
+> - AutoML を使用すると、**コードの記述やデータ分割の準備を行わず**に、表形式、画像、テキスト、動画のデータをトレーニングできます。これらのモデルは、オンライン予測用にデプロイするか、バッチ予測用に直接クエリを実行できます。
+> - カスタム トレーニングでは、任意の ML フレームワークの使用、**独自のトレーニング コード**の記述、ハイパーパラメータ チューニング オプションの選択など、トレーニング プロセスを完全に制御できます。カスタム トレーニング モデルを Model Registry にインポートし、ビルド済みまたはカスタム コンテナを使用してオンライン予測用にエンドポイントにデプロイできます。または、バッチ予測を直接クエリすることもできます。
+> - Model Garden を使用すると、Vertex AI と厳選されたオープンソース モデルとアセットを調査、テスト、カスタマイズ、デプロイできます。...
+
+[Model Garden](https://cloud.google.com/model-garden?hl=ja)｜Vertex AI｜Model一覧必読👀
+> Google 独自の評価基準を満たす世界最高水準の Google 製（Gemini）、サードパーティ製（Meta の Llama 3.1）、およびオープンソース製（Anthropic の Claude Model Family）のモデルの中からお選びいただけます。厳選した 160 以上のモデルはいずれも各カテゴリでクラス最高性能を達成しており、お客様はビジネスニーズに最もよく合う高パフォーマンスの基盤モデルを利用できます。
+
+[Vertex Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview?hl=ja)｜説明可能なAI
+> サポートされているモデルタイプ：
+> 入力のエンベディング（潜在表現）を提供できる TensorFlow モデルであれば、すべてサポートされます。**ディシジョン ツリーなどのツリーベース モデルはサポートされていません（本質的に説明可能性の高いモデルのため）**。PyTorch や XGBoost など、他のフレームワークのモデルはまだサポートされていません。
+> **DNN**の場合、上位レイヤ（出力レイヤに近い）は「意味のある」ことを学習済みであると通常は想定されるため、埋め込みには最後から 2 番目のレイヤが選択されることがよくあります。いくつかの異なるレイヤでテストし、得られる例を調査して、定量的（クラスマッチ）な尺度または定性的（合理的に見える）な尺度に基づいてレイヤを選択できます。
+
+[Vertex AI Experiments の概要](https://cloud.google.com/vertex-ai/docs/experiments/intro-vertex-ai-experiments?hl=ja#analyze-model-performance)
+> **テスト データセット**に対して、**トレーニングの実行中**に、**モデルの集約のパフォーマンスを追跡および評価**できます。この機能によって、モデルのパフォーマンス特性（特定のモデルが全体的にどの程度機能しているか、どこがうまく機能しないか、モデルのどこが優れているか）を把握できます。
+
+[Vertex AI Workbench](https://cloud.google.com/vertex-ai/docs/workbench/introduction?hl=ja)
+> Vertex AI Workbench は Jupyter ノートブックをベースとした開発環境であり、データ サイエンス ワークフロー全体に対応しています。Vertex AI Workbench インスタンスの Jupyter ノートブックから Vertex AI や他の Google Cloud サービスを操作できます。
+> Vertex AI Workbench のインテグレーションと機能を使用すると、データへのアクセス、データ処理の高速化、ノートブックの実行スケジュールの設定などを簡単に行える
+> - BigQuery と Cloud Storage のインテグレーションを使用して、[Jupyter ノートブック](https://jupyter.org/)のデータにアクセスし、探索する。
+> - Vertex AI 上で実行されるノートブックのコード実行スケジュールを使用して、モデルへの定期的な更新を自動化する。
+> - **Dataproc クラスタ**でノートブックを実行してデータを迅速に処理する。
+
+[Vertex AI Model Monitoring](https://cloud.google.com/vertex-ai/docs/model-monitoring/overview?hl=ja#monitoring_overview)
+> Vertex AI Model Monitoring を使用すると、必要に応じて、または定期的にモニタリング ジョブを実行して、**表形式モデル**の品質を追跡できます。アラートを設定している場合、**指標が指定されたしきい値を超える**と、Vertex AI Model Monitoring から通知が届きます。
+> たとえば、顧客のライフタイム バリューを予測するモデルがあるとします。顧客の習慣が変化すると、顧客の支出を予測する要因も変化します。そのため、モデルのトレーニングに以前使用した特徴と特徴値は、現在の予測には関連がない可能性があります。データのこの**偏差はドリフト**と呼ばれます。
+
+[Vertex AI Vizier](https://cloud.google.com/vertex-ai/docs/vizier/overview?hl=ja)
+> Vertex AI Vizier は、複雑な機械学習（ML）モデルでの**ハイパーパラメータのチューニングを支援**するブラックボックス最適化サービス。ML モデルに異なるハイパーパラメータが多数ある場合、手動でのチューニングは難しく時間がかかる。Vertex AI Vizier を使用すると、ハイパーパラメータが調整されてモデルの出力が最適化されます。デフォルトのアルゴリズムでは、**ベイズ最適化**により、**パラメータ空間の検索**をより効率的に行い、最適な解を導出
+> ブラックボックス最適化とは、次のいずれかの条件を満たすシステムの最適化です。
+> - 評価する既知の目的関数がない。
+> - 目的関数を使用して評価するにはコストがかかりすぎる（システムが複雑なことが多いため）。Vizier（英：助言者）
+
+[Occupancy analytics](https://cloud.google.com/vision-ai/docs/occupancy-analytics-model?hl=ja)｜Vertex AI
+> **占有率アナリティクス** モデルを使用すると、動画フレームに追加した特定の入力に基づいて、人や車両の数をカウントできます。人物と車両検出モデルと比較して、占有状況分析モデルには高度な機能が用意されています。これらの機能は、アクティブ ゾーン カウント、ラインクロス カウント、滞在検出です。
+
+[Vertex AI Agent Builder](https://cloud.google.com/generative-ai-app-builder/docs/introduction?hl=ja)
+> Vertex AI Agent Builder を使用すると、ML のスキルがまだ十分ではないデベロッパーでも、Google の基盤モデル、検索技術（**セマンティック検索**）、**会話型 AI** テクノロジーの力を活用して、エンタープライズ グレードの生成 AI アプリケーションを作成できます。
+
+[TensorFlow Data Validation](https://www.tensorflow.org/tfx/tutorials/data_validation/tfdv_basic?hl=ja)
+> **記述統計の確認、スキーマの推測、異常のチェックと修正、データセットのドリフトとスキューのチェック**が含まれます。データセットの特性を理解することが重要です。これには、**本番パイプラインで時間の経過とともにどのように変化する可能性があるか**などが含まれます。また、**データの異常を探し、トレーニング、評価、および提供データセットを比較して、それらが一貫していること**を確認する
+
+[TensorFlow I/O](https://www.tensorflow.org/io?hl=ja)
+> TensorFlow I/O は、TensorFlow の拡張機能パッケージで、TensorFlow のビルトインサポートで提供されていない一連のファイルシステムと**ファイル形式**の IO サポート（例：**フォーマット変換**）が含まれます。多数のシステムやクラウドベンダーに統合することができます。
+
+[TensorFlow Model Analysis](https://www.tensorflow.org/tfx/guide/tfma?hl=ja#overview)｜TFMA
+> TensorFlow モデル分析の目標は、TFX でモデル評価のメカニズムを提供することです。 TensorFlow モデル分析を使用すると、TFX パイプラインでモデル評価を実行し、結果のメトリクスとプロットを Jupyter ノートブックで表示できます。具体的には、以下を提供できます。
+
+[TensorFlow Lite](https://ai.google.dev/edge/litert?hl=ja) (TFLite)
+> LiteRT（Lite ランタイムの略）は、以前は TensorFlow Lite と呼ばれていた、デバイス上の AI 向けの Google の高性能ランタイムです。幅広い ML/AI タスクに対応するすぐに実行可能な LiteRT モデルを見つけることができます。また、**AI Edge 変換**ツールと最適化ツールを使用して、TensorFlow、PyTorch、JAX モデルを TFLite 形式に変換して実行することもできます。
+> マルチプラットフォーム サポート: **Android デバイス、iOS デバイス、組み込み Linux、マイクロコントローラに対応**。
+
+[**予測モデル**を使用して予測を行う](https://cloud.google.com/vertex-ai/docs/tabular-data/forecasting/get-predictions?hl=ja#make_a_batch_prediction_request_to_your_model)｜Vertex AI｜predictions for a forecast model
+> バッチ予測リクエストを行うには、Google Cloud コンソールまたは Vertex AI API を使用します。入力データソースは、**Cloud Storage バケットまたは BigQuery テーブル**に格納された CSV オブジェクトです。
+> AutoML による予測（predictions for a forecast model）は、**エンドポイントのデプロイ、オンライン予測に対応していません**。予測モデルからオンライン予測をリクエストするには、予測用の表形式ワークフローを使用します。
+
+[予測にカスタム コンテナを使用する](https://cloud.google.com/vertex-ai/docs/predictions/use-custom-container)｜Vertex AI｜custom container for prediction
+> Vertex AI がカスタム トレーニング モデルから**オンライン予測**を提供する方法をカスタマイズするには、Model リソースを作成するときに、事前にビルドされたコンテナではなく**カスタム コンテナ**を指定します。カスタム コンテナを使用すると、Vertex AI は各予測ノードで任意の Docker コンテナを実行します。
+
+[Hello image data: Train an AutoML image classification model](https://cloud.google.com/vertex-ai/docs/tutorials/image-classification-automl/training)
+> 増分トレーニング（**incremental learning**）により、通常はトレーニングが迅速に行われ、トレーニング時間が短縮されます。
+
+[Vertex AI で BigQuery ML モデルを管理する](https://cloud.google.com/bigquery/docs/managing-models-vertex?hl=ja&utm_source=chatgpt.com)
+> **BigQuery ML モデルを Vertex AI Model Registry に登録**すると、これらの**モデルをエクスポートすることなく**、Vertex AI モデルと一緒に管理できます。Model Registry にモデルを登録すると、1 つのインターフェースを使用して、サービング コンテナなしでモデルのバージョン管理、評価、デプロイを行い、オンライン予測を実行できるようになります。
+> `CREATE MODEL ステートメント`の `MODEL_REGISTRY` オプションを使用して、モデルを Model Registry に登録できます。
+
+[メモリ使用量を減らすためのヒント](https://cloud.google.com/tpu/docs/troubleshooting/trouble-tf?hl=ja#overview)｜TensorFlow - TPU のトラブルシューティング
+> - 過剰なテンソル パディングを確認する
+>	- テンソルパディングは、モデルがデータを適切に処理できるように、入力データのサイズを調整するために行う操作。主に畳み込み層やRNNなどで使用され、ゼロパディングが最も一般的
+> - **bfloat16 形式**を使用する
+> - 入力サイズ（モデル）が大きすぎる場合は、TensorFlow の試験運用版モデルの並列処理を使用すると、モデルのサイズに対応できる可能性があります。
+
+[Vertex AI Feature Store](https://cloud.google.com/vertex-ai/docs/featurestore?hl=ja#vaifs)
+> Vertex AI Feature Store は、Vertex AI に不可欠なクラウドネイティブのマネージド Feature Store サービスです。このサービスでは、ML の特徴管理とオンライン サービング プロセスが合理化されます。特徴データを **BigQuery のテーブルまたはビューで管理し**、BigQuery データソースから直接オンラインで提供することができます。
+> Vertex AI Feature Store は、特徴データソースを指定して**オンライン サービング**を設定できるリソースをプロビジョニングします。その後、BigQuery データソースとやり取りするメタデータ レイヤとして機能します。最新の特徴値を BigQuery から直接提供し、低レイテンシでオンライン予測を実現します。
+
+[Custom-Prediction-Routines (カスタム予測ルーチン)](https://cloud.google.com/vertex-ai/docs/predictions/custom-prediction-routines?hl=ja)｜Vertex AI
+> カスタム予測ルーチン（CPR）を使用すると、**HTTP サーバーの設定やコンテナのゼロからのビルドを行うことなく**、前処理コードと後処理コードを使用してカスタム コンテナを簡単にビルドできます。前処理を使用して入力を正規化または変換する、外部サービスを呼び出して追加データを取得する、後処理を使用してモデル予測の形式を設定する、あるいはビジネス ロジックを実行する、などの処理が可能です。
+> - モデルサーバーや Dockerfile を記述する必要はありません。**モデルサーバー**（モデルをホストする HTTP サーバー）が**用意されています。**
+> - モデルをローカルでデプロイしてデバッグできるため、開発中のイテレーション サイクルを高速化できます。
+
+[マネージド データセット｜Vertex AI](https://cloud.google.com/vertex-ai/docs/training/using-managed-datasets?hl=ja)
+> Vertex AI マネージド データセットを使用して**カスタムモデルをトレーニング**する方法について説明します。
+> マネージド データセットを使用すると、次のことができます。
+> - データセットを一元的に管理する。
+> - ラベルと複数のアノテーション セットを簡単に作成する。
+> - 統合データのラベル付けを使用して、ヒューマン ラベリングのタスクを作成する。
+> - ガバナンスと反復型開発のため、モデルのリネージをトラッキングする。
+> - 同じデータセットを使用して AutoML モデルとカスタムモデルをトレーニングし、モデルのパフォーマンスを比較する。
+> - データの統計情報を生成して可視化する。
+> - データをトレーニング セット、テストセット、検証セットに自動的に分割する。
+
+[独自の検索拡張生成を構築する](https://cloud.google.com/generative-ai-app-builder/docs/builder-apis?hl=ja#build-rag)｜Vertex AI Agent Builder
+> 構成図DAGが参考になる
+
+[ExampleGen TFX](https://www.google.co.jp/search?sca_esv=c4fe9279b750d491&sxsrf=AHTn8zqFcSLwhSA6dmR5WWMNL1JqaI7juw:1743396338939&q=ExampleGen+TFX&source=lnms&fbs=ABzOT_B99KL8EEhkYoEVGnMBM4DVKP_bJ6TamjQXY7EiDKNgE46NI9ZVDSeCJKlvSGeFyoUR4TWMB13DxGL7EzHuZiCLOgR2FrbBGPagQZd-b34BWeVa8tkj90mRohuzXaPY31MP3ywideQ6pIxcvKw_Y3kPHA_0Hf1YLIC62IyACo-g7NhxM-A7lgLmyKVBm1hShj_g7N5vZFHvSCeoEwzi_MFBiA5_whTWfT5HpCDAp0bxormqoOEr-U_S138pQzcdZV_82UKc&sa=X&ved=2ahUKEwiT0PC7wbOMAxVYdvUHHa0JK3IQ0pQJegQIFBAB&biw=762&bih=691&dpr=2.2)｜TensorFlow
+> TFX パイプラインコンポーネントの1つである ExampleGen コンポーネントはデータを TFX のパイプラインに投入します。 これは**外部のファイルやサービスからデータを読み取り、ほかの TFX のコンポーネントが読み取る Examples を生成**します。 また、一貫性のある方法でデータセットを分割します。分割は設定により変更可能です。 同時に機械学習のベストプラクティスに従い、データセットの並び替えを行います。
+> 入力: CSV や TFRecord、BigQuery といった外部のデータソースからのデータ
+> 出力: tf.Example レコード
+
+[AIアクセラレータ](https://www.google.co.jp/search?q=ai+%E3%82%A2%E3%82%AF%E3%82%BB%E3%83%A9%E3%83%AC%E3%83%BC%E3%82%BF&sca_esv=dbb5466b0453cba2&biw=1309&bih=691&sxsrf=AHTn8zo6l8yu5kRrcVMuiDFmeIumsmFq1Q%3A1743401306259&ei=WjHqZ__LD9WJvr0Ps7a-mQQ&ved=0ahUKEwj_4L3807OMAxXVhK8BHTObL0MQ4dUDCBA&uact=5&oq=ai+%E3%82%A2%E3%82%AF%E3%82%BB%E3%83%A9%E3%83%AC%E3%83%BC%E3%82%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiGGFpIOOCouOCr-OCu-ODqeODrOODvOOCvzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYR0j5EFDcD1jcD3ABeAGQAQCYAQCgAQCqAQC4AQPIAQD4AQGYAgGgAgqYAwCIBgGQBgqSBwExoAcA&sclient=gws-wiz-serp)｜google cloud｜[公式](https://cloud.google.com/tpu/docs/intro-to-tpu?hl=ja#when_to_use_tpus)
+> AIアクセラレータは、AI処理の高速化を目的とした専用のハードウェアやソフトウェア。主にディープラーニングや機械学習のトレーニングと推論を効率化します。
+> 1. **TPU（Tensor Processing Unit）**
+>    - Googleが開発したDeepLearning高速化の専用ハードウェア。
+>    - **行列計算**が多くを占めるモデル
+>    - TPU は**高精度の演算を必要とするワークロードには推奨されず、数週間または数か月のトレーニングを行うモデルに推奨**（模擬試験より）
+>    - GPU と比較して、**大規模なトレーニングのパフォーマンスとコスト効率が大幅に向上**
+> 2. **GPU（Graphics Processing Unit）**
+>    - 高並列計算能力を持つ、AIモデルのトレーニング／NVIDIA製が主流。
+>    - GPUは**高精度のトレーニングを伴う深層学習トレーニングに適した**ハードウェアであり、複数のインスタンスでトレーニングを分散することで、アクセラレータ選択の微調整に最大限の柔軟性を持たせて**実行時間を最小限**に抑えることができる（模擬試験より）
+> 3. **CPU**
+>    - 最大限の柔軟性を必要とする迅速なプロトタイピング
+>    - トレーニングに時間がかからない単純なモデル
+>    - 実際のバッチサイズが小さい小規模なモデル
+>    - C++ で記述されたカスタムの TensorFlow オペレーションが多く含まれるモデル
+
+[Vertex AIのスケジューラ API の状態](https://cloud.google.com/vertex-ai/docs/pipelines/schedule-pipeline-run?hl=ja)｜Vertex AI
+> `ACTIVE`
+> `PAUSED`
+> `COMPLETED`
+
+[ConditionalParameter（条件付きハイパーパラメータ）](https://cloud.google.com/vertex-ai/docs/training/hyperparameter-tuning-overview?hl=ja)｜Vertex AI｜コスト削減
+> **ConditionalParameterSpec** オブジェクトを使用すると、親ハイパーパラメータの値が指定された条件と一致したときに、トライアルにハイパーパラメータを追加できます。
+> たとえば、線形回帰またはディープ ニューラル ネットワーク（DNN）を使用して最適なモデルを見つけるハイパーパラメータ調整ジョブを定義できます。調整ジョブでトレーニング メソッドを指定するには、LINEAR_REGRESSION と DNN を指定して training_method という名前のカテゴリ ハイパーパラメータを定義します。training_method が LINEAR_REGRESSION の場合、調整ジョブでは学習率のハイパーパラメータを指定する必要があります。training_method が DNN の場合、調整ジョブでは学習率と隠れレイヤの数を指定する必要があります。
+
+[サイドカー モードとESP](https://cloud.google.com/endpoints/docs?hl=ja)｜Cloud Endpoints
+> - **サイドカー モード**: API管理機能を提供するプロキシ（**Extensible Service Proxy (ESP)**）を各アプリケーションインスタンスと同じコンテナ内で実行する方式。
+> - **ESP**: APIリクエストの認証、トラフィック管理、モニタリング、ロギングなどを提供するプロキシ。（GPT整理）
+
+```
+API管理システム（サイドカー モード構成例）
+│
+├── アプリケーションサービス
+│   ├── アプリケーションロジック（API）
+│   └── データストレージ、外部サービス等
+│
+├── ESP（API管理プロキシ）
+│   ├── 認証機能
+│   ├── トラフィック制御
+│   ├── モニタリング機能
+│   ├── ロギング機能
+│   └── レート制限
+│
+└── その他のコンポーネント
+    ├── リクエストゲートウェイ（APIリクエストの受け付け）
+    └── APIゲートウェイ（プロキシとアプリケーションサービスの連携）
+```
+
+[過学習を防止する](https://cloud.google.com/bigquery/docs/preventing-overfitting?hl=ja)
+> BigQuery ML モデルをトレーニングする際の注意点は、過学習です。過学習は、モデルがトレーニング データとあまりに一致する場合に発生し、新しいデータに対するパフォーマンスが低下します。BigQuery ML は、早期停止と正則化という 2 つの方法で過学習を防止します。
+
+[ハイパーパラメータを調整](https://developers.google.com/machine-learning/guides/text-classification/step-5?hl=ja)｜過学習
+> ドロップアウト率: ドロップアウト レイヤは、モデルで正則化に使用されます。過学習の対策として、**破棄**する入力の割合を定義します。推奨範囲: 0.2 ～ 0.5。
+> 学習率: イテレーション間でニューラル ネットワークの重みが変化する頻度です。学習率が高いと重みが大きく変動し、最適な値を見つけられないことがあります。学習率は低くても問題ありませんが、収束にさらに反復処理が必要になります。最初は 1e-4 から始めることをおすすめします。トレーニングが非常に遅い場合は、この値を増やします。モデルが学習していない場合は、学習率を下げてみてください。
+
+[予測ログの種類](https://cloud.google.com/vertex-ai/docs/predictions/online-prediction-logging?hl=ja#log-types)｜VertexAI｜オンライン予測ロギング（Online prediction logging）
+> **コンテナ ロギング**
+> 予測ノードから **Cloud Logging** に **stdout** ストリームと **stderr** ストリームが記録されます。これらのログはデバッグに必要です。
+> v1 サービス エンドポイントでは、コンテナ ロギングがデフォルトで有効になっています。モデルをデプロイするときに無効にできます。また、デプロイしたモデルを変更するときに、**ロギングを無効または有効にすることもできます**。
+> **アクセス ロギング**
+> Cloud Logging に各リクエストのタイムスタンプやレイテンシなどの情報が記録されます。
+> v1 と v1beta1 のサービス エンドポイントの両方で、アクセス ロギングはデフォルトで無効になっています。エンドポイントにモデルをデプロイするときに、アクセス ロギングを**有効にできます**。
+> **リクエスト / レスポンス ロギング**
+> オンライン予測リクエストとレスポンスのサンプルが **BigQuery** テーブルに記録されます。
+> リクエスト / レスポンス ロギングを有効にするには、予測エンドポイントを作成するか、パッチを適用します。
+
+[Healthcare Natural Language API か AutoML Entity Extraction for Healthcare かを選択](https://cloud.google.com/healthcare-api/docs/concepts/nlp?hl=ja#choosing_between_the_and)｜Cloud Healthcare API
+> Healthcare Natural Language API には、医療テキストから医療のコンセプトや関連を抽出する、**事前トレーニング済みの自然言語モデル**が用意されています。Healthcare Natural Language API は、事前定義された一連の 医療ナレッジ カテゴリにテキストをマッピングします。
+> AutoML Entity Extraction for Healthcare を使用すると、**独自のアノテーション（カスタムラベル）付き医療テキスト**と**独自のカテゴリ**を使用してトレーニングされたカスタム エンティティ抽出モデルを作成できます。
+
+[Dataflow ML](https://cloud.google.com/dataflow/docs/machine-learning/ml-about?hl=ja)
+> Dataflow ML は、Dataflow と Apache Beam の [`RunInference` API](https://beam.apache.org/documentation/ml/about-ml/) を組み合わせて使用します。`RunInference` API では、モデルの特性とプロパティを定義し、その構成を `RunInference` 変換に渡します。この機能を使用すると、モデルの実装の詳細を知らなくても、Dataflow パイプライン内でモデルを実行できます。TensorFlow や PyTorch など、使用するデータに最適なフレームワークを選択できます。
+
+[RunInference API](https://cloud.google.com/dataflow/docs/machine-learning/ml-multi-model?hl=ja)｜Dataflow
+> RunInference API を使用すると、**複数のモデルを含むパイプラインを構築**できます。マルチモデル パイプラインは、複数の ML モデルを必要とするビジネス上の問題を解決するための A/B テストの実施や、アンサンブルの構築などのタスクに役立ちます。
+> 複数のモデルでパイプラインを構築する場合、次の 2 つのパターンのいずれかを使用できます。
+> - **A/B 分岐**パターン: 入力データの一部が 1 つのモデルに送信され、残りのデータは 2 番目のモデルに送信されます。
+> - **シーケンス** パターン: 入力データは 2 つのモデルを順に通過します。
+
+[Scikit-learn](https://scikit-learn.org/stable/faq.html?utm_source=chatgpt.com#will-you-add-gpu-support)｜基本はCPUベース→GPUの適用も可能に
+>  - Scikit-learnは主に[CPUベース](https://kentei.ai/blog/archives/411)の計算に最適化されており、中小規模のデータセットに適している。大規模なデータセットやリアルタイムの応答が必要な場合、パフォーマンスに制限がある場合がある。
+>  ↓
+>  - GPUを活用したい場合は、scikit-learnに類似したAPIを持つNVIDIAの[cuML](https://www.datacamp.com/blog/nvidia-cuml-GPU-scikit-learn?utm_source=chatgpt.com)ライブラリを検討し、[Deep Learning VM](https://developer.nvidia.com/blog/rapids-vm-image-google-cloud-platform/) (DLVM)などの環境での実行可能
+> [変遷](https://scikit-learn.org/stable/faq.html?utm_source=chatgpt.com#will-you-add-gpu-support)：
+> - 2023年以降、入力データがPyTorchまたは**CuPy**配列として提供され、scikit-learnがそのような入力を受け入れるように設定されている場合、限られた範囲ではあるが、**GPUで実行できるscikit-learnの推定器が増えている**。
+
+[Request-Response Logging](https://cloud.google.com/vertex-ai/docs/predictions/online-prediction-logging?hl=ja#dedicated-and-psc)｜samplingRate｜Vertex AI
+> 専用エンドポイントと Private Service Connect エンドポイントでは、リクエスト / レスポンス ロギングを使用して、TensorFlow、PyTorch、sklearn、XGBoost モデルの **10 MB 未満のリクエスト / レスポンス ペイロードを記録**できます
+> -`samplingRate`: ログに記録するリクエストとレスポンスの割合。0 より大きく 1 以下の値に設定します。たとえば、すべてのリクエストをログに記録するにはこの値を `1` に設定し、リクエストの 10% をログに記録する場合は `0.1` に設定します。
+> - `samplingRate`を**下げる**と、監視対象として考慮されるデータポイントが少なくなり、監視コストを削減しながら、迅速なドリフト検出が可能
+
+---
+
+### 2025/03/30 不合格記
+
+**次回に向けて：**
+> 問題集の選定の時点で間違っている可能性もあるが、次回に向けてまずは既存の過去問題集を復習して、模擬試験も完璧にする。また、MLの基礎的な項目もさらに理解を深めるチャンスと捉えて学習する
+
+```text
+## 試験概要
+- 50問／120分
+- 1周を105分でギリギリ完了し、見直しは2問程度しかできなかった
+
+## 受験の感想
+- 難しい。かつ、英語の単語も理解できていないものが多く難しい
+- 予想以上に、MLの基礎的な理解よりも、GoogleCloud のサービスとMLの実装や学習／改善に関する複合問題が多かった
+- 特に、MLのパイプライン実装に関する問題が多数あった印象
+- 悔しい。問題集は2周をやって過去問題も7割程度やり、動画学習もやっていただけに
+- 過去問題からはあまり同様の問題がなかった印象も強い。
+
+## 次回に向けて
+問題集の選定の時点で間違っている可能性もあるが、次回に向けてまずは既存の過去問題集を復習して、模擬試験も完璧にする。また、MLの基礎的な項目もさらに理解を深めるチャンスと捉えて学習する
+
+## 出題傾向
+- MLパイプライン／データ処理に関する問題多数
+- GeminiやLabmaなどの最近のMODELのAPI選定に関する問題も出題された
+- TensorFlow I/O
+- パイプライン ~ モニタリング の技術選定の問題少々
+- パフォーマンスチューニングのための対象選定の問題多数（TPU/GPU..）
+- Collaborative Filtering using Matrix Factorization の Matrix Factorization のみが選択肢に記述され、リコメンドに関する選定の問題もあった記憶
+- ソフトマックス関数の登場が多数
+- 分類問題と回帰問題の理解を解いつつ、モデル選定を行う問題多数
+- 説明可能性に関する問題多数
+- データの秘匿化に関する問題
+- exampleGEN　というワードが頻出していた
+- RunInference API も頻発
+- アクセラレータという単語も頻出
+- Metadataというワードも結構出ていた。パイプラインの構成の問題で
+```
+
+**不合格の結果レポートの表：**
+
+| Section                                                                    | Approximate % Scored Questions | Section Performance |
+| -------------------------------------------------------------------------- | ------------------------------ | ------------------- |
+| Section 1: Architecting low-code AI solutions                              | 13%                            | Meets               |
+| Section 2: Collaborating within and across teams to manage data and models | 14%                            | **Does Not Meet**   |
+| Section 3: Scaling prototypes into ML models                               | 18%                            | **Does Not Meet**   |
+| Section 4: Serving and scaling models                                      | 20%                            | Borderline          |
+| Section 5: Automating and orchestrating ML pipelines                       | 22%                            | **Does Not Meet**   |
+| Section 6: Monitoring AI solutions                                         | 13%                            | **Does Not Meet**   |
+
+
+### 2025/04/15：以下でUdemy問題集の筆者へ改善要望提出
+
+- 2025/04/16：Udemyで下記の要望を提出
+- 2025/04/16：筆者から感謝と共に無料のクーポンの打診がある
+
+```text
+Subject: Improvement Request regarding Google Cloud Certification Professional Machine Learning Practice Exam
+
+--
+
+Dear Priya Dw,
+
+I recently purchased and have been studying using your "Google Cloud Certification Professional Machine Learning Practice Exam" question bank.
+
+I find the material to be quite valuable for exam preparation. However, while reviewing the questions, I encountered several areas that seem inappropriate or contain errors, such as invalid/null URLs, potentially incorrect answers, formatting issues, and duplicate questions.
+
+For your consideration and future improvements, I have compiled a list of these specific issues below.
+
+Thank you for reviewing this feedback. I hope it assists in further enhancing the quality of the question bank.
+
+Sincerely,
+
+※ Please note ※
+
+- Regarding "Wrong Answers": Based on my own research, I believe alternative answers might be more appropriate for these questions. This section is intended as a suggestion for your review, not a definitive statement of error.
+- Regarding "Practice" Numbers: While the question text has been copied and pasted directly, please understand that the association with the specific "Practice" number listed might not be entirely accurate in all cases.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+### List / Summary of Inappropriate Questions in the Question Bank
+
+---
+
+**Practice 1**
+
+*   **Invalid URL:**
+    *   Your company operates a video sharing website where users can watch and upload videos. You're tasked with creating an ML model to predict which newly uploaded videos will be the most popular, allowing prioritization on your company's website. Which result should you use to determine whether the model is successful?
+    *   You've started working on a classification problem with time series data and achieved a high area under the receiver operating characteristic curve (AUC ROC) value of 99% for training data after just a few experiments. You haven't explored sophisticated algorithms or spent time on hyperparameter tuning. What should your next step be to identify and fix the problem?
+    *   You're employed by a public transportation company tasked with building a model to predict delay times for multiple transportation routes. Predictions are directly served to users in an app in real-time. Given the varying impact of different seasons and population increases on data relevance, you plan to retrain the model monthly. You aim to adhere to Google-recommended best practices. How should you configure the end-to-end architecture of the predictive model?
+    *   As an ML engineer at a large grocery retailer with stores across multiple regions, you've been tasked with crafting an inventory prediction model. The model's features encompass region, location, historical demand, and seasonal popularity. You aim for the algorithm to continually learn from fresh inventory data on a daily basis. Which algorithms should you employ to construct the model?
+*   **URLs are NULL:**
+    *   You aim to revamp your ML pipeline for structured data on Google Cloud due to extended processing times exceeding 12 hours using PySpark for data transformations at scale. To accelerate development and pipeline runtime, you seek a serverless solution with SQL syntax. With your raw data already migrated to Cloud Storage, how should you design the pipeline on Google Cloud while satisfying speed and processing needs?
+*   **Wrong Answer:**
+    *   Your data science team aims to experiment quickly with different features, model designs, and hyperparameters. They also need to monitor accuracy metrics for these experiments and access them through an API. How can they efficiently track and report their experiments with minimal manual intervention?
+    *   As an employee of a large hotel chain, you've been tasked with aiding the marketing team in acquiring predictions for a targeted marketing strategy. Your objective is to forecast user lifetime value (LTV) over the next 20 days to facilitate adjustments in marketing efforts. The customer dataset, stored in BigQuery, contains tabular data with a time signal spread across multiple columns. How should you ensure that AutoML constructs the best model for your data?
+
+---
+
+**Practice 4**
+
+*   **Invalid URL:**
+    *   You're tasked with building a model to predict customer lifetime value for your company, which sells corporate electronic products globally. The historical customer data is stored in BigQuery. You aim for a straightforward approach and require visualization tools for validation. Which approach should you take?
+        [https://cloud.google.com/bigquery-ml/docs/](https://cloud.google.com/bigquery-ml/docs/)
+    *   As an employee at a manufacturing company, you're tasked with training a custom image classification model to identify product defects at the end of an assembly line. While the model's performance is generally satisfactory, some images in the holdout set are consistently mislabeled with high confidence. You intend to leverage Vertex AI to gain insights into your model's results. What's the recommended approach?
+    *   You aim to transition a scikit-learn classifier model to TensorFlow. Training the TensorFlow classifier will use the same training set as the scikit-learn model, followed by performance comparison using a common test set. Using the Vertex AI Python SDK, you plan to manually log the evaluation metrics of each model to compare their F1 scores and confusion matrices. How should you log the metrics?
+    *   You've developed a custom model that carries out multiple memory-intensive preprocessing tasks prior to making predictions. After deploying this model to a Vertex AI endpoint and ensuring reasonable response times during validation, you notice that the endpoint doesn't autoscale efficiently under heavy request loads. What action should you take to address this?
+        https://cloud.google.com/vertex-ai/docs/general/machine-types
+    *   You're employed by a telecommunications company and are developing a model to forecast which customers might miss their upcoming phone bill payments. The aim is to offer proactive assistance to these customers, such as discounts or extensions. The data for this model is stored in BigQuery and includes features like:
+        https://cloud.google.com/bigquery-ml/docs/fairness-overview
+
+---
+
+**Practice 3**
+
+*   **Invalid URL:**
+    *   After deploying a model to a Vertex AI endpoint and encountering frequent data drift, you've enabled request-response logging and set up a Vertex AI Model Monitoring job. However, you've noticed higher-than-expected traffic to the model. To reduce model monitoring costs while maintaining swift drift detection, what's the recommended action?
+        https://cloud.google.com/vertex-ai/docs/predictions/monitor-models
+    *   Your company operates an application that aggregates news articles from various online sources and delivers them to users. You're tasked with constructing a recommendation model to suggest articles similar to those currently being read by users. Which approach would be most appropriate?
+        https://towardsdatascience.com/recommending-news-articles-based-on-already-read-articles-627695221fe8
+    *   You've developed an ML pipeline with various input parameters and aim to explore the trade-offs among different parameter combinations. The parameters include:
+        - Input dataset
+        - Maximum tree depth for the boosted tree regressor
+        - Learning rate for the optimizer
+        Your goal is to compare pipeline performance across different parameter combinations, focusing on F1 score, training time, and model complexity. You seek a reproducible approach that tracks all pipeline runs on a unified platform. What's the recommended course of action?
+        https://cloud.google.com/vertex-ai/docs/experiments/introduction-vertex-ai-experiments
+    *   In your role at a gaming company with a global player base, you're tasked with developing an ML system to moderate real-time chat across multiple languages without altering the serving infrastructure. The system currently uses the Cloud Translation API to translate messages, but the initial model, employing an in-house word2vec model for message embedding, exhibits performance discrepancies across languages. How can you enhance the model's performance?
+        https://towardsdatascience.com/chat-message-classification-using-machine-learning-24d5bb579707
+*   **Format corruption:**
+    *   You've trained a scikit-learn model for deployment on Vertex AI, supporting both online and batch prediction, and aim to preprocess input data with minimal additional code. What approach should you take to package the model for deployment?
+        Ref- https://cloud.google.com/vertex-ai/docs/predictions/custom-prediction-routines
+
+---
+
+**Practice 2**
+
+*   **Invalid URL:**
+    *   After receiving a training-serving skew alert from a Vertex AI Model Monitoring job in production, you retrained the model with newer training data and redeployed it to the Vertex AI endpoint. However, the same alert persists. What should be your next step?
+        https://cloud.google.com/vertex-ai/docs/predictions/monitor-models
+    *   What should be done to design a personalized deep neural network in Keras for predicting customer purchases from their purchase history, exploring various model architectures, storing training data, and comparing evaluation metrics in a unified dashboard?
+        https://www.kubeflow.org/docs/about/use-cases/
+
+---
+
+**Practice 5**
+
+*   **Wrong Answer:**
+    *   You're training models in Vertex AI, utilizing data from various Google Cloud projects. To effectively find, track, and compare the performance of different model versions, which Google Cloud services should be incorporated into your ML workflow?
+    *   You've recently utilized BigQuery ML to train an AutoML regression model, which garnered positive feedback from your team. Now, you're tasked with deploying the model for online prediction as swiftly as possible. What's the recommended course of action?
+    *   As your company manages an ecommerce website, you've developed an ML model to recommend additional products to users based on items in their carts. To minimize prediction latency and streamline model updates, how should you reconfigure the architecture for the following processes:
+    *   While training an object detection machine learning model on a dataset containing three million X-ray images, each around 2 GB in size, you're utilizing Vertex AI Training on a Compute Engine instance equipped with 32 cores, 128 GB of RAM, and 1 NVIDIA P100 GPU. Noticing extensive training duration, you aim to reduce training time without compromising model performance. What's the recommended approach?
+    *   As part of a bank with stringent data governance requirements, you've implemented a custom model for detecting fraudulent transactions. To ensure secure access to internal data via an API endpoint hosted within your project's network for training purposes, while minimizing the risk of data exfiltration, what's the most appropriate action to take?
+    *   Following the development of a deep learning model in Keras, you experimented with various training approaches. Initially, training on a single GPU proved to be too slow. Subsequently, distributing the training across 4 GPUs using tf.distribute.MirroredStrategy did not yield a reduction in training time. What step should you take next to optimize training performance?
+    *   You're part of a biotechnology startup experimenting with deep learning ML models based on biological organism properties. Your team frequently engages in early-stage experiments with new ML model architectures and develops custom TensorFlow ops in C++. Training occurs on substantial datasets with large batch sizes. Your typical batch consists of 1024 examples, each around 1 MB in size. The average network size, including all weights and embeddings, is approximately 20 GB. What hardware configuration should you select for your models?
+*   **Invalid URLs:**
+    *   You're constructing a custom image classification model and aim to employ Vertex AI Pipelines for comprehensive training. Your dataset comprises images requiring preprocessing before model training. The preprocessing involves resizing images, converting them to grayscale, and feature extraction, with existing Python functions handling these tasks. Which pipeline components should you incorporate?
+    *   As an ML engineer at a bank, you've developed a binary classification model using AutoML Tables to predict whether a customer will make loan payments on time. The model's output guides the approval or rejection of loan requests. Following a loan rejection for a specific customer, the bank's risks department requests the reasons contributing to the model’s decision. What's the recommended approach?
+    *   You've deployed a complex TensorFlow model trained on tabular data to production. The goal is to predict the lifetime value (LTV) field for each subscription stored in the BigQuery table named subscription.subscriptionPurchase in the fortune500-company-project. Which approach would you choose to monitor and maintain the model's performance?
+    *   You're part of a team that develops cutting-edge deep learning models using the TensorFlow framework. With the team conducting multiple ML experiments weekly, keeping track of experiment runs has become challenging. You're seeking a straightforward method to efficiently track, visualize, and debug ML experiment runs on Google Cloud without adding extensive code overhead. What's the best solution?
+    *   You're tasked with deploying a scikit-learn classification model to production, requiring the ability to handle requests 24/7. Anticipating millions of requests per second during peak hours from 8 am to 7 pm, cost optimization is paramount. What's the optimal deployment strategy?
+        https://cloud.google.com/vertex-ai/docs/predictions/deploy-model-online
+    *   You're investigating an error in the classification made by one of your models trained and deployed using Vertex AI Pipelines. The pipeline sources data from BigQuery, saves a copy of it in TFRecord format in Cloud Storage, trains the model on this copy using Vertex AI Training, and finally deploys the model to a Vertex AI endpoint. You've pinpointed the specific model version responsible for the misclassification and need to locate the data it was trained on. How should you retrieve this data?
+        https://cloud.google.com/vertex-ai/docs/ml-metadata/lineage-metadata
+*   **Duplicate questions and a question with inconsistent answers:**
+    *   You're tasked with predicting the most relevant web banner for users on your online travel agency's website, while ensuring security and maintaining low latency with a requirement of 300ms@p99. You have thousands of web banners in your inventory, and user navigation context appears to be a significant predictor. Opting for simplicity, how should you set up the prediction pipeline?
+
+---
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+```
+
+##### 追加分
+
+**Practice Test 2**
+
+```text
+Invalid URL:
+
+You've built a custom model on Vertex AI to forecast user churn rates for your application. Utilizing Vertex AI Model Monitoring for skew detection, you find that two distinct models, each trained on separate feature sets (demographic and behavioral), outperform the original model. You aim to configure a model monitoring pipeline that distributes traffic between these two models. Additionally, you want to maintain the same prediction-sampling-rate and monitoring-frequency for both. Your goal is to minimize administrative overhead. What approach should you take?
+
+Wrong Answer：
+
+You are tasked with training an object detection model to recognize bounding boxes around Post-it Notes® within images. The Post-it Notes may vary in background colors and shapes. You possess a dataset comprising 1000 images, each with a maximum size of 1.4MB, and annotations stored in a CSV file within Cloud Storage. Your aim is to select a training approach that reliably detects Post-it Notes of various relative sizes in the images while minimizing the training time. What is the most suitable course of action?
+
+You're employed at a prominent healthcare organization where you're tasked with developing advanced algorithms for a range of applications. You possess unstructured textual data annotated with custom labels and aim to extract and classify various medical terms using these labels. Which approach should you choose?
+
+You possess a dataset segmented into training, validation, and test sets, all exhibiting similar distributions. After selecting the most relevant features, you've trained a neural network in TensorFlow. Upon inspecting TensorBoard plots, you observe that the training loss fluctuates around 0.9, while the validation loss consistently exceeds the training loss by 0.3. Your goal is to adjust the training regimen to enhance convergence of both losses and mitigate overfitting. What action should you take?
+
+You are establishing an ML pipeline for data processing, model training, and model deployment utilizing various Google Cloud services. Each task has its dedicated code, and you anticipate frequent additions of new files. You need to develop an orchestration layer that only triggers when new files are detected in your dataset stored in a Cloud Storage bucket. Additionally, you aim to minimize compute node expenses. What should you do?
+```
