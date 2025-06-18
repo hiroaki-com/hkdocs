@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "HkDocs",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Hk Docs Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "Docs",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Diary": {
+    "message": "Diary",
+    "description": "Navbar item with label Diary"
+  },
+  "item.label.Browser Memo": {
+    "message": "Browser Memo",
+    "description": "Navbar item with label Browser Memo"
+  },
+  "item.label.Profile": {
+    "message": "Profile",
+    "description": "Navbar item with label Profile"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.𝕏": {
+    "message": "𝕏",
+    "description": "Navbar item with label 𝕏"
+  }
+}
