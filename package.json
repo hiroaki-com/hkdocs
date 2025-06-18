@@ -20,20 +20,19 @@
     "@docusaurus/preset-classic": "3.8.0",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
+    "http-server": "^14.1.1",
     "lucide-react": "^0.514.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0",
-    "serve": "^14.2.4"
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.8.0",
     "@docusaurus/tsconfig": "3.8.0",
     "@docusaurus/types": "3.8.0",
     "gray-matter": "^4.0.3",
-    "http-server": "^14.1.1",
     "twitter-api-v2": "^1.23.2",
     "typescript": "~5.6.2"
   },
