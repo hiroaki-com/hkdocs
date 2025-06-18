@@ -452,5 +452,114 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "page.browser-memo.footer.noData": {
+    "message": "No saved data"
+  },
+  "page.browser-memo.confirm.clearAll": {
+    "message": "Are you sure you want to clear all memos? This action cannot be undone."
+  },
+  "page.browser-memo.alert.clipboardUnavailable": {
+    "message": "The clipboard feature is not available in this environment."
+  },
+  "page.browser-memo.alert.copyFailed": {
+    "message": "Failed to copy text."
+  },
+  "page.browser-memo.title": {
+    "message": "Browser Memo"
+  },
+  "page.browser-memo.description": {
+    "message": "A simple notepad that allows you to temporarily save text within your browser."
+  },
+  "page.browser-memo.h1": {
+    "message": "Browser Memo"
+  },
+  "page.browser-memo.intro1": {
+    "message": "Feel free to use it. Your input is automatically saved and will be available on your next visit."
+  },
+  "page.browser-memo.intro2": {
+    "message": "Security Note:"
+  },
+  "page.browser-memo.intro3": {
+    "message": " The contents of this memo are saved only in your browser's local storage. Your data will never be sent to an external server."
+  },
+  "page.browser-memo.button.clearAll": {
+    "message": "Clear All"
+  },
+  "page.browser-memo.footer.toggle.expand": {
+    "message": "Click to restore auto-height"
+  },
+  "page.browser-memo.footer.toggle.minimize": {
+    "message": "Click to minimize ({height}px)"
+  },
+  "page.browser-memo.copyButton.ariaLabel.copied": {
+    "message": "Copied"
+  },
+  "page.browser-memo.copyButton.ariaLabel.copy": {
+    "message": "Copy memo {number}"
+  },
+  "page.browser-memo.copyButton.copied": {
+    "message": "Copied!"
+  },
+  "page.browser-memo.copyButton.copy": {
+    "message": "Copy"
+  },
+  "page.browser-memo.textarea.placeholder": {
+    "message": "Memo {number}"
+  },
+  "page.browser-memo.footer.lastUpdated": {
+    "message": "Last updated: "
+  },
+  "homepage.meta.description": {
+    "message": "My Tech Blog",
+    "description": "The meta description for the homepage"
+  },
+  "homepage.features.tech.title": {
+    "message": "Tech",
+    "description": "The title for the Tech feature card on the homepage"
+  },
+  "homepage.features.tech.description": {
+    "message": "Organizing daily learnings and blog posts.",
+    "description": "The description for the Tech feature card on the homepage"
+  },
+  "homepage.features.exams.title": {
+    "message": "Exams",
+    "description": "The title for the Exams feature card on the homepage"
+  },
+  "homepage.features.exams.description": {
+    "message": "Study notes and reviews for certification exams.",
+    "description": "The description for the Exams feature card on the homepage"
+  },
+  "homepage.features.blog.title": {
+    "message": "Blog",
+    "description": "The title for the Blog feature card on the homepage"
+  },
+  "homepage.features.blog.description": {
+    "message": "Casual articles about technical learnings.",
+    "description": "The description for the Blog feature card on the homepage"
+  },
+  "homepage.features.diary.title": {
+    "message": "Diary",
+    "description": "The title for the Diary feature card on the homepage"
+  },
+  "homepage.features.diary.description": {
+    "message": "Daily records and personal miscellaneous notes.",
+    "description": "The description for the Diary feature card on the homepage"
+  },
+  "homepage.features.browserMemo.title": {
+    "message": "Browser Memo",
+    "description": "The title for the Browser Memo feature card on the homepage"
+  },
+  "homepage.features.browserMemo.description": {
+    "message": "A lightweight memo function usable only in the browser.",
+    "description": "The description for the Browser Memo feature card on the homepage"
+  },
+  "homepage.features.profile.title": {
+    "message": "Profile",
+    "description": "The title for the Profile feature card on the homepage"
+  },
+  "homepage.features.profile.description": {
+    "message": "About me.",
+    "description": "The description for the Profile feature card on the homepage"
   }
 }
