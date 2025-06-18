@@ -2,6 +2,7 @@ import React from 'react';
 import type { JSX, ComponentType } from 'react';
 import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
+import Translate, { translate } from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 import {
@@ -52,39 +53,81 @@ export default function HomepageFeatures(): JSX.Element {
       <div className="container">
         <div className={styles.featureGrid}>
           <FeatureCard
-            title="Tech"
+            title={translate({
+              id: 'homepage.features.tech.title',
+              message: 'Tech',
+            })}
             Icon={IconBook}
-            description={<>日常の学びやブログ記事を整理。</>}
+            description={
+              <Translate id="homepage.features.tech.description">
+                日常の学びやブログ記事を整理。
+              </Translate>
+            }
             link="/docs/category/tech"
           />
           <FeatureCard
-            title="Exams"
+            title={translate({
+              id: 'homepage.features.exams.title',
+              message: 'Exams',
+            })}
             Icon={IconGraduationCap}
-            description={<>資格試験の学習ノートや感想など。</>}
+            description={
+              <Translate id="homepage.features.exams.description">
+                資格試験の学習ノートや感想など。
+              </Translate>
+            }
             link="/docs/category/exams"
           />
           <FeatureCard
-            title="Blog"
+            title={translate({
+              id: 'homepage.features.blog.title',
+              message: 'Blog',
+            })}
             Icon={IconEdit}
-            description={<>技術的な学びに関するフランクな記事。</>}
+            description={
+              <Translate id="homepage.features.blog.description">
+                技術的な学びに関するフランクな記事。
+              </Translate>
+            }
             link="/blog"
           />
           <FeatureCard
-            title="Diary"
+            title={translate({
+              id: 'homepage.features.diary.title',
+              message: 'Diary',
+            })}
             Icon={IconClock}
-            description={<>日々の記録や個人的な雑記メモ。</>}
+            description={
+              <Translate id="homepage.features.diary.description">
+                日々の記録や個人的な雑記メモ。
+              </Translate>
+            }
             link="/diary"
           />
           <FeatureCard
-            title="Browser Memo"
+            title={translate({
+              id: 'homepage.features.browserMemo.title',
+              message: 'Browser Memo',
+            })}
             Icon={IconBrowserMemo}
-            description={<>ブラウザだけで使える軽量メモ機能。</>}
+            description={
+              <Translate id="homepage.features.browserMemo.description">
+                ブラウザだけで使える軽量メモ機能。
+              </Translate>
+            }
             link="/browser-memo"
           />
           <FeatureCard
-            title="Profile"
+            title={translate({
+              id: 'homepage.features.profile.title',
+              message: 'Profile',
+            })}
             Icon={IconUser}
-            description={<>私について。</>}
+            description={
+              <Translate id="homepage.features.profile.description">
+                私について。
+              </Translate>
+            }
             link="/profile"
           />
         </div>
