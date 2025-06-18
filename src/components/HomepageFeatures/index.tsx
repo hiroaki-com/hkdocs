@@ -54,25 +54,25 @@ export default function HomepageFeatures(): JSX.Element {
           <FeatureCard
             title="Tech"
             Icon={IconBook}
-            description={<>日常の学びやブログ記事を整理します。</>}
+            description={<>日常の学びやブログ記事を整理。</>}
             link="/docs/category/tech"
           />
           <FeatureCard
             title="Exams"
             Icon={IconGraduationCap}
-            description={<>資格試験の学習ノートやまとめます。</>}
+            description={<>資格試験の学習ノートや感想など。</>}
             link="/docs/category/exams"
           />
           <FeatureCard
             title="Blog"
             Icon={IconEdit}
-            description={<>技術的な学びに関するフランクな記事です。</>}
+            description={<>技術的な学びに関するフランクな記事。</>}
             link="/blog"
           />
           <FeatureCard
             title="Diary"
             Icon={IconClock}
-            description={<>日々の記録や個人的な雑記メモです。</>}
+            description={<>日々の記録や個人的な雑記メモ。</>}
             link="/diary"
           />
           <FeatureCard
