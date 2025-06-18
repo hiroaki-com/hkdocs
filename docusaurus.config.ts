@@ -1,6 +1,6 @@
 // docusaurus.config.ts
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type * as PluginContentBlog from '@docusaurus/plugin-content-blog';
 
@@ -16,6 +16,9 @@ const config: Config = {
     v4: true,
   },
 
+  // i18n利用時のURL問題を避けるため、末尾スラッシュを有効化
+  trailingSlash: true,
+
   url: 'https://hkdocs.com/',
   baseUrl: '/',
 
@@ -25,9 +28,20 @@ const config: Config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
+  // 国際化(i18n)設定
   i18n: {
     defaultLocale: 'ja',
-    locales: ['ja'],
+    locales: ['ja', 'en'],
+    localeConfigs: {
+      ja: {
+        label: '日本語',
+        htmlLang: 'ja-JP',
+      },
+      en: {
+        label: 'English',
+        htmlLang: 'en-US',
+      },
+    },
   },
 
   presets: [
@@ -36,8 +50,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/hiroaki-com/hkdocs',
+          editUrl: 'https://github.com/hiroaki-com/hkdocs',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
@@ -47,8 +60,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl:
-            'https://github.com/hiroaki-com/hkdocs',
+          editUrl: 'https://github.com/hiroaki-com/hkdocs',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -81,7 +93,8 @@ const config: Config = {
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css',
       type: 'text/css',
-      integrity: 'sha384-wcIxkf4k558sdO6R2bvKte0ZiVEcHGlfxHrgoDae90SSsgkIERV36PksnAqcVB2Q',
+      integrity:
+        'sha384-wcIxkf4k558sdO6R2bvKte0ZiVEcHGlfxHrgoDae90SSsgkIERV36PksnAqcVB2Q',
       crossorigin: 'anonymous',
     },
   ],
@@ -95,8 +108,7 @@ const config: Config = {
     image: 'img/hkdocs-social-card.jpg',
     announcementBar: {
       id: 'site_release_20250601',
-      content:
-        '2025年6月1日、当サイトを正式リリースしました 🥳️',
+      content: '2025年6月1日、当サイトを正式リリースしました 🥳️',
       backgroundColor: '#73a8e6',
       textColor: '#fcf3f0',
       isCloseable: true,
@@ -110,20 +122,23 @@ const config: Config = {
       hideOnScroll: true,
       items: [
         {
-          to: '/docs/category/tech',
-          label: 'Tech',
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
           position: 'left',
-          activeBasePath: 'docs/tech',
+          label: 'Docs',
         },
-        {to: '/docs/category/exams', label: 'Exams', position: 'left'},
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {to: '/diary', label: 'Diary', position: 'left'},
+        { to: '/blog', label: 'Blog', position: 'left' },
+        { to: '/diary', label: 'Diary', position: 'left' },
         {
           to: '/browser-memo',
           label: 'Browser Memo',
           position: 'left',
         },
-        {to: '/profile', label: 'Profile', position: 'right'},
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        { to: '/profile', label: 'Profile', position: 'right' },
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           label: 'GitHub',
@@ -143,29 +158,25 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Tech',
+          title: 'Contents',
           items: [
             {
-              label: 'Tech',
-              to: '/docs/category/tech',
-            },
-            {
-              label: 'Exams',
-              to: '/docs/category/exams',
+              label: 'Docs',
+              to: '/docs/intro',
             },
             {
               label: 'Blog',
               to: '/blog',
+            },
+            {
+              label: 'Diary',
+              to: '/diary',
             },
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'Diary',
-              to: '/diary',
-            },
             {
               label: 'Profile',
               to: '/profile',
@@ -174,15 +185,15 @@ const config: Config = {
               label: 'Browser Memo',
               to: '/browser-memo',
             },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/hiroaki-com/hkdocs',
+            },
           ],
         },
         {
           title: 'SNS',
           items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/hiroaki-com/hkdocs',
-            },
             {
               label: '𝕏',
               href: 'https://x.com/hkdocs',
@@ -211,7 +222,7 @@ const config: Config = {
     },
     algolia: {
       appId: 'S30V6IHD5V',
-      apiKey: 'adbade7d0089113887a2a706a77f72f8', // Search-Only API Key
+      apiKey: 'adbade7d0089113887a2a706a77f72f8',
       indexName: 'hkcom',
       placeholder: 'サイト内検索',
     },
