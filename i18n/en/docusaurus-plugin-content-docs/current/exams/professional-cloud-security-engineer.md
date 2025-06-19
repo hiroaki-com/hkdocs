@@ -1,177 +1,149 @@
 ---
 sidebar_position: 8
 title: Professional Cloud Security Engineer
-tags: [google cloud, 認定資格, 合格記]
+tags: [google cloud, certification, exam review]
 ---
 
-**🌸 合格：2025年01月17日**
+**🏆 Passed: January 17, 2025**
 
-**試験概要：**
-- https://cloud.google.com/learn/certification/cloud-security-engineer?hl=ja
-- [認定試験一覧](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
+**Exam Overview:**
 
+-   [Official Exam Guide](https://cloud.google.com/learn/certification/cloud-security-engineer?hl=en)
+-   [List of Certifications](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
 
-### 受験後回想メモ
+### Post-Exam Reflections
 
-**感想：**
+**Impressions:**
+
 ```
-感想：
-難しかった。
-基本的には、ドキュメントベースの問題なのだけれども、模擬試験よりは確実に応用的な問題であり
-問題集（インド）と同様の問題はほとんどなかったと想像される。
-論理的な思考力により選択式問題特有のテクニックを使用しなければいけない問題が多かった
-ネットワーク構造やクラウドアーキテクト的な問題も多かったような印象だった。
+It was difficult.
+The questions were fundamentally based on documentation, but they were definitely more applied than the practice exam.
+I don't think there were many questions similar to those in the (Indian) practice sets.
+Many questions required logical reasoning and using test-taking techniques for multiple-choice questions.
+There also seemed to be many questions related to network architecture and general cloud architecture.
 
-客観的なメモ：
-問題数：40問　と少ないこともプレッシャーとなった
-時間：70分／120分 程度で一周し一応見直しもできた
-```
-
-##### 出題傾向：
-```
-**マイニング検出:**
-
-- Google Cloudでは、暗号通貨マイニングの検出と防止のためのベストプラクティスが提供されています。これには、異常なCPU使用率やネットワークトラフィックの監視、リソースの自動スケーリングの設定、IAMポリシーの強化などが含まれます。
-    
-- 参考: [Google Cloudの暗号通貨マイニング検出ベストプラクティス](https://cloud.google.com/security-command-center/docs/cryptomining-detection-best-practices?hl=ja)
-    
-
----
-
-**IAMの時間制御:**
-
-- Cloud Schedulerを使用して、指定した日時や間隔でHTTPリクエストを発行し、Cloud RunやCloud Functionsを自動的に呼び出すことができます。これにより、特定の時間帯にのみアクセス権を付与するなど、時間ベースのアクセス制御が可能となります。
-    
-- ポイント:
-    
-    - Cloud Schedulerの再試行設定により、実行失敗時のリトライも簡単に制御できます。
-        
-    - IAMロールの付与や削除など、アクセス権の管理をプログラムで実装可能です。
-        
-
----
-
-**外部キー管理に関する問題:**
-
-- リージョンまたはプロジェクトの原因特定:
-    
-    - 外部キーに限らず、リージョン要件が重要です。例えば、Cloud KMSのキーは特定のリージョンに関連付けられており、異なるリージョンでの使用は制限されることがあります。
-        
-    - 参考: [Cloud KMSのロケーションに関するドキュメント](https://cloud.google.com/kms/docs/locations?hl=ja)
-        
-- DLPのデータ秘匿化手法:
-    
-    - ハッシュ化は、データを一方向に変換し、復号不可にする手法です。これにより、元のデータを復元できなくなります。
-        
-    - 注意: 確定的暗号化は、同じ入力に対して常に同じ出力を生成するため、復号可能ですが、ハッシュ化とは異なります。
-        
-
----
-
-**Container Registry（Artifact Registry）の機能:**
-
-- Artifact Registryは、Container Registryの後継として、コンテナイメージやその他のパッケージの管理を提供します。脆弱性スキャンやモニタリング機能が統合されています。
-    
-- ポイント:
-    
-    - Artifact RegistryのArtifact Analysisで脆弱性スキャンを実施できます。
-        
-    - モニタリング機能は、Cloud Security Command Center (SCC)やGoogle Cloud Monitoringを使用して実装します。
-        
-
----
-
-**Cloud Security Command Center (SCC) のユースケース:**
-
-- SCCは、Google Cloud環境のセキュリティ状態を可視化し、リスクを管理するための統合プラットフォームです。
-    
-- ユースケース:
-    
-    - 脆弱性検出: リソースの誤設定や公開されている資格情報、既知のリスクを発見し、修正します。
-        
-    - 脅威検出と軽減: マルウェア、暗号通貨マイナー、コンテナランタイム攻撃、DDoS攻撃などのアクティブな脅威を検出し、対応します。
-        
-    - ポスチャーとポリシー: セキュリティポスチャーを定義・展開し、設定の逸脱を監視・修正します。
-        
-    - データ管理: セキュリティコマンドセンターのデータの保存と処理を特定のリージョンに制限し、データの居住性を確保します。
-        
-    - 統合: BigQueryやPub/Subへのエクスポートを通じて、外部のセキュリティシステムと連携します。
-        
-- 参考: [Security Command Centerの概要](https://cloud.google.com/security-command-center/docs/security-command-center-overview)
-    
-
----
-
-**模擬試験問題の出題事例:**
-
-- 問題: ある小売企業が、eコマースサイト（POSアプリケーションを含む）をGoogle Cloudに移行しようとしています。この場合に遵守する必要があるコンプライアンス標準はどれですか？
-    
-    - A. FedRAMP High
-        
-    - B. HIPAA
-        
-    - C. SOX
-        
-    - D. PCI DSS（正解）
-        
-
-- Security Command Center
-- Cloud NGFW
-- Shielded VM・Confidential VM・Binary Authorization  
-- Cloud Certificate Authority Service
-
-
----
+Objective Notes:
+- Number of questions: 40, which was fewer than expected and added to the pressure.
+- Time: I completed the first pass in about 70/120 minutes and was able to review everything.
 ```
 
+##### Topic Trends:
 
+```
+**Cryptomining Detection:**
 
-### 受験情報 2025 年 1 月 17 日
-
-**試験名: Google Cloud Certified - Professional Cloud Security Engineer (Japanese)**
-**試験日時: 17 January 2025 1530H**
-**北区北7条西5丁目8-1 北7条ヨシヤビル4階**
-
-準備：
-- 政府発行の運転免許証
-- クレジット カード
-### 🔥受験に向けた戦略🔥
- 
-- [whizlabs.com](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-cloud-security-engineer/301) をマスターする
-	- １周完了：2025/01/14
-	- ２周完了：2025/01/17
-- [模擬試験](https://docs.google.com/forms/d/e/1FAIpQLSf4ADmZr8WnDZjIK6dWvRTel2VmsP0fJtONy6UOFjWZHe-MpQ/viewform?hl=ja) の実施
-	-  91%：2025/01/14
-- 可能な限りのWeb記事
-	- [cloud architecture center](https://cloud.google.com/architecture?hl=ja)
-- Google Cloud の画面
-
-### 苦手項目
-
-初見項目
-- [Assured Workloads とは](https://cloud.google.com/assured-workloads/docs/overview?hl=ja)
-- [SSL ポリシーの定義](https://cloud.google.com/load-balancing/docs/ssl-policies-concepts?hl=ja#defining_an_ssl_policy)
-- [Google API に接続する](https://cloud.google.com/vpc/docs/private-access-options?hl=ja#connect-google-apis)
-- [Workload Identity 連携](https://cloud.google.com/iam/docs/workload-identity-federation?hl=ja)
-- [FWの優先度](https://cloud.google.com/firewall/docs/firewalls?hl=ja#priority_order_for_firewall_rules) - 初期優先度：1000
-- VPCフローログの適用単位はVPC（サブネットよりもベター）
+-   Google Cloud provides best practices for detecting and preventing cryptocurrency mining. This includes monitoring for unusual CPU usage and network traffic, configuring resource autoscaling, and strengthening IAM policies.
+-   Reference: [Best practices for cryptomining detection on Google Cloud](https://cloud.google.com/security-command-center/docs/cryptomining-detection-best-practices?hl=en)
 
 ---
 
-### 問題集作成用プロンプトメモ
+**Time-based IAM Control:**
 
-##### 応用問題生成のTIPS
+-   You can use Cloud Scheduler to issue HTTP requests at specified times or intervals to automatically invoke Cloud Run or Cloud Functions. This allows for time-based access control, such as granting access permissions only during specific hours.
+-   Key Points:
+    -   Cloud Scheduler's retry settings make it easy to control retries upon execution failure.
+    -   You can programmatically manage access rights, such as granting or revoking IAM roles.
 
-2024/12/14 
+---
 
-**模試の改善：**
-模擬試験を公式サイトからコピーして、テキストファイルで保存
-↓
-GPTs へ登録して、フォーマットを整理
-↓
-Gemini（studio）へSystemプロンプトを設定の上、順次改善していく
+**External Key Management Questions:**
 
-**基礎問題の改善：**
-GPTs で試験範囲に準じた基礎問題集を生成する
-↓
-Gemini（studio）へSystemプロンプトを設定の上、順次応用問題に改善していく
+-   Identifying Regional or Project Causes:
+    -   Beyond external keys, regional requirements are crucial. For example, Cloud KMS keys are tied to a specific region, and their use in other regions may be restricted.
+    -   Reference: [Cloud KMS Locations documentation](https://cloud.google.com/kms/docs/locations?hl=en)
+-   DLP Data De-identification Methods:
+    -   Hashing is a one-way transformation that makes data non-reversible, preventing the original data from being recovered.
+    -   Note: Deterministic encryption, which always produces the same output for the same input, is decryptable and different from hashing.
+
+---
+
+**Container Registry (Artifact Registry) Features:**
+
+-   Artifact Registry, the successor to Container Registry, provides management for container images and other packages. It integrates vulnerability scanning and monitoring features.
+-   Key Points:
+    -   Vulnerability scanning can be performed with Artifact Analysis in Artifact Registry.
+    -   Monitoring is implemented using Cloud Security Command Center (SCC) or Google Cloud Monitoring.
+
+---
+
+**Cloud Security Command Center (SCC) Use Cases:**
+
+-   SCC is an integrated platform for visualizing the security posture of your Google Cloud environment and managing risks.
+-   Use Cases:
+    -   **Vulnerability Detection:** Discover and remediate resource misconfigurations, publicly exposed credentials, and known risks.
+    -   **Threat Detection and Mitigation:** Detect and respond to active threats like malware, cryptomining, container runtime attacks, and DDoS attacks.
+    -   **Posture and Policy Management:** Define and deploy security postures, and monitor and fix configuration drifts.
+    -   **Data Management:** Ensure data residency by restricting the storage and processing of Security Command Center data to a specific region.
+    -   **Integration:** Connect with external security systems through exports to BigQuery and Pub/Sub.
+-   Reference: [Security Command Center overview](https://cloud.google.com/security-command-center/docs/security-command-center-overview)
+
+---
+
+**Example from Practice Exam:**
+
+-   **Question:** A retail company is migrating its e-commerce site, including its point-of-sale (POS) application, to Google Cloud. Which compliance standard must they adhere to?
+    -   A. FedRAMP High
+    -   B. HIPAA
+    -   C. SOX
+    -   D. PCI DSS (Correct Answer)
+
+-   Other topics that appeared:
+    -   Security Command Center
+    -   Cloud NGFW
+    -   Shielded VM, Confidential VM, Binary Authorization
+    -   Cloud Certificate Authority Service
+```
+
+---
+
+### Exam Information (January 17, 2025)
+
+**Exam Name:** Google Cloud Certified - Professional Cloud Security Engineer (Japanese)
+**Date & Time:** January 17, 2025, 15:30
+**Location:** 4F Kita 7-jo Yoshiya Building, Kita 7-jo Nishi 5-chome, Kita-ku
+
+**Preparation:**
+
+-   Government-issued driver's license
+-   Credit card
+
+### 🔥 Study Strategy 🔥
+
+-   Master [whizlabs.com](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-cloud-security-engineer/301)
+    -   1st round complete: Jan 14, 2025
+    -   2nd round complete: Jan 17, 2025
+-   Take the [official practice exam](https://docs.google.com/forms/d/e/1FAIpQLSf4ADmZr8WnDZjIK6dWvRTel2VmsP0fJtONy6UOFjWZHe-MpQ/viewform?hl=en)
+    -   91%: Jan 14, 2025
+-   Read as many web articles as possible
+    -   [Cloud Architecture Center](https://cloud.google.com/architecture?hl=en)
+-   Familiarize myself with the Google Cloud console.
+
+### Weak Areas
+
+**New Topics Encountered:**
+
+-   [What is Assured Workloads?](https://cloud.google.com/assured-workloads/docs/overview?hl=en)
+-   [Defining an SSL policy](https://cloud.google.com/load-balancing/docs/ssl-policies-concepts?hl=en#defining_an_ssl_policy)
+-   [Connecting to Google APIs](https://cloud.google.com/vpc/docs/private-access-options?hl=en#connect-google-apis)
+-   [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation?hl=en)
+-   [Firewall rule priority](https://cloud.google.com/firewall/docs/firewalls?hl=en#priority_order_for_firewall_rules) - Default priority: 1000
+-   VPC Flow Logs are applied at the VPC level (better than subnet).
+
+---
+
+### Memos for Creating Practice Questions with Prompts
+
+##### Tips for Generating Applied Questions
+
+**December 14, 2024**
+
+**Improving Practice Exams:**
+
+Copy the official practice exam and save it as a text file.
+→ Upload it to GPTs and clean up the formatting.
+→ Set a system prompt in Gemini (Studio) and progressively improve the questions.
+
+**Improving Foundational Questions:**
+
+Generate a set of basic questions based on the exam guide using GPTs.
+→ Set a system prompt in Gemini (Studio) and progressively develop them into more applied, scenario-based questions.

@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-# Welcome to HkDocs
+# Tech Intro
 
-This is the English version of the introduction.
-
-Let's learn about Docusaurus.
+The `Tech` Page is a place to organize technical notes accumulated in my daily life, such as daily notes (from `Obsidian`) and reorganized `Blog` articles.
