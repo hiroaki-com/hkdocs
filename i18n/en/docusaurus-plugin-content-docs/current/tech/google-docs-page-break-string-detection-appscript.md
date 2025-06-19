@@ -1,200 +1,198 @@
 ---
 sidebar_position: 4
-title: 「改ページ（文字列検知）」AppScript - Googleドキュメント用
+title: AppScript for Page Breaks (by String Detection) in Google Docs
 ---
 
-# Googleドキュメント用「改ページ（文字列検知）」AppScript
+# AppScript for Page Breaks (by String Detection) in Google Docs
 
-### 作成の経緯
-- 超長文なドキュメントの編集作業の中で、改ページの編集のために`⌘＋Enter`を繰り返し使用していたが、あまりにも時間がかかっていた
-- [Chrome拡張機能](https://chromewebstore.google.com/category/extensions?hl=ja) などで目的の機能を提供しているサービスが無さそうであったため、自作
+### Background
+- While editing a very long document, I found that repeatedly using `⌘＋Enter` to insert page breaks was extremely time-consuming.
+- Since I couldn't find a service, such as a [Chrome Extension](https://chromewebstore.google.com/category/extensions?hl=en), that offered the desired functionality, I created my own.
 
-### ユースケース
-- 書籍など超長文のGoogleドキュメント 編集作業の効率化
-- 指定した複数の文字列のいずれかで始まる段落の前に改ページを挿入するスクリプト（前方一致）
+### Use Cases
+- Increase efficiency when editing very long Google Docs, such as books.
+- A script that inserts a page break before a paragraph starting with any of several specified strings (prefix match).
 
-### 使い方
- 1. Googleドキュメントのシートで、以下のAppScriptを貼り付けて、コメントのとおり実行するだけで使用可能
+### How to Use
+ 1. In your Google Doc, simply paste the following AppScript and run it according to the comments provided.
 
 
  ```Javascript
- // 使い方:
+ // How to use:
 /**
- * @fileoverview 指定した複数の文字列のいずれかで始まる段落の前に改ページを挿入するスクリプトです。
+ * @fileoverview This script inserts a page break before paragraphs that start with any of several specified strings.
  *
- * ## 関数実行時の前提
+ * ## Prerequisites for Running the Function
  *
- * ・重要：実行する関数を選択　> [ insertPageBreakAtPrefixMarkers ] を選択してください。 
+ * ・Important: When running a function, select > [ insertPageBreakAtPrefixMarkers ].
  *
  *
- * ## 目印の文字列に関する設定方法
+ * ## How to Configure the Marker Strings
  *
- * 1. **PAGEBREAK_PREFIXES** の値を、改ページの目印としたい文字列の**接頭辞**（始まりの部分）の**配列**に変更します。
- *    - このシステムは前方一致するテキストを目印として検索します。
- *    - 配列は角括弧 `[]` で囲み、各接頭辞文字列をダブルクォーテーション `"` またはシングルクォーテーション `'` で囲み、カンマ `,` で区切ります。
- *    - **要素数:** 配列には、有効な接頭辞文字列を **1 つ以上**含めてください。いくつでも設定可能です。
- *    - **有効な接頭辞:**
- *        - 空文字列 (`""`) や、スペースなどの空白文字のみ (`" "`) は**無視されます**。改ページの対象とはなりません。
- *        - 大文字・小文字は区別されます。
+ * 1. Change the value of **PAGEBREAK_PREFIXES** to an **array** of **prefixes** (the beginning part of the string) that you want to use as markers for page breaks.
+ *    - This system searches for text that matches the prefix.
+ *    - The array is enclosed in square brackets `[]`, and each prefix string is enclosed in double `"` or single `'` quotes, separated by commas `,`.
+ *    - **Number of Elements:** The array must contain **at least one** valid prefix string. You can set as many as you like.
+ *    - **Valid Prefixes:**
+ *        - Empty strings (`""`) and strings containing only whitespace characters (`" "`) are **ignored**. They will not be targeted for page breaks.
+ *        - The match is case-sensitive.
  *
- * 2. **設定例:**
- *    - **接頭辞が 1 つだけの場合:**
- *      例: `const PAGEBREAK_PREFIXES = ["PAGEBREAK"];`
- *      この設定では、「PAGEBREAK」という文字列で始まる段落（例: "PAGEBREAK" や "PAGEBREAK Section Title" など）の前に改ページが挿入されます。
+ * 2. **Configuration Examples:**
+ *    - **For a single prefix:**
+ *      Example: `const PAGEBREAK_PREFIXES = ["PAGEBREAK"];`
+ *      With this setting, a page break will be inserted before paragraphs starting with "PAGEBREAK" (e.g., "PAGEBREAK" or "PAGEBREAK Section Title").
  *
- *    - **接頭辞が 2 つの場合:**
- *      例: `const PAGEBREAK_PREFIXES = ["Chapter ", "Appendix "];`
- *      この設定では、「Chapter 」(Chapterの後ろに半角スペースあり) または「Appendix 」(Appendixの後ろに半角スペースあり) で始まる段落
- *      （例: "Chapter 1 Introduction", "Appendix A References" など）の前に改ページが挿入されます。
+ *    - **For two prefixes:**
+ *      Example: `const PAGEBREAK_PREFIXES = ["Chapter ", "Appendix "];`
+ *      With this setting, a page break will be inserted before paragraphs starting with "Chapter " (with a space after Chapter) or "Appendix " (with a space after Appendix), such as "Chapter 1 Introduction" or "Appendix A References".
  *
- *    - **接頭辞が 3 つ以上の場合:**
- *      例: `const PAGEBREAK_PREFIXES = ["図-", "表-", "リスト "];`
- *      この設定では、「図-」、「表-」、または「リスト 」(リストの後ろに半角スペースあり) で始まる段落
- *      （例: "図-1 システム構成", "表-2 パラメータ一覧", "リスト 1 手順" など）の前に改ページが挿入されます。
+ *    - **For three or more prefixes:**
+ *      Example: `const PAGEBREAK_PREFIXES = ["Figure-", "Table-", "List "];`
+ *      With this setting, a page break will be inserted before paragraphs starting with "Figure-", "Table-", or "List " (with a space after List), such as "Figure-1 System Configuration", "Table-2 Parameter List", or "List 1 Procedure".
  *
- *    - **ポイント:**
- *      - 接頭辞にスペースを含めるかどうかで、一致する対象が変わります。
- *        例: `"Chapter"` は "ChapterEnd" に一致しますが、`"Chapter "` は一致しません。
- *      - 必要な数だけ、カンマで区切って文字列を追加できます。
+ *    - **Key Points:**
+ *      - Whether you include a space in the prefix affects what will be matched.
+ *        For example: `"Chapter"` will match "ChapterEnd", but `"Chapter "` will not.
+ *      - You can add as many strings as you need, separated by commas.
  *
- * 3. **動作:**
- *    - この配列に含まれる**有効な接頭辞**のいずれかで**始まる**テキストを持つ段落の**直前**に改ページが挿入されます。
- *    - 段落 (Paragraph) 要素のテキストのみをチェックします。
+ * 3. **Behavior:**
+ *    - A page break will be inserted **immediately before** any paragraph whose text **starts with** one of the **valid prefixes** in this array.
+ *    - It only checks the text of Paragraph elements.
  *
- * 4. 変更後、**必ずスクリプトファイルを保存**してください（フロッピーディスクのアイコンをクリック）。
+ * 4. After making changes, **be sure to save the script file** (click the floppy disk icon).
  */
-const PAGEBREAK_PREFIXES = ["問題文 (日本", "章"]; // 例: ["図-", "表-"] や ["MyMarker"] など。設定方法は上のコメントを参照してください。
-// --- 設定箇所ここまで ---
+const PAGEBREAK_PREFIXES = ["Problem Statement (Japan", "Chapter"]; // Example: ["Figure-", "Table-"] or ["MyMarker"]. Refer to the comments above for configuration instructions.
+// --- End of Configuration Section ---
 
 
-// --- グローバル定数 ---
-const SCRIPT_NAME_MULTI_PREFIX = 'カスタム 改ページ (複数前方一致)';
-const SCRIPT_ERROR_MENU_NAME_MULTI_PREFIX = `${SCRIPT_NAME_MULTI_PREFIX} (設定エラー)`;
+// --- Global Constants ---
+const SCRIPT_NAME_MULTI_PREFIX = 'Custom Page Break (Multi-Prefix Match)';
+const SCRIPT_ERROR_MENU_NAME_MULTI_PREFIX = `${SCRIPT_NAME_MULTI_PREFIX} (Configuration Error)`;
 
 /**
- * 設定された接頭辞配列から、有効な（空でなく、空白のみでない）文字列のみを抽出します。
- * @param {any} prefixes 設定された PAGEBREAK_PREFIXES の値
- * @returns {string[]} 有効な接頭辞文字列の配列
+ * Extracts only valid (non-empty and not just whitespace) strings from the configured prefix array.
+ * @param {any} prefixes The configured PAGEBREAK_PREFIXES value
+ * @returns {string[]} An array of valid prefix strings
  */
 function getValidPrefixes(prefixes) {
   if (!Array.isArray(prefixes)) {
-    return []; // 配列でなければ空配列を返す
+    return []; // Return an empty array if it's not an array
   }
-  // filter を使用して、文字列型かつ trim() して空でないものだけを抽出
+  // Use filter to extract only strings that are not empty after trimming
   return prefixes.filter(prefix => typeof prefix === 'string' && prefix.trim().length > 0);
 }
 
 /**
- * ドキュメントを開いたときにカスタムメニューを追加します。
+ * Adds a custom menu when the document is opened.
  */
 function onOpen_MultiPrefix() {
   try {
     const validPrefixes = getValidPrefixes(PAGEBREAK_PREFIXES);
 
-    // 有効な接頭辞が1つもない場合はエラーメニューを表示
+    // If there are no valid prefixes, display an error menu
     if (validPrefixes.length === 0) {
-      Logger.log(`onOpen_MultiPrefix: 有効な改ページ接頭辞が設定されていません (${JSON.stringify(PAGEBREAK_PREFIXES)})。エラーメニューを表示します。`);
-      showConfigurationErrorMenu_MultiPrefix("有効な改ページ接頭辞が設定されていません");
+      Logger.log(`onOpen_MultiPrefix: No valid page break prefixes are set (${JSON.stringify(PAGEBREAK_PREFIXES)}). Displaying error menu.`);
+      showConfigurationErrorMenu_MultiPrefix("No valid page break prefixes are set");
       return;
     }
 
-    // メニュー項目名の生成（表示する接頭辞を調整）
-    let menuItemText = `指定接頭辞 (${validPrefixes.slice(0, 2).map(p => `"${p}"`).join(', ')}...)の前で改ページ`;
+    // Generate menu item text (adjusting the displayed prefixes)
+    let menuItemText = `Page Break Before Prefixes (${validPrefixes.slice(0, 2).map(p => `"${p}"`).join(', ')}...)`;
     if (validPrefixes.length === 1) {
-        menuItemText = `接頭辞 "${validPrefixes[0]}" の前で改ページ`;
+        menuItemText = `Page Break Before Prefix "${validPrefixes[0]}"`;
     } else if (validPrefixes.length === 2) {
-        menuItemText = `接頭辞 (${validPrefixes.map(p => `"${p}"`).join(', ')})の前で改ページ`;
+        menuItemText = `Page Break Before Prefixes (${validPrefixes.map(p => `"${p}"`).join(', ')})`;
     }
 
     DocumentApp.getUi()
       .createMenu(SCRIPT_NAME_MULTI_PREFIX)
       .addItem(menuItemText, 'insertPageBreakAtPrefixMarkers')
       .addToUi();
-    Logger.log(`onOpen_MultiPrefix: メニューを正常に追加 (有効な対象接頭辞: ${JSON.stringify(validPrefixes)})。`);
+    Logger.log(`onOpen_MultiPrefix: Menu added successfully (Valid target prefixes: ${JSON.stringify(validPrefixes)}).`);
 
   } catch (e) {
-    Logger.log(`onOpen_MultiPrefix: メニュー追加中にエラー: ${e}\n${e.stack}`);
-    showConfigurationErrorMenu_MultiPrefix("メニュー追加中にエラー発生");
+    Logger.log(`onOpen_MultiPrefix: Error while adding menu: ${e}\n${e.stack}`);
+    showConfigurationErrorMenu_MultiPrefix("Error adding menu");
   }
 }
 
 /**
- * 設定エラーがある場合に、エラーを示すメニュー項目を追加します。
- * @param {string} reason エラー理由
+ * Adds a menu item indicating an error if there is a configuration problem.
+ * @param {string} reason The reason for the error
  */
 function showConfigurationErrorMenu_MultiPrefix(reason) {
   try {
     DocumentApp.getUi()
       .createMenu(SCRIPT_ERROR_MENU_NAME_MULTI_PREFIX)
-      .addItem(`設定を確認 (${reason})`, 'showConfigurationError_MultiPrefix')
+      .addItem(`Check Settings (${reason})`, 'showConfigurationError_MultiPrefix')
       .addToUi();
   } catch (e) {
-    Logger.log(`showConfigurationErrorMenu_MultiPrefix: エラーメニュー表示中にさらにエラー: ${e}`);
+    Logger.log(`showConfigurationErrorMenu_MultiPrefix: Further error while displaying error menu: ${e}`);
   }
 }
 
 /**
- * 設定エラー時に表示するアラート関数
+ * Alert function to display on configuration error.
  */
 function showConfigurationError_MultiPrefix() {
-  let currentSetting = "未定義またはアクセス不能";
+  let currentSetting = "Undefined or inaccessible";
   try {
-    // 設定値が配列かどうかをチェックしてから JSON.stringify を試みる
+    // Check if the setting is an array before trying JSON.stringify
     currentSetting = typeof PAGEBREAK_PREFIXES !== 'undefined'
-      ? (Array.isArray(PAGEBREAK_PREFIXES) ? JSON.stringify(PAGEBREAK_PREFIXES) : `無効な設定値 (${PAGEBREAK_PREFIXES})`)
-      : "未定義";
+      ? (Array.isArray(PAGEBREAK_PREFIXES) ? JSON.stringify(PAGEBREAK_PREFIXES) : `Invalid setting value (${PAGEBREAK_PREFIXES})`)
+      : "Undefined";
   } catch(e) {
-    currentSetting = "設定値の表示中にエラーが発生しました";
+    currentSetting = "Error displaying setting value";
    }
 
-  const message = `スクリプトの設定に問題があります。\n\n`
-                + `現在の設定値 (PAGEBREAK_PREFIXES): ${currentSetting}\n\n`
-                + `スクリプトエディタを開き、ファイルの先頭にある「PAGEBREAK_PREFIXES」の値を確認・修正し、**ファイルを保存**してください。\n\n`
-                + `この値は、改ページの目印となる**空でない**接頭辞文字列を **1 つ以上**含む**配列**（例: ["PREFIX1", "PREFIX2"]）である必要があります。\n`
-                + `空文字列 "" や空白のみ " " は無視されます。\n\n`
-                + `(例: const PAGEBREAK_PREFIXES = ["Chapter ", "Section ", "図-"];)` // より具体的な例
-  DocumentApp.getUi().alert("スクリプト設定エラー", message, DocumentApp.getUi().ButtonSet.OK);
+  const message = `There is a problem with the script's settings.\n\n`
+                + `Current setting value (PAGEBREAK_PREFIXES): ${currentSetting}\n\n`
+                + `Please open the script editor, check and correct the "PAGEBREAK_PREFIXES" value at the top of the file, and **save the file**.\n\n`
+                + `This value must be an **array** containing **at least one** **non-empty** prefix string to serve as a page break marker (e.g., ["PREFIX1", "PREFIX2"]).\n`
+                + `Empty strings "" and strings with only whitespace " " are ignored.\n\n`
+                + `(Example: const PAGEBREAK_PREFIXES = ["Chapter ", "Section ", "Figure-"];)` // More specific example
+  DocumentApp.getUi().alert("Script Configuration Error", message, DocumentApp.getUi().ButtonSet.OK);
 }
 
 
 /**
- * ドキュメント内で有効な接頭辞のいずれかで始まる段落の前に改ページを挿入します。
+ * Inserts a page break before any paragraph in the document that starts with one of the valid prefixes.
  */
 function insertPageBreakAtPrefixMarkers() {
   const startTime = new Date();
   let doc;
 
-  // --- 1. 初期化と検証 ---
+  // --- 1. Initialization and Validation ---
   try {
     doc = DocumentApp.getActiveDocument();
-    if (!doc) throw new Error("アクティブなドキュメントを取得できませんでした。");
-    doc.getName(); // アクセス権限チェック
+    if (!doc) throw new Error("Could not get the active document.");
+    doc.getName(); // Permission check
   } catch (e) {
-    handleExecutionError_MultiPrefix("ドキュメントアクセスエラー", e);
+    handleExecutionError_MultiPrefix("Document Access Error", e);
     return;
   }
 
-  // 設定値から有効な接頭辞のみを取得
+  // Get only valid prefixes from the settings
   const validPrefixes = getValidPrefixes(PAGEBREAK_PREFIXES);
 
-  // 有効な接頭辞がなければ処理を中断し、エラーメッセージを表示
+  // If there are no valid prefixes, stop processing and display an error message
   if (validPrefixes.length === 0) {
-      Logger.log(`insertPageBreakAtPrefixMarkers: 処理開始前にチェックした結果、有効な改ページ接頭辞が設定されていません。`);
-      showConfigurationError_MultiPrefix("有効な改ページ接頭辞が設定されていません");
+      Logger.log(`insertPageBreakAtPrefixMarkers: Check before processing revealed no valid page break prefixes are set.`);
+      showConfigurationError_MultiPrefix("No valid page break prefixes are set");
       return;
   }
 
-  Logger.log(`--- 複数前方一致による改ページ挿入処理 開始 ---`);
-  Logger.log(`ドキュメント: ${doc.getName()}`);
-  Logger.log(`有効な対象接頭辞 (実際に検索に使用): ${JSON.stringify(validPrefixes)}`); // 実際に使うリストをログ出力
+  Logger.log(`--- Starting Page Break Insertion (Multi-Prefix Match) ---`);
+  Logger.log(`Document: ${doc.getName()}`);
+  Logger.log(`Valid target prefixes (actually used for search): ${JSON.stringify(validPrefixes)}`); // Log the list actually being used
 
-  // --- 2. 要素の走査と改ページ挿入 ---
+  // --- 2. Element Traversal and Page Break Insertion ---
   const body = doc.getBody();
   const numChildren = body.getNumChildren();
   let pageBreakInsertedCount = 0;
   let foundMarkersCount = 0;
 
-  Logger.log(`要素数: ${numChildren}。逆順に走査します...`);
+  Logger.log(`Number of elements: ${numChildren}. Traversing in reverse order...`);
 
   for (let i = numChildren - 1; i >= 0; i--) {
     const element = body.getChild(i);
@@ -205,93 +203,93 @@ function insertPageBreakAtPrefixMarkers() {
       try {
         paragraphText = paragraph.getText();
 
-        // 有効な接頭辞リスト (`validPrefixes`) のいずれかで始まるかチェック
+        // Check if the text starts with any of the valid prefixes in 'validPrefixes'
         if (validPrefixes.some(prefix => paragraphText.startsWith(prefix))) {
           foundMarkersCount++;
-          // Logger.log(`  発見: Index ${i}, Text: "${paragraphText}", Prefix: ${validPrefixes.find(p => paragraphText.startsWith(p))}`);
+          // Logger.log(`  Found: Index ${i}, Text: "${paragraphText}", Prefix: ${validPrefixes.find(p => paragraphText.startsWith(p))}`);
 
           if (i > 0 && body.getChild(i - 1).getType() !== DocumentApp.ElementType.PAGE_BREAK) {
             try {
               body.insertPageBreak(i);
               pageBreakInsertedCount++;
-              // Logger.log(`    -> 改ページ挿入 (Index ${i})`);
+              // Logger.log(`    -> Inserting page break (Index ${i})`);
 
-              // オプション: マーカーテキストの段落自体を削除する場合
+              // Optional: If you want to delete the marker paragraph itself
               // try {
               //   paragraph.removeFromParent();
-              //   Logger.log(`    -> 前方一致した段落 (元Index ${i+1}) を削除しました。`);
+              //   Logger.log(`    -> Deleted the prefix-matched paragraph (original Index ${i+1}).`);
               // } catch (removeError) {
-              //   Logger.log(`! Index ${i+1} のマーカー段落削除中にエラー: ${removeError}`);
+              //   Logger.log(`! Error while deleting marker paragraph at Index ${i+1}: ${removeError}`);
               // }
 
             } catch (insertError) {
-              Logger.log(`! Index ${i} への改ページ挿入中にエラー: ${insertError}`);
+              Logger.log(`! Error while inserting page break at Index ${i}: ${insertError}`);
             }
           } // else: skip (already page break or beginning of doc)
         }
       } catch (elementError) {
-        Logger.log(`! Index ${i} (Type: PARAGRAPH) の処理中にエラー: ${elementError}. スキップします。`);
+        Logger.log(`! Error processing Index ${i} (Type: PARAGRAPH): ${elementError}. Skipping.`);
       }
     }
   }
 
-  // --- 3. 結果報告 ---
+  // --- 3. Report Results ---
   const endTime = new Date();
   const duration = (endTime.getTime() - startTime.getTime()) / 1000;
 
-  Logger.log(`--- 走査終了 ---`);
-  Logger.log(`処理時間: ${duration.toFixed(2)} 秒`);
-  Logger.log(`検出された指定接頭辞で始まる段落 (${JSON.stringify(validPrefixes)}): ${foundMarkersCount} 個`);
-  Logger.log(`挿入された改ページ: ${pageBreakInsertedCount} 個`);
+  Logger.log(`--- Traversal Complete ---`);
+  Logger.log(`Processing time: ${duration.toFixed(2)} seconds`);
+  Logger.log(`Paragraphs starting with specified prefixes (${JSON.stringify(validPrefixes)}) found: ${foundMarkersCount}`);
+  Logger.log(`Inserted page breaks: ${pageBreakInsertedCount}`);
 
   const resultMessage = buildResultMessage_MultiPrefix(pageBreakInsertedCount, foundMarkersCount, validPrefixes, duration);
-  DocumentApp.getUi().alert("処理完了", resultMessage, DocumentApp.getUi().ButtonSet.OK);
+  DocumentApp.getUi().alert("Processing Complete", resultMessage, DocumentApp.getUi().ButtonSet.OK);
 
-  Logger.log(`--- 複数前方一致による改ページ挿入処理 終了 ---`);
+  Logger.log(`--- Page Break Insertion (Multi-Prefix Match) Complete ---`);
 }
 
 /**
- * 実行中のエラーを処理し、ユーザーに通知します。
- * (handleExecutionError_MultiPrefix 関数は変更なし)
- * @param {string} context エラーが発生した状況
- * @param {Error} error 発生したエラーオブジェクト
+ * Handles runtime errors and notifies the user.
+ * (handleExecutionError_MultiPrefix function is unchanged)
+ * @param {string} context The context in which the error occurred
+ * @param {Error} error The error object that occurred
  */
 function handleExecutionError_MultiPrefix(context, error) {
-    Logger.log(`実行時エラー (${context}): ${error}\n${error.stack}`);
-    let userMessage = `スクリプトの実行中にエラーが発生しました。\n\n状況: ${context}`;
+    Logger.log(`Runtime error (${context}): ${error}\n${error.stack}`);
+    let userMessage = `An error occurred while running the script.\n\nContext: ${context}`;
     if (error.message) {
-        if (error.message.includes("Authorization required") || error.message.includes("権限が必要")) {
-            userMessage = "スクリプトの実行に必要な権限が承認されていません。\n\nドキュメントを再読み込みするか、スクリプトを再度実行し、承認画面で許可してください。";
+        if (error.message.includes("Authorization required")) {
+            userMessage = "The necessary permissions to run the script have not been approved.\n\nPlease reload the document or run the script again, and grant permission on the authorization screen.";
         } else {
-            userMessage += `\n詳細: ${error.message}`;
+            userMessage += `\nDetails: ${error.message}`;
         }
     }
-    DocumentApp.getUi().alert("スクリプト エラー", userMessage, DocumentApp.getUi().ButtonSet.OK);
+    DocumentApp.getUi().alert("Script Error", userMessage, DocumentApp.getUi().ButtonSet.OK);
 }
 
 /**
- * 処理結果に基づいてユーザーへのメッセージを生成します。
- * (buildResultMessage_MultiPrefix 関数は変更なし、表示する接頭辞リストは有効なもののみ)
- * @param {number} insertedCount 挿入された改ページの数
- * @param {number} foundCount 見つかった前方一致する段落の数
- * @param {string[]} validPrefixes 有効な接頭辞の配列
- * @param {number} duration 処理時間(秒)
- * @returns {string} アラート表示用のメッセージ
+ * Generates a message for the user based on the processing results.
+ * (buildResultMessage_MultiPrefix function is unchanged, displays only valid prefixes)
+ * @param {number} insertedCount The number of page breaks inserted
+ * @param {number} foundCount The number of paragraphs found with a matching prefix
+ * @param {string[]} validPrefixes An array of valid prefixes
+ * @param {number} duration Processing time in seconds
+ * @returns {string} The message for the alert dialog
  */
 function buildResultMessage_MultiPrefix(insertedCount, foundCount, validPrefixes, duration) {
-    // 表示する接頭辞を最大3つに制限し、引用符で囲む
+    // Limit the displayed prefixes to a maximum of 3 and enclose them in quotes
     const displayPrefixes = validPrefixes.slice(0, 3).map(p => `"${p}"`);
-    const prefixDescription = `指定された接頭辞 (${displayPrefixes.join(', ')}${validPrefixes.length > 3 ? '...' : ''}) で始まる段落`;
+    const prefixDescription = `paragraphs starting with the specified prefixes (${displayPrefixes.join(', ')}${validPrefixes.length > 3 ? '...' : ''})`;
 
     if (insertedCount > 0) {
-        return `${insertedCount} 箇所の ${prefixDescription} の前に改ページを挿入しました。\n\n処理時間: ${duration.toFixed(2)} 秒`;
+        return `Inserted page breaks before ${insertedCount} ${prefixDescription}.\n\nProcessing time: ${duration.toFixed(2)} seconds`;
     } else if (foundCount > 0) {
-        return `${prefixDescription} は ${foundCount} 箇所で見つかりましたが、改ページは挿入されませんでした。\n(段落が先頭にあるか、既に改ページが存在するため)\n\n処理時間: ${duration.toFixed(2)} 秒`;
+        return `${foundCount} ${prefixDescription.replace('paragraphs', 'paragraph(s)')} were found, but no page breaks were inserted.\n(This may be because the paragraph is at the beginning of the document or a page break already exists.)\n\nProcessing time: ${duration.toFixed(2)} seconds`;
     } else {
-        return `${prefixDescription} が見つかりませんでした。\n\n以下の点を確認してください:\n`
-             + `1. スクリプト上部の「PAGEBREAK_PREFIXES」に有効な接頭辞が設定されていますか？ (現在の有効な設定: ${JSON.stringify(validPrefixes)})\n`
-             + `2. ドキュメントに、これらの接頭辞のいずれかで始まる段落が存在しますか？ (大文字/小文字も区別)\n`
-             + `3. スクリプトの権限は承認されていますか？`;
+        return `No ${prefixDescription} were found.\n\nPlease check the following:\n`
+             + `1. Are valid prefixes set in "PAGEBREAK_PREFIXES" at the top of the script? (Current valid settings: ${JSON.stringify(validPrefixes)})\n`
+             + `2. Does the document contain any paragraphs that start with one of these prefixes? (The match is case-sensitive.)\n`
+             + `3. Have the script permissions been approved?`;
     }
 }
  ```
