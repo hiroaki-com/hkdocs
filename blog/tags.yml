@@ -77,3 +77,45 @@ svg:
   label: SVG
   permalink: /svg
   description: Scalable Vector Graphics (SVG) - usage for icons, illustrations, and web graphics.
+
+# New Tags Added
+i18n:
+  label: i18n
+  permalink: /i18n
+  description: Internationalization and localization topics.
+
+Docusaurus:
+  label: Docusaurus
+  permalink: /Docusaurus
+  description: Advanced Docusaurus usage and specific features.
+
+routing:
+  label: Routing
+  permalink: /routing
+  description: Managing routes and navigation in web applications.
+
+deployment:
+  label: Deployment
+  permalink: /deployment
+  description: Strategies and practices for deploying applications.
+
+cloudrun:
+  label: Cloud Run
+  permalink: /cloudrun
+  description: Deploying applications on Google Cloud Run.
+
+passed-exam:
+  label: Passed Exam
+  permalink: /passed-exam
+  description: Experiences and insights after passing an exam.
+
+exam-review:
+  label: Exam Review
+  permalink: /exam-review
+  description: Reviews and preparation tips for exams.
+
+certification:
+  label: Certification
+  permalink: /certification
+  description: Information and paths for professional certifications.
+  
