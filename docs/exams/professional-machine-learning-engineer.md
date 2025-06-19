@@ -4,7 +4,7 @@ title: Professional Machine Learning Engineer
 tags: [google cloud, 認定資格, 合格記]
 ---
 
-**☔️ 不合格：2025年3月30日｜🌸 合格：2025年4月18日**
+**🌸 合格：2025年4月18日｜☔️ 不合格：2025年3月30日**
 
 ##### 受験情報
 
@@ -290,7 +290,7 @@ tags: [google cloud, 認定資格, 合格記]
     ※ 分類モデルの評価指標（ROC曲線下面積）
 - [attention based models](https://www.google.co.jp/search?sca_esv=ea7911cd1c52328e&sxsrf=AHTn8zoOwfxrtUglC5mbO2cJKU2N-Qvh9Q:1742205917449&q=attention+based+models&source=lnms&fbs=ABzOT_BnEle7e--umZvAycCP899s9UFLKzMHlJrnnhimy6fGnxpX6pFtBEKYg5QlYkLypNpwwnk3yoYyMYiW4TEalSwm922Lh_jI16NC4u-vivkPp0Vl2h3P3qYNyl40DejvGnANX7L0zg5ijwqgHu85UMJZPuAjrpxY_rvMr5A5h1ExUV6pbl68NFD1BoRKofEp6NTcujAWYa5h9jrOLY8kpxfgv5rhdx8G022yoJ2r-0-RkIEJ8r4RS_hug63joNGdV-lFZfDt&sa=X&ved=2ahUKEwjE89bm7pCMAxVzh68BHdvzFPMQ0pQJegQIFBAB&biw=621&bih=760&dpr=2)
     ※ 特にテキストや画像の分類タスクで利用例が多い
-- [[混合行列（Confusion Matrix）]]_別紙 🔥
+- 混合行列（Confusion Matrix）
 	- [Classification Metrics](https://www.google.com/search?q=Classification+Metrics) (分類指標)
 
 ##### 教師なし学習 (Unsupervised Learning)
@@ -745,142 +745,11 @@ API管理システム（サイドカー モード構成例）
 | Section 6: Monitoring AI solutions                                         | 13%                            | **Does Not Meet**   |
 
 
-### 2025/04/15：以下でUdemy問題集の筆者へ改善要望提出
+### 2025/04/15：Udemy問題集の筆者へ改善要望提出
 
 - 2025/04/16：Udemyで下記の要望を提出
 - 2025/04/16：筆者から感謝と共に無料のクーポンの打診がある
 
 ```text
 Subject: Improvement Request regarding Google Cloud Certification Professional Machine Learning Practice Exam
-
---
-
-Dear Priya Dw,
-
-I recently purchased and have been studying using your "Google Cloud Certification Professional Machine Learning Practice Exam" question bank.
-
-I find the material to be quite valuable for exam preparation. However, while reviewing the questions, I encountered several areas that seem inappropriate or contain errors, such as invalid/null URLs, potentially incorrect answers, formatting issues, and duplicate questions.
-
-For your consideration and future improvements, I have compiled a list of these specific issues below.
-
-Thank you for reviewing this feedback. I hope it assists in further enhancing the quality of the question bank.
-
-Sincerely,
-
-※ Please note ※
-
-- Regarding "Wrong Answers": Based on my own research, I believe alternative answers might be more appropriate for these questions. This section is intended as a suggestion for your review, not a definitive statement of error.
-- Regarding "Practice" Numbers: While the question text has been copied and pasted directly, please understand that the association with the specific "Practice" number listed might not be entirely accurate in all cases.
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-### List / Summary of Inappropriate Questions in the Question Bank
-
----
-
-**Practice 1**
-
-*   **Invalid URL:**
-    *   Your company operates a video sharing website where users can watch and upload videos. You're tasked with creating an ML model to predict which newly uploaded videos will be the most popular, allowing prioritization on your company's website. Which result should you use to determine whether the model is successful?
-    *   You've started working on a classification problem with time series data and achieved a high area under the receiver operating characteristic curve (AUC ROC) value of 99% for training data after just a few experiments. You haven't explored sophisticated algorithms or spent time on hyperparameter tuning. What should your next step be to identify and fix the problem?
-    *   You're employed by a public transportation company tasked with building a model to predict delay times for multiple transportation routes. Predictions are directly served to users in an app in real-time. Given the varying impact of different seasons and population increases on data relevance, you plan to retrain the model monthly. You aim to adhere to Google-recommended best practices. How should you configure the end-to-end architecture of the predictive model?
-    *   As an ML engineer at a large grocery retailer with stores across multiple regions, you've been tasked with crafting an inventory prediction model. The model's features encompass region, location, historical demand, and seasonal popularity. You aim for the algorithm to continually learn from fresh inventory data on a daily basis. Which algorithms should you employ to construct the model?
-*   **URLs are NULL:**
-    *   You aim to revamp your ML pipeline for structured data on Google Cloud due to extended processing times exceeding 12 hours using PySpark for data transformations at scale. To accelerate development and pipeline runtime, you seek a serverless solution with SQL syntax. With your raw data already migrated to Cloud Storage, how should you design the pipeline on Google Cloud while satisfying speed and processing needs?
-*   **Wrong Answer:**
-    *   Your data science team aims to experiment quickly with different features, model designs, and hyperparameters. They also need to monitor accuracy metrics for these experiments and access them through an API. How can they efficiently track and report their experiments with minimal manual intervention?
-    *   As an employee of a large hotel chain, you've been tasked with aiding the marketing team in acquiring predictions for a targeted marketing strategy. Your objective is to forecast user lifetime value (LTV) over the next 20 days to facilitate adjustments in marketing efforts. The customer dataset, stored in BigQuery, contains tabular data with a time signal spread across multiple columns. How should you ensure that AutoML constructs the best model for your data?
-
----
-
-**Practice 4**
-
-*   **Invalid URL:**
-    *   You're tasked with building a model to predict customer lifetime value for your company, which sells corporate electronic products globally. The historical customer data is stored in BigQuery. You aim for a straightforward approach and require visualization tools for validation. Which approach should you take?
-        [https://cloud.google.com/bigquery-ml/docs/](https://cloud.google.com/bigquery-ml/docs/)
-    *   As an employee at a manufacturing company, you're tasked with training a custom image classification model to identify product defects at the end of an assembly line. While the model's performance is generally satisfactory, some images in the holdout set are consistently mislabeled with high confidence. You intend to leverage Vertex AI to gain insights into your model's results. What's the recommended approach?
-    *   You aim to transition a scikit-learn classifier model to TensorFlow. Training the TensorFlow classifier will use the same training set as the scikit-learn model, followed by performance comparison using a common test set. Using the Vertex AI Python SDK, you plan to manually log the evaluation metrics of each model to compare their F1 scores and confusion matrices. How should you log the metrics?
-    *   You've developed a custom model that carries out multiple memory-intensive preprocessing tasks prior to making predictions. After deploying this model to a Vertex AI endpoint and ensuring reasonable response times during validation, you notice that the endpoint doesn't autoscale efficiently under heavy request loads. What action should you take to address this?
-        https://cloud.google.com/vertex-ai/docs/general/machine-types
-    *   You're employed by a telecommunications company and are developing a model to forecast which customers might miss their upcoming phone bill payments. The aim is to offer proactive assistance to these customers, such as discounts or extensions. The data for this model is stored in BigQuery and includes features like:
-        https://cloud.google.com/bigquery-ml/docs/fairness-overview
-
----
-
-**Practice 3**
-
-*   **Invalid URL:**
-    *   After deploying a model to a Vertex AI endpoint and encountering frequent data drift, you've enabled request-response logging and set up a Vertex AI Model Monitoring job. However, you've noticed higher-than-expected traffic to the model. To reduce model monitoring costs while maintaining swift drift detection, what's the recommended action?
-        https://cloud.google.com/vertex-ai/docs/predictions/monitor-models
-    *   Your company operates an application that aggregates news articles from various online sources and delivers them to users. You're tasked with constructing a recommendation model to suggest articles similar to those currently being read by users. Which approach would be most appropriate?
-        https://towardsdatascience.com/recommending-news-articles-based-on-already-read-articles-627695221fe8
-    *   You've developed an ML pipeline with various input parameters and aim to explore the trade-offs among different parameter combinations. The parameters include:
-        - Input dataset
-        - Maximum tree depth for the boosted tree regressor
-        - Learning rate for the optimizer
-        Your goal is to compare pipeline performance across different parameter combinations, focusing on F1 score, training time, and model complexity. You seek a reproducible approach that tracks all pipeline runs on a unified platform. What's the recommended course of action?
-        https://cloud.google.com/vertex-ai/docs/experiments/introduction-vertex-ai-experiments
-    *   In your role at a gaming company with a global player base, you're tasked with developing an ML system to moderate real-time chat across multiple languages without altering the serving infrastructure. The system currently uses the Cloud Translation API to translate messages, but the initial model, employing an in-house word2vec model for message embedding, exhibits performance discrepancies across languages. How can you enhance the model's performance?
-        https://towardsdatascience.com/chat-message-classification-using-machine-learning-24d5bb579707
-*   **Format corruption:**
-    *   You've trained a scikit-learn model for deployment on Vertex AI, supporting both online and batch prediction, and aim to preprocess input data with minimal additional code. What approach should you take to package the model for deployment?
-        Ref- https://cloud.google.com/vertex-ai/docs/predictions/custom-prediction-routines
-
----
-
-**Practice 2**
-
-*   **Invalid URL:**
-    *   After receiving a training-serving skew alert from a Vertex AI Model Monitoring job in production, you retrained the model with newer training data and redeployed it to the Vertex AI endpoint. However, the same alert persists. What should be your next step?
-        https://cloud.google.com/vertex-ai/docs/predictions/monitor-models
-    *   What should be done to design a personalized deep neural network in Keras for predicting customer purchases from their purchase history, exploring various model architectures, storing training data, and comparing evaluation metrics in a unified dashboard?
-        https://www.kubeflow.org/docs/about/use-cases/
-
----
-
-**Practice 5**
-
-*   **Wrong Answer:**
-    *   You're training models in Vertex AI, utilizing data from various Google Cloud projects. To effectively find, track, and compare the performance of different model versions, which Google Cloud services should be incorporated into your ML workflow?
-    *   You've recently utilized BigQuery ML to train an AutoML regression model, which garnered positive feedback from your team. Now, you're tasked with deploying the model for online prediction as swiftly as possible. What's the recommended course of action?
-    *   As your company manages an ecommerce website, you've developed an ML model to recommend additional products to users based on items in their carts. To minimize prediction latency and streamline model updates, how should you reconfigure the architecture for the following processes:
-    *   While training an object detection machine learning model on a dataset containing three million X-ray images, each around 2 GB in size, you're utilizing Vertex AI Training on a Compute Engine instance equipped with 32 cores, 128 GB of RAM, and 1 NVIDIA P100 GPU. Noticing extensive training duration, you aim to reduce training time without compromising model performance. What's the recommended approach?
-    *   As part of a bank with stringent data governance requirements, you've implemented a custom model for detecting fraudulent transactions. To ensure secure access to internal data via an API endpoint hosted within your project's network for training purposes, while minimizing the risk of data exfiltration, what's the most appropriate action to take?
-    *   Following the development of a deep learning model in Keras, you experimented with various training approaches. Initially, training on a single GPU proved to be too slow. Subsequently, distributing the training across 4 GPUs using tf.distribute.MirroredStrategy did not yield a reduction in training time. What step should you take next to optimize training performance?
-    *   You're part of a biotechnology startup experimenting with deep learning ML models based on biological organism properties. Your team frequently engages in early-stage experiments with new ML model architectures and develops custom TensorFlow ops in C++. Training occurs on substantial datasets with large batch sizes. Your typical batch consists of 1024 examples, each around 1 MB in size. The average network size, including all weights and embeddings, is approximately 20 GB. What hardware configuration should you select for your models?
-*   **Invalid URLs:**
-    *   You're constructing a custom image classification model and aim to employ Vertex AI Pipelines for comprehensive training. Your dataset comprises images requiring preprocessing before model training. The preprocessing involves resizing images, converting them to grayscale, and feature extraction, with existing Python functions handling these tasks. Which pipeline components should you incorporate?
-    *   As an ML engineer at a bank, you've developed a binary classification model using AutoML Tables to predict whether a customer will make loan payments on time. The model's output guides the approval or rejection of loan requests. Following a loan rejection for a specific customer, the bank's risks department requests the reasons contributing to the model’s decision. What's the recommended approach?
-    *   You've deployed a complex TensorFlow model trained on tabular data to production. The goal is to predict the lifetime value (LTV) field for each subscription stored in the BigQuery table named subscription.subscriptionPurchase in the fortune500-company-project. Which approach would you choose to monitor and maintain the model's performance?
-    *   You're part of a team that develops cutting-edge deep learning models using the TensorFlow framework. With the team conducting multiple ML experiments weekly, keeping track of experiment runs has become challenging. You're seeking a straightforward method to efficiently track, visualize, and debug ML experiment runs on Google Cloud without adding extensive code overhead. What's the best solution?
-    *   You're tasked with deploying a scikit-learn classification model to production, requiring the ability to handle requests 24/7. Anticipating millions of requests per second during peak hours from 8 am to 7 pm, cost optimization is paramount. What's the optimal deployment strategy?
-        https://cloud.google.com/vertex-ai/docs/predictions/deploy-model-online
-    *   You're investigating an error in the classification made by one of your models trained and deployed using Vertex AI Pipelines. The pipeline sources data from BigQuery, saves a copy of it in TFRecord format in Cloud Storage, trains the model on this copy using Vertex AI Training, and finally deploys the model to a Vertex AI endpoint. You've pinpointed the specific model version responsible for the misclassification and need to locate the data it was trained on. How should you retrieve this data?
-        https://cloud.google.com/vertex-ai/docs/ml-metadata/lineage-metadata
-*   **Duplicate questions and a question with inconsistent answers:**
-    *   You're tasked with predicting the most relevant web banner for users on your online travel agency's website, while ensuring security and maintaining low latency with a requirement of 300ms@p99. You have thousands of web banners in your inventory, and user navigation context appears to be a significant predictor. Opting for simplicity, how should you set up the prediction pipeline?
-
----
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-```
-
-##### 追加分
-
-**Practice Test 2**
-
-```text
-Invalid URL:
-
-You've built a custom model on Vertex AI to forecast user churn rates for your application. Utilizing Vertex AI Model Monitoring for skew detection, you find that two distinct models, each trained on separate feature sets (demographic and behavioral), outperform the original model. You aim to configure a model monitoring pipeline that distributes traffic between these two models. Additionally, you want to maintain the same prediction-sampling-rate and monitoring-frequency for both. Your goal is to minimize administrative overhead. What approach should you take?
-
-Wrong Answer：
-
-You are tasked with training an object detection model to recognize bounding boxes around Post-it Notes® within images. The Post-it Notes may vary in background colors and shapes. You possess a dataset comprising 1000 images, each with a maximum size of 1.4MB, and annotations stored in a CSV file within Cloud Storage. Your aim is to select a training approach that reliably detects Post-it Notes of various relative sizes in the images while minimizing the training time. What is the most suitable course of action?
-
-You're employed at a prominent healthcare organization where you're tasked with developing advanced algorithms for a range of applications. You possess unstructured textual data annotated with custom labels and aim to extract and classify various medical terms using these labels. Which approach should you choose?
-
-You possess a dataset segmented into training, validation, and test sets, all exhibiting similar distributions. After selecting the most relevant features, you've trained a neural network in TensorFlow. Upon inspecting TensorBoard plots, you observe that the training loss fluctuates around 0.9, while the validation loss consistently exceeds the training loss by 0.3. Your goal is to adjust the training regimen to enhance convergence of both losses and mitigate overfitting. What action should you take?
-
-You are establishing an ML pipeline for data processing, model training, and model deployment utilizing various Google Cloud services. Each task has its dedicated code, and you anticipate frequent additions of new files. You need to develop an orchestration layer that only triggers when new files are detected in your dataset stored in a Cloud Storage bucket. Additionally, you aim to minimize compute node expenses. What should you do?
 ```

@@ -1,238 +1,209 @@
 ---
 sidebar_position: 2
 title: Professional Cloud Architect
-tags: [google cloud, 認定資格, 合格記]
+tags: [google cloud, certification, passed-exam]
 ---
 
-**🌸 合格：2025年1月31日**
+**🏆 Passed: January 31, 2025**
 
-**試験概要：**
-- [Professional Cloud Architect](https://cloud.google.com/learn/certification/cloud-architect?hl=ja)
-- [認定試験一覧](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
-
-
-
-### 受験情報 2025 年 1 月 31 日
-試験名: Google Cloud Certified - Professional Cloud Architect (Japanese)
-日付: 2025 年 01 月 31 日
-時刻: 01:45 PM
-現地受験
+**Exam Overview:**
+- [Official Page: Professional Cloud Architect](https://cloud.google.com/learn/certification/cloud-architect)
+- [List of Certifications](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
 
 ---
 
-### 受験後の追想 🌸
+### Exam Details (January 31, 2025)
+- **Exam Name:** Google Cloud Certified - Professional Cloud Architect (Japanese)
+- **Date:** January 31, 2025
+- **Time:** 01:45 PM
+- **Location:** On-site Test Center
 
-2025/01/31 合格
-```
-感想としては面白かった。しかし、余裕ではなく、初めて見る問題も結構あった印象
+---
 
-問題は50問／時間は30分程度余して、見直しをちょうど完了できる程度。もう少し早く終わりたかっただけに残念
+### Post-Exam Reflections 🌸
 
-所管としては、75%〜80% 程度ではないかと想像
-
-昔にUdemyで見たことのある問題もあった印象
-
-また、複合問題（認証／組織／サービス...）の割合が圧倒的に増加しており、簡単なサービスの目的を問うような問題はあまりなかった。
-
-また、セキュリティに関する問題が少し多いような印象を受けた。
-ネットワーク、データ連携に関する問題が難しい印象。
-IAMに関する設計の問題が複数あり、応用的な問題が多かった。
-
-機械学習に関する問題も少々あった印象
-
-VMの移行に関する問題もあった。難しかったというか解いたことのない問題で自信がなかった
-
-```
-
-### 🔥受験に向けた戦略🔥
- - [Case studies｜公式](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf?hl=ja) の４つの事例を把握する 
- - 翻訳版：[Case studies - Professional Cloud Architect](/docs/exams/case-studies-professional-cloud-architect)
- - 翻訳版：[Case studies｜日本語](./case-studies)
- 
-
-#####  受験当日のTODO（PSE / PNE 受験時の成功事例） ⭐️
-前日
-- しっかり寝る
-    - [x] アイマスク、耳栓、枕のセッティング
-
-当日
-- [x] 9時までに起きる（疲労が回復していることが重要）
-- カフェで試験前の確認を実施
-    - 気分的にドトール大通り店
-	    - [x] [模擬試験](https://docs.google.com/forms/d/e/1FAIpQLScpVCxsKSrqMBmqJ4fiYrJfCSlMhJVIFaW_v3MD4xEd6NW0Bw/viewform?hl=ja)を再度受けて復習
-	    - [x] ケーススタディを再度読む
-	    - [x] 苦手項目（下記に記載）を再度復習
-	    - [x] その他、復習や検索をして知識を定着させる
-
-- [x] 受験メールを印刷する
-	- [x] アプリにメールを転送
-
-- [x] 会場到着前に仮眠を10分程度取り、十分に脳をリフレッシュさせる
-	- [x] 糖分も十分にとる
-
-- [x] 15時10分（テスト開始の30分前）には会場に到着して受付を完了させる
-	- 選択肢から読むことを意識する
-	- 見直しの時間を確保するよう意識する
+**Passed on January 31, 2025**
 
 
-##### 学習戦略：
+My overall impression was that the exam was interesting. However, it wasn't easy, and there were quite a few questions I had never seen before.
 
-- とにかく問題集を回す
-	- 復習を実施する（間違った問題の復習）
-		- [x] Practice Test I
-		- [x] Practice Test 2
-		- [x] Practice Test 3
-		- [x] Practice Test 4
-	- 復習を実施する（レビューチェック済みの問題を復習する）
-		- [ ] Practice Test I
-		- [ ] Practice Test 2
-		- [ ] Practice Test 3
-		- [ ] Practice Test 4
+The exam consisted of 50 questions, and I finished with about 30 minutes to spare, which was just enough time for a complete review. I was a bit disappointed, as I had hoped to finish sooner. I estimate my score was around 75-80%.
 
--  [[Professional Cloud Architect_20250131]]
-	- [x] 公式模試にトライする
-		-  86%：2025/01/12
-		-  90%：2025/01/13
-		-  95%：2025/01/31
+I recognized some questions from a Udemy course I had taken a while ago. The proportion of complex, multi-topic questions (e.g., combining Authentication, Organization, and Services) had significantly increased. There were fewer simple questions asking about the purpose of a single service.
 
-- [x] サービス一覧で最新の動向をチェックする
-	-  プロダクト一覧 DOCS https://cloud.google.com/products?hl=ja
-	-  実際のサービス： https://console.cloud.google.com/products?inv=1&invt=AboG6g&project=pollman-x
+I also felt there was a slight emphasis on security-related topics. Questions about networking and data integration seemed particularly challenging. There were several advanced, application-focused questions about IAM design.
 
-
-##### 苦手項目
-- GCE
-	- マネージドインスタンスグループ
-	- インスタンス
-	- [Shielded VM とは？ ](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm?hl=ja)
-
-
-- [ダイレクト ピアリングの概要](https://cloud.google.com/network-connectivity/docs/direct-peering?hl=ja)
-> 	ダイレクト ピアリングは、 Google Cloudの外部に存在します。Google Workspace アプリケーションにアクセスする必要がない限り、 Google Cloud への推奨のアクセス方法は、[Dedicated Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/dedicated-overview?hl=ja) または [Partner Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/partner-overview?hl=ja) です。
-
-- [Cloud Shell の 保存容量](https://cloud.google.com/shell/docs/how-cloud-shell-works?hl=ja#persistent_disk_storage)
-> 	5 GB の無料の永続ディスク ストレージ（拡張不可）
-
-- [サービス境界について](https://cloud.google.com/vpc-service-controls/docs/service-perimeters?hl=ja#about-perimeters)
->	**プロジェクト レベルまたは VPC ネットワーク レベル**でサービス境界を指定できます。
->	...
->	また、境界内でホストされている VPC ネットワーク内の **VM など、境界内でアクセスできるサービス**は、VPC のアクセス可能なサービス機能を使用して制限できます。
-
-- 使用可能なストレージ クラス
-	- https://cloud.google.com/storage/docs/storage-classes?hl=ja#classes
->	各ストレージクラスの保存期間
-
-- [アクセス制御リストとは](https://cloud.google.com/storage/docs/access-control/lists?hl=ja#acl-def)
->	バケットとオブジェクトへのアクセス権を持つユーザーと各ユーザーのアクセスのレベルを定義するために使用できるメカニズムです。Cloud Storage では、ACL を個別のバケットや**オブジェクト**に適用します。
-
-- [データの障害復旧シナリオ](https://cloud.google.com/architecture/dr-scenarios-for-data?hl=ja)
->	長文のため時間があれば読んでおくと良さそう
-
-- [Google Cloud を Active Directory と連携させる](https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-introduction?hl=ja)
->	長文のため時間があれば読んでおくと良さそう。あんまり理解していない
-
-- [デフォルトの保存データの暗号化 ](https://cloud.google.com/docs/security/encryption/default-encryption?hl=ja#encryption_at_the_storage_device_layer)
->	Google では、AES アルゴリズムを使用して、保存データを暗号化します。ストレージ レベルのすべてのデータは、デフォルトで AES-256 を使用する DEK によって暗号化されます。ただし、2015 年より前に AES-128 を使用して作成された永続ディスクは例外です。AES-256 と AES-128 はともに長期保存用としてアメリカ国立標準技術研究所（NIST）によって推奨されているため、AES は広く使用されています。AES は多くの場合、お客様のコンプライアンス要件の一部に含まれます。
-
-
-- [GPU プリエンプティブル VM の Node Taints](https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms?hl=ja#node_taints_for_gpu_preemptible_vms)
->	`nvidia.com/gpu=present:NoSchedule taint
-
-- [Google Cloud を Active Directory と連携させる](https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-introduction?hl=ja)
-> 	わかりにくすぎるので実践的な問題で学習するしかない
-
-- [永続ディスクのサイズを増やす ](https://cloud.google.com/compute/docs/disks/resize-persistent-disk?hl=ja)
->	`ext4 を使用している場合、resize2fs コマンドを実行します。`
->	このプロセスの完了後に VM を再起動する必要はありません。これで、追加されたディスク容量をデータの保存に使用できます。
-
-
-- [Cloud Monitoring でインスタンスをモニタリングする（Spanner）](https://cloud.google.com/spanner/docs/monitoring-cloud?hl=ja#create-charts)
->	Spanner インスタンスの **CPU 使用率とレイテンシ**との相関関係を確認できます。これにより、インスタンスにコンピューティング容量を追加する必要があることや、一部のクエリの CPU 使用率が高くなっていることが示される場合があります。
-
-- [シリアル コンソールを使用したトラブルシューティング](https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-using-serial-console?hl=ja)
->	VMの細かいログまで見ることができる程度で記憶（カーネル／Biosレベル）	
-
-- OS Login（VMへのユーザーアクセス管理）
->	OS Login 機能では、Compute Engine IAM のロールを使用して Linux インスタンスへの SSH アクセスを管理できます。2 要素認証プロセスを使用した OS Login を設定することでセキュリティを強化し、組織のポリシーを設定することで組織レベルでのアクセスを管理できます。
-
-- カスタムVPCの最大サブネット範囲
->	自動モードの VPC ネットワーク（または、以前は自動モードの VPC ネットワークだったカスタムモードの VPC ネットワーク）で自動的に作成されたサブネットの IPv4 範囲を拡張する場合、使用できる最も広いプレフィックス（サブネット マスク）は **/16** です。
-
-- [接続が機能する VM と機能しない VM がある（トラフィックセレクター）](https://cloud.google.com/network-connectivity/docs/vpn/support/troubleshooting?hl=ja#connectivity_works_for_some_vms_but_not_for_others)
->	トラフィック セレクタは VPN トンネルの IP アドレスの範囲を定義します。実装されているほとんどの VPN では、ルートが決められるだけでなく、次の両方の条件を満たす場合にのみ、パケットがトンネルを通って渡されます。
->	- パケットの送信元が、ローカル トラフィック セレクタで指定された IP 範囲に入っている。
->	- パケットの送信先が、リモート トラフィック セレクタで指定された IP 範囲に入っている。
-
-
-- [限定公開クラスタの作成 ](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters?hl=ja)	
->限定公開クラスタでは、ノードに内部 IP アドレスしかないため、ノードと Pod がデフォルトでインターネットから隔離されます。コントロール プレーンへのクライアント アクセスは、禁止、制限、または無制限に設定できます。	
-
->限定公開クラスタは、VPC ネイティブ クラスタである必要があります。VPC ネイティブ クラスタは、レガシー ネットワークをサポートしていません。
-
-
-- 苦手な論点：旧
-	- コネクト／アクセス
-		- [ブログ](https://zenn.dev/cloud_ace/articles/e483362103d7f6)
-		- [公式コミュニティ](https://www.googlecloudcommunity.com/gc/Infrastructure-Compute-Storage/private-service-access-vs-private-service-connect-vs-private/m-p/760591)
-
-
+A few questions on machine learning were also included. I also encountered a question about VM migration that was new to me and I wasn't confident about my answer.
 
 
 ---
 
-### 問題集作成用プロンプトメモ
+### 🔥 Exam Strategy 🔥
+- Understand the four official case studies.
+  - [Official Case Studies Guide (PDF)](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf)
+  - [Case Studies (My Notes)](/docs/exams/case-studies)
 
-2024/11/30
-- GPTs で専用のプロンプトを設定完了している。しかし、作業時には適宜、プロンプトの補強を実施する必要がある。例えば、長文で生成した後半部分の補強や、複数回のプロンプト時には新規のページで作業が必要など、生成AIの弱点を補う必要がある
+##### Exam Day To-Do List (Based on successful strategies from PSE/PNE exams) ⭐️
+**The Day Before:**
+- [x] Get a good night's sleep.
+  - [x] Set up eye mask, earplugs, and pillow.
 
-**最終的に完成した作業用プロンプト**
-- 最悪の場合、問題の番号と問題の文章を指示に盛り込むことで乗り切ったことも
+**On Exam Day:**
+- [x] Wake up by 9:00 AM (crucial to be well-rested).
+- [x] Do a final review at a coffee shop.
+  - [x] Retake and review the [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLScpVCxsKSrqMBmqJ4fiYrJfCSlMhJVIFaW_v3MD4xEd6NW0Bw/viewform).
+  - [x] Reread the case studies.
+  - [x] Review weak areas (listed below).
+  - [x] Do some final look-ups to solidify knowledge.
+- [x] Print the exam confirmation email.
+  - [x] Forward the email to a mobile app for easy access.
+- [x] Take a 10-minute power nap before arriving at the venue to refresh my mind.
+  - [x] Have a sugary snack for energy.
+- [x] Arrive at the test center and complete check-in by 3:10 PM (30 minutes before the start time).
+  - **Exam Tactics:** Read the answer choices first. Manage time to ensure a final review.
+
+##### Study Plan:
+
+- **Practice, Practice, Practice:**
+  - Consistently work through practice questions.
+  - Review incorrect answers:
+    - [x] Practice Test 1
+    - [x] Practice Test 2
+    - [x] Practice Test 3
+    - [x] Practice Test 4
+  - Review questions marked for review:
+    - [ ] Practice Test 1
+    - [ ] Practice Test 2
+    - [ ] Practice Test 3
+    - [ ] Practice Test 4
+
+- **Official Practice Exam Attempts:**
+  - [x] Attempted the official practice exam multiple times:
+    - 86% on 2025/01/12
+    - 90% on 2025/01/13
+    - 95% on 2025/01/31
+
+- **Stay Current:**
+  - [x] Check the latest service updates and product list.
+    - [Product List Docs](https://cloud.google.com/products)
+    - [My Console](https://console.cloud.google.com/products?inv=1&invt=AboG6g&project=pollman-x)
+
+---
+
+### Weak Areas for Review
+
+- **Google Compute Engine (GCE)**
+  - Managed Instance Groups (MIGs)
+  - Instances
+  - [What is Shielded VM?](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm)
+
+- **[Direct Peering Overview](https://cloud.google.com/network-connectivity/docs/direct-peering)**
+  > Direct Peering exists outside of Google Cloud. Unless you need to access Google Workspace applications, the recommended way to access Google Cloud is through [Dedicated Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/dedicated-overview) or [Partner Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/partner-overview).
+
+- **[Cloud Shell Storage](https://cloud.google.com/shell/docs/how-cloud-shell-works#persistent_disk_storage)**
+  > 5 GB of free, non-expandable persistent disk storage.
+
+- **[About Service Perimeters](https://cloud.google.com/vpc-service-controls/docs/service-perimeters#about-perimeters)**
+  > You can configure service perimeters at the **project level or VPC network level**.
+  > ...
+  > Additionally, you can use the VPC accessible services feature to restrict which services are accessible from within the perimeter, including **VMs in VPC networks hosted within the perimeter**.
+
+- **[Available Storage Classes](https://cloud.google.com/storage/docs/storage-classes#classes)**
+  > Remember the minimum storage duration for each class.
+
+- **[What are Access Control Lists (ACLs)?](https://cloud.google.com/storage/docs/access-control/lists#acl-def)**
+  > A mechanism you can use to define who has access to your buckets and objects, as well as what level of access they have. In Cloud Storage, you apply ACLs to individual buckets and **objects**.
+
+- **[Disaster Recovery Scenarios for Data](https://cloud.google.com/architecture/dr-scenarios-for-data)**
+  > A lengthy but good read if time permits.
+
+- **[Federating Google Cloud with Active Directory](https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-introduction)**
+  > Also a long read; I don't fully understand this topic yet.
+
+- **[Default Encryption at Rest](https://cloud.google.com/docs/security/encryption/default-encryption#encryption_at_the_storage_device_layer)**
+  > Google encrypts data at rest using the AES algorithm. All data at the storage layer is encrypted by default with a DEK using AES-256, with the exception of Persistent Disks created before 2015, which used AES-128. AES is widely used because both AES-256 and AES-128 are recommended by the National Institute of Standards and Technology (NIST) for long-term storage and are often part of customer compliance requirements.
+
+- **[Node Taints for GPU Preemptible VMs](https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms#node_taints_for_gpu_preemptible_vms)**
+  > The taint is `nvidia.com/gpu=present:NoSchedule`.
+
+- **[Increasing the Size of a Persistent Disk](https://cloud.google.com/compute/docs/disks/resize-persistent-disk)**
+  > If you're using `ext4`, run the `resize2fs` command.
+  > You don't need to reboot the VM after this process. You can now use the additional disk space to store data.
+
+- **[Monitoring an Instance with Cloud Monitoring (Spanner)](https://cloud.google.com/spanner/docs/monitoring-cloud#create-charts)**
+  > You can see the correlation between a Spanner instance's **CPU utilization and its latency**. This might indicate that you need to add more compute capacity to the instance or that some queries have high CPU usage.
+
+- **[Troubleshooting Using the Serial Console](https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-using-serial-console)**
+  > My takeaway: This allows you to view detailed logs from a VM, down to the kernel and BIOS level.
+
+- **OS Login (Managing user access to VMs)**
+  > The OS Login feature allows you to manage SSH access to your Linux instances using Compute Engine IAM roles. You can enhance security by enabling OS Login with a two-step verification process and manage access at an organizational level by setting organization policies.
+
+- **Maximum Subnet Range for Custom VPCs**
+  > If you expand the IPv4 range of a subnet that was automatically created in an auto mode VPC network (or a custom mode VPC network that was formerly an auto mode network), the widest prefix (subnet mask) you can use is **/16**.
+
+- **[Connectivity works for some VMs but not for others (Traffic Selectors)](https://cloud.google.com/network-connectivity/docs/vpn/support/troubleshooting#connectivity_works_for_some_vms_but_not_for_others)**
+  > Traffic selectors define a range of IP addresses for a VPN tunnel. Most VPN implementations not only use them for routing but also will only pass a packet through the tunnel if both of the following conditions are true:
+  > - The packet's source is within the IP ranges specified in the local traffic selector.
+  > - The packet's destination is within the IP ranges specified in the remote traffic selector.
+
+- **[Creating a Private Cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)**
+  > In a private cluster, nodes only have internal IP addresses, isolating them and their pods from the internet by default. Client access to the control plane can be disabled, restricted, or unrestricted.
+  > A private cluster must be a VPC-native cluster. VPC-native clusters do not support legacy networks.
+
+- **Challenging Topics (Legacy Notes):**
+  - **Connectivity/Access:**
+    - [Blog Post (Zenn)](https://zenn.dev/cloud_ace/articles/e483362103d7f6)
+    - [Official Community Thread](https://www.googlecloudcommunity.com/gc/Infrastructure-Compute-Storage/private-service-access-vs-private-service-connect-vs-private/m-p/760591)
+
+---
+
+### Memos on Prompts for Self-Study Question Generation
+
+**November 30, 2024**
+- I have set up a dedicated prompt in GPTs. However, it's sometimes necessary to reinforce the prompt during a session. For example, to overcome the limitations of generative AI, I might need to reinforce the latter part of a long-generated text or start a new session for multiple prompts.
+
+**Finalized working prompt:**
+- In a worst-case scenario, I managed by including the question number and the question text directly in the instruction.
 ```
-「知識」の「第4章: データパイプラインの構築と運用 (問題151～200)」の問題について、
-次に質問 165 以降の5問を指示の通り改善してください。必ず確認のために「知識」を「検索」し、改善前と改善後の問題の対応関係や指示（フォーマットや解説の改善）の意図を正しく理解すること。
-- 解説はGoogleCloud初学者にとって有益となるよう丁寧に努めること。
-- 解説箇所については問題で登場するGoogle Cloud の重要なサービス名については、「正式名称（日本語訳名）」のように記述すること。
+Regarding the questions in "Knowledge" from "Chapter 4: Building and Operating Data Pipelines (Questions 151-200)," please improve the next 5 questions starting from question 165 as instructed. Always "search" the "Knowledge" for confirmation to correctly understand the correspondence between the original and improved questions and the intent of the instructions (format and explanation improvements).
+- Ensure the explanations are detailed and beneficial for Google Cloud beginners.
+- For important Google Cloud service names appearing in the questions, write them in the format "Official Name (Japanese Translation)".
 
-``「知識」内の該当問題を検索する際の参考情報
-質問 165
-Dataflowでのストリーミング処理において、状態管理を行う際に使用される最も一般的な概念は何ですか？
-``
+Reference information for searching the relevant question in "Knowledge":
+Question 165
+In Dataflow streaming processing, what is the most common concept used for state management?
 ```
 
+##### Tips for Self-Study with GPTs
 
-##### GPTs チップス
+**Maximizing Effectiveness for Long Text Generation:**
+- If the output becomes distorted, **create a new session** and prompt again.
+  - This seems more effective than just refining the prompt, possibly because it reduces the system's load.
 
-長文生成時の最大効果策
-- 出力が乱れてきたら、**新規ページを作成**して再度プロンプトする
-	- → プロンプトの改善よりもシステムの負荷が減るのか効果的
+**Next Best Tactic for Long Text Generation:**
+- **Split** the reference material into smaller chunks.
+  - This is particularly effective for tasks that require adherence to the original material's order and content, such as format improvements.
 
-長文生成時の次点の効果策
-- 知識に登録する資料を**分割**する
-	- → 得に元資料の順番や内容を踏襲した修正作業やフォーマット改善作業時には効果的と推察
+**Magic Words for Contradictions (Prompt):**
+- **"Always 'search' the 'Knowledge' for confirmation."**
+  - Forcing the GPT to search the registered documents allows it to generate responses that are consistent with the format, content, order, and instructions of the reference material.
 
-矛盾発生時の魔法の言葉（プロンプト）：
-- **必ず確認のために「知識」を「検索」すること**
-	- GTPsへ登録した資料を検索させることで、参考資料のフォーマットや内容・順序・指示に準じた生成を実行させることが可能
+**Fundamental Best Practices:**
+- Be specific and precise with prompts.
+  - In GPTs, you can pre-register instructions, so aim for clarity from the start.
+  - It's also important to supplement the pre-registered instructions with additional details in the prompt window during the session.
 
-王道の対策
-- プロンプトは具体的に的確に
-	- → GPTs では事前に指示を登録できるので、その時点で明確な指示の登録を心がける
-	- → 作業時の画面に置いて、登録済みの指示を補う指示をすることも重要
+##### Tips for Generating Advanced Questions
 
+**December 14, 2024**
 
+**Improving Practice Exams:**
+1. Copy the practice exam from the official site and save it as a text file.
+2. Register it with GPTs and clean up the format.
+3. Use Gemini (Studio) with a system prompt to progressively improve the questions.
 
-##### 応用問題生成のTIPS
+**Improving Foundational Questions:**
+1. Generate a set of foundational questions aligned with the exam scope using GPTs.
+2. Use Gemini (Studio) with a system prompt to progressively develop them into more advanced, application-based questions.
 
-2024/12/14 
-
-**模試の改善：**
-模擬試験を公式サイトからコピーして、テキストファイルで保存
-↓
-GPTs へ登録して、フォーマットを整理
-↓
-Gemini（studio）へSystemプロンプトを設定の上、順次改善していく
-
-**基礎問題の改善：**
-GPTs で試験範囲に準じた基礎問題集を生成する
-↓
-Gemini（studio）へSystemプロンプトを設定の上、順次応用問題に改善していく

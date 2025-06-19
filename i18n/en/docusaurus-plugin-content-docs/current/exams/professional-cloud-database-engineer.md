@@ -1,335 +1,304 @@
 ---
 sidebar_position: 4
 title: Professional Cloud Database Engineer
-tags: [google cloud, 認定資格, 合格記]
+tags: [google cloud, certification, exam review]
 ---
 
-**🌸 合格：2025年03月07日**
+**🏆 Passed: March 7, 2025**
 
-##### 合格メモ
+##### Post-Exam Notes
 
 ```
-感想：
-- 問題数：50問
-- 100/120 程度で1周完了→ 15分程度で見直し完了し終了
-- - 予想得点率は75%~85%
+Impressions:
+- Number of questions: 50
+- Finished the first pass in about 100/120 minutes, then completed the review in about 15 minutes and submitted.
+  - Estimated score: 75% - 85%
 
-- 初めての英語の試験であったが、集中力が日本語試験よりも発揮できたことでなんとかなった。時間も、問題をなんとか理解できたことや、短文の問題も半分くらいあったためなんとかなった。
-- 英語の単語がわからない関係で解けない問題は多分１,２問 くらいだったと想像する。
-- 見たことのある問題が多数あった。また、出題傾向もUdemyの問題集の範囲から逸脱している問題はなかったので、狭い範囲の問題を使い回している可能性が高いことを想像できた。
-- 
+- This was my first exam in English, but I managed it because I was able to concentrate better than with the Japanese exams. The timing also worked out, as I was able to understand the questions, and about half of them were short.
+- I believe there were only one or two questions I couldn't solve due to not knowing specific English words.
+- Many of the questions looked familiar. Also, the topics covered did not deviate from the scope of the Udemy practice exams, leading me to suspect that a relatively small set of questions is being reused.
 
-出題傾向：
+Topic Trends:
 - Spanner
 - Cloud SQL
 - Datastream / Dataproc
-- 可用性やフォーマンスチューニングに関する問題
-- 認証認可
+- Questions related to availability and performance tuning
+- Authentication and Authorization
 - CMEK
-
 ```
 
+---
 
---- 
+**Exam Overview:**
 
-**試験概要：**
-- https://cloud.google.com/learn/certification/cloud-database-engineer?hl=ja
+-   [Google Cloud Certified - Professional Cloud Database Engineer](https://cloud.google.com/learn/certification/cloud-database-engineer?hl=en)
 
+### Exam Information (March 7, 2025)
 
-### 受験情報 2025 年 3 月 7 日
-試験名: Professional Cloud Database Engineer
-オフライン試験・吉谷ビル7階
-2025年3月7日15:00 (JST) 
+-   **Exam Name:** Professional Cloud Database Engineer
+-   **Location:** In-person exam, Kichiya Building, 7th Floor
+-   **Date & Time:** March 7, 2025, 15:00 (JST)
 
 ---
 
-### 🔥受験に向けた戦略🔥
+### 🔥 Study Strategy 🔥
 
-- 公式の参考資料を読む
-	- https://cloud.google.com/learn/certification/cloud-database-engineer?hl=ja
+-   Read the official study guide:
+    -   [Professional Cloud Database Engineer Exam Guide](https://cloud.google.com/learn/certification/cloud-database-engineer?hl=en)
 
-##### 学習戦略：
+##### Learning Strategy:
 
-- 参考資料
-	- 公式
-		- https://cloud.google.com/learn/certification/cloud-database-engineer?hl=ja
-		- 英語🔥 https://medium.com/google-cloud/how-to-prepare-for-the-google-cloud-professional-cloud-database-engineer-exam-2a69baa68b09
-	- ブログ
-		- https://blog.g-gen.co.jp/entry/professional-cloud-database-engineer
+-   **Reference Materials:**
+    -   Official:
+        -   [Exam Guide (Japanese)](https://cloud.google.com/learn/certification/cloud-database-engineer?hl=ja)
+        -   🔥 [How to prepare for the exam (English)](https://medium.com/google-cloud/how-to-prepare-for-the-google-cloud-professional-cloud-database-engineer-exam-2a69baa68b09)
+    -   Blogs:
+        -   [G-gen Blog (Japanese)](https://blog.g-gen.co.jp/entry/professional-cloud-database-engineer)
 
-- とにかく問題集を回す｜
-	- 2025/03/01 → Udemyの以下の問題集が削除されたため別の問題集に変更（返金対応済み）
-		- OLD｜[Practice Exams | Google Cloud Database Engineer (GCP)](https://www.udemy.com/course/practice-exams-google-professional-cloud-database-engineer/?couponCode=ST5MT020225BROW)
-		- New｜[Google Professional Cloud Database Engineer - GCP - Exams](https://www.udemy.com/course/google-professional-cloud-database-engineer-exams/)
-			- [返金方法](https://www.udemy.com/dashboard/purchase-history/)：Request a Refund 
+-   **Focus on Practice Questions:**
+    -   March 1, 2025 → The Udemy course I was using was removed, so I switched to a different one (received a refund).
+        -   OLD｜[Practice Exams | Google Cloud Database Engineer (GCP)](https://www.udemy.com/course/practice-exams-google-professional-cloud-database-engineer/?couponCode=ST5MT020225BROW)
+        -   NEW｜[Google Professional Cloud Database Engineer - GCP - Exams](https://www.udemy.com/course/google-professional-cloud-database-engineer-exams/)
+            -   [Refund link](https://www.udemy.com/dashboard/purchase-history/): Request a Refund
 
+    -   **Whizlabs (Free Questions Only):**
+        -   [Free Test](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-database-engineer/2556)
+            -   3rd round: 73%
 
-	- Wizlab の無料問題だけ学習
-		- [Free Test ](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-database-engineer/2556)
-			- 3周目：73%
-			- 
-	- [x] 旧問題集
-	- 1周目：2025/02/08 約50%
-		- [x] Practice Test I
-		- [x] Practice Test 2
-		- [x] Practice Test 3
+    -   **[x] Old Practice Exams:**
+        -   1st Round: Feb 8, 2025, approx. 50%
+            -   [x] Practice Test 1
+            -   [x] Practice Test 2
+            -   [x] Practice Test 3
+        -   2nd Round: Feb 12, 2025, approx. 70%
+            -   [x] Practice Test 1
+            -   [x] Practice Test 2
+            -   [x] Practice Test 3
 
-	- 2周目：2025/02/12 約70%
-		- [x] Practice Test I
-		- [x] Practice Test 2
-		- [x] Practice Test 3
+    -   **[x] New Practice Exams:**
+        -   1st Round:
+            -   [x] Practice Test 1｜50%
+            -   [x] Practice Test 2｜50%
+            -   [x] Practice Test 3｜60%
+            -   [x] Practice Test 4｜76% (Mar 6, 2025)
+            -   [x] Practice Test 5｜75% (Mar 6, 2025)
+            -   [x] Practice Test 6｜70% (Mar 5, 2025)
+        -   Review: Mar 7, 2025
+            -   [x] Practice Test 1
+            -   [x] Practice Test 2
+            -   [x] Practice Test 3
+            -   [x] Practice Test 4
+            -   [x] Practice Test 5
+            -   [x] Practice Test 6
 
-	- [x] 新問題集
-	- 1周目：
-		- [x] Practice Test I｜50
-		- [x] Practice Test 2｜50
-		- [x] Practice Test 3｜60
-		- [x] Practice Test 4｜76%｜2025/03/06
-		- [x] Practice Test 5｜75% 2025/03/06
-		- [x] Practice Test 6｜70% 2025/03/05
+    -   **Official Practice Exam:**
+        -   [Try the official practice exam](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform?hl=en)
+            -   → Note: The topics are covered by other practice sets, so no further review is needed.
+            -   100%: Feb 13, 2025
+            -   95%: Mar 2, 2025
 
-	- 復習：2025/03/07
-		- [x] Practice Test I
-		- [x] Practice Test 2
-		- [x] Practice Test 3
-		- [x] Practice Test 4
-		- [x] Practice Test 5
-		- [x] Practice Test 6
+-   [ ] Read articles from the Architecture Center
+    -   [Google Cloud Database Architectures](https://cloud.google.com/architecture/databases?hl=en)
+        -   [x] Feb 13, 2025
 
-
-	-  [公式模試](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform?hl=ja) にトライする
-		- → 模擬試験について：問題集で網羅されているため以後不要
-			- 100 %：2025/02/13
-			- 95%：2025/03/02
-
-
-- [ ] アーキテクチャーセンターの記事を読む
-	- https://cloud.google.com/architecture/databases?hl=ja
-		- [x] 2025/02/13
 ---
 
-##### 苦手項目
+##### Weak Areas
 
-[リードレプリカ](https://cloud.google.com/sql/docs/mysql/replication?hl=ja#read-replicas) Cloud SQL 
-> リードレプリカを使用して Cloud SQL インスタンスから作業をオフロードします。リードレプリカとは、**プライマリ インスタンスの正確なコピー**です。プライマリ インスタンスのデータやその他の変更は、リードレプリカで**ほぼリアルタイムで更新**されます。
-> **リードレプリカは読み取り専用**です。書き込みはできません。リードレプリカは、クエリ、読み取りリクエスト、アナリティクス トラフィックを処理し、**プライマリ インスタンスの負荷を低減します。**
+[Cloud SQL Read Replicas](https://cloud.google.com/sql/docs/mysql/replication?hl=en#read-replicas)
+> You can offload work from a Cloud SQL instance by using read replicas. A read replica is an **exact copy of the primary instance**. Data and other changes on the primary instance are updated on the read replica in **near real time**.
+> **Read replicas are read-only**; you cannot write to them. They handle queries, read requests, and analytics traffic, **reducing the load on the primary instance.**
 
-[クエリタグでフィルタリングする](https://cloud.google.com/sql/docs/postgres/using-query-insights?hl=ja#filter_by_query_tags) cloud SQL
- >アプリケーションのトラブルシューティングを行うには、最初に [SQL クエリにタグを追加](https://cloud.google.com/sql/docs/postgres/using-query-insights?hl=ja#adding-tags-to-sql-queries)する必要があります。 
+[Filter by query tags](https://cloud.google.com/sql/docs/postgres/using-query-insights?hl=en#filter_by_query_tags) (Cloud SQL)
+> To troubleshoot an application, you must first [add tags to your SQL queries](https://cloud.google.com/sql/docs/postgres/using-query-insights?hl=en#adding-tags-to-sql-queries).
 
-[データベースの保護：Terraform on Google Cloud](https://cloud.google.com/docs/terraform/best-practices/general-style-structure?hl=ja#stateful-resources)
-> データベースなどのステートフル リソースの場合は、削除保護（**deletion_protection**）が有効になっていることを確認します。次に例を示します。
+[Protecting databases: Terraform on Google Cloud](https://cloud.google.com/docs/terraform/best-practices/general-style-structure?hl=en#stateful-resources)
+> For stateful resources such as databases, make sure that deletion protection (**`deletion_protection`**) is enabled. For example: `resource "google_sql_database_instance" "default" { ... deletion_protection = true }`
 
-[Cloud SQL インスタンスの Recommender ](https://cloud.google.com/sql/docs/mysql/recommender-sql-overprovisioned?hl=ja)
-> オーバープロビジョニングされた **Cloud SQL インスタンスの Recommender** は、30 日以上経過したプライマリ インスタンスの使用状況の指標を分析します。この Recommender は、インスタンスごとに過去 30 日間の特定の指標値に基づいて **CPU とメモリの使用率**を分析します。Recommender はリードレプリカを分析しません。
+[Cloud SQL instance Recommender](https://cloud.google.com/sql/docs/mysql/recommender-sql-overprovisioned?hl=en)
+> The Recommender for overprovisioned Cloud SQL instances analyzes usage metrics for primary instances that are more than 30 days old. For each instance, the Recommender analyzes **CPU and memory utilization** based on specific metric values over the last 30 days. The Recommender does not analyze read replicas.
 
-[MongoDB Atlas とは？](https://www.mongodb.com/ja-jp/docs/atlas/#what-is-service-fullname-)
-> MongoDB Atlas は、MongoDB の構築に従事する人々が手掛ける**マルチクラウド データベース** サービスです。データベースの配置と管理を簡素化し、選択したクラウドプロバイダーで堅牢で高性能なグローバルアプリケーションを構築するために必要な柔軟性を提供します。 
+[What is MongoDB Atlas?](https://www.mongodb.com/docs/atlas/#what-is-service-fullname-)
+> MongoDB Atlas is a **multi-cloud database** service by the people who build MongoDB. It simplifies deploying and managing your databases while offering the versatility you need to build resilient and performant global applications on the cloud provider of your choice.
 
-現在（**進行中／実行中**）のオペレーションのステータスを確認（Cloud SQL）
-> Google Cloud コンソールでは、オペレーションの完了時に成功または失敗のみが表示されます。警告やその他の情報を表示するように設計されていません。
-> 特定の Cloud SQL インスタンスのすべてのオペレーションを確認するには、[**`gcloud sql operations list`** コマンド](https://cloud.google.com/sdk/gcloud/reference/sql/operations/list?hl=ja)を実行します。
+Check the status of a current (**in-progress**) operation (Cloud SQL)
+> The Google Cloud console only shows success or failure upon operation completion. It is not designed to show warnings or other information.
+> To check all operations for a specific Cloud SQL instance, run the [**`gcloud sql operations list`** command](https://cloud.google.com/sdk/gcloud/reference/sql/operations/list?hl=en).
 
-[Database Migration Service（移行元の必要な設定）](https://cloud.google.com/database-migration/docs/postgres/configure-source-database?hl=ja#configure-your-source-instance-postgres)
-> 移行元インスタンスに **`pglogical`** **パッケージをインストール**し、 [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html) 変数に含まれていることを確認します
+[Database Migration Service (Source Configuration Requirements)](https://cloud.google.com/database-migration/docs/postgres/configure-source-database?hl=en#configure-your-source-instance-postgres)
+> Install the **`pglogical`** package on your source instance and ensure that it's included in the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html) variable.
 
-[デフォルトのリーダー リージョンを構成する](https://cloud.google.com/spanner/docs/instance-configurations?hl=ja#configure-leader-region)：Spanner
-> データベースの**デフォルト リーダー リージョンの**場所を変更して、接続するクライアントに近づけることでアプリケーションの**レイテンシを短縮**
+[Configure the default leader region](https://cloud.google.com/spanner/docs/instance-configurations?hl=en#configure-leader-region) (Spanner)
+> You can **reduce application latency** by changing the location of the database's default leader region to be closer to your connecting clients.
 
-[Spanner から Avro にデータベースをエクスポートする](https://cloud.google.com/spanner/docs/export?hl=ja)
-> エクスポート プロセスでは、**Dataflow を使用して**、Cloud Storage バケット内のフォルダにデータを書き込みます。処理後のフォルダには、一連の **Avro ファイル**と JSON マニフェスト ファイルが格納されます。
+[Export a database from Spanner to Avro](https://cloud.google.com/spanner/docs/export?hl=en)
+> The export process uses **Dataflow** to write data to a folder in a Cloud Storage bucket. The resulting folder contains a set of **Avro files** and a JSON manifest file.
 
-[ストレージの自動増量（automatic-storage-increase）を有効にする](https://cloud.google.com/sql/docs/mysql/instance-settings?hl=ja#automatic-storage-increase-2ndgen)（Cloud SQL）
-> この設定を有効にすると、Cloud SQL によって利用可能な**ストレージが 30 秒ごと**にチェックされます。利用可能なストレージがしきい値サイズを下回ると、自動的にストレージ容量が追加されます。利用可能なストレージがしきい値サイズを繰り返し下回る場合、**最大 64 TB** に達するまで続けてストレージが追加されます。
+[Enable automatic storage increase](https://cloud.google.com/sql/docs/mysql/instance-settings?hl=en#automatic-storage-increase-2ndgen) (Cloud SQL)
+> If you enable this setting, Cloud SQL checks your available **storage every 30 seconds**. If the available storage falls below a threshold size, it automatically adds more storage capacity. If the available storage repeatedly falls below the threshold, Cloud SQL continues to add storage until it reaches the **maximum of 64 TB**.
 
-[Firestore の概要](https://cloud.google.com/firestore/docs/overview?hl=ja)
-> Firestore は、Firebase と Google Cloud からのモバイル、ウェブ、サーバー開発に対応した、柔軟でスケーラブルなデータベースです。 リアルタイム リスナーを介してクライアント アプリ間でデータを同期し、モバイルとウェブの**オフライン サポート**を提供します。これにより、ネットワーク **レイテンシやインターネット接続に関係なく機能する**レスポンシブ アプリを構築できます。
+[Firestore Overview](https://cloud.google.com/firestore/docs/overview?hl=en)
+> Firestore is a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud. It keeps your data in sync across client apps through real-time listeners and offers **offline support** for mobile and web so you can build responsive apps that **work regardless of network latency or internet connectivity**.
 
+[Migrate to Google Cloud: Transferring your large datasets](https://cloud.google.com/architecture/migration-to-google-cloud-transferring-your-large-datasets?hl=en)
+> A summary article worth reading if you have time, covering data transfer times and major patterns.
 
-[Google Cloud に移行する: 大規模なデータセットを転送する ](https://cloud.google.com/architecture/migration-to-google-cloud-transferring-your-large-datasets?hl=ja)
-> **データ転送の時間やメジャーパターンなど時間があれば一読すべきまとめ記事**
+[About High Availability](https://cloud.google.com/sql/docs/mysql/high-availability?hl=en) (Cloud SQL: Easy/Optimal Availability)
+> An HA configuration provides data redundancy. A Cloud SQL instance configured for HA is also called a regional instance and is located in a primary and secondary zone within the configured **region**. A regional instance is comprised of a primary instance and a standby instance. Through [synchronous replication](https://cloud.google.com/compute/docs/disks?hl=en#repds) to each zone's persistent disk, all writes to the primary instance are replicated to disks in both zones before the transaction is reported as committed. In the case of an instance or zone failure, the standby instance becomes the new primary instance. Users are rerouted to the new primary. This process is called a **failover**.
 
-[高可用性について ](https://cloud.google.com/sql/docs/mysql/high-availability?hl=ja)（SQL：手軽／最適な可用性）
-> HA 構成では、データの冗長性が確保されます。HA 向けに構成された Cloud SQL インスタンスはリージョン インスタンスとも呼ばれ、構成された**リージョン内**にプライマリ ゾーンとセカンダリ ゾーンがあります。*リージョン インスタンスはプライマリ インスタンスとスタンバイ インスタンスで構成されます。各ゾーンの永続ディスクへの[同期レプリケーション](https://cloud.google.com/compute/docs/disks?hl=ja#repds)により、トランザクションが commit されたとしてレポートされる前に、プライマリ インスタンスへの書き込みのすべてが両方のゾーンのディスクに複製されます。インスタンスまたはゾーンに障害が発生した場合、スタンバイ インスタンスが新しいプライマリ インスタンスになります。ユーザーは新しいプライマリに再転送されます。このプロセスは、**フェイルオーバー**と呼ばれます。
- 
+Minimizing performance impact for exports (Cloud SQL)
+> 1.  Take the **export from a read replica**. If you export **frequently** (daily or more often) and the amount of data being exported is **small**, this can be a good option.
+> 2.  Use **serverless exports**. If you are creating a **one-time export** of a **large** database, this is the right choice.
 
-エクスポートのパフォーマンスへの影響を最小限に抑える（Cloud SQL）
-> 1. **リードレプリカからエクスポート**を取得します。エクスポートを**頻繁に**（毎日またはそれ以上の頻度で）行う場合、エクスポートされる**データ量が少な**ければ、これが適切な選択肢になります。
-> 2. **サーバーレス エクスポート**（Cloud SQL ServerLessエクスポート）を使用します。**大規模**なデータベースの **1 回限りのエクスポート**を作成する場合は、これが適切な選択肢になります。
+[Google Cloud VMware Engine](https://cloud.google.com/vmware-engine/docs/overview?hl=en)
+> Google Cloud VMware Engine is a fully managed service that lets you run the VMware platform in Google Cloud. VMware Engine provides continuity of your VMware operations to realize the benefits of a cloud consumption model and lower your total cost of ownership.
 
+[Default maintenance windows](https://cloud.google.com/sql/docs/mysql/maintenance?hl=en#default-windows) (Cloud SQL)
+> You want maintenance to occur at a time when your instance handles the least amount of traffic, which for you is around midnight on Sundays. You also need to avoid maintenance during the busy end-of-year holiday season. In this case, you would set the maintenance settings on your production instances as follows...
+> → **It's possible to configure maintenance windows in Cloud SQL.**
 
-[Google Cloud VMware Engine](https://cloud.google.com/vmware-engine/docs/overview?hl=ja)
-> Google Cloud VMware Engine は、 Google Cloudで VMware プラットフォームを運用できるフルマネージド サービスです。VMware Engine では、クラウド消費モデルのメリットを享受し総所有コストを低減できるように、VMware 運用の継続性を実現します。
-
-
-[デフォルトのメンテナンスの時間枠](https://cloud.google.com/sql/docs/mysql/maintenance?hl=ja#default-windows)：**Default maintenance windows**（Cloud SQL）
-> インスタンスのトラフィック処理量が最も少ない時間帯（日曜日の深夜 0 時頃）にメンテナンスを行いたいと考えています。また、年末商戦の繁忙期はメンテナンスを避ける必要があります。この場合、本番環境のインスタンスのメンテナンスを次のように設定
-> → **Cloud SQLでのメンテナンス時間の設定が可能**
-
-[CMEKとCSEK](https://qiita.com/atsumjp/items/b872744d69686a1fc783)
-> 顧客管理鍵(CMEK)による暗号化は、ユーザがCloud KMSを使用して鍵を管理します。  
-> 顧客提供鍵(CSEK)による暗号化は、ユーザ自身が鍵を作成し管理します。
+[CMEK and CSEK](https://qiita.com/atsumjp/items/b872744d69686a1fc783)
+> Customer-Managed Encryption Keys (CMEK) allow users to manage keys using Cloud KMS.
+> Customer-Supplied Encryption Keys (CSEK) require users to create and manage their own keys.
 > - **CMEK**: Customer-Managed Encryption Keys
 > - **CSEK**: Customer-Supplied Encryption Keys
 
-[Query Insights](https://cloud.google.com/sql/docs/mysql/using-query-insights?hl=ja#introduction) ：Cloud SQL
-> Query Insights では、Cloud SQL データベースに対する**クエリ パフォーマンス**の問題を検出、診断、防止できます。直感的なモニタリングをサポートし、検出するだけでなくパフォーマンスの問題の根本原因の特定に役立つ診断情報を提供します。
+[Query Insights](https://cloud.google.com/sql/docs/mysql/using-query-insights?hl=en#introduction) (Cloud SQL)
+> Query Insights helps you detect, diagnose, and prevent **query performance** problems for Cloud SQL databases. It provides self-service, intuitive monitoring, and diagnostic information that helps you go beyond detection to find the root cause of performance problems.
 
+[Spanner: LIKE is deprecated](https://cloud.google.com/spanner/docs/sql-best-practices?hl=en#param-like)
+> Because Spanner does not evaluate a parameterized LIKE pattern until runtime, it **must read all rows and evaluate them against the LIKE expression to filter out rows that don't match**.
+> If your LIKE pattern has the form `foo%` (for example, it starts with a fixed string and ends with a single wildcard percent), use **STARTS_WITH instead of LIKE**. This option lets Spanner optimize the query execution plan more effectively.
 
-[Spanner : LIKE 非推奨](https://cloud.google.com/spanner/docs/sql-best-practices?hl=ja#param-like)
-> Spanner はパラメータ化された LIKE パターンを実行時まで評価しないので、**すべての行を読み取って LIKE 式で評価し、一致しない行を除外しなければなりません**。
-> LIKE パターンの形式が foo%（たとえば、固定文字列で始まり、単一のワイルドカード パーセントで終わる）で、列にインデックスが付けられている場合、**LIKE の代わりに** STARTS_WITH を使用します。このオプションを使用すると、Spanner はクエリ実行プランをより効果的に最適化できます。
+[Configuring parallel replication](https://cloud.google.com/sql/docs/mysql/replication/manage-replicas?hl=en#configuring-parallel-replication) (Cloud SQL)
+> Replication lag happens when the read replica falls behind the primary instance. In this section, you can **enable parallel replication to reduce replication lag**.
 
-[並列レプリケーションを構成する](https://cloud.google.com/sql/docs/mysql/replication/manage-replicas?hl=ja#configuring-parallel-replication)：Cloud SQL
-> レプリケーション ラグは、リードレプリカの更新がプライマリ インスタンスの更新よりも遅れた場合に発生します。このセクションでは、ユーザーが**並列レプリケーションを有効にして、レプリケーション ラグを減らす**
+[Enable or disable high availability](https://cloud.google.com/sql/docs/mysql/configure-ha?hl=en#ha-existing) (Cloud SQL)
+> You can configure an instance for high availability when you create it, or you can **enable it for an existing instance**. `gcloud sql instances patch INSTANCE_NAME ...`
 
+[Switching between SSD and HDD storage](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd?hl=en#switching) (Cloud SQL)
+> After you create a Cloud SQL instance, the choice of SSD or HDD storage for that instance is **not changeable**.
+> If you need to change an existing HDD instance to SSD (or vice versa), you can **export the data** from the existing instance and **import it into a new instance**. Migrating an entire instance takes time.
 
-[高可用性を有効または無効にする （Cloud SQL）](https://cloud.google.com/sql/docs/mysql/configure-ha?hl=ja#ha-existing)
-> インスタンスの高可用性は、インスタンスを作成するときに構成することも、**既存のインスタンスで有効**にすることもできます。`gcloud sql instances patch INSTANCE_NAME \ ...`
+[HDD storage use cases](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd?hl=en#when-in-doubt-ssd) (Cloud SQL)
+> You plan to store 10 TB of data or more.
+> ※ The cost savings of HDD are minimal unless you are storing large amounts of data. You **don't need to consider using HDD storage unless** you plan to store **more than 10 TB** of data.
 
+[Rotate server CA certificates](https://cloud.google.com/sql/docs/mysql/manage-ssl-instance#rotate) (Cloud SQL)
+> -   Create a new server certificate.
+> -   Download the new server CA certificate information.
+> -   Update your clients to use the new server CA certificate information.
+> -   Complete the rotation, which moves the active certificate that was in the `Previous` slot to the active certificate.
 
-[SSD ストレージと HDD ストレージを切り替える](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd?hl=ja#switching)：Cloud SQL
-> Cloud SQL インスタンスを作成した後は、そのインスタンスでの SSD ストレージまたは HDD ストレージの選択は**変更できません。**
-> 既存の HDD インスタンスを SSD に（またはその逆に）変更する必要がある場合には、既存のインスタンスから**データをエクスポート**し、**新規インスタンスに**データをインポートします。インスタンス全体の移行には時間がかかります。
+[How to Achieve PostgreSQL High Availability with pgBouncer](https://severalnines.com/blog/how-achieve-postgresql-high-availability-pgbouncer/)
+> Using pgBouncer for database connection pooling is a great choice to evenly distribute application load between Cloud SQL primary and read replica instances, optimizing database performance and resource utilization.
 
-[HDD ストレージのユースケース](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd?hl=ja#when-in-doubt-ssd)：Cloud SQL
-> 10 TB 以上のデータを保存する予定である。
-> ※ 大量のデータを保存しない限り、HDD によるコスト削減はごくわずかです。**10 TB 以上のデータを保存する場合以外**は、**HDD ストレージの使用を検討する必要はありません。**
+[Best practices for multi-region configuration performance](https://cloud.google.com/spanner/docs/instance-configurations?hl=en#multi-region-best-practices) (Spanner)
+> For optimal write latency, locate compute resources for write-heavy workloads in or near the default leader region.
 
+[Exporting a database from Spanner to Avro](https://cloud.google.com/spanner/docs/export?hl=en)
+> To export a Spanner database by using the REST API or the Google Cloud CLI, complete the steps in Before you begin on this page, and then see the detailed instructions at Spanner to Cloud Storage Avro in the Dataflow documentation. The export process uses **Dataflow** to write data to a folder in a Cloud Storage bucket. The resulting folder contains a set of **Avro files** and a JSON manifest file.
 
-[Rotate server CA certificates](https://cloud.google.com/sql/docs/mysql/manage-ssl-instance#rotate)：Cloud SQL
-> - 新しいサーバーを作成します。
-> - 新しいサーバーCA証明書情報をダウンロードします。
-> - クライアントを更新して、新しいサーバーCA証明書情報を使用します。
-> - アクティブな証明書を移動する回転を完了します 「前の」スロットは、新しく追加された証明書を アクティブな証明書。
+[Export data from Cloud SQL with no performance overhead](https://cloud.google.com/blog/products/databases/introducing-cloud-sql-serverless-exports?hl=en)
+> We are launching a new capability for [Cloud SQL](https://cloud.google.com/sql/): [Serverless Exports](https://cloud.google.com/sql/docs/mysql/import-export/exporting#standard-offload). With Serverless Exports, you can export data from your MySQL and PostgreSQL database instances without impacting performance or risking availability.
 
-[How to Achieve PostgreSQL High Availability with pgBouncer](https://severalnines.com/blog/how-achieve-postgresql-high-availability-pgbouncer/) : PostgreSQL
-> データベース接続のプーリングにPGBouncerを使用することは、クラウドSQLプライマリと読み取りレプリカインスタンスの間にアプリケーション負荷を均等に配布し、データベースのパフォーマンスとリソースの利用を最適化するための適切な選択です
+[Resizing a file system and partitions](https://cloud.google.com/compute/docs/disks/resize-persistent-disk?hl=en#resize_partitions) (GCE)
+> To resize a file system on a non-boot data disk.
+> If you are using **ext4**, use the **`resize2fs`** command to expand the file system: `sudo resize2fs /dev/DEVICE_NAME`
 
-[マルチリージョン構成のパフォーマンスに関するベスト プラクティス](https://cloud.google.com/spanner/docs/instance-configurations?hl=ja#multi-region-best-practices)：Spanner
-> 最適な書き込みレイテンシを実現するには、書き込みの多いワークロードのコンピューティング リソースをデフォルトのリーダー リージョン内またはその近くに配置します。
+[Automatic failovers](https://cloud.google.com/bigtable/docs/failovers?hl=en#automatic) (Bigtable)
+> If your app profile uses multi-cluster routing, Bigtable handles failovers for you automatically. If the closest cluster cannot handle a request, Bigtable routes the traffic to the closest cluster that can.
 
-[Spanner から Avro にデータベースをエクスポートする](https://cloud.google.com/spanner/docs/export?hl=ja)
-> REST API または Google Cloud CLI を使用して Spanner データベースをエクスポートするには、このページのはじめにの手順を完了し、Dataflow ドキュメントの Spanner to Cloud Storage Avro の詳細な手順を参照してください。エクスポート プロセスでは、**Dataflow** を使用して、Cloud Storage バケット内のフォルダにデータを書き込みます。処理後のフォルダには、一連の **Avro ファイル**と JSON マニフェスト ファイルが格納されます。
+[Configure the source instance](https://cloud.google.com/database-migration/docs/postgres/configure-source-database?hl=en#configure-your-source-instance-postgres) (Database Migration Service > PostgreSQL)
+> Install the pglogical package on your source instance and ensure that it's included in the shared_preload_libraries variable. See Install the pglogical package on your source instance in your environment.
 
-[パフォーマンスオーバーヘッドなしで Cloud SQL からデータをエクスポート](https://cloud.google.com/blog/products/databases/introducing-cloud-sql-serverless-exports?hl=en)
->  [Cloud SQL](https://cloud.google.com/sql/) ： [Serverless Exports](https://cloud.google.com/sql/docs/mysql/import-export/exporting#standard-offload)の新しい機能を起動しました。 ServerLessエクスポートを使用すると、PerformanceまたはRisksのリスクに影響を与えずに、MySQLおよびPostgreSQLデータベースインスタンスからデータをエクスポートできます。 
+[Minimize the impact of maintenance](https://cloud.google.com/sql/docs/mysql/maintenance?hl=en#impact) (Cloud SQL)
+> To minimize the impact from connection disruption, you can use [connection pools](https://cloud.google.com/sql/docs/mysql/manage-connections?hl=en#pools). The connections between the pooler and the database are dropped during maintenance, but the connections between the application and the pooler are preserved. This makes the connection re-establishment transparent to the application and offloads it to the connection pooler.
+> You can reduce transaction failures by limiting the number of long-running transactions. Rewriting queries to be smaller and more efficient not only reduces maintenance downtime, but also improves database performance and reliability.
+> To recover gracefully from connection disruption and transaction errors, [manage database connections](https://cloud.google.com/sql/docs/mysql/manage-connections?hl=en) efficiently. You can build connection and query retry logic into your applications and connection poolers with [exponential backoff](https://cloud.google.com/sql/docs/mysql/manage-connections?hl=en#backoff). If a query fails or a connection is dropped, the system sets a waiting period before retry. The waiting period increases for each subsequent retry. For example, the system might wait only a few seconds for the first retry, but up to a minute for the fourth retry. By following this pattern, you ensure that these issues are corrected without overloading the service.
 
+[Performance of schema updates](https://cloud.google.com/spanner/docs/schema-updates?hl=ja#performance) (Cloud Spanner)
+> **Schema updates** in Spanner **do not require downtime**. When you issue a batch of DDL statements to a Spanner database, you can continue to write and read from the database without interruption while Spanner applies the update as a [long-running operation](https://cloud.google.com/spanner/docs/manage-long-running-operations?hl=ja).
 
-[ファイル システムとパーティションのサイズを変更する](https://cloud.google.com/compute/docs/disks/resize-persistent-disk?hl=ja#resize_partitions)：GCE
-> 非ブート データディスク上のファイル システムのサイズを変更します。
-> **ext4** を使用している場合は、**resize2fs** コマンドを使用してファイル システムを拡張します。
-> `sudo resize2fs /dev/DEVICE_NAME`
+[Cross-region replicas](https://cloud.google.com/sql/docs/mysql/replication/cross-region-replicas?hl=en#regional_migration) (Cloud SQL | Data Migration)
+> You can migrate a database to a different region with minimal downtime using cross-region replicas. You create a replica in a different region, wait for replication to complete, promote the replica, and then redirect your clients to the newly promoted instance.
 
+[Google Distributed Cloud for bare metal](https://cloud.google.com/kubernetes-engine/distributed-cloud/bare-metal/docs/concepts/about-bare-metal?hl=en#how_it_works) (GDC for bare metal)
+> Anthos clusters on bare metal is now Google Distributed Cloud (software only) for bare metal. To learn more, see the product overview.
+> Google Distributed Cloud is Google's solution for extending Google Cloud's **infrastructure** and services to your data centers (**on-premises**). Google Distributed Cloud is available in both connected and air-gapped configurations running on Google-provided hardware.
 
-[自動フェイルオーバー](https://cloud.google.com/bigtable/docs/failovers?hl=ja#automatic)：Bigtable
-> アプリのプロファイルで複数クラスタ ルーティングを使用している場合、
-> Bigtable は自動的にフェイルオーバーを処理します。最も近いクラスタがリクエストを処理できない場合、Bigtable は対応可能な最も近いクラスタにトラフィックをルーティングします。
+[Migrating data to an external server](https://cloud.google.com/sql/docs/mysql/migrate-data?hl=en#migrating-to-external) (Cloud SQL Data Migration)
+> To migrate the primary copy of your data from Cloud SQL to an **external server** with minimal downtime, set up the **external server as an external replica**, and then demote the Cloud SQL instance to be a replica of that external server.
 
+[Using point-in-time recovery](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr?hl=en#log-storage-for-pitr) (PITR) (Cloud SQL)
+> Cloud SQL uses **binary logs** for PITR.
+> On August 11, 2023, Google began storing transaction logs for PITR on Cloud Storage. With this launch, the following conditions apply...
 
-[移行元インスタンスを構成する](https://cloud.google.com/database-migration/docs/postgres/configure-source-database?hl=ja#configure-your-source-instance-postgres)｜Database Migration Service  > PostgreSQL
-> 移行元インスタンスに pglogical パッケージをインストールし、 shared_preload_libraries 変数に含まれていることを確認します。
-> 環境の移行元インスタンスに pglogical パッケージをインストールするをご覧ください。
+[Cloud Spanner Node Count](https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Database_OnAir_q2_0409_Session.pdf) (Node Count Configuration)
+> Simply change the node count from the edit screen to complete the configuration change.
+> Changes can be made with no downtime.
 
-[メンテナンスの影響を最小限に抑える](https://cloud.google.com/sql/docs/mysql/maintenance?hl=ja#impact)：Cloud SQL
-> 
-> 接続の切断による影響を最小限に抑えるには、[接続プール](https://cloud.google.com/sql/docs/mysql/manage-connections?hl=ja#pools)を使用します。プーラーとデータベースの間の接続はメンテナンス中に切断されますが、アプリケーションとプーラーの間の接続は保持されます。これにより、接続の再確立がアプリケーションに対して透過的になり、接続プーラーにオフロードされます。
-> 長時間実行トランザクションの数を制限することで、トランザクションの失敗を減らすことができます。クエリを小さくして、より効率的に書き換えることで、メンテナンスのダウンタイムが短縮されるだけでなく、データベースのパフォーマンスと信頼性も向上します。
-> 
-> 接続の切断やトランザクション エラーから効率的に復旧するには、効率的に[データベース接続を管理](https://cloud.google.com/sql/docs/mysql/manage-connections?hl=ja)します。[指数バックオフ](https://cloud.google.com/sql/docs/mysql/manage-connections?hl=ja#backoff)を使用して、アプリケーションと接続プーラーに接続とクエリの再試行ロジックを構築できます。クエリが失敗した場合、または接続が切断された場合、システムは再試行の前に待機期間を設定します。待機時間は、後続の再試行ごとに増加します。たとえば、最初の再試行ではシステムは数秒しか待機しませんが、4 回目の再試行では最大で 1 分間待機する場合があります。このパターンに従うことで、サービスに過大な負荷をかけることなく、これらの問題を確実に修正できます。
-> 
+[Exactly-once streaming](https://cloud.google.com/dataflow/docs/concepts/exactly-once?hl=en#processing) (Dataflow | Transactional Processing)
+> To make non-deterministic processing effectively **deterministic**, use **checkpointing**. With checkpointing, each output from a transform is checkpointed to stable storage with a unique ID before it is delivered to the next stage. Retries of the Dataflow shuffle delivery will relay the checkpointed output. Even if your code is run multiple times, Dataflow ensures that the output from only one of those runs is stored. **Dataflow uses a consistency store** to ensure that writes to stable storage are not duplicated.
 
-[スキーマ更新のパフォーマンス](https://cloud.google.com/spanner/docs/schema-updates?hl=ja#performance)：Cloud Spanner
-> Spanner の**スキーマの更新**には、**ダウンタイムは必要ありません**。DDL 文のバッチを Spanner データベースに対して発行した場合、Spanner が更新を[長時間実行オペレーション](https://cloud.google.com/spanner/docs/manage-long-running-operations?hl=ja)として適用する間も、中断なくデータベースでの書き込みと読み取りを続けることができます。
+[Dual-region quorum availability](https://cloud.google.com/spanner/docs/monitoring-console?hl=en#charts-metrics) (Cloud Spanner)
+> Dual-region **quorum** availability (`instance/dual_region_quorum_availability`) is only available for **dual-region** instance configurations. It displays a timeline of the health of the three quorums: the dual-region quorum and the single-region quorums for each region.
+> The chart has a quorum availability dropdown that lets you see which regions are in normal mode or interrupted mode. You can use this chart, along with error rate and latency metrics, to **decide when to initiate a self-managed failover in case of a regional failure**.
 
+[Connecting from Google Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine?hl=en) (GKE / Cloud SQL)
+> We recommend running the **Cloud SQL Auth Proxy** in the **sidecar pattern** (as an additional container sharing a pod with your application). We recommend this over running it as a separate service for several reasons:
+> > Prevents your SQL traffic from being exposed locally. The Cloud SQL Auth Proxy encrypts outgoing connections but you need to limit incoming connections.
 
-[クロスリージョン レプリカ](https://cloud.google.com/sql/docs/mysql/replication/cross-region-replicas?hl=ja#regional_migration)：Cloud SQL｜データ移行
-> クロスリージョン レプリカを使用すると、最小限のダウンタイムでデータベースを別のリージョンに移行できます。通常は、別のリージョンにレプリカを作成し、レプリケーションが完了したらレプリカを昇格させ、新しく昇格したインスタンスにクライアントをリダイレクトします。
+[Replication configuration examples](https://cloud.google.com/bigtable/docs/replication-settings?hl=en) (Bigtable)
+> This page explains common use cases for Bigtable replication and shows you the settings you can use to support these use cases.
+> - [Isolate batch analytics workloads from other applications](https://cloud.google.com/bigtable/docs/replication-settings?hl=en#batch-vs-serve)
+> - [Create high availability (HA)](https://cloud.google.com/bigtable/docs/replication-settings?hl=en#high-availability)
+> - [Provide a near real-time backup](https://cloud.google.com/bigtable/docs/replication-settings?hl=en#backup)
+> - [Maintain high availability and regional resilience](https://cloud.google.com/bigtable/docs/replication-settings?hl=en#regional-failover)
+> - [Serve data near your users](https://cloud.google.com/bigtable/docs/replication-settings?hl=en#near-users)
 
-[ベアメタル向け Google Distributed Cloud](https://cloud.google.com/kubernetes-engine/distributed-cloud/bare-metal/docs/concepts/about-bare-metal?hl=ja#how_it_works)（GDC for bare metal ）
-> Anthos clusters on bare metal は、ベアメタル向け Google Distributed Cloud（ソフトウェアのみ）になりました。詳細については、プロダクトの概要をご覧ください。
-> 
-> Google Distributed Cloud は、Google Cloud の**インフラストラクチャ**とサービスをお客様のデータセンター（**オンプレ**）に拡張する Google のソリューションです。Google Distributed Cloud は、Google 提供のハードウェア上で動作する接続された構成とエアギャップのある構成の両方で使用できます。
+##### Summary of Common Cloud SQL HTTP Status Errors
 
-
-[外部サーバーにデータを移行する](https://cloud.google.com/sql/docs/mysql/migrate-data?hl=ja#migrating-to-external)｜Cloud SQL データ移行
-> データのプライマリ コピーを Cloud SQL から**外部サーバー**に最小限のダウンタイムで移行するには、**外部サーバーを外部レプリカ**としてセットアップしてから、その外部サーバーのレプリカになるように Cloud SQL インスタンスを降格します。
-
-[ポイントインタイム リカバリ](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr?hl=ja#log-storage-for-pitr)（PITR）を使用する ｜Cloud SQL
-> Cloud SQL は PITR に**バイナリログを使用します**。
-> 2023 年 8 月 11 日、Google は、PITR のトランザクション ログの Cloud Storage への保存を開始しました。今回のリリース以降、次の条件が適用されます。
-> 
-
-[Cloud Spanner ノード数](https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Database_OnAir_q2_0409_Session.pdf) ノード数の変更設定
-> 編集画面からノード数の変更するだけで設定変更完了
-> ダウンタイムなしで変更可能
-
-[exactly-once ストリーミング](https://cloud.google.com/dataflow/docs/concepts/exactly-once?hl=ja#processing)｜Dataflow｜トランザクション的処理
-> 非確定的な処理を効果的に**確定的**な処理にするには、**チェックポインティング**を使用します。チェックポインティングを使用すると、変換からの各出力は、次のステージに配信される前に、一意の ID を持つ安定したストレージにチェックポイントが設定されます。Dataflow のシャッフル配信の再試行は、チェックポイントされた出力をリレーします。コードが複数回実行される場合でも、Dataflow は、それらの実行のうちの 1 つだけの出力が保存されるようにします。**Dataflow は整合性ストア**を使用して、安定したストレージへの書き込みが重複しないようにします。
-> 
-
-[デュアルリージョン クォーラムの可用性](https://cloud.google.com/spanner/docs/monitoring-console?hl=ja#charts-metrics)｜Cloud Spanner
-> デュアルリージョン **クォーラム**の可用性（instance/dual_region_quorum_availability）は、**デュアルリージョン** インスタンス構成でのみ使用できます。デュアルリージョン クォーラムと各リージョンの単一リージョン クォーラムの 3 つのクォーラムの健全性のタイムラインが表示されます。
-> グラフには、クォーラムの可用性プルダウンがあり、正常モードまたは中断モードのリージョンを確認できます。このグラフをエラー率とレイテンシの指標とともに使用すると、**リージョン障害が発生した場合に、セルフマネージド フェイルオーバーのタイミングを決定できます**。
-> 
-
-[Google Kubernetes Engine から Cloud SQL に接続](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine?hl=ja)する｜GKE / Cloud SQL
-> **Cloud SQL Auth Proxy** は、**sidecar パターン**で（Pod をアプリケーションと共有する追加のコンテナとして）動作させることをおすすめします。次のいくつかの理由から、これを個別のサービスとして実行するよりも、この方法をおすすめします。
-> >SQL トラフィックがローカルで公開されないようにします。Cloud SQL Auth Proxy は送信接続を暗号化しますが、受信接続の公開を制限する必要があります。
-
-
-[レプリケーション構成の例](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja)｜Bigtable
-> このページでは、Bigtable レプリケーションの一般的なユースケースについて説明し、これらのユースケースをサポートするために使用できる設定を紹介します。
-> - [バッチ分析ワークロードを他のアプリケーションから分離する](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#batch-vs-serve)
-> - [高可用性（HA）の作成](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#high-availability)
-> - [ほぼリアルタイムのバックアップを提供する](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#backup)
-> - [高可用性とリージョンの復元力を維持する](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#regional-failover)
-> - [ユーザーの近くにデータを保存する](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#near-users)
-
-
-
-
-
-##### Cloud SQLにおけるHTTPステータスエラーを簡潔にまとめた表
-
-| **HTTP ステータスエラー番号** | **エラーメッセージ**            | **場面/原因**                          |
-| ------------------- | ----------------------- | ---------------------------------- |
-| **400**             | `Bad Request`           | リクエストの形式が不正（例: 必要なパラメータ不足、無効な値）    |
-| **401**             | `Unauthorized`          | 認証情報無効、アクセス権限が不足している場合             |
-| **403**             | `Forbidden`             | アクセス権限がない、IAM設定によりアクセス拒否される場合      |
-| **404**             | `Not Found`             | 指定したリソースが存在しない場合（例: 不正なリソースID）     |
-| **409**             | `Conflict`              | リソースの競合、インスタンス作成時の競合など             |
-| **429**             | `Too Many Requests`     | APIリクエストが制限を超えた場合（リクエスト過多）         |
-| **500**             | `Internal Server Error` | サーバ側で予期しないエラーが発生した場合               |
-| **502**             | `Bad Gateway`           | ゲートウェイまたはプロキシでエラーが発生した場合           |
-| **503**             | `Service Unavailable`   | サービス停止中やメンテナンス中、サーバが一時的に使用不可       |
-| **504**             | `Gateway Timeout`       | リクエストがタイムアウトした場合（例: 長時間待機後にタイムアウト） |
-
+| **HTTP Status Code** | **Error Message**       | **Context/Cause**                                                                    |
+| -------------------- | ----------------------- | ------------------------------------------------------------------------------------ |
+| **400**              | `Bad Request`           | The request format is invalid (e.g., missing parameters, invalid values).             |
+| **401**              | `Unauthorized`          | Invalid authentication credentials or insufficient access permissions.                |
+| **403**              | `Forbidden`             | Access is denied, often due to insufficient IAM permissions.                         |
+| **404**              | `Not Found`             | The specified resource does not exist (e.g., incorrect resource ID).                 |
+| **409**              | `Conflict`              | Resource conflict, such as trying to create an instance with a name that already exists. |
+| **429**              | `Too Many Requests`     | The API request rate limit has been exceeded.                                        |
+| **500**              | `Internal Server Error` | An unexpected error occurred on the server side.                                     |
+| **502**              | `Bad Gateway`           | An error occurred at a gateway or proxy server.                                      |
+| **503**              | `Service Unavailable`   | The service is down for maintenance or is temporarily unavailable.                     |
+| **504**              | `Gateway Timeout`       | The request timed out (e.g., after waiting a long time for a response).                |
 
 ---
 
-#### 受験当日のTODO（PSE / PNE / PDE / PCA 受験時の成功事例） ⭐️
+#### Exam Day TODO (Best Practices from PSE / PNE / PDE / PCA Exams) ⭐
 
-前日
-- [x] しっかり寝る
-    - アイマスク、耳栓、枕のセッティング
-- [x] 当日
-- 9時までに起きる（疲労が回復していることが重要）
-- [x] カフェで試験前の確認を実施
-    - [x] 気分的にドトール大通り店
-	    -  [公式模試](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform?hl=ja) の間違った問題を復習
-	    - [x] 苦手項目の復習
-	    - 問題集で間違った問題の復習
-	    - その他、重要記事を読書
+**The Day Before:**
 
-- [x] 14:00 にカフェを出る
+-   [x] Get a good night's sleep.
+    -   Set up eye mask, earplugs, and pillow.
 
-- 受験メールを印刷する
-	- [x] アプリにメールを転送
+**On the Day:**
 
-- 会場到着前に仮眠を10分程度取り、十分に脳をリフレッシュさせる
-	- 糖分も十分にとる
+-   Wake up by 9 AM (being well-rested is crucial).
+-   [x] Final review at a cafe.
+    -   [x] Doutor Odori store (for the mood).
+    -   Review incorrect answers from the [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform?hl=en).
+    -   [x] Review weak topic areas.
+    -   Review incorrect answers from practice question sets.
+    -   Read through other important articles.
 
-- 15時00分（テスト開始の30分前）には会場に到着して受付を完了させる
-	- [x] 選択肢から読むことを意識する
-	- [x] 見直しの時間を確保するよう意識する
+-   [x] Leave the cafe at 14:00.
+
+-   Print the exam confirmation email.
+    -   [x] Forward the email to my phone app.
+
+-   Take a 10-minute nap before arriving at the venue to refresh my brain.
+    -   Also, consume enough sugar.
+
+-   Arrive at the venue by 14:30 (30 minutes before the test starts) and complete check-in.
+    -   [x] Remember to read the options first.
+    -   [x] Remember to save time for review.

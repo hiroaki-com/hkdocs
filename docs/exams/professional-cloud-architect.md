@@ -46,9 +46,7 @@ VMの移行に関する問題もあった。難しかったというか解いた
 
 ### 🔥受験に向けた戦略🔥
  - [Case studies｜公式](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf?hl=ja) の４つの事例を把握する 
- - 翻訳版：[Case studies - Professional Cloud Architect](/docs/exams/case-studies-professional-cloud-architect)
- - 翻訳版：[Case studies｜日本語](./case-studies)
- 
+- [Case studies - Professional Cloud Architect](/docs/exams/case-studies)
 
 #####  受験当日のTODO（PSE / PNE 受験時の成功事例） ⭐️
 前日
@@ -89,7 +87,7 @@ VMの移行に関する問題もあった。難しかったというか解いた
 		- [ ] Practice Test 3
 		- [ ] Practice Test 4
 
--  [[Professional Cloud Architect_20250131]]
+-  Professional Cloud Architect_20250131
 	- [x] 公式模試にトライする
 		-  86%：2025/01/12
 		-  90%：2025/01/13
@@ -180,7 +178,7 @@ VMの移行に関する問題もあった。難しかったというか解いた
 
 ---
 
-### 問題集作成用プロンプトメモ
+### 自習用_問題集作成用プロンプトメモ
 
 2024/11/30
 - GPTs で専用のプロンプトを設定完了している。しかし、作業時には適宜、プロンプトの補強を実施する必要がある。例えば、長文で生成した後半部分の補強や、複数回のプロンプト時には新規のページで作業が必要など、生成AIの弱点を補う必要がある
@@ -200,7 +198,7 @@ Dataflowでのストリーミング処理において、状態管理を行う際
 ```
 
 
-##### GPTs チップス
+##### 自習用_GPTs チップス
 
 長文生成時の最大効果策
 - 出力が乱れてきたら、**新規ページを作成**して再度プロンプトする
@@ -221,7 +219,7 @@ Dataflowでのストリーミング処理において、状態管理を行う際
 
 
 
-##### 応用問題生成のTIPS
+##### 自習用_応用問題生成のTIPS
 
 2024/12/14 
 
