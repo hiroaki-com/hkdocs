@@ -7,7 +7,6 @@ tags: [google cloud, 認定資格, 合格記]
 **🌸 合格：2024年12月28日** 
 
 **関連：**
-- [[Professional Cloud Data Engineer_20241228]]
 - [認定試験一覧](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
 
 

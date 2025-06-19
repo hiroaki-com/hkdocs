@@ -1,142 +1,145 @@
 ---
 sidebar_position: 3
 title: Professional Cloud Data Engineer
-tags: [google cloud, 認定資格, 合格記]
+tags: [google cloud, certification, exam review]
 ---
 
-**🌸 合格：2024年12月28日** 
+**🏆 Passed: December 28, 2024**
 
-**関連：**
-- [[Professional Cloud Data Engineer_20241228]]
-- [認定試験一覧](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
+**Related:**
 
+-   [List of Certifications](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
 
-### 受験情報 2024 年 12 月 28 日
-受験経緯：クーポンの期限が上記日程であり、現在最も知見があり、可能性がある試験であるため受験を決定。また、日程制限によりオンライン受験を選択した
+### Exam Information (December 28, 2024)
 
-試験名: Google Cloud Certified - Professional Data Engineer (Japanese)
-**日付**: 2024 年 12 月 28 日  
-**時刻**: 09:15 AM
-受験方法: 遠隔監視オンライン試験
+**Reason for taking:** My exam voucher was expiring on this date. I chose this exam as I had the most knowledge in this area and the best chance of passing. I opted for the remote proctored exam due to a tight schedule.
 
-準備：
-- キッチンで実施するための準備。シーツを壁に貼り付けて実施するのが良さそう
-- セキュアブラウザのダウンロード（自宅でやろう）
-- 免許証／保険証／クレジットカード
+-   **Exam Name:** Google Cloud Certified - Professional Data Engineer (Japanese)
+-   **Date:** December 28, 2024
+-   **Time:** 09:15 AM
+-   **Method:** Remote Proctored Online Exam
 
+**Preparation:**
 
-### 受験 2024 年 12 月 28 日 合格メモ
-```
-Cloud Data Fusion のユースケース：https://cloud.google.com/data-fusion?hl=ja#use-cases
-
-dataflowのプログラミング言語:https://cloud.google.com/dataflow/docs/overview?hl=ja#portable
-
-composerのプログラミング言語:https://cloud.google.com/composer/docs/concepts/overview?hl=ja
-
-Dataplex の概要:https://cloud.google.com/dataplex/docs/introduction?hl=ja
-
-Datastreamのユースケース：https://cloud.google.com/datastream/docs/implementing-datastream-dataflow-analytics?hl=ja
-
-BIGレイクのユースケース：https://www.topgate.co.jp/blog/google-service/23159
-
-Cloud Strage の保存期間や保存オプション
-- 保存期間最新：https://cloud.google.com/storage/docs/storage-classes?hl=ja#classes
-- バケット保持ポリシー：https://cloud.google.com/storage/docs/bucket-lock?hl=ja#retention-policy
-- Autoclass：https://cloud.google.com/storage/docs/autoclass?hl=ja
-
-Bigqueryのタイムトラベル:https://cloud.google.com/bigquery/docs/time-travel?hl=ja
+-   Prepared to take the exam in my kitchen. Decided it was best to hang a sheet on the wall to create a clear background.
+-   Download the secure browser (to be done at home).
+-   ID needed: Driver's license, insurance card, credit card.
 
 
-試験メモ
-- 企業の事例問題が無くなった
-- ウィンドウの応用問題多数
-- データプロップのシステム的な問題多数
-- ネットワーク、デプロイ自動化、セキュリティに関してもちょいちょいデータサービスと絡めて登場
+### Exam Notes (Passed on December 28, 2024)
+
+This section contains notes and resources I found important either during or immediately after the exam.
+
+#### Key Topics & Resources Reviewed
+
+Here are links to the official documentation for topics that were prominent in the exam.
+
+-   **Cloud Data Fusion:** [Use Cases](https://cloud.google.com/data-fusion?hl=ja#use-cases)
+-   **Dataflow:** [Programming Languages](https://cloud.google.com/dataflow/docs/overview?hl=ja#portable)
+-   **Cloud Composer:** [Programming Languages](https://cloud.google.com/composer/docs/concepts/overview?hl=ja)
+-   **Dataplex:** [Overview](https://cloud.google.com/dataplex/docs/introduction?hl=ja)
+-   **Datastream:** [Use Cases for Analytics](https://cloud.google.com/datastream/docs/implementing-datastream-dataflow-analytics?hl=ja)
+-   **BigLake:** [Use Cases](https://www.topgate.co.jp/blog/google-service/23159)
+-   **Cloud Storage:**
+    -   [Storage Classes (Retention)](https://cloud.google.com/storage/docs/storage-classes?hl=ja#classes)
+    -   [Bucket Lock (Retention Policy)](https://cloud.google.com/storage/docs/bucket-lock?hl=ja#retention-policy)
+    -   [Autoclass](https://cloud.google.com/storage/docs/autoclass?hl=ja)
+-   **BigQuery:** [Time Travel](https://cloud.google.com/bigquery/docs/time-travel?hl=ja)
+
+#### Exam Impressions & Key Takeaways
+
+-   The corporate case study questions have been removed from the exam format.
+-   There were numerous applied questions related to **windowing functions**.
+-   Many questions focused on the **system architecture of Dataproc**.
+-   Topics like networking, deployment automation, and security were frequently integrated with data service questions.
+
+#### Post-Exam Clarification
+
+-   **Question:** In Dataproc, are intermediate datasets stored on HDFS or in memory?
+-   **Answer:** It's recommended to use **HDFS** for intermediate datasets to ensure persistence.
+    -   **Reference:** [Dataproc Best Practices Guide](https://cloud.google.com/blog/ja/topics/developers-practitioners/dataproc-best-practices-guide)
 
 
-dataproc の中間システムの活用がオンプレかメモリかをはっきりさせたい
-→ 中間のデータセットをHDFSに使用する
-https://cloud.google.com/blog/ja/topics/developers-practitioners/dataproc-best-practices-guide
-```
+### 🔥 Study Strategy 🔥
 
-### 🔥受験に向けた戦略🔥
+After failing the networking exam:
 
-ネットワーク試験の不合格を受けて
-- 模擬試験を完璧にする（何周も） 〜12/15 
-	- [x] 12/9 正答率は約 59.26%（16/27） 
-
-- 試験範囲の研究と自作問題集を学習、ドキュメントも確認 〜12/15
-	- 模擬試験の出題傾向をもとに、問題集を改善してもいいかも。弱点を重点的に
-- 模擬試験の感覚から他の試験問題集が必要であれば購入して実施 〜12/21
-	- 以下のサイトで無料で50問学習する 
-	- https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-11-20
-		- [Google Cloud Professional Data Engineer 問題集 1-10](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-1-10)
-			- [x] 1 周目
-		- [Google Cloud Professional Data Engineer 問題集 11-20](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-11-20)
-			- [x] 1 周目
-		-  [Google Cloud Professional Data Engineer 問題集 21-30](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-21-30)
-			- [x] 1 周目
-		- [Google Cloud Professional Data Engineer 問題集 41-50](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-41-50)
-			- [x] 1 周目
-		- [x] [Google Cloud Professional Data Engineer 問題集 51-60](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-51-60)
-			- [x] 1 周目
-- Udemyを制覇
-	- https://www.udemy.com/course/google-cloud-professional-data-engineer-s/learn/quiz/5452330/test#overview
+-   Master the practice exams (review multiple times) — by Dec 15
+    -   [x] Dec 9: Score was approx. 59.26% (16/27).
+-   Research the exam guide, study my custom-made question sets, and review official documentation — by Dec 15
+    -   It might be a good idea to refine the question sets based on the topics from the practice exam, focusing on my weak areas.
+-   If other practice exams seem necessary after getting a feel for the official one, purchase and complete them — by Dec 21
+    -   Study 50 free questions on the following site (all links are in Japanese):
+        -   [Google Cloud Professional Data Engineer Practice Questions 1-10](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-1-10)
+            -   [x] 1st round complete
+        -   [Google Cloud Professional Data Engineer Practice Questions 11-20](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-11-20)
+            -   [x] 1st round complete
+        -   [Google Cloud Professional Data Engineer Practice Questions 21-30](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-21-30)
+            -   [x] 1st round complete
+        -   [Google Cloud Professional Data Engineer Practice Questions 41-50](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-41-50)
+            -   [x] 1st round complete
+        -   [x] [Google Cloud Professional Data Engineer Practice Questions 51-60](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-51-60)
+            -   [x] 1st round complete
+-   Conquer the Udemy course:
+    -   https://www.udemy.com/course/google-cloud-professional-data-engineer-s/learn/quiz/5452330/test#overview
 
 ---
 
-### 問題集作成用プロンプトメモ
+### Self-Study: Memos for Creating Practice Questions with Prompts
 
-2024/11/30
-- GPTs で専用のプロンプトを設定完了している。しかし、作業時には適宜、プロンプトの補強を実施する必要がある。例えば、長文で生成した後半部分の補強や、複数回のプロンプト時には新規のページで作業が必要など、生成AIの弱点を補う必要がある
+**November 30, 2024**
 
-**最終的に完成した作業用プロンプト**
-- 最悪の場合、問題の番号と問題の文章を指示に盛り込むことで乗り切ったことも
+-   I have configured a custom GPT for this. However, during use, I find it necessary to reinforce the prompt as needed. For instance, the quality can degrade in longer outputs, and it's often better to start a new chat for subsequent prompts. These are AI weaknesses that need to be managed.
+
+**Self-Study: Final Working Prompt**
+
+-   As a last resort, I sometimes had to include the specific question number and text in the prompt to get the desired output.
+
 ```
-「知識」の「第4章: データパイプラインの構築と運用 (問題151～200)」の問題について、
-次に質問 165 以降の5問を指示の通り改善してください。必ず確認のために「知識」を「検索」し、改善前と改善後の問題の対応関係や指示（フォーマットや解説の改善）の意図を正しく理解すること。
-- 解説はGoogleCloud初学者にとって有益となるよう丁寧に努めること。
-- 解説箇所については問題で登場するGoogle Cloud の重要なサービス名については、「正式名称（日本語訳名）」のように記述すること。
+"Regarding the questions in the 'Knowledge Base' document, under 'Chapter 4: Building and Operating Data Pipelines (Questions 151-200)', please improve the next five questions starting from question 165 as instructed. You must 'search' the 'Knowledge Base' for confirmation to correctly understand the correspondence between the original and improved questions and the intent of the instructions (e.g., format and explanation improvements).
+- The explanations should be detailed and helpful for a Google Cloud beginner.
+- In the explanation section, for any important Google Cloud service names that appear, write them in the format 'Official Name (e.g., Japanese Translation if applicable)'."
 
-``「知識」内の該当問題を検索する際の参考情報
-質問 165
-Dataflowでのストリーミング処理において、状態管理を行う際に使用される最も一般的な概念は何ですか？
-``
+---
+Reference information for searching within the 'Knowledge Base':
+Question 165
+What is the most common concept used for state management in streaming processing in Dataflow?
 ```
 
-##### GPTs チップス
+##### Self-Study: GPTs Tips
 
-長文生成時の最大効果策
-- 出力が乱れてきたら、**新規ページを作成**して再度プロンプトする
-	- → プロンプトの改善よりもシステムの負荷が減るのか効果的
+**Most Effective Method for Long Text Generation**
 
-長文生成時の次点の効果策
-- 知識に登録する資料を**分割**する
-	- → 得に元資料の順番や内容を踏襲した修正作業やフォーマット改善作業時には効果的と推察
+-   When the output becomes erratic, create a new chat and prompt again.
+    -   → This seems more effective than refining the prompt, possibly because it reduces the system's context load.
 
-矛盾発生時の魔法の言葉（プロンプト）：
-- **必ず確認のために「知識」を「検索」すること**
-	- GTPsへ登録した資料を検索させることで、参考資料のフォーマットや内容・順序・指示に準じた生成を実行させることが可能
+**Second Best Method for Long Text Generation**
 
-王道の対策
-- プロンプトは具体的に的確に
-	- → GPTs では事前に指示を登録できるので、その時点で明確な指示の登録を心がける
-	- → 作業時の画面に置いて、登録済みの指示を補う指示をすることも重要
+-   Split the source material into smaller chunks before uploading it to the knowledge base.
+    -   → I suspect this is particularly effective for modification and formatting tasks that need to follow the order and content of the original material.
 
+**The "Magic Words" (Prompt) for Contradictions:**
 
+-   **"You must 'search' the 'Knowledge Base' for confirmation."**
+    -   → By forcing the GPT to search the registered documents, it's possible to generate output that better adheres to the format, content, order, and instructions of the reference material.
 
-##### 応用問題生成のTIPS
+**Fundamental Strategy**
 
-2024/12/14 
+-   Make prompts specific and precise.
+    -   → In GPTs, you can pre-register instructions, so it's best to create clear instructions from the start.
+    -   → It's also important to supplement the registered instructions in the prompt window during the task.
 
-**模試の改善：**
-模擬試験を公式サイトからコピーして、テキストファイルで保存
-↓
-GPTs へ登録して、フォーマットを整理
-↓
-Gemini（studio）へSystemプロンプトを設定の上、順次改善していく
+##### Self-Study: Tips for Generating Applied Questions
 
-**基礎問題の改善：**
-GPTs で試験範囲に準じた基礎問題集を生成する
-↓
-Gemini（studio）へSystemプロンプトを設定の上、順次応用問題に改善していく
+**December 14, 2024**
+
+**Improving Practice Exams:**
+
+Copy the official practice exam and save it as a text file.
+→ Upload it to GPTs and clean up the formatting.
+→ Set a system prompt in Gemini (Studio) and progressively improve the questions.
+
+**Improving Foundational Questions:**
+
+Generate a set of basic questions based on the exam guide using GPTs.
+→ Set a system prompt in Gemini (Studio) and progressively develop them into more applied, scenario-based questions.
