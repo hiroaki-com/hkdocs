@@ -1,5 +1,8 @@
+# FILE: .github/workflows/ci.yml
+
 name: CI Build Check
 
+# developブランチへのpushまたはpull_request時に実行
 on:
   push:
     branches:
@@ -14,25 +17,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. コードのチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. pnpmセットアップ
+      # package.jsonの "packageManager" からバージョンを自動検出します。
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10.11.0
 
+      # 3. Node.jsセットアップ
+      # .nvmrcのバージョンを使用し、pnpmのキャッシュを有効化します。
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
 
+      # 4. 依存関係のインストール
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 5. 型チェック
       - name: Run Type Check
         run: pnpm typecheck
 
+      # 6. ビルドテスト
+      # サイトが正常にビルドできるかを検証します。
       - name: Run Build
         run: pnpm build
