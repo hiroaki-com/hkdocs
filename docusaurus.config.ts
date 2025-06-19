@@ -16,7 +16,6 @@ const config: Config = {
     v4: true,
   },
 
-  // i18n利用時のURL問題を避けるため、末尾スラッシュを有効化
   trailingSlash: true,
 
   url: 'https://hkdocs.com/',
@@ -28,7 +27,6 @@ const config: Config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
-  // 国際化(i18n)設定
   i18n: {
     defaultLocale: 'ja',
     locales: ['ja', 'en'],
@@ -222,9 +220,10 @@ const config: Config = {
     },
     algolia: {
       appId: 'S30V6IHD5V',
-      apiKey: 'adbade7d0089113887a2a706a77f72f8',
+      apiKey: 'adbade7d0089113887a2a706a77f72f8', // 検索専用APIキー
       indexName: 'hkcom',
       placeholder: 'サイト内検索',
+      contextualSearch: true,
     },
   } satisfies Preset.ThemeConfig,
 };
