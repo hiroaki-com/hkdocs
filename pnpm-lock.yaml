@@ -20,9 +20,6 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
-      http-server:
-        specifier: ^14.1.1
-        version: 14.1.1
       lucide-react:
         specifier: ^0.514.0
         version: 0.514.0(react@19.1.0)
@@ -54,6 +51,9 @@ importers:
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
+      http-server:
+        specifier: ^14.1.1
+        version: 14.1.1
       twitter-api-v2:
         specifier: ^1.23.2
         version: 1.23.2
