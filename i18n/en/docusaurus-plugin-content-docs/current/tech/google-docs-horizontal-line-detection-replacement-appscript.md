@@ -1,62 +1,62 @@
 ---
 sidebar_position: 5
-title: 「水平線の検知／置換」AppScript - Googleドキュメント用
+title: AppScript for Detecting/Replacing Horizontal Lines in Google Docs
 ---
 
-# Googleドキュメント用「水平線の検知／置換」AppScript
+# AppScript for Detecting/Replacing Horizontal Lines in Google Docs
 
-### 作成の経緯
-- ドキュメント内で区切りとして使用していた水平線を、特定のテキスト表記（例：「置換後の」）に一括で変更する必要があった。
-- 水平線（---）は、MarkdownファイルからGoogleドキュメントへ展開した際に反映されたものでるが、検索・置換（`⌘＋F`／`⌘＋H`）では検知できないものであった。
-- 目視での手動作業のため、非効率かつ定型的な作業の効率化の必要性があった。
-- このような定型的な置換作業を自動化し、編集効率を上げるために作成。
+### Background
+- It became necessary to bulk-change horizontal lines, which were used as dividers in a document, to a specific text notation (e.g., "Replaced Text").
+- These horizontal lines (---) were generated when converting a Markdown file to a Google Doc, but they could not be detected using the standard find and replace functions (`⌘＋F` / `⌘＋H`).
+- Manual, visual inspection was inefficient, highlighting the need to streamline this routine task.
+- This script was created to automate such routine replacement tasks and improve editing efficiency.
 
-### ユースケース
-- ドキュメント内の全ての水平線を、指定した固定文字列（このスクリプトでは「置換後の文字列」）に一括で置換する。
-- 例えば、一時的な区切りとして水平線を使用していた箇所を、正式なセクション見出しや注釈に変換する際に利用可能。
-- 大量のドキュメントに対して、水平線の扱いを一貫性のある形に整形する作業を効率化する。
+### Use Cases
+- Bulk-replace all horizontal lines in a document with a specified fixed string (in this script, "Replaced Text").
+- For example, it can be used to convert temporary dividers (horizontal lines) into formal section headings or annotations.
+- Efficiently format the handling of horizontal lines consistently across a large number of documents.
 
-### 使い方
-1.  Googleドキュメントのドキュメントを開きます。
-2.  メニューバーから「拡張機能」>「Apps Script」を選択し、スクリプトエディタを開きます。
-3.  表示されたスクリプトエディタに、下記のスクリプト全体をコピー＆ペーストします。
-    もし既に他のスクリプトが存在する場合は、新しいスクリプトファイルを作成（「ファイル」 > 「新規作成」 > 「スクリプトファイル」）してペーストするか、既存のコードの末尾に追記してください。
-4.  スクリプトエディタ上部のフロッピーディスクアイコン（プロジェクトを保存）をクリックしてスクリプトを保存します。
-5.  スクリプトエディタ上部で、実行する関数として `replaceHorizontalRules` を選択します。（通常、関数が1つしかない場合は自動で選択されています。）
-6.  実行ボタン（再生ボタンのアイコン「実行」）をクリックすると、スクリプトが実行されます。
-    初回実行時には「承認が必要です」というダイアログが表示されるので、指示に従ってスクリプトの実行を承認してください。
-7.  実行後、ドキュメント内のすべての水平線が「置換後の文字列」というテキストに置き換えられます。
+### How to Use
+1.  Open a Google Docs document.
+2.  From the menu bar, select "Extensions" > "Apps Script" to open the script editor.
+3.  Copy and paste the entire script below into the script editor that appears.
+    If other scripts already exist, either create a new script file ("File" > "New" > "Script file") and paste the code there, or append it to the end of the existing code.
+4.  Click the floppy disk icon ("Save project") at the top of the script editor to save the script.
+5.  At the top of the script editor, select `replaceHorizontalRules` as the function to run. (Usually, if there's only one function, it will be selected automatically.)
+6.  Click the run button (the play icon labeled "Run") to execute the script.
+    On the first run, an "Authorization required" dialog will appear. Follow the instructions to authorize the script's execution.
+7.  After execution, all horizontal lines in the document will be replaced with the text "Replaced Text".
 
 ```javascript
 function replaceHorizontalRules() {
   const body = DocumentApp.getActiveDocument().getBody();
   const hrArray = [];
 
-  // 1) すべての水平線を収集
-  // ドキュメントの本文(body)から水平線(HORIZONTAL_RULE)要素を検索します。
+  // 1) Collect all horizontal lines
+  // Search for horizontal rule (HORIZONTAL_RULE) elements in the document body.
   let res = body.findElement(DocumentApp.ElementType.HORIZONTAL_RULE);
   while (res) {
-    // 見つかった水平線要素を配列hrArrayに追加します。
-    // findElementはRangeElementを返すため、getElement()で実際のElementを取得します。
+    // Add the found horizontal rule element to the hrArray.
+    // Since findElement returns a RangeElement, use getElement() to get the actual Element.
     hrArray.push(res.getElement());
-    // 次の水平線を検索します。検索開始位置として現在の結果(res)を指定します。
+    // Find the next horizontal rule, using the current result (res) as the starting point.
     res = body.findElement(DocumentApp.ElementType.HORIZONTAL_RULE, res);
   }
 
-  // 2) 末尾から順に置換
-  // 配列の末尾から処理するのは、要素を削除・挿入する際に
-  // 前方の要素のインデックスが変わってしまうのを避けるためです。
+  // 2) Replace from the end of the array
+  // Processing from the end of the array is done to avoid issues with
+  // changing indices of preceding elements during deletion/insertion.
   for (let i = hrArray.length - 1; i >= 0; i--) {
-    const hr = hrArray[i];                       // 配列から水平線要素を取得
-    const para = hr.getParent();                 // 水平線が含まれる親の段落要素を取得
-    const parentBody = para.getParent();         // その段落の親要素（通常はドキュメントのBody）を取得
-    const index = parentBody.getChildIndex(para); // Body内での段落の位置（インデックス）を取得
+    const hr = hrArray[i];                       // Get the horizontal rule element from the array
+    const para = hr.getParent();                 // Get the parent paragraph element containing the horizontal rule
+    const parentBody = para.getParent();         // Get the parent of that paragraph (usually the document body)
+    const index = parentBody.getChildIndex(para); // Get the position (index) of the paragraph within the body
 
-    // 水平線が含まれる段落ごと削除します。
-    // 水平線は通常、それ自体が独立した段落として扱われるためです。
+    // Remove the entire paragraph containing the horizontal rule.
+    // This is because a horizontal rule is typically treated as its own paragraph.
     parentBody.removeChild(para);
-    // 元の段落があった位置に、新しい段落として「置換後の文字列」というテキストを挿入します。
-    parentBody.insertParagraph(index, '置換後の文字列');
+    // Insert a new paragraph with the text "Replaced Text" at the original paragraph's location.
+    parentBody.insertParagraph(index, 'Replaced Text');
   }
 }
 ```
