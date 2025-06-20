@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Professional Cloud Architect
+title: Professional Cloud Architect 合格記
 tags: [google cloud, 認定資格, 合格記]
 ---
 

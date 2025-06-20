@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Professional Cloud Database Engineer
+title: Professional Cloud Database Engineer 合格記
 tags: [google cloud, 認定資格, 合格記]
 ---
 

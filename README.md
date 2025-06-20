@@ -9,7 +9,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-hiroaki--com/hkdocs-blue?logo=github)](https://github.com/hiroaki-com/hkdocs)
 [![𝕏 (Twitter)](https://img.shields.io/badge/Follow-%40hkdocs-1DA1F2?logo=x)](https://x.com/hkdocs)
 
-HkDocsは、個人の技術ブログ、ドキュメント、日記などを集約したナレッジベースサイトです。
+HkDocsは、個人の技術ブログ、、日記などを集約したナレッジベースサイトです。
 [Docusaurus](https://docusaurus.io/) を使用して構築されており、[hkdocs.com](https://hkdocs.com/) で公開しています。サイト全体が日本語と英語に対応しています。
 
 [README.en (English)](./README.en.md)

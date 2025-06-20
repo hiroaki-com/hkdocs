@@ -1,0 +1,14 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Tech": {
+    "message": "Tech",
+    "description": "The label for category Tech in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Exams": {
+    "message": "Exams",
+    "description": "The label for category Exams in sidebar tutorialSidebar"
+  }
+}

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Professional Cloud Developer
+title: Professional Cloud Developer 合格記
 tags: [google cloud, 認定資格, 合格記]
 ---
 

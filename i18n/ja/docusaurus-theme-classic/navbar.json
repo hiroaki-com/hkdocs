@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "HkDocs",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "HkDocsロゴ",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.整理コンテンツ": {
+    "message": "整理コンテンツ",
+    "description": "Navbar item with label 整理コンテンツ"
+  },
+  "item.label.ブログ": {
+    "message": "ブログ",
+    "description": "Navbar item with label ブログ"
+  },
+  "item.label.日記": {
+    "message": "日記",
+    "description": "Navbar item with label 日記"
+  },
+  "item.label.ブラウザメモ": {
+    "message": "ブラウザメモ",
+    "description": "Navbar item with label ブラウザメモ"
+  },
+  "item.label.プロフィール": {
+    "message": "プロフィール",
+    "description": "Navbar item with label プロフィール"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.𝕏": {
+    "message": "𝕏",
+    "description": "Navbar item with label 𝕏"
+  }
+}

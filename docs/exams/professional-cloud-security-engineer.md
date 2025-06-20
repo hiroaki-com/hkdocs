@@ -1,6 +1,6 @@
 ---
 sidebar_position: 8
-title: Professional Cloud Security Engineer
+title: Professional Cloud Security Engineer 合格記
 tags: [google cloud, 認定資格, 合格記]
 ---
 

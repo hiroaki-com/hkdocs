@@ -1,0 +1,46 @@
+{
+  "link.title.コンテンツ": {
+    "message": "コンテンツ",
+    "description": "The title of the footer links column with title=コンテンツ in the footer"
+  },
+  "link.title.その他": {
+    "message": "その他",
+    "description": "The title of the footer links column with title=その他 in the footer"
+  },
+  "link.title.SNS": {
+    "message": "SNS",
+    "description": "The title of the footer links column with title=SNS in the footer"
+  },
+  "link.item.label.整理コンテンツ": {
+    "message": "整理コンテンツ",
+    "description": "The label of footer link with label=整理コンテンツ linking to /docs/intro"
+  },
+  "link.item.label.ブログ": {
+    "message": "ブログ",
+    "description": "The label of footer link with label=ブログ linking to /blog"
+  },
+  "link.item.label.日記": {
+    "message": "日記",
+    "description": "The label of footer link with label=日記 linking to /diary"
+  },
+  "link.item.label.プロフィール": {
+    "message": "プロフィール",
+    "description": "The label of footer link with label=プロフィール linking to /profile"
+  },
+  "link.item.label.ブラウザメモ": {
+    "message": "ブラウザメモ",
+    "description": "The label of footer link with label=ブラウザメモ linking to /browser-memo"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/hiroaki-com/hkdocs"
+  },
+  "link.item.label.𝕏": {
+    "message": "𝕏",
+    "description": "The label of footer link with label=𝕏 linking to https://x.com/hkdocs"
+  },
+  "copyright": {
+    "message": "Copyright © 2025 hkdocs. All Rights Reserved.<br>コードはMIT、コンテンツは<a href=\"http://creativecommons.org/licenses/by-sa/4.0/\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-SA 4.0</a>ライセンスの下で提供されています。",
+    "description": "The footer copyright"
+  }
+}

@@ -1,4 +1,3 @@
-// docusaurus.config.ts
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
@@ -9,7 +8,7 @@ const katex = require('rehype-katex');
 
 const config: Config = {
   title: 'HkDocs',
-  tagline: 'My Knowledge Imprint',
+  tagline: '私の知識の痕跡', // 英語への翻訳は i18n/en/code.json で行われます
   favicon: 'img/favicon.ico',
 
   future: {
@@ -48,7 +47,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/hiroaki-com/hkdocs',
+          editUrl: 'https://github.com/hiroaki-com/hkdocs/tree/main/',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
@@ -58,7 +57,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl: 'https://github.com/hiroaki-com/hkdocs',
+          editUrl: 'https://github.com/hiroaki-com/hkdocs/tree/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -79,8 +78,8 @@ const config: Config = {
         id: 'diary',
         routeBasePath: 'diary',
         path: './diary',
-        blogTitle: 'Diary',
-        blogDescription: '体調など雑多な日常の記録',
+        blogTitle: '日記', // 英語への翻訳はプラグイン用の翻訳ファイルで行います
+        blogDescription: '体調など雑多な日常の記録', // 同上
         showReadingTime: false,
         authorsMapPath: '../blog/authors.yml',
       } satisfies PluginContentBlog.Options,
@@ -106,7 +105,7 @@ const config: Config = {
     image: 'img/hkdocs-social-card.jpg',
     announcementBar: {
       id: 'site_release_20250601',
-      content: '2025年6月1日、当サイトを正式リリースしました 🥳️',
+      content: '2025年6月1日、当サイトを正式リリースしました 🥳️', // 英語への翻訳は i18n/en/code.json で行われます
       backgroundColor: '#73a8e6',
       textColor: '#fcf3f0',
       isCloseable: true,
@@ -114,7 +113,7 @@ const config: Config = {
     navbar: {
       title: 'HkDocs',
       logo: {
-        alt: 'Hk Docs Logo',
+        alt: 'HkDocsロゴ', // 英語への翻訳は i18n/en/code.json で行われます
         src: 'img/logo.svg',
       },
       hideOnScroll: true,
@@ -123,33 +122,33 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Docs',
+          label: '整理コンテンツ',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
-        { to: '/diary', label: 'Diary', position: 'left' },
+        { to: '/blog', label: 'ブログ', position: 'left' },
+        { to: '/diary', label: '日記', position: 'left' },
         {
           to: '/browser-memo',
-          label: 'Browser Memo',
+          label: 'ブラウザメモ',
           position: 'left',
-        },
-        { to: '/profile', label: 'Profile', position: 'right' },
-        {
-          href: 'https://github.com/hiroaki-com/hkdocs',
-          position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
-        },
-        {
-          href: 'https://x.com/hkdocs',
-          position: 'right',
-          className: 'header-x-link',
-          target: '_blank',
-          rel: 'noopener noreferrer',
-          'aria-label': 'Follow on 𝕏',
         },
         {
           type: 'localeDropdown',
           position: 'right',
+        },
+        { to: '/profile', label: 'プロフィール', position: 'right' },
+        {
+          href: 'https://github.com/hiroaki-com/hkdocs',
+          label: 'GitHub',
+          position: 'right',
+          'aria-label': 'GitHubリポジトリ',
+        },
+        {
+          href: 'https://x.com/hkdocs',
+          label: '𝕏',
+          position: 'right',
+          target: '_blank',
+          rel: 'noopener noreferrer',
+          'aria-label': '𝕏でフォロー',
         },
       ],
     },
@@ -157,31 +156,31 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Contents',
+          title: 'コンテンツ',
           items: [
             {
-              label: 'Docs',
+              label: '整理コンテンツ',
               to: '/docs/intro',
             },
             {
-              label: 'Blog',
+              label: 'ブログ',
               to: '/blog',
             },
             {
-              label: 'Diary',
+              label: '日記',
               to: '/diary',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'その他',
           items: [
             {
-              label: 'Profile',
+              label: 'プロフィール',
               to: '/profile',
             },
             {
-              label: 'Browser Memo',
+              label: 'ブラウザメモ',
               to: '/browser-memo',
             },
             {
@@ -204,7 +203,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} hkdocs. All Rights Reserved.<br>The code is licensed under MIT, and the content is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
+      copyright: `Copyright © ${new Date().getFullYear()} hkdocs. All Rights Reserved.<br>コードはMIT、コンテンツは<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>ライセンスの下で提供されています。`, // 英語への翻訳は i18n/en/code.json で行われます
     },
     prism: {
       theme: prismThemes.github,
@@ -221,9 +220,9 @@ const config: Config = {
     },
     algolia: {
       appId: 'S30V6IHD5V',
-      apiKey: 'adbade7d0089113887a2a706a77f72f8', // 検索専用APIキー
+      apiKey: 'adbade7d0089113887a2a706a77f72f8',
       indexName: 'hkcom',
-      placeholder: 'サイト内検索',
+      placeholder: 'サイト内検索', // 英語への翻訳は i18n/en/code.json で行われます
       contextualSearch: true,
     },
   } satisfies Preset.ThemeConfig,
