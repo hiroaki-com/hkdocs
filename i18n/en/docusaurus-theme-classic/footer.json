@@ -1,7 +1,7 @@
 {
-  "link.title.Contents": {
+  "link.title.コンテンツ": {
     "message": "Contents",
-    "description": "The title of the footer links column with title=Contents in the footer"
+    "description": "The title of the footer links column with title=コンテンツ in the footer"
   },
   "link.title.More": {
     "message": "More",
@@ -11,25 +11,25 @@
     "message": "SNS",
     "description": "The title of the footer links column with title=SNS in the footer"
   },
-  "link.item.label.Docs": {
-    "message": "Docs",
-    "description": "The label of footer link with label=Docs linking to /docs/intro"
+  "link.item.label.Tech": {
+    "message": "Tech",
+    "description": "The label of footer link with label=Tech linking to /docs/intro"
   },
-  "link.item.label.Blog": {
+  "link.item.label.ブログ": {
     "message": "Blog",
-    "description": "The label of footer link with label=Blog linking to /blog"
+    "description": "The label of footer link with label=ブログ linking to /blog"
   },
-  "link.item.label.Diary": {
+  "link.item.label.日記": {
     "message": "Diary",
-    "description": "The label of footer link with label=Diary linking to /diary"
+    "description": "The label of footer link with label=日記 linking to /diary"
   },
-  "link.item.label.Profile": {
+  "link.item.label.プロフィール": {
     "message": "Profile",
-    "description": "The label of footer link with label=Profile linking to /profile"
+    "description": "The label of footer link with label=プロフィール linking to /profile"
   },
-  "link.item.label.Browser Memo": {
+  "link.item.label.ブラウザメモ": {
     "message": "Browser Memo",
-    "description": "The label of footer link with label=Browser Memo linking to /browser-memo"
+    "description": "The label of footer link with label=ブラウザメモ linking to /browser-memo"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",

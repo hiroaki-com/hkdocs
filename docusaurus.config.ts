@@ -123,16 +123,16 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Tech',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
-        { to: '/diary', label: 'Diary', position: 'left' },
+        { to: '/blog', label: 'ブログ', position: 'left' },
+        { to: '/diary', label: '日記', position: 'left' },
         {
           to: '/browser-memo',
-          label: 'Browser Memo',
+          label: 'ブラウザメモ',
           position: 'left',
         },
-        { to: '/profile', label: 'Profile', position: 'right' },
+        { to: '/profile', label: 'プロフィール', position: 'right' },
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           position: 'right',
@@ -157,18 +157,18 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Contents',
+          title: 'コンテンツ',
           items: [
             {
-              label: 'Docs',
+              label: 'Tech',
               to: '/docs/intro',
             },
             {
-              label: 'Blog',
+              label: 'ブログ',
               to: '/blog',
             },
             {
-              label: 'Diary',
+              label: '日記',
               to: '/diary',
             },
           ],
@@ -177,11 +177,11 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Profile',
+              label: 'プロフィール',
               to: '/profile',
             },
             {
-              label: 'Browser Memo',
+              label: 'ブラウザメモ',
               to: '/browser-memo',
             },
             {
