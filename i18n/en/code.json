@@ -515,51 +515,39 @@
     "description": "The meta description for the homepage"
   },
   "homepage.features.tech.title": {
-    "message": "Tech",
-    "description": "The title for the Tech feature card on the homepage"
+    "message": "Tech"
   },
   "homepage.features.tech.description": {
-    "message": "Organizing daily learnings and blog posts.",
-    "description": "The description for the Tech feature card on the homepage"
+    "message": "Organizing daily learnings and blog posts."
   },
   "homepage.features.exams.title": {
-    "message": "Exams",
-    "description": "The title for the Exams feature card on the homepage"
+    "message": "Exams"
   },
   "homepage.features.exams.description": {
-    "message": "Study notes and reviews for certification exams.",
-    "description": "The description for the Exams feature card on the homepage"
+    "message": "Study notes and reviews for certification exams."
   },
   "homepage.features.blog.title": {
-    "message": "Blog",
-    "description": "The title for the Blog feature card on the homepage"
+    "message": "Blog"
   },
   "homepage.features.blog.description": {
-    "message": "Casual articles about technical learnings.",
-    "description": "The description for the Blog feature card on the homepage"
+    "message": "Casual articles about technical learnings."
   },
   "homepage.features.diary.title": {
-    "message": "Diary",
-    "description": "The title for the Diary feature card on the homepage"
+    "message": "Diary"
   },
   "homepage.features.diary.description": {
-    "message": "Daily records and personal miscellaneous notes.",
-    "description": "The description for the Diary feature card on the homepage"
+    "message": "Daily records and personal miscellaneous notes."
   },
   "homepage.features.browserMemo.title": {
-    "message": "Browser Memo",
-    "description": "The title for the Browser Memo feature card on the homepage"
+    "message": "Browser Memo"
   },
   "homepage.features.browserMemo.description": {
-    "message": "A lightweight memo function usable only in the browser.",
-    "description": "The description for the Browser Memo feature card on the homepage"
+    "message": "A lightweight memo function usable only in the browser."
   },
   "homepage.features.profile.title": {
-    "message": "Profile",
-    "description": "The title for the Profile feature card on the homepage"
+    "message": "Profile"
   },
   "homepage.features.profile.description": {
-    "message": "About me.",
-    "description": "The description for the Profile feature card on the homepage"
+    "message": "About me."
   }
 }

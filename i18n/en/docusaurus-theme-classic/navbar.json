@@ -7,25 +7,25 @@
     "message": "Hk Docs Logo",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Docs": {
-    "message": "Docs",
-    "description": "Navbar item with label Docs"
+  "item.label.Tech": {
+    "message": "Tech",
+    "description": "Navbar item with label Tech"
   },
-  "item.label.Blog": {
+  "item.label.ブログ": {
     "message": "Blog",
-    "description": "Navbar item with label Blog"
+    "description": "Navbar item with label ブログ"
   },
-  "item.label.Diary": {
+  "item.label.日記": {
     "message": "Diary",
-    "description": "Navbar item with label Diary"
+    "description": "Navbar item with label 日記"
   },
-  "item.label.Browser Memo": {
+  "item.label.ブラウザメモ": {
     "message": "Browser Memo",
-    "description": "Navbar item with label Browser Memo"
+    "description": "Navbar item with label ブラウザメモ"
   },
-  "item.label.Profile": {
+  "item.label.プロフィール": {
     "message": "Profile",
-    "description": "Navbar item with label Profile"
+    "description": "Navbar item with label プロフィール"
   },
   "item.label.GitHub": {
     "message": "GitHub",
