@@ -148,7 +148,7 @@ Node.jsとpnpmを直接マシンにインストールして開発します。
 
     `docker-compose.yml` で公開しているポート `3000` を指定してプレビューサーバーを起動します。
     ```bash
-    docker-compose run --rm --service-ports app pnpm serve -- --port 3000 --host 0.0.0.0
+    docker-compose run --rm --service-ports app pnpm exec http-server build --single --port 3000 --host 0.0.0.0
     ```
     サーバーは `http://localhost:3000` でアクセスできます。
 
