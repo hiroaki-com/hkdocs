@@ -68,7 +68,7 @@ export default function HomepageFeatures(): JSX.Element {
           <FeatureCard
             title={translate({
               id: 'homepage.features.exams.title',
-              message: 'Exams',
+              message: '試験',
             })}
             Icon={IconGraduationCap}
             description={
@@ -81,7 +81,7 @@ export default function HomepageFeatures(): JSX.Element {
           <FeatureCard
             title={translate({
               id: 'homepage.features.blog.title',
-              message: 'Blog',
+              message: 'ブログ',
             })}
             Icon={IconEdit}
             description={
@@ -94,7 +94,7 @@ export default function HomepageFeatures(): JSX.Element {
           <FeatureCard
             title={translate({
               id: 'homepage.features.diary.title',
-              message: 'Diary',
+              message: '日記',
             })}
             Icon={IconClock}
             description={
@@ -107,7 +107,7 @@ export default function HomepageFeatures(): JSX.Element {
           <FeatureCard
             title={translate({
               id: 'homepage.features.browserMemo.title',
-              message: 'Browser Memo',
+              message: 'ブラウザメモ',
             })}
             Icon={IconBrowserMemo}
             description={
@@ -120,7 +120,7 @@ export default function HomepageFeatures(): JSX.Element {
           <FeatureCard
             title={translate({
               id: 'homepage.features.profile.title',
-              message: 'Profile',
+              message: 'プロフィール',
             })}
             Icon={IconUser}
             description={
