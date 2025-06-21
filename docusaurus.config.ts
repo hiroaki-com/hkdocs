@@ -46,6 +46,10 @@ const config: Config = {
     [
       'classic',
       {
+        gtag: {
+          trackingID: 'G-NKX9CMSK0S',
+          anonymizeIP: true,
+        },
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/hiroaki-com/hkdocs',
