@@ -1,6 +1,8 @@
 ---
 title: Integrating Google Analytics (GA4) with Docusaurus
 sidebar_position: 10
+last_update:
+  date: 2025-06-22
 tags: [Docusaurus, Google Analytics, GA4, gtag]
 ---
 

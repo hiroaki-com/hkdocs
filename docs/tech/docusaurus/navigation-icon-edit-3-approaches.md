@@ -1,7 +1,8 @@
 ---
 title: Docusaurus ナビゲーションアイコン編集：3つのアプローチ
 sidebar_position: 5
-last_update_date: '2025-06-14'
+last_update:
+  date: 2025-06-14
 tags: [docusaurus, アイコン, css, svg]
 ---
 

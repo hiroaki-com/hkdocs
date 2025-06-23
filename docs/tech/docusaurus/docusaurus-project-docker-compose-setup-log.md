@@ -1,7 +1,8 @@
 ---
 title: DocusaurusプロジェクトへDockerCompose導入した記録
 sidebar_position: 3
-last_update_date: '2025-06-11'
+last_update:
+  date: 2025-06-11
 tags: [docker, docker-compose]
 ---
 
