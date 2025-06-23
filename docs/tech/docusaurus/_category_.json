@@ -1,0 +1,8 @@
+{
+  "label": "Docusaurus",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "当サイト構築時に学んだDocusaurusのセットアップ、カスタマイズ、運用に関する備忘録です。"
+  }
+}
