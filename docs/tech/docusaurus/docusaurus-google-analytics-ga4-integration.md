@@ -1,7 +1,8 @@
 ---
 title: DocusaurusにGoogle Analytics (GA4)を導入する
 sidebar_position: 10
-last_update_date: '2025-06-22'
+last_update:
+  date: 2025-06-22
 tags: [Docusaurus, Google Analytics, GA4, gtag]
 ---
 
