@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
-title: 「水平線の検知／置換」AppScript - Googleドキュメント用
+title: 「水平線の検知／置換」AppScript
+last_update:
+  date: 2025-06-18
 ---
 
 # Googleドキュメント用「水平線の検知／置換」AppScript

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
-title: 「改ページ（文字列検知）」AppScript - Googleドキュメント用
+title: 「改ページ（文字列検知）」AppScript
+last_update:
+  date: 2025-06-18
 ---
 
 # Googleドキュメント用「改ページ（文字列検知）」AppScript

@@ -1,6 +1,8 @@
 ---
 sidebar_position: 6
 title: Professional Cloud DevOps Engineer
+last_update:
+  date: 2025-06-10
 tags: [google cloud, 認定資格, 合格記]
 ---
 
