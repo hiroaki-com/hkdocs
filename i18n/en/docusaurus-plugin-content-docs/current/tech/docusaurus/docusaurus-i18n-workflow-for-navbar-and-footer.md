@@ -1,6 +1,8 @@
 ---
 title: How to Internationalize (i18n) the Navbar and Footer in Docusaurus
 sidebar_position: 9
+last_update:
+  date: 2025-06-16
 tags: [Docusaurus, i18n, React, TypeScript, workflow]
 ---
 

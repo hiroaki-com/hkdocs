@@ -1,6 +1,8 @@
 ---
 title: Implementing a Browser-Based Memo Feature in Docusaurus
 sidebar_position: 6
+last_update:
+  date: 2025-06-15
 tags: [Docusaurus, React, TypeScript, localStorage, browser-feature]
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: Docusaurusのi18n導入で発生したルーティングとデプロイの問題解決録
 sidebar_position: 8
-last_update_date: '2025-06-16'
+last_update:
+  date: 2025-06-16
 tags: [docusaurus, i18n, routing, deployment, docker, cloudrun]
 ---
 
