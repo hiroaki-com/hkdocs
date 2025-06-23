@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 title: AppScript for Page Breaks (by Heading Level) in Google Docs
+last_update:
+  date: 2025-06-18
 ---
 
 # AppScript for Inserting Page Breaks by Heading Level in Google Docs

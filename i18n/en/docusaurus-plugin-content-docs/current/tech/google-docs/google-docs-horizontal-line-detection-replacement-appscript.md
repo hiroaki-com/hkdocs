@@ -1,6 +1,8 @@
 ---
 sidebar_position: 5
 title: AppScript for Detecting/Replacing Horizontal Lines in Google Docs
+last_update:
+  date: 2025-06-18
 ---
 
 # AppScript for Detecting/Replacing Horizontal Lines in Google Docs

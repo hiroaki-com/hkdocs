@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 title: Professional Cloud Architect
+last_update:
+  date: 2025-06-10
 tags: [google cloud, certification, passed-exam]
 ---
 
