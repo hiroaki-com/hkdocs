@@ -26,22 +26,29 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
+          # スクリプトがコミット間の差分を取得するためにGit履歴全体が必要
           fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-          # cache: 'pnpm' # Corepack利用時はキャッシュの挙動が変わる可能性があるため、一旦削除またはコメントアウト
 
       - name: Enable Corepack and Set up PNPM
         run: |
           corepack enable
-          corepack prepare pnpm@10.11.0 --activate # プロジェクトのpackage.jsonのpackageManagerフィールドと合わせる
+          corepack prepare pnpm@10.11.0 --activate
         shell: bash
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Wait for Site Deployment
+        # Cloud Runへのデプロイが完了するのを待つために3分間待機
+        run: |
+          echo "Waiting 3 minutes for the site deployment to complete..."
+          sleep 180
+        shell: bash
 
       - name: Find New Posts and Post to X
         env:
