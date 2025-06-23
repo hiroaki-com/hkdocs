@@ -55,6 +55,7 @@ const config: Config = {
           editUrl: 'https://github.com/hiroaki-com/hkdocs',
           remarkPlugins: [math],
           rehypePlugins: [katex],
+          showLastUpdateTime: true,
         },
         blog: {
           showReadingTime: true,
