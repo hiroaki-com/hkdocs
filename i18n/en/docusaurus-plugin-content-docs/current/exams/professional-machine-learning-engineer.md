@@ -1,6 +1,8 @@
 ---
 sidebar_position: 9
 title: Professional Machine Learning Engineer
+last_update:
+  date: 2025-06-10
 tags: [google cloud, certification, exam review]
 ---
 
