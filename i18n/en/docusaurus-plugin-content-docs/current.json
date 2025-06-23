@@ -10,5 +10,21 @@
   "sidebar.tutorialSidebar.category.Exams": {
     "message": "Exams",
     "description": "The label for category Exams in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Docusaurus": {
+    "message": "Docusaurus",
+    "description": "The label for category Docusaurus in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Docusaurus.link.generated-index.description": {
+    "message": "Notes on setting up, customizing, and operating Docusaurus, learned while building this site.",
+    "description": "The generated-index page description for category Docusaurus in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Google Apps Script": {
+    "message": "Google Apps Script",
+    "description": "The label for category Google Apps Script in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Google Apps Script.link.generated-index.description": {
+    "message": "Notes on using Google Apps Script to streamline Google Docs editing.",
+    "description": "The generated-index page description for category Google Apps Script in sidebar tutorialSidebar"
   }
 }

@@ -1,0 +1,8 @@
+{
+  "label": "Google Apps Script",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Googleドキュメントの編集を効率化するためのGoogle Apps Scriptに関する備忘録です。"
+  }
+}
