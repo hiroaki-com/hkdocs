@@ -1,6 +1,7 @@
 ---
 title: Docusaurus サイトを多言語対応 (i18n) するための実装手順
 sidebar_position: 7
+last_update_date: '2025-06-16'
 tags: [docusaurus, i18n]
 ---
 
