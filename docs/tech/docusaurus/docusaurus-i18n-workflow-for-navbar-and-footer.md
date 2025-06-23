@@ -1,7 +1,8 @@
 ---
 title: Docusaurusのナビゲーションバーとフッターを国際化（i18n）する手順
 sidebar_position: 9
-last_update_date: '2025-06-16'
+last_update:
+  date: 2025-06-22
 tags: [docusaurus, i18n, react, typescript, workflow]
 ---
 
