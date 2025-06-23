@@ -1,6 +1,7 @@
 ---
 title: Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装の記録
 sidebar_position: 4
+last_update_date: '2025-06-13'
 tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 

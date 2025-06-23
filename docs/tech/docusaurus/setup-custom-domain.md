@@ -1,6 +1,7 @@
 ---
 title: Cloud Run と Value Domain で Docusaurus サイトにカスタムドメインを設定する手順
 sidebar_position: 1
+last_update_date: '2025-06-09'
 tags: [docusaurus]
 ---
 
