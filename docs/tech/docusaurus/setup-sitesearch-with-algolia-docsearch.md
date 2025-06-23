@@ -1,7 +1,8 @@
 ---
 title: DocusaurusにAlgolia DocSearchを組み込む方法
 sidebar_position: 2
-last_update_date: '2025-06-10'
+last_update:
+  date: 2025-06-10
 tags: [docusaurus]
 ---
 

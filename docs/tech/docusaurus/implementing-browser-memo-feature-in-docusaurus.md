@@ -1,7 +1,8 @@
 ---
 title: Docusaurus サイト内ブラウザメモ機能の実装記録
 sidebar_position: 6
-last_update_date: '2025-06-15'
+last_update:
+  date: 2025-06-15
 tags: [docusaurus, react, typescript, localStorage, ブラウザ機能]
 ---
 

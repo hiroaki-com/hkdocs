@@ -1,6 +1,8 @@
 ---
 title: "Editing Docusaurus Navigation Icons: Three Approaches"
 sidebar_position: 5
+last_update:
+  date: 2025-06-14
 tags: [Docusaurus, icon, CSS, SVG]
 ---
 

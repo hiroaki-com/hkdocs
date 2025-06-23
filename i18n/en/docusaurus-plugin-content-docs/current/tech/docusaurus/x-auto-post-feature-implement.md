@@ -1,6 +1,8 @@
 ---
 title: "Detecting New Articles with GitHub Actions and Posting to X as a Twitter Card"
 sidebar_position: 4
+last_update:
+  date: 2025-06-13
 tags: [GitHub Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: How to Integrate Algolia DocSearch into Docusaurus
 sidebar_position: 2
+last_update:
+  date: 2025-06-10
 tags: [Docusaurus, Algolia, DocSearch, search]
 ---
 
