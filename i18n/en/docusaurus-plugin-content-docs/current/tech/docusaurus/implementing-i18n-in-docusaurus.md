@@ -1,6 +1,8 @@
 ---
 title: How to Implement Multilingual Support (i18n) in a Docusaurus Site
 sidebar_position: 7
+last_update:
+  date: 2025-06-16
 tags: [Docusaurus, i18n]
 ---
 

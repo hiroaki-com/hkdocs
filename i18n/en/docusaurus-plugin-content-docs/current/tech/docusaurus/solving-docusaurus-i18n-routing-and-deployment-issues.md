@@ -1,6 +1,8 @@
 ---
 title: "Solving Docusaurus i18n Routing and Deployment Issues"
 sidebar_position: 8
+last_update:
+  date: 2025-06-16
 tags: [Docusaurus, i18n, routing, deployment, Docker, Cloud Run]
 ---
 

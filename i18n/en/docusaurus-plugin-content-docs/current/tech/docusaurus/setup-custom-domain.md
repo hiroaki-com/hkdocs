@@ -1,6 +1,8 @@
 ---
 title: How to Set Up a Custom Domain on Cloud Run with Value Domain for a Docusaurus Site
 sidebar_position: 1
+last_update:
+  date: 2025-06-09
 tags: [Docusaurus, Cloud Run, custom domain, DNS]
 ---
 

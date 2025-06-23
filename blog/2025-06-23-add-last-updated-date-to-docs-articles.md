@@ -1,6 +1,7 @@
 ---
-title: DocusaurusのDocs記事に最終更新日を表示する簡単な方法
-last_update_date: '2025-06-23'
+title: DocusaurusのDocs記事に 最終更新日 を表示する簡単な方法
+last_update:
+  date: '2025-06-23'
 tags: [docusaurus, frontmatter]
 ---
 
@@ -8,13 +9,17 @@ tags: [docusaurus, frontmatter]
 `Docsフォルダ`には、`Blogフォルダ`のように、作成日など日付の記載がデフォルトではされないようなので追加することを決定しました。
 Gitの履歴に依存せず、CI/CDの設定変更も不要な、Front Matterを利用した方法の採用しました。
 
+**参考資料:**
+- https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#last_update
+
+<!-- truncate -->
+
 **前提環境:**
 
 *   **サイトジェネレーター:** Docusaurus v3
 *   **要件:** ドキュメント記事の信頼性向上のための最終更新日の表示。
 *   **方針:** CI/CDパイプラインに影響を与えず、手軽に導入できる方法の選択。
 
-<!-- truncate -->
 
 ### 1. 実装方法の検討
 
@@ -78,23 +83,22 @@ Docusaurusで最終更新日を表示させるためのオプションの有効�
 最終更新日を表示したいドキュメントのMarkdownファイルに、Docusaurusが認識する特別なキーを使って日付を記述。
 
 1.  対象の `.md` ファイルを開く。
-2.  ファイルの先頭にあるFront Matter（`---`で囲まれた部分）に、以下のキーと値を追加。
-    *   `last_update_date`: 表示したい最終更新日
-    *   `last_update_author`: 表示したい更新者名（任意）
+2.  ファイルの先頭にあるFront Matter（`---`で囲まれた部分）に、`last_update`キーを追加し、その下に`date`と`author`を記述します。
 
     ```markdown:例: docs/intro.md
     ---
     title: Introduction
     tags: [getting-started]
-    # --- 以下の2行を追記 ---
-    last_update_date: '2025-06-26'
-    last_update_author: 'Hiroaki'
+    # --- 以下のブロックを追記 ---
+    last_update:
+      date: '2025-06-26'
+      author: 'author name'
     ---
     
     このドキュメントは...
     ```
 
-`last_update_date` キーが存在する場合、DocusaurusはGitのコミット履歴よりもこちらを優先して表示。
+`last_update` キーが存在する場合、DocusaurusはGitのコミット履歴よりもこちらを優先して表示。
 
 ### まとめ
 
