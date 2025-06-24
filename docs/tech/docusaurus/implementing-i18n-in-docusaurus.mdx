@@ -6,6 +6,8 @@ last_update:
 tags: [docusaurus, i18n]
 ---
 
+import Admonition from '@theme/Admonition';
+
 この記事では、Docusaurus で構築したサイトに多言語対応（i18n）機能を実装し、日本語（デフォルト）と英語のコンテンツを切り替えられるように設定した際の手順を整理します。
 
 公式ドキュメントを参考にしつつ、Docker 環境でのコマンドや、デプロイ前の確実な動作確認方法など、実践で役立つポイントも交えて解説します。
@@ -16,7 +18,7 @@ tags: [docusaurus, i18n]
 *   **開発環境:** Docker (ローカル環境のコマンドも併記)
 *   **目標:** 日本語(`ja`)と英語(`en`)の2言語に対応させる
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Docusaurus 設定ファイル (`docusaurus.config.ts`) の更新
 
@@ -25,7 +27,7 @@ tags: [docusaurus, i18n]
 1.  プロジェクトルートにある `docusaurus.config.ts` (または `.js`) ファイルを開きます。
 2.  `i18n` オブジェクトを追加し、デフォルト言語とサポートする言語を定義します。また、URLの正規化のために `trailingSlash: true` を設定することを推奨します。これにより、サーバー環境に依存しない安定したルーティングが実現できます。
 
-    ```typescript:docusaurus.config.ts
+    ```typescript title="docusaurus.config.ts"
     // docusaurus.config.ts
     import type {Config} from '@docusaurus/types';
 
@@ -59,7 +61,7 @@ tags: [docusaurus, i18n]
 
 3.  `themeConfig.navbar.items` に `type: 'localeDropdown'` を追加し、ユーザーがサイト上で言語を切り替えられるスイッチャーをヘッダーに表示させます。
 
-    ```typescript:docusaurus.config.ts
+    ```typescript title="docusaurus.config.ts"
     // docusaurus.config.ts
     // ...
     themeConfig: {
@@ -111,7 +113,9 @@ tags: [docusaurus, i18n]
     *※ブログのインスタンスを複数利用している場合は、その分ディレクトリを作成します (例: `docusaurus-plugin-content-blog-diary`)*
 
 2.  **コンテンツのコピーと翻訳**
-    > **アドバイス:** 最初は**最低1ページ**だけ翻訳し、i18n機能が正しく動作するかを早期に確認することを強く推奨します。
+    <Admonition type="tip" title="アドバイス">
+      最初は**最低1ページ**だけ翻訳し、i18n機能が正しく動作するかを早期に確認することを強く推奨します。
+    </Admonition>
 
     **例：Docsの `intro.md` を英語化する場合**
 
@@ -131,7 +135,9 @@ tags: [docusaurus, i18n]
 
 翻訳作業中など、特定の言語の表示をホットリロードを有効にして確認したい場合に使います。
 
-> **注記:** 開発サーバー (`start` コマンド) は、一度に一つの言語しか起動できません。また、Docker環境で外部からアクセスするには `--host 0.0.0.0` オプションが必須です。
+<Admonition type="note" title="注記">
+  開発サーバー (`start` コマンド) は、一度に一つの言語しか起動できません。また、Docker環境で外部からアクセスするには `--host 0.0.0.0` オプションが必須です。
+</Admonition>
 
 ```bash
 # 【英語サイトで開発する場合】
@@ -158,7 +164,7 @@ pnpm start
     ```
 2.  **`serve` スクリプトの設定 (初回のみ)**
     `package.json` の `scripts` に、SPAモード (`--single`) でビルド成果物を提供するためのコマンドを追加します。
-    ```json:package.json
+    ```json title="package.json"
     "scripts": {
       // ...
       "build": "docusaurus build",

@@ -3,18 +3,22 @@ title: Cloud Run と Value Domain で Docusaurus サイトにカスタムドメ�
 sidebar_position: 1
 last_update:
   date: 2025-06-09
-tags: [docusaurus]
+tags: [docusaurus, gcp, cloudrun, dns, value-domain]
 ---
+
+import Admonition from '@theme/Admonition';
 
 この記事では、Google Cloud Run でホスティングしている 当サイト（Docusaurus）に、Value Domain で取得したカスタムドメイン `hkdocs.com` を設定した際の手順を整理します。
 
-**前提環境:**
+<Admonition type="info" title="前提環境">
+  <ul>
+    <li><strong>ドメイン:</strong> <code>hkdocs.com</code> (<a href="https://www.value-domain.com/">Value Domain</a> で取得済み)</li>
+    <li><strong>ホスティング:</strong> Google Cloud Run</li>
+    <li><strong>サイトジェネレーター:</strong> Docusaurus</li>
+  </ul>
+</Admonition>
 
-*   **ドメイン:** `hkdocs.com` ([Value Domain](https://www.value-domain.com/) で取得済み)
-*   **ホスティング:** Google Cloud Run
-*   **サイトジェネレーター:** Docusaurus
-
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Docusaurus 設定ファイルの更新
 
@@ -22,7 +26,7 @@ tags: [docusaurus]
 
 1.  Docusaurus プロジェクト内の `docusaurus.config.ts` (または `.js`) ファイルを開きます。
 2.  `url` プロパティを、`https://hkdocs.com/` に変更します。
-    ```typescript
+    ```typescript title="docusaurus.config.ts"
     // docusaurus.config.ts
     const config: Config = {
       // ...
@@ -69,14 +73,19 @@ Cloud Run がTXTレコードを認識すると、次に設定すべきAレコー
 2.  所有権確認が完了すると、Cloud Run サービスへトラフィックを向けるための **A レコード (IPv4アドレス) と AAAA レコード (IPv6アドレス)** が複数表示されます。これらのIPアドレスをすべて正確にメモします。
     *   **Aレコードの例 (ダミー):** `198.51.100.10`, `198.51.100.11`, `198.51.100.12`, `198.51.100.13`
     *   **AAAAレコードの例 (ダミー):** `2001:db8:2::1a`, `2001:db8:2::1b`, `2001:db8:2::1c`, `2001:db8:2::1d`
-    *(これらのIPアドレスはあくまで例であり、実際にはCloud Runから提供される固有のIPアドレスを使用してください)*
+
+<Admonition type="note">
+  これらのIPアドレスはあくまで例であり、実際にはCloud Runから提供される固有のIPアドレスを使用してください。
+</Admonition>
 
 ### 5. Value Domain でのDNSレコード設定 (A/AAAAレコード)
 
 再度 Value Domain のDNS設定画面で、取得したA/AAAAレコードを設定します。
 
 1.  **Value Domain** の `hkdocs.com` のDNS設定画面を開きます。
-2.  **重要:** `hkdocs.com` (ホスト名 `@`) に設定されている既存のAレコード、AAAAレコード、またはウェブサイト用のCNAMEレコードがあれば、それらを削除するか行頭に `#` をつけてコメントアウトします。これは、Cloud Run の設定と競合するのを防ぐためです。メール関連のMXレコードなどは変更しないでください。
+2.  <Admonition type="warning" title="重要">
+    <code>hkdocs.com</code> (ホスト名 <code>@</code>) に設定されている既存のAレコード、AAAAレコード、またはウェブサイト用のCNAMEレコードがあれば、それらを削除するか行頭に <code>#</code> をつけてコメントアウトします。これは、Cloud Run の設定と競合するのを防ぐためです。メール関連のMXレコードなどは変更しないでください。
+    </Admonition>
 3.  手順4でメモしたAレコードとAAAAレコードを、Value Domain の書式に従って追加します。
     *   **記載例 (IPアドレスは手順4で取得したダミー値を実際の値に置き換えてください):**
         ```dns

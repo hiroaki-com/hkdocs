@@ -3,7 +3,7 @@ title: DocusaurusにGoogle Analytics (GA4)を導入する
 sidebar_position: 10
 last_update:
   date: 2025-06-22
-tags: [Docusaurus, Google Analytics, GA4, gtag]
+tags: [Docusaurus, Google Analytics, GA4, gtag, チュートリアル]
 ---
 
 Docusaurusで構築した当サイトにGoogle Analytics 4 (GA4) を導入し、アクセス解析を行うための設定手順を備忘録として整理します。
@@ -12,7 +12,7 @@ Docusaurusで構築した当サイトにGoogle Analytics 4 (GA4) を導入し、
 *   DocusaurusサイトにGoogle Analytics 4 (GA4) を導入。
 *   サイト全体のアクセス解析を可能に。
 
-<!-- truncate -->
+{/* truncate */}
 
 **参考:**
 *   **Docusaurus公式ドキュメント (gtag):** [https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag)
@@ -47,23 +47,28 @@ Docusaurusでは設定ファイル一ヶ所の編集でGAを導入可能。こ�
 
 ##### ※ 前提：DocusaurusのGA4連携プラグインについて
 
-Docusaurusには2つのGoogle Analytics関連プラグインが存在。
+:::info[GA4連携プラグインについて]
+Docusaurusには2つのGoogle Analytics関連プラグインが存在します。
 
 *   **推奨: [`@docusaurus/plugin-google-gtag`](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag)**
     *   GA4 (`G-`から始まるID) に対応した現在の標準プラグイン。
 *   **非推奨: [`@docusaurus/plugin-google-analytics`](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-analytics)**
     *   旧式のUniversal Analytics (`UA-`から始まるID) 用のプラグイン。
-    *   公式ドキュメントに「このプラグインは非推奨であり、2023年7月1日に役に立たなくなりました」と明記されています。Universal Analytics自体が2023年7月1日で廃止されたため、このプラグインも現在は使用不可。
+    *   公式ドキュメントに「このプラグインは非推奨であり、2023年7月1日に役に立たなくなりました」と明記されています。Universal Analytics自体が2023年7月1日で廃止されたため、このプラグインも現在は使用不可です。
+:::
 
-**今回は `@docusaurus/preset-classic` をすでに使用しているため、`@docusaurus/plugin-google-gtag` を別途インストールする必要はない。**
-`preset-classic` が内部的にgtagプラグインを含んでいるため、`themeConfig` に設定を追記するだけでGA4との連携が可能。
+:::tip[preset-classicを利用する場合]
+**今回は `@docusaurus/preset-classic` をすでに使用しているため、`@docusaurus/plugin-google-gtag` を別途インストールする必要はありません。**
+`preset-classic` が内部的にgtagプラグインを含んでいるため、`presets` 内に設定を追記するだけでGA4との連携が可能です。
+:::
 
 #### Docusaurus設定ファイルの編集
-DocusaurusのGA連携機能は、ローカル開発環境 (`pnpm start`)では無効化され、本番ビルド (`pnpm build`)でのみ有効。
 
-**`docusaurus.config.ts` 編集例:**
-```typescript
-// docusaurus.config.ts
+:::caution[本番ビルドでのみ有効]
+DocusaurusのGA連携機能は、ローカル開発環境 (`pnpm start`)では無効化され、本番ビルド (`pnpm build`)でのみ有効になります。
+:::
+
+```typescript title="docusaurus.config.ts"
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
@@ -105,4 +110,4 @@ export default config;
     *   自身のアクセスがリアルタイムで計測されることを確認 (反映に数分かかる場合あり)。
 3.  **Google Tag Assistant Companion:**
     *   Chrome拡張機能「Tag Assistant Companion」を導入。
-    *   デバッグしたいページURLをTag Assistantサイトで指定し、Gtagが正しく認識・発火しているかを確認。    
+    *   デバッグしたいページURLをTag Assistantサイトで指定し、Gtagが正しく認識・発火しているかを確認。

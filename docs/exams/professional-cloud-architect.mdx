@@ -6,13 +6,15 @@ last_update:
 tags: [google cloud, 認定資格, 合格記]
 ---
 
+import Admonition from '@theme/Admonition';
+
 **🌸 合格：2025年1月31日**
 
 **試験概要：**
 - [Professional Cloud Architect](https://cloud.google.com/learn/certification/cloud-architect?hl=ja)
 - [認定試験一覧](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
 
-
+{/* truncate */}
 
 ### 受験情報 2025 年 1 月 31 日
 試験名: Google Cloud Certified - Professional Cloud Architect (Japanese)
@@ -24,27 +26,34 @@ tags: [google cloud, 認定資格, 合格記]
 
 ### 受験後の追想 🌸
 
-2025/01/31 合格
-```
+<Admonition type="note" title="2025/01/31 合格後の感想">
+<p>
 感想としては面白かった。しかし、余裕ではなく、初めて見る問題も結構あった印象
-
+</p>
+<p>
 問題は50問／時間は30分程度余して、見直しをちょうど完了できる程度。もう少し早く終わりたかっただけに残念
-
+</p>
+<p>
 所管としては、75%〜80% 程度ではないかと想像
-
+</p>
+<p>
 昔にUdemyで見たことのある問題もあった印象
-
+</p>
+<p>
 また、複合問題（認証／組織／サービス...）の割合が圧倒的に増加しており、簡単なサービスの目的を問うような問題はあまりなかった。
-
+</p>
+<p>
 また、セキュリティに関する問題が少し多いような印象を受けた。
 ネットワーク、データ連携に関する問題が難しい印象。
 IAMに関する設計の問題が複数あり、応用的な問題が多かった。
-
+</p>
+<p>
 機械学習に関する問題も少々あった印象
-
+</p>
+<p>
 VMの移行に関する問題もあった。難しかったというか解いたことのない問題で自信がなかった
-
-```
+</p>
+</Admonition>
 
 ### 🔥受験に向けた戦略🔥
  - [Case studies｜公式](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf?hl=ja) の４つの事例を把握する 
@@ -175,12 +184,9 @@ VMの移行に関する問題もあった。難しかったというか解いた
 		- [ブログ](https://zenn.dev/cloud_ace/articles/e483362103d7f6)
 		- [公式コミュニティ](https://www.googlecloudcommunity.com/gc/Infrastructure-Compute-Storage/private-service-access-vs-private-service-connect-vs-private/m-p/760591)
 
-
-
-
 ---
 
-### 自習用_問題集作成用プロンプトメモ
+<Admonition type="info" title="自習用_問題集作成用プロンプトメモ">
 
 2024/11/30
 - GPTs で専用のプロンプトを設定完了している。しかし、作業時には適宜、プロンプトの補強を実施する必要がある。例えば、長文で生成した後半部分の補強や、複数回のプロンプト時には新規のページで作業が必要など、生成AIの弱点を補う必要がある
@@ -198,7 +204,6 @@ VMの移行に関する問題もあった。難しかったというか解いた
 Dataflowでのストリーミング処理において、状態管理を行う際に使用される最も一般的な概念は何ですか？
 ``
 ```
-
 
 ##### 自習用_GPTs チップス
 
@@ -219,8 +224,6 @@ Dataflowでのストリーミング処理において、状態管理を行う際
 	- → GPTs では事前に指示を登録できるので、その時点で明確な指示の登録を心がける
 	- → 作業時の画面に置いて、登録済みの指示を補う指示をすることも重要
 
-
-
 ##### 自習用_応用問題生成のTIPS
 
 2024/12/14 
@@ -236,3 +239,4 @@ Gemini（studio）へSystemプロンプトを設定の上、順次改善して�
 GPTs で試験範囲に準じた基礎問題集を生成する
 ↓
 Gemini（studio）へSystemプロンプトを設定の上、順次応用問題に改善していく
+</Admonition>
