@@ -3,31 +3,44 @@ sidebar_position: 3
 title: 「改ページ（見出しレベル検知）」AppScript
 last_update:
   date: 2025-06-18
+tags: [Google Docs, Apps Script, GAS, チュートリアル]
 ---
+
+import Admonition from '@theme/Admonition';
 
 # Googleドキュメント用「改ページ（見出しレベル検知）」AppScript
 
 ### 作成の経緯
-- 超長文なドキュメントの編集作業の中で、改ページの編集のために`⌘＋Enter`を繰り返し使用していたが、あまりにも時間がかかっていた
-- [Chrome拡張機能](https://chromewebstore.google.com/category/extensions?hl=ja) などで目的の機能を提供しているサービスが無さそうであったため、自作
+- 超長文なドキュメントの編集作業の中で、改ページの編集のために`⌘＋Enter`を繰り返し使用していたが、あまりにも時間がかかっていた。
+- [Chrome拡張機能](https://chromewebstore.google.com/category/extensions?hl=ja) などで目的の機能を提供しているサービスが無さそうであったため、自作。
 
 ### ユースケース
-- 書籍など超長文のGoogleドキュメント 編集作業の効率化
-- 指定した見出しレベルの前に改ページを挿入する
+- 書籍など超長文のGoogleドキュメント 編集作業の効率化。
+- 指定した見出しレベルの前に改ページを挿入する。
 
 ### 使い方
- 1. Googleドキュメントのシートで、以下のAppScriptを貼り付けて、コメントのとおり実行するだけで使用可能
 
+1.  Googleドキュメントを開き、「拡張機能」>「Apps Script」からスクリプトエディタを開きます。
+2.  以下のスクリプトをエディタに貼り付けます。
+3.  スクリプト内の設定箇所を編集し、保存・実行します。
 
- ```Javascript
- // --- 設定箇所 ---
+<Admonition type="info" title="スクリプトの設定方法">
+<p>
+スクリプトを貼り付けた後、コードの先頭にある <code>TARGET_HEADING_LEVEL</code> の値を、改ページを挿入したい見出しレベル（1〜6の整数）に変更してください。<br/>
+コード内のコメントに詳しい設定方法が記載されています。
+</p>
+<p>例：<code>const TARGET_HEADING_LEVEL = 3;</code> // 「見出し 3」の前に改ページを挿入する場合</p>
+</Admonition>
+
+```javascript title="insert-page-break-before-heading.js"
+// --- 設定箇所 ---
 /**
  * @fileoverview 指定した見出しレベルの前に改ページを挿入するGoogle Apps Scriptです。
  *
  * ## 関数実行時の前提
  *
- * ・重要：実行する関数を選択　> [ insertPageBreakBreforeHeading ] を選択してください。 
- * 
+ * ・重要：実行する関数を選択　> [ insertPageBreakBreforeHeading ] を選択してください。
+ *
  * ## 設定方法
  *
  * 1. **TARGET_HEADING_LEVEL** の値を、改ページを挿入したい見出しのレベル (1～6の半角整数) に変更します。
@@ -305,4 +318,3 @@ function buildResultMessage(insertedCount, foundCount, headingName, duration) {
              + `3. スクリプトの権限は承認されていますか？`;
     }
 }
- ```

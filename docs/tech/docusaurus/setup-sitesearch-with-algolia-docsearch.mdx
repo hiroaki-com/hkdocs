@@ -3,8 +3,10 @@ title: DocusaurusにAlgolia DocSearchを組み込む方法
 sidebar_position: 2
 last_update:
   date: 2025-06-10
-tags: [docusaurus]
+tags: [docusaurus, algolia, docsearch, search]
 ---
+
+import Admonition from '@theme/Admonition';
 
 この記事では、Algolia DocSearch を使用して、サイト内検索機能を設定した際の手順と課題解決の経緯を整理します。
 
@@ -17,7 +19,7 @@ tags: [docusaurus]
 採用サービス：
 - [Algolia DocSearch](https://docsearch.algolia.com/)
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 1. Algolia DocSearchへの申請
 
@@ -41,7 +43,7 @@ tags: [docusaurus]
 2.  **設定内容**
     取得したキー情報を各項目に設定。
 
-    ```typescript
+    ```typescript title="docusaurus.config.ts"
     // docusaurus.config.ts
     // ...
     themeConfig: {
@@ -78,7 +80,9 @@ tags: [docusaurus]
 3.  **コンテンツの自動更新**
     サイト更新後、DocSearchクローラーが定期的に変更を検知し、検索インデックスを自動更新。
 
-    > **注意**：クロールが完了し、インデックスにデータが登録されるまで検索機能は動作しない。
+    <Admonition type="warning" title="注意">
+      クロールが完了し、インデックスにデータが登録されるまで検索機能は動作しない。
+    </Admonition>
 
 #### 4. 動作確認
 
@@ -120,7 +124,7 @@ Docusaurus v3はJavaScriptによって動的にコンテンツを描画するSPA
 1.  Algoliaダッシュボードで対象クローラーの設定エディターを開く。
 2.  設定項目`renderJavaScript: false`を`true`に変更。
 
-    ```javascript
+    ```javascript title="Algoliaクローラー設定ファイル"
     // Algoliaクローラー設定ファイル
     new Crawler({
       // ...
