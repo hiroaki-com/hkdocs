@@ -1,0 +1,209 @@
+---
+title: Docusaurus多言語サイトでAlgolia検索を言語別に最適化する方法
+authors: [hk]
+tags: [Docusaurus, Algolia, i18n, DocSearch, Crawler, チュートリアル]
+---
+
+Docusaurusで構築した多言語（i18n）サイトへのAlgolia DocSearch導入時、**検索結果に複数言語が混在する**という課題への直面。日本語での検索時に英語ページがヒットするなど、ユーザー体験を損なう事態が発生しがちです。
+
+本記事では、この問題を解決し、**サイトの表示言語と連動した最適な検索体験**を実現するための具体的な設定手順を備忘録として整理します。
+
+:::tip この記事で実現できること
+*   サイト表示言語（日本語/英語）と連動した検索結果の出し分け。
+*   URLパス（`/` or `/en/`）に基づく、コンテンツの言語別Algoliaインデックスへの自動振り分け。
+*   日本語と英語、各言語特性に合わせたインデックス設定による検索精度の向上。
+:::
+
+{/* truncate */}
+
+### 参考資料
+*   **Docusaurus 公式ドキュメント**: [Search](https://docusaurus.io/docs/search)
+*   **Algolia 多言語検索ガイド**: [Multilingual search](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/how-to/multilingual-search/)
+
+
+### 課題：標準設定における問題点
+
+Docusaurusのi18n機能とAlgoliaを標準設定で連携させた場合、全言語のコンテンツが単一のAlgoliaインデックスに登録される。これにより、以下の問題が発生する。
+
+| 課題 | 単一インデックスの問題点 | 言語別インデックスでの解決策 |
+| :--- | :--- | :--- |
+| **検索結果の混在** | 日本語・英語のコンテンツが区別なく表示され、ユーザーの混乱を誘発。 | 表示言語に合ったコンテンツのみを的確に表示。 |
+| **検索精度の低下** | 言語特性（単語の区切り、複数形など）を考慮した最適化が困難。 | 各言語の特性に合わせた`ignorePlurals`などの設定による、精度の向上。 |
+| **管理の複雑化** | 全言語のデータが一元化され、言語ごとの分析や調整が困難。 | 言語ごとのデータ分離による、管理と分析の容易化。 |
+
+:::danger ユーザー体験への影響
+言語が混在した検索結果は、ユーザーが必要な情報を見つける上での妨げとなり、サイトからの離脱を引き起こす大きな要因となる。
+:::
+
+### 解決アプローチ：言語別インデックスへの分離
+
+この問題の解決の鍵は、**URL構造を利用した、コンテンツの言語ごとインデックスへの分離**である。
+
+実装は以下の2ステップで進行する。
+
+1.  **Algoliaクローラーのカスタマイズ**:
+    URLパス (`/` or `/en/`) を識別し、クロール対象を言語ごとに定義。言語別の専用インデックス (`yoursite_ja`, `yoursite_en`) を作成し、各々に最適化設定を適用。
+2.  **Docusaurusフロントエンド設定**:
+    `contextualSearch`オプションを有効化し、表示言語と使用するAlgoliaインデックスを自動で紐付け。
+
+### 1. Algoliaクローラーでの言語別インデックス設定
+
+まず、Algoliaのクローラー設定ファイルを編集し、言語ごとにクロール処理 (`actions`) を定義。これにより、URLパスに基づきコンテンツが2つの異なるインデックスに振り分けられる。
+
+:::info 設定ファイルの管理
+この設定は、Algolia Crawlerの管理画面で直接編集するか、ローカルで`config.json`または`.js`ファイルとして管理し、[CLI](https://www.algolia.com/doc/tools/crawler/getting-started/run-crawler-on-your-own/)経由での適用が可能。以下はJavaScriptファイル形式の例。
+:::
+
+```javascript title="crawler-config.js"
+new Crawler({
+  // --- 基本設定 ---
+  appId: "YOUR_APP_ID",
+  apiKey: "YOUR_CRAWLER_API_KEY", // Algoliaから発行されたクローラー用の管理者APIキー
+  rateLimit: 8,
+  maxUrls: 5000,
+  schedule: "at 21:10 on Tuesday",
+  indexPrefix: "", // Docusaurus側で制御するため、プレフィックスは空に
+
+  // --- クロール対象の設定 ---
+  startUrls: [
+    "https://your-docusaurus-site.com/",
+    "https://your-docusaurus-site.com/en/",
+  ],
+  discoveryPatterns: ["https://your-docusaurus-site.com/**"],
+  sitemaps: ["https://your-docusaurus-site.com/sitemap.xml"],
+
+  // --- 言語別のインデックス振り分け設定 (最重要) ---
+  actions: [
+    // ▼▼▼ 日本語コンテンツ用の設定 ▼▼▼
+    {
+      indexName: "yoursite_ja",
+      pathsToMatch: [
+        "https://your-docusaurus-site.com/**",
+        "!https://your-docusaurus-site.com/en/**",
+      ],
+      recordExtractor: ({ $, helpers }) => {
+        return helpers.docsearch({
+          recordProps: {
+            lvl0: {
+              selectors: ".menu__link.menu__link--sublist.menu__link--active, .navbar__item.navbar__link--active",
+              defaultValue: "ドキュメンテーション",
+            },
+            lvl1: ["header h1", "article h1"],
+            lvl2: "article h2",
+            lvl3: "article h3",
+            lvl4: "article h4",
+            lvl5: "article h5, article td:first-child",
+            content: "article p, article li, article td:last-child",
+            lang: { defaultValue: "ja" },
+          },
+          aggregateContent: true,
+          recordVersion: "v3",
+        });
+      },
+    },
+    // ▼▼▼ 英語コンテンツ用の設定 ▼▼▼
+    {
+      indexName: "yoursite_en",
+      pathsToMatch: ["https://your-docusaurus-site.com/en/**"],
+      recordExtractor: ({ $, helpers }) => {
+        return helpers.docsearch({
+          recordProps: {
+            lvl0: {
+              selectors: ".menu__link.menu__link--sublist.menu__link--active, .navbar__item.navbar__link--active",
+              defaultValue: "Documentation",
+            },
+            lvl1: ["header h1", "article h1"],
+            lvl2: "article h2",
+            lvl3: "article h3",
+            lvl4: "article h4",
+            lvl5: "article h5, article td:first-child",
+            content: "article p, article li, article td:last-child",
+            lang: { defaultValue: "en" },
+          },
+          aggregateContent: true,
+          recordVersion: "v3",
+        });
+      },
+    },
+  ],
+
+  // --- 言語別のインデックス初期設定 ---
+  initialIndexSettings: {
+    // ▼▼▼ 日本語インデックス('yoursite_ja')の検索設定 ▼▼▼
+    yoursite_ja: {
+      attributesForFaceting: ["type", "lang", "docusaurus_tag"],
+      ignorePlurals: false, // 日本語では複数形の無視は不要
+      minWordSizefor1Typo: 4,
+      minWordSizefor2Typos: 8,
+      searchableAttributes: ["unordered(hierarchy.lvl0)","unordered(hierarchy.lvl1)","unordered(hierarchy.lvl2)","unordered(hierarchy.lvl3)","unordered(hierarchy.lvl4)","content"],
+      customRanking: ["desc(weight.pageRank)","desc(weight.level)","asc(weight.position)"],
+    },
+    // ▼▼▼ 英語インデックス('yoursite_en')の検索設定 ▼▼▼
+    yoursite_en: {
+      attributesForFaceting: ["type", "lang", "docusaurus_tag"],
+      ignorePlurals: true, // 英語では複数形を同一視することで精度向上
+      minWordSizefor1Typo: 3,
+      minWordSizefor2Typos: 7,
+      searchableAttributes: ["unordered(hierarchy.lvl0)","unordered(hierarchy.lvl1)","unordered(hierarchy.lvl2)","unordered(hierarchy.lvl3)","unordered(hierarchy.lvl4)","content"],
+      customRanking: ["desc(weight.pageRank)","desc(weight.level)","asc(weight.position)"],
+    },
+  },
+});
+```
+
+#### 設定のポイント
+
+-   **`actions`**: 設定の核となる部分。`pathsToMatch` を用いたURLパターン定義により、どのコンテンツをどの `indexName` に送るかを決定。
+    -   **日本語**: サイト全体 (`/**`) を対象としつつ、英語パス (`!/en/**`) を除外。
+    -   **英語**: 英語パス (`/en/**`) のみを対象。
+-   **`initialIndexSettings`**: 各インデックス (`yoursite_ja`, `yoursite_en`) に対する、言語特性に合わせた設定の適用。`ignorePlurals` やタイポ許容文字数 (`minWordSizefor...Typos`) の調整が検索品質向上の鍵。
+
+### 2. Docusaurusでの動的なインデックス切り替え
+
+次に、Docusaurusフロントエンドによる、閲覧言語に応じた適切なインデックスの自動参照設定。`docusaurus.config.ts` の `algolia` 設定を修正するだけで完了する。
+
+```typescript title="docusaurus.config.ts"
+import type { Config } from '@docusaurus/types';
+
+const config: Config = {
+  // ... (サイトの基本設定)
+
+  i18n: {
+    defaultLocale: 'ja',
+    locales: ['ja', 'en'],
+  },
+
+  themeConfig: {
+    // ...
+    algolia: {
+      appId: 'YOUR_APP_ID',
+      apiKey: 'YOUR_SEARCH_ONLY_API_KEY', // "検索専用"キーを設定
+      indexName: 'yoursite', // インデックス名の共通プレフィックスを指定
+      
+      // この一行がキーとなる
+      contextualSearch: true,
+    },
+  },
+};
+
+export default config;
+```
+
+:::tip `contextualSearch: true` の役割
+このオプションの有効化による、Docusaurusの現在言語コンテキスト（`ja` または `en`）の自動検知。`indexName` で指定したプレフィックス (`yoursite`) にロケールIDをサフィックスとして付与し、最終的なインデックス名（`yoursite_ja` または `yoursite_en`）を組み立ててクエリを送信する。
+
+-   **日本語ページ閲覧時** → `yoursite_ja` を検索
+-   **英語ページ閲覧時** → `yoursite_en` を検索
+
+:::
+
+### 結論
+
+以上の設定による、Docusaurusのi18nサイトにおけるAlgolia検索の劇的な改善。
+
+-   **最適な検索体験**: ユーザーは閲覧中の言語のコンテンツのみを検索でき、ノイズのない的確な結果の取得が可能に。
+-   **高い検索品質**: 各言語に最適化されたインデックス設定による、より関連性の高い検索結果の提供。
+-   **優れた拡張性**: 将来的な言語追加時も、クローラー設定への同パターン追加による容易なスケール。
+
+
+
