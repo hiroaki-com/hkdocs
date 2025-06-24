@@ -6,12 +6,14 @@ last_update:
 tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
+import Admonition from '@theme/Admonition';
+
 この記事では、Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装した際の手順とトラブルシューティングの記録を整理します。
 
 機能：
 Github Actions で新規投稿を検知し、TwitterカードとしてXへPOSTする
 
-<!-- truncate -->
+{/* truncate */}
 
 参考：
 Twitter API v2
@@ -57,7 +59,9 @@ https://docusaurus.io/docs/seo
         ```bash
         docker-compose run --rm app sh -c "pnpm add -D gray-matter twitter-api-v2 --store-dir /root/.local/share/pnpm/store/v10 && echo 'Libraries added successfully.'"
         ```
-    *   (注: `--store-dir` のパスはビルド環境のpnpmグローバルストアパスです。必要に応じて調整してください。)
+    <Admonition type="note">
+      <code>--store-dir</code> のパスはビルド環境のpnpmグローバルストアパスです。必要に応じて調整してください。
+    </Admonition>
 3.  **Dockerイメージ再ビルド:**
     *   以下のコマンドを実行:
         ```bash
@@ -68,8 +72,7 @@ https://docusaurus.io/docs/seo
 
 1.  **ワークフローファイル作成:**
     `.github/workflows/post-to-x.yml` を以下の内容で作成。
-    ```yaml
-    # .github/workflows/post-to-x.yml
+    ```yaml title=".github/workflows/post-to-x.yml"
     name: Post New Articles to X
 
     on:
@@ -125,8 +128,7 @@ https://docusaurus.io/docs/seo
     ```
 2.  **投稿処理スクリプト作成:**
     `.github/scripts/post-new-articles.js` を以下の内容で作成。
-    ```javascript
-    // .github/scripts/post-new-articles.js
+    ```javascript title=".github/scripts/post-new-articles.js"
     const fs = require('fs');
     const path = require('path');
     const { execSync } = require('child_process');
@@ -340,7 +342,9 @@ https://docusaurus.io/docs/seo
 2.  **記事フロントマター確認:**
     *   投稿対象記事ファイルで `title`, `description`, `image` (任意), `tags` を適切に設定。
 3.  **X Card Validatorでの確認:**
-    *   サイトデプロイ後、記事URLを [X Card Validator](https://cards-dev.twitter.com/validator) でテスト。
+    <Admonition type="tip" title="X Card Validatorでの確認">
+      サイトデプロイ後、記事URLを <a href="https://cards-dev.twitter.com/validator" target="_blank" rel="noopener noreferrer">X Card Validator</a> でテストすることをおすすめします。
+    </Admonition>
 
 ### 5. 動作テスト
 
@@ -371,4 +375,3 @@ https://docusaurus.io/docs/seo
     *   **解決策:** `docusaurus.config.ts` の `url`, `baseUrl`, `themeConfig.image` 設定を確認してください。記事のフロントマターで `title`, `description`, `image` が適切に設定されているか確認してください。[X Card Validator](https://cards-dev.twitter.com/validator) でテストしてください。生成されたHTMLソースのOGPメタタグ (`og:title`, `og:description`, `og:image` 等) を確認してください。
 8.  **VS Codeでの型解決エラー (`Cannot find module ...` 等):**
     *   **解決策:** VS Codeを完全に再起動してください。コマンドパレット (Ctrl+Shift+P または Cmd+Shift+P) から `TypeScript: Restart TS server` を実行してください。
-

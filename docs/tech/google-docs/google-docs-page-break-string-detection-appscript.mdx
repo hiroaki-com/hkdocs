@@ -3,30 +3,47 @@ sidebar_position: 4
 title: 「改ページ（文字列検知）」AppScript
 last_update:
   date: 2025-06-18
+tags: [Google Docs, Apps Script, GAS, チュートリアル]
 ---
+
+import Admonition from '@theme/Admonition';
 
 # Googleドキュメント用「改ページ（文字列検知）」AppScript
 
 ### 作成の経緯
-- 超長文なドキュメントの編集作業の中で、改ページの編集のために`⌘＋Enter`を繰り返し使用していたが、あまりにも時間がかかっていた
-- [Chrome拡張機能](https://chromewebstore.google.com/category/extensions?hl=ja) などで目的の機能を提供しているサービスが無さそうであったため、自作
+- 超長文なドキュメントの編集作業の中で、改ページの編集のために`⌘＋Enter`を繰り返し使用していたが、あまりにも時間がかかっていた。
+- [Chrome拡張機能](https://chromewebstore.google.com/category/extensions?hl=ja) などで目的の機能を提供しているサービスが無さそうであったため、自作。
 
 ### ユースケース
 - 書籍など超長文のGoogleドキュメント 編集作業の効率化
 - 指定した複数の文字列のいずれかで始まる段落の前に改ページを挿入するスクリプト（前方一致）
 
 ### 使い方
- 1. Googleドキュメントのシートで、以下のAppScriptを貼り付けて、コメントのとおり実行するだけで使用可能
+1.  Googleドキュメントを開き、「拡張機能」>「Apps Script」からスクリプトエディタを開きます。
+2.  以下のスクリプトをエディタに貼り付けます。
+3.  スクリプト内の設定箇所を編集し、保存・実行します。
 
+<Admonition type="info" title="スクリプトの設定方法">
+<p>
+スクリプトを貼り付けた後、コードの先頭にある <code>PAGEBREAK_PREFIXES</code> の値を、改ページの目印としたい文字列の配列に変更してください。
+</p>
+<ul>
+    <li>この設定は<strong>前方一致</strong>で動作します。</li>
+    <li>配列には、目印となる文字列を1つ以上設定してください。（例: <code>["Chapter ", "図-"]</code>）</li>
+    <li>大文字・小文字は区別されます。</li>
+    <li>コード内のコメントに、より詳しい設定方法が記載されています。</li>
+</ul>
+<p>例：<code>const PAGEBREAK_PREFIXES = ["問題文 (日本", "章"];</code></p>
+</Admonition>
 
- ```Javascript
- // 使い方:
+```javascript title="insert-page-break-by-string.js"
+// --- 設定箇所 ---
 /**
  * @fileoverview 指定した複数の文字列のいずれかで始まる段落の前に改ページを挿入するスクリプトです。
  *
  * ## 関数実行時の前提
  *
- * ・重要：実行する関数を選択　> [ insertPageBreakAtPrefixMarkers ] を選択してください。 
+ * ・重要：実行する関数を選択　> [ insertPageBreakAtPrefixMarkers ] を選択してください。
  *
  *
  * ## 目印の文字列に関する設定方法
@@ -296,4 +313,3 @@ function buildResultMessage_MultiPrefix(insertedCount, foundCount, validPrefixes
              + `3. スクリプトの権限は承認されていますか？`;
     }
 }
- ```
