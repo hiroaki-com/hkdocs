@@ -1,54 +1,68 @@
 ---
 sidebar_position: 3
-title: AppScript for Page Breaks (by Heading Level) in Google Docs
+title: '"Page Break (by Heading Level)" Apps Script'
 last_update:
   date: 2025-06-18
+tags: [Google Docs, Apps Script, GAS, tutorial]
 ---
 
-# AppScript for Inserting Page Breaks by Heading Level in Google Docs
+import Admonition from '@theme/Admonition';
+
+# "Insert Page Break by Heading Level" Apps Script for Google Docs
 
 ### Background
-- While editing a very long document, I was repeatedly using `⌘＋Enter` to insert page breaks, which was extremely time-consuming.
-- Since I couldn't find a service, such as a [Chrome Extension](https://chromewebstore.google.com/category/extensions?hl=en), that offered the desired functionality, I decided to create my own.
+- While editing a very long document, I was repeatedly using `⌘＋Enter` to insert page breaks, which was taking too much time.
+- Since I couldn't find a service like a [Chrome extension](https://chromewebstore.google.com/category/extensions?hl=en) that offered this functionality, I decided to create it myself.
 
 ### Use Cases
-- Increase efficiency when editing very long Google Docs, such as books.
+- Streamline the editing of very long Google Docs, such as books.
 - Insert a page break before a specified heading level.
 
 ### How to Use
- 1. In your Google Doc, simply paste the following AppScript and run it according to the comments provided.
 
+1.  Open a Google Doc and open the script editor from "Extensions" > "Apps Script".
+2.  Paste the following script into the editor.
+3.  Edit the configuration section within the script, then save and run it.
 
- ```Javascript
- // --- Configuration Section ---
+<Admonition type="info" title="How to Configure the Script">
+<p>
+After pasting the script, change the value of <code>TARGET_HEADING_LEVEL</code> at the beginning of the code to the desired heading level (an integer from 1 to 6) where you want to insert page breaks.<br/>
+Detailed instructions are provided in the comments within the code.
+</p>
+<p>Example: <code>const TARGET_HEADING_LEVEL = 3;</code> // To insert page breaks before "Heading 3"</p>
+</Admonition>
+
+```javascript title="insert-page-break-before-heading.js"
+// --- Configuration Section ---
 /**
- * @fileoverview This is a Google Apps Script that inserts a page break before a specified heading level.
+ * @fileoverview A Google Apps Script to insert a page break before a specified heading level.
  *
- * ## Prerequisites for Running the Function
+ * ## Prerequisites for Running
  *
- * ・Important: When running a function, select > [ insertPageBreakBeforeHeading ].
- * 
+ * ・Important: Select the function to run > choose [ insertPageBreakBeforeHeading ].
+ *
  * ## How to Configure
  *
- * 1. Change the value of **TARGET_HEADING_LEVEL** to the level of the heading (an integer from 1 to 6) before which you want to insert a page break.
- *    - 1: Google Docs "Heading 1" style
- *    - 2: Google Docs "Heading 2" style
- *    - 3: Google Docs "Heading 3" style
- *    - 4: Google Docs "Heading 4" style
- *    - 5: Google Docs "Heading 5" style
- *    - 6: Google Docs "Heading 6" style
+ * 1. Change the value of **TARGET_HEADING_LEVEL** to the desired heading level (an integer from 1 to 6).
+ *    - 1: "Heading 1" style in Google Docs
+ *    - 2: "Heading 2" style in Google Docs
+ *    - 3: "Heading 3" style in Google Docs
+ *    - 4: "Heading 4" style in Google Docs
+ *    - 5: "Heading 5" style in Google Docs
+ *    - 6: "Heading 6" style in Google Docs
  *
- * 2. **Notes:**
- *    - This script recognizes the **standard heading styles** in Google Docs.
- *    - For the text of the heading where you want to insert a page break, you **must apply the corresponding "Heading X" style** from the menu: [Format] > [Paragraph styles].
+ * 2. **Note:**
+ *    - This script recognizes Google Docs' **standard heading styles**.
+ *    - For the heading text where you want to insert a page break, **you must apply** the corresponding
+ *      **"Heading X" style** from the menu [Format] > [Paragraph styles].
  *    - (Simply changing the font size or weight will not be recognized as a heading.)
  *
  * 3. After making changes, **be sure to save the script file** (click the floppy disk icon).
  */
-const TARGET_HEADING_LEVEL = 3; // Example: Inserts a page break before the "Heading 3" style.
+const TARGET_HEADING_LEVEL = 3; // Example: To insert a page break before the "Heading 3" style
 // --- End of Configuration Section ---
 
-// --- Following Script Code (No changes needed) ---
+// --- Script Code Below (No changes needed) ---
 /** Global constant: Script name */
 const SCRIPT_NAME = 'Custom Script';
 /** Global constant: Menu name for configuration errors */
@@ -72,29 +86,29 @@ function onOpen() {
     Logger.log(`onOpen: Menu added successfully (Target: Heading ${TARGET_HEADING_LEVEL}).`);
 
   } catch (e) {
-    Logger.log(`onOpen: Error while adding menu: ${e}\n${e.stack}`);
+    Logger.log(`onOpen: Error adding menu: ${e}\n${e.stack}`);
     showConfigurationErrorMenu("Error adding menu");
   }
 }
 
 /**
- * Adds a menu item indicating an error if there is a configuration problem.
- * @param {string} reason The reason for the error
+ * Adds an error menu item if there is a configuration error.
+ * @param {string} reason The reason for the error.
  */
 function showConfigurationErrorMenu(reason) {
   try {
     DocumentApp.getUi()
       .createMenu(SCRIPT_ERROR_MENU_NAME)
-      .addItem(`Check Settings (${reason})`, 'showConfigurationError')
+      .addItem(`Check settings (${reason})`, 'showConfigurationError')
       .addToUi();
   } catch (e) {
     Logger.log(`showConfigurationErrorMenu: Further error while displaying error menu: ${e}`);
-    // Log only, considering the UI might be unavailable
+    // Only log, as the UI might be unavailable.
   }
 }
 
 /**
- * Alert function to display on configuration error.
+ * Alert function to display when there is a configuration error.
  */
 function showConfigurationError() {
   let currentSetting = "Undefined or inaccessible";
@@ -102,29 +116,29 @@ function showConfigurationError() {
     currentSetting = (typeof TARGET_HEADING_LEVEL !== 'undefined') ? String(TARGET_HEADING_LEVEL) : "Undefined";
   } catch(e) { /* Ignore errors if inaccessible */ }
 
-  const message = `There is a problem with the script's settings.\n\n`
+  const message = `There is a problem with the script's configuration.\n\n`
                 + `Current setting value: ${currentSetting}\n\n`
-                + `Please open the script editor, check and correct the "TARGET_HEADING_LEVEL" value (an integer from 1 to 6) at the top of the file, and **save the file**.\n\n`
+                + `Open the script editor, check and correct the "TARGET_HEADING_LEVEL" value (an integer from 1 to 6) at the top of the file, and **save the file**.\n\n`
                 + `(e.g., const TARGET_HEADING_LEVEL = 3;)`
   DocumentApp.getUi().alert("Script Configuration Error", message, DocumentApp.getUi().ButtonSet.OK);
 }
 
 /**
- * Determines if the specified heading level is valid (an integer from 1 to 6).
- * @param {any} level The value to check
- * @return {boolean} True if valid
+ * Checks if the specified heading level is valid (an integer from 1 to 6).
+ * @param {any} level The value to check.
+ * @return {boolean} True if valid.
  */
 function isValidHeadingLevel(level) {
     return typeof level === 'number' && Number.isInteger(level) && level >= 1 && level <= 6;
 }
 
 /**
- * Returns the ParagraphHeading constant corresponding to the specified numeric heading level.
- * @param {number} level The heading level (integer from 1-6)
- * @return {DocumentApp.ParagraphHeading | null} The corresponding constant, or null if invalid
+ * Returns the corresponding ParagraphHeading constant for a given numeric heading level.
+ * @param {number} level The heading level (integer 1-6).
+ * @return {DocumentApp.ParagraphHeading | null} The corresponding constant, or null if invalid.
  */
 function getHeadingConstant(level) {
-  // Assumes this is already checked by isValidHeadingLevel, but checking again just in case
+  // Assumes it's already checked by isValidHeadingLevel, but as a safeguard
   if (!isValidHeadingLevel(level)) {
     Logger.log(`getHeadingConstant: Invalid level: ${level}`);
     return null;
@@ -138,23 +152,23 @@ function getHeadingConstant(level) {
     5: DocumentApp.ParagraphHeading.HEADING5,
     6: DocumentApp.ParagraphHeading.HEADING6,
   };
-  return headingMap[level] || null; // Return null if no corresponding value for level
+  return headingMap[level] || null; // Return null if level has no corresponding value
 }
 
 /**
- * Gets the name of a ParagraphHeading Enum value.
- * @param {DocumentApp.ParagraphHeading | any} enumValue The ParagraphHeading Enum value
- * @return {string} The name of the Enum (e.g., 'HEADING3'), or 'UNKNOWN' if not found
+ * Gets the name of a ParagraphHeading Enum from its value.
+ * @param {DocumentApp.ParagraphHeading | any} enumValue The ParagraphHeading Enum value.
+ * @return {string} The name of the Enum (e.g., 'HEADING3'), or 'UNKNOWN' if not found.
  */
 function getHeadingEnumName(enumValue) {
     if (enumValue === null || typeof enumValue === 'undefined') {
         return 'NULL_OR_UNDEFINED';
     }
-    // Use a cache for efficiency (full scan only on first run)
+    // Uses a cache for efficiency (searches all values only on the first run)
     if (!this.headingEnumNameCache) {
         this.headingEnumNameCache = {};
         for (const key in DocumentApp.ParagraphHeading) {
-            // Avoid properties on the prototype chain
+            // Avoid properties from the prototype chain
             if (Object.prototype.hasOwnProperty.call(DocumentApp.ParagraphHeading, key)) {
                  this.headingEnumNameCache[DocumentApp.ParagraphHeading[key]] = key;
             }
@@ -165,7 +179,7 @@ function getHeadingEnumName(enumValue) {
 
 
 /**
- * Inserts a page break immediately before elements with the specified heading level in the document.
+ * Inserts a page break immediately before elements of a specified heading level in the document.
  */
 function insertPageBreakBeforeHeading() {
   const startTime = new Date();
@@ -175,28 +189,28 @@ function insertPageBreakBeforeHeading() {
   try {
     doc = DocumentApp.getActiveDocument();
     if (!doc) throw new Error("Could not get the active document.");
-    doc.getName(); // Also serves as a permission check
+    doc.getName(); // Doubles as a check for access permissions
   } catch (e) {
     handleExecutionError("Document Access Error", e);
     return;
   }
 
   if (!isValidHeadingLevel(TARGET_HEADING_LEVEL)) {
-    Logger.log(`insertPageBreakBeforeHeading: Invalid setting (${TARGET_HEADING_LEVEL}).`);
-    showConfigurationError(); // Display details of the configuration error
+    Logger.log(`insertPageBreakBeforeHeading: Invalid setting value (${TARGET_HEADING_LEVEL}).`);
+    showConfigurationError(); // Show detailed configuration error
     return;
   }
 
   const targetHeadingConstant = getHeadingConstant(TARGET_HEADING_LEVEL);
   if (!targetHeadingConstant) {
-    // This error should not normally occur (already checked by isValidHeadingLevel)
+    // This error should not normally occur (due to isValidHeadingLevel check)
     Logger.log(`insertPageBreakBeforeHeading: Failed to get heading constant (level: ${TARGET_HEADING_LEVEL}).`);
-    DocumentApp.getUi().alert(`Internal script error: Could not get the heading style constant for the setting (${TARGET_HEADING_LEVEL}).`);
+    DocumentApp.getUi().alert(`Script internal error: Could not get heading style constant for setting (${TARGET_HEADING_LEVEL}).`);
     return;
   }
   const targetHeadingName = getHeadingEnumName(targetHeadingConstant);
 
-  Logger.log(`--- Starting Page Break Insertion Process ---`);
+  Logger.log(`--- Page Break Insertion Process Start ---`);
   Logger.log(`Document: ${doc.getName()}, Target Heading: ${TARGET_HEADING_LEVEL} (${targetHeadingName})`);
 
   // --- 2. Element Traversal and Page Break Insertion ---
@@ -205,7 +219,7 @@ function insertPageBreakBeforeHeading() {
   let pageBreakInsertedCount = 0;
   let foundTargetHeadings = 0;
 
-  Logger.log(`Number of elements: ${numChildren}. Traversing in reverse order...`);
+  Logger.log(`Number of elements: ${numChildren}. Traversing in reverse...`);
 
   for (let i = numChildren - 1; i >= 0; i--) {
     const element = body.getChild(i);
@@ -213,7 +227,7 @@ function insertPageBreakBeforeHeading() {
     let headingStyle = null;
 
     try {
-      // Only check element types that can have heading styles
+      // Only check element types that can have a heading style
       if (elementType === DocumentApp.ElementType.PARAGRAPH) {
         headingStyle = element.asParagraph().getHeading();
       } else if (elementType === DocumentApp.ElementType.LIST_ITEM) {
@@ -222,20 +236,20 @@ function insertPageBreakBeforeHeading() {
         continue; // Skip irrelevant elements
       }
 
-      // Determine if it is the target heading style
+      // Check if it's the target heading style
       if (headingStyle === targetHeadingConstant) {
         foundTargetHeadings++;
         // Logger.log(`  Found: Index ${i}, Type: ${elementType}`); // Uncomment if needed
 
-        // Insert if it's not the start of the document and not preceded by a page break
+        // Insert if it's not the start of the document and the preceding element is not a page break
         if (i > 0 && body.getChild(i - 1).getType() !== DocumentApp.ElementType.PAGE_BREAK) {
           try {
             body.insertPageBreak(i);
             pageBreakInsertedCount++;
-            // Logger.log(`    -> Inserting page break (Index ${i})`); // Uncomment if needed
+            // Logger.log(`    -> Page break inserted (Index ${i})`); // Uncomment if needed
           } catch (insertError) {
             Logger.log(`! Error while inserting page break at Index ${i}: ${insertError}`);
-            // Continue processing even if an error occurs, but only log it (don't notify user)
+            // Do not notify user, just log, and continue processing
           }
         } else if (i > 0) {
           // Logger.log(`    -> Skipped (preceded by a page break)`); // Uncomment if needed
@@ -249,32 +263,32 @@ function insertPageBreakBeforeHeading() {
     }
   }
 
-  // --- 3. Report Results ---
+  // --- 3. Result Reporting ---
   const endTime = new Date();
   const duration = (endTime.getTime() - startTime.getTime()) / 1000;
 
-  Logger.log(`--- Traversal Complete ---`);
+  Logger.log(`--- Traversal End ---`);
   Logger.log(`Processing time: ${duration.toFixed(2)} seconds`);
-  Logger.log(`Detected target headings (${targetHeadingName}): ${foundTargetHeadings}`);
+  Logger.log(`Detected target headings (${targetHeadingName}): ${foundTargetHeadings} `);
   Logger.log(`Inserted page breaks: ${pageBreakInsertedCount}`);
 
   const resultMessage = buildResultMessage(pageBreakInsertedCount, foundTargetHeadings, targetHeadingName, duration);
   DocumentApp.getUi().alert("Processing Complete", resultMessage, DocumentApp.getUi().ButtonSet.OK);
 
-  Logger.log(`--- Page Break Insertion Process Complete ---`);
+  Logger.log(`--- Page Break Insertion Process End ---`);
 }
 
 /**
  * Handles runtime errors and notifies the user.
- * @param {string} context The context in which the error occurred
- * @param {Error} error The error object that occurred
+ * @param {string} context The context in which the error occurred.
+ * @param {Error} error The error object that was thrown.
  */
 function handleExecutionError(context, error) {
-    Logger.log(`Runtime error (${context}): ${error}\n${error.stack}`);
+    Logger.log(`Runtime Error (${context}): ${error}\n${error.stack}`);
     let userMessage = `An error occurred while running the script.\n\nContext: ${context}`;
     if (error.message) {
         if (error.message.includes("Authorization required")) {
-            userMessage = "The necessary permissions to run the script have not been approved.\n\nPlease reload the document or run the script again, and grant permission on the authorization screen.";
+            userMessage = "The script does not have the necessary permissions to run.\n\nPlease reload the document or run the script again and grant permission in the authorization prompt.";
         } else {
             userMessage += `\nDetails: ${error.message}`;
         }
@@ -283,26 +297,24 @@ function handleExecutionError(context, error) {
 }
 
 /**
- * Generates a message for the user based on the processing results.
- * @param {number} insertedCount The number of page breaks inserted
- * @param {number} foundCount The number of target headings found
- * @param {string} headingName The name of the target heading style
- * @param {number} duration The processing time in seconds
- * @returns {string} The message to be displayed in the alert
+ * Builds a message for the user based on the processing results.
+ * @param {number} insertedCount The number of page breaks inserted.
+ * @param {number} foundCount The number of target headings found.
+ * @param {string} headingName The name of the target heading style.
+ * @param {number} duration The processing time in seconds.
+ * @returns {string} The message to be displayed in an alert.
  */
 function buildResultMessage(insertedCount, foundCount, headingName, duration) {
     const headingLevelName = `"${headingName}" style (Heading ${TARGET_HEADING_LEVEL})`;
 
     if (insertedCount > 0) {
-        return `Inserted page breaks before ${insertedCount} instances of ${headingLevelName}.\n\nProcessing time: ${duration.toFixed(2)} seconds`;
+        return `Inserted page breaks before ${insertedCount} instance(s) of ${headingLevelName}.\n\nProcessing time: ${duration.toFixed(2)} seconds`;
     } else if (foundCount > 0) {
-        return `${headingLevelName} was found in ${foundCount} places, but no page breaks were inserted.\n(This may be because the heading is at the beginning of the document or a page break already exists.)\n\nProcessing time: ${duration.toFixed(2)} seconds`;
+        return `${foundCount} instance(s) of ${headingLevelName} were found, but no page breaks were inserted.\n(Because the heading is at the start of the document or a page break already exists.)\n\nProcessing time: ${duration.toFixed(2)} seconds`;
     } else {
-        return `No elements with the ${headingLevelName} style applied were found.\n\nPlease check the following:\n`
+        return `No elements with the ${headingLevelName} style were found.\n\nPlease check the following:\n`
              + `1. Is the setting value (${TARGET_HEADING_LEVEL}) correct?\n`
              + `2. Has the correct heading style been applied to the target text from [Format] > [Paragraph styles]?\n`
-             + `3. Have the script permissions been approved?`;
+             + `3. Have the script permissions been authorized?`;
     }
 }
- ```
- 

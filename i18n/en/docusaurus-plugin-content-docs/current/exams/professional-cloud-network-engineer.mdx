@@ -1,0 +1,241 @@
+---
+sidebar_position: 7
+title: Professional Cloud Network Engineer
+last_update:
+  date: 2025-06-10
+tags: [google cloud, certification, study guide]
+---
+
+import Admonition from '@theme/Admonition';
+
+**🌸 Passed: January 25, 2025**
+
+<Admonition type="note" title="Network Exam Passing Memo">
+<p>
+It was difficult, but I passed. I probably scored around 70-80%.
+</p>
+<p>
+I had about 10 minutes for review. Not enough time. 50 questions.
+</p>
+<p>
+There were some questions I didn't understand at all.
+</p>
+<p>
+Problems I couldn't solve (or found difficult):
+</p>
+<ul>
+<li>There were difficult questions similar to the last time I took it → A table-based question about network information consistency between peerings?</li>
+<li>I felt there were many questions about complex network peering configurations.</li>
+<li>I don't recall any questions related to NGFW.</li>
+<li>There were about 3 hub-and-spoke questions that were impossible to solve without knowing the premise.</li>
+<li>There were about two questions on the restricted VIP, which I didn't know because they weren't in past practice questions → https://cloud.google.com/vpc-service-controls/docs/restricted-vip-services</li>
+</ul>
+<p>
+I don't remember the specific items, but overall, compared to the practice exam, there were many questions that required imagining more complex configurations to solve. It felt like the test writers intended to test applied problem-solving skills, assuming a solid foundation of basic knowledge.
+</p>
+<p>
+I didn't feel any questions were directly from the practice exam.
+</p>
+<p>
+Problems I could solve:
+</p>
+<ul>
+<li>Questions about Cloud NAT.</li>
+<li>Questions about Shared VPC (it had become more difficult and there was only about one question).</li>
+<li>About two questions on IP range calculation (my IP calculations matched the options exactly).</li>
+</ul>
+</Admonition>
+
+{/* truncate */}
+
+[Which Google Cloud certification is right for you?](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
+
+
+<Admonition type="info" title="Inquiry_2024/11/21 Resolved 🥳">
+<ul>
+<li>Contact:</li>
+<li>❌ Doesn't work https://support.google.com/cloud-certification/gethelp</li>
+<li>❌ Doesn't work https://cloud.google.com/contact/form</li>
+<li>⭕️ https://support.google.com/a/contact/certification?hl=en&sjid=13939058581324248671-AP (This was accessible from the exam FAQ. They said support is in English.)</li>
+</ul>
+</Admonition>
+
+
+
+##### Retake Scheduled
+- Exam Name: Google Cloud Certified - Professional Cloud Network Engineer (Japanese)
+- Exam Date/Time: 25 January 2025 1545H Asia/Tokyo
+- Location: Kita-ku Kita 7-jo Nishi 5-chome 8-1, Kita 7-jo Yoshiya Building 4F
+
+<Admonition type="tip" title="Exam Day TODO (Success story from my PSE exam) ⭐️">
+**The Day Before**
+- [x] Get a good night's sleep
+    - [x] Set up eye mask, earplugs, and pillow
+
+**On the Day**
+- [x] Wake up by 11 AM (It's important to be fully recovered from fatigue)
+- Do a final review at a cafe
+    - [x] Mentally decided on San Marc Cafe in Le Trois
+    - [x] The library and information center is also a second option
+    - [x] Retake the practice exam for review
+        - If I need a change of scenery, Tully's Coffee in the Nissei building
+- [x] Print the exam confirmation email
+	- [x] Forward the email to the app
+- [ ] Take a 10-minute nap before arriving at the venue to fully refresh my brain
+	- Get enough sugar
+- [ ] Arrive at the venue by 3:10 PM (30 minutes before the test starts) and complete check-in
+	- Make a conscious effort to read the options first
+	- Be mindful of leaving time for review
+</Admonition>
+
+### Study Strategy Before the Exam
+
+- [ ] Understand the official documentation
+	- Firewall rules (custom) use cases: Understanding this will level you up
+		- https://cloud.google.com/firewall/docs/firewalls#gcp_firewall_use_cases
+		- ※ With default firewall rules, instances within the same VPC can communicate with each other.
+
+- [x] Review the [Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLServ0tNGkr-dYAfmez_Gdk74dmVypZjzUKrkVFtFcArzhmPow/viewform) and understand related materials
+	- Just before: 90%
+	- Weak questions
+		- [x] Q6, Q13, Q18, Q19, 
+
+- ⭐️ Study the whizlabs.com question sets
+	- Conclusion: Need to review everything, since there aren't many questions.
+	- Weak questions: Basically all of them → I'll take the test when I can get over 90%
+		- [x] Practice Test 1
+		- [x] Practice Test 2
+		- [x] Practice Test 3
+		- [x] Practice Test 4
+	- [x] Take the final test (within Whizlabs)
+		- 78%
+
+<Admonition type="warning" title="Weak Topics 🐸">
+<ul>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/authorized-networks#overview">GKE authorized networks, control plane</a></li>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/routes-based-cluster#pods_per_node">Pods per node and IP range (GKE)</a></li>
+<li><a href="https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview#network-bandwidth">Cloud VPN network bandwidth</a></li>
+<li><a href="https://cloud.google.com/vpc/docs/mtu#change-network-mtu">Changing the VPC network MTU</a></li>
+</ul>
+</Admonition>
+
+- [ ] Understand "Mastering TCP/IP"
+
+- [ ] Improve/review my self-made question set
+- I will continuously improve it based on the Whizlabs questions and my memory from the exam.
+	- Professional Cloud Network Engineer Practice Exam Questions [Advanced]: 150 questions
+	- Professional Cloud Network Engineer Practice Exam Questions: [Basic] 300 rapid-fire questions
+- [ ] [Review the best practices collection](https://docs.google.com/document/d/1cK7JblQmwkPkOWOpGpKdBcqfTQ8aTeAZWYLl2oTN0ME/edit?tab=t.0#heading=h.ouqoru4yl4wt)
+	- Use summarization features to deepen understanding efficiently.
+- Understand high-quality articles
+	- [x] https://blog.g-gen.co.jp/entry/vpc-explained-basics
+	- [x] https://blog.g-gen.co.jp/entry/vpc-explained-advanced
+
+
+### Exam Information - December 08, 2024
+The date can be changed, so I should check periodically.
+- Exam Name: Google Cloud Certified - Professional Cloud Network Engineer (Japanese)
+- Date: December 08, 2024
+- Time: 03:00 PM
+- What to bring: Email and ID
+	- Driver's license + credit card
+
+### December 08, 2024 Exam Diary_Failure
+
+<Admonition type="danger" title="Record of Failure">
+<p>
+<strong>Time:</strong>
+I ran out of time. I finished one pass but had about 10 questions left to review when time was up.
+</p>
+<p>
+<strong>Venue:</strong>
+My impression of taking the exam at an actual offline test center for the first time was that I could concentrate without interruption, as the PC desks were sufficiently spaced from other test-takers. Since everyone starts at their own check-in time, I was sometimes distracted by the sound of people leaving, but it was within an acceptable level.
+</p>
+<p>
+<strong>Exam:</strong>
+Below, I will write down the areas where I felt my study was insufficient, based on my memory of the exam.
+</p>
+<ul>
+<li>Questions testing the understanding of the differences in use cases for various services related to BGP, routers, and load balancing.</li>
+<li>Complex problems regarding network configurations involving GKE.</li>
+<li>Many complex problems regarding hybrid configurations between on-premises and Google Cloud.</li>
+<li>Questions requiring an understanding of the use cases for private access, direct peering, interconnect, etc.</li>
+<li>Advanced questions regarding the reading and understanding of IPs and CIDR.</li>
+<li>I felt there were many questions about modern Google Cloud services like the hub-and-spoke network model.</li>
+<li>Many questions that required a solid understanding of the roles of each service during a VPN connection, such as routers, tunnels, gateways, and DNS forwarding directions.</li>
+<li>Questions testing the correct use of firewall rules, such as whether a priority of 1000 or 100 is higher or lower.</li>
+<li>I think there were questions that seemed impossible to solve without knowing the default IP address? CIDR? ASN number? of a BGP router? or firewall?.</li>
+<li>Questions that required memorizing specific numerical values used for service selection trade-offs (e.g., the threshold for choosing Dedicated Interconnect vs. Partner Interconnect vs. VPN).</li>
+</ul>
+<p>
+<strong>My plan going forward after failing:</strong>
+</p>
+<ul>
+<li>Thoroughly review/understand the topics I failed on in the exam diary above, using official documentation and GPT.</li>
+<li>Create high-quality questions based on this review and add them to my question set.</li>
+</ul>
+</Admonition>
+
+
+---
+
+<Admonition type="info" title="Work Prompt Memo">
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>Using GPTs</li>
+<li>A question set template and exam scope materials are already registered in the "Knowledge" section of GPTs.</li>
+<li>A base prompt is also registered in GPTs.</li>
+</ul>
+
+```
+Continue by generating 3 high-quality, long-form, difficult questions.
+Start the question numbers from 101.
+Be sure to "search" the "Knowledge" for confirmation and adhere to the instructions (such as formatting instructions like <br>, and instructions to create detailed explanations).
+
+Target exam scope:
+5.4 Monitor, manage, and troubleshoot latency and traffic flow.
+```
+<p>For the random question section, to continue from 12/3</p>
+
+```
+Generate 3 high-quality, long-form, difficult questions.
+Start the question numbers from 113.
+Be sure to "search" the "Knowledge" for confirmation and adhere to the instructions (such as formatting instructions like <br>, and instructions to create detailed explanations).
+
+Target exam scope:
+- Randomly from the exam scope registered in "Knowledge".
+```
+
+```
+Practical Use Cases: Learn how to combine various network services to address network design and operational challenges.
+Troubleshooting: Develop the skills to identify the causes of network performance degradation or failures and repair them quickly.
+Advanced Design: Learn how to design network architectures that consider scalability and cost-efficiency.
+```
+</Admonition>
+
+---
+
+### Professional Cloud Network Engineer Exam Prerequisite Knowledge Memo
+
+Table of Powers of 2 up to 2^16
+- Since calculators are not allowed in the exam, it's necessary to memorize the following common powers.
+
+|      Power (n)       |    Subnet Range (Calculation)     | Network Size |
+| :--------------: | :-----------------: | :-------: |
+|     2^0 = 1      |   /32 = (32 - 0)    |     1     |
+|     2^1 = 2      |   /31 = (32 - 1)    |     2     |
+|     2^2 = 4      |   /30 = (32 - 2)    |     4     |
+|     2^3 = 8      |   /29 = (32 - 3)    |     8     |
+|     2^4 = 16     |   /28 = (32 - 4)    |    16     |
+|   **2^5 = 32**   | **/27 = (32 - 5)**  |  **32**   |
+|     2^6 = 64     |   /26 = (32 - 6)    |    64     |
+|    2^7 = 128     |   /25 = (32 - 7)    |    128    |
+|    2^8 = 256     |   /24 = (32 - 8)    |    256    |
+|    2^9 = 512     |   /23 = (32 - 9)    |    512    |
+| **2^10 = 1024**  | **/22 = (32 - 10)** | **1024**  |
+|   2^11 = 2048    |   /21 = (32 - 11)   |   2048    |
+|   2^12 = 4096    |   /20 = (32 - 12)   |   4096    |
+|   2^13 = 8192    |   /19 = (32 - 13)   |   8192    |
+|   2^14 = 16384   |   /18 = (32 - 14)   |   16384   |
+|   2^15 = 32768   |   /17 = (32 - 15)   |   32768   |
+| **2^16 = 65536** | **/16 = (32 - 16)** | **65536** |
