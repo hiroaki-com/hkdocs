@@ -1,0 +1,215 @@
+---
+sidebar_position: 10
+title: Case Studies
+last_update:
+  date: 2025-06-24
+tags: [google cloud, certification, study guide, case study, Professional Cloud Architect]
+---
+
+This article contains the Case Studies used in the Google Cloud "Professional Cloud Architect" certification exam. The content is based on the official English exam guide.
+
+:::info[Source]
+**Professional Cloud Architect - Exam Guide**  
+[https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf)
+:::
+
+## EHR Healthcare
+
+:::tip[Case Study Highlights]
+*   **Industry**: Healthcare
+*   **Challenges**: Aging on-premises environment, limited scalability, and an inadequate disaster recovery plan.
+*   **Goals**: Improve scalability, achieve 99.9% availability, enhance operational efficiency, and reduce costs by migrating to Google Cloud.
+:::
+
+### Company overview
+
+EHR Healthcare is a major provider of electronic health record software for the healthcare industry. EHR Healthcare provides software as a service to multinational medical institutions, hospitals, and insurance providers.
+
+### Solution concept
+
+Due to rapid changes in the healthcare and insurance industries, EHR Healthcare's business has been growing rapidly year over year. They need to expand their environment, adapt their disaster recovery plan, and implement new continuous deployment capabilities to update their software quickly. Google Cloud was chosen to replace their current colocation facilities.
+
+### Existing technical environment
+
+EHR's software is currently hosted in multiple colocation facilities. The lease for one of the data centers is expiring soon.
+
+Customer-facing applications are web-based, and many have recently been containerized to run on a group of Kubernetes clusters. Data is stored in a mix of relational and NoSQL databases (MySQL, MS SQL Server, Redis, MongoDB).
+
+EHR hosts several legacy file- and API-based integrations with on-premises insurance providers. These systems are scheduled to be replaced in the next few years. There are no plans to upgrade or move these systems at this time.
+
+Users are managed via Microsoft Active Directory. Monitoring is currently done through various open-source tools. Alerts are sent via email and are often ignored.
+
+### Business requirements
+
+- Onboard new insurance providers as quickly as possible.
+- Provide a minimum of 99.9% availability for all customer-facing systems.
+- Provide centralized visibility and proactive actions for system performance and usage.
+- Enhance the ability to provide insights into healthcare trends.
+- Reduce latency for all customers.
+- Maintain regulatory compliance.
+- Reduce infrastructure management costs.
+- Generate forecasts and reports on industry trends based on provider data.
+
+### Technical requirements
+
+- Maintain legacy interfaces to insurance providers with connectivity to both on-premises systems and cloud providers.
+- Provide a consistent method for managing container-based customer-facing applications.
+- Provide secure, high-performance connectivity between on-premises systems and Google Cloud.
+- Provide consistent logging, log retention, monitoring, and alerting capabilities.
+- Maintain and manage multiple container-based environments.
+- Dynamically scale and provision new environments.
+- Create interfaces to ingest and process data from new providers.
+
+### Executive statement
+
+> While our on-premises strategy has served us well for many years, it has required a significant investment of time and money to train our teams on disparate systems, manage similar but separate environments, and respond to outages. Many of these outages were caused by system misconfigurations, insufficient capacity to manage traffic spikes, and inconsistent monitoring methods. By using Google Cloud, we want to leverage a scalable and resilient platform that can seamlessly expand across multiple environments, allowing us to provide a consistent and stable user experience that positions us for future growth.
+
+---
+
+## Helicopter Racing League
+
+:::tip[Case Study Highlights]
+*   **Industry**: Sports & Entertainment
+*   **Challenges**: Limitations of real-time prediction capabilities on the existing cloud, content delivery delays to emerging markets.
+*   **Goals**: Enhance prediction capabilities using managed AI/ML services, achieve global low-latency delivery with a CDN.
+:::
+
+### Company overview
+
+The Helicopter Racing League (HRL) is a global sports league for competitive helicopter racing. Each year, HRL hosts a world championship and several regional leagues where teams compete for a spot in the world championship. HRL offers a paid service that broadcasts races live around the world and provides live telemetry and predictions throughout the race.
+
+### Solution concept
+
+HRL wants to migrate its existing services to a new platform to expand its use of managed AI and ML services to enhance its race predictions. Additionally, they want to bring content delivery closer to their users, for both real-time and recorded content, as new fans join the sport, especially in emerging regions.
+
+### Existing technical environment
+
+HRL is a public cloud-first company, with the core of its mission-critical applications running on its current public cloud provider. Video recording and editing are done at the racetrack, and the content is encoded and transcoded in the cloud (as needed).
+
+Enterprise-grade connectivity and local compute are provided by track-side mobile data centers. Their race prediction service is hosted exclusively on their existing public cloud provider. The existing technical environment is as follows:
+
+- Existing content is stored in the object storage service of their current public cloud provider.
+- Video encoding and transcoding are performed on Virtual Machines (VMs) created for each job.
+- Race predictions are made using TensorFlow running on VMs in their current public cloud provider.
+
+### Business requirements
+
+HRL's owners want to expand their prediction capabilities and reduce latency for viewers in emerging markets. Their requirements are as follows:
+
+- Support the ability to expose prediction models to partners.
+- Improve prediction capabilities during and before races for:
+    - Race outcomes
+    - Mechanical failures
+    - Audience sentiment
+- Increase telemetry to create additional insights.
+- Measure fan engagement with new predictions.
+- Improve the global availability and quality of broadcasts.
+- Increase the number of concurrent viewers.
+- Minimize operational complexity.
+- Ensure regulatory compliance.
+- Create a revenue stream from merchandising.
+
+### Technical requirements
+
+- Maintain or improve the throughput and accuracy of predictions.
+- Reduce latency for viewers.
+- Improve transcoding performance.
+- Create real-time analytics of viewer consumption patterns and engagement.
+- Create a data mart to handle large volumes of race data.
+
+### Executive statement
+
+> Our CEO, S. Hawke, wants to deliver high-excitement races to fans around the world. We've been listening to our fans, and they are asking for an enhanced video stream that includes predictions of in-race events (e.g., overtakes). Our current platform allows us to predict race outcomes, but it lacks the capability to support real-time predictions during the race and the capacity to process results throughout the season.
+
+---
+
+## Mountkirk Games
+
+:::tip[Case Study Highlights]
+*   **Industry**: Gaming
+*   **Challenges**: Scalability for a new multiplayer game, global low latency, and cost management.
+*   **Goals**: Achieve dynamic scaling and real-time performance by adopting a cloud-native architecture centered on GKE and Spanner.
+:::
+
+### Company overview
+
+Mountkirk Games produces online, session-based multiplayer games for mobile platforms. They recently started expanding to other platforms after successfully migrating their on-premises environment to Google Cloud.
+
+Their latest endeavor is to create a retro-style first-person shooter (FPS) game that allows hundreds of simultaneous players to join a geographically specific digital arena from multiple platforms and locations. A real-time digital banner will display a global leaderboard of top players across all active arenas.
+
+### Solution concept
+
+Mountkirk Games is building a new multiplayer game that they expect to be very popular. They plan to deploy the game's backend on Google Kubernetes Engine so they can scale rapidly and use Google's global load balancer to route players to the nearest regional game arena. To keep the global leaderboard in sync, they plan to use a multi-region Spanner cluster.
+
+### Existing technical environment
+
+The existing environment was recently migrated to Google Cloud, with five games moved using a lift-and-shift virtual machine migration, with a few small exceptions.
+
+Each new game resides in an isolated Google Cloud project, nested under a folder that maintains most of the permissions and network policies. Lower-traffic legacy games have been consolidated into a single project. There are also separate environments for development and testing.
+
+### Business requirements
+
+- Support multiple gaming platforms.
+- Support multiple regions.
+- Support rapid iteration of game features.
+- Minimize latency.
+- Optimize for dynamic scaling.
+- Use managed services and pooled resources.
+- Minimize costs.
+
+### Technical requirements
+
+- Scale dynamically based on game activity.
+- Publish scoring data to a near real-time global leaderboard.
+- Store game activity logs in structured files for future analysis.
+- Render graphics server-side using GPU processing for multi-platform support.
+- Support the eventual migration of legacy games to this new platform.
+
+### Executive statement
+
+> Our last game was our first on Google Cloud, and it was a tremendous success. We were able to analyze player behavior and game telemetry in ways we never could before. This success has allowed us to bet on a full migration to the cloud and start building a brand-new game using cloud-native design principles. Our new game is our most ambitious yet and will open the door to supporting more gaming platforms beyond mobile. Latency is a top priority, but cost management is a close second. As with our first cloud-based game, we expect the cloud to enable advanced analytics capabilities and allow us to rapidly iterate on bug fixes and new features.
+
+---
+
+## TerramEarth
+
+:::tip[Case Study Highlights]
+*   **Industry**: Manufacturing (Heavy Equipment) & IoT
+*   **Challenges**: Utilizing large volumes of vehicle telemetry data, modernizing development workflows, and integrating with legacy systems.
+*   **Goals**: Achieve predictive maintenance through data analysis, modernize the CI/CD pipeline, and build a partner ecosystem through APIs.
+:::
+
+### Company overview
+
+TerramEarth manufactures heavy equipment for the mining and agriculture industries. They currently have over 500 dealers and service centers in 100 countries. Their mission is to build products that improve their customers' productivity.
+
+### Solution concept
+
+There are currently 2 million TerramEarth vehicles in operation, with an expected growth of 20% per year. The vehicles collect telemetry data from many sensors while in operation. A small subset of critical data is transmitted from the vehicles in real time to facilitate fleet management. The remaining sensor data is collected, compressed, and uploaded daily when the vehicle returns to a base. Each vehicle typically generates 200 to 500 megabytes of data per day.
+
+### Existing technical environment
+
+TerramEarth's vehicle data aggregation and analysis infrastructure is on Google Cloud, serving clients worldwide. An increasing volume of sensor data is sourced from two main manufacturing plants and sent to a private data center that contains their traditional inventory and logistics management systems. The private data center has multiple network interconnects configured to Google Cloud.
+
+The web frontend for dealers and customers runs on Google Cloud, enabling access to inventory management and analytics.
+
+### Business requirements
+
+- Predict and detect vehicle failures and, when possible, ship parts to dealers for just-in-time repairs.
+- Reduce cloud operational costs and account for seasonal fluctuations.
+- Improve the speed and reliability of development workflows.
+- Enable remote developers to be more productive without compromising code or data security.
+- Create a flexible and scalable platform for developers to create custom API services for dealers and partners.
+
+### Technical requirements
+
+- Create a new abstraction layer for HTTP API access to legacy systems to allow them to be migrated to the cloud in phases without interrupting operations.
+- Modernize all CI/CD pipelines to enable developers to deploy container-based workloads to a highly scalable environment.
+- Allow developers to run experiments without compromising security and governance requirements.
+- Create a self-service portal for internal and partner developers to create new projects, request resources for data analysis jobs, and manage access to API endpoints centrally.
+- Use a cloud-native solution for key and secret management, optimized for identity-based access.
+- Improve and standardize the tools required for application and network monitoring and troubleshooting.
+
+### Executive statement
+
+> Our competitive advantage has always been our focus on the customer, providing excellent customer service, and minimizing vehicle downtime. After migrating several systems to Google Cloud, we are exploring new ways to provide our customers with best-in-class online fleet management services and improve our dealers' operations. Our five-year strategic plan is to create a partner ecosystem for new products by enabling access to our data, improving autonomous vehicle operation capabilities, and creating a path to migrate our remaining legacy systems to the cloud.

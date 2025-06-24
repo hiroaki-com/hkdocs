@@ -1,0 +1,138 @@
+---
+title: How to Internationalize the Docusaurus Navbar and Footer (i18n)
+sidebar_position: 9
+last_update:
+  date: 2025-06-16
+tags: [docusaurus, i18n, react, typescript, workflow, tutorial]
+---
+
+This article provides a step-by-step guide on how to internationalize (i18n) the main UI components of a Docusaurus site: the `navbar` and `footer`.
+
+#### 1. Objective
+
+The Docusaurus i18n feature is a mechanism for making site text multilingual. This guide explains the process of adding new items to the `navbar` and `footer` and translating them from Japanese (the default language) to English.
+
+{/* truncate */}
+
+1.  **Centralized Source Text**
+    All source text for translation is managed within the `docusaurus.config.ts` file. This allows you to have a single place to view the site's structure and wording.
+
+2.  **Automatic Generation of Translation Files**
+    The Docusaurus CLI command is used to automatically extract the text that needs translation, generating language-specific translation files (in JSON format).
+
+3.  **Simple Translation Process**
+    Translation is completed simply by editing the `message` field in the generated JSON files.
+
+#### 2. Internationalization Workflow
+
+As an example, we will walk through the steps of adding a new link called "ポートフォリオ" (Portfolio) to the navbar and footer and translating it into English.
+
+##### Step 1: Edit the Source Text (Japanese)
+
+Add the new item to the site's master configuration file, `docusaurus.config.ts`.
+
+1.  Open `docusaurus.config.ts`.
+2.  Add an item to the navbar. Add a new link object to the `themeConfig.navbar.items` array.
+
+    ```typescript title="docusaurus.config.ts"
+    // ...
+    navbar: {
+      // ...
+      items: [
+        // ...existing items...
+        { to: '/blog', label: 'ブログ', position: 'left' }, // Blog
+        // highlight-next-line
+        { to: '/portfolio', label: 'ポートフォリオ', position: 'left' }, // ← Add this line
+        { to: '/diary', label: '日記', position: 'left' }, // Diary
+        // ...
+      ],
+    },
+    // ...
+    ```
+
+3.  Add an item to the footer. Add a similar link to the `themeConfig.footer.links` array.
+
+    ```typescript title="docusaurus.config.ts"
+    // ...
+    footer: {
+      // ...
+      links: [
+        {
+          title: 'コンテンツ', // Content
+          items: [
+            // ...existing items...
+            // highlight-start
+            {
+              label: 'ポートフォリオ', // ← Add this object
+              to: '/portfolio',
+            },
+            // highlight-end
+            // ...
+          ],
+        },
+        // ...
+      ],
+    },
+    // ...
+    ```
+
+##### Step 2: Update Translation Files
+
+Reflect the changes from `docusaurus.config.ts` into the translation files.
+
+1.  Run the CLI command. Execute the following command in your terminal to extract the added text for translation.
+
+    ```bash
+    docker-compose run --rm app pnpm write-translations --locale en
+    ```
+
+    :::info Automatic Translation File Updates
+    This command scans the changes in `docusaurus.config.ts` and automatically adds or updates the items that need translation in the JSON files under the `i18n/en/docusaurus-theme-classic/` directory.
+    :::
+
+2.  Update the translation files. Upon successful command execution, new translation keys are automatically added to `navbar.json` and `footer.json` under the `i18n/en/docusaurus-theme-classic/` directory.
+
+##### Step 3: Translate to English
+
+Provide the English translation for the newly added keys.
+
+1.  Translate the navbar. Open `navbar.json` and change the `message` for `item.label.ポートフォリオ` to English.
+
+    ```json title="i18n/en/docusaurus-theme-classic/navbar.json"
+    "item.label.ポートフォリオ": {
+      // highlight-next-line
+      "message": "Portfolio", // ← Edit this line
+      "description": "Navbar item with label ポートフォリオ"
+    }
+    ```
+
+2.  Translate the footer. Open `footer.json` and edit the `message` for `link.item.label.ポートフォリオ`.
+
+    ```json title="i18n/en/docusaurus-theme-classic/footer.json"
+    "link.item.label.ポートフォリオ": {
+      // highlight-next-line
+      "message": "Portfolio", // ← Edit this line
+      "description": "The label of footer link with label=ポートフォリオ linking to /portfolio"
+    }
+    ```
+
+##### Step 4: Verify the Translation
+
+Create a production build to check if the edited translations are displayed correctly on the site.
+
+1.  Build the site. Generate the static files for all languages with the following command.
+
+    ```bash
+    docker-compose run --rm app pnpm build
+    ```
+
+2.  Start the preview server. Serve the generated `build` directory.
+
+    ```bash
+    docker-compose run --rm --service-ports app pnpm exec http-server build --single --port 3000 --host 0.0.0.0
+    ```
+
+3.  Verify in the browser.
+    *   Go to `http://localhost:3000/en/`.
+    *   Confirm that the "Portfolio" link is displayed in the navbar and footer.
+    *   Use the language switcher in the top right corner of the site to switch between languages and check that both displays are as intended.

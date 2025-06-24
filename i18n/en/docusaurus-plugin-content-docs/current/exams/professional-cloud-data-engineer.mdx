@@ -1,0 +1,140 @@
+---
+sidebar_position: 3
+title: Professional Cloud Data Engineer
+last_update:
+  date: 2025-06-10
+tags: [google cloud, certification, study guide]
+---
+
+import Admonition from '@theme/Admonition';
+
+**🌸 Passed: December 28, 2024**
+
+**Related:**
+- [Which Google Cloud certification is right for you?](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
+
+{/* truncate */}
+
+### Exam - December 28, 2024 - Passing Memo
+
+<Admonition type="note" title="Key Points Memo After Passing">
+
+**Reference Links**
+- [Cloud Data Fusion use cases](https://cloud.google.com/data-fusion?hl=en#use-cases)
+- [Dataflow programming languages](https://cloud.google.com/dataflow/docs/overview?hl=en#portable)
+- [Composer programming languages](https://cloud.google.com/composer/docs/concepts/overview?hl=en)
+- [Dataplex overview](https://cloud.google.com/dataplex/docs/introduction?hl=en)
+- [Datastream use cases](https://cloud.google.com/datastream/docs/implementing-datastream-dataflow-analytics?hl=en)
+- [BigLake use cases (Japanese article)](https://www.topgate.co.jp/blog/google-service/23159)
+- Cloud Storage storage options
+  - [Latest on storage classes](https://cloud.google.com/storage/docs/storage-classes?hl=en#classes)
+  - [Bucket retention policies](https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy)
+  - [Autoclass](https://cloud.google.com/storage/docs/autoclass?hl=en)
+- [BigQuery time travel](https://cloud.google.com/bigquery/docs/time-travel?hl=en)
+
+**Exam Points**
+- The business case study questions were removed.
+- Many advanced questions on windowing.
+- Many system-level questions about Dataproc.
+- Networking, deployment automation, and security topics also appeared frequently in conjunction with data services.
+
+**Notes on Dataproc**
+- I want to clarify whether Dataproc's intermediate system utilizes on-premises or memory.
+  - → Use HDFS for intermediate datasets.
+  - Reference: [Dataproc Best Practices Guide](https://cloud.google.com/blog/topics/developers-practitioners/dataproc-best-practices-guide)
+</Admonition>
+
+
+<Admonition type="info" title="Exam Information - December 28, 2024">
+Reason for taking the exam: A coupon was expiring on that date, and this was the exam for which I had the most knowledge and the best chance of passing. Also, due to date constraints, I chose the online exam.
+
+- Exam Name: Google Cloud Certified - Professional Data Engineer (Japanese)
+- **Date**: December 28, 2024
+- **Time**: 09:15 AM
+- Exam Method: Remotely proctored online exam
+
+Preparation:
+
+- Preparing to take it in the kitchen. It seems best to stick a sheet to the wall.
+- Download the secure browser (I'll do this at home).
+- Driver's license / Insurance card / Credit card.
+</Admonition>
+
+
+### 🔥Strategy for the Exam🔥
+
+- Study the exam scope, work through my self-made question sets, and review the documentation by 12/15.
+  - I might improve my question sets based on the trends from the practice exam, focusing on weak areas.
+- If I feel I need other practice question sets after taking the practice exam, I'll buy and complete them by 12/21.
+  - Study 50 questions for free on the following site:
+  - https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-11-20
+    - [Google Cloud Professional Data Engineer Practice Questions 1-10](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-1-10)
+      - [x] 1st pass
+    - [Google Cloud Professional Data Engineer Practice Questions 11-20](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-11-20)
+      - [x] 1st pass
+    -  [Google Cloud Professional Data Engineer Practice Questions 21-30](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-21-30)
+      - [x] 1st pass
+    - [Google Cloud Professional Data Engineer Practice Questions 41-50](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-41-50)
+      - [x] 1st pass
+    - [x] [Google Cloud Professional Data Engineer Practice Questions 51-60](https://it-concepts-japan.com/qsm_quiz/google-cloud-professional-data-engineer-51-60)
+      - [x] 1st pass
+- Conquer Udemy
+  - https://www.udemy.com/course/google-cloud-professional-data-engineer-s/learn/quiz/5452330/test#overview
+
+---
+
+<Admonition type="info" title="Prompt Memo for Creating Practice Questions">
+2024/11/30
+- I have configured a dedicated prompt in GPTs. However, when working, it is necessary to reinforce the prompt as needed. For example, reinforcing the latter part of a long generation or working on a new page for multiple prompts is necessary to compensate for the weaknesses of generative AI.
+
+**Final working prompt**
+- In the worst-case scenario, I managed by including the question number and the question text in the instruction.
+```text
+Regarding the questions in "Knowledge" "Chapter 4: Building and Operating Data Pipelines (Questions 151-200)",
+please improve the next 5 questions starting from question 165 as instructed. Be sure to "search" the "Knowledge" for confirmation and correctly understand the correspondence between the before and after versions of the questions and the intent of the instructions (format and explanation improvements).
+- The explanations should be detailed and helpful for a Google Cloud beginner.
+- For important Google Cloud service names appearing in the explanation, write them as "Official Name (e.g., Cloud Spanner)".
+
+``Reference info for searching the relevant question in "Knowledge"
+Question 165
+What is the most common concept used for state management in streaming processing with Dataflow?
+``
+```
+
+##### GPTs Tips
+
+Most effective measure for long text generation:
+- If the output becomes garbled, **create a new page** and prompt again.
+  - → This is more effective than improving the prompt, likely because it reduces the system load.
+
+Second-best measure for long text generation:
+- **Split** the material to be registered in the knowledge base.
+  - → This is presumably effective for modification and formatting tasks that follow the order and content of the original material.
+
+Magic words (prompt) for when contradictions occur:
+- **Be sure to "search" the "Knowledge" for confirmation.**
+  - → By making the GPTs search the registered material, it's possible to enforce generation that adheres to the format, content, order, and instructions of the reference material.
+
+Standard best practice:
+- Be specific and precise with prompts.
+  - → In GPTs, you can register instructions in advance, so aim for clear instructions at that stage.
+  - → It's also important to supplement the pre-registered instructions on the work screen.
+
+
+
+##### TIPS for Generating Advanced Questions
+
+2024/12/14 
+
+**Improving Mock Exams:**
+Copy the mock exam from the official website and save it as a text file.
+↓
+Register it in GPTs and organize the format.
+↓
+Gradually improve it in Gemini (Studio) after setting up a System Prompt.
+
+**Improving Basic Questions:**
+Generate a basic question set based on the exam scope using GPTs.
+↓
+Improve them into advanced questions in Gemini (Studio) after setting up a System Prompt.
+</Admonition>

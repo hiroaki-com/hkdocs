@@ -1,0 +1,146 @@
+---
+title: A Record of Introducing Docker Compose to a Docusaurus Project
+sidebar_position: 3
+last_update:
+  date: 2025-06-11
+tags: [Docusaurus, Docker, Docker Compose, tutorial]
+---
+
+This article documents the steps for introducing `Docker Compose` to a Docusaurus project for local development.
+
+:::info[Background]
+To unify the local development environment and simplify setup, Docker Compose was introduced to a Docusaurus (`v3.8.0`) project. Before this, the setup involved directly installing Node.js (`v22.16.0`) and pnpm (`v10.11.0`) on each developer's local machine.
+:::
+
+{/* truncate */}
+
+#### 1. Creating the Development Dockerfile (`Dockerfile.dev`)
+
+To define a Docker image specifically for local development, `Dockerfile.dev` was created with the following steps:
+
+1.  **File Creation**
+    A file named `Dockerfile.dev` was created in the project root.
+
+2.  **Specify Base Image**
+    To maintain consistency with the production `Dockerfile`, `node:22.16.0-alpine` was specified as the base image.
+
+3.  **Enable pnpm and Install Dependencies**
+    After running `corepack enable pnpm`, `package.json` and `pnpm-lock.yaml` are copied into the container, and all packages, including development dependencies, are installed using `pnpm install --frozen-lockfile`.
+
+4.  **Expose Port and Set Startup Command**
+    The default Docusaurus development port `3000` is exposed, and the startup command is set to `pnpm start --host 0.0.0.0 --no-open`. This allows access from outside the container while suppressing the unnecessary automatic opening of a browser.
+
+```dockerfile title="Dockerfile.dev"
+# syntax=docker/dockerfile:1
+FROM node:22.16.0-alpine AS development
+
+WORKDIR /app
+
+RUN corepack enable pnpm
+
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+
+EXPOSE 3000
+CMD ["pnpm", "start", "--host", "0.0.0.0", "--no-open"]
+```
+
+#### 2. Creating the Docker Compose Configuration File (`docker-compose.yml`)
+
+To define and manage the development service, `docker-compose.yml` was created with the following steps:
+
+1.  **File Creation**
+    A file named `docker-compose.yml` was created in the project root.
+
+2.  **Service Definition**
+    A development service named `app` was defined, with the container name set to `hkdocs_dev_app`. The build context was set to the project root (`.`), and the Dockerfile to be used was specified as `Dockerfile.dev`.
+
+3.  **Port Mapping Configuration**
+    The host's port `3000` is mapped to the container's port `3000`.
+
+4.  **Volume Mount Configuration**
+    For source code synchronization, `.:/app:cached` was set. To isolate the `node_modules` and `.docusaurus` directories, `/app/node_modules` and `/app/.docusaurus` were configured as container-specific volumes.
+
+5.  **Environment Variables and Other Settings**
+    `NODE_ENV=development` was set. `CHOKIDAR_USEPOLLING=true` is prepared but commented out for cases of unstable hot reloading. For interactive execution, `tty: true` and `stdin_open: true` were set.
+
+```yaml title="docker-compose.yml"
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: hkdocs_dev_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app:cached
+      - /app/node_modules
+      - /app/.docusaurus
+    environment:
+      - NODE_ENV=development
+      # CHOKIDAR_USEPOLLING=true
+    tty: true
+    stdin_open: true
+```
+
+#### 3. Updating the Docker Build Context Exclusion File (`.dockerignore`)
+
+To optimize the Docker image build efficiency and size, the `.dockerignore` file was updated. The main exclusions include `.git`, `node_modules`, `build`, `.docusaurus`, Docker-related files themselves, deployment scripts, environment-specific files, log files, OS-specific files, and IDE configuration files.
+
+:::caution Note
+Since `pnpm-lock.yaml` is used by the `COPY` command inside `Dockerfile.dev`, it is not included in the `.dockerignore` file.
+:::
+
+```dockerignore title=".dockerignore"
+# Git
+.git
+.gitignore
+
+# Node.js
+node_modules
+
+# Docusaurus build output and cache
+build
+.docusaurus
+
+# Docker related files
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+docker-compose.*.yml
+
+# Deployment scripts & environment specific files
+deploy.sh
+.env
+*.local
+
+# Logs
+*.log
+pnpm-debug.log*
+
+# IDE/Editor specific
+.DS_Store
+.vscode/
+.idea/
+```
+
+#### 4. Using and Verifying the Development Environment
+
+1.  **Starting the Development Environment**
+    From the terminal in the project root directory, start the development environment using `docker-compose up --build` for the first time or after changing configuration files. For subsequent starts, use `docker-compose up`.
+
+2.  **Verifying in the Browser**
+    Access `http://localhost:3000` in a browser and confirm that the Docusaurus site is displayed.
+
+3.  **Testing Hot Reload**
+    Edit and save a source code file in your editor on the host machine and confirm that the changes are immediately reflected in the browser (hot reload).
+
+    :::tip If Hot Reload is Unstable
+    You can address this by uncommenting `CHOKIDAR_USEPOLLING=true` in `docker-compose.yml`, or by adding the `--poll` option to the `CMD` in `Dockerfile.dev` and restarting with `docker-compose up --build`.
+    :::
+
+4.  **Stopping the Development Environment**
+    Stop the containers by pressing `Ctrl + C` in the terminal where the development server is running. To completely remove the containers and associated resources (like networks), run the `docker-compose down` command.

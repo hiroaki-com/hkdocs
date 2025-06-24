@@ -1,0 +1,72 @@
+---
+sidebar_position: 5
+title: Find/Replace Horizontal Rule Apps Script
+last_update:
+  date: 2025-06-18
+tags: [Google Docs, Apps Script, GAS, Tutorial]
+---
+
+# "Find/Replace Horizontal Rule" Apps Script for Google Docs
+
+### Background
+- I needed to bulk-replace horizontal rules, which were used as separators in a document, with a specific text (e.g., "Replacement Text").
+- These horizontal rules (---) were generated when a Markdown file was converted to a Google Doc and were not detectable by the standard find/replace function (`⌘＋F`／`⌘＋H`).
+- Manual, visual replacement was inefficient, highlighting the need to streamline this repetitive task.
+- This script was created to automate such routine replacement tasks and improve editing efficiency.
+
+### Use Cases
+- Bulk-replace all horizontal rules in a document with a specified fixed string (in this script, "Replacement Text").
+- Can be used, for example, to convert places where horizontal rules were used as temporary separators into formal section headings or annotations.
+- Streamlines the process of formatting a large number of documents to ensure a consistent handling of horizontal rules.
+
+### How to Use
+1.  Open a Google Docs document.
+2.  From the menu bar, select "Extensions" > "Apps Script" to open the script editor.
+3.  Copy and paste the entire script below into the script editor that appears.
+
+    :::info Note
+    If other scripts already exist, either create a new script file ("File" > "New" > "Script file") and paste the code there, or append it to the end of the existing code.
+    :::
+4.  Save the script by clicking the floppy disk icon ("Save project") at the top of the script editor.
+5.  At the top of the script editor, select `replaceHorizontalRules` as the function to run. (It's usually selected automatically if it's the only function.)
+6.  Click the play icon ("Run") to execute the script.
+
+    :::caution First-Time Execution Note
+    On the first run, an "Authorization required" dialog will appear. Follow the prompts to authorize the script.
+    :::
+
+7.  After execution, all horizontal rules in the document will be replaced with the text "Replacement Text".
+
+```javascript title="replace-horizontal-rules.js"
+function replaceHorizontalRules() {
+  const body = DocumentApp.getActiveDocument().getBody();
+  const hrArray = [];
+
+  // 1) Collect all horizontal rules
+  // Search for HORIZONTAL_RULE elements in the document body.
+  let res = body.findElement(DocumentApp.ElementType.HORIZONTAL_RULE);
+  while (res) {
+    // Add the found horizontal rule element to the hrArray.
+    // findElement returns a RangeElement, so we use getElement() to get the actual Element.
+    hrArray.push(res.getElement());
+    // Search for the next horizontal rule, starting from the current result (res).
+    res = body.findElement(DocumentApp.ElementType.HORIZONTAL_RULE, res);
+  }
+
+  // 2) Replace from the end of the array
+  // Processing from the end of the array avoids issues with changing the indices
+  // of elements at the front when deleting or inserting.
+  for (let i = hrArray.length - 1; i >= 0; i--) {
+    const hr = hrArray[i];                       // Get the horizontal rule element from the array
+    const para = hr.getParent();                 // Get the parent paragraph element containing the horizontal rule
+    const parentBody = para.getParent();         // Get the parent of that paragraph (usually the document Body)
+    const index = parentBody.getChildIndex(para); // Get the position (index) of the paragraph within the Body
+
+    // Remove the entire paragraph containing the horizontal rule.
+    // This is because a horizontal rule is typically treated as its own separate paragraph.
+    parentBody.removeChild(para);
+    // Insert a new paragraph with the text "Replacement Text" at the original paragraph's location.
+    parentBody.insertParagraph(index, 'Replacement Text');
+  }
+}
+```

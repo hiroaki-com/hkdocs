@@ -1,0 +1,218 @@
+---
+sidebar_position: 6
+title: Professional Cloud DevOps Engineer
+last_update:
+  date: 2025-06-10
+tags: [google cloud, certification, study guide]
+---
+
+import Admonition from '@theme/Admonition';
+
+**🌸 Passed: March 30, 2025**
+
+---
+### Passing Memo
+
+<Admonition type="note" title="Passing Memo for March 30, 2025">
+<p>
+Got through it despite the baptism by fire of a doubleheader.
+</p>
+
+**Exam Overview**
+<ul>
+  <li>50 questions. Completed the first pass in about 50 minutes, reviewed for 10 minutes, and submitted.</li>
+  <li>I imagine I scored around 90%.</li>
+</ul>
+
+**Exam Impressions**
+<ul>
+  <li>Most questions were either directly from the Udemy course or could be answered immediately with an understanding of SRE.</li>
+  <li>There might have been some shallow questions from the Architect or other exams, but most were fundamental.</li>
+  <li>The first half was easy, but the second half had some uncertain parts, so I can't rule out the possibility that I just happened to get past questions I knew.</li>
+</ul>
+
+**Topics Covered**
+<ul>
+  <li>Agent Policies → Appeared about twice, and I realized I didn't understand them well.</li>
+  <li>Private pools</li>
+  <li>Cloud Build in general</li>
+  <li>General fundamental concepts of SRE</li>
+  <li>A few questions related to IAM / GKE service accounts</li>
+  <li>Questions about defining SRE metrics with a buffer (e.g., 50→60/100→110...).</li>
+</ul>
+</Admonition>
+
+---
+
+### Exam Information - March 30, 2025 → 🌸Passed🌸
+
+Exam Name: Professional Cloud DevOps Engineer
+- Date: March 30, 2025
+- Time: 03:45 PM
+
+---
+<Admonition type="tip" title="Exam Day TODO (Success story from my PSE / PNE / PDE / PCA exams) ⭐️">
+
+**The Day Before**
+- [x] Get a good night's sleep
+    - Set up eye mask, earplugs, and pillow
+
+**On the Day**
+- [ ] Wake up by 9 AM (It's important to be fully recovered from fatigue)
+	- [x] → 11 AM
+- [x] Do a final review at a cafe
+    - Feeling like going to the Doutor Odori store
+	    - [ ] Review incorrect answers from the [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform)
+	    - Review weak areas
+	    - [x] Review incorrect answers from practice question sets
+	    - [x] Read other important articles
+
+- Leave the cafe at 2:00 PM
+
+- [x] Print the exam confirmation email
+	- Forward the email to the app
+
+- [x] Take a 10-minute nap before arriving at the venue to fully refresh my brain
+	- [x] Get enough sugar
+
+- [x] Arrive at the venue by 3:00 PM (30 minutes before the test starts) and complete check-in
+	- Make a conscious effort to read the options first
+	- Be mindful of leaving time for review
+</Admonition>
+
+---
+
+### 🔥Strategy for the Exam🔥
+
+- Read the official reference materials
+	- [Which Google Cloud certification is right for you?](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
+
+##### Study Strategy:
+
+- Important Materials
+	- [Official Guide](https://cloud.google.com/learn/certification/cloud-devops-engineer/)
+	- 💡[SRE Book Updates, by Topic](https://sre.google/resources/book-update/)｜A must-read collection of materials, including three Google SRE books, available for free.
+		- [sre.google/books](http://sre.google/books)｜Read all 3 books online for free.
+	- [Best practices for speeding up builds](https://cloud.google.com/build/docs/optimize-builds/speeding-up-builds#caching_directories_with_google_cloud_storage%20%20https://cloud.google.com/build/docs/speeding-up-builds)
+
+
+- Practice Questions
+	- [Whizlabs](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-cloud-devops-engineer/385/pt) Free Questions: Study only the Free Test.
+		- [ ] 1st pass: 2025/03/24｜73%
+		- [ ] 2nd pass:
+
+	- [Udemy](https://www.udemy.com/course/google-professional-cloud-devops-engineer-practice-exam-test/) Practice Exams
+	- 1st pass:
+		- [x] Practice Test I｜2025/03/23｜52%
+		- [x] Practice Test 2｜2025/03/27｜53%
+		- [x] Practice Test 3｜2025/03/25｜43%
+
+	- Review:
+		- [ ] Practice Test I｜｜
+		- [ ] Practice Test 2｜｜
+		- [ ] Practice Test 3｜｜
+
+	- 2nd pass:
+		- [x] Practice Test I｜2025/03/28｜73%
+		- [x] Practice Test 2｜2025/03/29｜81%
+		- [x] Practice Test 3｜2025/03/29｜72%
+
+
+	- [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSdpk564uiDvdnqqyPoVjgpBp0TEtgScSFuDV7YQvRSumwUyoQ/viewform)
+		- [ ] 2025/03/24｜70%
+			- Question 12 - Possible discrepancy between practice set and official exam answers.
+		- [ ] ｜｜
+
+
+- If I have time, read Google SRE articles
+	- [ ] [SRE Book Updates, by Topic](https://sre.google/resources/book-update/)
+
+---
+
+##### Weak Areas
+
+[Overview of private pools](https://cloud.google.com/build/docs/private-pools/private-pools-overview#overview_of_default_pools_and_private_pools)｜Cloud Build
+>**Private pools** are a private, dedicated pool of workers that offer greater customization over the build environment, including the ability to **access resources in a private network**. Similar to default pools, private pools are hosted and fully managed by Cloud Build, and can scale up to or down to zero. You don't need to set up, upgrade, or scale any infrastructure. Since private pools are customer-specific resources, you can configure them in more ways.
+
+[Using a cached Docker image](https://cloud.google.com/build/docs/optimize-builds/speeding-up-builds#using_a_cached_docker_image)｜Cloud Build 
+> The easiest way to increase the speed of a Docker image build is by specifying a cached image that can be used for subsequent builds. You can specify the cached image by adding the **`--cache-from`** argument in your build config file, which will instruct Docker to build using that image as a cache source.
+
+[Caching directories with Google Cloud Storage](https://cloud.google.com/build/docs/optimize-builds/speeding-up-builds#caching_directories_with_google_cloud_storage)｜Cloud Build 
+> To increase the speed of your build, you can reuse the results from a previous build. You can do this by **copying the results of a previous build to a Google Cloud Storage bucket, using the results to compute, and copying the new results back to the bucket**. Use this method when your builds take a long time and produce a small number of files that doesn't take long to copy to and from Google Cloud Storage.
+>
+>Unlike the **`--cache-from`** that is only for Docker builds, caching with Google Cloud Storage can be used for any [builder supported by Cloud Build](https://github.com/GoogleCloudPlatform/cloud-builders).
+
+[Use a separate organization for experimenting](https://cloud.google.com/architecture/identity/best-practices-for-planning#use_a_separate_organization_for_experimenting)｜Organization
+> For experimental activities, **use a separate organization as a sandbox environment**. Using a separate organization lets you work without being constrained by the policies, configurations, and automation that you use in your production organization.
+>
+> **Don't use** the [staging organization](https://cloud.google.com/architecture/identity/best-practices-for-planning#use_a_separate_staging_organization) for testing. The staging environment should have IAM policies and organization policies that are similar to your production organization. Consequently, the staging environment might have the same restrictions that are applied to your production environment. At the same time, if you relax policies to allow for testing, the purpose of the staging organization is defeated.
+
+
+[images](https://cloud.google.com/build/docs/build-config-file-schema#images)｜Cloud Build 
+> The **`images` field** in the build config file specifies one or more Linux **Docker images** that Cloud Build will push to Artifact Registry or Container Registry. You might have a build that runs tasks without producing a Linux Docker image, but if you build images and don't push them to a registry, the images are discarded on build completion. If a specified image isn't produced at build time, the build will fail. For more information on storing images, see [Storing artifacts in Artifact Registry](https://cloud.google.com/build/docs/building/store-artifacts-in-artifact-registry).
+
+
+[artifacts](https://cloud.google.com/build/docs/build-config-file-schema#artifacts)｜Cloud Build 
+> The **`artifacts` field** in the build config file specifies one or more **non-container** artifacts to store in Cloud Storage. For more information on storing non-container artifacts, see [Storing build artifacts in Cloud Storage](https://cloud.google.com/build/docs/building/store-artifacts-in-cloud-storage).
+
+[Log sampling](https://cloud.google.com/vpc/docs/flow-logs#log-sampling)｜VPC Flow Logs
+ > - For VMs, **50% of log entries are kept by default**. You can configure this parameter **from `1.0` (100%, all log entries are kept) to `0.0` (0%, no logs are kept)**.
+> - For VLAN attachments and Cloud VPN tunnels, 100% of log entries are kept by default. You can configure this parameter from `1.0` to a value greater than `0.0`.
+
+ [Agent policies](https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent/managing-agent-policies)｜Google Cloud CLI
+> Agent policies are created and managed by using the `gcloud beta compute instances ops-agents policies` command group in the **Google Cloud CLI** or by using the `agent-policy` Terraform module. Agent policies **manage OS policies** by using the Compute Engine VM Manager tool suite. These policies can automate the deployment and maintenance of software configurations, such as the Google Cloud Observability agents: the Ops Agent, the legacy Monitoring agent, and the legacy Logging agent.
+
+[Configuring Terraform to store state in a Cloud Storage bucket](https://cloud.google.com/docs/terraform/resource-management/managing-infrastructure-as-code#configuring_terraform_to_store_state_in_a_cloud_storage_bucket)｜Terraform
+> By default, Terraform stores state locally in a file named `terraform.tfstate`. This default configuration can make Terraform difficult for teams, especially when many users run Terraform at the same time and each machine has its own understanding of the current infrastructure.
+>
+> To help you avoid these issues, this section shows you how to **configure a remote state that points to a Cloud Storage bucket**. Remote state is a feature of backends and in this tutorial is configured in a `backend.tf` file. For example:
+
+[IAM Conditions overview](https://cloud.google.com/iam/docs/conditions-overview#example-date-time)｜IAM Conditions
+> Example date/time expression
+	The following condition expression in a role binding allows access until midnight on January 1st, 2021:
+
+[Build VM images with Packer](https://cloud.google.com/build/docs/building/build-vm-images-with-packer#yaml)｜Cloud Build
+> Packer is an open-source tool for creating identical virtual machine (VM) images for **multiple platforms** from a single source configuration. This page describes how to create VM images for use in Compute Engine with Packer and Cloud Build.
+
+[Triggering on Pub/Sub Messages](https://spinnaker.io/docs/guides/user/pipeline/triggers/pubsub/)｜Spinnaker
+> Note that Pub/Sub and Spinnaker can be integrated.
+
+
+[create_before_destroy](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#create_before_destroy)｜Terraform
+> `create_before_destroy (bool)` - By default, when Terraform must change a resource argument that cannot be updated in-place due to remote API limitations, Terraform will instead destroy the existing object and then create a new replacement object with the new configured arguments.
+> 
+> The `create_before_destroy` meta-argument changes this behavior so that the replacement object is created first, and the existing object is destroyed after the replacement is created.
+
+
+---
+
+##### HTTP Status Code List
+
+| **HTTP Status Code** | **Error Message**         | **Context/Cause**                                                  |
+| -------------------- | ------------------------- | ------------------------------------------------------------------ |
+| **400**              | `Bad Request`             | The request format is invalid (e.g., missing required parameters, invalid values). |
+| **401**              | `Unauthorized`            | Invalid authentication credentials or insufficient access permissions.     |
+| **403**              | `Forbidden`               | Lacking access rights, or access is denied by IAM settings.            |
+| **404**              | `Not Found`               | The specified resource does not exist (e.g., invalid resource ID).     |
+| **409**              | `Conflict`                | Resource conflict, such as during instance creation.                 |
+| **429**              | `Too Many Requests`       | API request rate limit has been exceeded.                          |
+| **500**              | `Internal Server Error`   | An unexpected error occurred on the server side.                   |
+| **502**              | `Bad Gateway`             | An error occurred at the gateway or proxy.                         |
+| **503**              | `Service Unavailable`     | The service is down, under maintenance, or temporarily unavailable.      |
+| **504**              | `Gateway Timeout`         | The request timed out (e.g., after a long wait).                  |
+
+---
+
+<Admonition type="info" title="Developer Memo: Udemy Invalid URLs Report">
+Reported on 2025/03/29
+
+**Practice Test 2: Still Invalid URLs References**
+```
+You oversee an application operating within Google Kubernetes Engine (GKE) and employing the blue/green deployment approach. Portions of the Kubernetes manifests are provided below: ...
+```
+
+**Practice Test 2: The following has an incorrect answer key**
+```
+Your organization aims to elevate the availability target of an application from 99.9% to 99.99% with a $2,000 investment. ...
+```
+</Admonition>

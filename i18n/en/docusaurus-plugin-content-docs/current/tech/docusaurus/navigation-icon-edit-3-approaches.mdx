@@ -1,0 +1,159 @@
+---
+title: "Docusaurus Navigation Icon Editing: Three Approaches"
+sidebar_position: 5
+last_update:
+  date: 2025-06-14
+tags: [docusaurus, icon, css, svg]
+---
+
+This article outlines three primary patterns for displaying icons or specific symbols in the Docusaurus site's navigation bar.
+
+
+#### 1. Displaying with Text/Symbols
+
+The most direct and simple method for displaying icons or symbols in navigation items. This is achieved by directly writing them in the `label` property within the Docusaurus configuration file.
+
+{/* truncate */}
+
+1.  **Edit Configuration File** (`docusaurus.config.ts`)
+    Specify the desired text, emoji, or special symbol in the `label` property of the target item within the `themeConfig.navbar.items` array.
+
+    ```typescript title="docusaurus.config.ts"
+    // docusaurus.config.ts
+    // ...
+    themeConfig: {
+      // ...
+      navbar: {
+        // ...
+        items: [
+          {
+            href: 'https://github.com/your-org/your-repo',
+            label: 'GitHub', // or '🐙', 'Project Repository', etc.
+            position: 'right',
+          },
+          {
+            href: 'https://x.com/your-account',
+            label: '𝕏',     // A symbol styled like the X (Twitter) logo
+            position: 'right',
+          },
+          // ... other navigation items ...
+        ],
+      },
+      // ...
+    },
+    // ...
+    ```
+
+2.  **Features and Considerations**
+    *   **Implementation**: Extremely easy. No additional CSS or file management is required.
+    *   **Lightweight**: Minimal impact on site performance.
+    *   **Design**: Limited design freedom as it can only use characters and symbols within the text character set. Accurately representing specific brand logos is difficult.
+
+#### 2. Displaying Icons with CSS Pseudo-elements and Background Images
+
+Use CSS `::before` or `::after` pseudo-elements and the `background-image` property (recommending the SVG Data URI format) to display icons without altering the HTML structure.
+
+1.  **Edit Configuration File** (`docusaurus.config.ts`)
+    Add a `className` to the navigation item where you want to display an icon, which will be used to apply styles via CSS. The `label` can be left empty or contain text for screen readers that is visually hidden with CSS.
+
+    ```typescript title="docusaurus.config.ts"
+    // docusaurus.config.ts
+    // ...
+          {
+            href: 'https://github.com/your-org/your-repo',
+            label: ' ', // Leave empty or visually hide for CSS icon display
+            className: 'header-github-link', // Class name for CSS reference
+            'aria-label': 'GitHub Repository', // Essential for accessibility
+            position: 'right',
+          },
+    // ...
+    ```
+
+2.  **Edit Custom CSS** (`src/css/custom.css`)
+    Apply a background image as an icon to the element with the specified class name using the `::before` pseudo-element. To display different icons for light and dark modes, use the `html[data-theme='dark']` selector.
+
+    ```css title="src/css/custom.css"
+    /* src/css/custom.css */
+    .header-github-link {
+      display: inline-block;
+      width: 24px; /* Adjust to match icon width */
+      height: 24px; /* Adjust to match icon height */
+      font-size: 0; /* Makes empty label text invisible */
+      position: relative; /* Reference point for ::before */
+      vertical-align: middle; /* Vertical alignment with other text items */
+    }
+
+    .header-github-link::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      /* Light mode SVG icon (Data URI format) */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 ... Z'/%3E%3C/svg%3E");
+    }
+
+    /* Dark mode support */
+    html[data-theme="dark"] .header-github-link::before {
+      /* Dark mode SVG icon (Data URI format, e.g., fill='white') */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 ... Z'/%3E%3C/svg%3E");
+    }
+    ```
+
+3.  **Features and Considerations**
+    *   **Flexibility**: Allows for pixel-perfect positioning and adding effects with CSS.
+    *   **HTML Structure**: The HTML structure of the navigation item itself is not changed.
+    *   **Complexity**: Requires some CSS knowledge and management effort, such as converting SVG to a Data URI, specifying images for each theme, and hiding the `label` text.
+
+#### 3. Displaying Icons with Inline SVG
+
+Use the `html` property of the Docusaurus navigation item configuration object to embed SVG code directly into the HTML.
+
+1.  **Edit Configuration File** (`docusaurus.config.ts`)
+    Instead of the `label` property, use the `html` property for the navigation item and provide the complete SVG code as a string for its value. Setting the SVG's `fill` attribute to `currentColor` allows it to follow the theme color.
+
+    ```typescript title="docusaurus.config.ts"
+    // docusaurus.config.ts
+    // ...
+          {
+            href: 'https://github.com/your-org/your-repo',
+            position: 'right',
+            html: `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="navbar-icon" aria-hidden="true"><path d="M12 ... Z"/></svg>`, // Write SVG code directly
+            'aria-label': 'GitHub Repository', // Essential for accessibility
+          },
+    // ...
+    ```
+
+2.  **Edit Custom CSS** (`src/css/custom.css`) - Optional
+    If you specify `fill="currentColor"` in the SVG itself, basic theme support requires no CSS. Write CSS only when additional styles like hover effects or margin adjustments are needed.
+
+    ```css title="src/css/custom.css"
+    /* src/css/custom.css */
+    .navbar-icon { /* Class applied to the SVG (optional) */
+      vertical-align: middle; /* Vertical alignment with other text items */
+      margin-left: 0.25rem; /* To add a small left margin */
+    }
+
+    .navbar-icon:hover {
+      opacity: 0.7; /* Change opacity on hover */
+    }
+    ```
+
+3.  **Features and Considerations**
+    *   **Theme Following**: Using `fill="currentColor"` automatically adapts the icon color to the light/dark theme's text color without needing CSS.
+    *   **Self-Contained**: The icon definition is largely self-contained within `docusaurus.config.ts` (low dependency on external CSS).
+    *   **Readability**: The presence of long SVG code in the configuration file can potentially reduce the overall readability of the file.
+
+#### Summary and Recommendation
+
+The method for displaying navigation icons can be chosen based on the project's requirements and the developer's preference.
+
+*   **For simplicity and ease of use**: **Text/Symbols** is the best choice.
+*   **For fine-grained control with CSS and using existing image assets**: **CSS Pseudo-elements and Background Images** is suitable, but consider the management cost.
+*   **For easy theme integration and direct SVG control**: **Inline SVG** is often the modern and recommended approach, but be mindful of bloating the configuration file.
+
+Ultimately, it is important to choose the most suitable approach by comprehensively comparing factors such as ease of implementation, maintainability, design requirements, and performance impact.
