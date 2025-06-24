@@ -1,0 +1,142 @@
+---
+title: How to Integrate Algolia DocSearch into Docusaurus
+sidebar_position: 2
+last_update:
+  date: 2025-06-10
+tags: [docusaurus, algolia, docsearch, search]
+---
+
+import Admonition from '@theme/Admonition';
+
+This article outlines the steps and troubleshooting process for setting up an internal site search feature using Algolia DocSearch.
+
+### A Record of Implementing Algolia DocSearch in Docusaurus
+
+References:
+- https://docusaurus.io/docs/search
+- https://docsearch.algolia.com/docs/api/#indexname
+
+Service Used:
+- [Algolia DocSearch](https://docsearch.algolia.com/)
+
+{/* truncate */}
+
+#### 1. Applying for Algolia DocSearch
+
+1.  **Access the DocSearch Official Website**
+    Go to the [Algolia DocSearch official website](https://docsearch.algolia.com/).
+
+2.  **Submit the Application Form**
+    Follow the instructions on the site to fill out and submit the application with your site's URL and repository information.
+
+3.  **Obtain Key Information**
+    After your application is approved, you will receive the following three pieces of information from Algolia:
+    *   `appId` (Application ID)
+    *   `apiKey` (Search-Only API Key)
+    *   `indexName` (Index Name)
+
+#### 2. Update `docusaurus.config.ts`
+
+1.  **Add `algolia` Configuration to the Config File**
+    Open `docusaurus.config.ts` in your project root and add an `algolia` property within the `themeConfig` object.
+
+2.  **Configuration Details**
+    Set the key information you obtained for each item.
+
+    ```typescript title="docusaurus.config.ts"
+    // docusaurus.config.ts
+    // ...
+    themeConfig: {
+      // ...other settings...
+
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'YOUR_APP_ID',
+
+        // Public API key: safe to commit
+        apiKey: 'YOUR_SEARCH_API_KEY',
+
+        // The name of the Algolia index
+        indexName: 'YOUR_INDEX_NAME',
+
+        // Recommended: enable contextual search
+        contextualSearch: true,
+
+        // Optional: path for the search page (defaults to 'search')
+        searchPagePath: 'search',
+      },
+    },
+    // ...
+    ```
+
+#### 3. Create the Index with the Algolia Crawler
+
+1.  **Initial Crawl**
+    After the DocSearch team completes the crawl configuration, your site's content will be initially indexed by Algolia.
+
+2.  **Check Crawler Configuration**
+    If necessary, check the crawl target URLs and exclusion settings in the Algolia dashboard.
+
+3.  **Automatic Content Updates**
+    After your site is updated, the DocSearch crawler will periodically detect changes and automatically update the search index.
+
+    <Admonition type="warning" title="Note">
+      The search function will not work until the crawl is complete and the index is populated with data.
+    </Admonition>
+
+#### 4. Verify Operation
+
+1.  **Start the Local Development Server**
+    Start the development server with a command like `pnpm start`.
+
+2.  **Check Search UI Display**
+    Confirm that a search box is displayed in your site's navigation bar.
+
+3.  **Test Search Functionality**
+    Enter keywords and test whether the search results are displayed correctly.
+
+4.  **Build and Deploy**
+    After local verification, build the site with a command like `pnpm build` and deploy it to your production environment. Re-verify the operation after deployment.
+
+---
+
+### Addendum: Troubleshooting and Resolving Search Functionality Failure
+
+#### 1. The Incident
+
+*   **Symptom**
+    The search box was displayed, but entering keywords only returned the site title, and the content of articles and individual pages was not being searched.
+*   **Attempts**
+    Manually triggering crawls from the Algolia dashboard and modifying CSS selectors in the crawler configuration did not resolve the issue.
+*   **Error**
+    The crawler logs showed a `Too many missing records` error. The index update was being blocked by a safety mechanism because the new crawl retrieved zero records.
+
+#### 2. The Cause
+
+**The Algolia crawler was navigating the site without executing JavaScript.**
+
+Docusaurus v3 is a Single Page Application (SPA) that renders content dynamically using JavaScript. The default crawler setting (`renderJavaScript: false`) was reading the pre-JavaScript execution HTML (which was empty), so there was no text to be indexed.
+
+#### 3. The Solution
+
+**Change the Algolia crawler configuration.**
+
+1.  Open the configuration editor for the target crawler in the Algolia dashboard.
+2.  Change the `renderJavaScript: false` setting to `true`.
+
+    ```javascript title="Algolia Crawler Configuration File"
+    // Algolia Crawler Configuration File
+    new Crawler({
+      // ...
+      renderJavaScript: true,
+      // ...
+    });
+    ```
+
+This change made the crawler read the fully rendered HTML after JavaScript execution, allowing the CSS selectors to correctly extract the body content.
+
+#### 4. Lessons Learned
+
+*   When applying Algolia to SPAs like Docusaurus v2+, React, or Vue, the `renderJavaScript: true` setting is likely essential.
+*   If "the selectors are correct but no data is being extracted," the first thing to check is the crawler's JavaScript rendering setting.
+*   Using the crawler's test run feature (Run a test) to check the raw HTML it retrieves is extremely effective for isolating the problem.

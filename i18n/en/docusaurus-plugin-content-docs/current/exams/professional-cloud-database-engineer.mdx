@@ -1,0 +1,342 @@
+---
+sidebar_position: 4
+title: Professional Cloud Database Engineer
+last_update:
+  date: 2025-06-10
+tags: [google cloud, certification, study guide]
+---
+
+import Admonition from '@theme/Admonition';
+
+**🌸 Passed: March 07, 2025**
+
+<Admonition type="note" title="Passing Memo">
+<p>Impressions:</p>
+<ul>
+<li>Number of questions: 50</li>
+<li>Completed the first pass in about 100 out of 120 minutes → Finished review in about 15 minutes and submitted.</li>
+<li>Estimated score: 75%~85%</li>
+</ul>
+<p>
+Although this was my first English exam, I managed to get through it because I was able to concentrate more than I do for Japanese exams. Time was also manageable because I could somehow understand the questions, and about half of them were short.
+I imagine there were only one or two questions I couldn't solve because I didn't know the English vocabulary.
+There were many questions I had seen before. Also, the question trends did not deviate from the scope of the Udemy practice exams, which made me think they are likely reusing questions from a narrow pool.
+</p>
+<p>Question Trends:</p>
+<ul>
+<li>Spanner</li>
+<li>Cloud SQL</li>
+<li>Datastream / Dataproc</li>
+<li>Questions about availability and performance tuning</li>
+<li>Authentication and authorization</li>
+<li>CMEK</li>
+</ul>
+</Admonition>
+
+{/* truncate */}
+
+--- 
+
+**Exam Overview:**
+- https://cloud.google.com/learn/certification/cloud-database-engineer
+
+
+### Exam Information - March 7, 2025
+Exam Name: Professional Cloud Database Engineer
+On-site exam at Yoshiya Building 7F
+March 7, 2025, 3:00 PM (JST) 
+
+---
+
+### 🔥Strategy for the Exam🔥
+
+- Read the official reference materials
+	- https://cloud.google.com/learn/certification/cloud-database-engineer
+
+##### Study Strategy:
+
+- Reference Materials
+	- Official
+		- https://cloud.google.com/learn/certification/cloud-database-engineer
+		- English🔥 https://medium.com/google-cloud/how-to-prepare-for-the-google-cloud-professional-cloud-database-engineer-exam-2a69baa68b09
+	- Blog
+		- https://blog.g-gen.co.jp/entry/professional-cloud-database-engineer (Japanese)
+
+- Go through practice question sets repeatedly｜
+	- 2025/03/01 → The following Udemy course was removed, so I switched to a different one (refund processed).
+		- OLD｜[Practice Exams | Google Cloud Database Engineer (GCP)](https://www.udemy.com/course/practice-exams-google-professional-cloud-database-engineer/?couponCode=ST5MT020225BROW)
+		- New｜[Google Professional Cloud Database Engineer - GCP - Exams](https://www.udemy.com/course/google-professional-cloud-database-engineer-exams/)
+			- [Refund Method](https://www.udemy.com/dashboard/purchase-history/): Request a Refund 
+
+
+	- Studied only the free questions from Whizlabs
+		- [Free Test ](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-database-engineer/2556)
+			- 3rd pass: 73%
+			
+	- [x] Old question set
+	- 1st pass: 2025/02/08 ~50%
+		- [x] Practice Test 1
+		- [x] Practice Test 2
+		- [x] Practice Test 3
+
+	- 2nd pass: 2025/02/12 ~70%
+		- [x] Practice Test 1
+		- [x] Practice Test 2
+		- [x] Practice Test 3
+
+	- [x] New question set
+	- 1st pass:
+		- [x] Practice Test 1｜50%
+		- [x] Practice Test 2｜50%
+		- [x] Practice Test 3｜60%
+		- [x] Practice Test 4｜76%｜2025/03/06
+		- [x] Practice Test 5｜75% 2025/03/06
+		- [x] Practice Test 6｜70% 2025/03/05
+
+	- Review: 2025/03/07
+		- [x] Practice Test 1
+		- [x] Practice Test 2
+		- [x] Practice Test 3
+		- [x] Practice Test 4
+		- [x] Practice Test 5
+		- [x] Practice Test 6
+
+
+	- Try the [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform)
+		- → About the practice exam: It's covered by the question sets, so no longer needed.
+			- 100 %: 2025/02/13
+			- 95%: 2025/03/02
+
+
+- [ ] Read articles from the Architecture Center
+	- https://cloud.google.com/architecture/databases
+		- [x] 2025/02/13
+---
+
+##### Weak Areas
+
+[Read replicas](https://cloud.google.com/sql/docs/mysql/replication#read-replicas) Cloud SQL 
+> You use read replicas to offload work from a Cloud SQL instance. A read replica is an **exact copy of the primary instance**. Data and other changes on the primary instance are updated in **near real time** on the read replica.
+> **Read replicas are read-only**; you cannot write to them. The read replica processes queries, read requests, and analytics traffic, thus **reducing the load on the primary instance**.
+
+[Filter by query tags](https://cloud.google.com/sql/docs/postgres/using-query-insights#filter_by_query_tags) Cloud SQL
+ > To troubleshoot an application, you first need to [add tags to your SQL queries](https://cloud.google.com/sql/docs/postgres/using-query-insights#adding-tags-to-sql-queries). 
+
+[Protecting databases: Terraform on Google Cloud](https://cloud.google.com/docs/terraform/best-practices/general-style-structure#stateful-resources)
+> For stateful resources such as databases, make sure that deletion protection (**deletion_protection**) is enabled. For example:
+
+[Recommender for Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/recommender-sql-overprovisioned)
+> The Recommender for overprovisioned **Cloud SQL instances** analyzes usage metrics for primary instances that have been running for at least 30 days. The Recommender analyzes **CPU and memory utilization** based on specific metric values over the last 30 days for each instance. The recommender does not analyze read replicas.
+
+[What is MongoDB Atlas?](https://www.mongodb.com/docs/atlas/#what-is-service-fullname-)
+> MongoDB Atlas is a **multi-cloud database** service by the people who build MongoDB. It simplifies deploying and managing your databases while offering the versatility you need to build resilient and performant global applications on the cloud provider of your choice. 
+
+Check the status of current (**in-progress**) operations (Cloud SQL)
+> The Google Cloud console only shows success or failure upon completion of an operation. It is not designed to show warnings or other information.
+> To see all operations for a given Cloud SQL instance, run the [**`gcloud sql operations list`** command](https://cloud.google.com/sdk/gcloud/reference/sql/operations/list).
+
+[Database Migration Service (source configuration)](https://cloud.google.com/database-migration/docs/postgres/configure-source-database#configure-your-source-instance-postgres)
+> **Install the `pglogical` package** on your source instance, and ensure that it's included in the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html) variable.
+
+[Configure the default leader region](https://cloud.google.com/spanner/docs/instance-configurations#configure-leader-region): Spanner
+> You can **reduce application latency** by changing the location of a database's **default leader region** to be closer to its connecting clients.
+
+[Export a database from Spanner to Avro](https://cloud.google.com/spanner/docs/export)
+> The export process **uses Dataflow** to write data to a folder in a Cloud Storage bucket. The folder contains a set of **Avro files** and JSON manifest files.
+
+[Enable automatic storage increase](https://cloud.google.com/sql/docs/mysql/instance-settings#automatic-storage-increase-2ndgen) (Cloud SQL)
+> When this setting is enabled, Cloud SQL checks the available **storage every 30 seconds**. If the available storage falls below a threshold size, it automatically adds more storage capacity. If the available storage repeatedly falls below the threshold size, it continues to add storage until it reaches a **maximum of 64 TB**.
+
+[Firestore overview](https://cloud.google.com/firestore/docs/overview)
+> Firestore is a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud. It keeps your data in sync across client apps through realtime listeners and offers **offline support** for mobile and web so you can build responsive apps that **work regardless of network latency or Internet connectivity**.
+
+
+[Migrating to Google Cloud: Transferring your large datasets](https://cloud.google.com/architecture/migration-to-google-cloud-transferring-your-large-datasets)
+> **A summary article worth reading if you have time, covering data transfer times, major patterns, etc.**
+
+[About high availability](https://cloud.google.com/sql/docs/mysql/high-availability) (SQL: Simple/Optimal Availability)
+> An HA configuration provides data redundancy. A Cloud SQL instance configured for HA is also called a regional instance and is located in a primary and secondary zone within the configured **region**. A regional instance is comprised of a primary instance and a standby instance. Through [synchronous replication](https://cloud.google.com/compute/docs/disks#repds) to each zone's persistent disk, all writes made to the primary instance are replicated to the disks in both zones before a transaction is reported as committed. In the case of an instance or zone failure, the standby instance becomes the new primary instance. Users are rerouted to the new primary. This process is called a **failover**.
+ 
+
+Minimizing performance impact of exports (Cloud SQL)
+> 1. **Take the export from a read replica.** If you export **frequently** (daily or more often), and the **amount of data** to be exported is **small**, this can be a good option.
+> 2. **Use serverless export.** If you are creating a **one-time export** of a **large** database, this can be a good option.
+
+
+[Google Cloud VMware Engine](https://cloud.google.com/vmware-engine/docs/overview)
+> Google Cloud VMware Engine is a fully managed service that lets you run the VMware platform in Google Cloud. VMware Engine provides continuity for your VMware operations while enabling the benefits of a cloud consumption model and lowering your total cost of ownership.
+
+
+[Default maintenance windows](https://cloud.google.com/sql/docs/mysql/maintenance#default-windows) (Cloud SQL)
+> You want maintenance to occur during the time when your instance has the least amount of traffic, which is around midnight on Sunday. You also need to avoid maintenance during the busy holiday season. In this case, you would set the maintenance for your production instance as follows
+> → **Maintenance time can be configured in Cloud SQL.**
+
+[CMEK and CSEK](https://qiita.com/atsumjp/items/b872744d69686a1fc783) (Japanese article)
+> With customer-managed encryption keys (CMEK), the user manages keys using Cloud KMS.  
+> With customer-supplied encryption keys (CSEK), the user creates and manages the keys themselves.
+> - **CMEK**: Customer-Managed Encryption Keys
+> - **CSEK**: Customer-Supplied Encryption Keys
+
+[Query Insights](https://cloud.google.com/sql/docs/mysql/using-query-insights#introduction) : Cloud SQL
+> Query Insights helps you detect, diagnose, and prevent **query performance** problems for Cloud SQL databases. It supports intuitive monitoring and provides diagnostic information that helps you go beyond detection to find the root cause of performance problems.
+
+
+[Spanner: LIKE discouraged](https://cloud.google.com/spanner/docs/sql-best-practices#param-like)
+> Because Spanner does not evaluate a parameterized LIKE pattern until execution time, it **must read all rows and evaluate them against the LIKE expression to filter out the rows that don't match**.
+> When a LIKE pattern has the form `foo%` (for example, a fixed string followed by a single wildcard percent), and the column is indexed, use **`STARTS_WITH` instead of `LIKE`**. This option enables Spanner to optimize the query execution plan more effectively.
+
+[Configure parallel replication](https://cloud.google.com/sql/docs/mysql/replication/manage-replicas#configuring-parallel-replication): Cloud SQL
+> Replication lag can happen when the read replica updates lag behind the primary instance updates. This section shows how you can **enable parallel replication to reduce replication lag**.
+
+
+[Enable or disable high availability (Cloud SQL)](https://cloud.google.com/sql/docs/mysql/configure-ha#ha-existing)
+> You can configure high availability for an instance when you create it, or you can **enable it for an existing instance**. `gcloud sql instances patch INSTANCE_NAME \ ...`
+
+
+[Switching between SSD and HDD storage](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd#switching): Cloud SQL
+> After you create a Cloud SQL instance, the choice of SSD or HDD storage for that instance is **permanent.**
+> If you need to change an existing HDD instance to SSD (or vice versa), you can **export the data** from the existing instance and **import** it into a new one. An entire instance migration can take a long time to complete.
+
+[HDD storage use cases](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd#when-in-doubt-ssd): Cloud SQL
+> You plan to store 10 TB of data or more.
+> ...The cost savings of HDD are minimal unless you are storing a large amount of data. **Unless you plan to store more than 10 TB of data, you don't need to consider using HDD storage.**
+
+
+[Rotate server CA certificates](https://cloud.google.com/sql/docs/mysql/manage-ssl-instance#rotate): Cloud SQL
+> - Create a new server CA certificate.
+> - Download the new server CA certificate information.
+> - Update your clients to use the new server CA certificate information.
+> - Complete the rotation, which moves the active certificate to the 'Previous' slot, making the newly added certificate the active one.
+
+[How to Achieve PostgreSQL High Availability with pgBouncer](https://severalnines.com/blog/how-achieve-postgresql-high-availability-pgbouncer/) : PostgreSQL
+> Using pgBouncer for database connection pooling is a proper choice to evenly distribute application load between the Cloud SQL primary and read replica instances, optimizing database performance and resource utilization.
+
+[Best practices for multi-region performance](https://cloud.google.com/spanner/docs/instance-configurations#multi-region-best-practices): Spanner
+> For optimal write latency, locate the compute resources for your write-heavy workloads in or near the default leader region.
+
+[Export a database from Spanner to Avro](https://cloud.google.com/spanner/docs/export)
+> To export a Spanner database using the REST API or the Google Cloud CLI, complete the steps in Before you begin on this page, and then see the detailed steps in Spanner to Cloud Storage Avro in the Dataflow documentation. The export process uses **Dataflow** to write data to a folder in a Cloud Storage bucket. The folder contains a set of **Avro files** and JSON manifest files.
+
+[Export data from Cloud SQL without performance overhead](https://cloud.google.com/blog/products/databases/introducing-cloud-sql-serverless-exports?hl=en)
+> We are excited to launch a new feature in [Cloud SQL](https://cloud.google.com/sql/): [Serverless Exports](https://cloud.google.com/sql/docs/mysql/import-export/exporting#standard-offload). With Serverless Exports, you can export data from your MySQL and PostgreSQL database instances without any impact on performance or risks to availability. 
+
+
+[Resize file systems and partitions](https://cloud.google.com/compute/docs/disks/resize-persistent-disk#resize_partitions): GCE
+> Resize the file system on a non-boot data disk.
+> If you are using **ext4**, use the **resize2fs** command to expand the file system.
+> `sudo resize2fs /dev/DEVICE_NAME`
+
+
+[Automatic failovers](https://cloud.google.com/bigtable/docs/failovers#automatic): Bigtable
+> When your app profile uses multi-cluster routing,
+> Bigtable handles failovers for you automatically. If the closest cluster cannot handle a request, Bigtable routes the traffic to the closest cluster that can.
+
+
+[Configure the source instance](https://cloud.google.com/database-migration/docs/postgres/configure-source-database#configure-your-source-instance-postgres)｜Database Migration Service  > PostgreSQL
+> Install the pglogical package on your source instance, and ensure that it's included in the shared_preload_libraries variable.
+> See Install the pglogical package on your source instance for your environment.
+
+[Minimize maintenance impact](https://cloud.google.com/sql/docs/mysql/maintenance#impact): Cloud SQL
+> 
+> To minimize the impact from connection termination, you can use [connection pools](https://cloud.google.com/sql/docs/mysql/manage-connections#pools). The connections between the pooler and the database are dropped during maintenance, but the connections between your application and the pooler are preserved. This makes re-establishing connections transparent to the application and offloads it to the connection pooler.
+> You can reduce transaction failure by limiting the number of long-running transactions. Rewriting queries to be smaller and more efficient not only reduces maintenance downtime, but also improves database performance and reliability.
+> 
+> To recover efficiently from connection termination and transaction errors, you can efficiently [manage database connections](https://cloud.google.com/sql/docs/mysql/manage-connections). You can build connection and query retry logic with [exponential backoff](https://cloud.google.com/sql/docs/mysql/manage-connections#backoff) into your applications and connection poolers. If a query fails or a connection is dropped, the system sets a waiting period before retry. The waiting period increases after each subsequent retry. For example, the system might wait only a few seconds for the first retry, but up to a minute for the fourth retry. By following this pattern, you ensure these issues are corrected without overloading the service.
+> 
+
+[Performance of schema updates](https://cloud.google.com/spanner/docs/schema-updates#performance): Cloud Spanner
+> Spanner **schema updates** require **no downtime**. When you issue a batch of DDL statements to a Spanner database, you can continue to write to and read from the database without interruption while Spanner applies the update as a [long-running operation](https://cloud.google.com/spanner/docs/manage-long-running-operations).
+
+
+[Cross-region replicas](https://cloud.google.com/sql/docs/mysql/replication/cross-region-replicas#regional_migration): Cloud SQL｜Data Migration
+> You can use cross-region replicas to migrate a database to another region with minimal downtime. The general procedure is to create a replica in another region, wait for replication to complete, promote the replica, and then redirect clients to the newly promoted instance.
+
+[Google Distributed Cloud for bare metal](https://cloud.google.com/kubernetes-engine/distributed-cloud/bare-metal/docs/concepts/about-bare-metal#how_it_works) (GDC for bare metal)
+> Anthos clusters on bare metal is now Google Distributed Cloud for bare metal (software-only). To learn more, see the product overview.
+> 
+> Google Distributed Cloud is Google's solution for extending Google Cloud's **infrastructure** and services to your data centers (**on-premises**). Google Distributed Cloud is available in both connected and air-gapped configurations running on Google-provided hardware.
+
+
+[Migrating data to an external server](https://cloud.google.com/sql/docs/mysql/migrate-data#migrating-to-external)｜Cloud SQL Data Migration
+> To migrate the primary copy of your data from Cloud SQL to an **external server** with minimal downtime, set up the **external server as an external replica**, and then demote the Cloud SQL instance to be a replica of that external server.
+
+[Use point-in-time recovery](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr#log-storage-for-pitr) (PITR) ｜Cloud SQL
+> Cloud SQL uses **binary logs for PITR**.
+> On August 11, 2023, Google began storing transaction logs for PITR in Cloud Storage. Since this release, the following applies:
+> 
+
+[Cloud Spanner node count](https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Database_OnAir_q2_0409_Session.pdf) Changing node count
+> Complete the configuration change by simply changing the number of nodes in the edit screen.
+> Can be changed with no downtime.
+
+[Exactly-once streaming](https://cloud.google.com/dataflow/docs/concepts/exactly-once#processing)｜Dataflow｜Transactional Processing
+> To make non-deterministic processing effectively **deterministic**, use **checkpointing**. With checkpointing, each output from a transform is checkpointed to stable storage with a unique ID before it is delivered to the next stage. Retries of Dataflow's shuffle delivery will relay the checkpointed output. Even if your code is run multiple times, Dataflow ensures that only one of those runs' outputs is preserved. **Dataflow uses a consistency store** to ensure that writes to stable storage are not duplicated.
+> 
+
+[Dual-region quorum availability](https://cloud.google.com/spanner/docs/monitoring-console#charts-metrics)｜Cloud Spanner
+> The dual-region **quorum** availability (instance/dual_region_quorum_availability) is only available for **dual-region** instance configurations. It shows the health timeline for three quorums: the dual-region quorum and each region's single-region quorum.
+> The graph has a Quorum availability pull-down so you can see which regions are in healthy or degraded mode. You can use this graph, along with error rate and latency metrics, to help **decide when to do a self-managed failover in case of a regional failure**.
+> 
+
+[Connecting to Cloud SQL from Google Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine)｜GKE / Cloud SQL
+> We recommend running the **Cloud SQL Auth Proxy** in the **sidecar pattern** (as an additional container sharing a Pod with your application). We recommend this method over running it as a separate Service for several reasons:
+> >Prevents exposing your SQL traffic locally: The Cloud SQL Auth Proxy encrypts outgoing connections, but you need to limit exposure for incoming connections.
+
+
+[Example replication configurations](https://cloud.google.com/bigtable/docs/replication-settings)｜Bigtable
+> This page explains common use cases for Bigtable replication and shows the settings you can use to support those use cases.
+> - [Isolate batch analytics workloads from other applications](https://cloud.google.com/bigtable/docs/replication-settings#batch-vs-serve)
+> - [Create high availability (HA)](https://cloud.google.com/bigtable/docs/replication-settings#high-availability)
+> - [Provide a near real-time backup](https://cloud.google.com/bigtable/docs/replication-settings#backup)
+> - [Maintain high availability and regional resilience](https://cloud.google.com/bigtable/docs/replication-settings#regional-failover)
+> - [Keep data near your users](https://cloud.google.com/bigtable/docs/replication-settings#near-users)
+
+
+
+
+
+##### Summary of Cloud SQL HTTP Status Errors
+
+| **HTTP Status Code** | **Error Message**         | **Context/Cause**                                                  |
+| -------------------- | ------------------------- | ------------------------------------------------------------------ |
+| **400**              | `Bad Request`             | The request format is invalid (e.g., missing required parameters, invalid values). |
+| **401**              | `Unauthorized`            | Invalid authentication credentials or insufficient access permissions.     |
+| **403**              | `Forbidden`               | Lacking access rights, or access is denied by IAM settings.            |
+| **404**              | `Not Found`               | The specified resource does not exist (e.g., invalid resource ID).     |
+| **409**              | `Conflict`                | Resource conflict, such as during instance creation.                 |
+| **429**              | `Too Many Requests`       | API request rate limit has been exceeded.                          |
+| **500**              | `Internal Server Error`   | An unexpected error occurred on the server side.                   |
+| **502**              | `Bad Gateway`             | An error occurred at the gateway or proxy.                         |
+| **503**              | `Service Unavailable`     | The service is down, under maintenance, or temporarily unavailable.      |
+| **504**              | `Gateway Timeout`         | The request timed out (e.g., after a long wait).                  |
+
+
+---
+
+<Admonition type="tip" title="Exam Day TODO (Success story from my PSE / PNE / PDE / PCA exams) ⭐️">
+
+The day before
+- [x] Get a good night's sleep
+    - Set up eye mask, earplugs, and pillow
+
+On the day
+- Wake up by 9 AM (It's important to be fully recovered from fatigue)
+- [x] Do a final review at a cafe
+    - [x] Feeling like going to the Doutor Odori store
+	    -  Review incorrect answers from the [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform)
+	    - [x] Review weak areas
+	    - Review incorrect answers from practice question sets
+	    - Read other important articles
+
+- [x] Leave the cafe at 2:00 PM
+
+- Print the exam confirmation email
+	- [x] Forward the email to the app
+
+- Take a 10-minute nap before arriving at the venue to fully refresh my brain
+	- Get enough sugar
+
+- Arrive at the venue by 3:00 PM (30 minutes before the test starts) and complete check-in
+	- [x] Make a conscious effort to read the options first
+	- [x] Be mindful of leaving time for review
+</Admonition>

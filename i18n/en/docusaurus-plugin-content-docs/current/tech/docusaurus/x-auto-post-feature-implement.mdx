@@ -1,32 +1,37 @@
 ---
-title: "Detecting New Articles with GitHub Actions and Posting to X as a Twitter Card"
+title: A Guide to Implementing Automatic Posts to X for New Articles via GitHub Actions
 sidebar_position: 4
 last_update:
   date: 2025-06-13
-tags: [GitHub Actions, Twitter API, Twitter Card, Docusaurus]
+tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
-This article documents the steps and troubleshooting process for implementing a feature that detects new articles via GitHub Actions and posts them to X (formerly Twitter) as a Twitter Card.
+import Admonition from '@theme/Admonition';
 
-**Functionality:**
-Detect new posts with GitHub Actions and post them to X as a Twitter Card.
+This article outlines the procedures and troubleshooting steps for implementing a GitHub Action that detects new articles and posts them to X as Twitter Cards.
 
-<!-- truncate -->
+Feature:
+Detect new posts with GitHub Actions and post them to X as Twitter Cards.
 
-**References:**
-- X API v2: https://developer.x.com/en/docs/x-api
-- Search Engine Optimization (SEO): https://docusaurus.io/docs/seo
+{/* truncate */}
 
-## Implementation Log for X Auto-Post Feature
+References:
+Twitter API v2
+https://developer.x.com/ja/docs/x-api
+
+Search engine optimization (SEO)
+https://docusaurus.io/docs/seo
+
+## Implementation Guide for the X Auto-Posting Feature
 
 ### 1. Prerequisites
 
 1.  **X Developer App and Credentials:**
-    *   An app has been created in the X Developer Portal.
-    *   App permissions are set to "Read and Write."
-    *   API Key, API Key Secret, Access Token, and Access Token Secret have been obtained.
+    *   App created in the X Developer Portal.
+    *   App permissions set to "Read and Write".
+    *   Obtained API Key, API Key Secret, Access Token, and Access Token Secret.
 2.  **GitHub Secrets:**
-    The following have been registered in the repository under `Settings` > `Secrets and variables` > `Actions`.
+    The following have been registered in the repository under `Settings` > `Secrets and variables` > `Actions`:
     *   `X_API_KEY`
     *   `X_API_SECRET`
     *   `X_ACCESS_TOKEN`
@@ -34,37 +39,38 @@ Detect new posts with GitHub Actions and post them to X as a Twitter Card.
     *   `SITE_URL` (e.g., `https://hkdocs.com/`)
     *   `BASE_URL` (e.g., `/`)
 
-### 2. Local Development Environment and Dependency Setup
+### 2. Setting Up the Local Development Environment and Dependencies
 
 1.  **Clean Up Development Environment (if necessary):**
     *   Completely stop Docker containers:
         ```bash
         docker-compose down --volumes --remove-orphans
         ```
-    *   On the host machine, delete `node_modules`, `pnpm-lock.yaml`, and `.pnpm-store` (if it exists).
-    *   Run `pnpm install` on the host to regenerate `pnpm-lock.yaml`.
+    *   Delete `node_modules`, `pnpm-lock.yaml`, and `.pnpm-store` (if it exists) on the host machine.
+    *   Run `pnpm install` on the host (this regenerates `pnpm-lock.yaml`).
     *   Rebuild the Docker image:
         ```bash
         docker-compose build --no-cache app
         ```
-2.  **Install Required Libraries (`gray-matter`, `twitter-api-v2`):**
-    *   Execute the following command:
+2.  **Install Necessary Libraries (`gray-matter`, `twitter-api-v2`):**
+    *   Run the following command:
         ```bash
         docker-compose run --rm app sh -c "pnpm add -D gray-matter twitter-api-v2 --store-dir /root/.local/share/pnpm/store/v10 && echo 'Libraries added successfully.'"
         ```
-    *   (Note: The `--store-dir` path is the pnpm global store path in the build environment. Adjust as necessary.)
-3.  **Rebuild Docker Image:**
-    *   Execute the following command:
+    <Admonition type="note">
+      The path for <code>--store-dir</code> is the pnpm global store path in your build environment. Adjust it as necessary.
+    </Admonition>
+3.  **Rebuild the Docker image:**
+    *   Run the following command:
         ```bash
         docker-compose build app
         ```
 
-### 3. Implementing the GitHub Actions Auto-Post Feature
+### 3. Implementing the GitHub Actions Auto-Posting Feature
 
-1.  **Create the Workflow File:**
+1.  **Create the workflow file:**
     Create `.github/workflows/post-to-x.yml` with the following content.
-    ```yaml
-    # .github/workflows/post-to-x.yml
+    ```yaml title=".github/workflows/post-to-x.yml"
     name: Post New Articles to X
 
     on:
@@ -97,12 +103,12 @@ Detect new posts with GitHub Actions and post them to X as a Twitter Card.
           - name: Set up Node.js
             uses: actions/setup-node@v4
             with:
-              node-version: '22.16.0' # Adjust to your Node.js version
+              node-version: '22.16.0' # Adjust to the Node.js version you are using
 
           - name: Enable Corepack and Set up PNPM
             run: |
               corepack enable
-              corepack prepare pnpm@10.11.0 --activate # Adjust to your pnpm version
+              corepack prepare pnpm@10.11.0 --activate # Adjust to the pnpm version you are using
             shell: bash
 
           - name: Install Dependencies
@@ -118,10 +124,9 @@ Detect new posts with GitHub Actions and post them to X as a Twitter Card.
               BASE_URL: ${{ secrets.BASE_URL }}
             run: node ./.github/scripts/post-new-articles.js
     ```
-2.  **Create the Posting Script:**
+2.  **Create the posting script:**
     Create `.github/scripts/post-new-articles.js` with the following content.
-    ```javascript
-    // .github/scripts/post-new-articles.js
+    ```javascript title=".github/scripts/post-new-articles.js"
     const fs = require('fs');
     const path = require('path');
     const { execSync } = require('child_process');
@@ -331,36 +336,38 @@ Detect new posts with GitHub Actions and post them to X as a Twitter Card.
 ### 4. Docusaurus Configuration (X Card Optimization)
 
 1.  **Verify `docusaurus.config.ts`:**
-    *   Ensure that `url`, `baseUrl`, and `themeConfig.image` (e.g., `img/default-social-card.jpg`) are appropriately set for X Card display.
-2.  **Verify Article Front Matter:**
-    *   For articles intended for posting, ensure `title`, `description`, `image` (optional), and `tags` are properly configured.
-3.  **Verify with the X Card Validator:**
-    *   After deploying the site, test an article's URL with the [X Card Validator](https://cards-dev.twitter.com/validator).
+    *   Check that settings like `url`, `baseUrl`, and `themeConfig.image` (e.g., `img/default-social-card.jpg`) are suitable for X Card display.
+2.  **Verify Article Frontmatter:**
+    *   In the target article files, ensure that `title`, `description`, `image` (optional), and `tags` are set appropriately.
+3.  **Verification with X Card Validator:**
+    <Admonition type="tip" title="Verification with X Card Validator">
+      After deploying the site, it is recommended to test your article URLs with the <a href="https://cards-dev.twitter.com/validator" target="_blank" rel="noopener noreferrer">X Card Validator</a>.
+    </Admonition>
 
-### 5. Functional Testing
+### 5. Operational Testing
 
 1.  Save changes to the local repository (Git commit).
-2.  Push changes to the remote repository.
-3.  Add a new test article file to the workflow's trigger branch (either by direct push or merge).
+2.  Push the changes to the remote repository.
+3.  Add a new test article file to the workflow's trigger branch (via direct push or merge).
 4.  Check the GitHub Actions execution logs.
-5.  Verify the post and its X Card display on your X account.
-6.  If issues arise, refer to the "Troubleshooting Guide" in section 6.
+5.  Verify the post content and X Card display on your X account.
+6.  If problems occur, refer to "6. Troubleshooting Guide".
 
-### 6. Troubleshooting Guide
+### 6. Troubleshooting Record
 
-1.  **Local Development Errors (`docusaurus: not found`, type errors, etc.):**
-    *   **Solution:** Perform a full cleanup of Docker containers, host-side `node_modules`/lockfiles/pnpm store, then run `pnpm install` on the host, and rebuild the Docker image with the `--no-cache` option. Restart your IDE/editor.
-2.  **`ERR_PNPM_UNEXPECTED_STORE` during pnpm library addition:**
+1.  **Local Development Environment Errors (`docusaurus: not found`, type errors, etc.):**
+    *   **Solution:** Perform a complete cleanup of Docker containers, host-side `node_modules`/lock files/pnpm store. Then, run `pnpm install` on the host and rebuild the Docker image with the `--no-cache` option. Restart your IDE/editor.
+2.  **`ERR_PNPM_UNEXPECTED_STORE` when adding pnpm libraries:**
     *   **Solution:** When running `docker-compose run ... pnpm add ...`, specify the build-time store path with `--store-dir <path>`.
-3.  **`Resource busy` (`rm -rf node_modules` fails) during pnpm library addition:**
-    *   **Solution:** Stop any processes running inside the container (like the dev server). If that doesn't work, stop the container with `docker-compose stop app` before retrying, or delete the target directory/file on the host while the container is stopped.
+3.  **`Resource busy` when adding pnpm libraries (`rm -rf node_modules` fails):**
+    *   **Solution:** Stop any running processes inside the container (e.g., the development server). If that doesn't work, stop the container with `docker-compose stop app` and retry, or delete the target directory/files on the host while the container is stopped.
 4.  **`pnpm: command not found` in GitHub Actions:**
-    *   **Solution:** Ensure that your workflow file is using `corepack enable` and `corepack prepare pnpm@<version> --activate`.
-5.  **Articles not detected in GitHub Actions (`shaBefore is 'undefined'`)**:
-    *   **Solution:** In the Node.js script's `getAddedFiles` function, verify the logic that uses `git diff --name-only --diff-filter=A ${GITHUB_SHA}^1 ${GITHUB_SHA}` when `GITHUB_EVENT_BEFORE` is unreliable. Also, ensure the `actions/checkout` step has `fetch-depth: 0` specified.
+    *   **Solution:** Ensure you are using `corepack enable` and `corepack prepare pnpm@<version> --activate` in your workflow file.
+5.  **Articles not detected in GitHub Actions (`shaBefore is 'undefined'`):**
+    *   **Solution:** In the Node.js script's `getAddedFiles` function, verify the logic that uses `git diff --name-only --diff-filter=A ${GITHUB_SHA}^1 ${GITHUB_SHA}` when `GITHUB_EVENT_BEFORE` is unreliable. Also, ensure that `fetch-depth: 0` is specified in the `actions/checkout` step.
 6.  **Failed to post to X (authentication errors, etc.):**
-    *   **Solution:** Verify your GitHub Secrets settings. Confirm that your app's permissions and API keys/tokens are valid in the X Developer Portal. Also, check your X API plan and usage limits. Review the detailed error information from the X API in the script's logs.
+    *   **Solution:** Check your GitHub Secrets settings. Verify that app permissions and API keys/tokens are valid in the X Developer Portal. Also, check your X API plan and usage limits. Review the detailed error information from the X API output in the script's logs.
 7.  **Incorrect X Card display:**
-    *   **Solution:** Check the `url`, `baseUrl`, and `themeConfig.image` settings in `docusaurus.config.ts`. Ensure the article's front matter has the `title`, `description`, and `image` fields set correctly. Test with the [X Card Validator](https://cards-dev.twitter.com/validator). Inspect the generated HTML source for the OGP meta tags (`og:title`, `og:description`, `og:image`, etc.).
+    *   **Solution:** Check the `url`, `baseUrl`, and `themeConfig.image` settings in `docusaurus.config.ts`. Ensure that `title`, `description`, and `image` are properly set in the article's frontmatter. Test with the [X Card Validator](https://cards-dev.twitter.com/validator). Check the OGP meta tags (`og:title`, `og:description`, `og:image`, etc.) in the generated HTML source.
 8.  **Type resolution errors in VS Code (`Cannot find module ...`, etc.):**
-    *   **Solution:** Completely restart VS Code. Run `TypeScript: Restart TS server` from the command palette (Ctrl+Shift+P or Cmd+Shift+P).
+    *   **Solution:** Completely restart VS Code. From the Command Palette (Ctrl+Shift+P or Cmd+Shift+P), run `TypeScript: Restart TS server`.

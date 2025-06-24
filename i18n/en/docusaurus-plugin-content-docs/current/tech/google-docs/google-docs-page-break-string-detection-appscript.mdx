@@ -1,0 +1,313 @@
+---
+sidebar_position: 4
+title: '"Page Break (by String Detection)" Apps Script'
+last_update:
+  date: 2025-06-18
+tags: [Google Docs, Apps Script, GAS, Tutorial]
+---
+
+import Admonition from '@theme/Admonition';
+
+# "Page Break (by String Detection)" Apps Script for Google Docs
+
+### Background
+- While editing a very long document, I was repeatedly using `⌘＋Enter` to insert page breaks, which was taking too much time.
+- Since I couldn't find a service like a [Chrome extension](https://chromewebstore.google.com/category/extensions?hl=en) that offered this functionality, I decided to create it myself.
+
+### Use Cases
+- Streamline the editing of very long Google Docs, such as books.
+- Inserts a page break before any paragraph that starts with one of several specified strings (prefix matching).
+
+### How to Use
+1.  Open a Google Doc and open the script editor from "Extensions" > "Apps Script".
+2.  Paste the following script into the editor.
+3.  Edit the configuration section within the script, then save and run it.
+
+<Admonition type="info" title="How to Configure the Script">
+<p>
+After pasting the script, change the value of <code>PAGEBREAK_PREFIXES</code> at the top of the code to an array of strings you want to use as page break markers.
+</p>
+<ul>
+    <li>This setting works with <strong>prefix matching</strong>.</li>
+    <li>The array must contain one or more marker strings (e.g., <code>["Chapter ", "Figure-"]</code>).</li>
+    <li>It is case-sensitive.</li>
+    <li>More detailed instructions are provided in the comments within the code.</li>
+</ul>
+<p>Example: <code>const PAGEBREAK_PREFIXES = ["Problem Statement (Japan", "Chapter"];</code></p>
+</Admonition>
+
+```javascript title="insert-page-break-by-string.js"
+// --- Configuration Section ---
+/**
+ * @fileoverview A script that inserts a page break before any paragraph that starts with one of several specified strings.
+ *
+ * ## Prerequisites for Running
+ *
+ * ・Important: Select the function to run > choose [ insertPageBreakAtPrefixMarkers ].
+ *
+ *
+ * ## How to Configure the Marker Strings
+ *
+ * 1. Change the value of **PAGEBREAK_PREFIXES** to an **array** of **prefixes** (the beginning part) of the strings you want to use as page break markers.
+ *    - This system searches for text that starts with a matching prefix.
+ *    - The array should be enclosed in square brackets `[]`, and each prefix string should be enclosed in double `"` or single `'` quotes, separated by commas `,`.
+ *    - **Number of elements:** The array must contain **at least one** valid prefix string. You can set as many as you like.
+ *    - **Valid Prefixes:**
+ *        - Empty strings (`""`) or strings containing only whitespace (`" "`) are **ignored** and will not be used as markers.
+ *        - It is case-sensitive.
+ *
+ * 2. **Configuration Examples:**
+ *    - **For a single prefix:**
+ *      Example: `const PAGEBREAK_PREFIXES = ["PAGEBREAK"];`
+ *      This will insert a page break before any paragraph that starts with "PAGEBREAK" (e.g., "PAGEBREAK" or "PAGEBREAK Section Title").
+ *
+ *    - **For two prefixes:**
+ *      Example: `const PAGEBREAK_PREFIXES = ["Chapter ", "Appendix "];`
+ *      This will insert a page break before paragraphs starting with "Chapter " (with a space) or "Appendix " (with a space), such as "Chapter 1 Introduction" or "Appendix A References".
+ *
+ *    - **For three or more prefixes:**
+ *      Example: `const PAGEBREAK_PREFIXES = ["Figure-", "Table-", "List "];`
+ *      This will insert a page break before paragraphs starting with "Figure-", "Table-", or "List " (with a space), such as "Figure-1 System Architecture", "Table-2 Parameter List", or "List 1 Procedures".
+ *
+ *    - **Key Points:**
+ *      - Whether you include a space in the prefix affects what it matches.
+ *        Example: `"Chapter"` matches "ChapterEnd", but `"Chapter "` does not.
+ *      - You can add as many strings as you need, separated by commas.
+ *
+ * 3. **How it works:**
+ *    - A page break will be inserted **immediately before** any paragraph whose text **starts with** one of the **valid prefixes** in this array.
+ *    - It only checks the text of Paragraph elements.
+ *
+ * 4. After making changes, **be sure to save the script file** (click the floppy disk icon).
+ */
+const PAGEBREAK_PREFIXES = ["Problem Statement (Japan", "Chapter"]; // Example: ["Figure-", "Table-"] or ["MyMarker"]. See comments above for how to configure.
+// --- End of Configuration Section ---
+
+
+// --- Global Constants ---
+const SCRIPT_NAME_MULTI_PREFIX = 'Custom Page Break (Multi-Prefix)';
+const SCRIPT_ERROR_MENU_NAME_MULTI_PREFIX = `${SCRIPT_NAME_MULTI_PREFIX} (Config Error)`;
+
+/**
+ * Extracts valid (non-empty and not just whitespace) strings from the configured prefixes array.
+ * @param {any} prefixes The configured PAGEBREAK_PREFIXES value.
+ * @returns {string[]} An array of valid prefix strings.
+ */
+function getValidPrefixes(prefixes) {
+  if (!Array.isArray(prefixes)) {
+    return []; // Return an empty array if it's not an array
+  }
+  // Use filter to extract strings that are not empty after trimming
+  return prefixes.filter(prefix => typeof prefix === 'string' && prefix.trim().length > 0);
+}
+
+/**
+ * Adds a custom menu when the document is opened.
+ */
+function onOpen_MultiPrefix() {
+  try {
+    const validPrefixes = getValidPrefixes(PAGEBREAK_PREFIXES);
+
+    // If there are no valid prefixes, show an error menu
+    if (validPrefixes.length === 0) {
+      Logger.log(`onOpen_MultiPrefix: No valid page break prefixes configured (${JSON.stringify(PAGEBREAK_PREFIXES)}). Showing error menu.`);
+      showConfigurationErrorMenu_MultiPrefix("No valid page break prefixes configured");
+      return;
+    }
+
+    // Generate the menu item text (adjusting the displayed prefixes)
+    let menuItemText = `Break page at prefixes (${validPrefixes.slice(0, 2).map(p => `"${p}"`).join(', ')}...)`;
+    if (validPrefixes.length === 1) {
+        menuItemText = `Break page at prefix "${validPrefixes[0]}"`;
+    } else if (validPrefixes.length === 2) {
+        menuItemText = `Break page at prefixes (${validPrefixes.map(p => `"${p}"`).join(', ')})`;
+    }
+
+    DocumentApp.getUi()
+      .createMenu(SCRIPT_NAME_MULTI_PREFIX)
+      .addItem(menuItemText, 'insertPageBreakAtPrefixMarkers')
+      .addToUi();
+    Logger.log(`onOpen_MultiPrefix: Menu added successfully (Valid prefixes: ${JSON.stringify(validPrefixes)}).`);
+
+  } catch (e) {
+    Logger.log(`onOpen_MultiPrefix: Error adding menu: ${e}\n${e.stack}`);
+    showConfigurationErrorMenu_MultiPrefix("Error adding menu");
+  }
+}
+
+/**
+ * Adds an error menu item if there is a configuration error.
+ * @param {string} reason The reason for the error.
+ */
+function showConfigurationErrorMenu_MultiPrefix(reason) {
+  try {
+    DocumentApp.getUi()
+      .createMenu(SCRIPT_ERROR_MENU_NAME_MULTI_PREFIX)
+      .addItem(`Check settings (${reason})`, 'showConfigurationError_MultiPrefix')
+      .addToUi();
+  } catch (e) {
+    Logger.log(`showConfigurationErrorMenu_MultiPrefix: Further error while displaying error menu: ${e}`);
+  }
+}
+
+/**
+ * Alert function to display when there is a configuration error.
+ */
+function showConfigurationError_MultiPrefix() {
+  let currentSetting = "Undefined or inaccessible";
+  try {
+    // Check if the setting is an array before trying to stringify it
+    currentSetting = typeof PAGEBREAK_PREFIXES !== 'undefined'
+      ? (Array.isArray(PAGEBREAK_PREFIXES) ? JSON.stringify(PAGEBREAK_PREFIXES) : `Invalid setting value (${PAGEBREAK_PREFIXES})`)
+      : "Undefined";
+  } catch(e) {
+    currentSetting = "Error displaying the setting value";
+   }
+
+  const message = `There is a problem with the script's configuration.\n\n`
+                + `Current setting value (PAGEBREAK_PREFIXES): ${currentSetting}\n\n`
+                + `Open the script editor, check and correct the "PAGEBREAK_PREFIXES" value at the top of the file, and **save the file**.\n\n`
+                + `This value must be an **array** containing **at least one** non-empty prefix string (e.g., ["PREFIX1", "PREFIX2"]).\n`
+                + `Empty strings "" or whitespace-only strings " " are ignored.\n\n`
+                + `(Example: const PAGEBREAK_PREFIXES = ["Chapter ", "Section ", "Figure-"];)` // More specific example
+  DocumentApp.getUi().alert("Script Configuration Error", message, DocumentApp.getUi().ButtonSet.OK);
+}
+
+
+/**
+ * Inserts page breaks in the document before paragraphs that start with any of the valid prefixes.
+ */
+function insertPageBreakAtPrefixMarkers() {
+  const startTime = new Date();
+  let doc;
+
+  // --- 1. Initialization and Validation ---
+  try {
+    doc = DocumentApp.getActiveDocument();
+    if (!doc) throw new Error("Could not get the active document.");
+    doc.getName(); // Check access permissions
+  } catch (e) {
+    handleExecutionError_MultiPrefix("Document Access Error", e);
+    return;
+  }
+
+  // Get only valid prefixes from the settings
+  const validPrefixes = getValidPrefixes(PAGEBREAK_PREFIXES);
+
+  // If there are no valid prefixes, stop processing and show an error message
+  if (validPrefixes.length === 0) {
+      Logger.log(`insertPageBreakAtPrefixMarkers: Check before processing found no valid page break prefixes.`);
+      showConfigurationError_MultiPrefix("No valid page break prefixes configured");
+      return;
+  }
+
+  Logger.log(`--- Page Break Insertion by Multiple Prefixes Start ---`);
+  Logger.log(`Document: ${doc.getName()}`);
+  Logger.log(`Valid target prefixes (used for search): ${JSON.stringify(validPrefixes)}`); // Log the list actually being used
+
+  // --- 2. Element Traversal and Page Break Insertion ---
+  const body = doc.getBody();
+  const numChildren = body.getNumChildren();
+  let pageBreakInsertedCount = 0;
+  let foundMarkersCount = 0;
+
+  Logger.log(`Number of elements: ${numChildren}. Traversing in reverse...`);
+
+  for (let i = numChildren - 1; i >= 0; i--) {
+    const element = body.getChild(i);
+
+    if (element.getType() === DocumentApp.ElementType.PARAGRAPH) {
+      const paragraph = element.asParagraph();
+      let paragraphText;
+      try {
+        paragraphText = paragraph.getText();
+
+        // Check if the paragraph starts with any of the valid prefixes
+        if (validPrefixes.some(prefix => paragraphText.startsWith(prefix))) {
+          foundMarkersCount++;
+          // Logger.log(`  Found: Index ${i}, Text: "${paragraphText}", Prefix: ${validPrefixes.find(p => paragraphText.startsWith(p))}`);
+
+          if (i > 0 && body.getChild(i - 1).getType() !== DocumentApp.ElementType.PAGE_BREAK) {
+            try {
+              body.insertPageBreak(i);
+              pageBreakInsertedCount++;
+              // Logger.log(`    -> Page break inserted (Index ${i})`);
+
+              // Optional: To remove the marker paragraph itself
+              // try {
+              //   paragraph.removeFromParent();
+              //   Logger.log(`    -> Removed the matching paragraph (original Index ${i+1}).`);
+              // } catch (removeError) {
+              //   Logger.log(`! Error removing marker paragraph at Index ${i+1}: ${removeError}`);
+              // }
+
+            } catch (insertError) {
+              Logger.log(`! Error inserting page break at Index ${i}: ${insertError}`);
+            }
+          } // else: skip (already a page break or at the beginning of the doc)
+        }
+      } catch (elementError) {
+        Logger.log(`! Error processing Index ${i} (Type: PARAGRAPH): ${elementError}. Skipping.`);
+      }
+    }
+  }
+
+  // --- 3. Result Reporting ---
+  const endTime = new Date();
+  const duration = (endTime.getTime() - startTime.getTime()) / 1000;
+
+  Logger.log(`--- Traversal End ---`);
+  Logger.log(`Processing time: ${duration.toFixed(2)} seconds`);
+  Logger.log(`Detected paragraphs starting with specified prefixes (${JSON.stringify(validPrefixes)}): ${foundMarkersCount}`);
+  Logger.log(`Inserted page breaks: ${pageBreakInsertedCount}`);
+
+  const resultMessage = buildResultMessage_MultiPrefix(pageBreakInsertedCount, foundMarkersCount, validPrefixes, duration);
+  DocumentApp.getUi().alert("Processing Complete", resultMessage, DocumentApp.getUi().ButtonSet.OK);
+
+  Logger.log(`--- Page Break Insertion by Multiple Prefixes End ---`);
+}
+
+/**
+ * Handles runtime errors and notifies the user.
+ * (handleExecutionError_MultiPrefix function is unchanged)
+ * @param {string} context The context in which the error occurred.
+ * @param {Error} error The error object that was thrown.
+ */
+function handleExecutionError_MultiPrefix(context, error) {
+    Logger.log(`Runtime Error (${context}): ${error}\n${error.stack}`);
+    let userMessage = `An error occurred while running the script.\n\nContext: ${context}`;
+    if (error.message) {
+        if (error.message.includes("Authorization required")) {
+            userMessage = "The script does not have the necessary permissions to run.\n\nPlease reload the document or run the script again and grant permission in the authorization prompt.";
+        } else {
+            userMessage += `\nDetails: ${error.message}`;
+        }
+    }
+    DocumentApp.getUi().alert("Script Error", userMessage, DocumentApp.getUi().ButtonSet.OK);
+}
+
+/**
+ * Builds a message for the user based on the processing results.
+ * (buildResultMessage_MultiPrefix function is unchanged, displays only valid prefixes)
+ * @param {number} insertedCount The number of page breaks inserted.
+ * @param {number} foundCount The number of matching paragraphs found.
+ * @param {string[]} validPrefixes The array of valid prefixes.
+ * @param {number} duration The processing time in seconds.
+ * @returns {string} The message to be displayed in an alert.
+ */
+function buildResultMessage_MultiPrefix(insertedCount, foundCount, validPrefixes, duration) {
+    // Limit the displayed prefixes to a maximum of 3 and wrap them in quotes
+    const displayPrefixes = validPrefixes.slice(0, 3).map(p => `"${p}"`);
+    const prefixDescription = `paragraphs starting with the specified prefixes (${displayPrefixes.join(', ')}${validPrefixes.length > 3 ? '...' : ''})`;
+
+    if (insertedCount > 0) {
+        return `Inserted page breaks before ${insertedCount} ${prefixDescription}.\n\nProcessing time: ${duration.toFixed(2)} seconds`;
+    } else if (foundCount > 0) {
+        return `${foundCount} ${prefixDescription} were found, but no page breaks were inserted.\n(Because the paragraph is at the start of the document or a page break already exists.)\n\nProcessing time: ${duration.toFixed(2)} seconds`;
+    } else {
+        return `No ${prefixDescription} were found.\n\nPlease check the following:\n`
+             + `1. Are valid prefixes configured in "PAGEBREAK_PREFIXES" at the top of the script? (Current valid settings: ${JSON.stringify(validPrefixes)})\n`
+             + `2. Does the document contain paragraphs that start with one of these prefixes? (Case-sensitive)\n`
+             + `3. Have the script permissions been authorized?`;
+    }
+}

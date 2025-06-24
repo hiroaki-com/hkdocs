@@ -1,0 +1,240 @@
+---
+sidebar_position: 2
+title: Professional Cloud Architect
+last_update:
+  date: 2025-06-10
+tags: [google cloud, certification, study guide]
+---
+
+import Admonition from '@theme/Admonition';
+
+**🌸 Passed: January 31, 2025**
+
+**Exam Overview:**
+- [Professional Cloud Architect](https://cloud.google.com/learn/certification/cloud-architect)
+- [Which Google Cloud certification is right for you?](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
+
+{/* truncate */}
+
+### Exam Information - January 31, 2025
+Exam Name: Google Cloud Certified - Professional Cloud Architect (Japanese)
+Date: January 31, 2025
+Time: 01:45 PM
+Taken at a test center
+
+---
+
+### Post-Exam Reflections 🌸
+
+<Admonition type="note" title="Thoughts after passing on 2025/01/31">
+<p>
+My impression was that it was an interesting exam. However, it wasn't easy, and I felt there were quite a few questions I had never seen before.
+</p>
+<p>
+There were 50 questions. I finished with about 30 minutes to spare, which was just enough time to complete my review. I was a bit disappointed as I had hoped to finish sooner.
+</p>
+<p>
+My guess is that I scored around 75% to 80%.
+</p>
+<p>
+I also felt there were some questions I had seen before on Udemy.
+</p>
+<p>
+Also, the proportion of composite questions (involving authentication, organization, services, etc.) had increased significantly, and there weren't many simple questions just asking about the purpose of a service.
+</p>
+<p>
+I also got the impression that there were a slightly higher number of security-related questions. Questions about networking and data integration seemed difficult. There were multiple design questions related to IAM, many of which were advanced.
+</p>
+<p>
+I also recall a few questions about machine learning.
+</p>
+<p>
+There were also questions about VM migration. It wasn't just that they were difficult; they were types of problems I had never solved before, so I wasn't confident.
+</p>
+</Admonition>
+
+### 🔥Strategy for the Exam🔥
+ - Understand the four cases from the [Official Case Studies](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf).
+- [Case studies - Professional Cloud Architect](/docs/exams/case-studies)
+
+##### TODO on Exam Day (Success story from my PSE / PNE exams) ⭐️
+The day before
+- Get a good night's sleep
+    - [x] Set up eye mask, earplugs, and pillow
+
+On the day
+- [x] Wake up by 9 AM (It's important to be fully recovered from fatigue)
+- Do a final review at a cafe
+    - Mentally decided on Doutor Odori store
+	    - [x] Retake the [Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLScpVCxsKSrqMBmqJ4fiYrJfCSlMhJVIFaW_v3MD4xEd6NW0Bw/viewform) for review
+	    - [x] Reread the case studies
+	    - [x] Review weak areas (listed below) again
+	    - [x] Do other reviews and searches to solidify knowledge
+
+- [x] Print the exam confirmation email
+	- [x] Forward the email to the app
+
+- [x] Take a 10-minute nap before arriving at the venue to fully refresh my brain
+	- [x] Get enough sugar
+
+- [x] Arrive at the venue by 3:10 PM (30 minutes before the test starts) and complete check-in
+	- Make a conscious effort to read the options first
+	- Be mindful of leaving time for review
+
+
+##### Study Strategy:
+
+- Go through practice question sets repeatedly
+	- Review (focus on incorrect answers)
+		- [x] Practice Test 1
+		- [x] Practice Test 2
+		- [x] Practice Test 3
+		- [x] Practice Test 4
+	- Review (focus on questions marked for review)
+		- [ ] Practice Test 1
+		- [ ] Practice Test 2
+		- [ ] Practice Test 3
+		- [ ] Practice Test 4
+
+-  Professional Cloud Architect_20250131
+	- [x] Try the official practice exam
+		-  86%: 2025/01/12
+		-  90%: 2025/01/13
+		-  95%: 2025/01/31
+
+- [x] Check the latest trends on the product list
+	-  Product List DOCS: https://cloud.google.com/products
+	-  Actual Services: https://console.cloud.google.com/products?inv=1&invt=AboG6g&project=pollman-x
+
+
+##### Weak Areas
+- GCE
+	- Managed Instance Groups
+	- Instances
+	- [What is a Shielded VM?](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm)
+
+
+- [Direct Peering overview](https://cloud.google.com/network-connectivity/docs/direct-peering)
+> 	Direct Peering exists outside of Google Cloud. Unless you need to access Google Workspace applications, the recommended way to access Google Cloud is by using [Dedicated Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/dedicated-overview) or [Partner Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/partner-overview).
+
+- [Cloud Shell persistent disk storage](https://cloud.google.com/shell/docs/how-cloud-shell-works#persistent_disk_storage)
+> 	5 GB of free persistent disk storage (not expandable)
+
+- [About service perimeters](https://cloud.google.com/vpc-service-controls/docs/service-perimeters#about-perimeters)
+>	You can configure service perimeters at the **project-level or at the VPC network-level**.
+>	...
+>	Additionally, you can use the VPC accessible services feature to limit which **services can be accessed from within the perimeter, such as VMs** in VPC networks that are hosted within the perimeter.
+
+- Available storage classes
+	- https://cloud.google.com/storage/docs/storage-classes#classes
+>	Minimum storage duration for each storage class
+
+- [What are access control lists (ACLs)?](https://cloud.google.com/storage/docs/access-control/lists#acl-def)
+>	ACLs are a mechanism you can use to define who has access to your buckets and objects, and what level of access they have. In Cloud Storage, you apply ACLs to individual buckets and **objects**.
+
+- [Disaster recovery scenarios for data](https://cloud.google.com/architecture/dr-scenarios-for-data)
+>	Long article, good to read if you have time.
+
+- [Federating Google Cloud with Active Directory](https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-introduction)
+>	Long article, good to read if you have time. I don't fully understand it.
+
+- [Default encryption at rest](https://cloud.google.com/docs/security/encryption/default-encryption#encryption_at_the_storage_device_layer)
+>	Google encrypts data at rest using the AES algorithm. All data at the storage level is encrypted by the DEK, which uses AES-256 by default, with the exception of a few Persistent Disks that were created before 2015 that use AES-128. AES is widely used because both AES-256 and AES-128 are recommended by the National Institute of Standards and Technology (NIST) for long-term storage use. AES is often part of customer compliance requirements.
+
+
+- [Node Taints for GPU Preemptible VMs](https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms#node_taints_for_gpu_preemptible_vms)
+>	`nvidia.com/gpu=present:NoSchedule` taint
+
+- [Federating Google Cloud with Active Directory](https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-introduction)
+> 	This is too confusing, so I have no choice but to learn through practical problems.
+
+- [Increase the size of a persistent disk](https://cloud.google.com/compute/docs/disks/resize-persistent-disk)
+>	If you are using `ext4`, run the `resize2fs` command.
+>	You don't need to restart the VM after this process. You can now use the additional disk space to store your data.
+
+
+- [Monitoring an instance with Cloud Monitoring (Spanner)](https://cloud.google.com/spanner/docs/monitoring-cloud#create-charts)
+>	You can see correlations between a Spanner instance's **CPU utilization and latency**. This might indicate that you need to add compute capacity to your instance, or that some of your queries have high CPU utilization.
+
+- [Troubleshooting using the serial console](https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-using-serial-console)
+>	I just remember this as a way to view detailed VM logs (kernel/BIOS level).	
+
+- OS Login (Managing user access to VMs)
+>	Use the OS Login feature to manage SSH access to your Linux instances using Compute Engine IAM roles. You can enforce OS Login with 2-Step Verification for added security and manage access at an organization level by setting an organization policy.
+
+- Maximum subnet range for a custom VPC
+>	When you expand the IPv4 range of an automatically created subnet in an auto mode VPC network (or a custom mode VPC network that was previously an auto mode VPC network), the widest prefix (subnet mask) you can use is **/16**.
+
+- [Connectivity works for some VMs but not for others (Traffic selectors)](https://cloud.google.com/network-connectivity/docs/vpn/support/troubleshooting#connectivity_works_for_some_vms_but_not_for_others)
+>	Traffic selectors define the IP address ranges for a VPN tunnel. In most VPN implementations, not only are routes consulted, but packets are only passed through the tunnel if both of the following conditions are met:
+>	- The packet's source is within the IP ranges specified by the local traffic selector.
+>	- The packet's destination is within the IP ranges specified by the remote traffic selector.
+
+
+- [Creating a private cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)	
+>In a private cluster, nodes have internal IP addresses only, which isolates the nodes and Pods from the internet by default. Client access to the control plane can be configured to be disallowed, restricted, or unrestricted.	
+
+>Private clusters must be VPC-native clusters. VPC-native clusters do not support legacy networks.
+
+
+- Difficult Topics: Old
+	- Connect / Access
+		- [Blog Post (Japanese)](https://zenn.dev/cloud_ace/articles/e483362103d7f6)
+		- [Official Community Post](https://www.googlecloudcommunity.com/gc/Infrastructure-Compute-Storage/private-service-access-vs-private-service-connect-vs-private/m-p/760591)
+
+---
+
+<Admonition type="info" title="Self-Study_Prompt Memo for Creating Practice Questions">
+
+2024/11/30
+- I have configured a dedicated prompt in GPTs. However, when working, it is necessary to reinforce the prompt as needed. For example, reinforcing the latter part of a long generation or working on a new page for multiple prompts is necessary to compensate for the weaknesses of generative AI.
+
+**Final working prompt**
+- In the worst-case scenario, I managed by including the question number and the question text in the instruction.
+```
+Regarding the questions in "Knowledge" "Chapter 4: Building and Operating Data Pipelines (Questions 151-200)",
+please improve the next 5 questions starting from question 165 as instructed. Be sure to "search" the "Knowledge" for confirmation and correctly understand the correspondence between the before and after versions of the questions and the intent of the instructions (format and explanation improvements).
+- The explanations should be detailed and helpful for a Google Cloud beginner.
+- For important Google Cloud service names appearing in the explanation, write them as "Official Name (Japanese Translation)".
+
+``Reference info for searching the relevant question in "Knowledge"
+Question 165
+What is the most common concept used for state management in streaming processing with Dataflow?
+``
+```
+
+##### Self-Study_GPTs Tips
+
+Most effective measure for long text generation:
+- If the output becomes garbled, **create a new page** and prompt again.
+	- → This is more effective than improving the prompt, likely because it reduces the system load.
+
+Second-best measure for long text generation:
+- **Split** the material to be registered in the knowledge base.
+	- → This is presumably effective for modification and formatting tasks that follow the order and content of the original material.
+
+Magic words (prompt) for when contradictions occur:
+- **Be sure to "search" the "Knowledge" for confirmation.**
+	- → By making the GPTs search the registered material, it's possible to enforce generation that adheres to the format, content, order, and instructions of the reference material.
+
+Standard best practice:
+- Be specific and precise with prompts.
+	- → In GPTs, you can register instructions in advance, so aim for clear instructions at that stage.
+	- → It's also important to supplement the pre-registered instructions on the work screen.
+
+##### Self-Study_TIPS for Generating Advanced Questions
+
+2024/12/14 
+
+**Improving Mock Exams:**
+Copy the mock exam from the official website and save it as a text file.
+↓
+Register it in GPTs and organize the format.
+↓
+Gradually improve it in Gemini (Studio) after setting up a System Prompt.
+
+**Improving Basic Questions:**
+Generate a basic question set based on the exam scope using GPTs.
+↓
+Improve them into advanced questions in Gemini (Studio) after setting up a System Prompt.
+</Admonition>
