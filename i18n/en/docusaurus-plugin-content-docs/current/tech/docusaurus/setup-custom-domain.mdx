@@ -1,0 +1,128 @@
+---
+title: How to Set Up a Custom Domain with Cloud Run and Value Domain for a Docusaurus Site
+sidebar_position: 1
+last_update:
+  date: 2025-06-09
+tags: [docusaurus, gcp, cloudrun, dns, value-domain]
+---
+
+import Admonition from '@theme/Admonition';
+
+This article outlines the steps I took to set up a custom domain, `hkdocs.com`, acquired from Value Domain, for this Docusaurus site hosted on Google Cloud Run.
+
+<Admonition type="info" title="Prerequisites">
+  <ul>
+    <li><strong>Domain:</strong> <code>hkdocs.com</code> (already acquired from <a href="https://www.value-domain.com/">Value Domain</a>)</li>
+    <li><strong>Hosting:</strong> Google Cloud Run</li>
+    <li><strong>Site Generator:</strong> Docusaurus</li>
+  </ul>
+</Admonition>
+
+{/* truncate */}
+
+### 1. Update Docusaurus Configuration File
+
+First, modify the configuration file so that your Docusaurus site recognizes the new domain, `hkdocs.com`.
+
+1.  Open the `docusaurus.config.ts` (or `.js`) file in your Docusaurus project.
+2.  Change the `url` property to `https://hkdocs.com/`.
+    ```typescript title="docusaurus.config.ts"
+    // docusaurus.config.ts
+    const config: Config = {
+      // ...
+      url: 'https://hkdocs.com/', // Change this to your actual domain
+      baseUrl: '/',
+      // Set organizationName and projectName appropriately
+      // ...
+    };
+    ```
+3.  Ensure that `organizationName` (e.g., `hiroaki-com`) and `projectName` (e.g., `hkdocs`) are correctly set to align with the `editUrl` of your GitHub repository.
+4.  Save the file.
+
+### 2. Start Custom Domain Mapping in Cloud Run
+
+Next, begin the process of associating `hkdocs.com` with your Cloud Run service in the Google Cloud Console.
+
+1.  Log in to the **Google Cloud Console** and select the **Cloud Run service** that hosts `hkdocs.com`.
+2.  Select "**Map Custom Domain**" (or a similar menu option) and click "Add mapping".
+3.  In the "Enter domain" field, type `hkdocs.com` and click "Continue".
+4.  Cloud Run will provide you with **TXT record** information to verify your domain ownership. Make a careful note of this value.
+    *   Example: Hostname `@` (or `hkdocs.com.`), Value `google-site-verification=some-random-string`
+
+### 3. Configure DNS Records in Value Domain (TXT Record)
+
+In the Value Domain control panel, set the TXT record as instructed by Cloud Run.
+
+1.  Log in to the **Value Domain Control Panel**.
+2.  Navigate to the "Change DNS records/URL forwarding" page (or the DNS settings page) for your domain, `hkdocs.com`.
+3.  In the DNS record input area, add the TXT record information you noted in step 2.
+    *   Enter the information according to Value Domain's format.
+    *   **Example entry:**
+        ```dns
+        # TXT record for domain ownership verification
+        txt @ google-site-verification=some-random-string
+        ```
+        *(Use the actual value provided for `google-site-verification=`)*
+4.  Save the DNS settings. It may take a few minutes to several hours for the DNS changes to propagate across the internet.
+
+### 4. Verify Ownership and Get A/AAAA Records in Cloud Run
+
+Once Cloud Run recognizes the TXT record, it will display the A and AAAA records you need to set next.
+
+1.  Return to the Cloud Run custom domain mapping screen in the **Google Cloud Console**.
+2.  Once ownership verification is complete, Cloud Run will display the **A records (IPv4 addresses) and AAAA records (IPv6 addresses)** needed to direct traffic to your service. Make a careful note of all these IP addresses.
+    *   **Example A records (dummy):** `198.51.100.10`, `198.51.100.11`, `198.51.100.12`, `198.51.100.13`
+    *   **Example AAAA records (dummy):** `2001:db8:2::1a`, `2001:db8:2::1b`, `2001:db8:2::1c`, `2001:db8:2::1d`
+
+<Admonition type="note">
+  These IP addresses are just examples. You must use the specific IP addresses provided by Cloud Run.
+</Admonition>
+
+### 5. Configure DNS Records in Value Domain (A/AAAA Records)
+
+Go back to the Value Domain DNS settings screen to set the A/AAAA records you obtained.
+
+1.  Open the DNS settings page for `hkdocs.com` in **Value Domain**.
+2.  <Admonition type="warning" title="Important">
+    If there are any existing A, AAAA, or CNAME records for your website set on <code>hkdocs.com</code> (hostname <code>@</code>), you must delete them or comment them out by adding a <code>#</code> at the beginning of the line. This is to prevent conflicts with the Cloud Run settings. Do not change mail-related MX records.
+    </Admonition>
+3.  Add the A and AAAA records you noted in step 4, following Value Domain's format.
+    *   **Example entry (replace the dummy IP addresses with the actual values from step 4):**
+        ```dns
+        # Settings to point hkdocs.com to Cloud Run
+        # A Records (IPv4)
+        a @ 198.51.100.10
+        a @ 198.51.100.11
+        a @ 198.51.100.12
+        a @ 198.51.100.13
+
+        # AAAA Records (IPv6)
+        aaaa @ 2001:db8:2::1a
+        aaaa @ 2001:db8:2::1b
+        aaaa @ 2001:db8:2::1c
+        aaaa @ 2001:db8:2::1d
+        ```
+4.  Save the DNS settings and wait for the changes to propagate.
+
+### 6. Final Verification and SSL Certificate Issuance in Cloud Run
+
+Confirm that Cloud Run has recognized the new DNS settings and has issued an SSL certificate.
+
+1.  In the **Google Cloud Console**, on the Cloud Run custom domain mapping screen, check that the status for `hkdocs.com` is "Active" and that an SSL certificate has been issued. This may take some time.
+
+### 7. Rebuild and Deploy Docusaurus Site
+
+To apply the changes made to the Docusaurus configuration, rebuild your site and deploy it to Cloud Run.
+
+1.  In your local terminal, navigate to the root directory of your Docusaurus project.
+2.  Run the build command (e.g., `pnpm build`, `npm run build`, `yarn build`).
+3.  Deploy the built static files to your Cloud Run service.
+
+### 8. Verify Operation
+
+Finally, check that your site is correctly displayed at the configured custom domain, `https://hkdocs.com/`.
+
+1.  In a web browser, go to `https://hkdocs.com/`.
+2.  Verify that the site is displayed and that the HTTPS connection is active (check for the lock icon in the address bar).
+3.  Test that the links and features on the site work as expected.
+4.  If necessary, also check SEO-related files like `https://hkdocs.com/sitemap.xml`.

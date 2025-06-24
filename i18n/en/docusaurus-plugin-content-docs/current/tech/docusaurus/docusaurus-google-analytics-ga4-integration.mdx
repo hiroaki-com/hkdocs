@@ -1,0 +1,113 @@
+---
+title: Adding Google Analytics (GA4) to Docusaurus
+sidebar_position: 10
+last_update:
+  date: 2025-06-22
+tags: [Docusaurus, Google Analytics, GA4, gtag, tutorial]
+---
+
+This article provides a step-by-step guide on how to set up Google Analytics 4 (GA4) on a Docusaurus site to enable access analysis.
+
+**Features:**
+*   Integrate Google Analytics 4 (GA4) with your Docusaurus site.
+*   Enable site-wide access analysis.
+
+{/* truncate */}
+
+**References:**
+*   **Docusaurus Official Documentation (gtag):** [https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag)
+*   **Google Analytics:** [https://analytics.google.com/](https://analytics.google.com/)
+
+---
+
+### GA Setup: Docusaurus vs. Standard HTML Site
+
+Docusaurus allows you to add GA by editing just one configuration file. This is because Docusaurus automatically injects the necessary tags into the HTML of every page during the build process.
+
+| Scenario | Standard HTML Site (Manual) | Docusaurus (Automated) |
+| :--- | :--- | :--- |
+| **Adding the Tag** | Manually copy and paste the tracking code into the `<head>` tag of every page. | Simply add one setting to `docusaurus.config.ts`. |
+| **Files to Modify** | **All HTML files**. | **Only `docusaurus.config.ts`**. |
+| **Changing the ID** | Requires modifying all HTML files again, with a high risk of missing some. | **Just modify one line** in `docusaurus.config.ts` to apply the change site-wide. |
+| **Adding a New Page** | **The GA tag must also be added** to the newly created HTML file. | **No action required**. The GA tag is automatically inserted during the build. |
+
+### GA4 Integration Steps
+
+#### 1. Get Measurement ID from Google Analytics
+
+0.  This guide assumes you already have a Google Analytics account.
+1.  Go to [Google Analytics](https://analytics.google.com/).
+2.  Click **[Admin]** in the bottom-left corner.
+3.  In the target property, select **[Data Streams]**.
+4.  Click on the relevant web stream and copy the **Measurement ID** (an ID starting with `G-`).
+
+#### 2. Edit Docusaurus Configuration File
+
+In your project's root directory, open `docusaurus.config.ts` and set the Measurement ID you obtained.
+
+##### ※ Prerequisite: About Docusaurus GA4 Integration Plugins
+
+:::info[About GA4 Integration Plugins]
+Docusaurus has two plugins related to Google Analytics.
+
+*   **Recommended: [`@docusaurus/plugin-google-gtag`](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag)**
+    *   The current standard plugin that supports GA4 (IDs starting with `G-`).
+*   **Deprecated: [`@docusaurus/plugin-google-analytics`](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-analytics)**
+    *   The legacy plugin for Universal Analytics (IDs starting with `UA-`).
+    *   The official documentation states, "This plugin is deprecated and became useless on July 1, 2023." As Universal Analytics itself was discontinued on July 1, 2023, this plugin is no longer usable.
+:::
+
+:::tip[When using preset-classic]
+**If you are already using `@docusaurus/preset-classic`, you do not need to install `@docusaurus/plugin-google-gtag` separately.**
+`preset-classic` includes the gtag plugin internally, so you can integrate with GA4 simply by adding the configuration within the `presets` section.
+:::
+
+#### Edit Docusaurus Configuration File
+
+:::caution[Only enabled in production builds]
+The Docusaurus GA integration feature is disabled in the local development environment (`pnpm start`) and is only enabled in production builds (`pnpm build`).
+:::
+
+```typescript title="docusaurus.config.ts"
+import type { Config } from '@docusaurus/types';
+import type * as Preset from '@docusaurus/preset-classic';
+
+const config: Config = {
+  // ... (existing settings like title, url, etc.)
+  presets: [
+    [
+      'classic',
+      {
+        // ▼▼▼ Add the gtag configuration here ▼▼▼
+        gtag: {
+          trackingID: 'G-XXXXXXXXXX', // Replace with the Measurement ID from step 1
+          anonymizeIP: true,
+        },
+        // ...
+      } satisfies Preset.Options,
+    ],
+  ],
+
+  themeConfig: {
+    // Note: Do not write gtag settings here (this was the location for the deprecated plugin)
+  },
+
+  // ... (existing settings like plugins, etc.)
+};
+
+export default config;
+```
+
+#### 3. Verify the Setup
+
+After deploying the changes, access your live site and verify the setup using one of the following methods.
+
+1.  **Browser Developer Tools:**
+    *   Open the [Network] tab and enter `collect` in the filter.
+    *   Confirm that a request to `google-analytics.com/g/collect?...` is made when you navigate between pages.
+2.  **Google Analytics Realtime Report:**
+    *   In GA, go to [Reports] > [Realtime].
+    *   Confirm that your own visit is being tracked in real time (it may take a few minutes to appear).
+3.  **Google Tag Assistant Companion:**
+    *   Install the "Tag Assistant Companion" Chrome extension.
+    *   Enter the URL of the page you want to debug on the Tag Assistant site and confirm that the Gtag is correctly recognized and firing.
