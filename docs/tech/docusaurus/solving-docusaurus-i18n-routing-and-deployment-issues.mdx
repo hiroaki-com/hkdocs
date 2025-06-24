@@ -6,16 +6,20 @@ last_update:
 tags: [docusaurus, i18n, routing, deployment, docker, cloudrun]
 ---
 
+import Admonition from '@theme/Admonition';
+
 この記事では、Docusaurus v3 で構築したサイトに国際化（i18n）機能を追加した際、直面した2つの厄介な問題、「**クライアントサイドのルーティング崩壊**」と「**Cloud Runでのコンテナ起動失敗**」について、その原因特定から解決までの道のりを記録したものです。
 
-**前提環境:**
+<Admonition type="info" title="前提環境">
+  <ul>
+    <li><strong>サイトジェネレーター:</strong> Docusaurus v3</li>
+    <li><strong>ホスティング:</strong> Google Cloud Run</li>
+    <li><strong>開発・デプロイ:</strong> Docker, GitHub Actions</li>
+    <li><strong>パッケージマネージャー:</strong> pnpm</li>
+  </ul>
+</Admonition>
 
-*   **サイトジェネレーター:** Docusaurus v3
-*   **ホスティング:** Google Cloud Run
-*   **開発・デプロイ:** Docker, GitHub Actions
-*   **パッケージマネージャー:** pnpm
-
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. 発生した問題
 
@@ -59,7 +63,7 @@ i18n設定後、ローカルでの本番ビルド確認 (`pnpm build` + `pnpm se
 
     2.  **`package.json` の `serve` スクリプトを更新**
         `--single` オプションを付けて、解決できないパスへのリクエストをすべてルートの `index.html` にフォールバックさせるように設定しました。これにより、URLの解決がクライアントサイドのReact Routerに正しく委譲されるようになります。
-        ```json:package.json
+        ```json title="package.json"
         "scripts": {
           "serve": "http-server ./build --single"
         }

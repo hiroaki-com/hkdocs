@@ -1,5 +1,5 @@
 ---
-title: Docusaurus ナビゲーションアイコン編集：3つのアプローチ
+title: Docusaurus ナビゲーションアイコン編集：3種のアプローチ
 sidebar_position: 5
 last_update:
   date: 2025-06-14
@@ -13,12 +13,12 @@ tags: [docusaurus, アイコン, css, svg]
 
 ナビゲーションアイテムにアイコンや記号を表示する最も直接的かつ簡単な方法。Docusaurusの設定ファイル内で`label`プロパティに直接記述することで実現。
 
-<!-- truncate -->
+{/* truncate */}
 
 1.  **設定ファイル編集** (`docusaurus.config.ts`)
     `themeConfig.navbar.items` 配列内の対象アイテムの `label` プロパティに、表示したいテキスト、絵文字、または特殊記号を指定。
 
-    ```typescript
+    ```typescript title="docusaurus.config.ts"
     // docusaurus.config.ts
     // ...
     themeConfig: {
@@ -56,7 +56,7 @@ CSSの `::before` または `::after` 疑似要素と `background-image` プロ�
 1.  **設定ファイル編集** (`docusaurus.config.ts`)
     アイコンを表示したいナビゲーションアイテムに、CSSでスタイルを適用するための `className` を付与。`label` は空にするか、CSSで視覚的に非表示にする前提でスクリーンリーダー用のテキストを残す。
 
-    ```typescript
+    ```typescript title="docusaurus.config.ts"
     // docusaurus.config.ts
     // ...
           {
@@ -72,7 +72,7 @@ CSSの `::before` または `::after` 疑似要素と `background-image` プロ�
 2.  **カスタムCSS編集** (`src/css/custom.css`)
     指定したクラス名を持つ要素に対し、`::before` 疑似要素を使って背景画像としてアイコンを設定。ライトモードとダークモードで異なるアイコンを表示する場合は、`html[data-theme='dark']` セレクタを利用。
 
-    ```css
+    ```css title="src/css/custom.css"
     /* src/css/custom.css */
     .header-github-link {
       display: inline-block;
@@ -116,7 +116,7 @@ Docusaurusのナビゲーションアイテム設定オブジェクトが持つ 
 1.  **設定ファイル編集** (`docusaurus.config.ts`)
     ナビゲーションアイテムの `label` プロパティの代わりに `html` プロパティを使用し、その値として完全なSVGコードを文字列で記述。SVGの `fill` 属性を `currentColor` に設定することで、テーマカラーに追従させることが可能。
 
-    ```typescript
+    ```typescript title="docusaurus.config.ts"
     // docusaurus.config.ts
     // ...
           {
@@ -131,7 +131,7 @@ Docusaurusのナビゲーションアイテム設定オブジェクトが持つ 
 2.  **カスタムCSS編集** (`src/css/custom.css`) - オプション
     SVG自体に `fill="currentColor"` を指定していれば、基本的なテーマ対応はCSS不要。ホバーエフェクトやマージン調整など、追加のスタイルが必要な場合に記述。
 
-    ```css
+    ```css title="src/css/custom.css"
     /* src/css/custom.css */
     .navbar-icon { /* SVGに付与したクラス（オプション） */
       vertical-align: middle; /* 他のテキストアイテムとの垂直位置調整 */
@@ -157,5 +157,3 @@ Docusaurusのナビゲーションアイテム設定オブジェクトが持つ 
 *   **テーマ連動の容易さ・SVGの直接制御**: **インラインSVG** がモダンで推奨されることが多いが、設定ファイルの肥大化に注意。
 
 最終的には、実装の容易さ、メンテナンス性、デザインの要求レベル、パフォーマンスへの影響などを総合的に比較検討し、最適なアプローチを選択することが重要。
-
----
