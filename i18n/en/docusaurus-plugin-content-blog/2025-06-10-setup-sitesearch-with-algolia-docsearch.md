@@ -1,125 +1,125 @@
 ---
-title: DocusaurusにAlgolia DocSearchを組み込む方法
+title: How to Integrate Algolia DocSearch with Docusaurus
 authors: [hk]
 tags: [docusaurus]
 ---
 
-この記事では、Algolia DocSearch を使用して、サイト内検索機能を設定した際の手順と課題解決の経緯を整理します。
+This article organizes the steps and troubleshooting process I went through when setting up a site search feature using Algolia DocSearch.
 
-### DocusaurusにAlgolia DocSearchを実装した際の記録
+### A Record of Implementing Algolia DocSearch in Docusaurus
 
-参考：
+References:
 - https://docusaurus.io/docs/search
 - https://docsearch.algolia.com/docs/api/#indexname
 
-採用サービス：
+Service Used:
 - [Algolia DocSearch](https://docsearch.algolia.com/)
 
 <!-- truncate -->
 
-#### 1. Algolia DocSearchへの申請
+#### 1. Applying for Algolia DocSearch
 
-1.  **DocSearch公式サイトへのアクセス**
-    [Algolia DocSearch公式サイト](https://docsearch.algolia.com/)へアクセス。
+1.  **Access the Official DocSearch Website**
+    Go to the [official Algolia DocSearch website](https://docsearch.algolia.com/).
 
-2.  **申請フォームの提出**
-    サイトの指示に従い、対象サイトのURLやリポジトリ情報を入力し申請。
+2.  **Submit the Application Form**
+    Follow the site's instructions to apply, entering your site's URL and repository information.
 
-3.  **キー情報の取得**
-    申請承認後、Algoliaから提供される以下の3つの情報を取得。
+3.  **Receive Key Information**
+    After your application is approved, you will receive the following three pieces of information from Algolia:
     *   `appId` (Application ID)
     *   `apiKey` (Search-Only API Key)
-    *   `indexName` (インデックス名)
+    *   `indexName` (Index Name)
 
-#### 2. `docusaurus.config.ts`の更新
+#### 2. Update `docusaurus.config.ts`
 
-1.  **設定ファイルへの`algolia`設定追加**
-    プロジェクトルートの`docusaurus.config.ts`を開き、`themeConfig`オブジェクト内に`algolia`プロパティを追加。
+1.  **Add `algolia` Configuration to the Config File**
+    Open `docusaurus.config.ts` in your project root and add the `algolia` property within the `themeConfig` object.
 
-2.  **設定内容**
-    取得したキー情報を各項目に設定。
+2.  **Configuration Details**
+    Set the key information you received for each item.
 
     ```typescript
     // docusaurus.config.ts
     // ...
     themeConfig: {
-      // ...他の設定...
+      // ...other settings...
 
       algolia: {
-        // Algoliaから提供されるアプリケーションID
+        // The application ID provided by Algolia
         appId: 'YOUR_APP_ID',
 
-        // Public APIキー：コミットしても安全
+        // Public API key: it is safe to commit it
         apiKey: 'YOUR_SEARCH_API_KEY',
 
-        // Algoliaのインデックス名
+        // The index name for your site
         indexName: 'YOUR_INDEX_NAME',
 
-        // 推奨：コンテキスト検索の有効化
+        // Recommended: enable contextual search
         contextualSearch: true,
 
-        // オプション：検索ページのパス（デフォルトは 'search'）
+        // Optional: path for the search page (defaults to 'search')
         searchPagePath: 'search',
       },
     },
     // ...
     ```
 
-#### 3. Algoliaクローラーによるインデックス作成
+#### 3. Index Creation by the Algolia Crawler
 
-1.  **初回クロール**
-    DocSearchチームによるクロール設定完了後、サイトコンテンツがAlgoliaインデックスへ初回登録。
+1.  **Initial Crawl**
+    After the DocSearch team completes the crawler setup, your site's content will be initially indexed by Algolia.
 
-2.  **クローラー設定の確認**
-    必要に応じて、Algoliaダッシュボードからクロール対象のURLや除外設定などを確認。
+2.  **Check Crawler Settings**
+    If necessary, you can check the URLs to be crawled, exclusion settings, and more from the Algolia dashboard.
 
-3.  **コンテンツの自動更新**
-    サイト更新後、DocSearchクローラーが定期的に変更を検知し、検索インデックスを自動更新。
+3.  **Automatic Content Updates**
+    After you update your site, the DocSearch crawler will periodically detect changes and automatically update the search index.
 
-    > **注意**：クロールが完了し、インデックスにデータが登録されるまで検索機能は動作しない。
+    > **Note**: The search function will not work until the crawl is complete and data is registered in the index.
 
-#### 4. 動作確認
+#### 4. Verify Operation
 
-1.  **ローカル開発サーバーの起動**
-    `pnpm start`等のコマンドで開発サーバーを起動。
+1.  **Start the Local Development Server**
+    Start your development server with a command like `pnpm start`.
 
-2.  **検索UIの表示確認**
-    サイトのナビゲーションバーに検索ボックスが表示されていることを確認。
+2.  **Check Search UI Display**
+    Confirm that the search box is displayed in your site's navigation bar.
 
-3.  **検索機能のテスト**
-    キーワードを入力し、検索結果が正しく表示されるかテスト。
+3.  **Test the Search Functionality**
+    Enter keywords and test whether the search results are displayed correctly.
 
-4.  **ビルドとデプロイ**
-    ローカルでの確認後、`pnpm build`等でビルドし、本番環境へデプロイ。デプロイ後も動作を再確認。
+4.  **Build and Deploy**
+    After confirming locally, build your site with a command like `pnpm build` and deploy it to your production environment. Re-verify that it works after deployment.
 
 ---
 
-### 追記：検索機能不全の発生と解決
+### Addendum: Search Malfunction and Resolution
 
-#### 1. 発生した事象
+#### 1. The Issue That Occurred
 
-*   **現象**
-    検索ボックスは表示されるが、キーワードを入力してもサイトタイトルしかヒットせず、記事本文や各ページの内容が検索対象外。
-*   **試行**
-    Algoliaダッシュボードからの手動クロールや、クローラー設定のCSSセレクタ修正では改善せず。
-*   **エラー**
-    クローラーログに`Too many missing records`エラーが発生。新規クロールで取得したレコードが0件のため、インデックス更新が安全装置によりブロックされていた。
+*   **Symptom**
+    The search box appeared, but entering keywords only returned the site title. The content of articles and individual pages was not being searched.
+*   **Attempts**
+    Manually triggering crawls from the Algolia dashboard and modifying the CSS selectors in the crawler configuration did not fix the issue.
+*   **Error**
+    The crawler logs showed a `Too many missing records` error. Because the new crawl fetched 0 records, a safety mechanism blocked the index update.
 
-#### 2. 原因
+#### 2. Cause
 
-**Algoliaクローラーによる、JavaScript未実行でのサイト巡回。**
+**The Algolia crawler was crawling the site without executing JavaScript.**
 
-Docusaurus v3はJavaScriptによって動的にコンテンツを描画するSPA（シングルページアプリケーション）。デフォルト設定のクローラー（`renderJavaScript: false`）では、JavaScript実行前のHTML（中身が空の状態）を読み込んでいたため、インデックスされるべきテキストが存在しなかった。
+Docusaurus v3 is an SPA (Single Page Application) that renders content dynamically using JavaScript. The default crawler setting (`renderJavaScript: false`) was reading the initial HTML (which is empty) before JavaScript execution, so there was no text content to be indexed.
 
-#### 3. 解決策
+#### 3. Solution
 
-**Algoliaクローラー設定の変更。**
+**Change the Algolia crawler settings.**
 
-1.  Algoliaダッシュボードで対象クローラーの設定エディターを開く。
-2.  設定項目`renderJavaScript: false`を`true`に変更。
+1.  Open the settings editor for the relevant crawler in your Algolia dashboard.
+2.  Change the `renderJavaScript: false` setting to `true`.
 
     ```javascript
-    // Algoliaクローラー設定ファイル
+    // Algolia crawler configuration file
     new Crawler({
       // ...
       renderJavaScript: true,
@@ -127,10 +127,10 @@ Docusaurus v3はJavaScriptによって動的にコンテンツを描画するSPA
     });
     ```
 
-これにより、クローラーはJavaScript実行後の完全に描画されたHTMLを読み込むようになり、CSSセレクタが本文コンテンツを正しく抽出可能となった。
+This change forces the crawler to load the fully rendered HTML after JavaScript has executed, allowing the CSS selectors to correctly extract the body content.
 
-#### 4. 教訓
+#### 4. Lessons Learned
 
-*   Docusaurus v2以降やReact/Vue等のSPAにAlgoliaを適用する場合、`renderJavaScript: true`の設定は必須の可能性が高い。
-*   「セレクタは正しいのにデータが抽出できない」場合、まずクローラーのJavaScriptレンダリング設定の確認。
-*   クローラーのテスト実行機能（Run a test）で取得した生のHTMLを確認することが、問題の切り分けに極めて有効。
+*   When applying Algolia to SPAs like Docusaurus v2+, React, or Vue, the `renderJavaScript: true` setting is likely mandatory.
+*   If your selectors are correct but no data is being extracted, first check the crawler's JavaScript rendering setting.
+*   Using the crawler's "Run a test" feature to inspect the raw HTML it fetches is extremely useful for troubleshooting and isolating the problem.

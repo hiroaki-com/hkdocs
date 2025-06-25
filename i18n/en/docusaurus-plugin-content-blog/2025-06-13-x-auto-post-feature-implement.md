@@ -1,71 +1,69 @@
 ---
-title: Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装の記録
+title: A Record of Implementing a GitHub Action to Detect New Articles and Post Them to X as Twitter Cards
 authors: [hk]
-tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
+tags: [GitHub Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
-この記事では、Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装した際の手順とトラブルシューティングの記録を整理します。
+This article organizes the procedures and troubleshooting records from when I implemented a GitHub Action to detect new articles and post them to X as Twitter Cards.
 
-機能：
-Github Actions で新規投稿を検知し、TwitterカードとしてXへPOSTする
+Feature:
+Detect new posts with GitHub Actions and post them to X as Twitter Cards.
 
 <!-- truncate -->
 
-参考：
+References:
 Twitter API v2
-https://developer.x.com/ja/docs/x-api
+https://developer.x.com/en/docs/x-api
 
 Search engine optimization (SEO)
 https://docusaurus.io/docs/seo
 
+## Implementation Record for Automatic X Posting
 
+### 1. Prerequisites
 
-## X自動投稿機能の実装記録
-
-### 1. 事前準備
-
-1.  **Xデベロッパーアプリと認証情報:**
-    *   X Developer Portalでアプリ作成済み。
-    *   アプリ権限: 「Read and Write」設定済み。
-    *   API Key, API Key Secret, Access Token, Access Token Secret 取得済み。
+1.  **X Developer App and Credentials:**
+    *   App created in the X Developer Portal.
+    *   App permissions set to "Read and Write".
+    *   API Key, API Key Secret, Access Token, and Access Token Secret have been obtained.
 2.  **GitHub Secrets:**
-    リポジトリ `Settings` > `Secrets and variables` > `Actions` に以下を登録済み。
+    The following have been registered in the repository under `Settings` > `Secrets and variables` > `Actions`.
     *   `X_API_KEY`
     *   `X_API_SECRET`
     *   `X_ACCESS_TOKEN`
     *   `X_ACCESS_TOKEN_SECRET`
-    *   `SITE_URL` (例: `https://hkdocs.com/`)
-    *   `BASE_URL` (例: `/`)
+    *   `SITE_URL` (e.g., `https://hkdocs.com/`)
+    *   `BASE_URL` (e.g., `/`)
 
-### 2. ローカル開発環境と依存関係の設定
+### 2. Local Development Environment and Dependency Setup
 
-1.  **開発環境クリーンアップ (必要な場合):**
-    *   Dockerコンテナ完全停止:
+1.  **Clean Up Development Environment (if necessary):**
+    *   Completely stop Docker containers:
         ```bash
         docker-compose down --volumes --remove-orphans
         ```
-    *   ホスト側 `node_modules`, `pnpm-lock.yaml`, `.pnpm-store` (存在すれば) 削除。
-    *   ホスト側で `pnpm install` 実行 (これにより `pnpm-lock.yaml` 再生成)。
-    *   Dockerイメージ再ビルド:
+    *   Delete `node_modules`, `pnpm-lock.yaml`, and `.pnpm-store` (if it exists) on the host machine.
+    *   Run `pnpm install` on the host (this regenerates `pnpm-lock.yaml`).
+    *   Rebuild the Docker image:
         ```bash
         docker-compose build --no-cache app
         ```
-2.  **必要ライブラリ (`gray-matter`, `twitter-api-v2`) インストール:**
-    *   以下のコマンドを実行:
+2.  **Install Required Libraries (`gray-matter`, `twitter-api-v2`):**
+    *   Run the following command:
         ```bash
         docker-compose run --rm app sh -c "pnpm add -D gray-matter twitter-api-v2 --store-dir /root/.local/share/pnpm/store/v10 && echo 'Libraries added successfully.'"
         ```
-    *   (注: `--store-dir` のパスはビルド環境のpnpmグローバルストアパスです。必要に応じて調整してください。)
-3.  **Dockerイメージ再ビルド:**
-    *   以下のコマンドを実行:
+    *   (Note: The `--store-dir` path is the pnpm global store path in the build environment. Adjust as necessary.)
+3.  **Rebuild Docker Image:**
+    *   Run the following command:
         ```bash
         docker-compose build app
         ```
 
-### 3. GitHub Actions自動投稿機能の実装
+### 3. Implementing the GitHub Actions Auto-Posting Feature
 
-1.  **ワークフローファイル作成:**
-    `.github/workflows/post-to-x.yml` を以下の内容で作成。
+1.  **Create Workflow File:**
+    Create `.github/workflows/post-to-x.yml` with the following content.
     ```yaml
     # .github/workflows/post-to-x.yml
     name: Post New Articles to X
@@ -100,12 +98,12 @@ https://docusaurus.io/docs/seo
           - name: Set up Node.js
             uses: actions/setup-node@v4
             with:
-              node-version: '22.16.0' # 使用するNode.jsのバージョンに合わせてください
+              node-version: '22.16.0' # Adjust to your Node.js version
 
           - name: Enable Corepack and Set up PNPM
             run: |
               corepack enable
-              corepack prepare pnpm@10.11.0 --activate # 使用するpnpmのバージョンに合わせてください
+              corepack prepare pnpm@10.11.0 --activate # Adjust to your pnpm version
             shell: bash
 
           - name: Install Dependencies
@@ -121,8 +119,8 @@ https://docusaurus.io/docs/seo
               BASE_URL: ${{ secrets.BASE_URL }}
             run: node ./.github/scripts/post-new-articles.js
     ```
-2.  **投稿処理スクリプト作成:**
-    `.github/scripts/post-new-articles.js` を以下の内容で作成。
+2.  **Create Posting Script:**
+    Create `.github/scripts/post-new-articles.js` with the following content.
     ```javascript
     // .github/scripts/post-new-articles.js
     const fs = require('fs');
@@ -133,7 +131,7 @@ https://docusaurus.io/docs/seo
 
     const MAX_POST_LENGTH = 280;
     const ELLIPSIS = '...';
-    const ARTICLE_PREFIX = '【新規記事】';
+    const ARTICLE_PREFIX = '[New Article]';
     const LOG_PREFIX = '[PostToX]';
     const TARGET_DIRS = ['blog/', 'docs/'];
     const TARGET_EXTS = ['.md', '.mdx'];
@@ -331,42 +329,40 @@ https://docusaurus.io/docs/seo
     });
     ```
 
-### 4. Docusaurus設定 (Xカード最適化)
+### 4. Docusaurus Configuration (X Card Optimization)
 
-1.  **`docusaurus.config.ts` 確認:**
-    *   `url`, `baseUrl`, `themeConfig.image` (例: `img/default-social-card.jpg`) 等がXカード表示に適しているか確認。
-2.  **記事フロントマター確認:**
-    *   投稿対象記事ファイルで `title`, `description`, `image` (任意), `tags` を適切に設定。
-3.  **X Card Validatorでの確認:**
-    *   サイトデプロイ後、記事URLを [X Card Validator](https://cards-dev.twitter.com/validator) でテスト。
+1.  **Check `docusaurus.config.ts`:**
+    *   Ensure `url`, `baseUrl`, and `themeConfig.image` (e.g., `img/default-social-card.jpg`) are set appropriately for X Card display.
+2.  **Check Article Front Matter:**
+    *   In the article files intended for posting, properly set `title`, `description`, `image` (optional), and `tags`.
+3.  **Check with the X Card Validator:**
+    *   After deploying the site, test an article URL with the [X Card Validator](https://cards-dev.twitter.com/validator).
 
-### 5. 動作テスト
+### 5. Testing
 
-1.  ローカルリポジトリに変更を保存 (Gitコミット)。
-2.  変更をリモートリポジトリへプッシュ。
-3.  テスト用新規記事ファイルをワークフローのトリガーブランチへ追加 (直接プッシュまたはマージ)。
-4.  GitHub Actions実行ログ確認。
-5.  Xアカウントで投稿内容とXカード表示確認。
-6.  問題発生時は「6. トラブルシューティングガイド」参照。
+1.  Save changes to the local repository (Git commit).
+2.  Push changes to the remote repository.
+3.  Add a new test article file to the workflow's trigger branch (either by direct push or merge).
+4.  Check the GitHub Actions execution log.
+5.  Check your X account for the posted content and the X Card display.
+6.  If problems occur, refer to "6. Troubleshooting Guide".
 
+### 6. Troubleshooting Record
 
-
-### 6. トラブルシューティングの記録
-
-1.  **ローカル開発環境エラー (`docusaurus: not found`, 型エラー等):**
-    *   **解決策:** Dockerコンテナ、ホスト側 `node_modules`/ロックファイル/pnpmストアの完全クリーンアップ後、ホストで `pnpm install` を実行し、Dockerイメージを `--no-cache` オプション付きで再ビルドします。IDE/エディタを再起動してください。
-2.  **pnpmライブラリ追加時 `ERR_PNPM_UNEXPECTED_STORE`:**
-    *   **解決策:** `docker-compose run ... pnpm add ...` 実行時に `--store-dir <path>` でビルド時のストアパスを指定します。
-3.  **pnpmライブラリ追加時 `Resource busy` (`rm -rf node_modules` 失敗):**
-    *   **解決策:** コンテナ内のプロセス (開発サーバー等) を停止します。それでも解決しない場合は、`docker-compose stop app` コマンドでコンテナを停止後に再試行するか、コンテナ停止中にホスト側で対象ディレクトリ/ファイルを削除します。
-4.  **GitHub Actionsで `pnpm: command not found`:**
-    *   **解決策:** ワークフローファイルで `corepack enable` と `corepack prepare pnpm@<version> --activate` を使用しているか確認してください。
-5.  **GitHub Actionsで記事未検知 (`shaBefore is 'undefined'`)**:
-    *   **解決策:** Node.jsスクリプトの `getAddedFiles` 関数で、`GITHUB_EVENT_BEFORE` が信頼できない場合に `git diff --name-only --diff-filter=A ${GITHUB_SHA}^1 ${GITHUB_SHA}` を使用するロジックを確認してください。また、`actions/checkout` ステップで `fetch-depth: 0` が指定されているか確認してください。
-6.  **Xへの投稿失敗 (認証エラー等):**
-    *   **解決策:** GitHub Secretsの設定内容を確認してください。X Developer Portalでアプリの権限設定とAPIキー/トークンが有効であるか確認してください。X APIのプランと利用制限も確認してください。スクリプトのログに出力されるX APIからのエラー詳細情報を確認してください。
-7.  **Xカード表示不正:**
-    *   **解決策:** `docusaurus.config.ts` の `url`, `baseUrl`, `themeConfig.image` 設定を確認してください。記事のフロントマターで `title`, `description`, `image` が適切に設定されているか確認してください。[X Card Validator](https://cards-dev.twitter.com/validator) でテストしてください。生成されたHTMLソースのOGPメタタグ (`og:title`, `og:description`, `og:image` 等) を確認してください。
-8.  **VS Codeでの型解決エラー (`Cannot find module ...` 等):**
-    *   **解決策:** VS Codeを完全に再起動してください。コマンドパレット (Ctrl+Shift+P または Cmd+Shift+P) から `TypeScript: Restart TS server` を実行してください。
-
+1.  **Local Development Environment Errors (`docusaurus: not found`, type errors, etc.):**
+    *   **Solution:** Perform a complete cleanup of Docker containers, host-side `node_modules`/lockfiles/pnpm store, then run `pnpm install` on the host, and rebuild the Docker image with the `--no-cache` option. Restart your IDE/editor.
+2.  **`ERR_PNPM_UNEXPECTED_STORE` when adding pnpm libraries:**
+    *   **Solution:** When running `docker-compose run ... pnpm add ...`, specify the build-time store path with `--store-dir <path>`.
+3.  **`Resource busy` (`rm -rf node_modules` fails) when adding pnpm libraries:**
+    *   **Solution:** Stop any processes running inside the container (like the development server). If that doesn't work, stop the container with `docker-compose stop app` before retrying, or delete the target directory/file on the host while the container is stopped.
+4.  **`pnpm: command not found` in GitHub Actions:**
+    *   **Solution:** Check that you are using `corepack enable` and `corepack prepare pnpm@<version> --activate` in your workflow file.
+5.  **Article not detected in GitHub Actions (`shaBefore is 'undefined'`)**:
+    *   **Solution:** In the Node.js script's `getAddedFiles` function, verify the logic that uses `git diff --name-only --diff-filter=A ${GITHUB_SHA}^1 ${GITHUB_SHA}` when `GITHUB_EVENT_BEFORE` is unreliable. Also, ensure that `fetch-depth: 0` is specified in the `actions/checkout` step.
+6.  **Failed to post to X (authentication error, etc.):**
+    *   **Solution:** Check your GitHub Secrets configuration. Verify that the app's permission settings and API keys/tokens are valid in the X Developer Portal. Also, check your X API plan and usage limits. Review the detailed error information from the X API in the script's log output.
+7.  **Incorrect X Card display:**
+    *   **Solution:** Check the `url`, `baseUrl`, and `themeConfig.image` settings in `docusaurus.config.ts`. Ensure that `title`, `description`, and `image` are set correctly in the article's front matter. Test with the [X Card Validator](https://cards-dev.twitter.com/validator). Inspect the OGP meta tags (`og:title`, `og:description`, `og:image`, etc.) in the generated HTML source.
+8.  **Type resolution errors in VS Code (`Cannot find module ...`, etc.):**
+    *   **Solution:** Completely restart VS Code. From the Command Palette (Ctrl+Shift+P or Cmd+Shift+P), run `TypeScript: Restart TS server`.
+    

@@ -1,39 +1,39 @@
 ---
-title: Docusaurus サイト内ブラウザメモ機能の実装記録
+title: A Record of Implementing an In-Site Browser Memo Feature in Docusaurus
 authors: [hk]
-tags: [docusaurus, react, typescript, localStorage, ブラウザ機能]
+tags: [docusaurus, react, typescript, localStorage, browser-feature]
 ---
 
-この記事では、DocusaurusサイトにReactとTypeScriptを利用して、クライアントサイドで動作するシンプルなブラウザメモ機能を実装した際の主要な仕様と技術的ポイントを整理。
+This article organizes the main specifications and technical points from when I implemented a simple, client-side browser memo feature on a Docusaurus site using React and TypeScript.
 
-#### 1. 基本機能と目的
+#### 1. Basic Features and Purpose
 
-ユーザーがブラウザ上で手軽にテキストメモを作成・保存し、次回訪問時にも内容を保持できる機能の提供。
-サーバーサイドの処理を介さず、すべてクライアントサイド（ブラウザのlocalStorage）で完結させることによる手軽さと応答性を重視。
+To provide a feature that allows users to easily create and save text memos in their browser, with the content persisting on subsequent visits.
+The focus is on ease of use and responsiveness by having everything run entirely on the client-side (using the browser's localStorage) without any server-side processing.
 
 <!-- truncate -->
 
-1.  **メモの永続化**
-    入力されたメモ内容は、ユーザーのブラウザの `localStorage` に自動的に保存。これにより、ブラウザをリロードしたり、一度閉じて再度開いたりしても、以前の内容が復元される。
+1.  **Memo Persistence**
+    The entered memo content is automatically saved to the user's browser `localStorage`. This allows the previous content to be restored even if the browser is reloaded or closed and reopened.
 
-2.  **複数メモ欄の提供**
-    固定数（今回は5つ）の独立したメモ入力欄を提供。各メモは個別に内容を保持。
+2.  **Multiple Memo Fields**
+    Provides a fixed number (five in this case) of independent memo input fields. Each memo retains its content individually.
 
-3.  **自動高さ調整と手動最小化**
-    各メモ入力欄は、入力されたテキスト量に応じて自動的に高さが調整される。また、ユーザーが手動で高さを最小（固定値）に切り替えることも可能。
+3.  **Automatic Height Adjustment and Manual Minimization**
+    Each memo input field automatically adjusts its height based on the amount of text entered. Users can also manually toggle the height to a minimum (fixed value).
 
-4.  **最終更新日時の表示**
-    各メモが最後に編集・保存された日時を表示。
+4.  **Display of Last Updated Timestamp**
+    Displays the date and time each memo was last edited and saved.
 
-5.  **全クリア機能**
-    全てのメモ内容を一括でクリアする機能を提供。
+5.  **Clear All Functionality**
+    Provides a function to clear the content of all memos at once.
 
-#### 2. 主要な実装ポイント
+#### 2. Key Implementation Points
 
-Reactのコンポーネントとして `src/pages` 配下に単一ファイル (`browser-memo.tsx`) で実装。
+The feature was implemented as a React component in a single file (`browser-memo.tsx`) under `src/pages`.
 
-1.  **状態管理 (`useState`)**
-    *   `memoItems`: メモの内容 (`text`)、最終更新日時 (`lastUpdated`)、手動最小化状態 (`isManuallyMinimized`) を含むオブジェクトの配列。
+1.  **State Management (`useState`)**
+    *   `memoItems`: An array of objects containing the memo's `text`, `lastUpdated` timestamp, and `isManuallyMinimized` state.
         ```typescript
         interface MemoItem {
           text: string;
@@ -42,12 +42,12 @@ Reactのコンポーネントとして `src/pages` 配下に単一ファイル (
         }
         const [memoItems, setMemoItems] = useState<MemoItem[]>(createInitialMemoItems);
         ```
-    *   `hoveredIndex`: マウスホバーされている最小化/自動調整トグル領域のインデックス。UIのフィードバック用。
+    *   `hoveredIndex`: The index of the minimize/auto-adjust toggle area that is currently being hovered over, used for UI feedback.
 
-2.  **副作用処理 (`useEffect`)**
-    *   **localStorageからのデータ読み込み**: コンポーネントマウント時に一度だけ実行。`localStorage` から保存データを読み込み、`memoItems` Stateを初期化。データ構造の検証も実施。
-    *   **localStorageへのデータ保存**: `memoItems` Stateが変更されるたびに実行。現在の `memoItems` の内容をJSON文字列化して `localStorage` に保存。初期状態での不要な保存を防ぐロジックも含む。
-    *   **テキストエリアの高さ自動調整**: `memoItems` State（特に `text` や `isManuallyMinimized`）が変更された際に、各テキストエリアの高さを動的に調整。`useRef` を用いてテキストエリア要素にアクセスし、`scrollHeight` を利用。
+2.  **Side Effect Handling (`useEffect`)**
+    *   **Loading data from localStorage**: Runs only once when the component mounts. It loads saved data from `localStorage` and initializes the `memoItems` state. It also includes validation of the data structure.
+    *   **Saving data to localStorage**: Runs whenever the `memoItems` state changes. It saves the current content of `memoItems` to `localStorage` as a JSON string. It also includes logic to prevent unnecessary saves on the initial state.
+    *   **Automatic textarea height adjustment**: Dynamically adjusts the height of each textarea when the `memoItems` state (specifically `text` or `isManuallyMinimized`) changes. It accesses the textarea elements using `useRef` and utilizes `scrollHeight`.
         ```typescript
         const adjustTextareaHeight = useCallback((index: number) => {
           const textarea = textareaRefs.current[index];
@@ -64,40 +64,39 @@ Reactのコンポーネントとして `src/pages` 配下に単一ファイル (
         }, [memoItems]);
         ```
 
-3.  **イベントハンドラ (`useCallback`)**
-    *   `handleUpdate`: テキストエリアの内容変更時に、対応するメモの `text` と `lastUpdated` を更新し、`isManuallyMinimized` を `false` にリセット。
-    *   `handleToggleMinimize`: 最小化/自動高さ調整トグル領域クリック時に、対応するメモの `isManuallyMinimized` 状態を反転。
-    *   `handleClearAllMemos`: 全クリアボタンクリック時に、全てのメモ項目を初期状態にリセット。
+3.  **Event Handlers (`useCallback`)**
+    *   `handleUpdate`: When the textarea content changes, it updates the corresponding memo's `text` and `lastUpdated`, and resets `isManuallyMinimized` to `false`.
+    *   `handleToggleMinimize`: When the minimize/auto-height toggle area is clicked, it flips the `isManuallyMinimized` state of the corresponding memo.
+    *   `handleClearAllMemos`: When the "Clear All" button is clicked, it resets all memo items to their initial state.
 
-4.  **UIとスタイリング**
-    *   Docusaurusの `@theme/Layout` を使用し、サイト全体のデザインと一貫性を保持。
-    *   主要なスタイルはインラインスタイルで記述。Docusaurusのテーマ変数 (`var(--ifm-...)`) を活用し、ライト/ダークテーマに対応。
-    *   テキストエリアの下部領域（最小化/自動調整トグルと最終更新日時表示）は、`div` 要素で実現。`border` や `backgroundColor` を工夫し、テキストエリアと一体感のあるクリック可能なUIを表現。
+4.  **UI and Styling**
+    *   Uses Docusaurus's `@theme/Layout` to maintain consistency with the overall site design.
+    *   Major styles are written as inline styles. It utilizes Docusaurus theme variables (`var(--ifm-...)`) to support light/dark themes.
+    *   The bottom area of the textarea (containing the minimize/auto-adjust toggle and the last updated timestamp) is created with a `div` element. The `border` and `backgroundColor` are styled to create a clickable UI that feels integrated with the textarea.
 
-#### 3. データ永続化とセキュリティ
+#### 3. Data Persistence and Security
 
-1.  **`localStorage` の利用**
-    メモデータはキー (`STORAGE_KEY`) を指定して `localStorage` に保存。`JSON.stringify` と `JSON.parse` を用いてオブジェクトと文字列間の変換を行う。
+1.  **Using `localStorage`**
+    Memo data is saved to `localStorage` using a specified key (`STORAGE_KEY`). `JSON.stringify` and `JSON.parse` are used to convert between objects and strings.
 
-2.  **セキュリティに関する考慮**
-    この機能は完全にクライアントサイドで動作。入力されたデータが外部サーバーに送信されることは一切ない。データはユーザー自身のブラウザ内にのみ保存されるため、プライバシーが保護される。ただし、共用PCでの利用にはユーザー自身による注意が必要。この旨はページ上に明記。
+2.  **Security Considerations**
+    This feature runs entirely on the client-side. The entered data is never sent to an external server. Since the data is stored only within the user's own browser, privacy is protected. However, users should be cautious when using it on a shared computer. A note to this effect is included on the page.
 
-#### 4. UI/UXのポイント
+#### 4. UI/UX Points
 
-1.  **自動高さ調整**
-    テキスト入力に応じてテキストエリアの高さが自動で変わるため、スクロールの手間を軽減。`resize: 'none'` と `overflowY: 'hidden'` をCSSで設定し、JavaScriptで高さを制御。
+1.  **Automatic Height Adjustment**
+    The height of the textarea changes automatically as text is entered, reducing the need for scrolling. This is controlled with JavaScript, with `resize: 'none'` and `overflowY: 'hidden'` set in the CSS.
 
-2.  **手動最小化オプション**
-    長文メモを一時的にコンパクトに表示したい場合や、他のメモとの一覧性を高めたい場合に、ユーザーが高さを固定最小値に切り替えられる。
+2.  **Manual Minimization Option**
+    Users can switch the height to a fixed minimum value when they want to temporarily make a long memo more compact or improve the overview of multiple memos.
 
-3.  **インタラクティブなフッター**
-    各メモの下部領域にマウスホバーすると背景色が変化し、クリック可能であることを視覚的に示唆。`title` 属性で操作内容のツールチップも表示。
+3.  **Interactive Footer**
+    When the mouse hovers over the bottom area of each memo, the background color changes to visually indicate that it is clickable. A `title` attribute also displays a tooltip explaining the action.
 
-#### まとめと所感
+#### Summary and Impressions
 
-Docusaurusの標準機能とReactの柔軟性を組み合わせることで、比較的容易にクライアントサイド完結型の便利機能を追加できた。
-`localStorage` の利用は手軽だが、データ構造のバージョン管理やエラーハンドリングには注意が必要。
-UI/UXの細かな調整（高さ調整ロジック、ホバーエフェクトなど）が、使い勝手に大きく影響する点を再認識。
-今後の拡張としては、メモの並び替え、マークダウン対応、個別のメモ削除などが考えられるが、今回はシンプルさを優先。
+By combining Docusaurus's standard features with the flexibility of React, I was able to add a useful, client-side-only feature with relative ease.
+Using `localStorage` is convenient, but care must be taken with data structure versioning and error handling.
+I was reminded that small UI/UX adjustments (like the height adjustment logic and hover effects) have a significant impact on usability.
+Future enhancements could include sorting memos, Markdown support, or deleting individual memos, but for now, simplicity was the priority.
 
----
