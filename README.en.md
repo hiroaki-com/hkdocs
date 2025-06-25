@@ -6,38 +6,86 @@
 [![pnpm](https://img.shields.io/badge/pnpm-v10.11.0-orange?logo=pnpm)](https://pnpm.io/)
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
-[![GitHub](https://img.shields.io/badge/GitHub-hiroaki--com/hkdocs-blue?logo=github)](https://github.com/hiroaki-com/hkdocs)
-[![𝕏 (Twitter)](https://img.shields.io/badge/Follow-%40hkdocs-1DA1F2?logo=x)](https://x.com/hkdocs)
 
-HkDocs is a personal knowledge base that consolidates technical blogs, documents, diaries, and more.
-It is built with [Docusaurus](https://docusaurus.io/) and is published at [hkdocs.com](https://hkdocs.com/). The entire site supports both Japanese and English.
+A personal knowledge base that consolidates a tech blog, work notes, and a diary. Built with Docusaurus and hosted on Google Cloud Run.
 
-[README.md (Japanese Version)](./README.md)
+👉 *[https://hkdocs.com/](https://hkdocs.com/)*
 
-## 📚 Main Content
+🇯🇵 [日本語 Readme](./README.md)
 
-*   **Blog**: Technical insights and development logs.
-*   **Docs**: Documentation for specific technologies and exam prep notes.
-*   **Diary**: Daily records and wellness logs.
-*   **Browser Memo**: A simple memo feature that runs in the browser.
+## Features
 
-## 🛠️ Tech Stack
+### Contents
+- **Tech & Exam Docs**: `Systematic organization of learnings and records of certification exams.`
+- **Blog & Diary**: `A blog for technical learnings and a diary for daily records.`
+- **Browser Memo**: `A lightweight, browser-only memo tool.`
 
-*   **Framework**: [Docusaurus](https://docusaurus.io/) v3.8.0
-*   **Language**: [TypeScript](https://www.typescriptlang.org/)
-*   **UI**: [React](https://reactjs.org/) v19
-*   **Package Manager**: [pnpm](https://pnpm.io/) v10.11.0 (via Corepack)
-*   **Internationalization (i18n)**: [Docusaurus i18n](https://docusaurus.io/docs/i18n/introduction)
-*   **Container**: [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/)
-*   **Hosting**: [Google Cloud Run](https://cloud.google.com/run)
-*   **CI/CD**: [GitHub Actions](https://github.com/features/actions)
-*   **Search**: [Algolia DocSearch](https://docsearch.algolia.com/)
+### System
+- **Multilingual Support**: `Japanese/English support via Docusaurus i18n.`
+- **CI/CD Automation**: `Automated deployment from build to Cloud Run via GitHub Actions.`
+- **Social Integration**: `Automatically posts new article information to X (formerly Twitter).`
 
-## 🚀 Setup and Development
+## Tech Stack
 
-You can set up a local development environment using either Docker Compose (recommended) or a direct local installation.
+| Category         | Technology / Service                                                              |
+| ---------------- | --------------------------------------------------------------------------------- |
+| Framework        | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
+| Language         | [TypeScript](https://www.typescriptlang.org/)                                     |
+| UI Library       | [React](https://reactjs.org/) `v19`                                               |
+| Package Manager  | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
+| Containerization | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
+| Hosting          | [Google Cloud Run](https://cloud.google.com/run)                                  |
+| CI/CD            | [GitHub Actions](https://github.com/features/actions)                             |
+| Search           | [Algolia DocSearch](https://docsearch.algolia.com/)                               |
 
-### Common Prerequisites
+## System Architecture
+
+The flow from development to deployment and user access is as follows.
+
+```mermaid
+graph LR
+    subgraph "Developer Actions & CI/CD"
+        Developer([fa:fa-user Developer]) -- "① Code Push" --> GitHub(fa:fa-github GitHub)
+        GitHub -- "② Trigger" --> Actions(fa:fa-cogs Actions)
+        Actions -- "③ Build & Deploy" --> CR(fa:fa-cloud Cloud Run)
+        Actions -.-> |Auto-Post| X(fa:fa-twitter X)
+    end
+
+    subgraph "User Actions & Site"
+        Visitor([fa:fa-users Visitor]) -- "④ View Site" --> CR
+        Visitor -- "⑤ Search" <--> Algolia(fa:fa-search Algolia)
+    end
+```
+
+
+## Directory Structure
+
+```plaintext
+.
+├── .github/              # GitHub Actions workflows and scripts
+├── blog/                 # Blog posts (Source/Japanese)
+├── docs/                 # Technical documents (Source/Japanese)
+├── diary/                # Diary entries (Source/Japanese)
+├── i18n/                 # Internationalization files (e.g., English translations)
+├── src/                  # Custom React components, pages, and CSS
+├── static/               # Static assets (e.g., images)
+├── Dockerfile            # Production Dockerfile for Cloud Run
+├── Dockerfile.dev        # Development Dockerfile for local environment
+├── docusaurus.config.ts  # Docusaurus site configuration
+├── docker-compose.yml    # Docker Compose configuration for development
+├── package.json          # Project dependencies and scripts
+└── deploy.sh             # Manual deployment script to Google Cloud Run
+```
+
+## Getting Started
+
+### Prerequisites
+
+- [Git](https://git-scm.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Recommended)
+- Or, for a local environment: [nvm](https://github.com/nvm-sh/nvm) and Node.js `v22.16.0`
+
+### Installation
 
 1.  Clone the repository.
     ```bash
@@ -45,162 +93,89 @@ You can set up a local development environment using either Docker Compose (reco
     cd hkdocs
     ```
 
----
+## Development
 
-### Method 1: Docker Compose (Recommended)
+Using Docker Compose is the recommended method for local development.
 
-Build an isolated development environment using Docker.
+### Method 1: Using Docker Compose (Recommended)
 
-**Prerequisites**
-*   [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
-
-**Steps**
-
-1.  **Start the Development Server**
-
-    Start the development server with the default language (Japanese).
+1.  **Build and start the containers**
+    Run this for the first time or if `Dockerfile.dev` has changed.
     ```bash
-    # First time, or if Dockerfile.dev has changed:
     docker-compose up --build
-
-    # Subsequent starts:
+    ```
+    The `--build` flag is not needed for subsequent runs.
+    ```bash
     docker-compose up
     ```
-    The development server is accessible at `http://localhost:3000`.
+    The development server will be available at `http://localhost:3000`.
 
-2.  **i18n Development (Specifying a Locale)**
-
+2.  **i18n Development**
     To start the development server for a specific locale, use the following commands:
+    ```bash
+    # Develop with the English site
+    docker-compose run --rm --service-ports app pnpm start --locale en
 
-    *   **For the English site:**
-        ```bash
-        docker-compose run --rm --service-ports app pnpm start --locale en
-        ```
-    *   **For the Japanese site:**
-        ```bash
-        docker-compose run --rm --service-ports app pnpm start --locale ja
-        ```
+    # Develop with the Japanese site
+    docker-compose run --rm --service-ports app pnpm start --locale ja
+    ```
 
-3.  **Stopping the Server**
-
-    If you started with `docker-compose up`, press `Ctrl+C` and then run:
+3.  **Stopping the server**
+    After stopping the server with `Ctrl+C`, clean up the containers.
     ```bash
     docker-compose down
     ```
 
----
+### Method 2: Using Local Environment
 
-### Method 2: Local Environment
-
-Develop by installing Node.js and pnpm directly on your machine.
-
-**Prerequisites**
-*   [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm#install--update-script)
-*   Node.js v22.16.0 (see `.nvmrc`)
-*   pnpm v10.11.0 (see `packageManager` in `package.json`)
-
-**Steps**
 1.  **Environment Setup**
     ```bash
     # 1. Use the Node.js version specified in the project
     nvm use
 
-    # 2. Enable Corepack (to manage the pnpm version)
+    # 2. Enable pnpm
     corepack enable pnpm
 
     # 3. Install dependencies
     pnpm install --frozen-lockfile
     ```
 
-2.  **Start the Development Server**
-    *   **Start with the default locale (Japanese):**
-        ```bash
-        pnpm start
-        ```
-    *   **Start with the English locale:**
-        ```bash
-        pnpm start --locale en
-        ```
-    The development server is accessible at `http://localhost:3000`. To stop, press `Ctrl+C`.
-
-## 📦 Build and Preview
-
-### Build
-
-This generates the static content for all locales into the `build` directory.
-
-*   **With Docker Compose:**
+2.  **Starting the development server**
     ```bash
-    # `app` is the service name defined in docker-compose.yml
-    docker-compose run --rm app pnpm build
+    # Start with the default locale (Japanese)
+    pnpm start
+
+    # Start with the English locale
+    pnpm start --locale en
     ```
-*   **In a local environment:**
-    ```bash
-    pnpm build
-    ```
+    The development server will be available at `http://localhost:3000`.
 
-### Preview
+## Available Scripts
 
-Preview the built site in a production-like environment.
+-   **`pnpm build`**:
+    Builds the static files for all languages into the `build/` directory.
+-   **`pnpm serve`**:
+    Serves the content of the `build/` directory for local preview (at `http://localhost:8080`).
+-   **`pnpm typecheck`**:
+    Runs the TypeScript type checker.
+-   **`pnpm clear`**:
+    Clears the Docusaurus cache.
 
-*   **With Docker Compose:**
+## Deployment
 
-    Start the preview server, specifying port `3000`, which is exposed in `docker-compose.yml`.
-    ```bash
-    docker-compose run --rm --service-ports app pnpm serve -- --port 3000 --host 0.0.0.0
-    ```
-    The server is accessible at `http://localhost:3000`.
+### Automated Deployment
 
-*   **In a local environment:**
+Pushing to the `main` branch triggers the GitHub Actions workflow defined in `.github/workflows/deploy_hkdocs_to_cloud_run.yml`, which automatically builds and deploys the site to Google Cloud Run.
 
-    Preview using `http-server`. By default, it starts at `http://localhost:8080`.
-    ```bash
-    pnpm serve
-    ```
-    To change the port, specify it as an argument:
-    ```bash
-    # Example: Start on port 3000
-    pnpm serve -- --port 3000
-    ```
+### Manual Deployment
 
-## ☁️ Deployment
+To deploy manually from your local environment, ensure the `gcloud` CLI is configured and then run the following script.
 
-*   **Automatic Deployment**: Pushing to the `main` branch triggers a GitHub Actions workflow (`.github/workflows/deploy_hkdocs_to_cloud_run.yml`) that automatically builds and deploys the site to Google Cloud Run.
-*   **Manual Deployment**: You can also deploy manually using the `deploy.sh` script. Refer to the comments within the script for details.
-    ```bash
-    ./deploy.sh
-    ```
-
-## ✨ Automation
-
-*   **Automated Posts to X (formerly Twitter)**: When a new blog article is merged into the `main` branch, a GitHub Actions workflow (`.github/workflows/post-to-x.yml`) posts the article information to the X account ([@hkdocs](https://x.com/hkdocs)).
-
-## 📂 Directory Structure Overview
-
-```plaintext
-.
-├── .github/              # GitHub Actions workflows and scripts
-├── blog/                 # Blog posts (Japanese)
-├── docs/                 # Documents (tech notes, exam info, etc.)
-├── diary/                # Diary entries (Japanese)
-├── i18n/                 # Internationalization (i18n) files (en: English translations)
-├── src/                  # Docusaurus custom components, CSS, and pages
-├── static/               # Static assets (images, etc.)
-├── Dockerfile            # Production Dockerfile
-├── Dockerfile.dev        # Development Dockerfile
-├── LICENSE               # Project license
-├── README.md             # Japanese README
-├── README.en.md          # This file (English)
-├── deploy.sh             # Manual deployment script
-├── docusaurus.config.ts  # Docusaurus site configuration
-├── docker-compose.yml    # Docker Compose configuration
-├── package.json          # Dependencies and scripts
-├── pnpm-lock.yaml        # pnpm lock file
-├── sidebars.ts           # Document sidebar configuration
-└── tsconfig.json         # TypeScript configuration
+```bash
+./deploy.sh
 ```
 
-## 📜 License
+## License
 
-*   **Code**: [MIT License](./LICENSE)
-*   **Content** (under `blog/`, `diary/`, `docs/`, `i18n/`): [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+-   **Code**: The source code of this project is licensed under the [MIT License](./LICENSE).
+-   **Content**: All content within the `blog/`, `diary/`, and `docs/` directories is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
