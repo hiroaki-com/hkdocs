@@ -40,7 +40,7 @@
 
 ## System Architecture
 
-開発からデプロイ、ユーザーアクセスまでの流れは以下の通りです。
+開発からデプロイ、ユーザーアクセスのフロー
 
 ```mermaid
 graph LR
@@ -97,7 +97,7 @@ graph LR
 
 ローカルでの開発は、Docker Composeを使用する方法を推奨します。
 
-### Method 1: Using Docker Compose (Recommended)
+### 1: Using Docker Compose (Recommended)
 
 1.  **コンテナをビルドして起動**
     初回、または`Dockerfile.dev`に変更があった場合に実行します。
@@ -126,7 +126,7 @@ graph LR
     docker-compose down
     ```
 
-### Method 2: Using Local Environment
+### 2: Using Local Environment
 
 1.  **環境設定**
     ```bash
@@ -165,7 +165,7 @@ graph LR
 
 ### Automated Deployment
 
-`main`ブランチにプッシュすると、`.github/workflows/deploy_hkdocs_to_cloud_run.yml` で定義されたGitHub Actionsワークフローがトリガーされ、ビルドとGoogle Cloud Runへのデプロイが自動的に実行されます。
+`main`ブランチにプッシュすると、`.github/workflows/deploy_hkdocs_to_cloud_run.yml` で定義されたGitHub Actionsワークフローがトリガーされ、ビルドとGoogle Cloud Runへのデプロイが自動的に実行します。
 
 ### Manual Deployment
 
