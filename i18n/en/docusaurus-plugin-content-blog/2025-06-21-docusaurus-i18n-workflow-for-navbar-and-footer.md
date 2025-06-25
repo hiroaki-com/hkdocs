@@ -1,45 +1,45 @@
 ---
-title: Docusaurusのナビゲーションバーとフッターを国際化（i18n）する手順
+title: How to Internationalize the Docusaurus Navbar and Footer
 authors: [hk]
 tags: [docusaurus, i18n, react, typescript, workflow]
 ---
 
-Docusaurusサイトの主要UI、`ナビゲーションバー`と`フッター`を国際化（i18n）編集した際の備忘録として整理します。
+This post is a memo organizing the process of internationalizing (i18n) the main UI components of a Docusaurus site: the `navbar` and `footer`.
 
-#### 1. 目的
+#### 1. Purpose
 
-Docusaurusのi18n機能は、サイトのテキストを多言語に対応させるための仕組み。今回は、`ナビゲーションバー`と`フッター` に新しい項目を追加し、それを日本語（デフォルト）から英語へ翻訳するまでの流れを解説します。
+The Docusaurus i18n feature is a mechanism for making site text multi-lingual. This time, I'll explain the process of adding new items to the `navbar` and `footer` and translating them from Japanese (the default) to English.
 
 <!-- truncate -->
 
-1.  原文の一元管理
-    翻訳の元となるテキストは、すべて `docusaurus.config.ts` ファイル内で管理。これにより、サイトの構造と文言を一箇所で把握。
+1.  Centralized Management of Original Text
+    All original text for translation is managed within the `docusaurus.config.ts` file. This allows for a single point of reference for the site's structure and wording.
 
-2.  翻訳ファイルの自動生成
-    DocusaurusのCLIコマンドを利用し、翻訳が必要なテキストを自動で抽出。言語ごとの翻訳ファイル（JSON形式）を生成。
+2.  Automatic Generation of Translation Files
+    Using Docusaurus's CLI commands, text that needs translation is automatically extracted, generating language-specific translation files (in JSON format).
 
-3.  シンプルな翻訳作業
-    生成されたJSONファイルの特定フィールド（`message`）の編集のみで、翻訳が完了。
+3.  Simple Translation Workflow
+    The translation is completed simply by editing a specific field (`message`) in the generated JSON files.
 
-#### 2. 国際化対応のワークフロー
+#### 2. Internationalization Workflow
 
-例として、ナビゲーションバーとフッターに「ポートフォリオ」という新しいリンクを追加し、英語に翻訳する手順を解説。
+As an example, I'll explain the steps to add a new link called "Portfolio" to the navbar and footer and translate it into English.
 
-##### Step 1: 原文（日本語）の編集
+##### Step 1: Edit the Original Text (Japanese)
 
-サイトのマスター設定ファイルである `docusaurus.config.ts` に、新しい項目を追加。
+Add the new item to the site's master configuration file, `docusaurus.config.ts`.
 
-1.  `docusaurus.config.ts` を開く。
-2.  ナビゲーションバーに項目を追加。`themeConfig.navbar.items` 配列に、新しいリンクオブジェクトを記述。
+1.  Open `docusaurus.config.ts`.
+2.  Add an item to the navbar. In the `themeConfig.navbar.items` array, write a new link object.
 
     ```typescript:title=docusaurus.config.ts
     // ...
     navbar: {
       // ...
       items: [
-        // ...既存の項目...
+        // ...existing items...
         { to: '/blog', label: 'ブログ', position: 'left' },
-        { to: '/portfolio', label: 'ポートフォリオ', position: 'left' }, // ← この行を追加
+        { to: '/portfolio', label: 'ポートフォリオ', position: 'left' }, // ← Add this line
         { to: '/diary', label: '日記', position: 'left' },
         // ...
       ],
@@ -47,7 +47,7 @@ Docusaurusのi18n機能は、サイトのテキストを多言語に対応させ
     // ...
     ```
 
-3.  フッターに項目を追加。`themeConfig.footer.links` 配列にも同様にリンクを記述。
+3.  Add an item to the footer. Similarly, write a link in the `themeConfig.footer.links` array.
 
     ```typescript:title=docusaurus.config.ts
     // ...
@@ -57,9 +57,9 @@ Docusaurusのi18n機能は、サイトのテキストを多言語に対応させ
         {
           title: 'コンテンツ',
           items: [
-            // ...既存の項目...
+            // ...existing items...
             {
-              label: 'ポートフォリオ', // ← このオブジェクトを追加
+              label: 'ポートフォリオ', // ← Add this object
               to: '/portfolio',
             },
             // ...
@@ -71,58 +71,58 @@ Docusaurusのi18n機能は、サイトのテキストを多言語に対応させ
     // ...
     ```
 
-##### Step 2: 翻訳ファイルの更新
+##### Step 2: Update Translation Files
 
-`docusaurus.config.ts` の変更内容を、翻訳ファイルに反映。
+Reflect the changes from `docusaurus.config.ts` in the translation files.
 
-1.  CLIコマンドの実行。ターミナルで以下のコマンドを実行し、追加したテキストを翻訳対象として抽出。
+1.  Run the CLI command. In the terminal, execute the following command to extract the newly added text for translation.
 
     ```bash
     docker-compose run --rm app pnpm write-translations --locale en
     ```
 
-2.  翻訳ファイルの更新。コマンドの成功により、`i18n/en/docusaurus-theme-classic/` 配下の `navbar.json` と `footer.json` に、新しい翻訳キーが自動で追加される。
+2.  Update the translation files. Upon successful command execution, new translation keys will be automatically added to `navbar.json` and `footer.json` under `i18n/en/docusaurus-theme-classic/`.
 
-##### Step 3: 英語への翻訳
+##### Step 3: Translate into English
 
-新しく追加されたキーに対して、英語の翻訳を記述。
+Write the English translation for the newly added keys.
 
-1.  ナビゲーションバーの翻訳。`navbar.json` を開き、`item.label.ポートフォリオ` の `message` を英語に書き換え。
+1.  Translate the navbar. Open `navbar.json` and rewrite the `message` for `item.label.ポートフォリオ` in English.
 
     ```json:title=i18n/en/docusaurus-theme-classic/navbar.json
     "item.label.ポートフォリオ": {
-      "message": "Portfolio", // ← ここを編集
+      "message": "Portfolio", // ← Edit this
       "description": "Navbar item with label ポートフォリオ"
     }
     ```
 
-2.  フッターの翻訳。`footer.json` を開き、`link.item.label.ポートフォリオ` の `message` を編集。
+2.  Translate the footer. Open `footer.json` and edit the `message` for `link.item.label.ポートフォリ`.
 
     ```json:title=i18n/en/docusaurus-theme-classic/footer.json
     "link.item.label.ポートフォリオ": {
-      "message": "Portfolio", // ← ここを編集
+      "message": "Portfolio", // ← Edit this
       "description": "The label of footer link with label=ポートフォリオ linking to /portfolio"
     }
     ```
 
-##### Step 4: 翻訳結果の確認
+##### Step 4: Verify the Translation
 
-編集した翻訳がサイトに正しく表示されるか、本番ビルドを作成して確認。
+Create a production build to check if the edited translations are displayed correctly on the site.
 
-1.  サイトのビルド。以下のコマンドで、全言語の静的ファイルを生成。
+1.  Build the site. Generate the static files for all languages with the following command.
 
     ```bash
     docker-compose run --rm app pnpm build
     ```
 
-2.  プレビューサーバーの起動。生成された `build` ディレクトリをサーブする。
+2.  Start the preview server. Serve the generated `build` directory.
 
     ```bash
     docker-compose run --rm --service-ports app pnpm exec http-server build --single --port 3000 --host 0.0.0.0
     ```
 
-3.  ブラウザでの確認。
-    *   `http://localhost:3000/en/` にアクセス。
-    *   ナビゲーションバーとフッターに「Portfolio」リンクが表示されていることを確認。
-    *   サイト右上の言語スイッチャーで言語を切り替え、両方の表示が意図通りかチェック。
-
+3.  Verify in the browser.
+    *   Access `http://localhost:3000/en/`.
+    *   Confirm that the "Portfolio" link is displayed in the navbar and footer.
+    *   Use the language switcher in the top-right corner of the site to switch between languages and check that both displays are as intended.
+    

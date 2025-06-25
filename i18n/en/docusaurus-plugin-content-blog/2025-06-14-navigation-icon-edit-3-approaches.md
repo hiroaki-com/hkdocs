@@ -1,20 +1,19 @@
 ---
-title: Docusaurus ナビゲーションアイコン編集：3つのアプローチ
+title: 'Editing Docusaurus Navigation Icons: Three Approaches'
 authors: [hk]
-tags: [docusaurus, アイコン, css, svg]
+tags: [docusaurus, icon, css, svg]
 ---
 
-この記事では、Docusaurusサイトのナビゲーションバーにアイコンや特定の記号を表示させるための主要な編集パターンを3つ整理します。
+This article outlines three main patterns for displaying icons or specific symbols in the navigation bar of a Docusaurus site.
 
+#### 1. Displaying with Text and Symbols
 
-#### 1. テキスト・記号による表示
-
-ナビゲーションアイテムにアイコンや記号を表示する最も直接的かつ簡単な方法。Docusaurusの設定ファイル内で`label`プロパティに直接記述することで実現。
+This is the most direct and simple method for displaying icons or symbols in navigation items. It is achieved by writing directly into the `label` property within the Docusaurus configuration file.
 
 <!-- truncate -->
 
-1.  **設定ファイル編集** (`docusaurus.config.ts`)
-    `themeConfig.navbar.items` 配列内の対象アイテムの `label` プロパティに、表示したいテキスト、絵文字、または特殊記号を指定。
+1.  **Edit the Configuration File** (`docusaurus.config.ts`)
+    In the `themeConfig.navbar.items` array, specify the desired text, emoji, or special symbol in the `label` property of the target item.
 
     ```typescript
     // docusaurus.config.ts
@@ -26,15 +25,15 @@ tags: [docusaurus, アイコン, css, svg]
         items: [
           {
             href: 'https://github.com/your-org/your-repo',
-            label: 'GitHub', // または '🐙', 'プロジェクトリポジトリ' など
+            label: 'GitHub', // or '🐙', 'Project Repository', etc.
             position: 'right',
           },
           {
             href: 'https://x.com/your-account',
-            label: '𝕏',     // X (Twitter) のロゴ風記号
+            label: '𝕏',     // A symbol styled like the X (Twitter) logo
             position: 'right',
           },
-          // ... 他のナビゲーションアイテム ...
+          // ... other navigation items ...
         ],
       },
       // ...
@@ -42,43 +41,43 @@ tags: [docusaurus, アイコン, css, svg]
     // ...
     ```
 
-2.  **特徴と考慮点**
-    *   **実装**: 非常に容易。追加のCSSやファイル管理は不要。
-    *   **軽量性**: サイトのパフォーマンスへの影響は最小限。
-    *   **デザイン**: 使用できるのはテキストキャラクタセット内の文字や記号に限られるため、デザインの自由度は低い。特定のブランドロゴなどを正確に表現するのは困難。
+2.  **Features and Considerations**
+    *   **Implementation**: Very easy. No additional CSS or file management is required.
+    *   **Lightweight**: Minimal impact on site performance.
+    *   **Design**: Limited to characters and symbols within the text character set, offering low design flexibility. Accurately representing specific brand logos is difficult.
 
-#### 2. CSS疑似要素と背景画像によるアイコン表示
+#### 2. Displaying Icons with CSS Pseudo-elements and Background Images
 
-CSSの `::before` または `::after` 疑似要素と `background-image` プロパティ（SVG Data URI形式を推奨）を利用し、HTML構造を変更せずにアイコンを表示。
+This method uses CSS `::before` or `::after` pseudo-elements and the `background-image` property (recommending the SVG Data URI format) to display icons without altering the HTML structure.
 
-1.  **設定ファイル編集** (`docusaurus.config.ts`)
-    アイコンを表示したいナビゲーションアイテムに、CSSでスタイルを適用するための `className` を付与。`label` は空にするか、CSSで視覚的に非表示にする前提でスクリーンリーダー用のテキストを残す。
+1.  **Edit the Configuration File** (`docusaurus.config.ts`)
+    Add a `className` to the navigation item where you want to display an icon, which you will use to apply styles via CSS. The `label` can be left empty, or it can contain text for screen readers, assuming it will be visually hidden with CSS.
 
     ```typescript
     // docusaurus.config.ts
     // ...
           {
             href: 'https://github.com/your-org/your-repo',
-            label: ' ', // CSSでアイコン表示するため空にするか、視覚的に隠す
-            className: 'header-github-link', // CSSで参照するためのクラス名
-            'aria-label': 'GitHub Repository', // アクセシビリティのため必須
+            label: ' ', // Leave empty or visually hide for CSS icon display
+            className: 'header-github-link', // Class name for CSS reference
+            'aria-label': 'GitHub Repository', // Required for accessibility
             position: 'right',
           },
     // ...
     ```
 
-2.  **カスタムCSS編集** (`src/css/custom.css`)
-    指定したクラス名を持つ要素に対し、`::before` 疑似要素を使って背景画像としてアイコンを設定。ライトモードとダークモードで異なるアイコンを表示する場合は、`html[data-theme='dark']` セレクタを利用。
+2.  **Edit Custom CSS** (`src/css/custom.css`)
+    For the element with the specified class name, use the `::before` pseudo-element to set the icon as a background image. To display different icons for light and dark modes, use the `html[data-theme='dark']` selector.
 
     ```css
     /* src/css/custom.css */
     .header-github-link {
       display: inline-block;
-      width: 24px; /* アイコンの幅に合わせて調整 */
-      height: 24px; /* アイコンの高さに合わせて調整 */
-      font-size: 0; /* labelの空白文字などを見えなくする */
-      position: relative; /* ::before の基準点 */
-      vertical-align: middle; /* 他のテキストアイテムとの垂直位置調整 */
+      width: 24px; /* Adjust to match the icon's width */
+      height: 24px; /* Adjust to match the icon's height */
+      font-size: 0; /* Hides any text characters in the label */
+      position: relative; /* Positioning context for ::before */
+      vertical-align: middle; /* Vertical alignment with other text items */
     }
 
     .header-github-link::before {
@@ -91,28 +90,28 @@ CSSの `::before` または `::after` 疑似要素と `background-image` プロ�
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      /* ライトモード用SVGアイコン (Data URI形式) */
+      /* Light mode SVG icon (Data URI format) */
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 ... Z'/%3E%3C/svg%3E");
     }
 
-    /* ダークモード対応 */
+    /* Dark mode support */
     html[data-theme="dark"] .header-github-link::before {
-      /* ダークモード用SVGアイコン (Data URI形式, fill='white'など) */
+      /* Dark mode SVG icon (Data URI format, e.g., with fill='white') */
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 ... Z'/%3E%3C/svg%3E");
     }
     ```
 
-3.  **特徴と考慮点**
-    *   **柔軟性**: CSSによるピクセルパーフェクトな位置調整やエフェクト追加が可能。
-    *   **HTML構造**: ナビゲーションアイテムのHTML構造自体は変更されない。
-    *   **複雑性**: SVGをData URIに変換する手間、CSSでのテーマ毎の画像指定、`label`テキストの非表示化など、CSSの知識と管理コストがやや高い。
+3.  **Features and Considerations**
+    *   **Flexibility**: Allows for pixel-perfect positioning and adding effects with CSS.
+    *   **HTML Structure**: The HTML structure of the navigation item itself is not changed.
+    *   **Complexity**: Requires some CSS knowledge and has a slightly higher management cost due to converting SVGs to Data URIs, specifying images per theme, and hiding the `label` text.
 
-#### 3. インラインSVGによるアイコン表示
+#### 3. Displaying Icons with Inline SVG
 
-Docusaurusのナビゲーションアイテム設定オブジェクトが持つ `html` プロパティを利用し、SVGコードを直接HTMLに埋め込む方法。
+This method involves embedding SVG code directly into the HTML using the `html` property of the Docusaurus navigation item configuration object.
 
-1.  **設定ファイル編集** (`docusaurus.config.ts`)
-    ナビゲーションアイテムの `label` プロパティの代わりに `html` プロパティを使用し、その値として完全なSVGコードを文字列で記述。SVGの `fill` 属性を `currentColor` に設定することで、テーマカラーに追従させることが可能。
+1.  **Edit the Configuration File** (`docusaurus.config.ts`)
+    Instead of the `label` property, use the `html` property for the navigation item and provide the complete SVG code as its string value. By setting the SVG's `fill` attribute to `currentColor`, the icon can follow the theme's color.
 
     ```typescript
     // docusaurus.config.ts
@@ -120,40 +119,39 @@ Docusaurusのナビゲーションアイテム設定オブジェクトが持つ 
           {
             href: 'https://github.com/your-org/your-repo',
             position: 'right',
-            html: `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="navbar-icon" aria-hidden="true"><path d="M12 ... Z"/></svg>`, // SVGコードを直接記述
-            'aria-label': 'GitHub Repository', // アクセシビリティのため必須
+            html: `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="navbar-icon" aria-hidden="true"><path d="M12 ... Z"/></svg>`, // Write the SVG code directly
+            'aria-label': 'GitHub Repository', // Required for accessibility
           },
     // ...
     ```
 
-2.  **カスタムCSS編集** (`src/css/custom.css`) - オプション
-    SVG自体に `fill="currentColor"` を指定していれば、基本的なテーマ対応はCSS不要。ホバーエフェクトやマージン調整など、追加のスタイルが必要な場合に記述。
+2.  **Edit Custom CSS** (`src/css/custom.css`) - Optional
+    If you specify `fill="currentColor"` in the SVG itself, basic theme support requires no CSS. You can add CSS for extra styling like hover effects or margin adjustments.
 
     ```css
     /* src/css/custom.css */
-    .navbar-icon { /* SVGに付与したクラス（オプション） */
-      vertical-align: middle; /* 他のテキストアイテムとの垂直位置調整 */
-      margin-left: 0.25rem; /* 左側に少しマージンを追加する場合 */
+    .navbar-icon { /* Class added to the SVG (optional) */
+      vertical-align: middle; /* Vertical alignment with other text items */
+      margin-left: 0.25rem; /* Add a small left margin if needed */
     }
 
     .navbar-icon:hover {
-      opacity: 0.7; /* ホバー時の透明度変更 */
+      opacity: 0.7; /* Change opacity on hover */
     }
     ```
 
-3.  **特徴と考慮点**
-    *   **テーマ追従**: `fill="currentColor"` の利用で、CSSを介さずにライト/ダークテーマのテキストカラーにアイコンの色が自動で適応。
-    *   **自己完結性**: アイコンの定義が `docusaurus.config.ts` 内で完結しやすい（外部CSSへの依存度が低い）。
-    *   **可読性**: 設定ファイル内に長いSVGコードが記述されるため、設定ファイル全体の可読性が低下する可能性。
+3.  **Features and Considerations**
+    *   **Theme Adherence**: By using `fill="currentColor"`, the icon's color automatically adapts to the light/dark theme's text color without extra CSS.
+    *   **Self-Contained**: The icon definition is largely self-contained within `docusaurus.config.ts` (low dependency on external CSS).
+    *   **Readability**: Including long SVG code in the configuration file can potentially reduce the overall readability of the file.
 
-#### まとめと推奨
+#### Summary and Recommendation
 
-ナビゲーションアイコンの表示方法は、プロジェクトの要件や開発者の好みによって選択可能。
+The method you choose for displaying navigation icons can be selected based on your project's requirements and developer preference.
 
-*   **手軽さ・シンプルさ重視**: **テキスト・記号** が最適。
-*   **CSSでの細かい制御・既存画像アセットの活用**: **CSS疑似要素と背景画像** が適しているが、管理コストを考慮。
-*   **テーマ連動の容易さ・SVGの直接制御**: **インラインSVG** がモダンで推奨されることが多いが、設定ファイルの肥大化に注意。
+*   **For ease of use and simplicity**: **Text and Symbols** is the best choice.
+*   **For fine-grained control with CSS or leveraging existing image assets**: **CSS Pseudo-elements and Background Images** is suitable, but consider the management cost.
+*   **For easy theme integration and direct control over the SVG**: **Inline SVG** is a modern and often recommended approach, but be mindful of bloating the configuration file.
 
-最終的には、実装の容易さ、メンテナンス性、デザインの要求レベル、パフォーマンスへの影響などを総合的に比較検討し、最適なアプローチを選択することが重要。
+Ultimately, it is important to compare factors like ease of implementation, maintainability, design requirements, and performance impact to select the most suitable approach.
 
----
