@@ -7,19 +7,23 @@
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-個人の技術ブログ、ドキュメント、日記などを集約したナレッジベースサイトです。Docusaurusで構築され、Google Cloud Run上でホストされています。
+技術ブログ、作業整理、日記などを集約した個人用のナレッジベースサイトです。Docusaurusで構築し、Google Cloud Run上でホストしています。
 
-**[https://hkdocs.com/](https://hkdocs.com/)**
+👉 *[https://hkdocs.com/](https://hkdocs.com/)*
 
-[English README](./README.en.md)
+🔤 [English README](./README.en.md)
 
 ## Features
 
-- **Tech Blog**: 技術的な知見や開発ログを公開。
-- **Documents**: 特定技術のドキュメントや試験対策ノートを体系的に整理。
-- **Diary**: 日々の記録や思考をまとめた日記。
-- **Internationalization (i18n)**: 日本語と英語のコンテンツに完全対応。
-- **Automated Deployments**: `main`ブランチへのプッシュで、GitHub Actionsが自動的にビルドとデプロイを実行。
+### Contents
+- Tech & Exam Docs: `学びの体系的な整理と、資格試験の記録`
+- Blog & Diary: `技術的な学びを綴るブログと、日々の記録を残す日記`
+- Browser Memo: `ブラウザ完結型の軽量メモツール`
+
+### System
+- Multilingual Support: `Docusaurus i18nによる日本語／英語 対応`
+- CI/CD Automation: `GitHub ActionsによるビルドからCloud Runへの自動デプロイ`
+- Social Integration: `新規記事の情報をX (旧Twitter) へ自動投稿`
 
 ## Tech Stack
 
@@ -39,21 +43,20 @@
 開発からデプロイ、ユーザーアクセスまでの流れは以下の通りです。
 
 ```mermaid
-graph TD
-    subgraph "Development & CI/CD"
-        Developer["Developer"] -- "1. git push" --> GitHub["GitHub Repo"]
-        GitHub -- "2. Trigger Workflow" --> Actions["GitHub Actions"]
-        Actions -- "3. Build & Push Image" --> AR["Google Artifact Registry"]
-        Actions -- "4. Deploy Service" --> CR["Google Cloud Run"]
-        Actions -- "Auto-posts new blog" --> X["X (Twitter)"]
+graph LR
+    subgraph "Developer Actions & CI/CD"
+        Developer([fa:fa-user Developer]) -- "① Code Push" --> GitHub(fa:fa-github GitHub)
+        GitHub -- "② Trigger" --> Actions(fa:fa-cogs Actions)
+        Actions -- "③ Build & Deploy" --> CR(fa:fa-cloud Cloud Run)
+        Actions -.-> |Auto-Post| X(fa:fa-twitter X)
     end
 
-    subgraph "Production & User Access"
-        CR -- "Serves hkdocs.com" --> Visitor["Site Visitor"]
-        Visitor -- "Uses Site Search" --> Algolia["Algolia DocSearch"]
-        CR -- "Provides indexed data" --> Algolia
+    subgraph "User Actions & Site"
+        Visitor([fa:fa-users Visitor]) -- "④ View Site" --> CR
+        Visitor -- "⑤ Search" <--> Algolia(fa:fa-search Algolia)
     end
 ```
+
 
 ## Directory Structure
 
