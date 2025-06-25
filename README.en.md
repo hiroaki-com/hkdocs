@@ -97,7 +97,7 @@ graph LR
 
 Using Docker Compose is the recommended method for local development.
 
-### Method 1: Using Docker Compose (Recommended)
+### 1: Using Docker Compose (Recommended)
 
 1.  **Build and start the containers**
     Run this for the first time or if `Dockerfile.dev` has changed.
@@ -126,7 +126,7 @@ Using Docker Compose is the recommended method for local development.
     docker-compose down
     ```
 
-### Method 2: Using Local Environment
+### 2: Using Local Environment
 
 1.  **Environment Setup**
     ```bash
