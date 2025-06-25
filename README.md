@@ -6,38 +6,83 @@
 [![pnpm](https://img.shields.io/badge/pnpm-v10.11.0-orange?logo=pnpm)](https://pnpm.io/)
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
-[![GitHub](https://img.shields.io/badge/GitHub-hiroaki--com/hkdocs-blue?logo=github)](https://github.com/hiroaki-com/hkdocs)
-[![𝕏 (Twitter)](https://img.shields.io/badge/Follow-%40hkdocs-1DA1F2?logo=x)](https://x.com/hkdocs)
 
-HkDocsは、個人の技術ブログ、ドキュメント、日記などを集約したナレッジベースサイトです。
-[Docusaurus](https://docusaurus.io/) を使用して構築されており、[hkdocs.com](https://hkdocs.com/) で公開しています。サイト全体が日本語と英語に対応しています。
+個人の技術ブログ、ドキュメント、日記などを集約したナレッジベースサイトです。Docusaurusで構築され、Google Cloud Run上でホストされています。
 
-[README.en (English)](./README.en.md)
+**[https://hkdocs.com/](https://hkdocs.com/)**
 
-## 📚 主なコンテンツ
+[English README](./README.en.md)
 
-*   **Blog**: 技術的な知見や開発ログ。
-*   **Docs**: 特定技術のドキュメント、試験対策ノート。
-*   **Diary**: 日々の記録や体調ログ。
-*   **Browser Memo**: ブラウザ上で動作するシンプルなメモ機能。
+## Features
 
-## 🛠️ 技術スタック
+- **Tech Blog**: 技術的な知見や開発ログを公開。
+- **Documents**: 特定技術のドキュメントや試験対策ノートを体系的に整理。
+- **Diary**: 日々の記録や思考をまとめた日記。
+- **Internationalization (i18n)**: 日本語と英語のコンテンツに完全対応。
+- **Automated Deployments**: `main`ブランチへのプッシュで、GitHub Actionsが自動的にビルドとデプロイを実行。
 
-*   **Framework**: [Docusaurus](https://docusaurus.io/) v3.8.0
-*   **Language**: [TypeScript](https://www.typescriptlang.org/)
-*   **UI**: [React](https://reactjs.org/) v19
-*   **Package Manager**: [pnpm](https://pnpm.io/) v10.11.0 (Corepack経由)
-*   **Internationalization (i18n)**: [Docusaurus i18n](https://docusaurus.io/docs/i18n/introduction)
-*   **Container**: [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/)
-*   **Hosting**: [Google Cloud Run](https://cloud.google.com/run)
-*   **CI/CD**: [GitHub Actions](https://github.com/features/actions)
-*   **Search**: [Algolia DocSearch](https://docsearch.algolia.com/)
+## Tech Stack
 
-## 🚀 セットアップと開発
+| Category         | Technology / Service                                                              |
+| ---------------- | --------------------------------------------------------------------------------- |
+| Framework        | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
+| Language         | [TypeScript](https://www.typescriptlang.org/)                                     |
+| UI Library       | [React](https://reactjs.org/) `v19`                                               |
+| Package Manager  | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
+| Containerization | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
+| Hosting          | [Google Cloud Run](https://cloud.google.com/run)                                  |
+| CI/CD            | [GitHub Actions](https://github.com/features/actions)                             |
+| Search           | [Algolia DocSearch](https://docsearch.algolia.com/)                               |
 
-ローカル開発環境のセットアップは、Docker Compose (推奨) またはローカル直接インストールのいずれかを選択できます。
+## System Architecture
 
-### 共通の準備
+開発からデプロイ、ユーザーアクセスまでの流れは以下の通りです。
+
+```mermaid
+graph TD
+    subgraph "Development & CI/CD"
+        Developer["Developer"] -- "1. git push" --> GitHub["GitHub Repo"]
+        GitHub -- "2. Trigger Workflow" --> Actions["GitHub Actions"]
+        Actions -- "3. Build & Push Image" --> AR["Google Artifact Registry"]
+        Actions -- "4. Deploy Service" --> CR["Google Cloud Run"]
+        Actions -- "Auto-posts new blog" --> X["X (Twitter)"]
+    end
+
+    subgraph "Production & User Access"
+        CR -- "Serves hkdocs.com" --> Visitor["Site Visitor"]
+        Visitor -- "Uses Site Search" --> Algolia["Algolia DocSearch"]
+        CR -- "Provides indexed data" --> Algolia
+    end
+```
+
+## Directory Structure
+
+```plaintext
+.
+├── .github/              # GitHub Actions workflows and scripts
+├── blog/                 # Blog posts (Japanese)
+├── docs/                 # Technical documents (Japanese)
+├── diary/                # Diary entries (Japanese)
+├── i18n/                 # Internationalization files (e.g., English translations)
+├── src/                  # Custom React components, pages, and CSS
+├── static/               # Static assets (e.g., images)
+├── Dockerfile            # Production Dockerfile for Cloud Run
+├── Dockerfile.dev        # Development Dockerfile for local environment
+├── docusaurus.config.ts  # Docusaurus site configuration
+├── docker-compose.yml    # Docker Compose configuration for development
+├── package.json          # Project dependencies and scripts
+└── deploy.sh             # Manual deployment script to Google Cloud Run
+```
+
+## Getting Started
+
+### Prerequisites
+
+- [Git](https://git-scm.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (推奨)
+- または、ローカル環境用の [nvm](https://github.com/nvm-sh/nvm) と Node.js `v22.16.0`
+
+### Installation
 
 1.  リポジトリをクローンします。
     ```bash
@@ -45,67 +90,47 @@ HkDocsは、個人の技術ブログ、ドキュメント、日記などを集�
     cd hkdocs
     ```
 
----
+## Development
 
-### 方法1: Docker Compose (推奨)
+ローカルでの開発は、Docker Composeを使用する方法を推奨します。
 
-Dockerを使用して隔離された開発環境を構築します。
+### Method 1: Using Docker Compose (Recommended)
 
-**前提条件**
-*   [Docker Desktop](https://www.docker.com/products/docker-desktop/) がインストールされ、実行中であること。
-
-**手順**
-
-1.  **開発サーバーの起動**
-
-    デフォルトの言語（日本語）で開発サーバーを起動します。
+1.  **コンテナをビルドして起動**
+    初回、または`Dockerfile.dev`に変更があった場合に実行します。
     ```bash
-    # 初回、またはDockerfile.dev等に変更があった場合
     docker-compose up --build
-
-    # 2回目以降
+    ```
+    2回目以降は `--build` フラグは不要です。
+    ```bash
     docker-compose up
     ```
-    開発サーバーは `http://localhost:3000` でアクセスできます。
+    開発サーバーは `http://localhost:3000` で利用可能になります。
 
-2.  **i18n開発 (言語指定)**
-
+2.  **多言語(i18n)開発**
     特定の言語で開発サーバーを起動する場合は、以下のコマンドを使用します。
+    ```bash
+    # 英語サイトで開発
+    docker-compose run --rm --service-ports app pnpm start --locale en
 
-    *   **英語サイトで開発する場合**
-        ```bash
-        docker-compose run --rm --service-ports app pnpm start --locale en
-        ```
-    *   **日本語サイトで開発する場合**
-        ```bash
-        docker-compose run --rm --service-ports app pnpm start --locale ja
-        ```
+    # 日本語サイトで開発
+    docker-compose run --rm --service-ports app pnpm start --locale ja
+    ```
 
 3.  **停止**
-
-    `docker-compose up`で起動した場合は`Ctrl+C`で停止後、以下を実行します。
+    `Ctrl+C`でサーバーを停止後、コンテナをクリーンアップします。
     ```bash
     docker-compose down
     ```
 
----
+### Method 2: Using Local Environment
 
-### 方法2: ローカル環境
-
-Node.jsとpnpmを直接マシンにインストールして開発します。
-
-**前提条件**
-*   [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm#install--update-script)
-*   Node.js v22.16.0 (`.nvmrc`参照)
-*   pnpm v10.11.0 (`package.json`の`packageManager`参照)
-
-**手順**
 1.  **環境設定**
     ```bash
     # 1. プロジェクトで指定されたNode.jsバージョンを使用
     nvm use
 
-    # 2. Corepackを有効化 (pnpmのバージョンを管理)
+    # 2. pnpmを有効化
     corepack enable pnpm
 
     # 3. 依存関係をインストール
@@ -113,95 +138,41 @@ Node.jsとpnpmを直接マシンにインストールして開発します。
     ```
 
 2.  **開発サーバーの起動**
-    *   **デフォルト言語（日本語）で起動**
-        ```bash
-        pnpm start
-        ```
-    *   **英語で起動**
-        ```bash
-        pnpm start --locale en
-        ```
-    開発サーバーは `http://localhost:3000` でアクセスできます。停止は `Ctrl+C` です。
-
-
-## 📦 ビルドとプレビュー
-
-### ビルド
-
-全言語の静的コンテンツを `build` ディレクトリに生成します。
-
-*   **Docker Compose の場合**
     ```bash
-    # `app` は docker-compose.yml で定義されたサービス名
-    docker-compose run --rm app pnpm build
+    # デフォルト言語 (日本語) で起動
+    pnpm start
+
+    # 英語で起動
+    pnpm start --locale en
     ```
-*   **ローカル環境の場合**
-    ```bash
-    pnpm build
-    ```
+    開発サーバーは `http://localhost:3000` で利用可能になります。
 
-### プレビュー
+## Available Scripts
 
-ビルドされたサイトを本番に近い環境で確認します。
+-   **`pnpm build`**:
+    全言語の静的ファイルを `build/` ディレクトリに生成します。
+-   **`pnpm serve`**:
+    `build/` ディレクトリの内容をローカルでプレビューします（`http://localhost:8080`）。
+-   **`pnpm typecheck`**:
+    TypeScriptの型チェックを実行します。
+-   **`pnpm clear`**:
+    Docusaurusのキャッシュを削除します。
 
-*   **Docker Compose の場合**
+## Deployment
 
-    `docker-compose.yml` で公開しているポート `3000` を指定してプレビューサーバーを起動します。
-    ```bash
-    docker-compose run --rm --service-ports app pnpm exec http-server build --single --port 3000 --host 0.0.0.0
-    ```
-    サーバーは `http://localhost:3000` でアクセスできます。
+### Automated Deployment
 
-*   **ローカル環境の場合**
+`main`ブランチにプッシュすると、`.github/workflows/deploy_hkdocs_to_cloud_run.yml` で定義されたGitHub Actionsワークフローがトリガーされ、ビルドとGoogle Cloud Runへのデプロイが自動的に実行されます。
 
-    `http-server` を使ってプレビューします。デフォルトでは `http://localhost:8080` で起動します。
-    ```bash
-    pnpm serve
-    ```
-    ポートを変更したい場合は、引数で指定できます。
-    ```bash
-    # 例: 3000番ポートで起動
-    pnpm serve -- --port 3000
-    ```
+### Manual Deployment
 
-## ☁️ デプロイ
+ローカル環境から手動でデプロイする場合は、`gcloud` CLIが設定されていることを確認の上、以下のスクリプトを実行します。
 
-*   **自動デプロイ**: `main`ブランチへのプッシュをトリガーに、GitHub Actions (`.github/workflows/deploy_hkdocs_to_cloud_run.yml`) がビルドとGoogle Cloud Runへのデプロイを自動的に行います。
-*   **手動デプロイ**: `deploy.sh`スクリプトを使用してもデプロイ可能です。詳細はスクリプト内のコメントを参照してください。
-    ```bash
-    ./deploy.sh
-    ```
-
-## ✨ 自動化タスク
-
-*   **X (旧Twitter) への自動投稿**: 新規ブログ記事が `main`ブランチにマージされると、GitHub Actions (`.github/workflows/post-to-x.yml`) が記事情報をXアカウント ([@hkdocs](https://x.com/hkdocs)) に投稿します。
-
-## 📂 ディレクトリ構造の概要
-
-```plaintext
-.
-├── .github/              # GitHub Actionsワークフローとスクリプト
-├── blog/                 # ブログ記事 (日本語)
-├── docs/                 # ドキュメント (技術ノート、試験情報など)
-├── diary/                # 日記記事 (日本語)
-├── i18n/                 # 国際化(i18n)ファイル (en: 英語翻訳)
-├── src/                  # Docusaurusのカスタムコンポーネント、CSS、ページ
-├── static/               # 静的アセット (画像など)
-├── Dockerfile            # 本番環境用Dockerfile
-├── Dockerfile.dev        # 開発環境用Dockerfile
-├── LICENSE               # プロジェクトのライセンス
-├── README.md             # このファイル (日本語)
-├── README.en.md          # 英語版README
-├── deploy.sh             # 手動デプロイスクリプト
-├── docusaurus.config.ts  # Docusaurusサイト設定
-├── docker-compose.yml    # Docker Compose設定
-├── package.json          # 依存関係とスクリプト
-├── pnpm-lock.yaml        # pnpmロックファイル
-├── sidebars.ts           # ドキュメントのサイドバー設定
-└── tsconfig.json         # TypeScript設定
+```bash
+./deploy.sh
 ```
 
-## 📜 ライセンス
+## License
 
-*   **コード**: [MIT License](./LICENSE)
-*   **コンテンツ** (`blog/`, `diary/`, `docs/`, `i18n/` 配下): [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+-   **Code**: The source code of this project is licensed under the [MIT License](./LICENSE).
+-   **Content**: All content within the `blog/`, `diary/`, and `docs/` directories is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
