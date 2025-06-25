@@ -1,59 +1,57 @@
 ---
-title: How to Optimize Algolia Search for a Docusaurus i18n Site
-sidebar_position: 11
-last_update:
-  date: 2025-06-24
+title: How to Optimize Algolia Search by Language on a Docusaurus Multi-language Site
+authors: [hk]
 tags: [Docusaurus, Algolia, i18n, DocSearch, Crawler, tutorial]
 ---
 
-When implementing Algolia DocSearch on a multi-language (i18n) site built with Docusaurus, a common challenge is that **search results contain a mix of multiple languages**. This often leads to a poor user experience, such as English pages appearing in search results when a user is searching in Japanese.
+When implementing Algolia DocSearch on a multi-language (i18n) site built with Docusaurus, I faced the challenge of **search results containing mixed languages**. It's common for situations to arise that harm the user experience, such as English pages appearing in search results when searching in Japanese.
 
-This article serves as a guide, providing concrete steps to solve this problem and achieve an **optimal search experience that aligns with the site's display language**.
+This article organizes the specific setup steps as a technical memo to solve this problem and achieve an **optimal search experience that syncs with the site's display language**.
 
-:::tip What you'll achieve with this guide
-*   Display search results that correspond to the site's current language (Japanese/English).
+:::tip What you can achieve with this article
+*   Filter search results to match the site's display language (Japanese/English).
 *   Automatically route content to language-specific Algolia indexes based on the URL path (`/` or `/en/`).
-*   Improve search accuracy by configuring indexes tailored to the characteristics of each language (Japanese and English).
+*   Improve search accuracy with index settings tailored to the characteristics of each language, such as Japanese and English.
 :::
 
 {/* truncate */}
 
-### Reference Materials
+### References
 *   **Docusaurus Official Documentation**: [Search](https://docusaurus.io/docs/search)
 *   **Algolia Multilingual Search Guide**: [Multilingual search](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/how-to/multilingual-search/)
 
 
-### The Challenge: Issues with the Default Setup
+### The Challenge: Problems with the Standard Setup
 
-When integrating Docusaurus's i18n feature with Algolia using the standard configuration, content from all languages is indexed into a single Algolia index. This causes the following problems:
+When integrating Docusaurus's i18n feature with Algolia using the standard configuration, content from all languages is registered in a single Algolia index. This causes the following issues:
 
 | Challenge | Problem with a Single Index | Solution with Language-Specific Indexes |
 | :--- | :--- | :--- |
-| **Mixed Search Results** | Japanese and English content are displayed without distinction, confusing users. | Only content matching the current display language is shown accurately. |
-| **Reduced Search Accuracy** | Optimization for language-specific characteristics (word separation, plurals, etc.) is difficult. | Accuracy is improved with settings like `ignorePlurals` tailored to each language. |
-| **Complex Management** | All language data is centralized, making language-specific analysis and adjustments difficult. | Data separation by language simplifies management and analysis. |
+| **Mixed Search Results** | Japanese and English content are displayed without distinction, confusing the user. | Accurately display only the content that matches the current display language. |
+| **Reduced Search Accuracy** | Optimization considering language-specific characteristics (word separation, plurals, etc.) is difficult. | Improved accuracy by using settings like `ignorePlurals` tailored to each language's properties. |
+| **Complex Management** | All language data is centralized, making language-specific analysis and adjustments difficult. | Easier management and analysis by separating data for each language. |
 
 :::danger Impact on User Experience
-Search results with mixed languages hinder users from finding the information they need and can be a major factor in them leaving the site.
+Mixed-language search results can prevent users from finding the information they need, becoming a major factor in site abandonment.
 :::
 
-### The Solution: Separating into Language-Specific Indexes
+### Solution Approach: Separation into Language-Specific Indexes
 
-The key to solving this problem is to **separate content into language-specific indexes using the URL structure**.
+The key to solving this problem is to **separate content into language-specific indexes based on the URL structure**.
 
-The implementation proceeds in two steps:
+The implementation proceeds in the following two steps:
 
 1.  **Customize the Algolia Crawler**:
-    Identify the URL path (`/` or `/en/`) and define crawl targets for each language. Create dedicated indexes for each language (`yoursite_ja`, `yoursite_en`) and apply optimized settings to each.
-2.  **Configure the Docusaurus Frontend**:
+    Identify the URL path (`/` or `/en/`) to define crawling targets for each language. Create dedicated indexes for each language (`yoursite_ja`, `yoursite_en`) and apply optimized settings to each.
+2.  **Configure the Docusaurus Front-End**:
     Enable the `contextualSearch` option to automatically link the display language to the corresponding Algolia index.
 
 ### 1. Configure Language-Specific Indexes in the Algolia Crawler
 
-First, edit the Algolia crawler configuration file to define a separate crawl process (`actions`) for each language. This will route content to two different indexes based on the URL path.
+First, edit the Algolia crawler configuration file to define crawl actions for each language. This will route content to two different indexes based on the URL path.
 
 :::info Managing the Configuration File
-This configuration can be edited directly in the Algolia Crawler dashboard or managed locally as a `config.json` or `.js` file and applied via the [CLI](https://www.algolia.com/doc/tools/crawler/getting-started/run-crawler-on-your-own/). The following is an example in JavaScript file format.
+You can edit this configuration directly in the Algolia Crawler dashboard or manage it locally as a `config.json` or `.js` file and apply it via the [CLI](https://www.algolia.com/doc/tools/crawler/getting-started/run-crawler-on-your-own/). The following is an example in JavaScript file format.
 :::
 
 ```javascript title="crawler-config.js"
@@ -64,9 +62,9 @@ new Crawler({
   rateLimit: 8,
   maxUrls: 5000,
   schedule: "at 21:10 on Tuesday",
-  indexPrefix: "", // Leave empty, as this is controlled on the Docusaurus side
+  indexPrefix: "", // Keep the prefix empty, as Docusaurus will handle it
 
-  // --- Crawling Configuration ---
+  // --- Crawl Target Configuration ---
   startUrls: [
     "https://your-docusaurus-site.com/",
     "https://your-docusaurus-site.com/en/",
@@ -74,7 +72,7 @@ new Crawler({
   discoveryPatterns: ["https://your-docusaurus-site.com/**"],
   sitemaps: ["https://your-docusaurus-site.com/sitemap.xml"],
 
-  // --- Language-Specific Indexing Rules (Crucial Part) ---
+  // --- Language-Specific Index Routing (Most Important) ---
   actions: [
     // ▼▼▼ Configuration for Japanese Content ▼▼▼
     {
@@ -88,7 +86,7 @@ new Crawler({
           recordProps: {
             lvl0: {
               selectors: ".menu__link.menu__link--sublist.menu__link--active, .navbar__item.navbar__link--active",
-              defaultValue: "ドキュメンテーション", // Documentation
+              defaultValue: "Documentation",
             },
             lvl1: ["header h1", "article h1"],
             lvl2: "article h2",
@@ -129,7 +127,7 @@ new Crawler({
     },
   ],
 
-  // --- Initial Settings for Each Language Index ---
+  // --- Initial Index Settings for Each Language ---
   initialIndexSettings: {
     // ▼▼▼ Search settings for the Japanese index ('yoursite_ja') ▼▼▼
     yoursite_ja: {
@@ -143,7 +141,7 @@ new Crawler({
     // ▼▼▼ Search settings for the English index ('yoursite_en') ▼▼▼
     yoursite_en: {
       attributesForFaceting: ["type", "lang", "docusaurus_tag"],
-      ignorePlurals: true, // Ignoring plurals improves accuracy for English
+      ignorePlurals: true, // For English, treating plurals as the same improves accuracy
       minWordSizefor1Typo: 3,
       minWordSizefor2Typos: 7,
       searchableAttributes: ["unordered(hierarchy.lvl0)","unordered(hierarchy.lvl1)","unordered(hierarchy.lvl2)","unordered(hierarchy.lvl3)","unordered(hierarchy.lvl4)","content"],
@@ -155,20 +153,20 @@ new Crawler({
 
 #### Key Configuration Points
 
--   **`actions`**: This is the core of the configuration. The `pathsToMatch` property uses URL patterns to determine which content goes to which `indexName`.
+-   **`actions`**: This is the core of the configuration. It uses `pathsToMatch` with URL patterns to decide which content goes to which `indexName`.
     -   **Japanese**: Targets the entire site (`/**`) while excluding the English path (`!/en/**`).
     -   **English**: Targets only the English path (`/en/**`).
--   **`initialIndexSettings`**: Applies language-specific settings to each index (`yoursite_ja`, `yoursite_en`). Adjusting `ignorePlurals` and the typo tolerance (`minWordSizefor...Typos`) is key to improving search quality.
+-   **`initialIndexSettings`**: Applies language-specific settings to each index (`yoursite_ja`, `yoursite_en`). Adjusting `ignorePlurals` and typo tolerance (`minWordSizefor...Typos`) is key to improving search quality.
 
-### 2. Dynamically Switch Indexes in Docusaurus
+### 2. Dynamic Index Switching in Docusaurus
 
-Next, configure the Docusaurus frontend to automatically reference the appropriate index based on the browsing language. This is done simply by modifying the `algolia` configuration in `docusaurus.config.ts`.
+Next, configure the Docusaurus front-end to automatically use the correct index based on the viewing language. This is done simply by modifying the `algolia` configuration in `docusaurus.config.ts`.
 
 ```typescript title="docusaurus.config.ts"
 import type { Config } from '@docusaurus/types';
 
 const config: Config = {
-  // ... (Basic site configuration)
+  // ... (basic site configuration)
 
   i18n: {
     defaultLocale: 'ja',
@@ -179,7 +177,7 @@ const config: Config = {
     // ...
     algolia: {
       appId: 'YOUR_APP_ID',
-      apiKey: 'YOUR_SEARCH_ONLY_API_KEY', // Set the "Search-Only" API key
+      apiKey: 'YOUR_SEARCH_ONLY_API_KEY', // Set the "Search-Only" key
       indexName: 'yoursite', // Specify the common prefix for the index name
       
       // This one line is the key
@@ -192,17 +190,17 @@ export default config;
 ```
 
 :::tip The Role of `contextualSearch: true`
-Enabling this option allows Docusaurus to automatically detect the current language context (`ja` or `en`). It then constructs the final index name (`yoursite_ja` or `yoursite_en`) by appending the locale ID as a suffix to the `indexName` prefix (`yoursite`) and sends the query.
+Enabling this option allows Docusaurus to automatically detect the current language context (`ja` or `en`). It then constructs the final index name by appending the locale ID as a suffix to the `indexName` prefix (`yoursite`), and sends the query to the correct index (`yoursite_ja` or `yoursite_en`).
 
--   **When browsing a Japanese page** → Searches `yoursite_ja`
--   **When browsing an English page** → Searches `yoursite_en`
+-   **When viewing a Japanese page** → searches `yoursite_ja`
+-   **When viewing an English page** → searches `yoursite_en`
 
 :::
 
 ### Conclusion
 
-By applying these settings, you can dramatically improve the Algolia search experience on your Docusaurus i18n site.
+With the settings above, you can dramatically improve the Algolia search experience on your Docusaurus i18n site.
 
--   **Optimal Search Experience**: Users can search only the content in the language they are currently viewing, receiving accurate, noise-free results.
--   **High Search Quality**: Index settings optimized for each language provide more relevant search results.
+-   **Optimal Search Experience**: Users can search only within the content of the language they are currently viewing, getting precise and noise-free results.
+-   **High Search Quality**: Provide more relevant search results thanks to index settings optimized for each language.
 -   **Excellent Scalability**: When adding new languages in the future, you can easily scale by adding a similar pattern to the crawler configuration.

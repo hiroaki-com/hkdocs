@@ -1,32 +1,32 @@
 ---
-title: DocusaurusプロジェクトへDockerCompose導入した記録
+title: A Record of Introducing Docker Compose to a Docusaurus Project
 authors: [hk]
 tags: [docker, docker-compose]
 ---
 
-この記事では、Docusaurusのローカル環境開発時のために、`Docker Compose`を導入した際の手順を整理します。
+This article organizes the steps I took to introduce `Docker Compose` for the local development environment of a Docusaurus project.
 
-背景：
+Background:
 
-ローカル開発環境の統一とセットアップの簡略化を目的とし、Docusaurus (`v3.8.0`) プロジェクトにDocker Composeを導入した。導入前は、Node.js (`v22.16.0`) およびpnpm (`v10.11`) を開発者のローカルマシンに直接インストールして運用していた。
+To standardize the local development environment and simplify setup, I introduced Docker Compose to my Docusaurus (`v3.8.0`) project. Before this, I was running Node.js (`v22.16.0`) and pnpm (`v10.11`) by installing them directly on each developer's local machine.
 
 <!-- truncate -->
 
-#### 1. 開発用Dockerfileの作成 (`Dockerfile.dev`)
+#### 1. Creating the Development Dockerfile (`Dockerfile.dev`)
 
-ローカル開発専用のDockerイメージを定義するため、以下の手順で`Dockerfile.dev`を作成した。
+To define a Docker image specifically for local development, I created `Dockerfile.dev` following these steps.
 
-1.  **ファイル作成**
-    プロジェクトルートに`Dockerfile.dev`という名前でファイルを作成。
+1.  **File Creation**
+    I created a file named `Dockerfile.dev` in the project root.
 
-2.  **ベースイメージ指定**
-    本番用`Dockerfile`との整合性を考慮し、`node:22.16.0-alpine`をベースイメージとして指定。
+2.  **Specify Base Image**
+    For consistency with the production `Dockerfile`, I specified `node:22.16.0-alpine` as the base image.
 
-3.  **pnpm有効化と依存関係インストール**
-    `corepack enable pnpm`を実行後、`package.json`と`pnpm-lock.yaml`をコンテナにコピーし、`pnpm install --frozen-lockfile`で開発依存を含む全パッケージをインストール。
+3.  **Enable pnpm and Install Dependencies**
+    After running `corepack enable pnpm`, I copied `package.json` and `pnpm-lock.yaml` into the container and installed all packages, including development dependencies, with `pnpm install --frozen-lockfile`.
 
-4.  **ポート開放と起動コマンド設定**
-    Docusaurusのデフォルト開発ポート`3000`を開放し、起動コマンドとして`pnpm start --host 0.0.0.0 --no-open`を設定。これにより、コンテナ外部からのアクセスを許可しつつ、不要なブラウザの自動起動を抑制。
+4.  **Expose Port and Set Start Command**
+    I exposed Docusaurus's default development port `3000` and set the startup command to `pnpm start --host 0.0.0.0 --no-open`. This allows access from outside the container while suppressing the unnecessary automatic opening of a browser.
 
     ```dockerfile
     # syntax=docker/dockerfile:1
@@ -43,24 +43,24 @@ tags: [docker, docker-compose]
     CMD ["pnpm", "start", "--host", "0.0.0.0", "--no-open"]
     ```
 
-#### 2. Docker Compose設定ファイルの作成 (`docker-compose.yml`)
+#### 2. Creating the Docker Compose Configuration File (`docker-compose.yml`)
 
-開発用サービスの定義と管理のため、以下の手順で`docker-compose.yml`を作成した。
+To define and manage the development service, I created `docker-compose.yml` with the following steps.
 
-1.  **ファイル作成**
-    プロジェクトルートに`docker-compose.yml`という名前でファイルを作成。
+1.  **File Creation**
+    I created a file named `docker-compose.yml` in the project root.
 
-2.  **サービス定義**
-    `app`という名称で開発用サービスを定義し、コンテナ名を`hkdocs_dev_app`とした。ビルドコンテキストをプロジェクトルート (`.`)、使用するDockerfileを`Dockerfile.dev`に指定。
+2.  **Service Definition**
+    I defined a development service named `app` and set the container name to `hkdocs_dev_app`. The build context was set to the project root (`.`), and the Dockerfile to use was specified as `Dockerfile.dev`.
 
-3.  **ポートマッピング設定**
-    ホストのポート`3000`をコンテナのポート`3000`にマッピング。
+3.  **Port Mapping Configuration**
+    I mapped the host's port `3000` to the container's port `3000`.
 
-4.  **ボリュームマウント設定**
-    ソースコード同期のため`.:/app:cached`を、`node_modules`と`.docusaurus`ディレクトリの隔離のためそれぞれ`/app/node_modules`と`/app/.docusaurus`をコンテナ専用ボリュームとして設定。
+4.  **Volume Mount Configuration**
+    I set `.:/app:cached` for source code synchronization, and `/app/node_modules` and `/app/.docusaurus` as container-only volumes to isolate the `node_modules` and `.docusaurus` directories.
 
-5.  **環境変数とその他設定**
-    `NODE_ENV=development`を設定。ホットリロード不安定時のための`CHOKIDAR_USEPOLLING=true`はコメントアウト状態で準備。対話的実行のため`tty: true`と`stdin_open: true`を設定。
+5.  **Environment Variables and Other Settings**
+    I set `NODE_ENV=development`. I prepared `CHOKIDAR_USEPOLLING=true` (commented out) for potential hot-reloading instability. For interactive execution, I set `tty: true` and `stdin_open: true`.
 
     ```yaml
     version: '3.8'
@@ -84,11 +84,11 @@ tags: [docker, docker-compose]
         stdin_open: true
     ```
 
-#### 3. Dockerビルドコンテキスト除外設定 (`.dockerignore`) の更新
+#### 3. Updating the Docker Build Context Exclusion File (`.dockerignore`)
 
-Dockerイメージのビルド効率とイメージサイズを最適化するため、`.dockerignore`ファイルを更新した。主な除外対象は、`.git`、`node_modules`、`build`、`.docusaurus`、Docker関連ファイル自体、デプロイ用スクリプト、環境依存ファイル、ログファイル、OS固有ファイル、IDE設定ファイルなど。
+To optimize Docker image build efficiency and size, I updated the `.dockerignore` file. The main items to exclude are `.git`, `node_modules`, `build`, `.docusaurus`, the Docker files themselves, deployment scripts, environment-specific files, log files, OS-specific files, and IDE configuration files.
 
-> **注意**：`pnpm-lock.yaml`は`Dockerfile.dev`内で`COPY`コマンドにより使用するため、`.dockerignore`の除外対象には含めない。
+> **Note**: `pnpm-lock.yaml` is used by the `COPY` command in `Dockerfile.dev`, so it should not be included in the `.dockerignore` file.
 
 ```.dockerignore
 # Git
@@ -123,19 +123,18 @@ pnpm-debug.log*
 .idea/
 ```
 
-#### 4. 開発環境の利用と動作確認
+#### 4. Using and Verifying the Development Environment
 
-1.  **開発環境の起動**
-    プロジェクトルートディレクトリのターミナルから、初回または構成ファイル変更時は`docker-compose up --build`、2回目以降は`docker-compose up`コマンドで開発環境を起動。
+1.  **Starting the Development Environment**
+    From the terminal in the project root directory, run `docker-compose up --build` for the first time or when configuration files have changed. For subsequent starts, use `docker-compose up`.
 
-2.  **ブラウザでの表示確認**
-    ブラウザで`http://localhost:3000`にアクセスし、Docusaurusサイトが表示されることを確認。
+2.  **Verifying in the Browser**
+    Access `http://localhost:3000` in a browser to confirm that the Docusaurus site is displayed.
 
-3.  **ホットリロードのテスト**
-    ホストマシン上のエディタでソースコードを編集・保存し、変更が即座にブラウザに反映される（ホットリロード）ことを確認。
+3.  **Testing Hot Reloading**
+    Edit and save a source code file in an editor on the host machine and confirm that the changes are immediately reflected in the browser (hot reload).
 
-    > **備考**：ホットリロードが不安定な場合は、`docker-compose.yml`の`CHOKIDAR_USEPOLLING=true`のコメントアウトを解除、または`Dockerfile.dev`の`CMD`に`--poll`オプションを追加し、`docker-compose up --build`で再起動することで対応。
+    > **Note**: If hot reloading is unstable, you can address it by uncommenting `CHOKIDAR_USEPOLLING=true` in `docker-compose.yml` or by adding the `--poll` option to the `CMD` in `Dockerfile.dev` and restarting with `docker-compose up --build`.
 
-4.  **開発環境の停止**
-    開発サーバーを起動したターミナルで`Ctrl + C`を押すことでコンテナを停止。コンテナと関連リソース（ネットワークなど）を完全に削除する場合は、`docker-compose down`コマンドを実行。
-
+4.  **Stopping the Development Environment**
+    Press `Ctrl + C` in the terminal where the development server is running to stop the container. To completely remove the container and its associated resources (like networks), run the `docker-compose down` command.

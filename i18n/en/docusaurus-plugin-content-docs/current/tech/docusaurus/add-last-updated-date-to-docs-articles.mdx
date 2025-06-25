@@ -1,0 +1,117 @@
+---
+title: A Simple Way to Display 'Last Updated' on Docusaurus Docs Articles
+sidebar_position: 12
+last_update:
+  date: '2025-06-23'
+tags: [docusaurus, frontmatter]
+---
+
+import Admonition from '@theme/Admonition';
+
+This article outlines a simple method for displaying a "Last Updated" date on our Docusaurus documentation articles to indicate the freshness of the information.
+Unlike the `Blog` folder, articles in the `Docs` folder do not display creation dates by default, so we are adding this feature.
+We will use a method based on front matter, which does not depend on Git history and requires no changes to CI/CD configurations.
+
+**Reference:**
+- [Docusaurus Docs - last_update](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#last_update)
+
+**Prerequisites:**
+*   **Site Generator:** Docusaurus v3
+*   **Requirement:** Display a last updated date to improve the reliability of documentation articles.
+*   **Approach:** Choose a method that is easy to implement and does not affect the CI/CD pipeline.
+
+{/* truncate */}
+
+#### 1. Considering Implementation Methods
+
+There are two main ways to display the last updated date in Docusaurus.
+
+##### Method 1: Using Git Commit History (Standard Feature)
+
+This is a standard Docusaurus feature that automatically fetches and displays the last updated time and author from the Git commit history.
+
+*   **Pros:** Once configured, the date is automatically updated with each Git commit, making maintenance very easy.
+*   **Cons:**
+    *   It may require additional configuration in a CI/CD environment (e.g., GitHub Actions) to fetch the full repository history (`fetch-depth: 0`).
+    *   The displayed date depends solely on the file's last commit date.
+
+##### Method 2: Specifying the Date in Front Matter (Our Choice)
+
+A method where you directly write the date in the front matter of each Markdown file using a specific key.
+
+*   **Pros:**
+    *   **No CI/CD configuration changes are needed**, making it very easy to implement.
+    *   It can be done with a simple change to `docusaurus.config.ts` and an addition to the Markdown file.
+    *   You can control the displayed date freely, independent of the commit time.
+*   **Cons:**
+    *   The date in the front matter must be **updated manually** when the article is revised. If you forget, the displayed date may not match the content.
+
+For this project, we prioritized an easy-to-implement solution that doesn't affect the existing deployment workflow, so we chose **Method 2**.
+
+#### 2. Updating the Docusaurus Configuration File
+
+Enable the options to display the last updated date in Docusaurus.
+
+1.  Open the `docusaurus.config.ts` file located in the root of your project.
+2.  In the `presets` -> `'classic'` -> `docs` configuration block, add `showLastUpdateTime: true`. Optionally, you can also add `showLastUpdateAuthor: true` to display the author.
+
+```typescript:docusaurus.config.ts
+// docusaurus.config.ts
+import type {Config} from '@docusaurus/types';
+import type * as Preset from '@docusaurus/preset-classic';
+
+const config: Config = {
+  // ...
+  presets: [
+    [
+      'classic',
+      {
+        // ...
+        docs: {
+          sidebarPath: './sidebars.ts',
+          editUrl: 'https://github.com/your-repo/your-site',
+          // --- Add the following lines ---
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true, // Optional
+        },
+        // ...
+      } satisfies Preset.Options,
+    ],
+  ],
+  // ...
+};
+
+export default config;
+```
+
+#### 3. Adding Front Matter to Markdown Files
+
+Specify the date in the Markdown file (`.md` or `.mdx`) of the document where you want to display the last updated date.
+
+1.  Open the target file.
+2.  In the front matter (the section enclosed by `---` at the top of the file), add the `last_update` key, and under it, specify `date` and `author` (optional).
+
+```mdx:title=Example: docs/intro.mdx
+---
+title: Introduction
+tags: [getting-started]
+# --- Add the following block ---
+last_update:
+  date: '2025-06-26'
+  author: 'Author Name'
+---
+
+This document is...
+```
+
+<Admonition type="info">
+If the `last_update` key exists in the front matter, Docusaurus will prioritize it over the Git commit history.
+</Admonition>
+
+#### Summary
+
+By simply configuring `docusaurus.config.ts` and adding front matter to each article, you can easily display a "Last Updated" date on your Docs pages. A major advantage of this method is its ease of implementation, as it requires no changes to your CI/CD setup.
+
+<Admonition type="caution" title="A Note on Manual Updates">
+With this method, the date is managed manually, so be careful not to forget to update the front matter when you revise the article's content. It's important to weigh the accuracy of information against the ease of maintenance and choose the method that best suits your project.
+</Admonition>
