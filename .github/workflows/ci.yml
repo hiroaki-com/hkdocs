@@ -1,15 +1,12 @@
-# FILE: .github/workflows/ci.yml
+# .github/workflows/ci.yml
 
 name: CI Build Check
 
-# developブランチへのpushまたはpull_request時に実行
 on:
   push:
-    branches:
-      - develop
+    branches: [ develop ]
   pull_request:
-    branches:
-      - develop
+    branches: [ develop ]
 
 jobs:
   build_check:
@@ -17,32 +14,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. コードのチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. pnpmセットアップ
-      # package.jsonの "packageManager" からバージョンを自動検出します。
+      # package.jsonの"packageManager"フィールドからpnpmのバージョンを読み込む
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      # 3. Node.jsセットアップ
-      # .nvmrcのバージョンを使用し、pnpmのキャッシュを有効化します。
+      # .nvmrcを基にNode.jsをセットアップし、pnpmの依存関係キャッシュを有効化
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
 
-      # 4. 依存関係のインストール
+      # Docusaurusのビルドキャッシュを復元・保存し、差分ビルドを高速化
+      - name: Cache Docusaurus build
+        uses: actions/cache@v4
+        with:
+          path: .docusaurus
+          key: ${{ runner.os }}-docusaurus-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-docusaurus-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 5. 型チェック
       - name: Run Type Check
         run: pnpm typecheck
 
-      # 6. ビルドテスト
-      # サイトが正常にビルドできるかを検証します。
+      # --no-minifyでアセット最小化をスキップし、ビルドの妥当性のみを高速に検証
       - name: Run Build
-        run: pnpm build
+        run: pnpm build --no-minify        
