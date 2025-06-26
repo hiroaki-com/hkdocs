@@ -1,6 +1,5 @@
 /**
  * src/pages/index.module.css
- * ホームページのヒーローセクション（メインビジュアル）のスタイル定義
  */
 
 .heroBanner {
@@ -8,39 +7,37 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  /* 温かみのある光が差すような、淡いクリーム色のグラデーション */
   background:
     radial-gradient(ellipse at 50% 0%, rgba(255, 250, 240, 0.5) 0%, transparent 70%),
     var(--ifm-background-color);
-  /* 全体のトーンに合わせたセピア色のボーダー */
   border-bottom: 1px solid rgba(210, 180, 140, 0.5);
 }
 
 [data-theme='dark'] .heroBanner {
-  /* 星空や深海を思わせる、シンプルで深みのあるグラデーション */
   background:
     radial-gradient(ellipse at 50% 0%, hsla(210, 80%, 15%, 0.4) 0%, transparent 70%),
     var(--ifm-background-color);
-  /* 暗闇に浮かび上がる、控えめな境界線 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-
 .heroTitle {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
-  /* 色は custom.css の --ifm-heading-color を継承 */
+  font-family: var(--ifm-font-family-heading);
+  letter-spacing: 0.08em;
   color: var(--ifm-heading-color);
   line-height: 1.1;
 }
 
 .heroSubtitle {
   font-size: 1.0rem;
-  /* 色は custom.css の --ifm-font-color-secondary を継承 */
+  font-family: var(--ifm-font-family-heading);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--ifm-font-color-secondary);
   margin-top: 1rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
+
