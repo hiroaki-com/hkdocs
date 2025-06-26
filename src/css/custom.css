@@ -1,6 +1,7 @@
 /**
  * Docusaurus
  * Global Custom CSS
+ * サイト全体のデザインテーマ（色、フォント、背景）を定義するマスターファイルです。
  */
 
 :root {
@@ -14,29 +15,34 @@
   --ifm-color-primary-lightest: #90caf9;
 
   /* --- Fonts: Light Mode --- */
-  --ifm-font-color-base: #24292e;
-  --ifm-font-color-secondary: #586069;
-  --ifm-heading-color: #1c2024;
+  /* テキストカラーを、背景と調和するネイビー系に統一 */
+  --ifm-font-color-base: #2c3e50;
+  --ifm-font-color-secondary: #5d6d7e;
+  --ifm-heading-color: #1e2c4a;
   --ifm-link-color: var(--ifm-color-primary);
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
   
   /* --- Sizing --- */
   --ifm-heading-font-size-1: 2.0rem;
   --ifm-heading-font-size-2-rsdE: 1.8rem;
-  --doc-card-title-font-size: 1.0rem; /* Font size for DocCard titles */
+  --doc-card-title-font-size: 1.0rem;
 
   /* --- Components: Light Mode --- */
-  --ifm-background-color: #ffffff;
-  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  /* 背景とコンポーネントの色をレトロなアイボリー調に統一 */
+  --ifm-background-color: #fbf7ee;
+  --ifm-navbar-background-color: rgba(251, 247, 238, 0.85);
+  --ifm-code-background: #f5f2e9;
+  /* ▼▼▼ 改善箇所 ▼▼▼ */
+  --ifm-card-background-color: rgba(251, 247, 238, 0.85); /* カード用の背景色を、クリーンで上質なアイボリーに修正 */
+  /* ▲▲▲ 改善箇所 ▲▲▲ */
   --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
   --ifm-code-font-size: 95%;
-  --ifm-code-background: #f6f8fa;
   --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
 
   /* --- Icon SVG Definitions (Light Mode) --- */
-  /* Note: # is encoded as %23 for data URIs */
-  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
-  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
+  /* アイコンの色をテキストカラーに合わせて調整 */
+  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%232c3e50' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%232c3e50' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
 }
 
 [data-theme='dark'] {
@@ -50,17 +56,19 @@
   --ifm-color-primary-lightest: #bad8f6;
 
   /* --- Fonts: Dark Mode --- */
-  --ifm-font-color-base: #c9d1d9;
-  --ifm-font-color-secondary: #8b949e;
-  --ifm-heading-color: #f0f6fc;
+  /* テキストカラーを視認性の高いネイビー系に統一 */
+  --ifm-font-color-base: #c8d2e5;
+  --ifm-font-color-secondary: #8a99b8;
+  --ifm-heading-color: #e0e6f1;
   --ifm-link-color: var(--ifm-color-primary-light);
   --ifm-link-hover-color: var(--ifm-color-primary-lighter);
 
   /* --- Components: Dark Mode --- */
   --ifm-background-color: #0d1117;
   --ifm-navbar-background-color: rgba(13, 17, 23, 0.85);
-  --ifm-navbar-border-color: rgba(255, 255, 255, 0.209);
   --ifm-code-background: #161b22;
+  --ifm-background-surface-color: #161b22; /* カード等に使われる背景色 */
+  --ifm-navbar-border-color: rgba(255, 255, 255, 0.209);
   --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13);
 
   /* --- Icon SVG Definitions (Dark Mode) --- */
@@ -74,54 +82,26 @@
 
 html:root {
   background-color: var(--ifm-background-color);
+  /* レトロな方眼紙風の背景デザイン */
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
-  background-size: 20px 20px;
+    linear-gradient(rgba(210, 180, 140, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210, 180, 140, 0.2) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 html[data-theme='dark'] {
   background-color: var(--ifm-background-color);
+  /* ダークモード用の大柄なグリッドデザイン */
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 /*
  * Component Overrides
  */
 
-/* Navbar */
-/* .navbar {
-  border-bottom: 1px solid var(--ifm-navbar-border-color);
-} */
-
-/* Headings */
-h1 { font-size: var(--ifm-heading-font-size-1); }
-h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); } 
-
-/* Hero Banner */
-.hero--primary .hero__title,
-.hero--primary .hero__subtitle {
-  color: #ffffff;
-}
-
-/* --- Top Page Hero Title Specific Style --- */
-header.hero .container h1 {
-  letter-spacing: 0.03em;
-}
-
-.hero--primary .hero__subtitle {
-  margin-bottom: 0;
-}
-
-/* DocCard Title */
-a[class*="cardContainer_"] h2[class*="cardTitle_"] {
-  font-size: var(--doc-card-title-font-size);
-}
-
-/* --- Announcement Bar Customization --- */
 .theme-announcement-bar {
   --site-announcement-bar-stripe-color1: #90caf9;
   --site-announcement-bar-stripe-color2: #e3f2fd;
@@ -150,7 +130,6 @@ a[class*="cardContainer_"] h2[class*="cardTitle_"] {
  * Navbar Icon Links
  */
 
-/* Common styles for navbar icon links */
 .header-github-link::before,
 .header-x-link::before {
   content: '';
@@ -166,7 +145,6 @@ a[class*="cardContainer_"] h2[class*="cardTitle_"] {
   transition: opacity 0.2s ease;
 }
 
-/* Specific style for each icon */
 .header-github-link::before {
   width: 24px;
   height: 24px;
