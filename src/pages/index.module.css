@@ -27,7 +27,7 @@
 
 
 .heroTitle {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   /* 色は custom.css の --ifm-heading-color を継承 */

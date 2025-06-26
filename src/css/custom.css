@@ -23,10 +23,11 @@
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
   
   /* --- Sizing --- */
-  /* フォントサイズを元の設定に戻しました */
+  /* フォントサイズは元の設定を維持 */
   --ifm-heading-font-size-1: 2.0rem;
   --ifm-heading-font-size-2-rsdE: 1.8rem;
-  --doc-card-title-font-size: 1.0rem;
+  --doc-card-title-font-size: 1.0rem; /* Font size for DocCard titles */
+  --ifm-code-font-size: 95%;
 
   /* --- Components: Light Mode --- */
   /* 背景とコンポーネントの色をレトロなアイボリー調に統一 */
@@ -35,7 +36,6 @@
   --ifm-code-background: #f5f2e9;
   --ifm-card-background-color: #fffcf7; /* カード用の背景色 */
   --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
-  --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
 
   /* --- Icon SVG Definitions (Light Mode) --- */
@@ -101,6 +101,16 @@ html[data-theme='dark'] {
  * Component Overrides
  */
 
+/* Headings */
+h1 { font-size: var(--ifm-heading-font-size-1); }
+h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); } 
+
+/* DocCard Title */
+a[class*="cardContainer_"] h2[class*="cardTitle_"] {
+  font-size: var(--doc-card-title-font-size);
+}
+
+/* --- Announcement Bar Customization --- */
 .theme-announcement-bar {
   --site-announcement-bar-stripe-color1: #90caf9;
   --site-announcement-bar-stripe-color2: #e3f2fd;
