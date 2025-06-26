@@ -1,5 +1,6 @@
-/*
+/**
  * HomepageFeatures/styles.module.css
+ * ホームページのフィーチャーカードのスタイル定義
  */
 
 .featuresSection {
@@ -20,68 +21,37 @@
   text-decoration: none;
   color: inherit;
   
-  /* V1のデザイン：シンプルなボーダーと背景 */
-  border: 1px solid var(--ifm-color-emphasis-300);
+  /* 背景とボーダーをサイトテーマの変数で指定し、一貫性を保つ */
   background: var(--ifm-card-background-color);
+  border: 1px solid rgba(210, 180, 140, 0.4);
   
-  /* V2の動き：滑らかなアニメーション設定 */
+  /* ホバー時のアニメーションを滑らかにするための設定 */
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
               box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
               border-color 0.3s ease;
-
-  position: relative;
-  overflow: hidden;
 }
 
 .featureCardLink:hover {
-  /* V2の動き：よりダイナミックな浮き上がりと柔らかい影 */
-  transform: translateY(-10px) scale(1.03); /* translateYとscaleを大きく */
-  box-shadow: 0 25px 50px -12px hsla(220, 25%, 50%, 0.25); /* box-shadowを調整 */
-  /* V1のデザイン：ホバー時にボーダー色を変更 */
+  /* ホバー時にカードが浮き上がるような視覚効果 */
+  transform: translateY(-10px) scale(1.03);
+  /* 背景に合わせた温かみのある影 */
+  box-shadow: 0 25px 50px -12px hsla(35, 20%, 50%, 0.2);
+  /* ホバー時にボーダー色をサイトのアクセントカラーに変更 */
   border-color: var(--ifm-color-primary);
 }
 
-/* V1のデザイン：ホバー時の背景グラデーション */
-.featureCardLink::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, var(--ifm-color-primary-lightest), var(--ifm-color-primary-light));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 0;
-}
-
-.featureCardLink:hover::before {
-  opacity: 0.1; /* この値はお好みで調整してください */
-}
 
 /* --- ダークモード --- */
 [data-theme='dark'] .featureCardLink {
-  border-color: var(--ifm-color-emphasis-400);
   background: var(--ifm-background-surface-color);
+  border-color: var(--ifm-color-emphasis-400);
 }
 [data-theme='dark'] .featureCardLink:hover {
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 25px 50px -12px hsla(0, 0%, 0%, 0.45); /* ダークモードのbox-shadowを調整 */
+  box-shadow: 0 25px 50px -12px hsla(0, 0%, 0%, 0.45);
 }
-[data-theme='dark'] .featureCardLink:hover::before {
-  background: linear-gradient(45deg, var(--ifm-color-primary-dark), var(--ifm-color-primary-darker));
-  opacity: 0.15; /* この値はお好みで調整してください */
-}
-
 
 /* --- カード内コンテンツ --- */
-/* V1のデザイン：グラデーションの上にコンテンツを配置 */
-.cardHeader,
-.featureDescription {
-  position: relative;
-  z-index: 1;
-}
-
 .cardHeader {
   display: flex;
   align-items: center;
@@ -89,7 +59,6 @@
 }
 
 .cardIconWrapper {
-  /* V1のデザイン：アイコン背景 */
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -99,25 +68,23 @@
   border-radius: 8px;
   background: linear-gradient(135deg, var(--ifm-color-primary-lightest), var(--ifm-color-primary-light));
   color: var(--ifm-color-primary);
-  /* V2の動き：アニメーションのためのtransitionを追加 */
-  transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); /* transformのtransitionを追加 */
+  transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .cardIcon {
   width: 24px;
   height: 24px;
-  /* V2の動き：アニメーションのためのtransitionを追加 */
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* V2の動き：ホバー時のアイコンアニメーション */
+/* ホバー時のアイコンアニメーション */
 .featureCardLink:hover .cardIconWrapper {
-  box-shadow: 0 6px 15px -5px hsla(210, 80%, 60%, 0.35); /* box-shadowを調整 */
-  /* transform: scale(1.05); */ /* アイコンラッパー自体も少しスケールアップする場合 */
+  box-shadow: 0 6px 15px -5px hsla(210, 80%, 60%, 0.35);
 }
 .featureCardLink:hover .cardIcon {
-  transform: rotate(-15deg) scale(1.2); /* rotateとscaleを大きく */
+  transform: rotate(-15deg) scale(1.2);
 }
+
 
 /* --- ダークモードのアイコン --- */
 [data-theme='dark'] .cardIconWrapper {
@@ -125,7 +92,7 @@
   color: var(--ifm-color-primary-lightest);
 }
 [data-theme='dark'] .featureCardLink:hover .cardIconWrapper {
-  box-shadow: 0 8px 20px -6px hsla(210, 90%, 50%, 0.3); /* ダークモードのbox-shadowを調整 */
+  box-shadow: 0 8px 20px -6px hsla(210, 90%, 50%, 0.3);
 }
 
 
