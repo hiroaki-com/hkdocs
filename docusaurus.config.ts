@@ -93,10 +93,10 @@ const config: Config = {
   ],
 
   stylesheets: [
-    // 究極のフォントペアリング「IBM Plex Serif」と「Noto Sans JP」を読み込む
+    // IBM Plexフォントファミリーを読み込む
     {
-      href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+JP:wght@400;700&display=swap',
-      type: 'text/css',
+      href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;700&family=IBM+Plex+Serif:wght@400;700&display=swap',
+      rel: 'stylesheet',
     },
     // KaTeX（数式表示）用のスタイルシート
     {
@@ -118,8 +118,6 @@ const config: Config = {
     announcementBar: {
       id: 'site_release_20250601',
       content: '2025年6月1日、当サイトを正式リリースしました 🥳️',
-      backgroundColor: '#73a8e6',
-      textColor: '#fcf3f0',
       isCloseable: true,
     },
     navbar: {
