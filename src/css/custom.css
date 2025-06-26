@@ -23,6 +23,7 @@
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
   
   /* --- Sizing --- */
+  /* フォントサイズを元の設定に戻しました */
   --ifm-heading-font-size-1: 2.0rem;
   --ifm-heading-font-size-2-rsdE: 1.8rem;
   --doc-card-title-font-size: 1.0rem;
@@ -32,9 +33,7 @@
   --ifm-background-color: #fbf7ee;
   --ifm-navbar-background-color: rgba(251, 247, 238, 0.85);
   --ifm-code-background: #f5f2e9;
-  /* ▼▼▼ 改善箇所 ▼▼▼ */
-  --ifm-card-background-color: rgba(251, 247, 238, 0.85); /* カード用の背景色を、クリーンで上質なアイボリーに修正 */
-  /* ▲▲▲ 改善箇所 ▲▲▲ */
+  --ifm-card-background-color: #fffcf7; /* カード用の背景色 */
   --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
