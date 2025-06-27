@@ -20,17 +20,35 @@
 }
 
 .heroTitle {
-  font-size: 3.5rem;
+  /* --- 現在のスタイル (手書き風: Caveat) --- */
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 3.0rem;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+
+  /* --- デフォルトのスタイル --- */
+  /* font-size: 3.0rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  line-height: 1.1; */
+  
   color: var(--ifm-heading-color);
-  line-height: 1.1;
 }
 
 .heroSubtitle {
+  /* --- 現在のスタイル (手書き風: Caveat) --- */
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
   font-size: 1.0rem;
+  letter-spacing: 0.15rem;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+
+  /* --- デフォルトのスタイル --- */
+  /* font-size: 1.0rem;
+  margin-top: 1rem; */
+
   color: var(--ifm-font-color-secondary);
-  margin-top: 1rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;

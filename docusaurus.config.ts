@@ -100,6 +100,10 @@ const config: Config = {
         'sha384-wcIxkf4k558sdO6R2bvKte0ZiVEcHGlfxHrgoDae90SSsgkIERV36PksnAqcVB2Q',
       crossorigin: 'anonymous',
     },
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap',
+      rel: 'stylesheet',
+    },
   ],
 
   themeConfig: {
