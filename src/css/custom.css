@@ -21,15 +21,15 @@
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
   
   /* --- Sizing --- */
-  --ifm-heading-font-size-1: 2.0rem;
-  --ifm-heading-font-size-2-rsdE: 1.8rem;
-  --doc-card-title-font-size: 1.0rem; /* Font size for DocCard titles */
+  --ifm-heading-font-size-1: 1.7rem;
+  --ifm-heading-font-size-2-rsdE: 1.5rem;
+  --doc-card-title-font-size: 0.8rem; /* Font size for DocCard titles */
 
   /* --- Components: Light Mode --- */
   --ifm-background-color: #ffffff;
   --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
   --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
-  --ifm-code-font-size: 95%;
+  --ifm-code-font-size: 90%;
   --ifm-code-background: #f6f8fa;
   --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
 
@@ -105,15 +105,6 @@ h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); }
 .hero--primary .hero__title,
 .hero--primary .hero__subtitle {
   color: #ffffff;
-}
-
-/* --- Top Page Hero Title Specific Style --- */
-header.hero .container h1 {
-  letter-spacing: 0.03em;
-}
-
-.hero--primary .hero__subtitle {
-  margin-bottom: 0;
 }
 
 /* DocCard Title */
