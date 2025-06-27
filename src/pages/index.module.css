@@ -1,43 +1,37 @@
-/**
- * src/pages/index.module.css
- */
-
+/* ヒーローセクション */
 .heroBanner {
   padding: 2rem 2rem 1rem 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
+  /* 淡い放射状グラデーション */
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 250, 240, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse at 50% 0%, rgb(180, 216, 252) 0%, transparent 70%),
     var(--ifm-background-color);
-  border-bottom: 1px solid rgba(210, 180, 140, 0.5);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
 [data-theme='dark'] .heroBanner {
+  /* ダークモード用のグラデーション */
   background:
-    radial-gradient(ellipse at 50% 0%, hsla(210, 80%, 15%, 0.4) 0%, transparent 70%),
-    var(--ifm-background-color);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    radial-gradient(ellipse at 50% 0%, hsla(210, 100%, 15%, 0.5) 0%, hsla(210, 100%, 15%, 0) 70%),
+    linear-gradient(180deg, hsl(220, 13%, 15%), var(--ifm-background-color) 80%);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
 
 .heroTitle {
   font-size: 3.5rem;
   font-weight: 800;
-  font-family: var(--ifm-font-family-heading);
-  letter-spacing: 0.08em;
+  letter-spacing: -0.02em;
   color: var(--ifm-heading-color);
   line-height: 1.1;
 }
 
 .heroSubtitle {
   font-size: 1.0rem;
-  font-family: var(--ifm-font-family-heading);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--ifm-font-color-secondary);
   margin-top: 1rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
-
