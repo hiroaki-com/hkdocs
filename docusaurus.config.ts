@@ -93,12 +93,6 @@ const config: Config = {
   ],
 
   stylesheets: [
-    // IBM Plexフォントファミリーを読み込む
-    {
-      href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;700&family=IBM+Plex+Serif:wght@400;700&display=swap',
-      rel: 'stylesheet',
-    },
-    // KaTeX（数式表示）用のスタイルシート
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css',
       type: 'text/css',
@@ -118,6 +112,8 @@ const config: Config = {
     announcementBar: {
       id: 'site_release_20250601',
       content: '2025年6月1日、当サイトを正式リリースしました 🥳️',
+      backgroundColor: '#73a8e6',
+      textColor: '#fcf3f0',
       isCloseable: true,
     },
     navbar: {

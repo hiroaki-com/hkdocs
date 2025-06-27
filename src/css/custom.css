@@ -5,59 +5,65 @@
 
 :root {
   /* --- Colors: Light Mode --- */
-  --ifm-color-primary: #3578e5;
-  --ifm-color-primary-dark: #2e68c8;
-  --ifm-color-primary-darker: #2a5fb3;
-  --ifm-color-primary-darkest: #224d92;
-  --ifm-color-primary-light: #679aeb;
-  --ifm-color-primary-lighter: #a3c3f2;
-  --ifm-color-primary-lightest: #d9e9fe;
+  --ifm-color-primary: #1e88e5;
+  --ifm-color-primary-dark: #1976d2;
+  --ifm-color-primary-darker: #1769c0;
+  --ifm-color-primary-darkest: #1565c0;
+  --ifm-color-primary-light: #42a5f5;
+  --ifm-color-primary-lighter: #64b5f6;
+  --ifm-color-primary-lightest: #90caf9;
 
-  /* --- Fonts: IBM Plexフォントで技術的な洗練さを表現 --- */
-  --ifm-font-family-base: 'IBM Plex Sans JP', sans-serif;
-  --ifm-font-family-heading: 'IBM Plex Serif', serif;
-  --ifm-font-color-base: #3d4451;
-  --ifm-font-color-secondary: #737b8a;
-  --ifm-heading-color: #2e343f;
+  /* --- Fonts: Light Mode --- */
+  --ifm-font-color-base: #24292e;
+  --ifm-font-color-secondary: #586069;
+  --ifm-heading-color: #1c2024;
+  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-link-hover-color: var(--ifm-color-primary-dark);
   
-  /* --- Components: Light Mode --- */
-  --ifm-background-color: #f8f6f2;
-  --ifm-navbar-background-color: rgba(248, 246, 242, 0.85);
-  --ifm-code-background: #f1ede9;
-  --ifm-card-background-color: #ffffff;
-  --ifm-footer-background-color: #f1ede9;
-  --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
+  /* --- Sizing --- */
+  --ifm-heading-font-size-1: 2.0rem;
+  --ifm-heading-font-size-2-rsdE: 1.8rem;
+  --doc-card-title-font-size: 1.0rem; /* Font size for DocCard titles */
 
-  /* --- Icon SVG Definitions --- */
-  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%232c3e50' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
-  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%232c3e50' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
+  /* --- Components: Light Mode --- */
+  --ifm-background-color: #ffffff;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
+  --ifm-code-font-size: 95%;
+  --ifm-code-background: #f6f8fa;
+  --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
+
+  /* --- Icon SVG Definitions (Light Mode) --- */
+  /* Note: # is encoded as %23 for data URIs */
+  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
 }
 
 [data-theme='dark'] {
   /* --- Colors: Dark Mode --- */
-  --ifm-color-primary: #6ea8ff;
-  --ifm-color-primary-dark: #5896f2;
-  --ifm-color-primary-darker: #4284e6;
-  --ifm-color-primary-darkest: #2c72d9;
-  --ifm-color-primary-light: #84baff;
-  --ifm-color-primary-lighter: #9acbff;
-  --ifm-color-primary-lightest: #b0d8ff;
+  --ifm-color-primary: #7aa0da;
+  --ifm-color-primary-dark: #688cc7;
+  --ifm-color-primary-darker: #5678b4;
+  --ifm-color-primary-darkest: #4564a1;
+  --ifm-color-primary-light: #8fb3e3;
+  --ifm-color-primary-lighter: #a4c5ed;
+  --ifm-color-primary-lightest: #bad8f6;
 
   /* --- Fonts: Dark Mode --- */
-  --ifm-font-color-base: #c8d2e5;
-  --ifm-font-color-secondary: #8a99b8;
-  --ifm-heading-color: #e0e6f1;
+  --ifm-font-color-base: #c9d1d9;
+  --ifm-font-color-secondary: #8b949e;
+  --ifm-heading-color: #f0f6fc;
+  --ifm-link-color: var(--ifm-color-primary-light);
+  --ifm-link-hover-color: var(--ifm-color-primary-lighter);
 
   /* --- Components: Dark Mode --- */
   --ifm-background-color: #0d1117;
   --ifm-navbar-background-color: rgba(13, 17, 23, 0.85);
+  --ifm-navbar-border-color: rgba(255, 255, 255, 0.209);
   --ifm-code-background: #161b22;
-  --ifm-background-surface-color: #161b22;
-  --ifm-card-background-color: var(--ifm-background-surface-color);
-  --ifm-footer-background-color: #161b22;
-  --ifm-navbar-border-color: rgba(255, 255, 255, 0.12);
+  --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13);
 
-  /* --- Icon SVG Definitions --- */
+  /* --- Icon SVG Definitions (Dark Mode) --- */
   --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
   --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
 }
@@ -69,59 +75,106 @@
 html:root {
   background-color: var(--ifm-background-color);
   background-image:
-    linear-gradient(rgba(210, 180, 140, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(210, 180, 140, 0.2) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
+
 html[data-theme='dark'] {
   background-color: var(--ifm-background-color);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 /*
- * Component Customization
+ * Component Overrides
  */
-.theme-announcement-bar {
-  --announcement-bar-bg-light: #e3f2fd;
-  --announcement-bar-text-light: #224d92;
-  --announcement-bar-bg-dark: #1c2a3a;
-  --announcement-bar-text-dark: #a4c5ed;
-  
-  background: var(--announcement-bar-bg-light);
-  color: var(--announcement-bar-text-light);
-  font-weight: 700;
-  padding: 0.6rem 0.5rem;
+
+/* Navbar */
+/* .navbar {
   border-bottom: 1px solid var(--ifm-navbar-border-color);
+} */
+
+/* Headings */
+h1 { font-size: var(--ifm-heading-font-size-1); }
+h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); } 
+
+/* Hero Banner */
+.hero--primary .hero__title,
+.hero--primary .hero__subtitle {
+  color: #ffffff;
 }
-[data-theme='dark'] .theme-announcement-bar {
-  background: var(--announcement-bar-bg-dark);
-  color: var(--announcement-bar-text-dark);
+
+/* --- Top Page Hero Title Specific Style --- */
+header.hero .container h1 {
+  letter-spacing: 0.03em;
 }
-.theme-announcement-bar div[class*="announcementBarContent_"] p {
+
+.hero--primary .hero__subtitle {
   margin-bottom: 0;
 }
 
+/* DocCard Title */
+a[class*="cardContainer_"] h2[class*="cardTitle_"] {
+  font-size: var(--doc-card-title-font-size);
+}
+
+/* --- Announcement Bar Customization --- */
+.theme-announcement-bar {
+  --site-announcement-bar-stripe-color1: #90caf9;
+  --site-announcement-bar-stripe-color2: #e3f2fd;
+  
+  background: repeating-linear-gradient(
+    35deg, 
+    var(--site-announcement-bar-stripe-color1), 
+    var(--site-announcement-bar-stripe-color1) 20px, 
+    var(--site-announcement-bar-stripe-color2) 20px,
+    var(--site-announcement-bar-stripe-color2) 40px
+  );
+  font-size: 16px;
+  font-weight: 700;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-align: center;
+}
+
+.theme-announcement-bar div[class*="announcementBarContent_"],
+.theme-announcement-bar div[class*="announcementBarContent_"] > div,
+.theme-announcement-bar div[class*="announcementBarContent_"] p {
+  color: #24292e;
+}
+
+/*
+ * Navbar Icon Links
+ */
+
+/* Common styles for navbar icon links */
 .header-github-link::before,
 .header-x-link::before {
   content: '';
   display: block;
-  width: 24px;
-  height: 24px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: var(--github-icon);
 }
-.header-x-link::before {
-  width: 20px;
-  height: 20px;
-  background-image: var(--x-icon);
-}
+
 .header-github-link:hover,
 .header-x-link:hover {
   opacity: 0.7;
   transition: opacity 0.2s ease;
+}
+
+/* Specific style for each icon */
+.header-github-link::before {
+  width: 24px;
+  height: 24px;
+  background-image: var(--github-icon);
+}
+
+.header-x-link::before {
+  width: 20px;
+  height: 20px;
+  background-image: var(--x-icon);
 }
