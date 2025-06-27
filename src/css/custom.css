@@ -23,7 +23,7 @@
   /* --- Sizing --- */
   --ifm-heading-font-size-1: 1.7rem;
   --ifm-heading-font-size-2-rsdE: 1.5rem;
-  --doc-card-title-font-size: 0.8rem; /* Font size for DocCard titles */
+  --doc-card-title-font-size: 0.9rem; /* Font size for DocCard titles */
 
   /* --- Components: Light Mode --- */
   --ifm-background-color: #ffffff;
@@ -100,6 +100,8 @@ html[data-theme='dark'] {
 /* Headings */
 h1 { font-size: var(--ifm-heading-font-size-1); }
 h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); } 
+h2.title_dz1C { font-size: var(--ifm-heading-font-size-2-rsdE); } /* the same as --ifm-heading-font-size-2-rsdE. */
+
 
 /* Hero Banner */
 .hero--primary .hero__title,
@@ -165,7 +167,7 @@ a[class*="cardContainer_"] h2[class*="cardTitle_"] {
 }
 
 .header-x-link::before {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background-image: var(--x-icon);
 }
