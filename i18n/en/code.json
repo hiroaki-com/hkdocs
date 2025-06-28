@@ -1,146 +1,79 @@
 {
-  "theme.ErrorPageContent.title": {
-    "message": "This page crashed.",
-    "description": "The title of the fallback page when the page crashed"
+  "page.browser-memo.alert.restoreFailed": {
+    "message": "Failed to restore memos. The link may be corrupted.",
+    "description": "Alert message shown when restoring memos from a URL hash fails."
   },
-  "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "Scroll back to top",
-    "description": "The ARIA label for the back to top button"
+  "page.browser-memo.alert.urlTooLongConfirm": {
+    "message": "The generated URL is very long due to the large amount of text. Please note that it may not work in some cases.\n\nWe recommend using a URL shortening service when using this URL.",
+    "description": "Confirmation dialog warning the user that the generated shareable URL is very long."
   },
-  "theme.blog.archive.title": {
-    "message": "Archive",
-    "description": "The page & hero title of the blog archive page"
+  "page.browser-memo.button.allShared": {
+    "message": "Link Copied",
+    "description": "Feedback text on the 'Share All' button after the link has been copied."
   },
-  "theme.blog.archive.description": {
-    "message": "Archive",
-    "description": "The page & hero description of the blog archive page"
+  "page.browser-memo.button.clearAll": {
+    "message": "Clear All",
+    "description": "Label for the button to clear all memos."
   },
-  "theme.blog.paginator.navAriaLabel": {
-    "message": "Blog list page navigation",
-    "description": "The ARIA label for the blog pagination"
+  "page.browser-memo.button.shareAll": {
+    "message": "Share All Memos",
+    "description": "Label for the button to generate and copy a shareable link for all memos."
   },
-  "theme.blog.paginator.newerEntries": {
-    "message": "Newer entries",
-    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  "page.browser-memo.confirm.clearAll": {
+    "message": "Are you sure you want to clear all memos? This action cannot be undone.",
+    "description": "Confirmation dialog shown when the user clicks the 'Clear All' button."
   },
-  "theme.blog.paginator.olderEntries": {
-    "message": "Older entries",
-    "description": "The label used to navigate to the older blog posts page (next page)"
+  "page.browser-memo.confirm.restoreAll": {
+    "message": "Do you want to restore the shared memos? Your current memos will be overwritten.",
+    "description": "Confirmation dialog shown when restoring memos from a shared URL."
   },
-  "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Blog post page navigation",
-    "description": "The ARIA label for the blog posts pagination"
+  "page.browser-memo.copyButton.title": {
+    "message": "Copy text",
+    "description": "Tooltip for the button to copy the content of a single memo."
   },
-  "theme.blog.post.paginator.newerPost": {
-    "message": "Newer post",
-    "description": "The blog post button label to navigate to the newer/previous post"
+  "page.browser-memo.description": {
+    "message": "A simple notepad to temporarily save text in your browser.",
+    "description": "The meta description for the Browser Memo page."
   },
-  "theme.blog.post.paginator.olderPost": {
-    "message": "Older post",
-    "description": "The blog post button label to navigate to the older/next post"
+  "page.browser-memo.footer.toggle.minimize": {
+    "message": "Click to toggle height",
+    "description": "Tooltip for the footer bar of a memo area, indicating it can be clicked to toggle its height."
   },
-  "theme.tags.tagsPageLink": {
-    "message": "View all tags",
-    "description": "The label of the link targeting the tag list page"
+  "page.browser-memo.h1": {
+    "message": "Browser Memo",
+    "description": "The main H1 title for the Browser Memo page."
   },
-  "theme.colorToggle.ariaLabel.mode.system": {
-    "message": "system mode",
-    "description": "The name for the system color mode"
+  "page.browser-memo.intro1": {
+    "message": "A simple notepad that works entirely in your browser. Your input is automatically saved to this browser.",
+    "description": "The first introductory paragraph on the Browser Memo page."
   },
-  "theme.colorToggle.ariaLabel.mode.light": {
-    "message": "light mode",
-    "description": "The name for the light color mode"
+  "page.browser-memo.notes.backup": {
+    "message": "This is a lightweight tool. It is strongly recommended that you back up any important data separately.",
+    "description": "A note advising users to back up important data."
   },
-  "theme.colorToggle.ariaLabel.mode.dark": {
-    "message": "dark mode",
-    "description": "The name for the dark color mode"
+  "page.browser-memo.notes.storage": {
+    "message": "Your notes are automatically saved when you pause typing or when the text area loses focus.",
+    "description": "A note explaining the auto-save mechanism."
   },
-  "theme.colorToggle.ariaLabel": {
-    "message": "Switch between dark and light mode (currently {mode})",
-    "description": "The ARIA label for the color mode toggle"
+  "page.browser-memo.notes.title": {
+    "message": "Notes on Use",
+    "description": "The title for the section with usage notes."
   },
-  "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1 item|{count} items",
-    "description": "The default description for a category card in the generated index about how many items this category includes"
+  "page.browser-memo.notes.urlLengthWarning": {
+    "message": "If your notes are very long, the generated shareable URL will also be very long. We recommend using a URL shortening service when sharing.",
+    "description": "A note warning about long URLs and recommending a URL shortener."
   },
-  "theme.docs.breadcrumbs.navAriaLabel": {
-    "message": "Breadcrumbs",
-    "description": "The ARIA label for the breadcrumbs"
+  "page.browser-memo.textarea.ariaLabel": {
+    "message": "Memo {number}",
+    "description": "ARIA label for a memo textarea, with a placeholder for the memo number."
   },
-  "theme.docs.paginator.navAriaLabel": {
-    "message": "Docs pages",
-    "description": "The ARIA label for the docs pagination"
+  "page.browser-memo.textarea.placeholder": {
+    "message": "Memo {number}",
+    "description": "Placeholder text for a memo textarea, with a placeholder for the memo number."
   },
-  "theme.docs.paginator.previous": {
-    "message": "Previous",
-    "description": "The label used to navigate to the previous doc"
-  },
-  "theme.docs.paginator.next": {
-    "message": "Next",
-    "description": "The label used to navigate to the next doc"
-  },
-  "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "One doc tagged|{count} docs tagged",
-    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.docs.tagDocListPageTitle": {
-    "message": "{nDocsTagged} with \"{tagName}\"",
-    "description": "The title of the page for a docs tag"
-  },
-  "theme.docs.versionBadge.label": {
-    "message": "Version: {versionLabel}"
-  },
-  "theme.common.editThisPage": {
-    "message": "Edit this page",
-    "description": "The link label to edit the current page"
-  },
-  "theme.common.headingLinkTitle": {
-    "message": "Direct link to {heading}",
-    "description": "Title for link to heading"
-  },
-  "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "This is unreleased documentation for {siteTitle} {versionLabel} version.",
-    "description": "The label used to tell the user that he's browsing an unreleased doc version"
-  },
-  "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "This is documentation for {siteTitle} {versionLabel}, which is no longer actively maintained.",
-    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
-  },
-  "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "For up-to-date documentation, see the {latestVersionLink} ({versionLabel}).",
-    "description": "The label used to tell the user to check the latest version"
-  },
-  "theme.docs.versions.latestVersionLinkLabel": {
-    "message": "latest version",
-    "description": "The label used for the latest version suggestion link label"
-  },
-  "theme.lastUpdated.atDate": {
-    "message": " on {date}",
-    "description": "The words used to describe on which date a page has been last updated"
-  },
-  "theme.lastUpdated.byUser": {
-    "message": " by {user}",
-    "description": "The words used to describe by who the page has been last updated"
-  },
-  "theme.lastUpdated.lastUpdatedAtBy": {
-    "message": "Last updated{atDate}{byUser}",
-    "description": "The sentence used to display when a page has been last updated, and by who"
-  },
-  "theme.NotFound.title": {
-    "message": "Page Not Found",
-    "description": "The title of the 404 page"
-  },
-  "theme.navbar.mobileVersionsDropdown.label": {
-    "message": "Versions",
-    "description": "The label for the navbar versions dropdown on mobile view"
-  },
-  "theme.tags.tagsListLabel": {
-    "message": "Tags:",
-    "description": "The label alongside a tag list"
-  },
-  "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "Close",
-    "description": "The ARIA label for close button of announcement bar"
+  "page.browser-memo.title": {
+    "message": "Browser Memo",
+    "description": "The title tag for the Browser Memo page."
   },
   "theme.admonition.caution": {
     "message": "caution",
@@ -166,248 +99,25 @@
     "message": "warning",
     "description": "The default label used for the Warning admonition (:::warning)"
   },
-  "theme.blog.sidebar.navAriaLabel": {
-    "message": "Blog recent posts navigation",
-    "description": "The ARIA label for recent posts in the blog sidebar"
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Close",
+    "description": "The ARIA label for close button of announcement bar"
   },
-  "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Expand sidebar category '{label}'",
-    "description": "The ARIA label to expand the sidebar category"
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Scroll back to top",
+    "description": "The ARIA label for the back to top button"
   },
-  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Collapse sidebar category '{label}'",
-    "description": "The ARIA label to collapse the sidebar category"
+  "theme.blog.archive.description": {
+    "message": "Archive",
+    "description": "The page & hero description of the blog archive page"
   },
-  "theme.NavBar.navAriaLabel": {
-    "message": "Main",
-    "description": "The ARIA label for the main navigation"
+  "theme.blog.archive.title": {
+    "message": "Archive",
+    "description": "The page & hero title of the blog archive page"
   },
-  "theme.NotFound.p1": {
-    "message": "We could not find what you were looking for.",
-    "description": "The first paragraph of the 404 page"
-  },
-  "theme.NotFound.p2": {
-    "message": "Please contact the owner of the site that linked you to the original URL and let them know their link is broken.",
-    "description": "The 2nd paragraph of the 404 page"
-  },
-  "theme.TOCCollapsible.toggleButtonLabel": {
-    "message": "On this page",
-    "description": "The label used by the button on the collapsible TOC component"
-  },
-  "theme.navbar.mobileLanguageDropdown.label": {
-    "message": "Languages",
-    "description": "The label for the mobile language switcher dropdown"
-  },
-  "theme.blog.post.readingTime.plurals": {
-    "message": "One min read|{readingTime} min read",
-    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.CodeBlock.copy": {
-    "message": "Copy",
-    "description": "The copy button label on code blocks"
-  },
-  "theme.CodeBlock.copied": {
-    "message": "Copied",
-    "description": "The copied button label on code blocks"
-  },
-  "theme.CodeBlock.copyButtonAriaLabel": {
-    "message": "Copy code to clipboard",
-    "description": "The ARIA label for copy code blocks button"
-  },
-  "theme.docs.breadcrumbs.home": {
-    "message": "Home page",
-    "description": "The ARIA label for the home page in the breadcrumbs"
-  },
-  "theme.docs.sidebar.collapseButtonTitle": {
-    "message": "Collapse sidebar",
-    "description": "The title attribute for collapse button of doc sidebar"
-  },
-  "theme.docs.sidebar.collapseButtonAriaLabel": {
-    "message": "Collapse sidebar",
-    "description": "The title attribute for collapse button of doc sidebar"
-  },
-  "theme.blog.post.readMore": {
-    "message": "Read more",
-    "description": "The label used in blog post item excerpts to link to full blog posts"
-  },
-  "theme.blog.post.readMoreLabel": {
-    "message": "Read more about {title}",
-    "description": "The ARIA label for the link to full blog posts from excerpts"
-  },
-  "theme.docs.sidebar.navAriaLabel": {
-    "message": "Docs sidebar",
-    "description": "The ARIA label for the sidebar navigation"
-  },
-  "theme.CodeBlock.wordWrapToggle": {
-    "message": "Toggle word wrap",
-    "description": "The title attribute for toggle word wrapping button of code block lines"
-  },
-  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
-    "message": "Close navigation bar",
-    "description": "The ARIA label for close button of mobile sidebar"
-  },
-  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
-    "message": "← Back to main menu",
-    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
-  },
-  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
-    "message": "Toggle navigation bar",
-    "description": "The ARIA label for hamburger menu button of mobile navigation"
-  },
-  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
-    "message": "Expand the dropdown",
-    "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
-  },
-  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
-    "message": "Collapse the dropdown",
-    "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
-  },
-  "theme.docs.sidebar.expandButtonTitle": {
-    "message": "Expand sidebar",
-    "description": "The ARIA label and title attribute for expand button of doc sidebar"
-  },
-  "theme.docs.sidebar.expandButtonAriaLabel": {
-    "message": "Expand sidebar",
-    "description": "The ARIA label and title attribute for expand button of doc sidebar"
-  },
-  "theme.SearchBar.seeAll": {
-    "message": "See all {count} results"
-  },
-  "theme.SearchPage.documentsFound.plurals": {
-    "message": "One document found|{count} documents found",
-    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.SearchPage.existingResultsTitle": {
-    "message": "Search results for \"{query}\"",
-    "description": "The search page title for non-empty query"
-  },
-  "theme.SearchPage.emptyResultsTitle": {
-    "message": "Search the documentation",
-    "description": "The search page title for empty query"
-  },
-  "theme.SearchPage.inputPlaceholder": {
-    "message": "Type your search here",
-    "description": "The placeholder for search page input"
-  },
-  "theme.SearchPage.inputLabel": {
-    "message": "Search",
-    "description": "The ARIA label for search page input"
-  },
-  "theme.SearchPage.algoliaLabel": {
-    "message": "Search by Algolia",
-    "description": "The ARIA label for Algolia mention"
-  },
-  "theme.SearchPage.noResultsText": {
-    "message": "No results were found",
-    "description": "The paragraph for empty search result"
-  },
-  "theme.SearchPage.fetchingNewResults": {
-    "message": "Fetching new results...",
-    "description": "The paragraph for fetching new search results"
-  },
-  "theme.SearchBar.label": {
-    "message": "Search",
-    "description": "The ARIA label and placeholder for search button"
-  },
-  "theme.SearchModal.searchBox.resetButtonTitle": {
-    "message": "Clear the query",
-    "description": "The label and ARIA label for search box reset button"
-  },
-  "theme.SearchModal.searchBox.cancelButtonText": {
-    "message": "Cancel",
-    "description": "The label and ARIA label for search box cancel button"
-  },
-  "theme.SearchModal.startScreen.recentSearchesTitle": {
-    "message": "Recent",
-    "description": "The title for recent searches"
-  },
-  "theme.SearchModal.startScreen.noRecentSearchesText": {
-    "message": "No recent searches",
-    "description": "The text when no recent searches"
-  },
-  "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
-    "message": "Save this search",
-    "description": "The label for save recent search button"
-  },
-  "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
-    "message": "Remove this search from history",
-    "description": "The label for remove recent search button"
-  },
-  "theme.SearchModal.startScreen.favoriteSearchesTitle": {
-    "message": "Favorite",
-    "description": "The title for favorite searches"
-  },
-  "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
-    "message": "Remove this search from favorites",
-    "description": "The label for remove favorite search button"
-  },
-  "theme.SearchModal.errorScreen.titleText": {
-    "message": "Unable to fetch results",
-    "description": "The title for error screen of search modal"
-  },
-  "theme.SearchModal.errorScreen.helpText": {
-    "message": "You might want to check your network connection.",
-    "description": "The help text for error screen of search modal"
-  },
-  "theme.SearchModal.footer.selectText": {
-    "message": "to select",
-    "description": "The explanatory text of the action for the enter key"
-  },
-  "theme.SearchModal.footer.selectKeyAriaLabel": {
-    "message": "Enter key",
-    "description": "The ARIA label for the Enter key button that makes the selection"
-  },
-  "theme.SearchModal.footer.navigateText": {
-    "message": "to navigate",
-    "description": "The explanatory text of the action for the Arrow up and Arrow down key"
-  },
-  "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
-    "message": "Arrow up",
-    "description": "The ARIA label for the Arrow up key button that makes the navigation"
-  },
-  "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
-    "message": "Arrow down",
-    "description": "The ARIA label for the Arrow down key button that makes the navigation"
-  },
-  "theme.SearchModal.footer.closeText": {
-    "message": "to close",
-    "description": "The explanatory text of the action for Escape key"
-  },
-  "theme.SearchModal.footer.closeKeyAriaLabel": {
-    "message": "Escape key",
-    "description": "The ARIA label for the Escape key button that close the modal"
-  },
-  "theme.SearchModal.footer.searchByText": {
-    "message": "Search by",
-    "description": "The text explain that the search is making by Algolia"
-  },
-  "theme.SearchModal.noResultsScreen.noResultsText": {
-    "message": "No results for",
-    "description": "The text explains that there are no results for the following search"
-  },
-  "theme.SearchModal.noResultsScreen.suggestedQueryText": {
-    "message": "Try searching for",
-    "description": "The text for the suggested query when no results are found for the following search"
-  },
-  "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "Believe this query should return results?",
-    "description": "The text for the question where the user thinks there are missing results"
-  },
-  "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
-    "message": "Let us know.",
-    "description": "The text for the link to report missing results"
-  },
-  "theme.SearchModal.placeholder": {
-    "message": "Search docs",
-    "description": "The placeholder of the input of the DocSearch pop-up modal"
-  },
-  "theme.blog.post.plurals": {
-    "message": "One post|{count} posts",
-    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.blog.tagTitle": {
-    "message": "{nPosts} tagged with \"{tagName}\"",
-    "description": "The title of the page for a blog tag"
+  "theme.blog.author.noPosts": {
+    "message": "This author has not written any posts yet.",
+    "description": "The text for authors with 0 blog post"
   },
   "theme.blog.author.pageTitle": {
     "message": "{authorName} - {nPosts}",
@@ -421,133 +131,375 @@
     "message": "View all authors",
     "description": "The label of the link targeting the blog authors page"
   },
-  "theme.blog.author.noPosts": {
-    "message": "This author has not written any posts yet.",
-    "description": "The text for authors with 0 blog post"
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Blog list page navigation",
+    "description": "The ARIA label for the blog pagination"
   },
-  "theme.contentVisibility.unlistedBanner.title": {
-    "message": "Unlisted page",
-    "description": "The unlisted content banner title"
+  "theme.blog.paginator.newerEntries": {
+    "message": "Newer entries",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
   },
-  "theme.contentVisibility.unlistedBanner.message": {
-    "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
-    "description": "The unlisted content banner message"
+  "theme.blog.paginator.olderEntries": {
+    "message": "Older entries",
+    "description": "The label used to navigate to the older blog posts page (next page)"
   },
-  "theme.contentVisibility.draftBanner.title": {
-    "message": "Draft page",
-    "description": "The draft content banner title"
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Blog post page navigation",
+    "description": "The ARIA label for the blog posts pagination"
   },
-  "theme.contentVisibility.draftBanner.message": {
-    "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
-    "description": "The draft content banner message"
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Newer post",
+    "description": "The blog post button label to navigate to the newer/previous post"
   },
-  "theme.ErrorPageContent.tryAgain": {
-    "message": "Try again",
-    "description": "The label of the button to try again rendering when the React error boundary captures an error"
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Older post",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.blog.post.plurals": {
+    "message": "One post|{count} posts",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.post.readMore": {
+    "message": "Read more",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "Read more about {title}",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "One min read|{readingTime} min read",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "Blog recent posts navigation",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} tagged with \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.CodeBlock.copy": {
+    "message": "Copy",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "Copy code to clipboard",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "Copied",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Toggle word wrap",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "Switch between dark and light mode (currently {mode})",
+    "description": "The ARIA label for the color mode toggle"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "dark mode",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "light mode",
+    "description": "The name for the light color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.system": {
+    "message": "system mode",
+    "description": "The name for the system color mode"
+  },
+  "theme.common.editThisPage": {
+    "message": "Edit this page",
+    "description": "The link label to edit the current page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "Direct link to {heading}",
+    "description": "Title for link to heading"
   },
   "theme.common.skipToMainContent": {
     "message": "Skip to main content",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
+    "description": "The draft content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "Draft page",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "Unlisted page",
+    "description": "The unlisted content banner title"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Home page",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Breadcrumbs",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 item|{count} items",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "Docs pages",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.next": {
+    "message": "Next",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "Previous",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "Collapse sidebar",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "Collapse sidebar",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "Expand sidebar",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "Expand sidebar",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "Docs sidebar",
+    "description": "The ARIA label for the sidebar navigation"
+  },
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "Collapse sidebar category '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "Expand sidebar category '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} with \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "One doc tagged|{count} docs tagged",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "Version: {versionLabel}"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "latest version",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "For up-to-date documentation, see the {latestVersionLink} ({versionLabel}).",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "This is documentation for {siteTitle} {versionLabel}, which is no longer actively maintained.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "This is unreleased documentation for {siteTitle} {versionLabel} version.",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.ErrorPageContent.title": {
+    "message": "This page crashed.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Try again",
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " on {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " by {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "Last updated{atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "Main",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Languages",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "Versions",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.NotFound.p1": {
+    "message": "We could not find what you were looking for.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Please contact the owner of the site that linked you to the original URL and let them know their link is broken.",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.NotFound.title": {
+    "message": "Page Not Found",
+    "description": "The title of the 404 page"
+  },
+  "theme.SearchModal.errorScreen.helpText": {
+    "message": "You might want to check your network connection.",
+    "description": "The help text for error screen of search modal"
+  },
+  "theme.SearchModal.errorScreen.titleText": {
+    "message": "Unable to fetch results",
+    "description": "The title for error screen of search modal"
+  },
+  "theme.SearchModal.footer.closeKeyAriaLabel": {
+    "message": "Escape key",
+    "description": "The ARIA label for the Escape key button that close the modal"
+  },
+  "theme.SearchModal.footer.closeText": {
+    "message": "to close",
+    "description": "The explanatory text of the action for Escape key"
+  },
+  "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
+    "message": "Arrow down",
+    "description": "The ARIA label for the Arrow down key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.navigateText": {
+    "message": "to navigate",
+    "description": "The explanatory text of the action for the Arrow up and Arrow down key"
+  },
+  "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
+    "message": "Arrow up",
+    "description": "The ARIA label for the Arrow up key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.searchByText": {
+    "message": "Search by",
+    "description": "The text explain that the search is making by Algolia"
+  },
+  "theme.SearchModal.footer.selectKeyAriaLabel": {
+    "message": "Enter key",
+    "description": "The ARIA label for the Enter key button that makes the selection"
+  },
+  "theme.SearchModal.footer.selectText": {
+    "message": "to select",
+    "description": "The explanatory text of the action for the enter key"
+  },
+  "theme.SearchModal.noResultsScreen.noResultsText": {
+    "message": "No results for",
+    "description": "The text explains that there are no results for the following search"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
+    "message": "Let us know.",
+    "description": "The text for the link to report missing results"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
+    "message": "Believe this query should return results?",
+    "description": "The text for the question where the user thinks there are missing results"
+  },
+  "theme.SearchModal.noResultsScreen.suggestedQueryText": {
+    "message": "Try searching for",
+    "description": "The text for the suggested query when no results are found for the following search"
+  },
+  "theme.SearchModal.placeholder": {
+    "message": "Search docs",
+    "description": "The placeholder of the input of the DocSearch pop-up modal"
+  },
+  "theme.SearchModal.searchBox.cancelButtonText": {
+    "message": "Cancel",
+    "description": "The label and ARIA label for search box cancel button"
+  },
+  "theme.SearchModal.searchBox.resetButtonTitle": {
+    "message": "Clear the query",
+    "description": "The label and ARIA label for search box reset button"
+  },
+  "theme.SearchModal.startScreen.favoriteSearchesTitle": {
+    "message": "Favorite",
+    "description": "The title for favorite searches"
+  },
+  "theme.SearchModal.startScreen.noRecentSearchesText": {
+    "message": "No recent searches",
+    "description": "The text when no recent searches"
+  },
+  "theme.SearchModal.startScreen.recentSearchesTitle": {
+    "message": "Recent",
+    "description": "The title for recent searches"
+  },
+  "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
+    "message": "Remove this search from favorites",
+    "description": "The label for remove favorite search button"
+  },
+  "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
+    "message": "Remove this search from history",
+    "description": "The label for remove recent search button"
+  },
+  "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
+    "message": "Save this search",
+    "description": "The label for save recent search button"
+  },
+  "theme.SearchPage.algoliaLabel": {
+    "message": "Search by Algolia",
+    "description": "The ARIA label for Algolia mention"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "One document found|{count} documents found",
+    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Search the documentation",
+    "description": "The search page title for empty query"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Search results for \"{query}\"",
+    "description": "The search page title for non-empty query"
+  },
+  "theme.SearchPage.fetchingNewResults": {
+    "message": "Fetching new results...",
+    "description": "The paragraph for fetching new search results"
+  },
+  "theme.SearchPage.inputLabel": {
+    "message": "Search",
+    "description": "The ARIA label for search page input"
+  },
+  "theme.SearchPage.inputPlaceholder": {
+    "message": "Type your search here",
+    "description": "The placeholder for search page input"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "No results were found",
+    "description": "The paragraph for empty search result"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "On this page",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "Tags:",
+    "description": "The label alongside a tag list"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "View all tags",
+    "description": "The label of the link targeting the tag list page"
+  },
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
-  },
-  "page.browser-memo.footer.noData": {
-    "message": "No saved data"
-  },
-  "page.browser-memo.confirm.clearAll": {
-    "message": "Are you sure you want to clear all memos? This action cannot be undone."
-  },
-  "page.browser-memo.alert.clipboardUnavailable": {
-    "message": "The clipboard feature is not available in this environment."
-  },
-  "page.browser-memo.alert.copyFailed": {
-    "message": "Failed to copy text."
-  },
-  "page.browser-memo.title": {
-    "message": "Browser Memo"
-  },
-  "page.browser-memo.description": {
-    "message": "A simple notepad that allows you to temporarily save text within your browser."
-  },
-  "page.browser-memo.h1": {
-    "message": "Browser Memo"
-  },
-  "page.browser-memo.intro1": {
-    "message": "Feel free to use it. Your input is automatically saved and will be available on your next visit."
-  },
-  "page.browser-memo.intro2": {
-    "message": "Security Note:"
-  },
-  "page.browser-memo.intro3": {
-    "message": " The contents of this memo are saved only in your browser's local storage. Your data will never be sent to an external server."
-  },
-  "page.browser-memo.button.clearAll": {
-    "message": "Clear All"
-  },
-  "page.browser-memo.footer.toggle.expand": {
-    "message": "Click to restore auto-height"
-  },
-  "page.browser-memo.footer.toggle.minimize": {
-    "message": "Click to minimize ({height}px)"
-  },
-  "page.browser-memo.copyButton.ariaLabel.copied": {
-    "message": "Copied"
-  },
-  "page.browser-memo.copyButton.ariaLabel.copy": {
-    "message": "Copy memo {number}"
-  },
-  "page.browser-memo.copyButton.copied": {
-    "message": "Copied!"
-  },
-  "page.browser-memo.copyButton.copy": {
-    "message": "Copy"
-  },
-  "page.browser-memo.textarea.placeholder": {
-    "message": "Memo {number}"
-  },
-  "page.browser-memo.footer.lastUpdated": {
-    "message": "Last updated: "
-  },
-  "homepage.meta.description": {
-    "message": "My Tech Blog",
-    "description": "The meta description for the homepage"
-  },
-  "homepage.features.tech.title": {
-    "message": "Tech"
-  },
-  "homepage.features.tech.description": {
-    "message": "Organizing daily learnings and blog posts."
-  },
-  "homepage.features.exams.title": {
-    "message": "Exams"
-  },
-  "homepage.features.exams.description": {
-    "message": "Study notes and reviews for certification exams."
-  },
-  "homepage.features.blog.title": {
-    "message": "Blog"
-  },
-  "homepage.features.blog.description": {
-    "message": "Casual articles about technical learnings."
-  },
-  "homepage.features.diary.title": {
-    "message": "Diary"
-  },
-  "homepage.features.diary.description": {
-    "message": "Daily records and personal miscellaneous notes."
-  },
-  "homepage.features.browserMemo.title": {
-    "message": "Browser Memo"
-  },
-  "homepage.features.browserMemo.description": {
-    "message": "A lightweight memo function usable only in the browser."
-  },
-  "homepage.features.profile.title": {
-    "message": "Profile"
-  },
-  "homepage.features.profile.description": {
-    "message": "About me."
   }
 }
