@@ -1,0 +1,107 @@
+---
+title: ブラウザメモ機能：URL共有とUX改善の実装記録
+authors: [hk]
+tags: [docusaurus, react, typescript, performance, ux, lz-string]
+---
+
+### ブラウザメモ機能：URL共有とUI/UX改善の実装記録
+
+#### はじめに
+
+以前に実装した [ブラウザメモ](/browser-memo) 機能 について
+
+これまでの使用感や競合サービスの調査の結果、大幅な機能改善を実施。
+
+本記事では、**URLによるメモ共有機能の実装**と、その過程で行った**UI/UX改善**の技術的ポイントを整理します。
+
+<!-- truncate -->
+
+#### 1. 新機能の概要と改善点
+
+初回実装の基本機能（`localStorage`による永続化、複数メモ欄など）を土台とし、以下の点を中心に機能拡張と改善。
+
+**URLによる全メモ共有機能**
+現在のすべてのメモの状態を、単一のURLとして発行し、他のブラウザやPCで完全に復元できる機能の追加。
+
+**UI/UXの向上**
+入力に応じたリアルタイムの高さ自動調整に加え、メモを最小化した際に内容を確認できるスクロールバーの追加。また、筆記エリアを最大限に活用できるレイアウトへの最適化。
+
+**パフォーマンスと保守性の改善**
+メモの入力と表示に関わるロジックを子コンポーネントに分離し、アプリケーション全体のパフォーマンスとコードの保守性を向上。
+
+
+#### 2. 主要な実装ポイント
+
+##### URL共有機能の実装とURL長問題の解決
+
+サーバーレスでメモの状態を共有するには、すべてのデータをURLに含める必要がある。しかし、メモの内容が長くなるとブラウザのURL長制限を超え、リンクが破損するという深刻な問題が存在。
+
+この課題を解決するため、データ圧縮ライブラリ**`lz-string`**とURLの**`#`（ハッシュ）**を組み合わせる手法を採用。
+
+まず、全メモのテキストと位置情報をJSON文字列化し、`lz-string`の`compressToEncodedURIComponent`メソッドで圧縮。これにより、元のデータサイズを削減。
+
+次に、圧縮したデータを`#`以降のハッシュ部分に格納。この形式はサーバーに送信されないためブラウザ内だけで処理が完結し、`?memos=`のような不要なキー名も削除され、可能な限り短いURLを実現。
+
+```javascript
+// 共有URLを生成するロジック
+const handleShareAll = async () => {
+  // 共有するデータを選択・整形
+  const memosToShare = memoItems
+    .map((item, index) => ({ i: index, t: item.text }))
+    .filter(item => item.t.trim() !== '');
+
+  const jsonString = JSON.stringify(memosToShare);
+  // データを圧縮
+  const compressed = LZString.compressToEncodedURIComponent(jsonString);
+  // URLハッシュとして結合
+  const shareUrl = `${window.location.origin}${window.location.pathname}#${compressed}`;
+  
+  await navigator.clipboard.writeText(shareUrl);
+};
+```
+
+さらに、圧縮してもなおURLが長くなる場合に備え、`window.confirm`でユーザーに注意を促し、続行するか選択してもらう機能も実装。
+
+##### UIの最適化：子コンポーネントによる責務分離
+
+初回実装では、高さ調整やデータ保存などのロジックがすべて親コンポーネントに集中し、コードの見通しが悪化する懸念があった。
+
+この問題を解決するため、`textarea`を**`React.memo`**で独立した子コンポーネント (`MemoTextarea`) に切り出し。
+
+このコンポーネント分割により、以下のメリットが生まれた。
+
+*   **ロジックのカプセル化**:
+    高さ調整、最小化時のスクロールバー表示、遅延保存（Debouncing）といった複雑なUIロジックを`MemoTextarea`内に完全に閉じ込めることで、親コンポーネントをシンプルに保ち、保守性を向上。
+
+*   **パフォーマンスの向上**:
+    `React.memo`により、あるメモを編集中に他のメモが不要に再レンダリングされるのを防止。アプリケーション全体のパフォーマンスが改善。
+
+```tsx
+// 子コンポーネントの例
+const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, ... }) => {
+  const [text, setText] = useState(initialText);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  // textやisMinimizedの変更に応じて高さを動的に調整
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    if (isMinimized) {
+      textarea.style.height = `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`;
+      textarea.style.overflowY = 'auto'; // 最小化時にスクロール
+    } else {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${Math.max(textarea.scrollHeight, DEFAULT_TEXTAREA_MIN_HEIGHT)}px`;
+      textarea.style.overflowY = 'hidden';
+    }
+  }, [text, isMinimized]);
+
+  // ...
+});
+```
+
+##### Docusaurus環境への最適化
+
+`localStorage`などブラウザ専用APIに依存するため、コンポーネント全体をDocusaurusが提供する`<BrowserOnly>`でラップ。これにより、サーバーサイドでのビルド時にエラーが発生するのを防ぎ、安定性を確保。
+
