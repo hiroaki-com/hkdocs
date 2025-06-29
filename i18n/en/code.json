@@ -1,4 +1,44 @@
 {
+  "homepage.features.blog.description": {
+    "message": "Casual articles about technical learnings."
+  },
+  "homepage.features.blog.title": {
+    "message": "Blog"
+  },
+  "homepage.features.browserMemo.description": {
+    "message": "A lightweight memo function usable only in the browser."
+  },
+  "homepage.features.browserMemo.title": {
+    "message": "Browser Memo"
+  },
+  "homepage.features.diary.description": {
+    "message": "Daily records and personal miscellaneous notes."
+  },
+  "homepage.features.diary.title": {
+    "message": "Diary"
+  },
+  "homepage.features.exams.description": {
+    "message": "Study notes and reviews for certification exams."
+  },
+  "homepage.features.exams.title": {
+    "message": "Exams"
+  },
+  "homepage.features.profile.description": {
+    "message": "About me."
+  },
+  "homepage.features.profile.title": {
+    "message": "Profile"
+  },
+  "homepage.features.tech.description": {
+    "message": "Organizing daily learnings and blog posts."
+  },
+  "homepage.features.tech.title": {
+    "message": "Tech"
+  },
+  "homepage.meta.description": {
+    "message": "My Tech Blog",
+    "description": "The meta description for the homepage"
+  },
   "page.browser-memo.alert.restoreFailed": {
     "message": "Failed to restore memos. The link may be corrupted.",
     "description": "Alert message shown when restoring memos from a URL hash fails."
@@ -34,6 +74,10 @@
   "page.browser-memo.description": {
     "message": "A simple notepad to temporarily save text in your browser.",
     "description": "The meta description for the Browser Memo page."
+  },
+  "page.browser-memo.footer.lastUpdated": {
+    "message": "Last updated: ",
+    "description": "Label for the last updated timestamp in the memo footer."
   },
   "page.browser-memo.footer.toggle.minimize": {
     "message": "Click to toggle height",
@@ -271,6 +315,10 @@
     "message": "Collapse sidebar",
     "description": "The title attribute for collapse button of doc sidebar"
   },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "Close navigation bar",
+    "description": "The ARIA label for close button of mobile sidebar"
+  },
   "theme.docs.sidebar.expandButtonAriaLabel": {
     "message": "Expand sidebar",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
@@ -283,13 +331,9 @@
     "message": "Docs sidebar",
     "description": "The ARIA label for the sidebar navigation"
   },
-  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Collapse sidebar category '{label}'",
-    "description": "The ARIA label to collapse the sidebar category"
-  },
-  "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Expand sidebar category '{label}'",
-    "description": "The ARIA label to expand the sidebar category"
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Toggle navigation bar",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.docs.tagDocListPageTitle": {
     "message": "{nDocsTagged} with \"{tagName}\"",
@@ -318,6 +362,14 @@
     "message": "This is unreleased documentation for {siteTitle} {versionLabel} version.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "Collapse sidebar category '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "Expand sidebar category '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
+  },
   "theme.ErrorPageContent.title": {
     "message": "This page crashed.",
     "description": "The title of the fallback page when the page crashed"
@@ -342,9 +394,21 @@
     "message": "Main",
     "description": "The ARIA label for the main navigation"
   },
+  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
+    "message": "Collapse the dropdown",
+    "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
+    "message": "Expand the dropdown",
+    "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+  },
   "theme.navbar.mobileLanguageDropdown.label": {
     "message": "Languages",
     "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← Back to main menu",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
   },
   "theme.navbar.mobileVersionsDropdown.label": {
     "message": "Versions",
@@ -361,6 +425,13 @@
   "theme.NotFound.title": {
     "message": "Page Not Found",
     "description": "The title of the 404 page"
+  },
+  "theme.SearchBar.label": {
+    "message": "Search",
+    "description": "The ARIA label and placeholder for search button"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "See all {count} results"
   },
   "theme.SearchModal.errorScreen.helpText": {
     "message": "You might want to check your network connection.",
@@ -486,10 +557,6 @@
     "message": "No results were found",
     "description": "The paragraph for empty search result"
   },
-  "theme.TOCCollapsible.toggleButtonLabel": {
-    "message": "On this page",
-    "description": "The label used by the button on the collapsible TOC component"
-  },
   "theme.tags.tagsListLabel": {
     "message": "Tags:",
     "description": "The label alongside a tag list"
@@ -501,5 +568,9 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "On this page",
+    "description": "The label used by the button on the collapsible TOC component"
   }
 }
