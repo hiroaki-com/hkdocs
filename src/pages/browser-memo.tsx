@@ -20,33 +20,30 @@ interface MemoItem {
 
 type SharedMemo = { i: number; t: string };
 
-// NEW: 入力と表示ロジックをカプセル化した、最適化済みの子コンポーネント
 const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, placeholder, ariaLabel }) => {
   const [text, setText] = useState(initialText);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  // 外部から渡される初期値が変更された場合（URLからの復元など）に内部Stateを同期
   useEffect(() => {
     if (initialText !== text) {
       setText(initialText);
     }
   }, [initialText]);
 
-  // テキストの変更または最小化状態の変更に応じて、テキストエリアの高さを調整
   useEffect(() => {
     const textarea = textareaRef.current;
     if (!textarea) return;
 
     if (isMinimized) {
       textarea.style.height = `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`;
-      textarea.style.overflowY = 'auto'; // 最小化時はスクロールバーを表示
+      textarea.style.overflowY = 'auto';
     } else {
       textarea.style.height = 'auto';
       textarea.style.height = `${Math.max(textarea.scrollHeight, DEFAULT_TEXTAREA_MIN_HEIGHT)}px`;
-      textarea.style.overflowY = 'hidden'; // 通常時は自動拡張するので非表示
+      textarea.style.overflowY = 'hidden';
     }
-  }, [text, isMinimized]); // textの変更（入力）でリアルタイムに高さを調整
+  }, [text, isMinimized]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
@@ -75,8 +72,8 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, placeholder
       style={{
         width: '100%',
         minHeight: `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`,
+        // MODIFIED: paddingTopを削除し、通常のpaddingに戻す
         padding: '10px',
-        paddingTop: '40px',
         fontSize: '16px',
         border: '1px solid var(--ifm-color-emphasis-300)',
         borderBottom: 'none',
@@ -142,7 +139,7 @@ function MemoApp() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(memoItems));
     }
   }, [memoItems]);
-  
+
   const createFeedbackTimer = (setter: React.Dispatch<React.SetStateAction<any>>, index?: number) => {
     const applyState = (value: boolean) => {
       if (index !== undefined) {
@@ -225,7 +222,15 @@ function MemoApp() {
 
       {memoItems.map((item, index) => (
         <div key={index} style={{ marginBottom: '1.5rem', position: 'relative' }}>
-          <div style={{ position: 'absolute', top: '8px', right: '8px', zIndex: 1, display: 'flex', gap: '6px' }}>
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            zIndex: 1,
+            padding: '6px',
+            borderBottomLeftRadius: 'var(--ifm-global-radius)',
+            background: 'rgba(0, 0, 0, 0.1)',
+          }}>
             <button type="button" onClick={() => handleCopy(index)} className={`button ${copiedStates[index] ? 'button--success' : 'button--secondary'} button--xs`} style={{ padding: '4px', lineHeight: 1 }} disabled={!item.text.trim()} title={translate({ id: 'page.browser-memo.copyButton.title', message: 'テキストをコピー' })}>
               {copiedStates[index] ? <Check size={16} /> : <ClipboardCopy size={16} />}
             </button>
@@ -253,7 +258,17 @@ function MemoApp() {
               transition: 'background-color 0.2s ease-in-out'
             }} 
             title={translate({ id: 'page.browser-memo.footer.toggle.minimize', message: 'クリックで高さ切替' })}>
-            {item.lastUpdated && `最終更新: ${new Date(item.lastUpdated).toLocaleString(currentLocale, { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}`}
+            {item.lastUpdated &&
+              `${translate({
+                id: 'page.browser-memo.footer.lastUpdated',
+                message: '最終更新: ',
+              })}${new Date(item.lastUpdated).toLocaleString(currentLocale, {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+              })}`}
           </div>
         </div>
       ))}
