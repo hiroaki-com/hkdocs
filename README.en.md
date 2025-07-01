@@ -40,7 +40,6 @@ A personal knowledge base that consolidates a tech blog, work notes, and a diary
 
 ## System Architecture
 
-The flow from development to deployment and user access is as follows.
 
 ```mermaid
 graph LR
@@ -57,6 +56,11 @@ graph LR
     end
 ```
 
+## Project Specification
+
+Detailed system design and development conventions are managed in the following documents.
+
+- 📘 **[System Specification (English)](./spec/SYSTEM_SPECIFICATION.en.md)**
 
 ## Directory Structure
 
@@ -69,6 +73,7 @@ graph LR
 ├── i18n/                 # Internationalization files (e.g., English translations)
 ├── src/                  # Custom React components, pages, and CSS
 ├── static/               # Static assets (e.g., images)
+├── spec/                 # System specification documents
 ├── Dockerfile            # Production Dockerfile for Cloud Run
 ├── Dockerfile.dev        # Development Dockerfile for local environment
 ├── docusaurus.config.ts  # Docusaurus site configuration

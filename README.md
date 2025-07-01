@@ -1,4 +1,4 @@
-# HkDocs
+## HkDocs
 
 [![Build Status](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml/badge.svg)](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml)
 [![Docusaurus](https://img.shields.io/badge/Docusaurus-v3.8.0-blue?logo=docusaurus)](https://docusaurus.io/)
@@ -13,79 +13,83 @@
 
 🔤 [English README](./README.en.md)
 
-## Features
+### 主な機能
 
-### Contents
+#### コンテンツ
 - Tech & Exam Docs: `学びの体系的な整理と、資格試験の記録`
 - Blog & Diary: `技術的な学びを綴るブログと、日々の記録を残す日記`
 - Browser Memo: `ブラウザ完結型の軽量メモツール`
 
-### System
+#### システム
 - Multilingual Support: `Docusaurus i18nによる日本語／英語 対応`
 - CI/CD Automation: `GitHub ActionsによるビルドからCloud Runへの自動デプロイ`
 - Social Integration: `新規記事の情報をX (旧Twitter) へ自動投稿`
 
-## Tech Stack
+### 技術スタック
 
-| Category         | Technology / Service                                                              |
+| カテゴリ         | 技術・サービス                                                                    |
 | ---------------- | --------------------------------------------------------------------------------- |
-| Framework        | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
-| Language         | [TypeScript](https://www.typescriptlang.org/)                                     |
-| UI Library       | [React](https://reactjs.org/) `v19`                                               |
-| Package Manager  | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
-| Containerization | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
-| Hosting          | [Google Cloud Run](https://cloud.google.com/run)                                  |
+| フレームワーク   | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
+| 言語             | [TypeScript](https://www.typescriptlang.org/)                                     |
+| UIライブラリ     | [React](https://reactjs.org/) `v19`                                               |
+| パッケージ管理   | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
+| コンテナ化       | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
+| ホスティング     | [Google Cloud Run](https://cloud.google.com/run)                                  |
 | CI/CD            | [GitHub Actions](https://github.com/features/actions)                             |
-| Search           | [Algolia DocSearch](https://docsearch.algolia.com/)                               |
+| 検索             | [Algolia DocSearch](https://docsearch.algolia.com/)                               |
 
-## System Architecture
-
-開発からデプロイ、ユーザーアクセスのフロー
+### システム構成
 
 ```mermaid
 graph LR
-    subgraph "Developer Actions & CI/CD"
-        Developer([fa:fa-user Developer]) -- "① Code Push" --> GitHub(fa:fa-github GitHub)
-        GitHub -- "② Trigger" --> Actions(fa:fa-cogs Actions)
-        Actions -- "③ Build & Deploy" --> CR(fa:fa-cloud Cloud Run)
-        Actions -.-> |Auto-Post| X(fa:fa-twitter X)
+    subgraph "開発 & CI/CD"
+        Developer([fa:fa-user 開発者]) -- "① Code Push" --> GitHub(fa:fa-github GitHub)
+        GitHub -- "② トリガー" --> Actions(fa:fa-cogs Actions)
+        Actions -- "③ ビルド & デプロイ" --> CR(fa:fa-cloud Cloud Run)
+        Actions -.-> |自動投稿| X(fa:fa-twitter X)
     end
 
-    subgraph "User Actions & Site"
-        Visitor([fa:fa-users Visitor]) -- "④ View Site" --> CR
-        Visitor -- "⑤ Search" <--> Algolia(fa:fa-search Algolia)
+    subgraph "ユーザー & サイト"
+        Visitor([fa:fa-users 訪問者]) -- "④ サイト閲覧" --> CR
+        Visitor -- "⑤ 検索" <--> Algolia(fa:fa-search Algolia)
     end
 ```
 
+### 仕様書
 
-## Directory Structure
+システムの詳細設計や開発規約は、以下のドキュメントで管理しています。
+
+📘 **[システム仕様書](./spec/SYSTEM_SPECIFICATION.md)**
+
+### ディレクトリ構成
 
 ```plaintext
 .
-├── .github/              # GitHub Actions workflows and scripts
-├── blog/                 # Blog posts (Japanese)
-├── docs/                 # Technical documents (Japanese)
-├── diary/                # Diary entries (Japanese)
-├── i18n/                 # Internationalization files (e.g., English translations)
-├── src/                  # Custom React components, pages, and CSS
-├── static/               # Static assets (e.g., images)
-├── Dockerfile            # Production Dockerfile for Cloud Run
-├── Dockerfile.dev        # Development Dockerfile for local environment
-├── docusaurus.config.ts  # Docusaurus site configuration
-├── docker-compose.yml    # Docker Compose configuration for development
-├── package.json          # Project dependencies and scripts
-└── deploy.sh             # Manual deployment script to Google Cloud Run
+├── .github/              # GitHub Actionsのワークフローとスクリプト
+├── blog/                 # ブログ記事 (日本語)
+├── docs/                 # 技術ドキュメント (日本語)
+├── diary/                # 日記 (日本語)
+├── i18n/                 # 国際化対応ファイル (例: 英語翻訳)
+├── src/                  # カスタムReactコンポーネント、ページ、CSS
+├── static/               # 静的アセット (例: 画像)
+├── spec/                 # システム仕様書
+├── Dockerfile            # 本番環境用Dockerfile (Cloud Run)
+├── Dockerfile.dev        # 開発環境用Dockerfile
+├── docusaurus.config.ts  # Docusaurusサイト設定
+├── docker-compose.yml    # 開発用Docker Compose設定
+├── package.json          # プロジェクトの依存関係とスクリプト
+└── deploy.sh             # 手動デプロイスクリプト (Google Cloud Run)
 ```
 
-## Getting Started
+### はじめに
 
-### Prerequisites
+#### 前提条件
 
 - [Git](https://git-scm.com/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (推奨)
 - または、ローカル環境用の [nvm](https://github.com/nvm-sh/nvm) と Node.js `v22.16.0`
 
-### Installation
+#### インストール
 
 1.  リポジトリをクローンします。
     ```bash
@@ -93,11 +97,11 @@ graph LR
     cd hkdocs
     ```
 
-## Development
+### 開発
 
 ローカルでの開発は、Docker Composeを使用する方法を推奨します。
 
-### 1: Using Docker Compose (Recommended)
+#### 1. Docker Composeを使用する (推奨)
 
 1.  **コンテナをビルドして起動**
     初回、または`Dockerfile.dev`に変更があった場合に実行します。
@@ -113,10 +117,10 @@ graph LR
 2.  **多言語(i18n)開発**
     特定の言語で開発サーバーを起動する場合は、以下のコマンドを使用します。
     ```bash
-    # 英語サイトで開発
+    # 英語サイトで開発する場合
     docker-compose run --rm --service-ports app pnpm start --locale en
 
-    # 日本語サイトで開発
+    # 日本語サイトで開発する場合
     docker-compose run --rm --service-ports app pnpm start --locale ja
     ```
 
@@ -126,7 +130,7 @@ graph LR
     docker-compose down
     ```
 
-### 2: Using Local Environment
+#### 2. ローカル環境を使用する
 
 1.  **環境設定**
     ```bash
@@ -150,7 +154,7 @@ graph LR
     ```
     開発サーバーは `http://localhost:3000` で利用可能になります。
 
-## Available Scripts
+### 利用可能なスクリプト
 
 -   **`pnpm build`**:
     全言語の静的ファイルを `build/` ディレクトリに生成します。
@@ -161,13 +165,13 @@ graph LR
 -   **`pnpm clear`**:
     Docusaurusのキャッシュを削除します。
 
-## Deployment
+### デプロイ
 
-### Automated Deployment
+#### 自動デプロイ
 
-`main`ブランチにプッシュすると、`.github/workflows/deploy_hkdocs_to_cloud_run.yml` で定義されたGitHub Actionsワークフローがトリガーされ、ビルドとGoogle Cloud Runへのデプロイが自動的に実行します。
+`main`ブランチにプッシュすると、`.github/workflows/deploy_hkdocs_to_cloud_run.yml` で定義されたGitHub Actionsワークフローがトリガーされ、ビルドとGoogle Cloud Runへのデプロイが自動的に実行されます。
 
-### Manual Deployment
+#### 手動デプロイ
 
 ローカル環境から手動でデプロイする場合は、`gcloud` CLIが設定されていることを確認の上、以下のスクリプトを実行します。
 
@@ -175,7 +179,7 @@ graph LR
 ./deploy.sh
 ```
 
-## License
+### ライセンス
 
--   **Code**: The source code of this project is licensed under the [MIT License](./LICENSE).
--   **Content**: All content within the `blog/`, `diary/`, and `docs/` directories is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
+-   **コード**: このプロジェクトのソースコードは [MITライセンス](./LICENSE) の下で公開されています。
+-   **コンテンツ**: `blog/`, `diary/`, `docs/` ディレクトリ内のすべてのコンテンツは [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) の下で公開されています。
