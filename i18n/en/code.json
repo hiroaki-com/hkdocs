@@ -40,84 +40,64 @@
     "description": "The meta description for the homepage"
   },
   "page.browser-memo.alert.restoreFailed": {
-    "message": "Failed to restore memos. The link may be corrupted.",
-    "description": "Alert message shown when restoring memos from a URL hash fails."
+    "message": "Failed to restore memos. The link may be corrupted."
   },
   "page.browser-memo.alert.urlTooLongConfirm": {
-    "message": "The generated URL is very long due to the large amount of text. Please note that it may not work in some cases.\n\nWe recommend using a URL shortening service when using this URL.",
-    "description": "Confirmation dialog warning the user that the generated shareable URL is very long."
+    "message": "The generated URL is very long due to the large amount of text. Please note that it may not work in some cases.\n\nWe recommend using a URL shortening service when using this URL."
   },
   "page.browser-memo.button.allShared": {
-    "message": "Link Copied",
-    "description": "Feedback text on the 'Share All' button after the link has been copied."
+    "message": "Link Copied"
   },
   "page.browser-memo.button.clearAll": {
-    "message": "Clear All",
-    "description": "Label for the button to clear all memos."
+    "message": "Clear All"
   },
   "page.browser-memo.button.shareAll": {
-    "message": "Share All Memos",
-    "description": "Label for the button to generate and copy a shareable link for all memos."
+    "message": "Share All Memos"
   },
   "page.browser-memo.confirm.clearAll": {
-    "message": "Are you sure you want to clear all memos? This action cannot be undone.",
-    "description": "Confirmation dialog shown when the user clicks the 'Clear All' button."
+    "message": "Are you sure you want to clear all memos? This action cannot be undone."
   },
   "page.browser-memo.confirm.restoreAll": {
-    "message": "Do you want to restore the shared memos? Your current memos will be overwritten.",
-    "description": "Confirmation dialog shown when restoring memos from a shared URL."
+    "message": "Do you want to restore the shared memos? Your current memos will be overwritten."
   },
   "page.browser-memo.copyButton.title": {
-    "message": "Copy text",
-    "description": "Tooltip for the button to copy the content of a single memo."
+    "message": "Copy text"
   },
   "page.browser-memo.description": {
-    "message": "A simple notepad to temporarily save text in your browser.",
-    "description": "The meta description for the Browser Memo page."
+    "message": "A simple notepad to temporarily save text in your browser."
   },
   "page.browser-memo.footer.lastUpdated": {
-    "message": "Last updated: ",
-    "description": "Label for the last updated timestamp in the memo footer."
+    "message": "Last updated: "
   },
   "page.browser-memo.footer.toggle.minimize": {
-    "message": "Click to toggle height",
-    "description": "Tooltip for the footer bar of a memo area, indicating it can be clicked to toggle its height."
+    "message": "Click to toggle height"
   },
   "page.browser-memo.h1": {
-    "message": "Browser Memo",
-    "description": "The main H1 title for the Browser Memo page."
+    "message": "Browser Memo"
   },
   "page.browser-memo.intro1": {
-    "message": "A simple notepad that works entirely in your browser. Your input is automatically saved to this browser.",
-    "description": "The first introductory paragraph on the Browser Memo page."
+    "message": "A simple notepad that works entirely in your browser. Your input is automatically saved to this browser."
   },
   "page.browser-memo.notes.backup": {
-    "message": "This is a lightweight tool. It is strongly recommended that you back up any important data separately.",
-    "description": "A note advising users to back up important data."
+    "message": "This is a lightweight tool. It is strongly recommended that you back up any important data separately."
   },
   "page.browser-memo.notes.storage": {
-    "message": "Your notes are automatically saved when you pause typing or when the text area loses focus.",
-    "description": "A note explaining the auto-save mechanism."
+    "message": "Your notes are automatically saved when you pause typing or when the text area loses focus."
   },
   "page.browser-memo.notes.title": {
-    "message": "Notes on Use",
-    "description": "The title for the section with usage notes."
+    "message": "Notes on Use"
   },
   "page.browser-memo.notes.urlLengthWarning": {
-    "message": "If your notes are very long, the generated shareable URL will also be very long. We recommend using a URL shortening service when sharing.",
-    "description": "A note warning about long URLs and recommending a URL shortener."
+    "message": "If your notes are very long, the generated shareable URL will also be very long. We recommend using a URL shortening service when sharing."
   },
   "page.browser-memo.textarea.ariaLabel": {
-    "message": "Memo {number}",
-    "description": "ARIA label for a memo textarea, with a placeholder for the memo number."
+    "message": "Memo {number}"
   },
   "page.browser-memo.textarea.placeholder": {
-    "message": "Memo {number}",
-    "description": "Placeholder text for a memo textarea, with a placeholder for the memo number."
+    "message": "Memo {number}"
   },
   "page.browser-memo.title": {
-    "message": "Browser Memo",
-    "description": "The title tag for the Browser Memo page."
+    "message": "Browser Memo"
   },
   "theme.admonition.caution": {
     "message": "caution",
