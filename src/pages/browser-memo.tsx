@@ -1,14 +1,16 @@
-import React, { useState, useEffect, useCallback, ReactElement, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Layout from '@theme/Layout';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Translate, { translate } from '@docusaurus/Translate';
-import { Share2, ClipboardCopy, Check, Trash2 } from 'lucide-react';
+import { Share2, ClipboardCopy, Check, Trash2, ChevronUp, ChevronDown } from 'lucide-react';
 import LZString from 'lz-string';
 
 const MEMO_COUNT = 5;
+// A versioned key to prevent conflicts with old data structures in localStorage.
 const STORAGE_KEY = 'hkdocs-browser-memo-v8-data';
-const DEFAULT_TEXTAREA_MIN_HEIGHT = 150;
+// Default height for each memo area (150px * 1.4).
+const DEFAULT_TEXTAREA_MIN_HEIGHT = 210;
 const URL_LENGTH_WARNING_THRESHOLD = 1900;
 const DEBOUNCE_SAVE_DELAY = 500;
 
@@ -20,7 +22,7 @@ interface MemoItem {
 
 type SharedMemo = { i: number; t: string };
 
-const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, placeholder, ariaLabel }) => {
+const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, hasTopBar, onHeightChange, placeholder, ariaLabel, id }) => {
   const [text, setText] = useState(initialText);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -35,15 +37,14 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, placeholder
     const textarea = textareaRef.current;
     if (!textarea) return;
 
-    if (isMinimized) {
-      textarea.style.height = `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`;
-      textarea.style.overflowY = 'auto';
-    } else {
-      textarea.style.height = 'auto';
-      textarea.style.height = `${Math.max(textarea.scrollHeight, DEFAULT_TEXTAREA_MIN_HEIGHT)}px`;
-      textarea.style.overflowY = 'hidden';
-    }
-  }, [text, isMinimized]);
+    const newHeight = isMinimized
+      ? DEFAULT_TEXTAREA_MIN_HEIGHT
+      : Math.max(textarea.scrollHeight, DEFAULT_TEXTAREA_MIN_HEIGHT);
+    textarea.style.height = `${newHeight}px`;
+    onHeightChange(newHeight); // Notify parent of height changes.
+
+    textarea.style.overflowY = isMinimized ? 'auto' : 'hidden';
+  }, [text, isMinimized, onHeightChange]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
@@ -62,6 +63,7 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, placeholder
 
   return (
     <textarea
+      id={id}
       ref={textareaRef}
       value={text}
       onChange={handleChange}
@@ -72,12 +74,12 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, placeholder
       style={{
         width: '100%',
         minHeight: `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`,
-        // MODIFIED: paddingTopを削除し、通常のpaddingに戻す
         padding: '10px',
         fontSize: '16px',
         border: '1px solid var(--ifm-color-emphasis-300)',
+        borderRadius: hasTopBar ? 0 : 'var(--ifm-global-radius) var(--ifm-global-radius) 0 0',
+        borderTop: hasTopBar ? 'none' : '1px solid var(--ifm-color-emphasis-300)',
         borderBottom: 'none',
-        borderRadius: 'var(--ifm-global-radius) var(--ifm-global-radius) 0 0',
         backgroundColor: 'var(--ifm-background-color)',
         color: 'var(--ifm-font-color-base)',
         resize: 'none',
@@ -103,6 +105,7 @@ const loadMemosFromStorage = (): MemoItem[] => {
 function MemoApp() {
   const { i18n: { currentLocale } } = useDocusaurusContext();
   const [memoItems, setMemoItems] = useState<MemoItem[]>([]);
+  const [memoHeights, setMemoHeights] = useState<number[]>(() => Array(MEMO_COUNT).fill(DEFAULT_TEXTAREA_MIN_HEIGHT));
   const [copiedStates, setCopiedStates] = useState<boolean[]>(Array(MEMO_COUNT).fill(false));
   const [isAllShared, setIsAllShared] = useState<boolean>(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -140,6 +143,16 @@ function MemoApp() {
     }
   }, [memoItems]);
 
+  const handleHeightChange = useCallback((index: number, height: number) => {
+    setMemoHeights(prev => {
+      // Avoid unnecessary re-renders for performance.
+      if (prev[index] === height) return prev;
+      const newHeights = [...prev];
+      newHeights[index] = height;
+      return newHeights;
+    });
+  }, []);
+
   const createFeedbackTimer = (setter: React.Dispatch<React.SetStateAction<any>>, index?: number) => {
     const applyState = (value: boolean) => {
       if (index !== undefined) {
@@ -175,6 +188,7 @@ function MemoApp() {
   const handleShareAll = async () => {
     document.activeElement instanceof HTMLElement && document.activeElement.blur();
     
+    // Use a short timeout to ensure the UI updates (e.g., blur) before heavy compression task.
     setTimeout(async () => {
       const memosToShare: SharedMemo[] = memoItems
         .map((item, index) => ({ i: index, t: item.text }))
@@ -199,6 +213,8 @@ function MemoApp() {
   const handleClearAll = () => {
     if (window.confirm(translate({ id: 'page.browser-memo.confirm.clearAll', message: 'すべてのメモをクリアしますか？この操作は元に戻せません。'}))) {
       setMemoItems(createInitialMemoItems());
+      // Also reset the height tracking state.
+      setMemoHeights(Array(MEMO_COUNT).fill(DEFAULT_TEXTAREA_MIN_HEIGHT));
     }
   };
 
@@ -220,58 +236,101 @@ function MemoApp() {
         </button>
       </div>
 
-      {memoItems.map((item, index) => (
-        <div key={index} style={{ marginBottom: '1.5rem', position: 'relative' }}>
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            zIndex: 1,
-            padding: '6px',
-            borderBottomLeftRadius: 'var(--ifm-global-radius)',
-            background: 'rgba(0, 0, 0, 0.1)',
-          }}>
-            <button type="button" onClick={() => handleCopy(index)} className={`button ${copiedStates[index] ? 'button--success' : 'button--secondary'} button--xs`} style={{ padding: '4px', lineHeight: 1 }} disabled={!item.text.trim()} title={translate({ id: 'page.browser-memo.copyButton.title', message: 'テキストをコピー' })}>
-              {copiedStates[index] ? <Check size={16} /> : <ClipboardCopy size={16} />}
-            </button>
+      {memoItems.map((item, index) => {
+        const isExpanded = !item.isManuallyMinimized;
+        const textareaId = `memo-textarea-${index}`;
+        // Show top bar only when expanded AND taller than the default height.
+        const showTopBar = isExpanded && memoHeights[index] > DEFAULT_TEXTAREA_MIN_HEIGHT;
+        
+        const renderToggleBar = (position: 'top' | 'bottom') => {
+          const handleKeyDown = (e: React.KeyboardEvent) => {
+            // Accessibility: Allow toggling with Enter or Space key.
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleToggleMinimize(index);
+            }
+          };
+          const Icon = isExpanded ? ChevronUp : ChevronDown;
+
+          return (
+            <div
+              role="button"
+              tabIndex={0}
+              aria-expanded={isExpanded}
+              aria-controls={textareaId}
+              onClick={() => handleToggleMinimize(index)}
+              onKeyDown={handleKeyDown}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              style={{
+                width: '100%',
+                padding: '8px 10px',
+                border: '1px solid var(--ifm-color-emphasis-300)',
+                borderRadius: position === 'top'
+                  ? 'var(--ifm-global-radius) var(--ifm-global-radius) 0 0'
+                  : '0 0 var(--ifm-global-radius) var(--ifm-global-radius)',
+                borderBottom: position === 'top' ? 'none' : '1px solid var(--ifm-color-emphasis-300)',
+                backgroundColor: hoveredIndex === index ? 'var(--ifm-color-emphasis-200)' : 'var(--ifm-background-secondary)',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                fontSize: '0.85em',
+                color: 'var(--ifm-color-emphasis-800)',
+                boxSizing: 'border-box',
+                userSelect: 'none',
+                transition: 'background-color 0.2s ease-in-out',
+              }}
+              title={translate({ id: 'page.browser-memo.footer.toggle.minimize', message: 'クリックで高さ切替' })}
+            >
+              <Icon size={18} aria-hidden="true" />
+              {item.lastUpdated && (
+                <span>
+                  {translate({ id: 'page.browser-memo.footer.lastUpdated', message: '最終更新: '})}
+                  {new Date(item.lastUpdated).toLocaleString(currentLocale, {
+                    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+                  })}
+                </span>
+              )}
+            </div>
+          );
+        };
+        
+        return (
+          <div key={index} style={{ marginBottom: '1.5rem' }}>
+            {showTopBar && renderToggleBar('top')}
+            
+            <div style={{ position: 'relative' }}>
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                zIndex: 1,
+                padding: '6px',
+                borderTopRightRadius: showTopBar ? 0 : 'var(--ifm-global-radius)',
+                borderBottomLeftRadius: 'var(--ifm-global-radius)',
+                background: 'rgba(0, 0, 0, 0.1)',
+              }}>
+                <button type="button" onClick={() => handleCopy(index)} className={`button ${copiedStates[index] ? 'button--success' : 'button--secondary'} button--xs`} style={{ padding: '4px', lineHeight: 1 }} disabled={!item.text.trim()} title={translate({ id: 'page.browser-memo.copyButton.title', message: 'テキストをコピー' })}>
+                  {copiedStates[index] ? <Check size={16} /> : <ClipboardCopy size={16} />}
+                </button>
+              </div>
+              <MemoTextarea
+                id={textareaId}
+                initialText={item.text}
+                onSave={(value) => handleSave(index, value)}
+                isMinimized={!isExpanded}
+                hasTopBar={showTopBar}
+                onHeightChange={(height) => handleHeightChange(index, height)}
+                ariaLabel={translate({ id: 'page.browser-memo.textarea.ariaLabel', message: 'メモ {number}'}, { number: index + 1})}
+                placeholder={translate({ id: 'page.browser-memo.textarea.placeholder', message: 'メモ {number}' }, { number: index + 1 })}
+              />
+            </div>
+
+            {renderToggleBar('bottom')}
           </div>
-          <MemoTextarea
-            initialText={item.text}
-            onSave={(value) => handleSave(index, value)}
-            isMinimized={item.isManuallyMinimized}
-            ariaLabel={translate({ id: 'page.browser-memo.textarea.ariaLabel', message: 'メモ {number}'}, { number: index + 1})}
-            placeholder={translate({ id: 'page.browser-memo.textarea.placeholder', message: 'メモ {number}' }, { number: index + 1 })}
-          />
-          <div 
-            onClick={() => handleToggleMinimize(index)} 
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            style={{ 
-              width: '100%', padding: '8px 10px', 
-              border: '1px solid var(--ifm-color-emphasis-300)', 
-              borderRadius: '0 0 var(--ifm-global-radius) var(--ifm-global-radius)', 
-              backgroundColor: hoveredIndex === index ? 'var(--ifm-color-emphasis-200)' : 'var(--ifm-background-secondary)', 
-              cursor: 'pointer', display: 'flex', justifyContent: 'flex-end', 
-              alignItems: 'center', fontSize: '0.85em', 
-              color: 'var(--ifm-color-emphasis-800)', 
-              boxSizing: 'border-box', userSelect: 'none',
-              transition: 'background-color 0.2s ease-in-out'
-            }} 
-            title={translate({ id: 'page.browser-memo.footer.toggle.minimize', message: 'クリックで高さ切替' })}>
-            {item.lastUpdated &&
-              `${translate({
-                id: 'page.browser-memo.footer.lastUpdated',
-                message: '最終更新: ',
-              })}${new Date(item.lastUpdated).toLocaleString(currentLocale, {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-              })}`}
-          </div>
-        </div>
-      ))}
+        );
+      })}
 
       <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid var(--ifm-color-emphasis-300)', fontSize: '0.9em', color: 'var(--ifm-color-secondary-darkest)' }}>
         <h3 style={{fontSize: '1.1rem'}}><Translate id="page.browser-memo.notes.title">ご利用上の注意</Translate></h3>
