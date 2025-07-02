@@ -83,7 +83,7 @@ export default function NewsPage(): JSX.Element {
         message: '国内外の情勢や技術トレンドの把握に役立つニュースサイトをまとめています。',
       })}
     >
-      <Head children={''} />
+      <Head />
       <main className={styles.mainContainer}>
         <div className={styles.pageHeader}>
           <h1>
@@ -102,6 +102,8 @@ export default function NewsPage(): JSX.Element {
               </h2>
               {category.sites.map((site, idx) => (
                 <NewsSiteCard
+                  // [重要] この'key'プロパティは、コンポーネントタグに直接記述する必要があります。
+                  // これがReactとTypeScriptの正しい作法であり、エラーを解決します。
                   key={`${category.categoryId}-${idx}`}
                   href={site.href}
                   title={
