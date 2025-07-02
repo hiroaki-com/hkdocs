@@ -89,20 +89,21 @@ export default function NewsPage(): JSX.Element {
                 <Translate id={category.title.id}>{category.title.message}</Translate>
               </h2>
               {category.sites.map((site, idx) => (
-                <NewsSiteCard
-                  key={`${category.categoryId}-${idx}`}
-                  href={site.href}
-                  title={
-                    <Translate id={`news.site.${category.categoryId}.${idx}.title`} description={`Title for ${site.title}`}>
-                      {site.title}
-                    </Translate>
-                  }
-                  description={
-                    <Translate id={`news.site.${category.categoryId}.${idx}.description`} description={`Description for ${site.title}`}>
-                      {site.description}
-                    </Translate>
-                  }
-                />
+                <React.Fragment key={`${category.categoryId}-${idx}`}>
+                  <NewsSiteCard
+                    href={site.href}
+                    title={
+                      <Translate id={`news.site.${category.categoryId}.${idx}.title`} description={`Title for ${site.title}`}>
+                        {site.title}
+                      </Translate>
+                    }
+                    description={
+                      <Translate id={`news.site.${category.categoryId}.${idx}.description`} description={`Description for ${site.title}`}>
+                        {site.description}
+                      </Translate>
+                    }
+                  />
+                </React.Fragment>
               ))}
             </React.Fragment>
           ))}
@@ -111,4 +112,3 @@ export default function NewsPage(): JSX.Element {
     </Layout>
   );
 }
-
