@@ -5,7 +5,7 @@ import NewsSiteCard from '@site/src/components/NewsSiteCard';
 import styles from './news.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 
-// サイト情報とカテゴリデータの型定義は変更なし
+// サイト情報とカテゴリデータの型定義
 type SiteInfo = {
   href: string;
   title: string;
@@ -38,7 +38,7 @@ const newsCategories: CategoryData[] = [
       { href: 'https://www.technologyreview.jp/', title: 'MIT Technology Review Japan', description: 'MIT発、テクノロジー専門誌の日本語版。新技術の動向を解説。' },
       { href: 'https://wired.jp/', title: 'WIRED Japan', description: 'テクノロジーが社会や文化に与える影響を探るメディア。' },
       { href: 'https://scitechdaily.com/', title: 'SciTechDaily', description: '科学技術分野の最新研究やニュースを幅広く紹介するメディア。' },
-      { href: 'https://www.sciencedaily.com/', title: 'ScienceDaily', description: '最新の科学研究のプレスリリースを日々配信するニュース。' },
+      { href: 'https://www.sciencedaily.com/', title: 'ScienceDaily', description: '最新の科学研究のプレスリリースを日々配信するニュースサイト。' },
     ],
   },
   {
@@ -65,33 +65,32 @@ const newsCategories: CategoryData[] = [
     sites: [
       { href: 'https://x.com/', title: 'X (Twitter)', description: '速報性の高い情報や多様な意見が集まるソーシャルプラットフォーム。' },
       { href: 'https://ground.news/', title: 'Ground News', description: 'ニュースの政治的偏向を可視化し、多角的な視点を提供するプラットフォーム。' },
-      { href: 'https://news.ceek.jp/', title: 'CEEK.JP News', description: '国内の主要ニュースを横断検索できるニュース検索エンジン。' },
+      { href: 'https://news.ceek.jp/', title: 'CEEK.JP News', description: '国内の主要ニュースサイトを横断検索できるニュース検索エンジン。' },
       { href: 'https://wikileaks.org/', title: 'WikiLeaks', description: '匿名情報源から得た機密情報を公開する非営利組織。' },
     ],
   },
 ];
 
 export default function NewsPage(): JSX.Element {
-  // レンダリングロジックは変更なし
   return (
     <Layout
       title={translate({
         id: 'news.page.title',
-        message: 'ニュース一覧',
+        message: 'ニュースサイト一覧',
       })}
       description={translate({
         id: 'news.page.description',
-        message: '国内外の情勢や技術トレンドの把握に役立つニュースをまとめています。',
+        message: '国内外の情勢や技術トレンドの把握に役立つニュースサイトをまとめています。',
       })}
     >
       <Head children={''} />
       <main className={styles.mainContainer}>
         <div className={styles.pageHeader}>
           <h1>
-            <Translate id="news.page.heading">ニュース</Translate>
+            <Translate id="news.page.heading">ニュースサイト</Translate>
           </h1>
           <p>
-            <Translate id="news.page.subheading">日々の情報収集に活用しているサイト一覧です。</Translate>
+            <Translate id="news.page.subheading">日々の情報収集に活用できるサイトの一覧です。</Translate>
           </p>
         </div>
 
@@ -103,7 +102,7 @@ export default function NewsPage(): JSX.Element {
               </h2>
               {category.sites.map((site, idx) => (
                 <NewsSiteCard
-                  key={idx}
+                  key={`${category.categoryId}-${idx}`}
                   href={site.href}
                   title={
                     <Translate
