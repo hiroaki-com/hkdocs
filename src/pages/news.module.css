@@ -1,0 +1,51 @@
+.mainContainer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pageHeader h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.pageHeader p {
+  color: var(--ifm-color-secondary-darkest);
+  font-size: 1.1rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* スマホでは1カラム */
+  gap: 1.25rem;
+}
+
+/* カテゴリタイトル */
+.categoryTitle {
+  grid-column: 1 / -1;
+  font-size: 1rem;
+  /* highlight-start */
+  /* 色をプライマリカラーから標準テキストカラーに変更し、太さを少し抑える */
+  color: var(--ifm-font-color-primary);
+  font-weight: 600;
+  /* highlight-end */
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.categoryTitle:not(:first-of-type) {
+  margin-top: 2rem;
+}
+
+/* 画面幅が768px以上の場合 */
+@media (min-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr); /* PCでは2カラム */
+  }
+}

@@ -39,6 +39,162 @@
     "message": "My Tech Blog",
     "description": "The meta description for the homepage"
   },
+  "news.category.audio-podcast": {
+    "message": "Audio & Podcasts",
+    "description": "The category title for audio and podcast content on the news page"
+  },
+  "news.category.general-economy": {
+    "message": "General & Economy",
+    "description": "The category title for general and economic news sites on the news page"
+  },
+  "news.category.life-weather": {
+    "message": "Life & Weather",
+    "description": "The category title for lifestyle and weather news sites on the news page"
+  },
+  "news.category.platform-others": {
+    "message": "Platforms & Others",
+    "description": "The category title for platforms and other news sources on the news page"
+  },
+  "news.category.tech-science": {
+    "message": "Technology & Science",
+    "description": "The category title for technology and science news sites on the news page"
+  },
+  "news.page.description": {
+    "message": "A curated list of news sites to keep up with global affairs and technology trends.",
+    "description": "The meta description for the News Sites page, used for SEO"
+  },
+  "news.page.heading": {
+    "message": "News Sites",
+    "description": "The main H1 heading on the News Sites page"
+  },
+  "news.page.subheading": {
+    "message": "A collection of useful sites for your daily information gathering.",
+    "description": "The subheading/paragraph text directly under the main heading on the News Sites page"
+  },
+  "news.page.title": {
+    "message": "News Sites",
+    "description": "The title for the News Sites page, used in the browser tab and search results"
+  },
+  "news.site.audio-podcast.0.description": {
+    "message": "Audio content such as news and documentaries provided by CNN."
+  },
+  "news.site.audio-podcast.0.title": {
+    "message": "CNN Audio"
+  },
+  "news.site.audio-podcast.1.description": {
+    "message": "The weekend news and information program from the U.S. public radio, NPR."
+  },
+  "news.site.audio-podcast.1.title": {
+    "message": "NPR Weekend Edition"
+  },
+  "news.site.audio-podcast.2.description": {
+    "message": "The BBC's international news radio service for a global audience."
+  },
+  "news.site.audio-podcast.2.title": {
+    "message": "BBC World Service"
+  },
+  "news.site.audio-podcast.3.description": {
+    "message": "In-depth analysis podcasts on politics and economics from The Economist magazine."
+  },
+  "news.site.audio-podcast.3.title": {
+    "message": "The Economist Podcasts"
+  },
+  "news.site.general-economy.0.description": {
+    "message": "A global news agency covering international news, business, finance, and technology."
+  },
+  "news.site.general-economy.0.title": {
+    "message": "Reuters"
+  },
+  "news.site.general-economy.1.description": {
+    "message": "The Japanese edition of Bloomberg, focusing on financial and economic information."
+  },
+  "news.site.general-economy.1.title": {
+    "message": "Bloomberg Japan"
+  },
+  "news.site.general-economy.2.description": {
+    "message": "The international edition of the U.S.-based daily newspaper specializing in economics and finance."
+  },
+  "news.site.general-economy.2.title": {
+    "message": "The Wall Street Journal"
+  },
+  "news.site.general-economy.3.description": {
+    "message": "A comprehensive economic newspaper covering politics, international affairs, and markets, focusing on the Japanese economy."
+  },
+  "news.site.general-economy.3.title": {
+    "message": "The Nikkei"
+  },
+  "news.site.general-economy.4.description": {
+    "message": "Provides economic and technology news for the millennial generation."
+  },
+  "news.site.general-economy.4.title": {
+    "message": "Business Insider Japan"
+  },
+  "news.site.general-economy.5.description": {
+    "message": "A comprehensive source for news delivered by Kyodo News and local newspapers across Japan."
+  },
+  "news.site.general-economy.5.title": {
+    "message": "47NEWS"
+  },
+  "news.site.life-weather.0.description": {
+    "message": "The official weather forecast media of the Japan Weather Association, also featuring disaster prevention information."
+  },
+  "news.site.life-weather.0.title": {
+    "message": "tenki.jp"
+  },
+  "news.site.life-weather.1.description": {
+    "message": "A global weather media providing detailed weather forecasts from around the world."
+  },
+  "news.site.life-weather.1.title": {
+    "message": "AccuWeather"
+  },
+  "news.site.platform-others.0.description": {
+    "message": "A social platform where up-to-the-minute information and diverse opinions gather."
+  },
+  "news.site.platform-others.0.title": {
+    "message": "X (Twitter)"
+  },
+  "news.site.platform-others.1.description": {
+    "message": "A platform that visualizes the political bias of news and provides multiple perspectives."
+  },
+  "news.site.platform-others.1.title": {
+    "message": "Ground News"
+  },
+  "news.site.platform-others.2.description": {
+    "message": "A news search engine that allows cross-searching of major domestic news sites."
+  },
+  "news.site.platform-others.2.title": {
+    "message": "CEEK.JP News"
+  },
+  "news.site.platform-others.3.description": {
+    "message": "A non-profit organization that publishes classified information obtained from anonymous sources."
+  },
+  "news.site.platform-others.3.title": {
+    "message": "WikiLeaks"
+  },
+  "news.site.tech-science.0.description": {
+    "message": "The Japanese edition of the technology magazine from MIT, explaining trends in new technologies."
+  },
+  "news.site.tech-science.0.title": {
+    "message": "MIT Technology Review Japan"
+  },
+  "news.site.tech-science.1.description": {
+    "message": "A media outlet exploring the impact of technology on society and culture."
+  },
+  "news.site.tech-science.1.title": {
+    "message": "WIRED Japan"
+  },
+  "news.site.tech-science.2.description": {
+    "message": "A media outlet that broadly covers the latest research and news in science and technology."
+  },
+  "news.site.tech-science.2.title": {
+    "message": "SciTechDaily"
+  },
+  "news.site.tech-science.3.description": {
+    "message": "A news website that delivers daily press releases on the latest scientific research."
+  },
+  "news.site.tech-science.3.title": {
+    "message": "ScienceDaily"
+  },
   "page.browser-memo.alert.restoreFailed": {
     "message": "Failed to restore memos. The link may be corrupted."
   },
