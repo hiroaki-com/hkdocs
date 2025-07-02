@@ -42,5 +42,9 @@
   "copyright": {
     "message": "Copyright © 2025 hkdocs. All Rights Reserved.<br>The code is licensed under MIT, and the content is licensed under <a href=\"http://creativecommons.org/licenses/by-sa/4.0/\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-SA 4.0</a>.",
     "description": "The footer copyright"
+  },
+  "link.item.label.ニュース": {
+    "message": "News",
+    "description": "The label of footer link with label=ニュース linking to /news"
   }
 }
