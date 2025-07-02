@@ -34,5 +34,9 @@
   "item.label.𝕏": {
     "message": "𝕏",
     "description": "Navbar item with label 𝕏"
+  },
+  "item.label.ニュース": {
+    "message": "News",
+    "description": "Navbar item with label ニュース"
   }
 }
