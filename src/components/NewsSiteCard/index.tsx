@@ -12,6 +12,7 @@ type Props = {
   href: string;
   title: React.ReactNode;
   description: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export default function NewsSiteCard({ href, title, description }: Props): JSX.Element {
