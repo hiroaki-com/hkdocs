@@ -12,6 +12,7 @@ import {
   Clock,
   UserCircle,
   NotebookPen,
+  Newspaper, // 1. アイコンをインポート
   type LucideProps,
 } from 'lucide-react';
 
@@ -23,6 +24,7 @@ const IconClock: SvgIconType = Clock;
 const IconGraduationCap: SvgIconType = GraduationCap;
 const IconUser: SvgIconType = UserCircle;
 const IconBrowserMemo: SvgIconType = NotebookPen;
+const IconNews: SvgIconType = Newspaper; // 2. News用のアイコンを定義
 
 type FeatureCardProps = {
   title: string;
@@ -116,6 +118,19 @@ export default function HomepageFeatures(): JSX.Element {
               </Translate>
             }
             link="/browser-memo"
+          />
+          <FeatureCard
+            title={translate({
+              id: 'homepage.features.news.title',
+              message: 'ニュース',
+            })}
+            Icon={IconNews}
+            description={
+              <Translate id="homepage.features.news.description">
+                日々の情報収集に役立つサイト一覧。
+              </Translate>
+            }
+            link="/news"
           />
           <FeatureCard
             title={translate({

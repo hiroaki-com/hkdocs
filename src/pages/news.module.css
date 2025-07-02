@@ -1,51 +1,85 @@
+/* メインコンテンツ全体のコンテナ */
 .mainContainer {
-  max-width: 960px;
+  max-width: var(--ifm-container-width);
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem var(--ifm-spacing-horizontal);
 }
 
+/* ページ最上部のヘッダー */
 .pageHeader {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .pageHeader h1 {
-  font-size: 2.25rem;
+  /* サイズを少し小さく */
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  font-weight: 700;
 }
 
 .pageHeader p {
-  color: var(--ifm-color-secondary-darkest);
+  /* サイズを少し小さく */
   font-size: 1.1rem;
+  color: var(--ifm-color-secondary-darkest);
 }
 
+/* 大カテゴリのセクション（例：日本, 海外） */
+.majorCategorySection {
+  margin-bottom: 3.5rem;
+}
+
+/* 大カテゴリのタイトル (h2) */
+.majorCategoryTitle {
+  /* サイズを少し小さく */
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ifm-color-primary-light);
+  font-weight: 600;
+}
+
+/* 小カテゴリのセクション（例：総合・経済, テクノロジー・科学） */
+.subCategorySection {
+  margin-bottom: 3rem;
+}
+
+/* 小カテゴリのタイトル (h3) */
+.categoryTitle {
+  /* サイズを少し小さく、シンプルに */
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-emphasis-800);
+  position: relative;
+  padding-left: 1rem;
+  font-weight: 600;
+}
+
+/* タイトルの左側にアクセントとなる縦線を追加 */
+.categoryTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background-color: var(--ifm-color-primary);
+  border-radius: 2px;
+}
+
+/* ニュースサイトカードを並べるグリッドコンテナ */
 .cardGrid {
   display: grid;
-  grid-template-columns: 1fr; /* スマホでは1カラム */
   gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 }
 
-/* カテゴリタイトル */
-.categoryTitle {
-  grid-column: 1 / -1;
-  font-size: 1rem;
-  /* highlight-start */
-  /* 色をプライマリカラーから標準テキストカラーに変更し、太さを少し抑える */
-  color: var(--ifm-font-color-primary);
-  font-weight: 600;
-  /* highlight-end */
-  margin: 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+/* ダークモード用の調整 */
+[data-theme='dark'] .majorCategoryTitle {
+  border-bottom-color: var(--ifm-color-primary-dark);
 }
 
-.categoryTitle:not(:first-of-type) {
-  margin-top: 2rem;
-}
-
-/* 画面幅が768px以上の場合 */
-@media (min-width: 768px) {
-  .cardGrid {
-    grid-template-columns: repeat(2, 1fr); /* PCでは2カラム */
-  }
+[data-theme='dark'] .categoryTitle {
+  color: var(--ifm-color-emphasis-700);
 }
