@@ -5,7 +5,6 @@ import NewsSiteCard from '@site/src/components/NewsSiteCard';
 import styles from './news.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 
-// サイト情報とカテゴリデータの型定義
 type SiteInfo = {
   href: string;
   title: string;
@@ -17,7 +16,6 @@ type CategoryData = {
   sites: SiteInfo[];
 };
 
-// サイトの追加とカテゴリの再編成を行った最終的なデータ構造
 const newsCategories: CategoryData[] = [
   {
     categoryId: 'general-economy',
@@ -74,24 +72,14 @@ const newsCategories: CategoryData[] = [
 export default function NewsPage(): JSX.Element {
   return (
     <Layout
-      title={translate({
-        id: 'news.page.title',
-        message: 'ニュースサイト一覧',
-      })}
-      description={translate({
-        id: 'news.page.description',
-        message: '国内外の情勢や技術トレンドの把握に役立つニュースサイトをまとめています。',
-      })}
+      title={translate({ id: 'news.page.title', message: 'ニュースサイト一覧' })}
+      description={translate({ id: 'news.page.description', message: '国内外の情勢や技術トレンドの把握に役立つニュースサイトをまとめています。'})}
     >
-      <Head />
+      <Head children={''}></Head>
       <main className={styles.mainContainer}>
         <div className={styles.pageHeader}>
-          <h1>
-            <Translate id="news.page.heading">ニュースサイト</Translate>
-          </h1>
-          <p>
-            <Translate id="news.page.subheading">日々の情報収集に活用できるサイトの一覧です。</Translate>
-          </p>
+          <h1><Translate id="news.page.heading">ニュースサイト</Translate></h1>
+          <p><Translate id="news.page.subheading">日々の情報収集に活用できるサイトの一覧です。</Translate></p>
         </div>
 
         <div className={styles.cardGrid}>
@@ -102,23 +90,15 @@ export default function NewsPage(): JSX.Element {
               </h2>
               {category.sites.map((site, idx) => (
                 <NewsSiteCard
-                  // [重要] この'key'プロパティは、コンポーネントタグに直接記述する必要があります。
-                  // これがReactとTypeScriptの正しい作法であり、エラーを解決します。
                   key={`${category.categoryId}-${idx}`}
                   href={site.href}
                   title={
-                    <Translate
-                      id={`news.site.${category.categoryId}.${idx}.title`}
-                      description={`Title for ${site.title}`}
-                    >
+                    <Translate id={`news.site.${category.categoryId}.${idx}.title`} description={`Title for ${site.title}`}>
                       {site.title}
                     </Translate>
                   }
                   description={
-                    <Translate
-                      id={`news.site.${category.categoryId}.${idx}.description`}
-                      description={`Description for ${site.title}`}
-                    >
+                    <Translate id={`news.site.${category.categoryId}.${idx}.description`} description={`Description for ${site.title}`}>
                       {site.description}
                     </Translate>
                   }
@@ -131,3 +111,4 @@ export default function NewsPage(): JSX.Element {
     </Layout>
   );
 }
+
