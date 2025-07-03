@@ -110,7 +110,7 @@
   }
   
   .description {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     min-height: calc(0.7rem * 1.5 * 3);
   }
 }
