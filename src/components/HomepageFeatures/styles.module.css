@@ -1,5 +1,6 @@
 .featuresSection {
-  padding: 4rem 0 5rem;
+  /* 左右に標準的なパディングを追加して、スマホでの余白問題を解決 */
+  padding: 2rem var(--ifm-spacing-horizontal) 5rem;
 }
 
 /* --- レイアウトの最適化 --- */
@@ -10,13 +11,6 @@
   gap: 1.5rem;
 }
 
-/* 中画面・小画面 (996px以下) では2カラムに */
-@media (max-width: 996px) {
-  .featureGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* --- カードデザインの更新 --- */
 .featureCardLink {
   display: flex;
@@ -25,13 +19,19 @@
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  border: none;
-  background-color: var(--ifm-hover-overlay);
-  transition: background-color 0.2s ease;
+  
+  /* 通常時は背景を透明に */
+  background-color: transparent;
+  /* 枠線を2pxに太くし、通常時は透明に */
+  border: 2px solid transparent;
+
+  /* アニメーション対象を枠線の色に */
+  transition: border-color 0.2s ease;
 }
 
 .featureCardLink:hover {
-  background-color: var(--ifm-color-emphasis-100);
+  /* ホバー時にテーマカラーの枠線が出現 */
+  border-color: var(--ifm-color-primary);
 }
 
 
@@ -42,7 +42,6 @@
   margin-bottom: 1rem;
 }
 
-/* --- アイコン配色の最適化 (ライトモード) --- */
 .cardIconWrapper {
   display: grid;
   place-items: center;
@@ -58,7 +57,6 @@
   width: 22px;
   height: 22px;
   color: var(--ifm-color-primary-dark);
-  /* アイコンのアニメーション設定を追加 */
   transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.7, 1), color 0.3s ease;
 }
 
@@ -78,18 +76,12 @@
 
 /* --- ホバー時のアイコンアニメーション --- */
 .featureCardLink:hover .cardIcon {
-  /* アイコンを大きく回転させる（少し弾むような動き） */
   transform: rotate(-25deg);
-  /* ライトモードではアイコンの色をテーマカラーに */
   color: var(--ifm-color-primary);
 }
 
 
 /* --- ダークモードの調整 --- */
-[data-theme='dark'] .featureCardLink:hover {
-  background-color: var(--ifm-color-emphasis-200);
-}
-
 [data-theme='dark'] .cardIconWrapper {
   background-color: hsla(210, 100%, 75%, 0.1);
 }
@@ -98,7 +90,22 @@
   color: var(--ifm-color-primary-light);
 }
 
-/* ダークモードでのホバー時アイコン色 */
 [data-theme='dark'] .featureCardLink:hover .cardIcon {
   color: var(--ifm-color-primary-lightest);
+}
+
+
+/* --- レスポンシブ対応 (中画面・小画面) --- */
+@media (max-width: 996px) {
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- スマホ時の文字サイズ調整 --- */
+  .featureTitle {
+    font-size: 1.05rem;
+  }
+  .featureDescription {
+    font-size: 0.9rem;
+  }
 }
