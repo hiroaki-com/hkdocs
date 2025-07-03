@@ -5,37 +5,17 @@
   padding: 2rem var(--ifm-spacing-horizontal);
 }
 
-/* ページ最上部のヘッダー */
-.pageHeader {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.pageHeader h1 {
-  /* サイズを少し小さく */
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.pageHeader p {
-  /* サイズを少し小さく */
-  font-size: 1.1rem;
-  color: var(--ifm-color-secondary-darkest);
-}
-
 /* 大カテゴリのセクション（例：日本, 海外） */
 .majorCategorySection {
-  margin-bottom: 3.5rem;
+  margin-bottom: 3.0rem;
 }
 
 /* 大カテゴリのタイトル (h2) */
 .majorCategoryTitle {
-  /* サイズを少し小さく */
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   margin-bottom: 2rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--ifm-color-primary-light);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
   font-weight: 600;
 }
 
@@ -46,9 +26,8 @@
 
 /* 小カテゴリのタイトル (h3) */
 .categoryTitle {
-  /* サイズを少し小さく、シンプルに */
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.10rem;
+  margin-bottom: 1.3rem;
   color: var(--ifm-color-emphasis-800);
   position: relative;
   padding-left: 1rem;
@@ -62,24 +41,60 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 4px;
-  height: 70%;
-  background-color: var(--ifm-color-primary);
+  width: 3px; /* 少し細くして、よりシャープな印象に */
+  height: 70%; /* 高さを少し抑えて、より控えめなアクセントに */
+  /* ライト/ダーク両モードに対応した、落ち着いた色に変更 */
+  background-color: var(--ifm-color-emphasis-400);
   border-radius: 2px;
 }
 
-/* ニュースサイトカードを並べるグリッドコンテナ */
+/* --- グリッドレイアウトの再定義 --- */
 .cardGrid {
   display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  /* デフォルト（最大画面）は4カラム */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem 1rem; /* 縦のgap, 横のgap */
 }
 
 /* ダークモード用の調整 */
 [data-theme='dark'] .majorCategoryTitle {
-  border-bottom-color: var(--ifm-color-primary-dark);
+  border-bottom-color: var(--ifm-color-emphasis-300);
 }
 
 [data-theme='dark'] .categoryTitle {
   color: var(--ifm-color-emphasis-700);
+}
+
+[data-theme='dark'] .pageHeader p {
+  color: var(--ifm-font-color-secondary);
+}
+
+
+/* --- 段階的なレスポンシブ対応 --- */
+
+/* 中画面 (996px以下) では3カラムに */
+@media (max-width: 996px) {
+  .cardGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 小画面 (767px以下) では2カラムに */
+@media (max-width: 767px) {
+  .pageHeader h1 {
+    font-size: 1.9rem;
+  }
+  .pageHeader p {
+    font-size: 1rem;
+  }
+  .majorCategoryTitle {
+    font-size: 1.4rem;
+  }
+  .categoryTitle {
+    font-size: 1.05rem;
+  }
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem; /* 2カラムなのでgapを少し詰める */
+  }
 }
