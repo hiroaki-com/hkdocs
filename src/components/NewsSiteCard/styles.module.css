@@ -4,47 +4,46 @@
   color: inherit;
   text-decoration: none;
   height: 100%;
+  border-radius: var(--ifm-card-border-radius); /* ホバー時の背景色が角丸になるように */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* リンクにホバーした際に背景色を変更 */
+.cardLink:hover {
+  background-color: var(--ifm-hover-overlay);
 }
 
 /* カード本体 */
 .card {
   display: flex;
+  /* テキストが複数行になるため、上揃えの方が視覚的に安定 */
   align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.75rem; /* アイコンとテキストのgapを詰める */
+  padding: 0.75rem; /* カード内の余白を詰める */
   height: 100%;
-  background-color: var(--ifm-card-background-color);
-  border-radius: var(--ifm-card-border-radius);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  box-shadow: var(--ifm-global-shadow-sm);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-
-/* カードにマウスオーバーした時の効果 */
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--ifm-global-shadow-md);
-  border-color: var(--ifm-color-primary);
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
 }
 
 /* ファビコンを囲むコンテナ */
 .imageContainer {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 28px; /* アイコンサイズを小型化 */
+  height: 28px;
+  margin-top: 2px; /* 上揃えにしたため、タイトルの高さと視覚的にバランスを取る */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
-  /* ライト/ダーク両モードでアイコンの視認性を確保 */
   background-color: var(--ifm-color-emphasis-200);
 }
 
 /* デフォルトアイコン(SVG)のスタイル */
 .imageContainer svg {
-  width: 24px;
-  height: 24px;
+  width: 18px; /* SVGアイコンも連動して小型化 */
+  height: 18px;
   color: var(--ifm-color-emphasis-600);
 }
 
@@ -64,36 +63,54 @@
 
 /* カードのタイトル (h3) */
 .title {
-  font-size: 1rem;
+  font-size: 0.85rem; /* タイトル文字を小型化 */
   font-weight: 600;
-  margin: 0 0 0.4rem 0;
+  margin: 0 0 0.25rem 0;
   color: var(--ifm-font-color-base);
   word-break: break-word;
 }
 
 /* カードの説明文 (p) */
 .description {
-  font-size: 0.875rem;
-  color: var(--ifm-color-secondary-darkest);
+  font-size: 0.75rem; /* 説明文の文字を小型化 */
+  color: var(--ifm-font-color-secondary);
   margin: 0;
   line-height: 1.5;
-  min-height: calc(0.875rem * 1.5 * 2); /* 2行分の高さを確保 */
+  /* 3行分の高さを常に確保し、グリッドレイアウトの崩れを防ぐ */
+  min-height: calc(0.75rem * 1.5 * 3);
 
-  /* テキストを最大2行で省略表示するための設定 */
+  /* テキストを最大3行で省略表示 */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* [修正点] ベンダープレフィックス付きと標準プロパティを併記 */
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
-/* ダークモード用の調整 */
-[data-theme='dark'] .card {
-  border-color: var(--ifm-color-emphasis-200);
-}
+/* スマホ用のスタイル */
+@media (max-width: 768px) {
+  .card {
+    gap: 0.5rem; /* スマホではgapをさらに詰める */
+    padding: 0.6rem;
+  }
 
-[data-theme='dark'] .card:hover {
-  border-color: var(--ifm-color-primary);
+  .imageContainer {
+    width: 24px;
+    height: 24px;
+  }
+
+  .imageContainer svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+  
+  .description {
+    font-size: 0.7rem;
+    min-height: calc(0.7rem * 1.5 * 3);
+  }
 }
