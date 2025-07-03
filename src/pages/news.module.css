@@ -8,13 +8,13 @@
 
 /* 大カテゴリのセクション（例：日本, 海外） */
 .majorCategorySection {
-  margin-bottom: 3.0rem;
+  margin-bottom: 1.5rem;
 }
 
 /* 大カテゴリのタイトル (h2) */
 .majorCategoryTitle {
   font-size: 1.3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
   font-weight: 600;
@@ -22,13 +22,13 @@
 
 /* 小カテゴリのセクション（例：総合・経済, テクノロジー・科学） */
 .subCategorySection {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 /* 小カテゴリのタイトル (h3) */
 .categoryTitle {
   font-size: 1.10rem;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1.1rem;
   color: var(--ifm-color-emphasis-800);
   position: relative;
   padding-left: 1rem;
@@ -89,10 +89,10 @@
     font-size: 1rem;
   }
   .majorCategoryTitle {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   .categoryTitle {
-    font-size: 1.05rem;
+    font-size: 1.00rem;
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
