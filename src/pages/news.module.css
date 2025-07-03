@@ -1,8 +1,9 @@
 /* メインコンテンツ全体のコンテナ */
 .mainContainer {
-  max-width: var(--ifm-container-width);
+  /* Docusaurusの標準幅より少し狭く設定し、左右の余白を広げる */
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 2rem var(--ifm-spacing-horizontal);
+  padding: 3rem var(--ifm-spacing-horizontal);
 }
 
 /* 大カテゴリのセクション（例：日本, 海外） */
