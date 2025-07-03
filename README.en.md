@@ -19,6 +19,7 @@ A personal knowledge base that consolidates a tech blog, work notes, and a diary
 - **Tech & Exam Docs**: `Systematic organization of learnings and records of certification exams.`
 - **Blog & Diary**: `A blog for technical learnings and a diary for daily records.`
 - **Browser Memo**: `A lightweight, browser-only memo tool.`
+- **News Links**: `A collection of news site links for daily information gathering.`
 
 ### System
 - **Multilingual Support**: `Japanese/English support via Docusaurus i18n.`
@@ -43,14 +44,14 @@ A personal knowledge base that consolidates a tech blog, work notes, and a diary
 
 ```mermaid
 graph LR
-    subgraph "Developer Actions & CI/CD"
+    subgraph "Development & CI/CD"
         Developer([fa:fa-user Developer]) -- "① Code Push" --> GitHub(fa:fa-github GitHub)
         GitHub -- "② Trigger" --> Actions(fa:fa-cogs Actions)
         Actions -- "③ Build & Deploy" --> CR(fa:fa-cloud Cloud Run)
         Actions -.-> |Auto-Post| X(fa:fa-twitter X)
     end
 
-    subgraph "User Actions & Site"
+    subgraph "Users & Site"
         Visitor([fa:fa-users Visitor]) -- "④ View Site" --> CR
         Visitor -- "⑤ Search" <--> Algolia(fa:fa-search Algolia)
     end
@@ -58,24 +59,32 @@ graph LR
 
 ## Project Specification
 
-Detailed system design and development conventions are managed in the following documents.
+Detailed system design and development conventions are managed in the following document.
 
-- 📘 **[System Specification (English)](./spec/SYSTEM_SPECIFICATION.en.md)**
+- 📘 **[System Specification](./spec/SYSTEM_SPECIFICATION.en.md)**
 
 ## Directory Structure
 
 ```plaintext
 .
 ├── .github/              # GitHub Actions workflows and scripts
-├── blog/                 # Blog posts (Source/Japanese)
-├── docs/                 # Technical documents (Source/Japanese)
-├── diary/                # Diary entries (Source/Japanese)
-├── i18n/                 # Internationalization files (e.g., English translations)
-├── src/                  # Custom React components, pages, and CSS
+│   ├── scripts/
+│   └── workflows/
+├── blog/                 # Blog posts (Source)
+├── docs/                 # Technical documents (Source)
+│   ├── exams/
+│   └── tech/
+├── diary/                # Diary entries (Source)
+├── i18n/                 # Internationalization files (e.g., for English)
+│   └── en/
+├── src/                  # Source code directory
+│   ├── components/       # Custom React components
+│   ├── pages/            # Custom pages (e.g., News, Profile)
+│   └── css/              # Custom CSS
 ├── static/               # Static assets (e.g., images)
-├── spec/                 # System specification documents
-├── Dockerfile            # Production Dockerfile for Cloud Run
-├── Dockerfile.dev        # Development Dockerfile for local environment
+├── spec/                 # System specifications
+├── Dockerfile            # Dockerfile for production (Cloud Run)
+├── Dockerfile.dev        # Dockerfile for development
 ├── docusaurus.config.ts  # Docusaurus site configuration
 ├── docker-compose.yml    # Docker Compose configuration for development
 ├── package.json          # Project dependencies and scripts
