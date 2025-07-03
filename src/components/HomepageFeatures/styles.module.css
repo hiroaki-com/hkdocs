@@ -2,12 +2,22 @@
   padding: 4rem 0 5rem;
 }
 
+/* --- レイアウトの最適化 --- */
 .featureGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* デフォルト (997px以上) は3カラム */
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
+/* 中画面・小画面 (996px以下) では2カラムに */
+@media (max-width: 996px) {
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- カードデザインの更新 --- */
 .featureCardLink {
   display: flex;
   flex-direction: column;
@@ -15,19 +25,15 @@
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-
-  /* 枠線と影をなくし、シンプルな背景に */
   border: none;
-  background-color: var(--ifm-background-surface-color);
-
-  /* ホバー時の背景色変化のみをアニメーション対象に */
+  background-color: var(--ifm-hover-overlay);
   transition: background-color 0.2s ease;
 }
 
 .featureCardLink:hover {
-  /* ホバーエフェクトを背景色の変更のみに統一 */
-  background-color: var(--ifm-hover-overlay);
+  background-color: var(--ifm-color-emphasis-100);
 }
+
 
 /* --- カード内コンテンツ --- */
 .cardHeader {
@@ -36,27 +42,28 @@
   margin-bottom: 1rem;
 }
 
+/* --- アイコン配色の最適化 (ライトモード) --- */
 .cardIconWrapper {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: 40px; /* サイズを微調整 */
+  width: 40px;
   height: 40px;
   margin-right: 1rem;
   border-radius: 8px;
-
-  /* 背景グラデーションをやめ、シンプルな色に */
-  background-color: var(--ifm-color-emphasis-200);
-  color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary-lightest);
 }
 
 .cardIcon {
-  width: 22px; /* サイズを微調整 */
+  width: 22px;
   height: 22px;
+  color: var(--ifm-color-primary-dark);
+  /* アイコンのアニメーション設定を追加 */
+  transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.7, 1), color 0.3s ease;
 }
 
 .featureTitle {
-  font-size: 1.15rem; /* サイズを微調整 */
+  font-size: 1.15rem;
   font-weight: 600;
   margin: 0;
   line-height: 1.3;
@@ -69,7 +76,29 @@
   flex-grow: 1; /* カードの高さを揃える */
 }
 
-/* --- ダークモード --- */
-[data-theme='dark'] .cardIconWrapper {
+/* --- ホバー時のアイコンアニメーション --- */
+.featureCardLink:hover .cardIcon {
+  /* アイコンを大きく回転させる（少し弾むような動き） */
+  transform: rotate(-25deg);
+  /* ライトモードではアイコンの色をテーマカラーに */
+  color: var(--ifm-color-primary);
+}
+
+
+/* --- ダークモードの調整 --- */
+[data-theme='dark'] .featureCardLink:hover {
   background-color: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .cardIconWrapper {
+  background-color: hsla(210, 100%, 75%, 0.1);
+}
+
+[data-theme='dark'] .cardIcon {
+  color: var(--ifm-color-primary-light);
+}
+
+/* ダークモードでのホバー時アイコン色 */
+[data-theme='dark'] .featureCardLink:hover .cardIcon {
+  color: var(--ifm-color-primary-lightest);
 }
