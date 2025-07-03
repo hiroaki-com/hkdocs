@@ -1,8 +1,17 @@
 /**
  * Docusaurus
  * Global Custom CSS
+ *
+ * Table of Contents:
+ * 1. Theme Variables (:root, [data-theme='dark'])
+ * 2. Global Styles
+ * 3. Component Overrides
+ * 4. Navbar Icon Links
  */
 
+/*
+ * 1. Theme Variables
+ * -------------------------------------------------------------------------- */
 :root {
   /* --- Colors: Light Mode --- */
   --ifm-color-primary: #1e88e5;
@@ -19,7 +28,7 @@
   --ifm-heading-color: #1c2024;
   --ifm-link-color: var(--ifm-color-primary);
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
-  
+
   /* --- Sizing --- */
   --ifm-heading-font-size-1: 1.7rem;
   --ifm-heading-font-size-2-rsdE: 1.5rem;
@@ -69,9 +78,8 @@
 }
 
 /*
- * Global Styles
- */
-
+ * 2. Global Styles
+ * -------------------------------------------------------------------------- */
 html:root {
   background-color: var(--ifm-background-color);
   background-image:
@@ -89,19 +97,34 @@ html[data-theme='dark'] {
 }
 
 /*
- * Component Overrides
- */
+ * 3. Component Overrides
+ * -------------------------------------------------------------------------- */
 
-/* Navbar */
-/* .navbar {
-  border-bottom: 1px solid var(--ifm-navbar-border-color);
-} */
+/* --- Navbar --- */
+/* ロゴ画像のサイズと位置を調整 */
+.navbar__logo img {
+  height: 1.7rem; /* Default is 2rem. 少し小さくしてバランスを調整 */
+  /* 垂直位置のズレを視覚的に補正 */
+  transform: translateY(2px);
+}
 
+/* ナビゲーションリンクのフォントサイズ */
+.navbar__link {
+  font-size: 0.9rem;
+}
+
+
+/* --- Other Components --- */
 /* Headings */
-h1 { font-size: var(--ifm-heading-font-size-1); }
-h2.title_rsdE { font-size: var(--ifm-heading-font-size-2-rsdE); } 
-h2.title_dz1C { font-size: var(--ifm-heading-font-size-2-rsdE); } /* the same as --ifm-heading-font-size-2-rsdE. */
-
+h1 {
+  font-size: var(--ifm-heading-font-size-1);
+}
+h2.title_rsdE {
+  font-size: var(--ifm-heading-font-size-2-rsdE);
+}
+h2.title_dz1C {
+  font-size: var(--ifm-heading-font-size-2-rsdE);
+}
 
 /* Hero Banner */
 .hero--primary .hero__title,
@@ -110,38 +133,33 @@ h2.title_dz1C { font-size: var(--ifm-heading-font-size-2-rsdE); } /* the same as
 }
 
 /* DocCard Title */
-a[class*="cardContainer_"] h2[class*="cardTitle_"] {
+a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   font-size: var(--doc-card-title-font-size);
 }
 
-/* --- Announcement Bar Customization --- */
+/* Announcement Bar */
 .theme-announcement-bar {
-  --site-announcement-bar-stripe-color1: #90caf9;
-  --site-announcement-bar-stripe-color2: #e3f2fd;
-  
-  background: repeating-linear-gradient(
-    35deg, 
-    var(--site-announcement-bar-stripe-color1), 
-    var(--site-announcement-bar-stripe-color1) 20px, 
-    var(--site-announcement-bar-stripe-color2) 20px,
-    var(--site-announcement-bar-stripe-color2) 40px
-  );
-  font-size: 16px;
-  font-weight: 700;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  background-color: #e3f2fd;
+  border-bottom: 1px solid #c1d9f1;
+  color: #1a5c96;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
   text-align: center;
 }
-
-.theme-announcement-bar div[class*="announcementBarContent_"],
-.theme-announcement-bar div[class*="announcementBarContent_"] > div,
-.theme-announcement-bar div[class*="announcementBarContent_"] p {
-  color: #24292e;
+[data-theme='dark'] .theme-announcement-bar {
+  background-color: #263249;
+  border-bottom-color: #3a4a69;
+  color: #a4c5ed;
+}
+.theme-announcement-bar div[class*='announcementBarContent_'],
+.theme-announcement-bar div[class*='announcementBarContent_'] p {
+  color: inherit;
 }
 
 /*
- * Navbar Icon Links
- */
+ * 4. Navbar Icon Links
+ * -------------------------------------------------------------------------- */
 
 /* Common styles for navbar icon links */
 .header-github-link::before,
@@ -161,13 +179,13 @@ a[class*="cardContainer_"] h2[class*="cardTitle_"] {
 
 /* Specific style for each icon */
 .header-github-link::before {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   background-image: var(--github-icon);
 }
 
 .header-x-link::before {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   background-image: var(--x-icon);
 }
