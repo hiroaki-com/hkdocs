@@ -262,7 +262,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.sec.ipa.desc">
-                    日本のIT政策実施機関。セキュリティ情報や技術動向を公式発信。
+                    日本のIT政策実施機関。セキュリティ情報や技術動향を公式発信。
                   </Translate>
                 }
               />
