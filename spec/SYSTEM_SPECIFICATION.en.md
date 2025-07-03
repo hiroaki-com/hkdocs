@@ -1,10 +1,10 @@
-### HkDocs Specification (As of 2025/07/01)
+### HkDocs Specification (As of 2025/07/03)
 
 #### I. Basic Information
 
 1.  **Project Name**: hkdocs
 2.  **Domain**: `hkdocs.com`
-3.  **Project Objective**: To build and publish a personal knowledge base that consolidates a tech blog, learning records (Docs), and a diary (Diary).
+3.  **Project Objective**: To build and publish a personal knowledge base that consolidates a tech blog, learning records (Docs), a diary (Diary), and a collection of news links.
 4.  **Project Owner**: hiroaki-com
 5.  **Public Site URL**: https://hkdocs.com/
 6.  **Source Code Repository**: https://github.com/hiroaki-com/hkdocs
@@ -42,6 +42,7 @@ The system process begins with a developer pushing code to GitHub. GitHub Action
     *   `main`: The stable branch deployed to the production environment. Direct commits are prohibited; it is updated only via Pull Requests from the `develop` branch.
     *   `develop`: The integration branch for all development work. This is the deployment target for the staging environment. Feature branches are merged into this branch upon completion.
     *   **Feature Branches** (`feat/*`, `fix/*`, etc.): Working branches for individual feature development or bug fixes. They are created from the `develop` branch, and a Pull Request is created to merge back into `develop` upon completion.
+*   **Commit Messages**: To improve readability and make history tracking easier, commit messages should refer to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 *   **Pull Request (PR) Workflow**:
     *   **Merging to `develop`**: A Pull Request is created from a feature branch to `develop`. Code review and a successful CI build are required.
     *   **Merging to `main`**: After verification in the staging environment, a Pull Request is created from `develop` to `main` for a final review before release.
@@ -76,8 +77,6 @@ The system process begins with a developer pushing code to GitHub. GitHub Action
     *   **Objective**: To centrally store and manage Docker images built by the CI/CD pipeline.
     *   **Repository Name**: `hkdocs-images`
     *   **Cleanup Policy (Cost Saving)**:
-        *   **Objective**: To automatically delete old Docker images accumulated with each CI/CD run, thereby continuously controlling storage costs.
-        *   **Policy**: To balance safety and cost savings, the policy is to "**Always keep the 10 most recent versions and delete all older images**."
         *   **Configuration**: This is achieved by combining the following two policies (the keep policy takes precedence).
             1.  **Deletion Policy**: Marks all images for deletion.
                 *   Policy Type: `Conditional deletion`
@@ -88,7 +87,7 @@ The system process begins with a developer pushing code to GitHub. GitHub Action
 *   **Cloud Run**:
     *   **Objective**: To run and expose the containerized Docusaurus application in a serverless manner.
     *   **Configuration**:
-        *   **Service Name**: `hkdocs-service` (for production), and `hkdocs-service-staging` (configured as the deployment target for the `develop` branch).
+        *   **Service Name**: `hkdocs-service` (for production).
         *   **Deployment Source**: Specifies the image from Artifact Registry tagged with the Git commit hash.
         *   **Scaling**: Sets the minimum number of instances to 0 to reduce costs during periods of no traffic.
         *   **Port**: Specifies port `8080`, which the container exposes.
@@ -101,6 +100,7 @@ The system process begins with a developer pushing code to GitHub. GitHub Action
 *   **Blog**: Stored in the `blog/` directory. Posts technical discussions and development logs in chronological order.
 *   **Diary**: Stored in the `diary/` directory. Functions as a separate blog for personal daily records.
 *   **Custom Pages**:
+    *   **News (`src/pages/news.tsx`)**: A page that categorizes and lists links to major domestic and international news sites for daily information gathering.
     *   **Browser Memo (`src/pages/browser-memo.tsx`)**: A simple, browser-only memo tool page.
     *   **Profile (`src/pages/profile.md`)**: A self-introduction page.
 *   **Multilingual Support (i18n)**: Managed in the `i18n/en` directory. Supports Japanese (default) and English, providing UI text and translation files for each piece of content.
