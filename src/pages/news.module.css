@@ -54,7 +54,7 @@
   display: grid;
   /* デフォルト（最大画面）は4カラム */
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem 1rem; /* 縦のgap, 横のgap */
+  gap: 0.3rem; /* 縦のgap, 横のgap */
 }
 
 /* ダークモード用の調整 */
