@@ -19,6 +19,7 @@
 - Tech & Exam Docs: `学びの体系的な整理と、資格試験の記録`
 - Blog & Diary: `技術的な学びを綴るブログと、日々の記録を残す日記`
 - Browser Memo: `ブラウザ完結型の軽量メモツール`
+- News Links: `日々の情報収集に役立つ国内外のニュースサイトリンク集`
 
 #### システム
 - Multilingual Support: `Docusaurus i18nによる日本語／英語 対応`
@@ -66,11 +67,19 @@ graph LR
 ```plaintext
 .
 ├── .github/              # GitHub Actionsのワークフローとスクリプト
+│   ├── scripts/
+│   └── workflows/
 ├── blog/                 # ブログ記事 (日本語)
 ├── docs/                 # 技術ドキュメント (日本語)
+│   ├── exams/
+│   └── tech/
 ├── diary/                # 日記 (日本語)
 ├── i18n/                 # 国際化対応ファイル (例: 英語翻訳)
-├── src/                  # カスタムReactコンポーネント、ページ、CSS
+│   └── en/
+├── src/                  # ソースコードディレクトリ
+│   ├── components/       # カスタムReactコンポーネント
+│   ├── pages/            # カスタムページ (ニュース、プロフィールなど)
+│   └── css/              # カスタムCSS
 ├── static/               # 静的アセット (例: 画像)
 ├── spec/                 # システム仕様書
 ├── Dockerfile            # 本番環境用Dockerfile (Cloud Run)
