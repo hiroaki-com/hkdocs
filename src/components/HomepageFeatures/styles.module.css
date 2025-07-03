@@ -15,7 +15,7 @@
 .featureCardLink {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.0rem;
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
@@ -100,12 +100,14 @@
   .featureGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-
+}
   /* --- スマホ時の文字サイズ調整 --- */
+
+@media (max-width: 430px) {
   .featureTitle {
-    font-size: 1.05rem;
+    font-size: 0.8rem;
   }
   .featureDescription {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 }
