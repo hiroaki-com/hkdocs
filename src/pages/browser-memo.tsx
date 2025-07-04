@@ -7,9 +7,8 @@ import { Share2, ClipboardCopy, Check, Trash2, ChevronUp, ChevronDown } from 'lu
 import LZString from 'lz-string';
 
 const MEMO_COUNT = 5;
-// A versioned key to prevent conflicts with old data structures in localStorage.
+// LocalStorageのキー。古いデータ構造との衝突を避けるためバージョンを付与
 const STORAGE_KEY = 'hkdocs-browser-memo-v8-data';
-// Default height for each memo area (150px * 1.4).
 const DEFAULT_TEXTAREA_MIN_HEIGHT = 210;
 const URL_LENGTH_WARNING_THRESHOLD = 1900;
 const DEBOUNCE_SAVE_DELAY = 500;
@@ -22,7 +21,18 @@ interface MemoItem {
 
 type SharedMemo = { i: number; t: string };
 
-const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, hasTopBar, onHeightChange, placeholder, ariaLabel, id }) => {
+interface MemoTextareaProps {
+  id: string;
+  initialText: string;
+  onSave: (value: string) => void;
+  isMinimized: boolean;
+  hasTopBar: boolean;
+  onHeightChange: (height: number) => void;
+  placeholder: string;
+  ariaLabel: string;
+}
+
+const MemoTextarea: React.FC<MemoTextareaProps> = React.memo(({ initialText, onSave, isMinimized, hasTopBar, onHeightChange, placeholder, ariaLabel, id }) => {
   const [text, setText] = useState(initialText);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -41,7 +51,7 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, hasTopBar, 
       ? DEFAULT_TEXTAREA_MIN_HEIGHT
       : Math.max(textarea.scrollHeight, DEFAULT_TEXTAREA_MIN_HEIGHT);
     textarea.style.height = `${newHeight}px`;
-    onHeightChange(newHeight); // Notify parent of height changes.
+    onHeightChange(newHeight); // 親コンポーネントに高さを通知
 
     textarea.style.overflowY = isMinimized ? 'auto' : 'hidden';
   }, [text, isMinimized, onHeightChange]);
@@ -145,7 +155,7 @@ function MemoApp() {
 
   const handleHeightChange = useCallback((index: number, height: number) => {
     setMemoHeights(prev => {
-      // Avoid unnecessary re-renders for performance.
+      // パフォーマンスのため不要な再レンダリングを防止
       if (prev[index] === height) return prev;
       const newHeights = [...prev];
       newHeights[index] = height;
@@ -188,7 +198,7 @@ function MemoApp() {
   const handleShareAll = async () => {
     document.activeElement instanceof HTMLElement && document.activeElement.blur();
     
-    // Use a short timeout to ensure the UI updates (e.g., blur) before heavy compression task.
+    // UI更新(blurなど)を待ってから、重い圧縮処理を実行
     setTimeout(async () => {
       const memosToShare: SharedMemo[] = memoItems
         .map((item, index) => ({ i: index, t: item.text }))
@@ -213,7 +223,7 @@ function MemoApp() {
   const handleClearAll = () => {
     if (window.confirm(translate({ id: 'page.browser-memo.confirm.clearAll', message: 'すべてのメモをクリアしますか？この操作は元に戻せません。'}))) {
       setMemoItems(createInitialMemoItems());
-      // Also reset the height tracking state.
+      // 高さの状態もリセット
       setMemoHeights(Array(MEMO_COUNT).fill(DEFAULT_TEXTAREA_MIN_HEIGHT));
     }
   };
@@ -221,8 +231,8 @@ function MemoApp() {
   const hasContent = memoItems.some(item => item.text.trim() !== '');
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1><Translate id="page.browser-memo.h1">ブラウザ メモ</Translate></h1>
+    <div style={{ padding: '1.5rem' }}>
+      <h1 style={{ fontSize: '1.5rem' }}><Translate id="page.browser-memo.h1">ブラウザ メモ</Translate></h1>
       <p><Translate id="page.browser-memo.intro1">ブラウザだけで使えるシンプルなメモ帳です。入力内容は自動でこのブラウザに保存されます。</Translate></p>
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', margin: '2rem 0' }}>
@@ -239,12 +249,12 @@ function MemoApp() {
       {memoItems.map((item, index) => {
         const isExpanded = !item.isManuallyMinimized;
         const textareaId = `memo-textarea-${index}`;
-        // Show top bar only when expanded AND taller than the default height.
+        // 展開されていて、かつデフォルトより高い場合のみトップバーを表示
         const showTopBar = isExpanded && memoHeights[index] > DEFAULT_TEXTAREA_MIN_HEIGHT;
         
         const renderToggleBar = (position: 'top' | 'bottom') => {
           const handleKeyDown = (e: React.KeyboardEvent) => {
-            // Accessibility: Allow toggling with Enter or Space key.
+            // アクセシビリティ対応: Enter/Spaceでトグル可能にする
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
               handleToggleMinimize(index);
