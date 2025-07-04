@@ -1,40 +1,37 @@
+/* --- セクション全体のスタイル --- */
 .featuresSection {
   /* 左右に標準的なパディングを追加して、スマホでの余白問題を解決 */
   padding: 2rem var(--ifm-spacing-horizontal) 5rem;
 }
 
-/* --- レイアウトの最適化 --- */
+/* --- グリッドレイアウト --- */
 .featureGrid {
   display: grid;
-  /* デフォルト (997px以上) は3カラム */
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 }
 
-/* --- カードデザインの更新 --- */
+/* --- カードの基本スタイル --- */
 .featureCardLink {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
   text-decoration: none;
   color: inherit;
+  border-radius: 8px;
   
-  /* 通常時は背景を透明に */
-  background-color: transparent;
-  /* 枠線を2pxに太くし、通常時は透明に */
-  border: 2px solid transparent;
+  /* ホバー時に枠線が表示されてもレイアウトが崩れないように、透明な枠線を設定 */
+  border: 1px solid transparent;
 
-  /* アニメーション対象を枠線の色に */
-  transition: border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .featureCardLink:hover {
-  /* ホバー時にテーマカラーの枠線が出現 */
-  border-color: var(--ifm-color-primary);
+  background-color: var(--ifm-hover-overlay);
+  border-color: var(--ifm-color-emphasis-300);
 }
 
-
-/* --- カード内コンテンツ --- */
+/* --- カード内部のコンテンツ --- */
 .cardHeader {
   display: flex;
   align-items: center;
@@ -56,7 +53,7 @@
   width: 22px;
   height: 22px;
   color: var(--ifm-color-primary-dark);
-  transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.7, 1), color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .featureTitle {
@@ -70,17 +67,15 @@
   color: var(--ifm-font-color-secondary);
   line-height: 1.6;
   margin: 0;
-  flex-grow: 1; /* カードの高さを揃える */
+  /* このプロパティで、同じ行にあるカードの高さを揃える */
+  flex-grow: 1;
 }
 
-/* --- ホバー時のアイコンアニメーション --- */
 .featureCardLink:hover .cardIcon {
-  transform: rotate(-25deg);
   color: var(--ifm-color-primary);
 }
 
-
-/* --- ダークモードの調整 --- */
+/* --- ダークモード対応 --- */
 [data-theme='dark'] .cardIconWrapper {
   background-color: hsla(210, 100%, 75%, 0.1);
 }
@@ -93,15 +88,14 @@
   color: var(--ifm-color-primary-lightest);
 }
 
-
-/* --- レスポンシブ対応 (中画面・小画面) --- */
+/* --- レスポンシブ対応 --- */
 @media (max-width: 996px) {
   .featureGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-  /* --- スマホ時の文字サイズ調整 --- */
 
+/* スマホ向けの文字サイズ調整 */
 @media (max-width: 430px) {
   .featureTitle {
     font-size: 0.8rem;
