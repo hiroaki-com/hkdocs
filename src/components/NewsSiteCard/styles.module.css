@@ -5,9 +5,12 @@
   text-decoration: none;
   height: 100%;
   border-radius: var(--ifm-card-border-radius);
-  transition: all 0.2s ease-in-out;
-  /* 前面表示のための基準位置設定 */
-  position: relative;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* リンクにホバーした際に背景色を変更（シンプルな効果のみ残す） */
+.cardLink:hover {
+  background-color: var(--ifm-hover-overlay);
 }
 
 /* カード本体 */
@@ -16,52 +19,12 @@
   align-items: flex-start;
   gap: 0.75rem;
   padding: 0.75rem;
+  /* height: 100% を維持することで、同じ行のカードの背景領域が揃う */
   height: 100%;
   border: none;
   box-shadow: none;
-  /* ホバー/フォーカス時に背景色を変えるため、通常時は透明に */
   background-color: transparent;
 }
-
-/* PCでのホバー時、およびスマホでのタップ時（フォーカス時）のスタイル */
-.cardLink:hover,
-.cardLink:focus-within {
-  /* カードを他の要素より前面に表示 */
-  z-index: 10;
-  /* カードの背景色を適用して浮き上がったように見せる */
-  background-color: var(--ifm-card-background-color);
-  /* 視認性向上のために影を追加 */
-  box-shadow: var(--ifm-global-shadow-lg);
-}
-
-/* 説明文（通常時） */
-.description {
-  font-size: 0.7rem;
-  color: var(--ifm-font-color-secondary);
-  margin: 0;
-  line-height: 1.5;
-  /* 3行分の高さを常に確保 */
-  height: calc(0.75rem * 1.5 * 3);
-  overflow: hidden;
-  /* テキストを最大3行で省略表示（下位互換性のため両方記述） */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-}
-
-/* PCでのホバー時、およびスマホでのタップ時（フォーカス時）の説明文スタイル */
-.cardLink:hover .description,
-.cardLink:focus-within .description {
-  /* 行数制限を解除して全文を表示 */
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  /* 全文表示のため高さを自動に */
-  height: auto;
-  /* はみ出しを許可（基本的には不要だが念のため） */
-  overflow: visible;
-}
-
 
 /* ファビコンを囲むコンテナ */
 .imageContainer {
@@ -107,6 +70,15 @@
   word-break: break-word;
 }
 
+/* カードの説明文 (p) - 全文表示 */
+.description {
+  font-size: 0.6rem;
+  color: var(--ifm-font-color-secondary);
+  margin: 0;
+  line-height: 1.5;
+  /* 省略表示に関するスタイルはすべて削除 */
+}
+
 /* スマホ用のスタイル */
 @media (max-width: 768px) {
   .card {
@@ -129,7 +101,6 @@
   }
   
   .description {
-    font-size: 0.6rem;
-    height: calc(0.7rem * 1.5 * 3);
+    font-size: 0.5rem;
   }
 }
