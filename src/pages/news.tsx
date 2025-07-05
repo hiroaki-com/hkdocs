@@ -50,15 +50,15 @@ export default function NewsPage(): JSX.Element {
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
-                href="https://www.yahoo.co.jp/"
+                href="https://news.yahoo.co.jp/"
                 title={
                   <Translate id="news.site.jp.ge.yahoo.title">
-                    Yahoo! Japan ニュース
+                    Yahoo! JAPANニュース
                   </Translate>
                 }
                 description={
                   <Translate id="news.site.jp.ge.yahoo.desc">
-                    日本最大級のポータルサイト。主要ニュースや速報、独自コンテンツを提供。
+                    1996年サービス開始。LINEヤフー株式会社が運営。ジェリー・ヤンらが設立したYahoo! Inc.がルーツ。多数のコンテンツプロバイダーからのニュースを配信する、日本最大級のニュースアグリゲーター。
                   </Translate>
                 }
               />
@@ -71,7 +71,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.nikkei.desc">
-                    日本の経済を中心に政治や国際、マーケットなどを扱う総合経済紙。
+                    1876年、益田孝（三井物産創業者）により創刊。株式会社日本経済新聞社が運営。経済に特化した報道で知られ、日経平均株価の算出元でもある。2015年に英フィナンシャル・タイムズを買収。
                   </Translate>
                 }
               />
@@ -84,7 +84,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.bloomberg.desc">
-                    ブルームバーグの日本語版。金融・経済情報を中心に提供。
+                    1981年にマイケル・ブルームバーグが米国で設立したBloomberg L.P.の日本語版。金融情報端末「ブルームバーグ・ターミナル」を中核事業とし、金融・経済情報の世界的リーダーとして知られる。
                   </Translate>
                 }
               />
@@ -97,7 +97,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.bi.desc">
-                    ミレニアル世代向けに経済やテクノロジーのニュースを提供する日本語版。
+                    2007年にヘンリー・ブロジェットが米国で設立した経済メディアの日本版で、株式会社メディアジーンが運営。ミレニアル世代を主なターゲットとし、ビジネス、金融、テクノロジーニュースを配信する。
                   </Translate>
                 }
               />
@@ -110,7 +110,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.47news.desc">
-                    共同通信と全国の地方新聞社が配信するニュースを網羅。
+                    2006年設立。株式会社全国新聞ネットが運営。共同通信と全国の地方新聞52社が参加し、中央と地方双方の視点からニュースを提供する。
                   </Translate>
                 }
               />
@@ -121,7 +121,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.reuters.desc">
-                    国際ニュース通信社ロイターの日本語版。世界のビジネス、金融、株式、政治ニュースを配信。
+                    1851年にポール・ジュリアス・ロイターが英国で設立した国際通信社の日本語版。トムソン・ロイターが運営。客観的で公平な報道姿勢と、速報性の高いグローバルな取材網を持つ世界三大通信社の一つ。
                   </Translate>
                 }
               />
@@ -134,7 +134,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.minkabu.desc">
-                    株式、FX、暗号資産など、投資家向けのニュースや分析ツールを提供する金融情報プラットフォーム。
+                    2006年に瓜生憲が設立。株式会社MINKABU THE INFONOIDが運営。AIとクラウドインプットを活用した株価予想など、個人投資家向けの金融情報に特化した独自コンテンツを提供。
                   </Translate>
                 }
               />
@@ -147,7 +147,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.sekaikabuka.desc">
-                    世界各国の株価指数、為替、商品、仮想通貨などの最新マーケット情報を一覧で提供する金融情報サイト。
+                    世界の主要な株価指数、為替、商品先物、仮想通貨などのマーケットデータを一覧表示することに特化したサイト。
                   </Translate>
                 }
               />
@@ -173,7 +173,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ts.mit.desc">
-                    MIT発、テクノロジー専門誌の日本語版。新技術の動向を解説。
+                    1899年にマサチューセッツ工科大学(MIT)が創刊した世界で最も歴史あるテクノロジー誌の日本版。株式会社角川アスキー総合研究所が運営。新技術の社会的、経済的インパクトを深く分析する。
                   </Translate>
                 }
               />
@@ -186,7 +186,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ts.wired.desc">
-                    テクノロジーが社会や文化に与える影響を探るメディアの日本語版。
+                    1993年にルイス・ロゼットらが米国で創刊したテクノロジーカルチャー誌の日本版。コンデナスト・ジャパンが運営。テクノロジーが文化、社会、ライフスタイルに与える影響を探求し、未来志向の洞察で知られる。
                   </Translate>
                 }
               />
@@ -197,7 +197,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ts.ascii.desc">
-                    老舗IT雑誌アスキーのWeb版。デジタルガジェットや最新技術情報を配信。
+                    1977年に西和彦らが創刊した『月刊アスキー』を源流とするWebメディア。株式会社角川アスキー総合研究所が運営。日本のパソコン黎明期からの歴史を持ち、PC、IT、ガジェット関連のニュースを速報性高く提供する。
                   </Translate>
                 }
               />
@@ -210,7 +210,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ts.cnet.desc">
-                    米国発のテクノロジーメディアの日本版。企業向けIT情報が充実。
+                    1994年にハルシー・マイナーらが米国で設立したテクノロジーニュースサイトの日本語版。朝日インタラクティブ株式会社が運営。IT製品のレビューや法人向けソリューションに関する情報に強みを持つ。
                   </Translate>
                 }
               />
@@ -223,7 +223,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ts.gigazine.desc">
-                    2000年から続く老舗テクノロジーニュースサイト。ユニークな視点の記事が特徴。
+                    2000年に山崎恵人が開設し、株式会社OSAが運営。独自の視点と詳細な取材に基づく深掘り記事が特徴。ガジェットレビューから科学、食文化まで幅広いテーマを扱う。
                   </Translate>
                 }
               />
@@ -249,7 +249,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.sec.secnext.desc">
-                    セキュリティ・個人情報関連の専門ニュースサイト。情報漏洩や脆弱性情報を配信。
+                    2004年開設。ニュースガイア株式会社が運営する、サイバーセキュリティと個人情報保護の専門ニュースサイト。インシデントや脆弱性に関する情報を迅速に報道する。
                   </Translate>
                 }
               />
@@ -257,12 +257,12 @@ export default function NewsPage(): JSX.Element {
                 href="https://www.ipa.go.jp/"
                 title={
                   <Translate id="news.site.jp.sec.ipa.title">
-                    IPA 情報処理推進機構
+                    IPA 独立行政法人情報処理推進機構
                   </Translate>
                 }
                 description={
                   <Translate id="news.site.jp.sec.ipa.desc">
-                    日本のIT政策実施機関。セキュリティ情報や技術動향を公式発信。
+                    2004年に日本国政府が設立した経済産業省所管の公的機関。日本のIT国家戦略を技術面から支え、「情報セキュリティ10大脅威」の発表や情報処理技術者試験などを所管する。
                   </Translate>
                 }
               />
@@ -494,7 +494,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.reuters.desc">
-                    国際ニュース、ビジネス、金融を幅広く報道する世界的な通信社。
+                    1851年にポール・ジュリアス・ロイターが英国で設立。トムソン・ロイターが運営。事実に基づいた公平・迅速な報道で知られ、190以上の国で取材活動を行う世界的な通信社。
                   </Translate>
                 }
               />
@@ -507,7 +507,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.bloomberg.desc">
-                    米国に本社を置く世界的な金融情報サービスおよびメディア企業。
+                    1981年にマイケル・ブルームバーグが米国で設立。金融データ・分析ツール「ブルームバーグ・ターミナル」を事業の核とする、世界有数の経済・金融メディア。
                   </Translate>
                 }
               />
@@ -520,7 +520,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.wsj.desc">
-                    米国発、経済・金融に強みを持つ日刊紙の国際版。
+                    1889年にチャールズ・ダウらが米国で創刊。ニューズ・コープ傘下のダウ・ジョーンズ社が運営。ビジネス・金融分野の質の高い調査報道で世界的に評価され、ピューリッツァー賞を多数受賞している。
                   </Translate>
                 }
               />
@@ -533,7 +533,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.nikkei.desc">
-                    日本経済新聞社が発行するアジアのビジネス、経済、政治に特化した英語ニュースサイト。
+                    2013年に日本経済新聞社が創刊。アジアのビジネス、経済、政治を日本メディアの視点から英語で報じる。アジアに特化した報道が特徴。
                   </Translate>
                 }
               />
@@ -546,7 +546,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.bi.desc">
-                    ビジネス、金融、テクノロジー、ライフスタイルなど幅広い分野のニュースと分析を提供するグローバルメディア。
+                    2007年にヘンリー・ブロジェットらが米国で設立。Axel Springer SEが運営。ビジネスとテクノロジーのニュースを速報性高く配信し、世界中に複数の国際版を展開している。
                   </Translate>
                 }
               />
@@ -557,7 +557,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.fox.desc">
-                    米国の主要ケーブルニュースネットワーク。保守的な視点から国内外のニュース、政治、エンタメを報道。
+                    1996年にルパート・マードックが米国で設立。Fox News Mediaが運営。保守的な視点からの報道で知られ、米国内で高い視聴率を記録するケーブルニュースネットワーク。
                   </Translate>
                 }
               />
@@ -583,7 +583,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.lemonde.desc">
-                    フランスを代表する日刊紙『ル・モンド』の英語版。国際ニュースを深く分析。
+                    1944年にユベール・ブーヴ＝メリーがフランスで創刊。国際情勢の詳細な分析と質の高い調査報道で評価されるフランスを代表する新聞の英語版。
                   </Translate>
                 }
               />
@@ -596,7 +596,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.aljazeera.desc">
-                    中東に拠点を置く国際的なニュースネットワーク。グローバルな視点からニュースを報道。
+                    1996年、カタール政府の出資により設立。Al Jazeera Media Networkが運営。欧米メディアとは異なる中東・アラブ世界の視点からグローバルなニュースを発信する国際報道機関。
                   </Translate>
                 }
               />
@@ -622,7 +622,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.ap.desc">
-                    世界最大級の独立系通信社。速報性、客観性の高いニュースを世界中に配信。
+                    1846年にニューヨーク市の新聞社5社によって設立された非営利の協同組合通信社。速報性と客観性で知られ、世界中のメディアに記事を配信する。
                   </Translate>
                 }
               />
@@ -635,7 +635,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.afp.desc">
-                    フランスを拠点とする世界的な通信社。多様な視点から国際ニュースを報道。
+                    1835年にシャルル＝ルイ・アヴァスが設立した組織を前身とするフランスの通信社。世界で最も歴史があり、写真や映像などのビジュアル報道に強みを持つ。
                   </Translate>
                 }
               />
@@ -661,7 +661,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ts.mit.desc">
-                    MIT発、テクノロジー専門誌の国際版。新技術の動向を解説。
+                    1899年にマサチューセッツ工科大学(MIT)が創刊・運営。新興技術の商業的、政治的、社会的影響を分析する、世界で最も権威ある技術誌の一つ。
                   </Translate>
                 }
               />
@@ -674,7 +674,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ts.wired.desc">
-                    テクノロジーが社会や文化に与える影響を探るメディアの国際版。
+                    1993年にルイス・ロゼットらが米国で創刊。コンデナスト社が運営。テクノロジーが文化、経済、政治に与える影響を深く探求し、未来を考察するスタイルで世界に影響を与えてきたメディア。
                   </Translate>
                 }
               />
@@ -713,7 +713,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ts.techcrunch.desc">
-                    スタートアップ、テクノロジー業界のニュース、分析、トレンドを提供する主要メディア。
+                    2005年にマイケル・アーリントンが米国で設立。Yahoo Inc.が運営。スタートアップとテクノロジー業界の動向を報じる代表的メディアで、大規模カンファレンス「Disrupt」の主催でも知られる。
                   </Translate>
                 }
               />
@@ -770,7 +770,7 @@ export default function NewsPage(): JSX.Element {
                 }
               />
               <NewsSiteCard
-                href="https://www.bbc.co.uk/sounds/play/live:bbc_world_service"
+                href="https://www.bbc.co.uk/worldservice"
                 title={
                   <Translate id="news.site.int.ap.bbc.title">
                     BBC World Service
@@ -778,7 +778,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ap.bbc.desc">
-                    BBCが世界向けに配信する国際ニュースのラジオサービス。
+                    1932年に英国放送協会(BBC)が設立した国際放送部門。信頼性の高いニュースやドキュメンタリーを40以上の言語でラジオ、オンライン、ポッドキャストを通じて世界に配信する。
                   </Translate>
                 }
               />
@@ -830,7 +830,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ss.ground.desc">
-                    ニュースの政治的偏向を可視化し、多角的な視点を提供するプラットフォーム。
+                    2017年にハーリーン・カウルら元NASAのエンジニアらによってカナダで設立。一つのニュースに対する各メディアの政治的偏向（左派・中道・右派）を可視化し、多角的な情報比較を可能にするプラットフォーム。
                   </Translate>
                 }
               />
@@ -869,7 +869,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ss.icij.desc">
-                    国境を越えた汚職、犯罪、権力濫用などを調査する国際的な非営利報道機関。
+                    1997年にチャールズ・ルイスが米国で設立した非営利の調査報道組織。「パナマ文書」「パンドラ文書」などで知られ、国境を越えた協業で不正を追及する。
                   </Translate>
                 }
               />
@@ -882,7 +882,59 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ss.bellingcat.desc">
-                    オープンソース情報（OSINT）を駆使し、紛争や不正行為を調査・分析する独立系調査報道グループ。
+                    2014年にエリオット・ヒギンズが設立した独立調査報道グループ。公開情報（OSINT）を駆使して紛争や犯罪を調査・分析する手法で知られる。オランダに非営利財団として登記。
+                  </Translate>
+                }
+              />
+              <NewsSiteCard
+                href="https://www.propublica.org"
+                title={
+                  <Translate id="news.site.int.ss.propublica.title">
+                    ProPublica
+                  </Translate>
+                }
+                description={
+                  <Translate id="news.site.int.ss.propublica.desc">
+                    2007年にポール・スタイガーらが米国で設立。権力の乱用や裏切りを暴くことを使命とする非営利の調査報道機関で、サンドラー財団の資金提供を受けている。ピューリッツァー賞を多数受賞。
+                  </Translate>
+                }
+              />
+              <NewsSiteCard
+                href="https://www.themarshallproject.org"
+                title={
+                  <Translate id="news.site.int.ss.marshall.title">
+                    The Marshall Project
+                  </Translate>
+                }
+                description={
+                  <Translate id="news.site.int.ss.marshall.desc">
+                    2014年にニール・バースキーが米国で設立。米国の刑事司法制度に特化した非営利の報道機関で、制度の不平等さに対する国民の意識向上を目指す。
+                  </Translate>
+                }
+              />
+              <NewsSiteCard
+                href="https://theintercept.com"
+                title={
+                  <Translate id="news.site.int.ss.intercept.title">
+                    The Intercept
+                  </Translate>
+                }
+                description={
+                  <Translate id="news.site.int.ss.intercept.desc">
+                    2014年にグレン・グリーンウォルドらが設立。First Look Mediaが運営。エドワード・スノーデン文書の報道を機に、国家監視、戦争、人権問題などについて対立を恐れないジャーナリズムを掲げる。
+                  </Translate>
+                }
+              />
+              <NewsSiteCard
+                href="https://www.occrp.org"
+                title={
+                  <Translate id="news.site.int.ss.occrp.title">
+                    OCCRP
+                  </Translate>
+                }
+                description={
+                  <Translate id="news.site.int.ss.occrp.desc">
+                    2006年にドリュー・サリバンとポール・ラドゥが設立。組織犯罪と汚職に特化した調査報道ジャーナリストの国際的な非営利ネットワーク。世界中のメディアと協力して国境を越えた不正を追及する。
                   </Translate>
                 }
               />
