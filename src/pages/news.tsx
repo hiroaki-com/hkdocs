@@ -262,7 +262,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.sec.ipa.desc">
-                    2004年に日本国政府が設立した経済産業省所管の公的機関。日本のIT国家戦略を技術面から支え、「情報セキュリティ10大脅威」の発表や情報処理技術者試験などを所管する。
+                    2004年に設立された経済産業省所管の公的機関。日本のIT国家戦略を技術面から支え、「情報セキュリティ10大脅威」の発表や情報処理技術者試験などを所管。
                   </Translate>
                 }
               />
@@ -778,7 +778,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ap.bbc.desc">
-                    1932年に英国放送協会(BBC)が設立した国際放送部門。信頼性の高いニュースやドキュメンタリーを40以上の言語でラジオ、オンライン、ポッドキャストを通じて世界に配信する。
+                    1932年に英国放送協会(BBC)が設立した国際放送部門。ニュースやドキュメンタリーを40以上の言語でラジオ、オンライン、ポッドキャストを通じて世界に配信する。
                   </Translate>
                 }
               />
