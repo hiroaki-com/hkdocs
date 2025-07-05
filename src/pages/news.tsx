@@ -520,7 +520,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.wsj.desc">
-                    1889年にチャールズ・ダウらが米国で創刊。ニューズ・コープ傘下のダウ・ジョーンズ社が運営。ビジネス・金融分野の質の高い調査報道で世界的に評価され、ピューリッツァー賞を多数受賞。
+                    1889年にチャールズ・ダウらが米国で創刊。ニューズ・コープ傘下のダウ・ジョーンズ社が運営。ビジネス・金融分野の質の高い調査報道が特徴。
                   </Translate>
                 }
               />
@@ -864,7 +864,7 @@ export default function NewsPage(): JSX.Element {
                 href="https://www.icij.org/"
                 title={
                   <Translate id="news.site.int.ss.icij.title">
-                    ICIJ (国際調査報道ジャーナリスト連合)
+                    ICIJ
                   </Translate>
                 }
                 description={
