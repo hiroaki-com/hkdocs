@@ -3,7 +3,7 @@
   /* Docusaurusの標準幅より少し狭く設定し、左右の余白を広げる */
   max-width: 1040px;
   margin: 0 auto;
-  padding: 1.5rem 3.0rem var(--ifm-spacing-horizontal);
+  padding: 1.5rem 1.7rem var(--ifm-spacing-horizontal);
 }
 
 /* 大カテゴリのセクション（例：日本, 海外） */
