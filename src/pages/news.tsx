@@ -816,7 +816,7 @@ export default function NewsPage(): JSX.Element {
             <summary style={{ cursor: 'pointer' }}>
               <h3 id="int-summary-sites" className={styles.categoryTitle}>
                 <Translate id="news.category.summary-sites-int">
-                  まとめ系
+                  まとめ・ジャーナリズム
                 </Translate>
               </h3>
             </summary>

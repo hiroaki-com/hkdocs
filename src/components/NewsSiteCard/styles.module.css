@@ -122,4 +122,10 @@
     font-size: 0.4rem;
     height: calc(0.7rem * 1.5 * 3);
   }
+
+  .cardLink:active .description {
+    overflow-y: auto; /* タップしている間、縦スクロールを有効にする */
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
 }
