@@ -84,7 +84,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.bloomberg.desc">
-                    1981年にマイケル・ブルームバーグが米国で設立したBloomberg L.P.の日本語版。金融情報端末「ブルームバーグ・ターミナル」を中核事業とし、金融・経済情報の世界的リーダーとして知られる。
+                    1981年にマイケル・ブルームバーグが米国で設立したBloomberg L.P.の日本語版。金融情報端末「ブルームバーグ・ターミナル」を中核事業とし、金融・経済へ大きな影響力を持つ。
                   </Translate>
                 }
               />
@@ -121,7 +121,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ge.reuters.desc">
-                    1851年にポール・ジュリアス・ロイターが英国で設立した国際通信社の日本語版。トムソン・ロイターが運営。客観的で公平な報道姿勢と、速報性の高いグローバルな取材網を持つ世界三大通信社の一つ。
+                    1851年にポール・ジュリアス・ロイターが英国で設立した国際通信社の日本語版。トムソン・ロイターが運営。速報性の高いグローバルな取材網を持つ世界三大通信社の一つ。
                   </Translate>
                 }
               />
@@ -173,7 +173,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.jp.ts.mit.desc">
-                    1899年にマサチューセッツ工科大学(MIT)が創刊した世界で最も歴史あるテクノロジー誌の日本版。株式会社角川アスキー総合研究所が運営。新技術の社会的、経済的インパクトを深く分析する。
+                    1899年にマサチューセッツ工科大学(MIT)が創刊した世界で最も歴史あるテクノロジー誌の日本版。株式会社角川アスキー総合研究所が運営。新技術の社会的、経済的インパクトを分析する。
                   </Translate>
                 }
               />
@@ -520,7 +520,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ge.wsj.desc">
-                    1889年にチャールズ・ダウらが米国で創刊。ニューズ・コープ傘下のダウ・ジョーンズ社が運営。ビジネス・金融分野の質の高い調査報道で世界的に評価され、ピューリッツァー賞を多数受賞している。
+                    1889年にチャールズ・ダウらが米国で創刊。ニューズ・コープ傘下のダウ・ジョーンズ社が運営。ビジネス・金融分野の質の高い調査報道で世界的に評価され、ピューリッツァー賞を多数受賞。
                   </Translate>
                 }
               />
@@ -713,7 +713,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ts.techcrunch.desc">
-                    2005年にマイケル・アーリントンが米国で設立。Yahoo Inc.が運営。スタートアップとテクノロジー業界の動向を報じる代表的メディアで、大規模カンファレンス「Disrupt」の主催でも知られる。
+                    2005年にマイケル・アーリントンが米国で設立。Yahoo Inc.が運営。スタートアップとテクノロジー業界の動向を報じる代表的メディアで、大規模カンファレンス「Disrupt」を主催。
                   </Translate>
                 }
               />
@@ -869,7 +869,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ss.icij.desc">
-                    1997年にチャールズ・ルイスが米国で設立した非営利の調査報道組織。「パナマ文書」「パンドラ文書」などで知られ、国境を越えた協業で不正を追及する。
+                    1997年にチャールズ・ルイスが米国で設立した非営利の調査報道組織。「パナマ文書」「パンドラ文書」などで知られ、国境を越えた協業で不正を追及。
                   </Translate>
                 }
               />
@@ -934,7 +934,7 @@ export default function NewsPage(): JSX.Element {
                 }
                 description={
                   <Translate id="news.site.int.ss.occrp.desc">
-                    2006年にドリュー・サリバンとポール・ラドゥが設立。組織犯罪と汚職に特化した調査報道ジャーナリストの国際的な非営利ネットワーク。世界中のメディアと協力して国境を越えた不正を追及する。
+                    2006年にドリュー・サリバンとポール・ラドゥが設立。組織犯罪と汚職に特化した調査報道ジャーナリストの国際的な非営利ネットワーク。世界中のメディアと協力して国境を越えた不正を追及。
                   </Translate>
                 }
               />
