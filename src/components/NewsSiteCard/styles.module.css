@@ -72,20 +72,29 @@
 
 /* カードの説明文 (p) */
 .description {
-  font-size: 0.75rem; /* 説明文の文字を小型化 */
+  font-size: 0.6rem; /* 説明文の文字を小型化 */
   color: var(--ifm-font-color-secondary);
   margin: 0;
   line-height: 1.5;
-  /* 3行分の高さを常に確保し、グリッドレイアウトの崩れを防ぐ */
-  min-height: calc(0.75rem * 1.5 * 3);
+  /* 3行分の高さを常に確保 */
+  height: calc(0.75rem * 1.5 * 3);
 
-  /* テキストを最大3行で省略表示 */
+  /* 省略表示 */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   line-clamp: 3;
+}
+
+/* PCなどホバーが可能なデバイスでのみ、ホバー時にスクロールバーを表示 */
+@media (hover: hover) and (pointer: fine) {
+  .cardLink:hover .description {
+    overflow-y: auto; /* ホバー時に縦スクロールを有効にする */
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
 }
 
 /* スマホ用のスタイル */
@@ -110,7 +119,7 @@
   }
   
   .description {
-    font-size: 0.55rem;
-    min-height: calc(0.7rem * 1.5 * 3);
+    font-size: 0.4rem;
+    height: calc(0.7rem * 1.5 * 3);
   }
 }

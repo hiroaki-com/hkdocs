@@ -57,8 +57,14 @@
   "news.category.life-weather-jp": {
     "message": "Life & Weather"
   },
+  "news.category.press-release-jp": {
+    "message": "Press Releases"
+  },
+  "news.category.security-jp": {
+    "message": "Security & IT Specialist"
+  },
   "news.category.summary-sites-int": {
-    "message": "Aggregators & Investigations"
+    "message": "Aggregators & Investigative Journalism"
   },
   "news.category.summary-sites-jp": {
     "message": "Aggregators"
@@ -69,6 +75,9 @@
   "news.category.tech-science-jp": {
     "message": "Technology & Science"
   },
+  "news.category.tv-news-jp": {
+    "message": "TV Station News"
+  },
   "news.majorCategory.international": {
     "message": "International"
   },
@@ -76,19 +85,19 @@
     "message": "Japan"
   },
   "news.page.description": {
-    "message": "A curated list of news sites to keep up with global affairs and technology trends."
+    "message": "A curated list of news sites to help you keep up with domestic and international affairs and technology trends."
   },
   "news.page.heading": {
     "message": "News"
   },
   "news.page.subheading": {
-    "message": "For daily information gathering."
+    "message": "For daily information gathering"
   },
   "news.page.title": {
-    "message": "News"
+    "message": "News List"
   },
   "news.site.int.ap.bbc.desc": {
-    "message": "The BBC's international news radio service for a global audience."
+    "message": "The international broadcasting arm of the British Broadcasting Corporation (BBC), established in 1932. It delivers reliable news and documentaries to a global audience in over 40 languages via radio, online, and podcasts."
   },
   "news.site.int.ap.bbc.title": {
     "message": "BBC World Service"
@@ -118,73 +127,73 @@
     "message": "Software Engineering Daily"
   },
   "news.site.int.ge.afp.desc": {
-    "message": "A global news agency based in France, reporting international news from diverse perspectives."
+    "message": "A French news agency, successor to an organization founded in 1835 by Charles-Louis Havas. It is the world's oldest news agency and has a strong focus on visual reporting, including photography and video."
   },
   "news.site.int.ge.afp.title": {
     "message": "Agence France-Presse (AFP)"
   },
   "news.site.int.ge.aljazeera.desc": {
-    "message": "An international news network based in the Middle East, reporting news from a global perspective."
+    "message": "Established in 1996 with funding from the Qatari government. Operated by Al Jazeera Media Network. An international news organization that broadcasts global news from a Middle Eastern and Arab world perspective, distinct from Western media."
   },
   "news.site.int.ge.aljazeera.title": {
     "message": "Al Jazeera"
   },
   "news.site.int.ge.ap.desc": {
-    "message": "One of the world's largest independent news agencies, delivering fast and objective news worldwide."
+    "message": "A non-profit cooperative news agency founded in 1846 by five New York City newspapers. Known for its speed and objectivity, it supplies news stories to media outlets worldwide."
   },
   "news.site.int.ge.ap.title": {
     "message": "Associated Press (AP)"
   },
   "news.site.int.ge.bi.desc": {
-    "message": "A global media outlet providing news and analysis on business, finance, technology, and lifestyle."
+    "message": "Founded in the U.S. in 2007 by Henry Blodget and others. Operated by Axel Springer SE. It provides timely news on business and technology and has multiple international editions worldwide."
   },
   "news.site.int.ge.bi.title": {
     "message": "Business Insider"
   },
   "news.site.int.ge.bloomberg.desc": {
-    "message": "A global financial information service and media company headquartered in the U.S."
+    "message": "Founded in the U.S. in 1981 by Michael Bloomberg. A leading global economic and financial media company, with the \"Bloomberg Terminal\" financial data and analysis tool at its core."
   },
   "news.site.int.ge.bloomberg.title": {
     "message": "Bloomberg"
   },
   "news.site.int.ge.chinadaily.desc": {
-    "message": "The only English-language daily newspaper published by the Communist Party of China, conveying official views and trends."
+    "message": "The official English-language daily newspaper of the Communist Party of China, conveying the country's official views and developments."
   },
   "news.site.int.ge.chinadaily.title": {
     "message": "China Daily"
   },
   "news.site.int.ge.digiday.desc": {
-    "message": "An international specialized media outlet digging into the transformation of digital media, marketing, advertising, and retail."
+    "message": "An international edition of a specialized media that delves into the transformation of digital media, marketing, advertising, and retail."
   },
   "news.site.int.ge.digiday.title": {
     "message": "Digiday"
   },
   "news.site.int.ge.fox.desc": {
-    "message": "A major U.S. cable news network covering domestic and international news, politics, and entertainment from a conservative perspective."
+    "message": "Founded in the U.S. in 1996 by Rupert Murdoch. Operated by Fox News Media. A cable news network known for its conservative perspective, recording high viewership ratings in the United States."
   },
   "news.site.int.ge.fox.title": {
     "message": "Fox News"
   },
   "news.site.int.ge.lemonde.desc": {
-    "message": "The English edition of France's leading daily newspaper, 'Le Monde,' offering in-depth analysis of international news."
+    "message": "Founded in France in 1944 by Hubert Beuve-Méry. The English edition of France's leading newspaper, valued for its detailed analysis of international affairs and high-quality investigative reporting."
   },
   "news.site.int.ge.lemonde.title": {
     "message": "Le Monde (English)"
   },
   "news.site.int.ge.nikkei.desc": {
-    "message": "An English-language news site published by Nikkei Inc., specializing in Asian business, economy, and politics."
+    "message": "Launched in 2013 by Nikkei Inc. An English-language publication reporting on Asian business, economy, and politics from the perspective of a Japanese media company. Known for its specialized focus on Asia."
   },
   "news.site.int.ge.nikkei.title": {
     "message": "Nikkei Asia"
   },
   "news.site.int.ge.reuters.desc": {
-    "message": "A global news agency extensively covering international news, business, and finance."
+    "message": "Founded in the UK in 1851 by Paul Julius Reuter. Operated by Thomson Reuters. A global news agency known for its fact-based, impartial, and timely reporting, with operations in over 190 countries."
   },
   "news.site.int.ge.reuters.title": {
     "message": "Reuters"
   },
   "news.site.int.ge.wsj.desc": {
-    "message": "The international edition of the U.S.-based daily newspaper with a strong focus on economics and finance."
+    "message": "Founded in the U.S. in 1889 by Charles Dow and others. Operated by Dow Jones & Company, a division of News Corp. Globally renowned for its high-quality investigative reporting in business and finance, and has won numerous Pulitzer Prizes."
   },
   "news.site.int.ge.wsj.title": {
     "message": "The Wall Street Journal"
@@ -196,22 +205,34 @@
     "message": "AllTop"
   },
   "news.site.int.ss.bellingcat.desc": {
-    "message": "An independent investigative group that uses open-source intelligence (OSINT) to investigate and analyze conflicts and misconduct."
+    "message": "An independent investigative journalism group founded in 2014 by Eliot Higgins. Known for its method of investigating and analyzing conflicts and crimes using open-source intelligence (OSINT). Registered as a non-profit foundation in the Netherlands."
   },
   "news.site.int.ss.bellingcat.title": {
     "message": "Bellingcat"
   },
   "news.site.int.ss.ground.desc": {
-    "message": "A platform that visualizes the political bias of news and provides multiple perspectives."
+    "message": "Founded in Canada in 2017 by former NASA engineer Harleen Kaur and others. A platform that visualizes the political bias (left, center, right) of various media outlets on a single news story, enabling multi-faceted information comparison."
   },
   "news.site.int.ss.ground.title": {
     "message": "Ground News"
   },
   "news.site.int.ss.icij.desc": {
-    "message": "An international non-profit news organization that investigates cross-border corruption, crime, and abuse of power."
+    "message": "A non-profit investigative journalism organization founded in the U.S. in 1997 by Charles Lewis. Known for projects like the \"Panama Papers\" and \"Pandora Papers,\" it pursues wrongdoing through cross-border collaboration."
   },
   "news.site.int.ss.icij.title": {
     "message": "ICIJ (International Consortium of Investigative Journalists)"
+  },
+  "news.site.int.ss.intercept.desc": {
+    "message": "Founded in 2014 by Glenn Greenwald and others. Operated by First Look Media. Launched following the reporting of Edward Snowden's documents, it champions adversarial journalism on issues such as national surveillance, war, and human rights."
+  },
+  "news.site.int.ss.intercept.title": {
+    "message": "The Intercept"
+  },
+  "news.site.int.ss.marshall.desc": {
+    "message": "Founded in the U.S. in 2014 by Neil Barsky. A non-profit news organization focused on the U.S. criminal justice system, aiming to raise public awareness of inequalities within the system."
+  },
+  "news.site.int.ss.marshall.title": {
+    "message": "The Marshall Project"
   },
   "news.site.int.ss.newsnow.desc": {
     "message": "A news aggregator that gathers the latest headlines in real-time from news sources around the world."
@@ -219,14 +240,26 @@
   "news.site.int.ss.newsnow.title": {
     "message": "NewsNow"
   },
+  "news.site.int.ss.occrp.desc": {
+    "message": "Founded in 2006 by Drew Sullivan and Paul Radu. An international non-profit network of investigative journalists specializing in organized crime and corruption. It collaborates with media worldwide to expose cross-border crime."
+  },
+  "news.site.int.ss.occrp.title": {
+    "message": "OCCRP (Organized Crime and Corruption Reporting Project)"
+  },
+  "news.site.int.ss.propublica.desc": {
+    "message": "Founded in the U.S. in 2007 by Paul Steiger and others. A non-profit investigative journalism organization with a mission to expose abuses of power and betrayals of public trust, funded by the Sandler Foundation. It has won numerous Pulitzer Prizes."
+  },
+  "news.site.int.ss.propublica.title": {
+    "message": "ProPublica"
+  },
   "news.site.int.ts.geekwire.desc": {
-    "message": "Reports on technology, startups, and innovation, focusing on Seattle and the Pacific Northwest."
+    "message": "Reports on technology, startups, and innovation news, with a focus on Seattle and the Pacific Northwest."
   },
   "news.site.int.ts.geekwire.title": {
     "message": "GeekWire"
   },
   "news.site.int.ts.mit.desc": {
-    "message": "The international edition of the technology magazine from MIT, explaining trends in new technologies."
+    "message": "Founded and operated by the Massachusetts Institute of Technology (MIT) since 1899. One of the world's most authoritative technology magazines, analyzing the commercial, political, and social impact of emerging technologies."
   },
   "news.site.int.ts.mit.title": {
     "message": "MIT Technology Review"
@@ -244,70 +277,100 @@
     "message": "SciTechDaily"
   },
   "news.site.int.ts.techcrunch.desc": {
-    "message": "A leading media outlet providing news, analysis, and trends in the startup and technology industry."
+    "message": "Founded in the U.S. in 2005 by Michael Arrington. Operated by Yahoo Inc. A leading media outlet reporting on startups and the technology industry, also known for hosting the large-scale conference \"Disrupt\"."
   },
   "news.site.int.ts.techcrunch.title": {
     "message": "TechCrunch"
   },
   "news.site.int.ts.wired.desc": {
-    "message": "The international edition of the media outlet exploring the impact of technology on society and culture."
+    "message": "Founded in the U.S. in 1993 by Louis Rossetto and others. Operated by Condé Nast. A media outlet that has influenced the world by deeply exploring the impact of technology on culture, economy, and politics."
   },
   "news.site.int.ts.wired.title": {
     "message": "WIRED"
   },
   "news.site.jp.ge.47news.desc": {
-    "message": "A comprehensive source for news delivered by Kyodo News and local newspapers across Japan."
+    "message": "Established in 2006 and operated by Zenkoku Shimbun Net Co., Ltd. A joint venture of Kyodo News and 52 local newspapers across Japan, providing news from both national and local perspectives."
   },
   "news.site.jp.ge.47news.title": {
     "message": "47NEWS"
   },
   "news.site.jp.ge.bi.desc": {
-    "message": "The Japanese edition of the news site providing economic and technology news for millennials."
+    "message": "The Japanese edition of the economic media outlet founded in the U.S. by Henry Blodget in 2007, operated by Mediagene Inc. Primarily targeting millennials, it delivers news on business, finance, and technology."
   },
   "news.site.jp.ge.bi.title": {
     "message": "Business Insider Japan"
   },
   "news.site.jp.ge.bloomberg.desc": {
-    "message": "The Japanese edition of Bloomberg, focusing on financial and economic information."
+    "message": "The Japanese edition of Bloomberg L.P., founded in the U.S. by Michael Bloomberg in 1981. Its core business is the \"Bloomberg Terminal\" financial data terminal, and it is known as a global leader in financial and economic information."
   },
   "news.site.jp.ge.bloomberg.title": {
     "message": "Bloomberg Japan"
   },
   "news.site.jp.ge.minkabu.desc": {
-    "message": "A financial information platform providing news and analysis tools for investors, covering stocks, FX, and crypto assets."
+    "message": "Founded in 2006 by Ken Uryu and operated by MINKABU THE INFONOID, Inc. Provides unique content specialized in financial information for individual investors, such as stock price forecasts using AI and crowd input."
   },
   "news.site.jp.ge.minkabu.title": {
     "message": "MINKABU"
   },
   "news.site.jp.ge.nikkei.desc": {
-    "message": "A comprehensive economic newspaper covering politics, international affairs, and markets, focusing on the Japanese economy."
+    "message": "Founded in 1876 by Takashi Masuda (founder of Mitsui & Co.). Operated by Nikkei Inc. Known for its specialized economic reporting and is the source for the Nikkei Stock Average. Acquired the UK's Financial Times in 2015."
   },
   "news.site.jp.ge.nikkei.title": {
     "message": "The Nikkei"
   },
   "news.site.jp.ge.reuters.desc": {
-    "message": "The Japanese edition of the international news agency Reuters, delivering global business, finance, stock, and political news."
+    "message": "The Japanese edition of the international news agency founded in the UK by Paul Julius Reuter in 1851. Operated by Thomson Reuters. One of the world's three largest news agencies, known for its objective and impartial reporting and its fast, global news network."
   },
   "news.site.jp.ge.reuters.title": {
     "message": "Reuters Japan"
   },
+  "news.site.jp.ge.sekaikabuka.desc": {
+    "message": "A site specializing in displaying market data such as major global stock indices, forex, commodity futures, and cryptocurrencies at a glance."
+  },
+  "news.site.jp.ge.sekaikabuka.title": {
+    "message": "World Stock Prices"
+  },
   "news.site.jp.ge.yahoo.desc": {
-    "message": "Japan's largest portal site, providing major news, breaking stories, and original content."
+    "message": "Launched in 1996 and operated by LY Corporation. Rooted in Yahoo! Inc., founded by Jerry Yang and others. Japan's largest news aggregator, delivering news from numerous content providers."
   },
   "news.site.jp.ge.yahoo.title": {
     "message": "Yahoo! JAPAN News"
   },
   "news.site.jp.lw.tenki.desc": {
-    "message": "The official weather forecast media of the Japan Weather Association, also featuring extensive disaster prevention information."
+    "message": "The official weather forecast media of the Japan Weather Association. Also rich in disaster prevention information."
   },
   "news.site.jp.lw.tenki.title": {
     "message": "tenki.jp"
   },
   "news.site.jp.lw.yahoo.desc": {
-    "message": "Weather forecasts and disaster information provided by Yahoo! JAPAN."
+    "message": "Weather forecast and disaster information by Yahoo! Japan."
   },
   "news.site.jp.lw.yahoo.title": {
     "message": "Yahoo! Weather & Disaster"
+  },
+  "news.site.jp.pr.kyodo.desc": {
+    "message": "Press release distribution service operated by Kyodo News. Provides highly reliable corporate information."
+  },
+  "news.site.jp.pr.kyodo.title": {
+    "message": "Kyodo News PR Wire"
+  },
+  "news.site.jp.pr.prtimes.desc": {
+    "message": "Japan's largest press release distribution service. Get the latest corporate information quickly."
+  },
+  "news.site.jp.pr.prtimes.title": {
+    "message": "PR TIMES"
+  },
+  "news.site.jp.sec.ipa.desc": {
+    "message": "A public agency under the Ministry of Economy, Trade and Industry, established by the Japanese government in 2004. It supports Japan's IT national strategy from a technical standpoint, responsible for publishing the \"10 Major Security Threats\" and administering the Information Technology Engineers Examination."
+  },
+  "news.site.jp.sec.ipa.title": {
+    "message": "IPA (Information-technology Promotion Agency, Japan)"
+  },
+  "news.site.jp.sec.secnext.desc": {
+    "message": "Launched in 2004 and operated by News-Gaea, Inc. A specialized news site for cybersecurity and personal information protection. It provides prompt reporting on incidents and vulnerabilities."
+  },
+  "news.site.jp.sec.secnext.title": {
+    "message": "Security NEXT"
   },
   "news.site.jp.ss.ceek.desc": {
     "message": "A news search engine that allows cross-searching of major domestic news sites."
@@ -315,17 +378,71 @@
   "news.site.jp.ss.ceek.title": {
     "message": "CEEK.JP News"
   },
+  "news.site.jp.ts.ascii.desc": {
+    "message": "A web media originating from \"Monthly ASCII,\" first published in 1977 by Kazuhiko Nishi and others. Operated by Kadokawa Ascii Research Laboratories, Inc. With a history dating back to the dawn of personal computers in Japan, it provides timely news on PCs, IT, and gadgets."
+  },
+  "news.site.jp.ts.ascii.title": {
+    "message": "ASCII.jp"
+  },
+  "news.site.jp.ts.cnet.desc": {
+    "message": "The Japanese edition of the technology news site founded in the U.S. in 1994 by Halsey Minor and others. Operated by Asahi Interactive, Inc. It has a strong focus on IT product reviews and information on enterprise solutions."
+  },
+  "news.site.jp.ts.cnet.title": {
+    "message": "CNET Japan"
+  },
+  "news.site.jp.ts.gigazine.desc": {
+    "message": "Launched in 2000 by Keito Yamazaki and operated by OSA Inc. Known for its in-depth articles based on unique perspectives and detailed reporting. It covers a wide range of topics from gadget reviews to science and food culture."
+  },
+  "news.site.jp.ts.gigazine.title": {
+    "message": "GIGAZINE"
+  },
   "news.site.jp.ts.mit.desc": {
-    "message": "The Japanese edition of the technology magazine from MIT, explaining trends in new technologies."
+    "message": "The Japanese edition of the world's oldest technology magazine, first published by MIT in 1899. Operated by Kadokawa Ascii Research Laboratories, Inc. It provides in-depth analysis of the social and economic impact of new technologies."
   },
   "news.site.jp.ts.mit.title": {
     "message": "MIT Technology Review Japan"
   },
   "news.site.jp.ts.wired.desc": {
-    "message": "The Japanese edition of the media outlet exploring the impact of technology on society and culture."
+    "message": "The Japanese edition of the technology culture magazine founded in the U.S. in 1993 by Louis Rossetto and others. Operated by Condé Nast Japan. It explores the impact of technology on culture, society, and lifestyle, and is known for its future-oriented insights."
   },
   "news.site.jp.ts.wired.title": {
     "message": "WIRED Japan"
+  },
+  "news.site.jp.tv.asahi.desc": {
+    "message": "The news site of TV Asahi. Provides information from a unique perspective."
+  },
+  "news.site.jp.tv.asahi.title": {
+    "message": "TV Asahi NEWS"
+  },
+  "news.site.jp.tv.fuji.desc": {
+    "message": "News distribution site by the Fuji News Network (FNN)."
+  },
+  "news.site.jp.tv.fuji.title": {
+    "message": "FNN Prime Online"
+  },
+  "news.site.jp.tv.nhk.desc": {
+    "message": "The comprehensive news site of the Japan Broadcasting Corporation (NHK), covering a wide range of domestic and international news."
+  },
+  "news.site.jp.tv.nhk.title": {
+    "message": "NHK NEWS WEB"
+  },
+  "news.site.jp.tv.ntv.desc": {
+    "message": "The news site of Nippon Television. Delivers timely news updates."
+  },
+  "news.site.jp.tv.ntv.title": {
+    "message": "Nippon TV NEWS"
+  },
+  "news.site.jp.tv.tbs.desc": {
+    "message": "The news site of TBS Television. Detailed reporting on current affairs and social issues."
+  },
+  "news.site.jp.tv.tbs.title": {
+    "message": "TBS NEWS"
+  },
+  "news.site.jp.tv.tx.desc": {
+    "message": "TV Tokyo's dedicated site for economic and business news."
+  },
+  "news.site.jp.tv.tx.title": {
+    "message": "TV Tokyo BIZ"
   },
   "page.browser-memo.alert.restoreFailed": {
     "message": "Failed to restore memos. The link may be corrupted."
@@ -840,99 +957,5 @@
   "theme.TOCCollapsible.toggleButtonLabel": {
     "message": "On this page",
     "description": "The label used by the button on the collapsible TOC component"
-  },
-  "news.site.jp.ge.sekaikabuka.title": {
-    "message": "World Stock Prices"
-  },
-  "news.site.jp.ge.sekaikabuka.desc": {
-    "message": "A financial information site offering an overview of global stock indices, forex, commodities, cryptocurrencies, and other latest market data."
-  },
-  "news.site.jp.ts.ascii.title": {
-    "message": "ASCII.jp"
-  },
-  "news.site.jp.ts.ascii.desc": {
-    "message": "The web version of the long-established IT magazine ASCII. Delivers news on digital gadgets and the latest technology."
-  },
-  "news.site.jp.ts.cnet.title": {
-    "message": "CNET Japan"
-  },
-  "news.site.jp.ts.cnet.desc": {
-    "message": "The Japanese edition of the US-based technology media outlet. Rich in enterprise IT information."
-  },
-  "news.site.jp.ts.gigazine.title": {
-    "message": "GIGAZINE"
-  },
-  "news.site.jp.ts.gigazine.desc": {
-    "message": "A long-running tech news site since 2000, known for its unique perspectives."
-  },
-  "news.category.security-jp": {
-    "message": "Security & IT Specialist"
-  },
-  "news.site.jp.sec.secnext.title": {
-    "message": "Security NEXT"
-  },
-  "news.site.jp.sec.secnext.desc": {
-    "message": "A specialist news site for security and personal information topics. Delivers updates on data breaches and vulnerabilities."
-  },
-  "news.site.jp.sec.ipa.title": {
-    "message": "IPA Information-technology Promotion Agency"
-  },
-  "news.site.jp.sec.ipa.desc": {
-    "message": "Japan's official IT policy implementation agency. Provides security information and technology trends."
-  },
-  "news.category.tv-news-jp": {
-    "message": "TV Station News"
-  },
-  "news.site.jp.tv.nhk.title": {
-    "message": "NHK NEWS WEB"
-  },
-  "news.site.jp.tv.nhk.desc": {
-    "message": "The comprehensive news site of Japan Broadcasting Corporation (NHK), covering a wide range of domestic and international news."
-  },
-  "news.site.jp.tv.tbs.title": {
-    "message": "TBS NEWS"
-  },
-  "news.site.jp.tv.tbs.desc": {
-    "message": "The news site of TBS Television. Detailed reporting on current affairs and social issues."
-  },
-  "news.site.jp.tv.ntv.title": {
-    "message": "Nippon TV NEWS"
-  },
-  "news.site.jp.tv.ntv.desc": {
-    "message": "The news site of Nippon Television. Delivers fast and timely news updates."
-  },
-  "news.site.jp.tv.fuji.title": {
-    "message": "Fuji TV NEWS"
-  },
-  "news.site.jp.tv.fuji.desc": {
-    "message": "News distribution site by Fuji TV's news division."
-  },
-  "news.site.jp.tv.asahi.title": {
-    "message": "TV Asahi NEWS"
-  },
-  "news.site.jp.tv.asahi.desc": {
-    "message": "The news site of TV Asahi. Provides information from a unique perspective."
-  },
-  "news.site.jp.tv.tx.title": {
-    "message": "TV Tokyo BIZ"
-  },
-  "news.site.jp.tv.tx.desc": {
-    "message": "TV Tokyo's dedicated site for economic and business news."
-  },
-  "news.category.press-release-jp": {
-    "message": "Press Releases"
-  },
-  "news.site.jp.pr.prtimes.title": {
-    "message": "PR TIMES"
-  },
-  "news.site.jp.pr.prtimes.desc": {
-    "message": "Japan's largest press release distribution service. Get the latest corporate information quickly."
-  },
-  "news.site.jp.pr.kyodo.title": {
-    "message": "Kyodo News PR Wire"
-  },
-  "news.site.jp.pr.kyodo.desc": {
-    "message": "Press release distribution service operated by Kyodo News. Provides highly reliable corporate information."
   }
 }
-
