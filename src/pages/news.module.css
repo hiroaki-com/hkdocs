@@ -96,6 +96,6 @@
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem; /* 2カラムなのでgapを少し詰める */
+    gap: 0.6rem; /* 2カラムなのでgapを少し詰める */
   }
 }
