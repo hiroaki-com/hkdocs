@@ -36,7 +36,7 @@
 
 /* 説明文（通常時） */
 .description {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: var(--ifm-font-color-secondary);
   margin: 0;
   line-height: 1.5;
@@ -129,7 +129,7 @@
   }
   
   .description {
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     height: calc(0.7rem * 1.5 * 3);
   }
 }
