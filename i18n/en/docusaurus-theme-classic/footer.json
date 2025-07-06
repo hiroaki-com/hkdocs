@@ -21,7 +21,7 @@
   },
   "link.item.label.日記": {
     "message": "Diary",
-    "description": "The label of footer link with label=日記 linking to /diary"
+    "description": "The label of footer link with label=日記 linking to diary"
   },
   "link.item.label.プロフィール": {
     "message": "Profile",
@@ -46,5 +46,9 @@
   "link.item.label.ニュース": {
     "message": "News",
     "description": "The label of footer link with label=ニュース linking to /news"
+  },
+  "link.item.label.資料集": {
+    "message": "資料集",
+    "description": "The label of footer link with label=資料集 linking to /links"
   }
 }
