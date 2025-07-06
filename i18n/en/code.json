@@ -957,5 +957,338 @@
   "theme.TOCCollapsible.toggleButtonLabel": {
     "message": "On this page",
     "description": "The label used by the button on the collapsible TOC component"
+  },
+  "links.page.title": {
+    "message": "Links"
+  },
+  "links.page.description": {
+    "message": "A collection of useful links to technical documents and tools for development and learning."
+  },
+  "links.page.heading": {
+    "message": "Links"
+  },
+  "links.page.subheading": {
+    "message": "References for Development & Learning"
+  },
+  "links.majorCategory.cloudInfra": {
+    "message": "Cloud & Infrastructure"
+  },
+  "links.site.cloud.gcp.desc": {
+    "message": "Complete GCP documentation with quickstarts, tutorials, and comprehensive guides."
+  },
+  "links.site.cloud.gcpArch.desc": {
+    "message": "The Cloud Architecture Center provides reference architectures, design guidance, and best practices."
+  },
+  "links.site.cloud.gcloud.desc": {
+    "message": "Documentation for the Google Cloud CLI, including gcloud, gsutil, and bq command-line tools."
+  },
+  "links.site.cloud.gcpSecurity.desc": {
+    "message": "Documentation and best practices for Google Cloud security."
+  },
+  "links.site.cloud.aws.desc": {
+    "message": "Comprehensive documentation covering all AWS services."
+  },
+  "links.site.cloud.awsArch.desc": {
+    "message": "The AWS Architecture Center, including guidance from the Well-Architected Framework."
+  },
+  "links.site.cloud.awsWhitepapers.desc": {
+    "message": "AWS whitepapers on cloud architecture and best practices."
+  },
+  "links.site.cloud.k8s.desc": {
+    "message": "Official documentation for Kubernetes, the de facto standard for container orchestration."
+  },
+  "links.site.cloud.docker.desc": {
+    "message": "Official documentation for Docker, the de facto standard for container virtualization."
+  },
+  "links.site.cloud.terraform.desc": {
+    "message": "Official documentation for the leading tool to implement Infrastructure as Code."
+  },
+  "links.site.cloud.pulumi.desc": {
+    "message": "A modern IaC tool that uses familiar programming languages."
+  },
+  "links.site.cloud.ansible.desc": {
+    "message": "Official documentation for the tool that automates configuration management and provisioning."
+  },
+  "links.site.cloud.gcb.desc": {
+    "message": "A managed service for running CI/CD pipelines on GCP."
+  },
+  "links.site.cloud.ghactions.desc": {
+    "message": "A CI/CD platform integrated into GitHub for automating workflows."
+  },
+  "links.site.cloud.gitlab.desc": {
+    "message": "A DevOps platform that integrates everything from source code management to CI/CD."
+  },
+  "links.site.cloud.helm.desc": {
+    "message": "Official documentation for Helm, the package manager for Kubernetes."
+  },
+  "links.majorCategory.backendDev": {
+    "message": "Backend Development"
+  },
+  "links.site.backend.python.desc": {
+    "message": "Official Python 3 documentation, from language specifications to the standard library."
+  },
+  "links.site.backend.django.desc": {
+    "message": "A Python framework for rapid development of robust and scalable web applications."
+  },
+  "links.site.backend.drf.desc": {
+    "message": "A powerful and flexible toolkit for building Web APIs in Django."
+  },
+  "links.site.backend.fastapi.desc": {
+    "message": "A modern, fast web framework for Python 3.6+ based on type hints."
+  },
+  "links.site.backend.flask.desc": {
+    "message": "A lightweight and extensible micro web framework for Python."
+  },
+  "links.site.backend.node.desc": {
+    "message": "Official documentation for the asynchronous event-driven JavaScript runtime."
+  },
+  "links.site.backend.express.desc": {
+    "message": "A fast, unopinionated, minimalist web framework for Node.js."
+  },
+  "links.site.backend.nestjs.desc": {
+    "message": "A Node.js framework for building efficient, scalable server-side applications."
+  },
+  "links.site.backend.go.desc": {
+    "message": "A simple, efficient, statically typed compiled language developed by Google."
+  },
+  "links.site.backend.rust.desc": {
+    "message": "A systems programming language that focuses on safety, speed, and concurrency."
+  },
+  "links.site.backend.kotlin.desc": {
+    "message": "A modern, pragmatic programming language that runs on the JVM."
+  },
+  "links.site.backend.graphql.desc": {
+    "message": "A query language for APIs, allowing clients to request only the data they need."
+  },
+  "links.site.backend.grpc.desc": {
+    "message": "A high-performance RPC framework developed by Google, using Protocol Buffers by default."
+  },
+  "links.site.backend.openapi.desc": {
+    "message": "A standard specification for describing RESTful APIs, with a rich ecosystem."
+  },
+  "links.site.backend.swagger.desc": {
+    "message": "A set of API development tools based on the OpenAPI Specification."
+  },
+  "links.majorCategory.dataAnalytics": {
+    "message": "Data & Analytics"
+  },
+  "links.site.data.bigquery.desc": {
+    "message": "A serverless data warehouse for analyzing petabyte-scale data."
+  },
+  "links.site.data.dataflow.desc": {
+    "message": "A managed service for executing stream and batch data processing pipelines."
+  },
+  "links.site.data.dataproc.desc": {
+    "message": "A managed service for Apache Spark and Hadoop."
+  },
+  "links.site.data.composer.desc": {
+    "message": "A managed service for Apache Airflow."
+  },
+  "links.site.data.postgres.desc": {
+    "message": "A powerful, open source object-relational database system."
+  },
+  "links.site.data.mysql.desc": {
+    "message": "One of the world's most popular open-source relational databases."
+  },
+  "links.site.data.mongodb.desc": {
+    "message": "A document-oriented NoSQL database."
+  },
+  "links.site.data.redis.desc": {
+    "message": "A fast, in-memory key-value data store."
+  },
+  "links.site.data.duckdb.desc": {
+    "message": "A fast, in-process analytical database engine."
+  },
+  "links.site.data.pandas.desc": {
+    "message": "A data analysis library for Python, powerful for DataFrame manipulation."
+  },
+  "links.site.data.numpy.desc": {
+    "message": "A numerical computing library for Python, essential for multi-dimensional array operations."
+  },
+  "links.site.data.dbt.desc": {
+    "message": "The \"T\" in ELT. A tool to help transform data in your data warehouse."
+  },
+  "links.site.data.supabase.desc": {
+    "message": "An open source Firebase alternative, based on PostgreSQL."
+  },
+  "links.site.data.sqlzoo.desc": {
+    "message": "A site for learning SQL through interactive tutorials and exercises."
+  },
+  "links.majorCategory.mlAi": {
+    "message": "Machine Learning & AI"
+  },
+  "links.site.ai.vertexai.desc": {
+    "message": "A unified ML platform on GCP for building, deploying, and scaling ML models."
+  },
+  "links.site.ai.mlcrashcourse.desc": {
+    "message": "A practical, fast-paced course on ML fundamentals, created by Google engineers."
+  },
+  "links.site.ai.gcpa.desc": {
+    "message": "Documentation for all of GCP's AI services, including translation, speech, and vision."
+  },
+  "links.site.ai.tf.desc": {
+    "message": "An end-to-end open-source platform for machine learning, developed by Google."
+  },
+  "links.site.ai.pytorch.desc": {
+    "message": "An ML library known for its Define-by-Run approach, widely adopted in research."
+  },
+  "links.site.ai.sklearn.desc": {
+    "message": "A leading machine learning library for Python for classification, regression, and clustering."
+  },
+  "links.site.ai.mlflow.desc": {
+    "message": "An open-source platform to manage the complete machine learning lifecycle."
+  },
+  "links.site.ai.kubeflow.desc": {
+    "message": "A platform for deploying and managing ML workflows on Kubernetes."
+  },
+  "links.site.ai.dvc.desc": {
+    "message": "A tool for data and model versioning that integrates with Git."
+  },
+  "links.site.ai.wandb.desc": {
+    "message": "A platform to help track, visualize, and reproduce ML experiments."
+  },
+  "links.site.ai.hf.desc": {
+    "message": "A hub for transformer models and libraries for Natural Language Processing (NLP)."
+  },
+  "links.site.ai.kaggle.desc": {
+    "message": "The world's largest community for data science competitions, datasets, and learning resources."
+  },
+  "links.site.ai.colab.desc": {
+    "message": "An environment for running Python in your browser, especially for ML, with free GPU access."
+  },
+  "links.site.ai.optuna.desc": {
+    "message": "An automatic hyperparameter optimization framework."
+  },
+  "links.majorCategory.frontendDesign": {
+    "message": "Frontend & Design"
+  },
+  "links.site.frontend.mdn.desc": {
+    "message": "The de facto standard for web technologies. Official reference for HTML, CSS, and JavaScript."
+  },
+  "links.site.frontend.webdev.desc": {
+    "message": "Best practices for modern web development from Google, covering performance, accessibility, and more."
+  },
+  "links.site.frontend.react.desc": {
+    "message": "A declarative JavaScript library for building component-based user interfaces."
+  },
+  "links.site.frontend.nextjs.desc": {
+    "message": "A production framework for React, offering various rendering strategies."
+  },
+  "links.site.frontend.ts.desc": {
+    "message": "A superset of JavaScript that adds static typing to enhance robustness for large-scale development."
+  },
+  "links.site.frontend.vite.desc": {
+    "message": "A next-generation frontend tool featuring a fast development server and build process."
+  },
+  "links.site.frontend.tailwind.desc": {
+    "message": "A utility-first CSS framework for rapidly building custom designs directly in your HTML."
+  },
+  "links.site.frontend.shadcnui.desc": {
+    "message": "A new approach to UI components: copy and paste them into your project."
+  },
+  "links.site.frontend.mui.desc": {
+    "message": "A popular React UI framework that implements Google's Material Design."
+  },
+  "links.site.frontend.figma.desc": {
+    "message": "A browser-based UI/UX design tool with powerful real-time collaboration features."
+  },
+  "links.site.frontend.storybook.desc": {
+    "message": "A tool for developing and documenting UI components in isolation."
+  },
+  "links.site.frontend.playwright.desc": {
+    "message": "A framework for automating reliable end-to-end testing."
+  },
+  "links.site.frontend.caniuse.desc": {
+    "message": "An essential tool for checking browser support for frontend technologies."
+  },
+  "links.majorCategory.devTools": {
+    "message": "Development Tools & Learning"
+  },
+  "links.site.devtools.git.desc": {
+    "message": "Official documentation for the distributed version control system, Git."
+  },
+  "links.site.devtools.github.desc": {
+    "message": "Official documentation for GitHub features like code hosting, collaboration, and Actions."
+  },
+  "links.site.devtools.learngit.desc": {
+    "message": "An excellent interactive and visual tool for learning Git branching."
+  },
+  "links.site.devtools.regex101.desc": {
+    "message": "A powerful online tool for creating, testing, and debugging regular expressions in real time."
+  },
+  "links.site.devtools.godbolt.desc": {
+    "message": "An interactive tool to see how your code is compiled by various compilers."
+  },
+  "links.site.devtools.replit.desc": {
+    "message": "An online IDE for coding, compiling, running, and sharing code directly from your browser."
+  },
+  "links.site.devtools.roadmap.desc": {
+    "message": "Learning roadmaps for various tech domains, showing you what to learn next."
+  },
+  "links.site.devtools.hackernews.desc": {
+    "message": "A tech news site run by Y Combinator, where geeks from around the world discuss."
+  },
+  "links.site.devtools.exercism.desc": {
+    "message": "A platform to practice coding skills in over 50 languages with mentorship."
+  },
+  "links.site.devtools.leetcode.desc": {
+    "message": "A collection of algorithm and data structure problems, ideal for tech interview prep."
+  },
+  "links.majorCategory.docsKnowledge": {
+    "message": "Documentation & Knowledge Management"
+  },
+  "links.site.docs.docusaurus.desc": {
+    "message": "A static site generator built with React, optimized for creating documentation websites."
+  },
+  "links.site.docs.gitbook.desc": {
+    "message": "A modern platform for easily creating, hosting, and managing technical documentation."
+  },
+  "links.site.docs.mkdocs.desc": {
+    "message": "A fast, simple static site generator for building project documentation with Markdown."
+  },
+  "links.site.docs.obsidian.desc": {
+    "message": "A powerful knowledge base tool that works on local Markdown files, acting as a second brain."
+  },
+  "links.site.docs.logseq.desc": {
+    "message": "A privacy-first, non-linear outliner-style knowledge base."
+  },
+  "links.site.docs.notion.desc": {
+    "message": "An all-in-one workspace that combines documents, databases, wikis, and more."
+  },
+  "links.site.docs.excalidraw.desc": {
+    "message": "A virtual whiteboard tool for easily creating hand-drawn style diagrams and wireframes."
+  },
+  "links.site.docs.mermaid.desc": {
+    "message": "A library that generates diagrams and charts from Markdown-like text."
+  },
+  "links.site.docs.plantuml.desc": {
+    "message": "A tool for quickly creating UML diagrams from a simple text description language."
+  },
+  "links.majorCategory.specialized": {
+    "message": "Specialized Development"
+  },
+  "links.site.specialized.rn.desc": {
+    "message": "Build cross-platform mobile apps using React."
+  },
+  "links.site.specialized.flutter.desc": {
+    "message": "Build beautiful UIs for mobile, web, and desktop from a single codebase."
+  },
+  "links.site.specialized.unity.desc": {
+    "message": "The world's leading platform for 2D and 3D game development."
+  },
+  "links.site.specialized.godot.desc": {
+    "message": "A feature-rich, cross-platform game engine that is completely free and open source."
+  },
+  "links.site.specialized.ethereum.desc": {
+    "message": "Resources for building decentralized applications (dApps)."
+  },
+  "links.site.specialized.solidity.desc": {
+    "message": "The primary programming language for implementing smart contracts on Ethereum."
+  },
+  "links.site.specialized.owasp.desc": {
+    "message": "An open community dedicated to improving the security of web applications."
+  },
+  "links.site.specialized.portswigger.desc": {
+    "message": "A free, online learning resource for web security vulnerabilities, from PortSwigger."
   }
 }

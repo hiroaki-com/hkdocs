@@ -153,6 +153,7 @@ const config: Config = {
         { to: '/blog', label: 'ブログ', position: 'left' },
         { to: '/diary', label: '日記', position: 'left' },
         { to: '/news', label: 'ニュース', position: 'left' },
+        { to: '/links', label: '資料集', position: 'left' },
         {
           to: '/browser-memo',
           label: 'ブラウザメモ',
@@ -188,15 +189,15 @@ const config: Config = {
           items: [
             { label: 'Tech', to: '/docs/intro' },
             { label: 'ブログ', to: '/blog' },
-            { label: '日記', to: '/diary' },
+            { label: '日記', to: 'diary' },
           ],
         },
         {
           title: 'More',
           items: [
             { label: 'プロフィール', to: '/profile' },
-            // [追加] 新しく作成したニュースページへのリンク
             { label: 'ニュース', to: '/news' },
+            { label: '資料集', to: '/links' },
             { label: 'ブラウザメモ', to: '/browser-memo' },
             { label: 'GitHub', href: 'https://github.com/hiroaki-com/hkdocs' },
           ],

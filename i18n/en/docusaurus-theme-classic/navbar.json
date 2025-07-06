@@ -38,5 +38,9 @@
   "item.label.ニュース": {
     "message": "News",
     "description": "Navbar item with label ニュース"
+  },
+  "item.label.資料集": {
+    "message": "資料集",
+    "description": "Navbar item with label 資料集"
   }
 }
