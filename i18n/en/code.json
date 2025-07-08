@@ -1290,5 +1290,72 @@
   },
   "links.site.specialized.portswigger.desc": {
     "message": "A free, online learning resource for web security vulnerabilities, from PortSwigger."
+  },
+  "links.subCategory.cloud.gcp": {
+    "message": "Google Cloud"
+  },
+  "links.subCategory.cloud.containerIac": {
+    "message": "Containers & IaC"
+  },
+  "links.subCategory.cloud.cicd": {
+    "message": "CI/CD"
+  },
+  "links.subCategory.backend.pythonWeb": {
+    "message": "Python & Web Frameworks"
+  },
+  "links.subCategory.backend.jsNode": {
+    "message": "JavaScript & Node.js"
+  },
+  "links.subCategory.backend.apiDesign": {
+    "message": "API Design & Standards"
+  },
+  "links.subCategory.data.gcp": {
+    "message": "Google Cloud Data Services"
+  },
+  "links.subCategory.data.tools": {
+    "message": "Data Analytics & Tools"
+  },
+  "links.subCategory.ai.gcp": {
+    "message": "Google Cloud AI/ML Platforms"
+  },
+  "links.subCategory.ai.mlops": {
+    "message": "MLOps & Development Platforms"
+  },
+  "links.subCategory.ai.resources": {
+    "message": "AI Development Resources"
+  },
+  "links.subCategory.frontend.webStandards": {
+    "message": "Web Standard Technologies"
+  },
+  "links.subCategory.frontend.react": {
+    "message": "React Ecosystem"
+  },
+  "links.subCategory.frontend.tsJs": {
+    "message": "TypeScript & Modern JS"
+  },
+  "links.subCategory.frontend.css": {
+    "message": "CSS Frameworks & Styling"
+  },
+  "links.subCategory.frontend.designTest": {
+    "message": "Design & Testing"
+  },
+  "links.subCategory.devtools.versionControl": {
+    "message": "Version Control & Collaboration"
+  },
+  "links.subCategory.devtools.learning": {
+    "message": "Learning & Career"
+  },
+  "links.subCategory.docs.tools": {
+    "message": "Documentation Tools"
+  },
+  "links.subCategory.docs.knowledge": {
+    "message": "Knowledge Management Tools"
+  },
+  "links.subCategory.docs.diagram": {
+    "message": "Diagramming & Charting"
+  },
+  "links.subCategory.specialized.security": {
+    "message": "Security"
   }
 }
+
