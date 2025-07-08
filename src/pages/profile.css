@@ -6,6 +6,7 @@
   color: var(--ifm-font-color-base);
   border-left: 2px solid var(--ifm-color-emphasis-300);
   margin-left: 10px; /* タイムライン全体の左マージン */
+  font-size: 0.9rem; /* 全体のフォントサイズをさらに小さく調整 */
 }
 
 .log-entry {
@@ -17,7 +18,7 @@
 .log-entry .graph {
   position: absolute;
   left: -11px; /* 線の中心に円が来るように調整 */
-  top: 28px;
+  top: 20px; /* タイトルの高さと中央揃えになるよう調整 */
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -28,12 +29,11 @@
 
 .log-entry .message {
   flex: 1;
-  font-size: 1rem;
 }
 
 .commit-header {
   display: flex;
-  align-items: baseline;
+  align-items: center; /* タイトルとタグの高さを中央揃えに */
   flex-wrap: wrap; /* レスポンシブ対応 */
   margin-bottom: 12px;
 }
@@ -104,3 +104,4 @@
   font-size: 0.9em;
   font-weight: 500;
 }
+
