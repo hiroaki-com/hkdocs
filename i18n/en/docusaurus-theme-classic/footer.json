@@ -50,6 +50,5 @@
   "link.item.label.資料集": {
     "message": "Links",
     "description": "The label of footer link with label=資料集 linking to /links"
-
   }
 }
