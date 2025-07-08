@@ -37,7 +37,7 @@ export default function LinksPage(): JSX.Element {
           </summary>
           <div className={styles.cardGrid}>
             <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.cloud.gcp">Google Cloud</Translate>
+              <Translate id="links.subCategory.cloud.gcp">Google Cloud Platform</Translate>
             </h3>
             <NewsSiteCard href="https://cloud.google.com/docs" title="Google Cloud Docs" description={<Translate id="links.site.cloud.gcp.desc">クイックスタート、チュートリアル、包括的なガイドを含む完全なGCPドキュメント。</Translate>} />
             <NewsSiteCard href="https://cloud.google.com/architecture" title="Cloud Architecture Center" description={<Translate id="links.site.cloud.gcpArch.desc">参照アーキテクチャ、設計ガイダンス、ベストプラクティスを提供するクラウドアーキテクチャセンター。</Translate>} />
@@ -117,11 +117,6 @@ export default function LinksPage(): JSX.Element {
           </summary>
           <div className={styles.cardGrid}>
             <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.ai.gcp">Google Cloud AI/ML プラットフォーム</Translate>
-            </h3>
-            <NewsSiteCard href="https://cloud.google.com/ai/docs" title="Google Cloud AI Docs" description={<Translate id="links.site.ai.gcpa.desc">翻訳、音声、視覚など、GCPのAIサービス全体のドキュメント。</Translate>} />
-            
-            <h3 className={styles.subCategoryTitle}>
               <Translate id="links.subCategory.ai.mlops">MLOps & 開発プラットフォーム</Translate>
             </h3>
             <NewsSiteCard href="https://www.kubeflow.org/docs/" title="Kubeflow Docs" description={<Translate id="links.site.ai.kubeflow.desc">Kubernetes上でMLワークフローをデプロイ、管理するためのプラットフォーム。</Translate>} />
@@ -133,43 +128,37 @@ export default function LinksPage(): JSX.Element {
           </div>
         </details>
 
-        {/* --- フロントエンド & デザイン --- */}
+        {/* --- フロントエンド & Web標準 --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="frontend-design" className={styles.majorCategoryTitle}>
-              <Translate id="links.majorCategory.frontendDesign">フロントエンド & デザイン</Translate>
+            <h2 id="frontend-web" className={styles.majorCategoryTitle}>
+              <Translate id="links.majorCategory.frontendWeb">フロントエンド & Web標準</Translate>
             </h2>
           </summary>
           <div className={styles.cardGrid}>
             <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.frontend.webStandards">Web標準技術</Translate>
-            </h3>
-            <NewsSiteCard href="https://developer.mozilla.org/" title="MDN Web Docs" description={<Translate id="links.site.frontend.mdn.desc">Web技術のデファクトスタンダード。HTML, CSS, JavaScript等の公式リファレンス。</Translate>} />
-            <NewsSiteCard href="https://web.dev/" title="web.dev" description={<Translate id="links.site.frontend.webdev.desc">GoogleによるモダンなWeb開発のベストプラクティス集。パフォーマンス、アクセシビリティなど。</Translate>} />
-
-            <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.frontend.react">React エコシステム</Translate>
+              <Translate id="links.subCategory.frontend.jsFrameworks">JavaScript & フレームワーク</Translate>
             </h3>
             <NewsSiteCard href="https://react.dev/" title="React" description={<Translate id="links.site.frontend.react.desc">コンポーネントベースUIを構築するための宣言的JavaScriptライブラリ。</Translate>} />
             <NewsSiteCard href="https://nextjs.org/docs" title="Next.js Docs" description={<Translate id="links.site.frontend.nextjs.desc">Reactをベースにしたプロダクションフレームワーク。多彩なレンダリング戦略を提供。</Translate>} />
-
-            <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.frontend.tsJs">TypeScript & モダンJS</Translate>
-            </h3>
             <NewsSiteCard href="https://www.typescriptlang.org/docs/" title="TypeScript Docs" description={<Translate id="links.site.frontend.ts.desc">静的型付けを導入し、大規模開発の堅牢性を高めるJavaScriptのスーパーセット。</Translate>} />
             <NewsSiteCard href="https://vitejs.dev/guide/" title="Vite" description={<Translate id="links.site.frontend.vite.desc">高速な開発サーバーとビルドが特徴の次世代フロントエンドツール。</Translate>} />
-
+            
             <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.frontend.css">CSSフレームワーク & スタイリング</Translate>
+              <Translate id="links.subCategory.frontend.stylingTools">スタイリング & ツール</Translate>
             </h3>
             <NewsSiteCard href="https://tailwindcss.com/docs" title="Tailwind CSS" description={<Translate id="links.site.frontend.tailwind.desc">ユーティリティファーストのCSSフレームワーク。HTML内で迅速にカスタムデザインを構築。</Translate>} />
-
-            <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.frontend.designTest">デザイン & テスト</Translate>
-            </h3>
             <NewsSiteCard href="https://storybook.js.org/docs/" title="Storybook Docs" description={<Translate id="links.site.frontend.storybook.desc">UIコンポーネントを分離して開発・文書化するためのツール。</Translate>} />
             <NewsSiteCard href="https://playwright.dev/" title="Playwright" description={<Translate id="links.site.frontend.playwright.desc">信頼性の高いエンドツーエンドテストを自動化するためのフレームワーク。</Translate>} />
             <NewsSiteCard href="https://caniuse.com/" title="Can I use..." description={<Translate id="links.site.frontend.caniuse.desc">フロントエンド技術のブラウザ対応状況を確認できる必須ツール。</Translate>} />
+            
+            <h3 className={styles.subCategoryTitle}>
+              <Translate id="links.subCategory.frontend.webStandards">Web標準</Translate>
+            </h3>
+            <NewsSiteCard href="https://developer.mozilla.org/" title="MDN Web Docs" description={<Translate id="links.site.frontend.mdn.desc">Web技術のデファクトスタンダード。HTML, CSS, JavaScript等の公式リファレンス。</Translate>} />
+            <NewsSiteCard href="https://web.dev/" title="web.dev" description={<Translate id="links.site.frontend.webdev.desc">GoogleによるモダンなWeb開発のベストプラクティス集。パフォーマンス、アクセシビリティなど。</Translate>} />
+            <NewsSiteCard href="https://www.w3.org/" title="W3C" description={<Translate id="links.site.frontend.w3c.desc">World Wide Webの技術標準を策定する国際的な標準化団体。</Translate>} />
+            <NewsSiteCard href="https://www.ietf.org/" title="IETF" description={<Translate id="links.site.frontend.ietf.desc">インターネットの技術標準を策定するボランティアベースの組織。</Translate>} />
           </div>
         </details>
 
@@ -182,17 +171,19 @@ export default function LinksPage(): JSX.Element {
           </summary>
           <div className={styles.cardGrid}>
             <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.devtools.versionControl">バージョン管理 & 共同開発</Translate>
+              <Translate id="links.subCategory.devtools.versionControl">バージョン管理</Translate>
             </h3>
             <NewsSiteCard href="https://git-scm.com/docs" title="Git Official Docs" description={<Translate id="links.site.devtools.git.desc">分散バージョン管理システムGitの公式ドキュメント。</Translate>} />
             <NewsSiteCard href="https://docs.github.com/" title="GitHub Docs" description={<Translate id="links.site.devtools.github.desc">コードホスティング、共同開発、ActionsなどGitHub機能の公式ドキュメント。</Translate>} />
             <NewsSiteCard href="https://learngitbranching.js.org/" title="Learn Git Branching" description={<Translate id="links.site.devtools.learngit.desc">Gitのブランチ操作を視覚的かつインタラクティブに学べる、非常に優れた学習ツール。</Translate>} />
 
             <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.devtools.learning">学習 & キャリア</Translate>
+              <Translate id="links.subCategory.devtools.learningCommunity">学習 & コミュニティ</Translate>
             </h3>
             <NewsSiteCard href="https://roadmap.sh/" title="roadmap.sh" description={<Translate id="links.site.devtools.roadmap.desc">開発者向けの様々な技術領域の学習ロードマップ。次に何を学ぶべきかを示してくれる。</Translate>} />
             <NewsSiteCard href="https://news.ycombinator.com/" title="Hacker News" description={<Translate id="links.site.devtools.hackernews.desc">Y Combinatorが運営する技術系ニュースサイト。世界中のGeekな議論が集まる場所。</Translate>} />
+            <NewsSiteCard href="https://stackoverflow.com/" title="Stack Overflow" description={<Translate id="links.site.devtools.stackoverflow.desc">世界中の開発者が質問し、知識を共有するQ&Aコミュニティ。</Translate>} />
+            <NewsSiteCard href="https://www.geeksforgeeks.org/" title="GeeksforGeeks" description={<Translate id="links.site.devtools.geeksforgeeks.desc">コンピュータサイエンスのトピックに関する記事、チュートリアル、問題集が豊富なサイト。</Translate>} />
             <NewsSiteCard href="https://leetcode.com/" title="LeetCode" description={<Translate id="links.site.devtools.leetcode.desc">技術面接の準備に最適な、アルゴリズムとデータ構造の問題集。</Translate>} />
           </div>
         </details>
@@ -225,19 +216,28 @@ export default function LinksPage(): JSX.Element {
           </div>
         </details>
 
-        {/* --- 特定分野の開発 --- */}
+        {/* --- セキュリティ --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="specialized-dev" className={styles.majorCategoryTitle}>
-              <Translate id="links.majorCategory.specialized">特定分野の開発</Translate>
+            <h2 id="security" className={styles.majorCategoryTitle}>
+              <Translate id="links.majorCategory.security">セキュリティ</Translate>
             </h2>
           </summary>
           <div className={styles.cardGrid}>
             <h3 className={styles.subCategoryTitle}>
-              <Translate id="links.subCategory.specialized.security">セキュリティ</Translate>
+              <Translate id="links.subCategory.security.organizations">機関 & 標準</Translate>
             </h3>
-            <NewsSiteCard href="https://owasp.org/" title="OWASP" description={<Translate id="links.site.specialized.owasp.desc">Webアプリケーションのセキュリティを向上させることを目的としたオープンコミュニティ。</Translate>} />
-            <NewsSiteCard href="https://portswigger.net/web-security" title="Web Security Academy" description={<Translate id="links.site.specialized.portswigger.desc">PortSwiggerによる、Webセキュリティの脆弱性に関する無料のオンライン学習リソース。</Translate>} />
+            <NewsSiteCard href="https://owasp.org/" title="OWASP" description={<Translate id="links.site.security.owasp.desc">Webアプリケーションのセキュリティを向上させることを目的としたオープンコミュニティ。</Translate>} />
+            <NewsSiteCard href="https://www.nist.gov/" title="NIST" description={<Translate id="links.site.security.nist.desc">米国の国立標準技術研究所。サイバーセキュリティフレームワークなどが有名。</Translate>} />
+            <NewsSiteCard href="https://www.cisa.gov/" title="CISA" description={<Translate id="links.site.security.cisa.desc">米国のサイバーセキュリティ・社会基盤安全保障庁。脅威情報やアラートを提供。</Translate>} />
+
+            <h3 className={styles.subCategoryTitle}>
+              <Translate id="links.subCategory.security.learning">学習リソース</Translate>
+            </h3>
+            <NewsSiteCard href="https://portswigger.net/web-security" title="Web Security Academy" description={<Translate id="links.site.security.portswigger.desc">PortSwiggerによる、Webセキュリティの脆弱性に関する無料のオンライン学習リソース。</Translate>} />
+            <NewsSiteCard href="https://ocw.mit.edu/" title="MIT OpenCourseWare" description={<Translate id="links.site.security.mitocw.desc">MITの講義資料を無償で公開。サイバーセキュリティ関連コースも豊富。</Translate>} />
+            <NewsSiteCard href="https://www.hacksplaining.com/" title="Hacksplaining" description={<Translate id="links.site.security.hacksplaining.desc">インタラクティブなレッスンを通じてセキュリティ脆弱性を学べるサイト。</Translate>} />
+            <NewsSiteCard href="https://github.com/sbilly/awesome-security" title="Awesome Security (GitHub)" description={<Translate id="links.site.security.awesomesec.desc">セキュリティに関するツール、リソース、ライブラリなどを集めたキュレーションリスト。</Translate>} />
           </div>
         </details>
 
