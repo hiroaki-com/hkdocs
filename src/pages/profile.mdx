@@ -1,0 +1,150 @@
+---
+title: プロフィール
+description: HkDocs管理者の自己紹介ページです。
+---
+
+import './profile.css'; // このCSSファイルを後ほど作成します
+
+# プロフィール
+
+<div className="git-log-profile">
+
+  {/* Commit: Greeting */}
+  <div className="log-entry">
+    <div className="graph"></div>
+    <div className="message">
+      <div className="commit-header">
+        <h2 className="commit-title">私について</h2>
+        <span className="ref-tag head">HEAD > main</span>
+      </div>
+      <div className="commit-body">
+        <p>こんにちは、管理者の<code>Hiroaki</code>と申します。当サイトをご覧いただきありがとうございます。</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Commit: Summary */}
+  <div className="log-entry">
+    <div className="graph"></div>
+    <div className="message">
+      <div className="commit-header">
+        <h3 className="commit-title">概要</h3>
+        <span className="ref-tag branch">feature/summary</span>
+      </div>
+      <div className="commit-body">
+        <p>
+          ソフトウェア開発への長年の夢と、目まぐるしい変化を遂げる社会やテクノロジーの仕組みへの好奇心を原動力に、日々スキルアップに励んでいます。<br />
+          職歴の中で、行政の分野で社会の仕組みに触れた経験も、現在のIT分野での学びや創造活動に活かされています。
+        </p>
+        <p>
+          このサイトでは、習得した技術や日々の気づきを、自分自身の成長の記録として、また、誰かの役に立つ情報として発信していきたいと考えています。<br />
+          新しい知識や技術を積極的に学び、自ら面白いプロダクトやサービスを形にできることを目指しています。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Commit: Personality */}
+  <div className="log-entry">
+    <div className="graph"></div>
+    <div className="message">
+      <div className="commit-header">
+        <h3 className="commit-title">人となり</h3>
+        <span className="ref-tag branch">feature/personality</span>
+      </div>
+      <div className="commit-body">
+        <ul className="log-list">
+          <li><b>探究心:</b> 知らないことや新しい物事に対する好奇心が強く、深く掘り下げて理解しようとします。</li>
+          <li><b>長期的視点:</b> 目先の成果だけでなく、将来的な価値や影響を見据えて行動することを重視します。</li>
+          <li><b>目的への集中と継続:</b> 器用なタイプでは無いかもしれませんが、一度興味を持ったことや目標に対して深く没頭し、粘り強く取り組みます。</li>
+          <li><b>改善と成長の意識:</b> 現状に満足せず、より良い方法を探求し、学び続けることを意識しています。</li>
+          <li><b>協調性:</b> 純粋に人が好きです。チームで協力して目標を達成することに喜びを感じます。</li>
+          <li><b>人情:</b> 人との繋がりや思いやりを大切にし、相手の立場に立って考えることを心がけています。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {/* Commit: Skillset */}
+  <div className="log-entry">
+    <div className="graph"></div>
+    <div className="message">
+      <div className="commit-header">
+        <h3 className="commit-title">スキルセット</h3>
+        <span className="ref-tag branch">feature/skills</span>
+      </div>
+      <div className="commit-body">
+        <div className="skill-tags-container">
+          <span className="skill-tag">Django, Python</span>
+          <span className="skill-tag">TypeScript, React, Node.js</span>
+          <span className="skill-tag">Git, Github</span>
+          <span className="skill-tag">SQL</span>
+          <span className="skill-tag">Google Cloud</span>
+          <span className="skill-tag">Docusaurus</span>
+          <span className="skill-tag">Obsidian</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Commit: Certifications */}
+  <div className="log-entry">
+    <div className="graph"></div>
+    <div className="message">
+      <div className="commit-header">
+        <h3 className="commit-title">資格</h3>
+        <span className="ref-tag branch">feature/exams</span>
+      </div>
+      <div className="commit-body">
+        <p style={{marginBottom: "12px"}}>関連：<a href="/docs/category/exams">Exams</a></p>
+        <ul className="log-list">
+          <li>Professional Data Engineer (Ja) <span className="commit-date">[2024.12.28 ~ 2027.12.28]</span></li>
+          <li>Professional Cloud Security Engineer (Ja) <span className="commit-date">[2025.01.17 ~ 2028.01.17]</span></li>
+          <li>Professional Cloud Network Engineer (Ja) <span className="commit-date">[2025.01.25 ~ 2028.01.25]</span></li>
+          <li>Professional Cloud Architect (Ja) <span className="commit-date">[2025.01.31 ~ 2028.01.31]</span></li>
+          <li>Professional Cloud Developer (Ja) <span className="commit-date">[2025.02.27 ~ 2028.02.27]</span></li>
+          <li>Professional Cloud Database Engineer (En) <span className="commit-date">[2025.03.07 ~ 2028.03.07]</span></li>
+          <li>Professional Cloud DevOps Engineer (Ja) <span className="commit-date">[2025.03.30 ~ 2028.03.30]</span></li>
+          <li>Professional Machine Learning Engineer (En) <span className="commit-date">[2025.04.18 ~ 2028.04.18]</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {/* Commit: Hobbies */}
+  <div className="log-entry">
+    <div className="graph"></div>
+    <div className="message">
+      <div className="commit-header">
+        <h3 className="commit-title">趣味</h3>
+        <span className="ref-tag branch">feature/hobbies</span>
+      </div>
+      <div className="commit-body">
+        <ul className="log-list">
+            <li>街中散歩, サイクリング, 旅行</li>
+            <li>野球観戦, 格闘技視聴</li>
+            <li>簡易的な料理作成, ウィスキー</li>
+            <li>インタビュー動画・ドキュメンタリー・映画鑑賞</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {/* Commit: SNS */}
+  <div className="log-entry">
+    <div className="graph"></div>
+    <div className="message">
+      <div className="commit-header">
+        <h3 className="commit-title">SNS</h3>
+        <span className="ref-tag branch">feature/connect</span>
+      </div>
+      <div className="commit-body">
+        <ul className="log-list">
+          <li>𝕏: <a href="https://x.com/hkdocs" target="_blank" rel="noopener noreferrer">https://x.com/hkdocs ↗</a></li>
+          <li>GitHub: <a href="https://github.com/hiroaki-com" target="_blank" rel="noopener noreferrer">hiroaki-com ↗</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
