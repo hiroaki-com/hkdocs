@@ -1356,6 +1356,59 @@
   },
   "links.subCategory.specialized.security": {
     "message": "Security"
+  },
+  "links.majorCategory.frontendWeb": {
+    "message": "Frontend & Web Standards"
+  },
+  "links.subCategory.frontend.jsFrameworks": {
+    "message": "JavaScript & Frameworks"
+  },
+  "links.subCategory.frontend.stylingTools": {
+    "message": "Styling & Tools"
+  },
+  "links.site.frontend.w3c.desc": {
+    "message": "An international standards organization that develops technical standards for the World Wide Web."
+  },
+  "links.site.frontend.ietf.desc": {
+    "message": "A volunteer-based organization that develops technical standards for the Internet."
+  },
+  "links.subCategory.devtools.learningCommunity": {
+    "message": "Learning & Community"
+  },
+  "links.site.devtools.stackoverflow.desc": {
+    "message": "A Q&A community where developers around the world ask questions and share knowledge."
+  },
+  "links.site.devtools.geeksforgeeks.desc": {
+    "message": "A site rich in articles, tutorials, and problem sets on computer science topics."
+  },
+  "links.majorCategory.security": {
+    "message": "Security"
+  },
+  "links.subCategory.security.organizations": {
+    "message": "Organizations & Standards"
+  },
+  "links.site.security.owasp.desc": {
+    "message": "An open community dedicated to improving the security of web applications."
+  },
+  "links.site.security.nist.desc": {
+    "message": "The National Institute of Standards and Technology of the United States. Famous for its Cybersecurity Framework."
+  },
+  "links.site.security.cisa.desc": {
+    "message": "The U.S. Cybersecurity and Infrastructure Security Agency. Provides threat information and alerts."
+  },
+  "links.subCategory.security.learning": {
+    "message": "Learning Resources"
+  },
+  "links.site.security.portswigger.desc": {
+    "message": "Free online learning resources on web security vulnerabilities from PortSwigger."
+  },
+  "links.site.security.mitocw.desc": {
+    "message": "Provides free access to MIT's lecture materials. Rich in cybersecurity-related courses."
+  },
+  "links.site.security.hacksplaining.desc": {
+    "message": "A site where you can learn about security vulnerabilities through interactive lessons."
+  },
+  "links.site.security.awesomesec.desc": {
+    "message": "A curated list of tools, resources, and libraries related to security."
   }
 }
-
