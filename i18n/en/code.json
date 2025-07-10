@@ -1410,5 +1410,80 @@
   },
   "links.site.security.awesomesec.desc": {
     "message": "A curated list of tools, resources, and libraries related to security."
+  },
+  "links.majorCategory.backend": {
+    "message": "Backend"
+  },
+  "links.majorCategory.frontend": {
+    "message": "Frontend"
+  },
+  "links.majorCategory.data": {
+    "message": "Data"
+  },
+  "links.majorCategory.versionControl": {
+    "message": "Version Control"
+  },
+  "links.majorCategory.documentation": {
+    "message": "Documentation & Diagramming"
+  },
+  "links.site.docs.markdown.desc": {
+    "message": "A comprehensive guide covering everything from the basics to extended features of Markdown syntax."
+  },
+  "links.majorCategory.learningCommunity": {
+    "message": "Learning & Community"
+  },
+  "links.majorCategory.academicResearch": {
+    "message": "Academic Research & Papers"
+  },
+  "links.site.academic.arxiv.desc": {
+    "message": "A pioneering open-access platform for sharing pre-prints in physics, mathematics, computer science, and more."
+  },
+  "links.site.academic.ieee.desc": {
+    "message": "A digital library providing access to academic journals, papers, and technical standards in electrical engineering and computer science published by IEEE."
+  },
+  "links.site.academic.acm.desc": {
+    "message": "Comprehensively covers all journals and conference proceedings published by ACM, the world's largest computing society."
+  },
+  "links.site.academic.scholar.desc": {
+    "message": "A search engine that allows cross-disciplinary search of academic papers and books, with citation tracking."
+  },
+  "links.site.academic.semanticscholar.desc": {
+    "message": "Utilizes AI to support literature research with auto-generated abstracts and visualization of influential citations."
+  },
+  "links.site.academic.dblp.desc": {
+    "message": "A bibliographic database specializing in computer science, accurately tracking researcher's publication lists and co-author networks."
+  },
+  "links.site.academic.citeseerx.desc": {
+    "message": "A search engine that automatically extracts and links citation information for papers in computer and information science."
+  },
+  "links.site.academic.medrxiv.desc": {
+    "message": "A pre-print server for medicine, clinical, and health sciences, enabling rapid sharing of the latest research findings."
+  },
+  "links.site.academic.techrxiv.desc": {
+    "message": "A pre-print server established by IEEE for electrical engineering and computer science fields."
+  },
+  "links.site.academic.socarxiv.desc": {
+    "message": "A pre-print server for the social sciences, openly sharing research from a wide range of social science disciplines."
+  },
+  "links.site.academic.ssrn.desc": {
+    "message": "One of the world's largest platforms for sharing working papers and pre-prints, focusing on social sciences and humanities."
+  },
+  "links.site.academic.zenodo.desc": {
+    "message": "An open science repository by CERN for the permanent preservation of all research outputs, including papers, data, and software."
+  },
+  "links.site.academic.crossref.desc": {
+    "message": "A critical infrastructure for academic publishing that uses DOIs to create persistent links between scholarly literature."
+  },
+  "links.site.academic.doaj.desc": {
+    "message": "A global directory that indexes high-quality, peer-reviewed open access journals."
+  },
+  "links.majorCategory.standardsOrgs": {
+    "message": "Standards Organizations"
+  },
+  "links.site.standards.w3c.desc": {
+    "message": "An international standards organization that develops technical standards for the World Wide Web."
+  },
+  "links.site.standards.ietf.desc": {
+    "message": "A volunteer-based organization that develops technical standards for the Internet."
   }
 }
