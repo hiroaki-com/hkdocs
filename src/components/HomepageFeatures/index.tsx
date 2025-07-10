@@ -12,7 +12,8 @@ import {
   Clock,
   UserCircle,
   NotebookPen,
-  Newspaper, // 1. アイコンをインポート
+  Newspaper,
+  LibrarySquare, // 資料集用のアイコン
   type LucideProps,
 } from 'lucide-react';
 
@@ -24,7 +25,8 @@ const IconClock: SvgIconType = Clock;
 const IconGraduationCap: SvgIconType = GraduationCap;
 const IconUser: SvgIconType = UserCircle;
 const IconBrowserMemo: SvgIconType = NotebookPen;
-const IconNews: SvgIconType = Newspaper; // 2. News用のアイコンを定義
+const IconNews: SvgIconType = Newspaper;
+const IconLinks: SvgIconType = LibrarySquare;
 
 type FeatureCardProps = {
   title: string;
@@ -108,19 +110,6 @@ export default function HomepageFeatures(): JSX.Element {
           />
           <FeatureCard
             title={translate({
-              id: 'homepage.features.browserMemo.title',
-              message: 'ブラウザメモ',
-            })}
-            Icon={IconBrowserMemo}
-            description={
-              <Translate id="homepage.features.browserMemo.description">
-                ブラウザだけで使える軽量メモ機能。
-              </Translate>
-            }
-            link="/browser-memo"
-          />
-          <FeatureCard
-            title={translate({
               id: 'homepage.features.news.title',
               message: 'ニュース',
             })}
@@ -131,6 +120,33 @@ export default function HomepageFeatures(): JSX.Element {
               </Translate>
             }
             link="/news"
+          />
+          {/* 資料集カード */}
+          <FeatureCard
+            title={translate({
+              id: 'homepage.features.links.title',
+              message: '資料集',
+            })}
+            Icon={IconLinks}
+            description={
+              <Translate id="homepage.features.links.description">
+                開発や学習に役立つリファレンスリンク集。
+              </Translate>
+            }
+            link="/links"
+          />
+          <FeatureCard
+            title={translate({
+              id: 'homepage.features.browserMemo.title',
+              message: 'ブラウザメモ',
+            })}
+            Icon={IconBrowserMemo}
+            description={
+              <Translate id="homepage.features.browserMemo.description">
+                ブラウザだけで使える軽量メモ機能。
+              </Translate>
+            }
+            link="/browser-memo"
           />
           <FeatureCard
             title={translate({
