@@ -1,34 +1,41 @@
-/* --- セクション全体のスタイル --- */
+/**
+ * HomepageFeatures/styles.module.css
+ * ホームページの特集セクションのスタイル。
+ * 透明なカードが隙間なく並ぶ、ミニマルなグリッドデザイン。
+ */
+
+/* --- セクション全体 --- */
 .featuresSection {
-  /* 左右に標準的なパディングを追加して、スマホでの余白問題を解決 */
+  /* 大画面では左右に余白を設ける */
   padding: 2rem var(--ifm-spacing-horizontal) 5rem;
+  /* スマホ表示への切り替え時にpaddingの変化を滑らかにする */
+  transition: padding 0.3s ease;
 }
 
 /* --- グリッドレイアウト --- */
 .featureGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  /* カード間の余白をなくし、タイル状に配置 */
+  gap: 0;
 }
 
 /* --- カードの基本スタイル --- */
 .featureCardLink {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  background-color: transparent;
+  /* カード間のgapがないため、paddingでコンテンツ周囲の余白を確保 */
+  padding: 1.5rem;
   text-decoration: none;
   color: inherit;
-  border-radius: 8px;
-  
-  /* ホバー時に枠線が表示されてもレイアウトが崩れないように、透明な枠線を設定 */
-  border: 1px solid transparent;
-
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  border-radius: 0;
+  border: none;
+  transition: background-color 0.2s ease;
 }
 
 .featureCardLink:hover {
   background-color: var(--ifm-hover-overlay);
-  border-color: var(--ifm-color-emphasis-300);
 }
 
 /* --- カード内部のコンテンツ --- */
@@ -45,7 +52,7 @@
   width: 40px;
   height: 40px;
   margin-right: 1rem;
-  border-radius: 8px;
+  border-radius: 0;
   background-color: var(--ifm-color-primary-lightest);
 }
 
@@ -67,7 +74,7 @@
   color: var(--ifm-font-color-secondary);
   line-height: 1.6;
   margin: 0;
-  /* このプロパティで、同じ行にあるカードの高さを揃える */
+  /* 同じ行のカードの高さを揃えるためのキープロパティ */
   flex-grow: 1;
 }
 
@@ -95,8 +102,23 @@
   }
 }
 
-/* スマホ向けの文字サイズ調整 */
+/* スマホサイズ (767px以下) ではモダンなニュースサイト風のレイアウトに */
+@media (max-width: 767px) {
+  .featuresSection {
+    /* 左右の余白をなくし、コンテンツを画面幅いっぱいに広げる */
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .featureCardLink {
+    /* カード内の余白を少し詰めてバランスを調整 */
+    padding: 1.2rem;
+  }
+}
+
 @media (max-width: 430px) {
+  .featureCardLink {
+    padding: 1rem;
+  }
   .featureTitle {
     font-size: 0.8rem;
   }
