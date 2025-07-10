@@ -127,6 +127,9 @@ export default function LinksPage(): JSX.Element {
             <NewsSiteCard href="https://www.markdownguide.org" title="Markdown Guide" description={<Translate id="links.site.docs.markdown.desc">Markdown記法の基本から拡張機能までを網羅した包括的なガイド。</Translate>} />
             <NewsSiteCard href="https://mermaid-js.github.io/" title="Mermaid" description={<Translate id="links.site.docs.mermaid.desc">Markdownのようなテキストから図やチャートを生成するライブラリ。</Translate>} />
             <NewsSiteCard href="https://plantuml.com/" title="PlantUML" description={<Translate id="links.site.docs.plantuml.desc">シンプルなテキスト記述言語からUML図を迅速に作成できるツール。</Translate>} />
+            <NewsSiteCard href="https://app.diagrams.net/" title="draw.io" description={<Translate id="links.site.docs.drawio.desc">ブラウザで使える高機能な無料作図ツール。フローチャート、UML、ネットワーク構成図など、あらゆる図の作成に対応。</Translate>} />
+            <NewsSiteCard href="https://excalidraw.com/" title="Excalidraw" description={<Translate id="links.site.docs.excalidraw.desc">手書き風の図を素早く作成できるオンラインホワイトボード。共同編集機能が強力で、チームでのブレインストーミングや設計議論に最適。</Translate>} />
+            <NewsSiteCard href="https://www.figma.com/" title="Figma" description={<Translate id="links.site.docs.figma.desc">UIデザインから図表作成までこなす共同作業プラットフォーム。エンジニアリングの設計プロセスでも広く活用されるオンラインツール。</Translate>} />
           </div>
         </details>
 
@@ -159,7 +162,7 @@ export default function LinksPage(): JSX.Element {
             <NewsSiteCard href="https://www.cisa.gov/" title="CISA" description={<Translate id="links.site.security.cisa.desc">米国のサイバーセキュリティ・社会基盤安全保障庁。脅威情報やアラートを提供。</Translate>} />
             <NewsSiteCard href="https://portswigger.net/web-security" title="Web Security Academy" description={<Translate id="links.site.security.portswigger.desc">PortSwiggerによる、Webセキュリティの脆弱性に関する無料のオンライン学習リソース。</Translate>} />
             <NewsSiteCard href="https://ocw.mit.edu/" title="MIT OpenCourseWare" description={<Translate id="links.site.security.mitocw.desc">MITの講義資料を無償で公開。サイバーセキュリティ関連コースも豊富。</Translate>} />
-            <NewsSiteCard href="https://www.hacksplaining.com/" title="Hacksplaining" description={<Translate id="links.site.security.hacksplaining.desc">インタラクティブなレッスンを通じてセキュリティ脆弱性を学べるサイト。</Translate>} />
+            <NewsSiteCard href="https://www.hacksplaining.com/owasp" title="Hacksplaining" description={<Translate id="links.site.security.hacksplaining.desc">インタラクティブなレッスンを通じてセキュリティ脆弱性を学べるサイト。</Translate>} />
             <NewsSiteCard href="https://github.com/sbilly/awesome-security" title="Awesome Security (GitHub)" description={<Translate id="links.site.security.awesomesec.desc">セキュリティに関するツール、リソース、ライブラリなどを集めたキュレーションリスト。</Translate>} />
           </div>
         </details>
@@ -181,11 +184,9 @@ export default function LinksPage(): JSX.Element {
             <NewsSiteCard href="http://citeseerx.ist.psu.edu/" title="CiteSeerX" description={<Translate id="links.site.academic.citeseerx.desc">コンピュータ・情報科学分野の論文を対象に、引用情報を自動で抽出・リンクする検索エンジン。</Translate>} />
             <NewsSiteCard href="https://www.medrxiv.org/" title="medRxiv" description={<Translate id="links.site.academic.medrxiv.desc">医学・臨床・健康科学分野専門のプレプリントサーバー。最新の研究成果を迅速に共有。</Translate>} />
             <NewsSiteCard href="https://www.techrxiv.org/" title="TechRxiv" description={<Translate id="links.site.academic.techrxiv.desc">IEEEが設立した、電気工学やCS分野のプレプリントサーバー。</Translate>} />
-            <NewsSiteCard href="https://socopen.org/" title="SocArXiv" description={<Translate id="links.site.academic.socarxiv.desc">社会科学分野のプレプリントサーバー。幅広い社会科学領域の研究成果をオープンに共有。</Translate>} />
-            <NewsSiteCard href="https://www.ssrn.com/" title="SSRN" description={<Translate id="links.site.academic.ssrn.desc">社会科学・人文科学分野中心の、世界最大級のワーキングペーパー・プレプリント共有プラットフォーム。</Translate>} />
-            <NewsSiteCard href="https://zenodo.org/" title="Zenodo" description={<Translate id="links.site.academic.zenodo.desc">CERNによるオープンサイエンスリポジトリ。論文、データ、SW等あらゆる研究成果を永続保存。</Translate>} />
-            <NewsSiteCard href="https://www.crossref.org/" title="Crossref" description={<Translate id="links.site.academic.crossref.desc">DOIを用いて文献間の引用リンクを永続的に維持する、学術出版の重要なインフラ。</Translate>} />
+            <NewsSiteCard href="https://www.ssrn.com/index.cfm/en/compscirn/" title="SSRN" description={<Translate id="links.site.academic.ssrn.desc">社会科学・人文科学分野中心の、世界最大級のワーキングペーパー・プレプリント共有プラットフォーム。</Translate>} />
             <NewsSiteCard href="https://doaj.org/" title="DOAJ" description={<Translate id="links.site.academic.doaj.desc">品質基準を満たした信頼性の高いオープンアクセスジャーナルのみを収録するディレクトリ。</Translate>} />
+            <NewsSiteCard href="https://rnavi.org/" title="論文ナビ" description={<Translate id="links.site.academic.rnavi.desc">研究者有志によって運営される論文紹介・解説記事の投稿プラットフォーム。アウトリーチを重視し、一般向けのプレスリリース記事や専門家向けの解説、注目論文のレビュー、関連トピックの論文紹介などを投稿可能</Translate>} />
           </div>
         </details>
 
