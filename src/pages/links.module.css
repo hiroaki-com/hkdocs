@@ -33,7 +33,7 @@
 
 /* 大カテゴリのタイトル (h2) - 下線スタイル */
 .majorCategoryTitle {
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
@@ -81,7 +81,7 @@
     font-size: 1rem;
   }
   .majorCategoryTitle {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);

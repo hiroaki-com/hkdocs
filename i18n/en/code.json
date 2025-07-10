@@ -1485,5 +1485,14 @@
   },
   "links.site.standards.ietf.desc": {
     "message": "A volunteer-based organization that develops technical standards for the Internet."
+  },
+  "links.site.docs.drawio.desc": {
+    "message": "A powerful, free diagramming tool that works in your browser. It supports creating all kinds of diagrams, including flowcharts, UML, and network diagrams."
+  },
+  "links.site.docs.figma.desc": {
+    "message": "A collaborative platform for everything from UI design to diagramming. It's a widely used online tool in the engineering design process."
+  },
+  "links.site.academic.rnavi.desc": {
+    "message": "A platform run by volunteer researchers for posting articles that introduce and explain academic papers. It emphasizes outreach, allowing posts like press releases for the public, expert commentaries, and reviews of notable papers."
   }
 }
