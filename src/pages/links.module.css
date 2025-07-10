@@ -1,6 +1,6 @@
 /**
  * links.module.css
- * 資料集ページのスタイル - 指定デザインに統一
+ * 資料集ページのスタイル
  */
 
 /* メインコンテンツ全体のコンテナ */
@@ -28,7 +28,7 @@
 
 /* 大カテゴリのセクション */
 .majorCategorySection {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 /* 大カテゴリのタイトル (h2) - 下線スタイル */
@@ -44,49 +44,18 @@
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.3rem;
+  gap: 0; /* カード間の余白をなくす */
 }
 
-/* サブカテゴリのタイトル (h3) - 左側縦線アクセントスタイル */
-.subCategoryTitle {
-  /* グリッドレイアウトの中でタイトルを全幅に広げる */
-  grid-column: 1 / -1;
-
-  /* 指定デザインの適用 */
-  font-size: 1.1rem;
-  margin-top: 1.5rem; /* サブカテゴリ間の余白 */
-  margin-bottom: 1.1rem;
-  color: var(--ifm-color-emphasis-800);
-  position: relative;
-  padding-left: 1rem;
-  font-weight: 600;
+/* グリッド内のカードの角を四角にする */
+.cardGrid > * {
+  border-radius: 0;
 }
 
-/* 最初のサブカテゴリだけは上の余白をなくす */
-.cardGrid > .subCategoryTitle:first-child {
-  margin-top: 0;
-}
-
-/* タイトルの左側にアクセントとなる縦線を追加 */
-.subCategoryTitle::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 70%;
-  background-color: var(--ifm-color-emphasis-400);
-  border-radius: 2px;
-}
 
 /* --- ダークモード用の調整 --- */
 [data-theme='dark'] .majorCategoryTitle {
   border-bottom-color: var(--ifm-color-emphasis-300);
-}
-
-[data-theme='dark'] .subCategoryTitle {
-  color: var(--ifm-color-emphasis-700);
 }
 
 [data-theme='dark'] .pageHeader p {
@@ -114,11 +83,8 @@
   .majorCategoryTitle {
     font-size: 1.2rem;
   }
-  .subCategoryTitle {
-    font-size: 1.0rem;
-  }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+    gap: 0; /* カード間の余白をなくす */
   }
 }
