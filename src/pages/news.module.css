@@ -42,9 +42,8 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 3px; /* 少し細くして、よりシャープな印象に */
-  height: 70%; /* 高さを少し抑えて、より控えめなアクセントに */
-  /* ライト/ダーク両モードに対応した、落ち着いた色に変更 */
+  width: 3px;
+  height: 70%;
   background-color: var(--ifm-color-emphasis-400);
   border-radius: 2px;
 }
@@ -54,7 +53,12 @@
   display: grid;
   /* デフォルト（最大画面）は4カラム */
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.3rem; /* 縦のgap, 横のgap */
+  gap: 0; /* カード間の余白をなくす */
+}
+
+/* グリッド内のカードの角を四角にする */
+.cardGrid > * {
+  border-radius: 0;
 }
 
 /* ダークモード用の調整 */
@@ -96,6 +100,6 @@
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem; /* 2カラムなのでgapを少し詰める */
+    gap: 0; /* レスポンシブでも余白をなくす */
   }
 }
