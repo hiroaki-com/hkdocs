@@ -1494,5 +1494,11 @@
   },
   "links.site.academic.rnavi.desc": {
     "message": "A platform run by volunteer researchers for posting articles that introduce and explain academic papers. It emphasizes outreach, allowing posts like press releases for the public, expert commentaries, and reviews of notable papers."
+  },
+  "homepage.features.links.title": {
+    "message": "Links"
+  },
+  "homepage.features.links.description": {
+    "message": "A collection of reference links useful for development and learning."
   }
 }
