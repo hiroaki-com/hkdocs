@@ -112,6 +112,11 @@ html[data-theme='dark'] {
   font-size: 0.9rem;
 }
 
+/* --- Doc Sidebar --- */
+/* サイドバーのテキストサイズを調整 */
+.menu__link {
+  font-size: 0.9rem; /* デフォルト（約1rem）から少し小さく設定 */
+}
 
 /* --- Other Components --- */
 /* Headings */
