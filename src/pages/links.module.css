@@ -62,6 +62,35 @@
   color: var(--ifm-font-color-secondary);
 }
 
+/* --- アンカーリンク付き見出しのためのスタイル --- */
+
+/* 見出し全体をホバーの対象とし、アンカーリンクの位置の基準とする */
+.sectionHeading {
+  position: relative;
+}
+
+/* アンカーリンク(#)のスタイル */
+.anchorLink {
+  /* 親要素(h2)の左側に配置 */
+  position: absolute;
+  left: -1em; /* #の幅分だけ左にずらす */
+  top: 0;
+  
+  /* 初期状態では非表示（透明）にする */
+  opacity: 0;
+  
+  /* 表示/非表示を滑らかに変化させる */
+  transition: opacity 0.2s ease-in-out;
+  
+  /* リンクの下線を消す */
+  text-decoration: none;
+}
+
+/* 親の見出し(h2)にホバーした時に、アンカーリンクを表示する */
+.sectionHeading:hover .anchorLink {
+  opacity: 1;
+}
+
 
 /* --- レスポンシブ対応 --- */
 
