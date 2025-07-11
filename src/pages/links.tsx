@@ -1,15 +1,15 @@
-import React, { JSX, ReactNode } from 'react'; // ReactNode をインポート
+import React, { JSX, ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import NewsSiteCard from '@site/src/components/NewsSiteCard';
 import styles from './links.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 
+// Propsの型を定義
 interface SectionHeadingProps {
   id: string;
   children: ReactNode;
 }
-
 
 /**
  * ホバー時に左側にアンカーリンク('#')を表示する見出しコンポーネント
@@ -44,6 +44,7 @@ export default function LinksPage(): JSX.Element {
         message: '開発や学習に役立つ技術ドキュメントやツールへのリンク集です。',
       })}
     >
+
       <Head children={''} />
       <main className={styles.mainContainer}>
         <div className={styles.pageHeader}>

@@ -1,4 +1,4 @@
-import React, { JSX, ReactNode } from 'react'; // ReactNode をインポート
+import React, { JSX, ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import NewsSiteCard from '@site/src/components/NewsSiteCard';
@@ -47,6 +47,7 @@ export default function NewsPage(): JSX.Element {
           '国内外の情勢や技術トレンドの把握に役立つニュースをまとめています。',
       })}
     >
+
       <Head children={''} />
       <main className={styles.mainContainer}>
         <div className={styles.pageHeader}>
