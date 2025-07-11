@@ -5,6 +5,30 @@ import NewsSiteCard from '@site/src/components/NewsSiteCard';
 import styles from './links.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 
+/**
+ * ホバー時に左側にアンカーリンク('#')を表示する見出しコンポーネント
+ * @param {{id: string, children: React.ReactNode}} props
+ */
+const SectionHeading = ({ id, children }) => {
+  return (
+    // CSSでホバーを検知するための親要素
+    <h2 id={id} className={`${styles.majorCategoryTitle} ${styles.sectionHeading}`}>
+      {/* アンカーリンク(#) */}
+      <a
+        className={styles.anchorLink}
+        href={`#${id}`}
+        aria-label={translate({
+          id: 'theme.common.headingLinkTitle',
+          message: 'この見出しへの固定リンク',
+        })}>
+        #
+      </a>
+      {/* 見出しのテキスト */}
+      {children}
+    </h2>
+  );
+};
+
 
 export default function LinksPage(): JSX.Element {
   return (
@@ -31,9 +55,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- クラウド & インフラ --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="cloud-infra" className={styles.majorCategoryTitle}>
+            <SectionHeading id="cloud-infra">
               <Translate id="links.majorCategory.cloudInfra">クラウド & インフラ</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://cloud.google.com/docs" title="Google Cloud Docs" description={<Translate id="links.site.cloud.gcp.desc">クイックスタート、チュートリアル、包括的なガイドを含む完全なGCPドキュメント。</Translate>} />
@@ -48,9 +72,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- バックエンド --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="backend" className={styles.majorCategoryTitle}>
+            <SectionHeading id="backend">
               <Translate id="links.majorCategory.backend">バックエンド</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://docs.python.org/3/" title="Python 3 Docs" description={<Translate id="links.site.backend.python.desc">公式Python 3ドキュメント。言語仕様から標準ライブラリまで。</Translate>} />
@@ -67,9 +91,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- フロントエンド --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="frontend" className={styles.majorCategoryTitle}>
+            <SectionHeading id="frontend">
               <Translate id="links.majorCategory.frontend">フロントエンド</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://developer.mozilla.org/" title="MDN Web Docs" description={<Translate id="links.site.frontend.mdn.desc">Web技術のデファクトスタンダード。HTML, CSS, JavaScript等の公式リファレンス。</Translate>} />
@@ -87,9 +111,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- データ --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="data" className={styles.majorCategoryTitle}>
+            <SectionHeading id="data">
               <Translate id="links.majorCategory.data">データ</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://cloud.google.com/bigquery/docs" title="BigQuery Docs" description={<Translate id="links.site.data.bigquery.desc">ペタバイト級のデータを分析できるサーバーレスなデータウェアハウス。</Translate>} />
@@ -103,9 +127,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- バージョン管理 --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="version-control" className={styles.majorCategoryTitle}>
+            <SectionHeading id="version-control">
               <Translate id="links.majorCategory.versionControl">バージョン管理</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://git-scm.com/docs" title="Git Official Docs" description={<Translate id="links.site.devtools.git.desc">分散バージョン管理システムGitの公式ドキュメント。</Translate>} />
@@ -117,9 +141,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- ドキュメント & 作図 --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="documentation" className={styles.majorCategoryTitle}>
+            <SectionHeading id="documentation">
               <Translate id="links.majorCategory.documentation">ドキュメント & 作図</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://docusaurus.io/" title="Docusaurus" description={<Translate id="links.site.docs.docusaurus.desc">React製の静的サイトジェネレーター。ドキュメントサイト構築に最適。</Translate>} />
@@ -136,9 +160,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- 学習 & コミュニティ --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="learning-community" className={styles.majorCategoryTitle}>
+            <SectionHeading id="learning-community">
               <Translate id="links.majorCategory.learningCommunity">学習 & コミュニティ</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://roadmap.sh/" title="roadmap.sh" description={<Translate id="links.site.devtools.roadmap.desc">開発者向けの様々な技術領域の学習ロードマップ。次に何を学ぶべきかを示してくれる。</Translate>} />
@@ -152,9 +176,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- セキュリティ --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="security" className={styles.majorCategoryTitle}>
+            <SectionHeading id="security">
               <Translate id="links.majorCategory.security">セキュリティ</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://owasp.org/" title="OWASP" description={<Translate id="links.site.security.owasp.desc">Webアプリケーションのセキュリティを向上させることを目的としたオープンコミュニティ。</Translate>} />
@@ -170,9 +194,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- 学術研究 & 論文 --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="academic-research" className={styles.majorCategoryTitle}>
+            <SectionHeading id="academic-research">
               <Translate id="links.majorCategory.academicResearch">学術研究 & 論文</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://arxiv.org/" title="arXiv" description={<Translate id="links.site.academic.arxiv.desc">物理学、数学、CS等の査読前論文を無料公開するオープンアクセスの先駆的プラットフォーム。</Translate>} />
@@ -193,9 +217,9 @@ export default function LinksPage(): JSX.Element {
         {/* --- 標準化団体 --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <h2 id="standards-orgs" className={styles.majorCategoryTitle}>
+            <SectionHeading id="standards-orgs">
               <Translate id="links.majorCategory.standardsOrgs">標準化団体</Translate>
-            </h2>
+            </SectionHeading>
           </summary>
           <div className={styles.cardGrid}>
             <NewsSiteCard href="https://www.w3.org/" title="W3C" description={<Translate id="links.site.standards.w3c.desc">World Wide Webの技術標準を策定する国際的な標準化団体。</Translate>} />
@@ -207,3 +231,4 @@ export default function LinksPage(): JSX.Element {
     </Layout>
   );
 }
+
