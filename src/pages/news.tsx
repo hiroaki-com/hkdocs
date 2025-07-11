@@ -64,19 +64,27 @@ export default function NewsPage(): JSX.Element {
         {/* --- 日本 --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <SectionHeading as="h2" id="japan" className={styles.majorCategoryTitle}>
-              <Translate id="news.majorCategory.japan">日本</Translate>
-            </SectionHeading>
+            <SectionHeading
+              as="h2"
+              id="japan"
+              className={styles.majorCategoryTitle}
+              children={<Translate id="news.majorCategory.japan">日本</Translate>}
+            />
           </summary>
 
           {/* 日本 > 総合・経済 */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="japan-general-economy" className={styles.categoryTitle}>
-                <Translate id="news.category.general-economy-jp">
-                  総合・経済
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="japan-general-economy"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.general-economy-jp">
+                    総合・経済
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -187,11 +195,16 @@ export default function NewsPage(): JSX.Element {
           {/* 日本 > テクノロジー・科学 */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="japan-tech-science" className={styles.categoryTitle}>
-                <Translate id="news.category.tech-science-jp">
-                  テクノロジー・科学
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="japan-tech-science"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.tech-science-jp">
+                    テクノロジー・科学
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -263,11 +276,16 @@ export default function NewsPage(): JSX.Element {
           {/* 日本 > セキュリティ・IT専門 */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="japan-security" className={styles.categoryTitle}>
-                <Translate id="news.category.security-jp">
-                  セキュリティ・IT専門
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="japan-security"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.security-jp">
+                    セキュリティ・IT専門
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -302,9 +320,14 @@ export default function NewsPage(): JSX.Element {
           {/* 日本 > テレビ局ニュース */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="japan-tv-news" className={styles.categoryTitle}>
-                <Translate id="news.category.tv-news-jp">テレビ局ニュース</Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="japan-tv-news"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.tv-news-jp">テレビ局ニュース</Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -389,11 +412,16 @@ export default function NewsPage(): JSX.Element {
           {/* 日本 > プレスリリース */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="japan-press-release" className={styles.categoryTitle}>
-                <Translate id="news.category.press-release-jp">
-                  プレスリリース
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="japan-press-release"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.press-release-jp">
+                    プレスリリース
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -428,11 +456,16 @@ export default function NewsPage(): JSX.Element {
           {/* 日本 > 生活・天気 */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="japan-life-weather" className={styles.categoryTitle}>
-                <Translate id="news.category.life-weather-jp">
-                  生活・天気
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="japan-life-weather"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.life-weather-jp">
+                    生活・天気
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -465,11 +498,16 @@ export default function NewsPage(): JSX.Element {
           {/* 日本 > まとめ */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="japan-summary-sites" className={styles.categoryTitle}>
-                <Translate id="news.category.summary-sites-jp">
-                  まとめ
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="japan-summary-sites"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.summary-sites-jp">
+                    まとめ
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -492,21 +530,31 @@ export default function NewsPage(): JSX.Element {
         {/* --- 海外 --- */}
         <details open className={styles.majorCategorySection}>
           <summary style={{ cursor: 'pointer' }}>
-            <SectionHeading as="h2" id="international" className={styles.majorCategoryTitle}>
-              <Translate id="news.majorCategory.international">
-                海外
-              </Translate>
-            </SectionHeading>
+            <SectionHeading
+              as="h2"
+              id="international"
+              className={styles.majorCategoryTitle}
+              children={
+                <Translate id="news.majorCategory.international">
+                  海外
+                </Translate>
+              }
+            />
           </summary>
 
           {/* 海外 > 総合・経済 */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="int-general-economy" className={styles.categoryTitle}>
-                <Translate id="news.category.general-economy-int">
-                  総合・経済
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="int-general-economy"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.general-economy-int">
+                    総合・経済
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -669,11 +717,16 @@ export default function NewsPage(): JSX.Element {
           {/* 海外 > テクノロジー・科学 */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="int-tech-science" className={styles.categoryTitle}>
-                <Translate id="news.category.tech-science-int">
-                  テクノロジー・科学
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="int-tech-science"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.tech-science-int">
+                    テクノロジー・科学
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -760,11 +813,16 @@ export default function NewsPage(): JSX.Element {
           {/* 海外 > 音声・ポッドキャスト */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="int-audio-podcast" className={styles.categoryTitle}>
-                <Translate id="news.category.audio-podcast-int">
-                  音声・ポッドキャスト
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="int-audio-podcast"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.audio-podcast-int">
+                    音声・ポッドキャスト
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
@@ -838,11 +896,16 @@ export default function NewsPage(): JSX.Element {
           {/* 海外 > まとめ系 */}
           <details open className={styles.subCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h3" id="int-summary-sites" className={styles.categoryTitle}>
-                <Translate id="news.category.summary-sites-int">
-                  まとめ・ジャーナリズム
-                </Translate>
-              </SectionHeading>
+              <SectionHeading
+                as="h3"
+                id="int-summary-sites"
+                className={styles.categoryTitle}
+                children={
+                  <Translate id="news.category.summary-sites-int">
+                    まとめ・ジャーナリズム
+                  </Translate>
+                }
+              />
             </summary>
             <div className={styles.cardGrid}>
               <NewsSiteCard
