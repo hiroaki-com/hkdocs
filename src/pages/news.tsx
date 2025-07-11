@@ -1,15 +1,22 @@
-import React, { JSX } from 'react';
+import React, { JSX, ReactNode } from 'react'; // ReactNode をインポート
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import NewsSiteCard from '@site/src/components/NewsSiteCard';
 import styles from './news.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 
+// Propsの型を定義
+interface SectionHeadingProps {
+  as: 'h2' | 'h3';
+  id: string;
+  className: string;
+  children: ReactNode;
+}
+
 /**
  * ホバー時に左側にアンカーリンク('#')を表示する汎用的な見出しコンポーネント
- * @param {{as: 'h2' | 'h3', id: string, className: string, children: React.ReactNode}} props
  */
-const SectionHeading = ({ as: Component, id, className, children }) => {
+const SectionHeading = ({ as: Component, id, className, children }: SectionHeadingProps) => {
   return (
     // CSSでホバーを検知するための親要素
     <Component id={id} className={`${className} ${styles.sectionHeading}`}>
