@@ -67,7 +67,7 @@ export default function HomepageFeatures(): JSX.Element {
                 日常の学びやブログ記事を整理。
               </Translate>
             }
-            link="/docs/category/tech"
+            link="/docs/intro"
           />
           <FeatureCard
             title={translate({
