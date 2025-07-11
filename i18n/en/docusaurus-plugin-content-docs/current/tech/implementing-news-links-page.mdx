@@ -1,162 +1,141 @@
 ---
-title: Creating a Multilingual News Links Page in Docusaurus
+title: A Memo on Creating a News Links Page in Docusaurus
 sidebar_position: 14
 last_update:
   date: 2025-07-11
 authors: [hk]
-tags: [docusaurus, react, typescript, i18n, css-modules, ui/ux]
+tags: [docusaurus, react, typescript, i18n, css-modules, ui/ux, performance]
 ---
 
-This article documents the implementation of the '[News Page](/news)' on this site, which provides a list of domestic and international news sites.
+import Admonition from '@theme/Admonition';
 
-#### Sources
-- https://docusaurus.io/docs/creating-pages
-- https://github.com/css-modules/css-modules
-- https://developer.mozilla.org/ja/docs/Web/HTML/Element/details
-- https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Grid_Layout
+This article serves as a memorandum on the implementation of the "[News Page](/news)," which lists domestic and international news sites on this website.
 
-#### 1. Purpose and Key Features
-
-The goal was to build a page that serves as a personal hub for quickly accessing reliable news sources. It is built as a fully static page, emphasizing usability, fast performance, and maintainability.
+<Admonition type="info">
+  <p><b>Key topics covered in this article:</b></p>
+  <ul>
+    <li>Docusaurus i18n features (<code>&lt;Translate&gt;</code>, <code>translate</code> API)</li>
+    <li>React component design, including <strong>dynamic favicon fetching</strong></li>
+    <li>Scoped styling with CSS Modules</li>
+    <li>Responsive design with CSS Grid Layout</li>
+    <li>Accessible UI using the HTML <code>&lt;details&gt;</code> tag</li>
+  </ul>
+</Admonition>
 
 {/* truncate */}
 
-1.  **Systematic Categorization**
-    News sites are categorized into sections like "General & Economy" and "Technology." The HTML `<details>` tag is used to make each category collapsible, ensuring a clean overview.
+### Page Purpose and Feature Overview
 
-2.  **Full Multilingual Support (i18n)**
-    Leveraging Docusaurus's internationalization (i18n) feature, all text on the page (headings, descriptions, etc.) can be switched between Japanese and English.
+The purpose of this page is to create an environment for quickly accessing reliable news sources as a personal information-gathering hub.
 
-3.  **Direct Links to Sections**
-    Anchor links are placed on each category heading, allowing direct URL sharing for specific sections.
+- **Categorization**: News sites are categorized into sections like "General & Economy" and "Technology," with each category being collapsible using the HTML `<details>` tag.
+- **Multilingual Support (i18n)**: Leveraging Docusaurus's internationalization features, all text on the page can be switched between Japanese and English.
+- **Direct Links to Sections**: Anchor links are provided for each category heading, allowing direct URL sharing for specific sections.
+- **Responsive Card Layout**: A CSS Grid layout is used to optimize the display for various screen sizes.
 
-4.  **Responsive Card Layout**
-    A CSS Grid layout is used to optimize the display for various screen sizes, from desktop to mobile.
+---
 
-#### 2. Key Implementation Points
+### Implementation Details
 
-Implemented as a React component at `src/pages/news.tsx`, with styling handled by CSS Modules (`news.module.css`).
+This feature was implemented as a React component at `src/pages/news.tsx`, with styling handled by CSS Modules (`news.module.css`).
 
-##### 1. Multilingual Support (i18n)
+#### Multilingual Support (i18n)
 
-Extensively used the `<Translate>` component and `translate` API provided by Docusaurus. This approach separates markup from translation content, improving maintainability.
+The `<Translate>` component and `translate` API provided by Docusaurus were used to separate markup from translation content.
 
-*   **Using the `<Translate>` Component**
-    Used for translating static text within JSX. It automatically fetches the corresponding translated text from `code.json` using the `id` as a key.
+- **Translation within JSX**: The `<Translate>` component fetches the corresponding translated text from `code.json` using the `id` as a key.
+  ```tsx title="src/pages/news.tsx"
+  import Translate from '@docusaurus/Translate';
 
-    ```tsx
-    // src/pages/news.tsx
-    import Translate from '@docusaurus/Translate';
+  <h1>
+    <Translate id="news.page.heading">ニュース</Translate>
+  </h1>
+  ```
 
-    <h1>
-      <Translate id="news.page.heading">ニュース</Translate>
-    </h1>
-    // Replaced with 'News' in English and 'ニュース' in Japanese
-    ```
+- **Translation outside of JSX**: The `translate` API is used for translating strings outside of JSX tags, such as in component props.
+  ```tsx title="src/pages/news.tsx"
+  import { translate } from '@docusaurus/Translate';
 
-*   **Using the `translate` API**
-    Used for translating strings outside of JSX tags, such as in component props. This is effective for passing translated text to the `Layout` component's `title` and `description`.
+  <Layout
+    title={translate({
+      id: 'news.page.title',
+      message: 'ニュース一覧', // Default text
+    })}
+  />
+  ```
 
-    ```tsx
-    // src/pages/news.tsx
-    import { translate } from '@docusaurus/Translate';
+<Admonition type="tip" title="Centralized Management of Translation Data">
+  This system centralizes all translation data in `i18n/{locale}/code.json`, streamlining text management and translation work.
+</Admonition>
 
-    <Layout
-      title={translate({
-        id: 'news.page.title',
-        message: 'ニュース一覧', // Default text (if translation is not found)
-      })}
-    >
-      {/* ... */}
-    </Layout>
-    ```
-    This system centralizes translation data in `i18n/{locale}/code.json`, streamlining text management and translation work.
-
-##### 2. Component Design
+#### Component Design
 
 Page elements were componentized by function to improve reusability and readability.
 
-*   **`NewsSiteCard` Component**
-    A reusable card component that accepts the site's "title," "description," and "URL" as props. Reusing this component makes it easy to add or modify news sites.
+- **`NewsSiteCard` Component**: A reusable card component that not only accepts site information as props but also **encapsulates the logic for dynamically fetching and displaying the site's favicon**.
+  ```tsx title="src/components/NewsSiteCard/index.tsx (excerpt)"
+  export default function NewsSiteCard({ href, title, description }: Props) {
+    const domain = new URL(href).hostname;
+    // ...favicon fetching logic...
+  }
+  ```
 
-    ```tsx
-    // Usage (in news.tsx)
-    <NewsSiteCard
-      href="https://www.nikkei.com/"
-      title={<Translate id="news.site.jp.ge.nikkei.title">日本経済新聞</Translate>}
-      description={<Translate id="news.site.jp.ge.nikkei.desc">...</Translate>}
-    />
-    ```
+- **`SectionHeading` Component**: A custom component that allows for dynamically specifying heading levels like `h2` or `h3` via the `as` prop.
 
-*   **`SectionHeading` Component**
-    A custom heading component to standardize the UI while maintaining semantic correctness. The `as` prop allows for dynamically specifying heading levels like `h2` or `h3`.
+#### Styling (CSS Modules & Grid Layout)
 
-    ```tsx
-    // src/pages/news.tsx
-    const SectionHeading = ({ as: Component, id, className, children }) => {
-      return (
-        // The 'h2' or 'h3' received via the 'as' prop is rendered as the Component
-        <Component id={id} className={`${className} ${styles.sectionHeading}`}>
-          <a
-            className={styles.anchorLink}
-            href={`#${id}`}
-            aria-label="Permanent link to this heading"
-          >
-            #
-          </a>
-          {children}
-        </Component>
-      );
-    };
+CSS Modules were adopted to manage styles on a per-component basis, preventing global CSS pollution.
 
-    // Usage Example
-    <SectionHeading as="h2" id="japan" ... >
-      日本
-    </SectionHeading>
-    ```
-    This implementation allows the reuse of the same "anchor-linked" behavior across different heading levels.
+- **Responsive Grid Layout**: CSS Grid was used for the card list layout.
+  ```css title="src/pages/news.module.css"
+  .cardGrid {
+    display: grid;
+    /* Set min column width to 300px and auto-adjust column count */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  ```
+  This single line achieves a flexible responsive design without complex media queries.
 
-##### 3. Styling (CSS Modules & Grid Layout)
+---
 
-Adopted CSS Modules to manage styles on a per-component basis, preventing global CSS pollution.
+### UI/UX Improvements
 
-*   **Scoped CSS**
-    Class names defined in `news.module.css` are transformed into unique names like `[filename]_[classname]__[hash]` during the build process. This completely avoids unintentional style conflicts with other components.
+A rich and accessible UI was pursued by combining standard HTML features with React's state management.
 
-*   **Responsive Grid Layout**
-    CSS Grid is used for the card list layout. The key is the `repeat(auto-fill, minmax(300px, 1fr))` declaration.
-    ```css
-    /* src/pages/news.module.css */
-    .cardGrid {
-      display: grid;
-      /* Set the minimum width of one column to 300px and automatically adjust the number of columns based on the container width */
-      /* 'auto-fill' fills as many columns as possible, and '1fr' distributes the remaining space evenly */
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
-    }
-    ```
-    This single line achieves a flexible responsive design without complex media queries.
+1.  **Accordion UI with `<details>`**: The category collapse/expand functionality is implemented with the standard HTML `<details>` and `<summary>` tags. This achieves an accessible, keyboard-navigable UI without any JavaScript.
 
-#### 3. UI/UX Improvements
+2.  **Dynamic Favicons and Fallback Handling**: To enhance the visual identity of each site, favicons are displayed dynamically. A robust fallback mechanism was implemented to handle API instability or cases where a favicon does not exist.
 
-Constructed a lightweight and accessible UI by making the most of standard HTML features and CSS.
+    - **Multiple API Sources**: A list of favicon APIs (Google and DuckDuckGo) is used in order of priority.
+      ```tsx
+      const faviconSources = [
+        `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+        `https://icons.duckduckgo.com/ip3/${domain}.ico`,
+      ];
+      ```
+    - **Error Handling**: The `onError` event of the `img` tag is used to detect image loading failures. If an error occurs, an index managed by `useState` is updated to try the next API source.
+      ```tsx
+      const [sourceIndex, setSourceIndex] = useState(0);
 
-1.  **Accordion UI with the `<details>` Tag**
-    The category collapse/expand functionality is implemented with the standard HTML `<details>` and `<summary>` tags.
-    *   **JavaScript-Free**: It's a native browser feature, so it works without any additional JS code, keeping it lightweight.
-    *   **Accessibility**: It natively supports keyboard navigation (like toggling with the Enter key), making it highly accessible.
-    *   **Initial State Control**: The initial state can be set to "open" simply by adding the `open` attribute.
+      const handleError = () => {
+        // If there's a next source, update the index
+        if (sourceIndex < faviconSources.length - 1) {
+          setSourceIndex(sourceIndex + 1);
+        } else {
+          // If all fail, switch to the default icon
+          setUseDefaultIcon(true);
+        }
+      };
+      ```
+    - **Default Icon as a Last Resort**: A default icon, defined as an inline SVG within the component, is displayed if all API fetches fail, ensuring UI integrity.
 
-2.  **Anchor Links on Hover**
-    The `#` link within the `SectionHeading` component is normally hidden with `opacity: 0`. CSS is applied to switch it to `opacity: 1` when hovering over the parent element.
-    ```css
-    .sectionHeading .anchorLink {
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
+3.  **Performance Considerations**: The `loading="lazy"` attribute was added to favicon images to leverage the browser's native lazy loading. This defers the loading of off-screen images, improving initial page load speed.
 
-    .sectionHeading:hover .anchorLink {
-      opacity: 1;
-    }
-    ```
-    This keeps the UI clean while revealing the feature to the user when needed.
+<Admonition type="note" title="Further Reading">
+- [TypeScript Docs](https://www.typescriptlang.org/docs/)
+- [Google S2 Favicon API](https://developers.google.com/search/docs/appearance/favicon-in-search) (Note: Although not officially documented, it is widely used.)
+- [MDN: `<img>` loading attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#loading)
+- [MDN: `<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
+- [MDN: CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
+</Admonition>
