@@ -86,7 +86,7 @@ export default function ShareButtons({ title: propTitle }: Props): ReactElement 
 
   return (
     <div className={styles.shareContainer}>
-      <h4 className={styles.shareTitle}>Share this article</h4>
+      <h4 className={styles.shareTitle}>Share</h4>
       <div className={styles.buttonGroup}>
         {showNativeShare && (
           <button
@@ -110,11 +110,11 @@ export default function ShareButtons({ title: propTitle }: Props): ReactElement 
         <button
           onClick={handleCopyLink}
           className={`${styles.shareButton} ${styles.copyButton}`}
-          aria-label="Copy link to clipboard"
+          aria-label="Copy to clipboard"
         >
           {isCopied ? <Check size={24} color="green" /> : <Copy size={24} />}
           <span className={styles.buttonLabel}>
-            {isCopied ? 'Copied!' : 'Copy Link'}
+            {isCopied ? 'Copied!' : 'Copy'}
           </span>
         </button>
       </div>
