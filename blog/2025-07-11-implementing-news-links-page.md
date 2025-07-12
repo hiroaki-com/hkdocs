@@ -151,3 +151,8 @@ HTML標準機能とCSSを最大限に活用し、軽量でアクセシブルなU
     }
     ```
     これにより、UIをクリーンに保ちつつ、必要な時に機能の存在をユーザーに提示。
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+
+<ShareButtons />
