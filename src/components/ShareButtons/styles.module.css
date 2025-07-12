@@ -1,0 +1,60 @@
+.shareContainer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  text-align: center;
+}
+
+.shareTitle {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background-color: transparent;
+  color: var(--ifm-font-color-base);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 0.9rem;
+  min-width: 110px; /* Ensures buttons have a consistent minimum width */
+}
+
+.shareButton:hover {
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+.nativeShareButton {
+  background-color: var(--ifm-color-primary-dark);
+  color: white;
+}
+
+.nativeShareButton:hover {
+  background-color: var(--ifm-color-primary-darker);
+}
+
+.buttonLabel {
+  font-weight: 500;
+}
+
+/* Hide react-share's default button styles */
+.buttonGroup > button[class^="react-share__ShareButton"] {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
