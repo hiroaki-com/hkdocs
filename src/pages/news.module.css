@@ -1,17 +1,59 @@
-/* メインコンテンツ全体のコンテナ */
+/**
+ * src/pages/news.module.css
+ */
 .mainContainer {
-  /* Docusaurusの標準幅より少し狭く設定し、左右の余白を広げる */
   max-width: 1040px;
   margin: 0 auto;
   padding: 1.5rem 1.7rem var(--ifm-spacing-horizontal);
 }
 
-/* 大カテゴリのセクション（例：日本, 海外） */
+/* ★修正点: ヘッダーをFlexboxで左右に分割 */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.pageHeaderTitle {
+  text-align: left;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0.5rem;
+}
+
+.pageHeader p {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* ダウンロードボタンのスタイル */
+.downloadButton {
+  background-color: transparent;
+  border: 0.5px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-800);
+  border-radius: var(--ifm-button-border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.downloadButton:hover {
+  background-color: var(--ifm-hover-overlay);
+  border-color: var(--ifm-color-emphasis-600);
+}
+
 .majorCategorySection {
   margin-bottom: 1.5rem;
 }
 
-/* 大カテゴリのタイトル (h2) */
 .majorCategoryTitle {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
@@ -20,12 +62,10 @@
   font-weight: 600;
 }
 
-/* 小カテゴリのセクション（例：総合・経済, テクノロジー・科学） */
 .subCategorySection {
   margin-bottom: 1.5rem;
 }
 
-/* 小カテゴリのタイトル (h3) */
 .categoryTitle {
   font-size: 1.10rem;
   margin-bottom: 1.1rem;
@@ -35,7 +75,6 @@
   font-weight: 600;
 }
 
-/* タイトルの左側にアクセントとなる縦線を追加 */
 .categoryTitle::before {
   content: '';
   position: absolute;
@@ -48,20 +87,17 @@
   border-radius: 2px;
 }
 
-/* --- グリッドレイアウトの再定義 --- */
 .cardGrid {
   display: grid;
-  /* デフォルト（最大画面）は4カラム */
   grid-template-columns: repeat(4, 1fr);
   gap: 0; /* カード間の余白をなくす */
 }
 
-/* グリッド内のカードの角を四角にする */
+/* カードの角を強制的に四角にする */
 .cardGrid > * {
   border-radius: 0;
 }
 
-/* ダークモード用の調整 */
 [data-theme='dark'] .majorCategoryTitle {
   border-bottom-color: var(--ifm-color-emphasis-300);
 }
@@ -74,46 +110,38 @@
   color: var(--ifm-font-color-secondary);
 }
 
-/* --- アンカーリンク付き見出しのためのスタイル --- */
-
-/* 見出し全体をホバーの対象とし、アンカーリンクの位置の基準とする */
 .sectionHeading {
   position: relative;
 }
 
-/* アンカーリンク(#)のスタイル */
 .anchorLink {
-  /* 親要素(h2/h3)の左側に配置 */
   position: absolute;
-  left: -1em; /* #の幅分だけ左にずらす */
+  left: -1em;
   top: 0;
-  
-  /* 初期状態では非表示（透明）にする */
   opacity: 0;
-  
-  /* 表示/非表示を滑らかに変化させる */
   transition: opacity 0.2s ease-in-out;
-  
-  /* リンクの下線を消す */
   text-decoration: none;
 }
 
-/* 親の見出し(h2/h3)にホバーした時に、アンカーリンクを表示する */
 .sectionHeading:hover .anchorLink {
   opacity: 1;
 }
 
-/* --- 段階的なレスポンシブ対応 --- */
-
-/* 中画面 (996px以下) では3カラムに */
 @media (max-width: 996px) {
   .cardGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* 小画面 (767px以下) では2カラムに */
 @media (max-width: 767px) {
+  /* ★修正点: スマホではヘッダーを縦積み・左寄せに */
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start; /* 左寄せ */
+  }
+  .downloadButton {
+    display: none; /* スマホでは非表示 */
+  }
   .pageHeader h1 {
     font-size: 1.9rem;
   }
@@ -128,6 +156,14 @@
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0; /* レスポンシブでも余白をなくす */
+    gap: 0;
   }
+}
+
+/* ★追加: アコーディオンのマーカーを非表示 */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
 }
