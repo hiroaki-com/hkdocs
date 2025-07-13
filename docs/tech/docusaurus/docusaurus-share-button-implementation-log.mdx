@@ -1,0 +1,192 @@
+---
+slug: docusaurus-share-button-implementation-log
+title: 'Docusaurusにシェアボタンを実装した記録'
+authors: [hk]
+tags: [docusaurus, react, typescript, css-modules, ui/ux]
+---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import Admonition from '@theme/Admonition';
+
+このサイトの各記事に、SNSでコンテンツを共有するためのシェアボタンを設置しました。この記事では、その実装プロセスと、背景にある技術的な判断について記録します。
+
+完成したコンポーネントは以下のように動作します。
+
+<ShareButtons />
+
+<br/>
+このコンポーネントの特長は、ページのタイトルとURLを自動で取得する点です。これにより、一度設置すれば、記事ごとに特別な設定を追加する必要がなく、メンテナンスの手間がかかりません。
+
+
+### 設計方針：疎結合とメンテナンス性
+
+Docusaurusには `swizzle` という、テーマのコアコンポーネントを直接上書きできる強力な機能があります。しかし、今回の実装ではこの機能を採用しませんでした。
+
+理由は、`swizzle` がプロジェクトを特定のDocusaurusバージョンに強く結びつけてしまい、将来のバージョンアップ時に互換性が失われるリスクを高めるからです。
+
+:::info[設計方針]
+プロジェクトの長期的な安定性とメンテナンス性を最優先に考え、Docusaurus本体のアップデートから影響を受けにくい、**独立したReactコンポーネントとして実装する**アプローチを選択しました。
+:::
+
+### 実装ファイルの詳細
+
+実装は、`react-share` ライブラリをインストール後、主に2つのファイルを作成して進めました。完成したファイルはGitHubで確認できます。
+
+<ul>
+  <li>
+    <code>src/components/ShareButtons/index.tsx</code>
+    <a href="https://github.com/hiroaki-com/hkdocs/blob/develop/src/components/ShareButtons/index.tsx" target="_blank" rel="noopener noreferrer"> (View on GitHub)</a>
+  </li>
+  <li>
+    <code>src/components/ShareButtons/styles.module.css</code>
+    <a href="https://github.com/hiroaki-com/hkdocs/blob/develop/src/components/ShareButtons/styles.module.css" target="_blank" rel="noopener noreferrer"> (View on GitHub)</a>
+  </li>
+</ul>
+
+以下、各ファイルの詳細です。
+
+#### 1. コンポーネントロジック (`index.tsx`)
+
+このファイルは、シェアボタンの全ての動作を管理します。
+
+まず、React 19と `react-share` ライブラリ間の型定義の非互換性に対処するため、インポートしたコンポーネントを `as any` で意図的に型キャストしています。これにより、ライブラリ起因の型エラーを安全に回避しました。
+
+```tsx title="src/components/ShareButtons/index.tsx"
+// ... (imports) ...
+
+// ライブラリの型定義がReact 19に未対応である問題を安全に回避する
+const TwitterShareButton = OriginalTwitterShareButton as any;
+const FacebookShareButton = OriginalFacebookShareButton as any;
+const HatenaShareButton = OriginalHatenaShareButton as any;
+```
+
+次に、`useEffect` フックを使用して、クライアントサイドで現在のページのURLとタイトルを動的に取得します。`document.title` からサイト名を除去することで、純粋な記事タイトルをシェアできるようにしています。
+
+```tsx title="src/components/ShareButtons/index.tsx"
+useEffect(() => {
+  // 表示中のページの完全なURLを生成
+  setPageUrl(new URL(location.pathname, siteConfig.url).href);
+
+  let title = '';
+  if (typeof document !== 'undefined') {
+    // Docusaurusが生成する `document.title` からサイト名部分を除去
+    const siteTitleSuffix = ` | ${siteConfig.title}`;
+    title = document.title.endsWith(siteTitleSuffix)
+      ? document.title.slice(0, -siteTitleSuffix.length)
+      : document.title;
+  }
+  setPageTitle(title);
+
+  // モバイルなどで利用可能なネイティブのWeb Share APIが存在するかチェック
+  if (typeof navigator !== 'undefined' && navigator.share) {
+    setShowNativeShare(true);
+  }
+}, [location.pathname, siteConfig.url, siteConfig.title, propTitle]);
+```
+
+最終的なJSXの返り値では、取得した情報（`pageUrl`, `pageTitle`）を各シェアボタンのプロパティに渡しています。
+
+```tsx title="src/components/ShareButtons/index.tsx"
+// ...
+
+return (
+    <div className={styles.shareContainer}>
+      <h4 className={styles.shareTitle}>Share</h4>
+      <div className={styles.buttonGroup}>
+        {showNativeShare && (
+          {/* ネイティブ共有ボタンの表示制御 */}
+        )}
+        <TwitterShareButton url={pageUrl} title={shareQuote}>
+          <XIcon size={40} round />
+        </TwitterShareButton>
+        {/* ... (他のボタン) ... */}
+        <button
+          onClick={handleCopyLink}
+          className={`${styles.shareButton} ${styles.copyButton}`}
+        >
+          {/* コピー状態によるアイコンとテキストの切り替え */}
+          {isCopied ? <Check size={24} color="green" /> : <Copy size={24} />}
+          <span className={styles.buttonLabel}>
+            {isCopied ? 'Copied!' : 'Copy'}
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+```
+
+#### 2. スタイリング (`styles.module.css`)
+
+スタイリングにはCSS Modulesを採用し、コンポーネントのスタイルが他の要素に影響を与えないようにスコープ化しています。
+
+主要なレイアウトはFlexboxで構築し、ボタン間の間隔は `gap` プロパティでシンプルに制御しています。
+
+```css title="src/components/ShareButtons/styles.module.css"
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  /* ... (共通スタイル) ... */
+}
+```
+
+また、`react-share` が生成するボタンのデフォルトスタイルを上書きするため、属性セレクタを用いています。
+
+```css title="src/components/ShareButtons/styles.module.css"
+/* react-shareのデフォルトスタイルを上書き */
+.buttonGroup > button[class^="react-share__ShareButton"] {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+```
+
+さらに、メディアクエリを使用してレスポンシブ対応を行いました。画面幅に応じて、ネイティブ共有ボタンとコピーボタンの表示・非表示を切り替えています。これは、モバイルデバイスではネイティブ共有機能に「リンクをコピー」が含まれることが多いため、UIをシンプルに保つための工夫です。
+
+```css title="src/components/ShareButtons/styles.module.css"
+@media (min-width: 997px) {
+  /* PCではネイティブ共有ボタンを非表示 */
+  .nativeShareButton {
+    display: none;
+  }
+}
+
+@media (max-width: 996px) {
+  /* モバイルではコピーボタンを非表示 */
+  .copyButton {
+    display: none;
+  }
+}
+```
+
+### コンポーネントの使用方法
+
+完成したコンポーネントを記事ファイル（`.mdx`）に配置するのは非常にシンプルです。
+
+```mdx
+import ShareButtons from '@site/src/components/ShareButtons';
+
+<ShareButtons />
+```
+
+### まとめ
+
+`swizzle` を使わずに独立したコンポーネントとして実装したことで、Docusaurusのバージョンアップに対する耐性を高めました。また、ライブラリに起因する型問題には、影響範囲を限定した対処を施すことで、メンテナンス性の高いコンポーネントを実装することができました。
+
+<Admonition type="note" title="参考文献">
+
+- [react-share (GitHub)](https://github.com/nygardk/react-share)
+- [Docusaurus Docs: Using React Components in MDX](https://docusaurus.io/docs/markdown-features/react)
+- [React Docs: useEffect Hook](https://react.dev/reference/react/useEffect)
+- [TypeScript type error with React 19 types](https://github.com/i18next/react-i18next/issues/1823)
+- [TypeScript Docs: Type Assertions](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions)
+- [CSS Modules](https://github.com/css-modules/css-modules)
+
+
+</Admonition>
