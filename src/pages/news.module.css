@@ -90,7 +90,8 @@
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0; /* カード間の余白をなくす */
+  /* 上下に1rem、左右に0の余白を設定 */
+  gap: 1rem 0;
 }
 
 /* カードの角を強制的に四角にする */
@@ -156,7 +157,8 @@
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0;
+    /* スマホ表示でも同様に上下の余白を設定 */
+    gap: 1rem 0;
   }
 }
 
