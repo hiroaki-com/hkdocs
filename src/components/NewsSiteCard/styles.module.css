@@ -1,32 +1,31 @@
-/* カード全体を囲むリンク */
+/**
+ * src/components/NewsSiteCard/styles.module.css
+ */
 .cardLink {
   display: block;
   color: inherit;
   text-decoration: none;
   height: 100%;
-  border-radius: var(--ifm-card-border-radius);
+  border-radius: 0; /* 親の指定に合わせる */
   transition: background-color 0.2s ease-in-out;
 }
 
-/* リンクにホバーした際に背景色を変更（シンプルな効果のみ残す） */
 .cardLink:hover {
   background-color: var(--ifm-hover-overlay);
 }
 
-/* カード本体 */
 .card {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
   padding: 0.75rem;
-  /* height: 100% を維持することで、同じ行のカードの背景領域が揃う */
   height: 100%;
-  border: none;
-  box-shadow: none;
+  /* 罫線が二重にならないよう、右と下のボーダーをマイナスマージンで重ねる */
+  margin: -1px -1px 0 0;
   background-color: transparent;
+  box-shadow: none;
 }
 
-/* ファビコンを囲むコンテナ */
 .imageContainer {
   flex-shrink: 0;
   width: 28px;
@@ -40,28 +39,24 @@
   background-color: var(--ifm-color-emphasis-200);
 }
 
-/* デフォルトアイコン(SVG)のスタイル */
 .imageContainer svg {
   width: 18px;
   height: 18px;
   color: var(--ifm-color-emphasis-600);
 }
 
-/* ファビコン画像 */
 .image {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* タイトルと説明文をまとめるコンテナ */
 .content {
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-/* カードのタイトル (h3) */
 .title {
   font-size: 0.85rem;
   font-weight: 600;
@@ -70,36 +65,29 @@
   word-break: break-word;
 }
 
-/* カードの説明文 (p) - 全文表示 */
 .description {
   font-size: 0.6rem;
   color: var(--ifm-font-color-secondary);
   margin: 0;
   line-height: 1.5;
-  /* 省略表示に関するスタイルはすべて削除 */
 }
 
-/* スマホ用のスタイル */
 @media (max-width: 768px) {
   .card {
     gap: 0.3rem;
     padding: 0.3rem;
   }
-
   .imageContainer {
     width: 24px;
     height: 24px;
   }
-
   .imageContainer svg {
     width: 16px;
     height: 16px;
   }
-
   .title {
     font-size: 0.8rem;
   }
-  
   .description {
     font-size: 0.5rem;
   }
