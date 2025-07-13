@@ -4,10 +4,10 @@
 .mainContainer {
   max-width: 1040px;
   margin: 0 auto;
-  padding: 1.5rem 1.7rem var(--ifm-spacing-horizontal);
+  padding: 1.5rem 1rem var(--ifm-spacing-horizontal);
 }
 
-/* ★修正点: ヘッダーをFlexboxで左右に分割 */
+/* ヘッダーをFlexboxで左右に分割 */
 .pageHeader {
   display: flex;
   justify-content: space-between;
@@ -24,7 +24,7 @@
 }
 
 .pageHeader p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--ifm-color-emphasis-700);
 }
 
@@ -67,8 +67,8 @@
 }
 
 .categoryTitle {
-  font-size: 1.10rem;
-  margin-bottom: 1.1rem;
+  font-size: 1.0rem;
+  margin-bottom: 1.0rem;
   color: var(--ifm-color-emphasis-800);
   position: relative;
   padding-left: 1rem;
@@ -134,7 +134,7 @@
 }
 
 @media (max-width: 767px) {
-  /* ★修正点: スマホではヘッダーを縦積み・左寄せに */
+  /* スマホではヘッダーを縦積み・左寄せに */
   .pageHeader {
     flex-direction: column;
     align-items: flex-start; /* 左寄せ */
@@ -143,16 +143,16 @@
     display: none; /* スマホでは非表示 */
   }
   .pageHeader h1 {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
   }
   .pageHeader p {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
   .majorCategoryTitle {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
   }
   .categoryTitle {
-    font-size: 1.00rem;
+    font-size: 0.8rem;
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -160,7 +160,7 @@
   }
 }
 
-/* ★追加: アコーディオンのマーカーを非表示 */
+/* アコーディオンのマーカーを非表示 */
 summary {
   list-style: none;
 }
