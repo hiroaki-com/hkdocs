@@ -10,6 +10,8 @@ I've added share buttons to each article on this site for social media sharing. 
 
 A key feature of the final component is its ability to automatically fetch the page title and URL. This means that once it's set up, there's no need for special configurations on a per-article basis, which minimizes maintenance.
 
+<!-- truncate -->
+
 #### Choosing the Implementation Strategy
 
 Docusaurus has a powerful feature called `swizzle` that allows you to directly override core theme components. However, I chose not to use this feature for this implementation.

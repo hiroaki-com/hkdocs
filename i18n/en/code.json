@@ -1500,5 +1500,23 @@
   },
   "homepage.features.links.description": {
     "message": "A collection of reference links useful for development and learning."
+  },
+  "links.download.header.siteName": {
+    "message": "SiteName"
+  },
+  "links.page.downloadButtonAriaLabel": {
+    "message": "Download resource site list"
+  },
+  "links.page.downloadButtonTooltip": {
+    "message": "Download CSV list"
+  },
+  "news.download.header.siteName": {
+    "message": "Site Name"
+  },
+  "news.page.downloadButtonAriaLabel": {
+    "message": "Download news site list"
+  },
+  "news.page.downloadButtonTooltip": {
+    "message": "Download CSV list"
   }
 }
