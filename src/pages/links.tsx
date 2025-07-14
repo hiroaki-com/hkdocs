@@ -22,18 +22,6 @@ type LinkCategoryData = {
 // --- データソース ---
 const linksData: LinkCategoryData[] = [
   {
-    id: 'cloud-infra',
-    title: { id: 'links.majorCategory.cloudInfra', message: 'クラウド & インフラ' },
-    sites: [
-      { href: 'https://cloud.google.com/docs', title: { id: 'links.site.cloud.gcp.title', message: 'Google Cloud Docs' }, description: { id: 'links.site.cloud.gcp.desc', message: 'クイックスタート、チュートリアル、包括的なガイドを含む完全なGCPドキュメント。' } },
-      { href: 'https://cloud.google.com/architecture', title: { id: 'links.site.cloud.gcpArch.title', message: 'Cloud Architecture Center' }, description: { id: 'links.site.cloud.gcpArch.desc', message: '参照アーキテクチャ、設計ガイダンス、ベストプラクティスを提供するクラウドアーキテクチャセンター。' } },
-      { href: 'https://docs.docker.com/', title: { id: 'links.site.cloud.docker.title', message: 'Docker Docs' }, description: { id: 'links.site.cloud.docker.desc', message: 'コンテナ仮想化技術のデファクトスタンダード。公式ドキュメント。' } },
-      { href: 'https://www.terraform.io/docs', title: { id: 'links.site.cloud.terraform.title', message: 'Terraform Docs' }, description: { id: 'links.site.cloud.terraform.desc', message: 'Infrastructure as Codeを実現する代表的なツールの公式ドキュメント。' } },
-      { href: 'https://cloud.google.com/build/docs', title: { id: 'links.site.cloud.gcb.title', message: 'Google Cloud Build' }, description: { id: 'links.site.cloud.gcb.desc', message: 'GCP上でCI/CDパイプラインを実行するためのマネージドサービス。' } },
-      { href: 'https://docs.github.com/actions', title: { id: 'links.site.cloud.ghactions.title', message: 'GitHub Actions' }, description: { id: 'links.site.cloud.ghactions.desc', message: 'GitHubに統合されたCI/CDプラットフォーム。ワークフローを自動化。' } },
-    ],
-  },
-  {
     id: 'backend',
     title: { id: 'links.majorCategory.backend', message: 'バックエンド' },
     sites: [
@@ -63,14 +51,15 @@ const linksData: LinkCategoryData[] = [
     ],
   },
   {
-    id: 'data',
-    title: { id: 'links.majorCategory.data', message: 'データ' },
+    id: 'cloud-infra',
+    title: { id: 'links.majorCategory.cloudInfra', message: 'クラウド & インフラ' },
     sites: [
-      { href: 'https://cloud.google.com/bigquery/docs', title: { id: 'links.site.data.bigquery.title', message: 'BigQuery Docs' }, description: { id: 'links.site.data.bigquery.desc', message: 'ペタバイト級のデータを分析できるサーバーレスなデータウェアハウス。' } },
-      { href: 'https://dbt.getdbt.com/docs/', title: { id: 'links.site.data.dbt.title', message: 'dbt Docs' }, description: { id: 'links.site.data.dbt.desc', message: 'データウェアハウスでのデータ変換を支援する「T」 in ELTツール。' } },
-      { href: 'https://sqlzoo.net/', title: { id: 'links.site.data.sqlzoo.title', message: 'SQLZoo' }, description: { id: 'links.site.data.sqlzoo.desc', message: 'インタラクティブなチュートリアルと演習を通じてSQLを実践的に学べるサイト。' } },
-      { href: 'https://www.kubeflow.org/docs/', title: { id: 'links.site.ai.kubeflow.title', message: 'Kubeflow Docs' }, description: { id: 'links.site.ai.kubeflow.desc', message: 'Kubernetes上でMLワークフローをデプロイ、管理するためのプラットフォーム。' } },
-      { href: 'https://www.kaggle.com/learn', title: { id: 'links.site.ai.kaggle.title', message: 'Kaggle Learn' }, description: { id: 'links.site.ai.kaggle.desc', message: 'データサイエンスのコンペ、公開データセット、学習リソースが集まる世界最大のコミュニティ。' } },
+      { href: 'https://cloud.google.com/docs', title: { id: 'links.site.cloud.gcp.title', message: 'Google Cloud Docs' }, description: { id: 'links.site.cloud.gcp.desc', message: 'クイックスタート、チュートリアル、包括的なガイドを含む完全なGCPドキュメント。' } },
+      { href: 'https://cloud.google.com/architecture', title: { id: 'links.site.cloud.gcpArch.title', message: 'Cloud Architecture Center' }, description: { id: 'links.site.cloud.gcpArch.desc', message: '参照アーキテクチャ、設計ガイダンス、ベストプラクティスを提供するクラウドアーキテクチャセンター。' } },
+      { href: 'https://docs.docker.com/', title: { id: 'links.site.cloud.docker.title', message: 'Docker Docs' }, description: { id: 'links.site.cloud.docker.desc', message: 'コンテナ仮想化技術のデファクトスタンダード。公式ドキュメント。' } },
+      { href: 'https://www.terraform.io/docs', title: { id: 'links.site.cloud.terraform.title', message: 'Terraform Docs' }, description: { id: 'links.site.cloud.terraform.desc', message: 'Infrastructure as Codeを実現する代表的なツールの公式ドキュメント。' } },
+      { href: 'https://cloud.google.com/build/docs', title: { id: 'links.site.cloud.gcb.title', message: 'Google Cloud Build' }, description: { id: 'links.site.cloud.gcb.desc', message: 'GCP上でCI/CDパイプラインを実行するためのマネージドサービス。' } },
+      { href: 'https://docs.github.com/actions', title: { id: 'links.site.cloud.ghactions.title', message: 'GitHub Actions' }, description: { id: 'links.site.cloud.ghactions.desc', message: 'GitHubに統合されたCI/CDプラットフォーム。ワークフローを自動化。' } },
     ],
   },
   {
@@ -80,6 +69,17 @@ const linksData: LinkCategoryData[] = [
       { href: 'https://git-scm.com/docs', title: { id: 'links.site.devtools.git.title', message: 'Git Official Docs' }, description: { id: 'links.site.devtools.git.desc', message: '分散バージョン管理システムGitの公式ドキュメント。' } },
       { href: 'https://docs.github.com/', title: { id: 'links.site.devtools.github.title', message: 'GitHub Docs' }, description: { id: 'links.site.devtools.github.desc', message: 'コードホスティング、共同開発、ActionsなどGitHub機能の公式ドキュメント。' } },
       { href: 'https://learngitbranching.js.org/', title: { id: 'links.site.devtools.learngit.title', message: 'Learn Git Branching' }, description: { id: 'links.site.devtools.learngit.desc', message: 'Gitのブランチ操作を視覚的かつインタラクティブに学べる、非常に優れた学習ツール。' } },
+    ],
+  },
+  {
+    id: 'data',
+    title: { id: 'links.majorCategory.data', message: 'データ' },
+    sites: [
+      { href: 'https://cloud.google.com/bigquery/docs', title: { id: 'links.site.data.bigquery.title', message: 'BigQuery Docs' }, description: { id: 'links.site.data.bigquery.desc', message: 'ペタバイト級のデータを分析できるサーバーレスなデータウェアハウス。' } },
+      { href: 'https://dbt.getdbt.com/docs/', title: { id: 'links.site.data.dbt.title', message: 'dbt Docs' }, description: { id: 'links.site.data.dbt.desc', message: 'データウェアハウスでのデータ変換を支援する「T」 in ELTツール。' } },
+      { href: 'https://sqlzoo.net/', title: { id: 'links.site.data.sqlzoo.title', message: 'SQLZoo' }, description: { id: 'links.site.data.sqlzoo.desc', message: 'インタラクティブなチュートリアルと演習を通じてSQLを実践的に学べるサイト。' } },
+      { href: 'https://www.kubeflow.org/docs/', title: { id: 'links.site.ai.kubeflow.title', message: 'Kubeflow Docs' }, description: { id: 'links.site.ai.kubeflow.desc', message: 'Kubernetes上でMLワークフローをデプロイ、管理するためのプラットフォーム。' } },
+      { href: 'https://www.kaggle.com/learn', title: { id: 'links.site.ai.kaggle.title', message: 'Kaggle Learn' }, description: { id: 'links.site.ai.kaggle.desc', message: 'データサイエンスのコンペ、公開データセット、学習リソースが集まる世界最大のコミュニティ。' } },
     ],
   },
   {
@@ -122,20 +122,21 @@ const linksData: LinkCategoryData[] = [
   },
   {
     id: 'academic-research',
-    title: { id: 'links.majorCategory.academicResearch', message: '学術研究 & 論文' },
+    title: { id: 'links.majorCategory.academicResearch', message: '論文' },
     sites: [
       { href: 'https://arxiv.org/', title: { id: 'links.site.academic.arxiv.title', message: 'arXiv' }, description: { id: 'links.site.academic.arxiv.desc', message: '物理学、数学、CS等の査読前論文を無料公開するオープンアクセスの先駆的プラットフォーム。' } },
       { href: 'https://ieeexplore.ieee.org/', title: { id: 'links.site.academic.ieee.title', message: 'IEEE Xplore' }, description: { id: 'links.site.academic.ieee.desc', message: 'IEEE発行の電気工学・CS分野の学術雑誌、論文、技術標準を提供するデジタルライブラリ。' } },
       { href: 'https://dl.acm.org/', title: { id: 'links.site.academic.acm.title', message: 'ACM Digital Library' }, description: { id: 'links.site.academic.acm.desc', message: 'コンピューティング分野最大の学術団体ACMが発行する全論文誌や国際会議録を網羅。' } },
       { href: 'https://scholar.google.com/', title: { id: 'links.site.academic.scholar.title', message: 'Google Scholar' }, description: { id: 'links.site.academic.scholar.desc', message: 'あらゆる学術分野の論文や書籍を横断検索でき、被引用数も追跡可能な検索エンジン。' } },
       { href: 'https://www.semanticscholar.org/', title: { id: 'links.site.academic.semanticscholar.title', message: 'Semantic Scholar' }, description: { id: 'links.site.academic.semanticscholar.desc', message: 'AIを活用し、論文要旨の自動生成や影響の大きい引用の可視化で文献調査を支援。' } },
+      { href: 'https://scispace.com/', title: { id: 'links.site.academic.scispace.title', message: 'Scispace' }, description: { id: 'links.site.academic.scispace.desc', message: 'AIを活用して研究論文の検索、理解、執筆を支援するプラットフォーム。文献レビューの効率化に貢献。' } },
+      { href: 'https://researchrabbitapp.com/', title: { id: 'links.site.academic.researchrabbit.title', message: 'ResearchRabbit' }, description: { id: 'links.site.academic.researchrabbit.desc', message: '関連論文を視覚的に探索し、新たな発見を促す文献調査ツール。『論文版Spotify』とも呼ばれる。' } },
       { href: 'https://dblp.org/', title: { id: 'links.site.academic.dblp.title', message: 'DBLP' }, description: { id: 'links.site.academic.dblp.desc', message: 'CS分野に特化し、研究者の論文リストや共著者ネットワークを正確に追跡できる書誌情報DB。' } },
       { href: 'http://citeseerx.ist.psu.edu/', title: { id: 'links.site.academic.citeseerx.title', message: 'CiteSeerX' }, description: { id: 'links.site.academic.citeseerx.desc', message: 'コンピュータ・情報科学分野の論文を対象に、引用情報を自動で抽出・リンクする検索エンジン。' } },
       { href: 'https://www.medrxiv.org/', title: { id: 'links.site.academic.medrxiv.title', message: 'medRxiv' }, description: { id: 'links.site.academic.medrxiv.desc', message: '医学・臨床・健康科学分野専門のプレプリントサーバー。最新の研究成果を迅速に共有。' } },
       { href: 'https://www.techrxiv.org/', title: { id: 'links.site.academic.techrxiv.title', message: 'TechRxiv' }, description: { id: 'links.site.academic.techrxiv.desc', message: 'IEEEが設立した、電気工学やCS分野のプレプリントサーバー。' } },
       { href: 'https://www.ssrn.com/index.cfm/en/compscirn/', title: { id: 'links.site.academic.ssrn.title', message: 'SSRN' }, description: { id: 'links.site.academic.ssrn.desc', message: '社会科学・人文科学分野中心の、世界最大級のワーキングペーパー・プレプリント共有プラットフォーム。' } },
       { href: 'https://doaj.org/', title: { id: 'links.site.academic.doaj.title', message: 'DOAJ' }, description: { id: 'links.site.academic.doaj.desc', message: '品質基準を満たした信頼性の高いオープンアクセスジャーナルのみを収録するディレクトリ。' } },
-      { href: 'https://rnavi.org/', title: { id: 'links.site.academic.rnavi.title', message: '論文ナビ' }, description: { id: 'links.site.academic.rnavi.desc', message: '研究者有志によって運営される論文紹介・解説記事の投稿プラットフォーム。アウトリーチを重視し、一般向けのプレスリリース記事や専門家向けの解説、注目論文のレビュー、関連トピックの論文紹介などを投稿可能' } },
     ],
   },
   {
