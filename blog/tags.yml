@@ -1,121 +1,219 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Articles related to the Facebook platform or its API integration.
-
-hello:
-  label: Hello
-  permalink: /hello
-  description: General introductory posts or Docusaurus blog initial setup.
-
-docusaurus:
+# -----------------------------------------------------------------------------
+# Docusaurus & Frameworks
+# -----------------------------------------------------------------------------
+Docusaurus:
   label: Docusaurus
   permalink: /docusaurus
-  description: Articles on Docusaurus - setup, customization, features, and troubleshooting.
-
-hola:
-  label: Hola
-  permalink: /hola
-  description: Sample posts, potentially for multilingual examples or greetings.
-
-docker:
-  label: Docker
-  permalink: /docker
-  description: Content on Docker - containerization, Dockerfiles, and related setups.
-
-docker-compose:
-  label: Docker Compose
-  permalink: /docker-compose
-  description: Using Docker Compose for multi-container application management.
-
+  description: Docusaurusのセットアップ、カスタマイズ、機能に関する記事。
+docusaurus:
+  label: Docusaurus
+  permalink: /docusaurus-lower
+  description: Docusaurusのセットアップ、カスタマイズ、機能に関する記事。
 react:
   label: React
   permalink: /react
-  description: React.js development, especially for Docusaurus components and customization.
-
+  description: Docusaurusのコンポーネントやカスタマイズを中心とした、React.js開発に関する記事。
 typescript:
   label: TypeScript
   permalink: /typescript
-  description: Using TypeScript for static typing in JavaScript projects, often with Docusaurus.
+  description: DocusaurusプロジェクトでのTypeScriptの利用に関する記事。
+frontmatter:
+  label: Frontmatter
+  permalink: /frontmatter
+  description: MarkdownファイルのFrontmatterの利用や設定に関する記事。
 
-localStorage:
-  label: localStorage
-  permalink: /localstorage
-  description: Utilizing browser's localStorage API for client-side data persistence.
-
-ブラウザ機能:
-  label: ブラウザ機能
-  permalink: /ブラウザ機能
-  description: Discussions on various web browser APIs and functionalities.
-
-Github Actions:
-  label: Github Actions
+# -----------------------------------------------------------------------------
+# Cloud & DevOps
+# -----------------------------------------------------------------------------
+'google cloud':
+  label: Google Cloud
+  permalink: /google-cloud
+  description: Google Cloud Platform (GCP) に関する記事。
+'cloud run':
+  label: Cloud Run
+  permalink: /cloud-run
+  description: Google Cloud Runへのアプリケーションのデプロイに関する記事。
+cloudrun:
+  label: Cloud Run
+  permalink: /cloudrun-alt
+  description: Google Cloud Runへのアプリケーションのデプロイに関する記事。
+'artifact registry':
+  label: Artifact Registry
+  permalink: /artifact-registry
+  description: Google Cloud Artifact Registryの利用やポリシーに関する記事。
+'cost-optimization':
+  label: Cost Optimization
+  permalink: /cost-optimization
+  description: クラウド利用におけるコスト最適化に関する記事。
+docker:
+  label: Docker
+  permalink: /docker
+  description: Dockerのコンテナ化、Dockerfile、関連するセットアップに関するコンテンツ。
+docker-compose:
+  label: Docker Compose
+  permalink: /docker-compose
+  description: Docker Composeを利用したマルチコンテナアプリケーションの管理に関する記事。
+'GitHub Actions':
+  label: GitHub Actions
   permalink: /github-actions
-  description: Automating workflows, CI/CD, and deployments using GitHub Actions.
-
-Twitter API:
-  label: Twitter API
-  permalink: /twitter-api
-  description: Interacting with the Twitter (X) API for automation or data retrieval.
-
-Twitter Card:
-  label: Twitter Card
-  permalink: /twitter-card
-  description: Configuring rich content previews (Twitter Cards) for shared links on Twitter/X.
-
-アイコン:
-  label: アイコン
-  permalink: /アイコン
-  description: Working with icons - SVG, CSS, and general usage in web design.
-
-css:
-  label: CSS
-  permalink: /css
-  description: Cascading Style Sheets - styling, layout, and web design techniques.
-
-svg:
-  label: SVG
-  permalink: /svg
-  description: Scalable Vector Graphics (SVG) - usage for icons, illustrations, and web graphics.
-
-# New Tags Added
-i18n:
-  label: i18n
-  permalink: /i18n
-  description: Internationalization and localization topics.
-
-Docusaurus:
-  label: Docusaurus
-  permalink: /Docusaurus
-  description: Advanced Docusaurus usage and specific features.
-
-routing:
-  label: Routing
-  permalink: /routing
-  description: Managing routes and navigation in web applications.
-
+  description: GitHub Actionsを使用したワークフロー、CI/CD、デプロイの自動化に関する記事。
+workflow:
+  label: Workflow
+  permalink: /workflow
+  description: 開発や運用のワークフロー改善に関する記事。
 deployment:
   label: Deployment
   permalink: /deployment
-  description: Strategies and practices for deploying applications.
+  description: アプリケーションのデプロイ戦略や実践に関する記事。
 
-cloudrun:
-  label: Cloud Run
-  permalink: /cloudrun
-  description: Deploying applications on Google Cloud Run.
+# -----------------------------------------------------------------------------
+# Internationalization (i18n)
+# -----------------------------------------------------------------------------
+i18n:
+  label: i18n
+  permalink: /i18n
+  description: 国際化(Internationalization)と多言語対応に関する記事。
+routing:
+  label: Routing
+  permalink: /routing
+  description: DocusaurusやWebアプリケーションにおけるルーティング管理に関する記事。
 
-passed-exam:
+# -----------------------------------------------------------------------------
+# Search & Analytics
+# -----------------------------------------------------------------------------
+Algolia:
+  label: Algolia
+  permalink: /algolia
+  description: Algolia検索サービスの導入や利用に関する記事。
+DocSearch:
+  label: DocSearch
+  permalink: /docsearch
+  description: Algolia DocSearchのセットアップやカスタマイズに関する記事。
+Crawler:
+  label: Crawler
+  permalink: /crawler
+  description: Webクローラーの動作や設定に関する記事。
+'Google Analytics':
+  label: Google Analytics
+  permalink: /google-analytics
+  description: Google Analytics (GA4) の導入や設定に関する記事。
+GA4:
+  label: GA4
+  permalink: /ga4
+  description: Google Analytics 4 (GA4) に関する詳細な記事。
+gtag:
+  label: gtag.js
+  permalink: /gtag
+  description: gtag.jsを使用したトラッキングの実装に関する記事。
+
+# -----------------------------------------------------------------------------
+# Web Development & UI/UX
+# -----------------------------------------------------------------------------
+css:
+  label: CSS
+  permalink: /css
+  description: CSSのスタイリング、レイアウト、ウェブデザイン技術に関する記事。
+'css-modules':
+  label: CSS Modules
+  permalink: /css-modules
+  description: CSS Modulesを使用したコンポーネント単位のスタイリングに関する記事。
+svg:
+  label: SVG
+  permalink: /svg
+  description: アイコンやイラストでのSVGの利用に関する記事。
+icon:
+  label: Icon
+  permalink: /icon
+  description: ウェブデザインにおけるアイコン（SVG、CSSなど）の利用に関する記事。
+アイコン:
+  label: アイコン
+  permalink: /アイコン
+  description: アイコン（SVG、CSSなど）の利用に関する記事。
+performance:
+  label: Performance
+  permalink: /performance
+  description: ウェブサイトやアプリケーションのパフォーマンス改善に関する記事。
+'ui/ux':
+  label: UI/UX
+  permalink: /ui-ux
+  description: ユーザーインターフェースやユーザーエクスペリエンスの設計・改善に関する記事。
+ux:
+  label: UX
+  permalink: /ux
+  description: ユーザーエクスペリエンスに関する記事。
+localStorage:
+  label: localStorage
+  permalink: /localstorage
+  description: ブラウザのlocalStorage APIを利用したクライアントサイドのデータ永続化に関する記事。
+'browser-feature':
+  label: Browser Feature
+  permalink: /browser-feature
+  description: 各種WebブラウザのAPIや機能に関する議論。
+ブラウザ機能:
+  label: ブラウザ機能
+  permalink: /ブラウザ機能
+  description: 各種WebブラウザのAPIや機能に関する議論。
+'lz-string':
+  label: lz-string
+  permalink: /lz-string
+  description: lz-stringライブラリを使用した文字列の圧縮・伸張に関する記事。
+'Twitter API':
+  label: Twitter API
+  permalink: /twitter-api
+  description: Twitter (X) APIとの連携や自動化に関する記事。
+'Twitter Card':
+  label: Twitter Card
+  permalink: /twitter-card
+  description: Twitter/Xでリッチなリンクプレビューを表示するTwitter Cardの設定に関する記事。
+
+# -----------------------------------------------------------------------------
+# Others
+# -----------------------------------------------------------------------------
+mac:
+  label: macOS
+  permalink: /mac
+  description: macOSのTIPSや設定に関する記事。
+'accent mark':
+  label: Accent Mark
+  permalink: /accent-mark
+  description: アクセント記号の入力や設定に関する記事。
+'accent menu':
+  label: Accent Menu
+  permalink: /accent-menu
+  description: macOSのアクセントメニューに関する記事。
+'accent-mark':
+  label: Accent Mark
+  permalink: /accent-mark-alt
+  description: アクセント記号の入力や設定に関する記事。
+'accent-menu':
+  label: Accent Menu
+  permalink: /accent-menu-alt
+  description: macOSのアクセントメニューに関する記事。
+productivity:
+  label: Productivity
+  permalink: /productivity
+  description: 生産性向上に関するツールやテクニック。
+チュートリアル:
+  label: チュートリアル
+  permalink: /チュートリアル
+  description: 特定の技術やツールの導入手順を解説するチュートリアル記事。
+tutorial:
+  label: Tutorial
+  permalink: /tutorial
+  description: Tutorial articles explaining the setup steps for specific technologies or tools.
+
+# -----------------------------------------------------------------------------
+# Exams
+# -----------------------------------------------------------------------------
+'passed-exam':
   label: Passed Exam
   permalink: /passed-exam
-  description: Experiences and insights after passing an exam.
-
-exam-review:
+  description: 資格試験の合格体験記や考察。
+'exam-review':
   label: Exam Review
   permalink: /exam-review
-  description: Reviews and preparation tips for exams.
-
+  description: 資格試験のレビューや対策のヒント。
 certification:
   label: Certification
   permalink: /certification
-  description: Information and paths for professional certifications.
-  
+  description: プロフェッショナル認定資格に関する情報。
