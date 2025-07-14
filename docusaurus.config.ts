@@ -12,23 +12,17 @@ const config: Config = {
   tagline: 'My Knowledge Imprint',
   favicon: 'img/favicon.ico',
 
-  // Docusaurus v4の将来的な機能を有効化
   future: {
     v4: true,
   },
 
-  // URLの末尾にスラッシュを追加する設定
   trailingSlash: true,
-
-  // 本番環境のURLとベースパス
   url: 'https://hkdocs.com/',
   baseUrl: '/',
 
-  // GitHub Pagesデプロイ用の設定
   organizationName: 'hiroaki-com',
   projectName: 'hkdocs',
 
-  // リンク切れの際の挙動（ビルドを失敗させず警告を表示）
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
@@ -52,20 +46,17 @@ const config: Config = {
     [
       'classic',
       {
-        // Google Analytics (GA4) の設定
         gtag: {
           trackingID: 'G-NKX9CMSK0S',
           anonymizeIP: true,
         },
-        // 'docs' プラグインの設定
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/hiroaki-com/hkdocs',
           remarkPlugins: [math],
           rehypePlugins: [katex],
-          showLastUpdateTime: true, // 最終更新日を表示
+          showLastUpdateTime: true,
         },
-        // 'blog' プラグインの設定
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -86,7 +77,6 @@ const config: Config = {
     ],
   ],
 
-  // 追加のプラグイン設定
   plugins: [
     [
       '@docusaurus/plugin-content-blog',
@@ -102,7 +92,6 @@ const config: Config = {
     ],
   ],
 
-  // 外部スタイルシートの読み込み
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css',
@@ -117,17 +106,13 @@ const config: Config = {
     },
   ],
 
-  // テーマに関する設定
   themeConfig: {
-    // カラーモードの設定
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
-    // OGP (Open Graph Protocol) 用の画像
     image: 'img/hkdocs-social-card.jpg',
-    // サイト上部のお知らせバー
     announcementBar: {
       id: 'site_release_20250601',
       content: '2025年6月1日、当サイトを正式リリースしました 🥳️',
@@ -135,7 +120,6 @@ const config: Config = {
       textColor: '#fcf3f0',
       isCloseable: true,
     },
-    // ナビゲーションバーの設定
     navbar: {
       title: 'HkDocs',
       logo: {
@@ -151,15 +135,18 @@ const config: Config = {
           label: 'Tech',
         },
         { to: '/blog', label: 'ブログ', position: 'left' },
-        { to: '/diary', label: '日記', position: 'left' },
-        { to: '/news', label: 'ニュース', position: 'left' },
-        { to: '/links', label: '資料集', position: 'left' },
         {
-          to: '/browser-memo',
-          label: 'ブラウザメモ',
+          type: 'dropdown',
+          label: 'その他',
           position: 'left',
+          items: [
+            { to: '/diary', label: '日記' },
+            { to: '/news', label: 'ニュース' },
+            { to: '/links', label: '資料集' },
+            { to: '/browser-memo', label: 'ブラウザメモ' },
+            { to: '/profile', label: 'プロフィール' },
+          ],
         },
-        { to: '/profile', label: 'プロフィール', position: 'right' },
         {
           href: 'https://github.com/hiroaki-com/hkdocs',
           position: 'right',
@@ -180,7 +167,6 @@ const config: Config = {
         },
       ],
     },
-    // フッターの設定
     footer: {
       style: 'dark',
       links: [
@@ -195,11 +181,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            { label: 'プロフィール', to: '/profile' },
             { label: 'ニュース', to: '/news' },
             { label: '資料集', to: '/links' },
             { label: 'ブラウザメモ', to: '/browser-memo' },
-            { label: 'GitHub', href: 'https://github.com/hiroaki-com/hkdocs' },
+            { label: 'プロフィール', to: '/profile' },
           ],
         },
         {
@@ -210,12 +195,12 @@ const config: Config = {
               href: 'https://x.com/hkdocs',
               props: { target: '_blank', rel: 'noopener noreferrer' },
             },
+            { label: 'GitHub', href: 'https://github.com/hiroaki-com/hkdocs' },
           ],
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} hkdocs. All Rights Reserved.<br>The code is licensed under MIT, and the content is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
     },
-    // コードブロックのシンタックスハイライトテーマ
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
@@ -225,12 +210,10 @@ const config: Config = {
         hideable: true,
       },
     },
-    // 目次（TOC）の表示レベル設定
     tableOfContents: {
       minHeadingLevel: 2,
       maxHeadingLevel: 5,
     },
-    // Algolia DocSearchの設定
     algolia: {
       appId: 'S30V6IHD5V',
       apiKey: 'adbade7d0089113887a2a706a77f72f8',
