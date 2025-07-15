@@ -163,18 +163,23 @@ const newsData: MajorCategoryData[] = [
   },
 ];
 
+/**
+ * ホバー時にアンカーリンク('#')を表示する見出しコンポーネント
+ */
 const SectionHeading = ({ as: Component, id, className, children }: { as: 'h2' | 'h3'; id: string; className: string; children: ReactNode }) => (
   <Component id={id} className={`${className} ${styles.sectionHeading}`}>
-    <a
-      className={styles.anchorLink}
-      href={`#${id}`}
-      aria-label={translate({
-        id: 'theme.common.headingLinkTitle',
-        message: 'この見出しへの固定リンク',
-      })}>
-      #
-    </a>
-    {children}
+    <span className={styles.anchorContainer}>
+      {children}
+      <a
+        className={styles.anchorLink}
+        href={`#${id}`}
+        aria-label={translate({
+          id: 'theme.common.headingLinkTitle',
+          message: 'この見出しへの固定リンク',
+        })}>
+        #
+      </a>
+    </span>
   </Component>
 );
 
