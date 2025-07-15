@@ -7,7 +7,6 @@
   padding: 1.5rem 1rem var(--ifm-spacing-horizontal);
 }
 
-/* ヘッダーをFlexboxで左右に分割 */
 .pageHeader {
   display: flex;
   justify-content: space-between;
@@ -28,7 +27,6 @@
   color: var(--ifm-color-emphasis-700);
 }
 
-/* ダウンロードボタンのスタイル */
 .downloadButton {
   background-color: transparent;
   border: 0.5px solid var(--ifm-color-emphasis-300);
@@ -90,11 +88,9 @@
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* 上下に1rem、左右に0の余白を設定 */
   gap: 1rem 0;
 }
 
-/* カードの角を強制的に四角にする */
 .cardGrid > * {
   border-radius: 0;
 }
@@ -111,13 +107,16 @@
   color: var(--ifm-font-color-secondary);
 }
 
-.sectionHeading {
+/* --- Anchor Link Styles --- */
+.anchorContainer {
   position: relative;
+  display: inline-block;
 }
 
 .anchorLink {
   position: absolute;
-  left: -1em;
+  left: 100%;
+  padding-left: 0.25em;
   top: 0;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
@@ -135,13 +134,12 @@
 }
 
 @media (max-width: 767px) {
-  /* スマホではヘッダーを縦積み・左寄せに */
   .pageHeader {
     flex-direction: column;
-    align-items: flex-start; /* 左寄せ */
+    align-items: flex-start;
   }
   .downloadButton {
-    display: none; /* スマホでは非表示 */
+    display: none;
   }
   .pageHeader h1 {
     font-size: 1.5rem;
@@ -157,12 +155,10 @@
   }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    /* スマホ表示でも同様に上下の余白を設定 */
     gap: 1rem 0;
   }
 }
 
-/* アコーディオンのマーカーを非表示 */
 summary {
   list-style: none;
 }
