@@ -93,19 +93,23 @@
 
 
 /* --- アンカーリンク付き見出しのためのスタイル --- */
-.sectionHeading {
+/* テキストとアンカーリンクを内包し、アンカーの位置決めの基準点となるコンテナ */
+.anchorContainer {
   position: relative;
+  display: inline-block;
 }
 
 .anchorLink {
   position: absolute;
-  left: -1em;
+  left: 100%; /* .anchorContainer の右端からの相対位置 */
+  padding-left: 0.25em; /* テキストとの間に余白を設ける */
   top: 0;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   text-decoration: none;
 }
 
+/* h2見出し(.sectionHeading)の領域にホバーした際に、その中のアンカーリンクを表示する */
 .sectionHeading:hover .anchorLink {
   opacity: 1;
 }
