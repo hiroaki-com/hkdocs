@@ -19,7 +19,7 @@ type LinkCategoryData = {
   sites: LinkData[];
 };
 
-// --- データソース ---
+// --- データソース (変更なし) ---
 const linksData: LinkCategoryData[] = [
   {
     id: 'backend',
@@ -118,6 +118,7 @@ const linksData: LinkCategoryData[] = [
       { href: 'https://ocw.mit.edu/', title: { id: 'links.site.security.mitocw.title', message: 'MIT OpenCourseWare' }, description: { id: 'links.site.security.mitocw.desc', message: 'MITの講義資料を無償で公開。サイバーセキュリティ関連コースも豊富。' } },
       { href: 'https://www.hacksplaining.com/owasp', title: { id: 'links.site.security.hacksplaining.title', message: 'Hacksplaining' }, description: { id: 'links.site.security.hacksplaining.desc', message: 'インタラクティブなレッスンを通じてセキュリティ脆弱性を学べるサイト。' } },
       { href: 'https://github.com/sbilly/awesome-security', title: { id: 'links.site.security.awesomesec.title', message: 'Awesome Security (GitHub)' }, description: { id: 'links.site.security.awesomesec.desc', message: 'セキュリティに関するツール、リソース、ライブラリなどを集めたキュレーションリスト。' } },
+      { href: 'https://www.security-next.com/', title: { id: 'links.site.security.securitynext.title', message: 'Security NEXT' }, description: { id: 'links.site.security.securitynext.desc', message: 'サイバーセキュリティに関する最新情報、インシデントや脆弱性、対策に関するニュースを速報で提供する専門メディア。' } },
     ],
   },
   {
@@ -150,22 +151,27 @@ const linksData: LinkCategoryData[] = [
 ];
 
 /**
- * ホバー時に左側にアンカーリンク('#')を表示する見出しコンポーネント
+ * ホバー時に右側にアンカーリンク('#')を表示する見出しコンポーネント
  */
 const SectionHeading = ({ as: Component, id, className, children }: { as: 'h2' | 'h3'; id: string; className: string; children: ReactNode }) => (
+  // h2(Component)に行全体をホバー領域とするためのクラスを適用
   <Component id={id} className={`${className} ${styles.sectionHeading}`}>
-    <a
-      className={styles.anchorLink}
-      href={`#${id}`}
-      aria-label={translate({
-        id: 'theme.common.headingLinkTitle',
-        message: 'この見出しへの固定リンク',
-      })}>
-      #
-    </a>
-    {children}
+    {/* テキストとアンカーリンクをspanで囲み、アンカーの位置決めの基準とする */}
+    <span className={styles.anchorContainer}>
+      {children}
+      <a
+        className={styles.anchorLink}
+        href={`#${id}`}
+        aria-label={translate({
+          id: 'theme.common.headingLinkTitle',
+          message: 'この見出しへの固定リンク',
+        })}>
+        #
+      </a>
+    </span>
   </Component>
 );
+
 
 export default function LinksPage(): JSX.Element {
   const escapeCsvField = (field: string): string => {
