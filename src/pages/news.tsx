@@ -95,6 +95,7 @@ const newsData: MajorCategoryData[] = [
         title: { id: 'news.category.summary-sites-jp', message: 'まとめ' },
         sites: [
           { href: 'https://news.ceek.jp/', title: { id: 'news.site.jp.ss.ceek.title', message: 'CEEK.JP News' }, description: { id: 'news.site.jp.ss.ceek.desc', message: '国内の主要ニュースを横断検索できるニュース検索エンジン。' } },
+          { href: 'https://news.google.com/home?hl=ja&gl=JP&ceid=JP:ja', title: { id: 'news.site.jp.ss.googlenews.title', message: 'Googleニュース' }, description: { id: 'news.site.jp.ss.googlenews.desc', message: 'AIを活用して世界中のニュースソースから情報を集約し、ユーザーの興味関心に合わせたニュースフィードを提供。' } },
         ],
       },
     ],
@@ -135,7 +136,8 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://www.sciencedaily.com/', title: { id: 'news.site.int.ts.sciencedaily.title', message: 'ScienceDaily' }, description: { id: 'news.site.int.ts.sciencedaily.desc', message: '最新の科学研究のプレスリリースを日々配信するニュース。' } },
           { href: 'https://techcrunch.com/', title: { id: 'news.site.int.ts.techcrunch.title', message: 'TechCrunch' }, description: { id: 'news.site.int.ts.techcrunch.desc', message: '2005年にマイケル・アーリントンが米国で設立。Yahoo Inc.が運営。スタートアップとテクノロジー業界の動向を報じる代表的メディアで、大規模カンファレンス「Disrupt」を主催。' } },
           { href: 'https://www.geekwire.com/', title: { id: 'news.site.int.ts.geekwire.title', message: 'GeekWire' }, description: { id: 'news.site.int.ts.geekwire.desc', message: 'シアトルと太平洋岸北西部を中心に、テクノロジー、スタートアップ、イノベーションのニュースを報道。' } },
-          { href: 'https://digiday.com/', title: { id: 'news.site.int.ge.digiday.title', message: 'Digiday' }, description: { id: 'news.site.int.ge.digiday.desc', message: 'デジタルメディア、マーケティング、広告、リテールの変革を掘り下げる専門メディアの国際版。' } }        
+          { href: 'https://digiday.com/', title: { id: 'news.site.int.ge.digiday.title', message: 'Digiday' }, description: { id: 'news.site.int.ge.digiday.desc', message: 'デジタルメディア、マーケティング、広告、リテールの変革を掘り下げる専門メディアの国際版。' } },
+          { href: 'https://www.techmeme.com/', title: { id: 'news.site.int.ts.techmeme.title', message: 'Techmeme' }, description: { id: 'news.site.int.ts.techmeme.desc', message: 'テクノロジー業界のニュースを人間とアルゴリズムを組み合わせて集約するアグリゲーター。' } }
         ],
       },
       {
@@ -156,6 +158,7 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://ground.news/', title: { id: 'news.site.int.ss.ground.title', message: 'Ground News' }, description: { id: 'news.site.int.ss.ground.desc', message: '2017年にハーリーン・カウルら元NASAのエンジニアらによってカナダで設立。一つのニュースに対する各メディアの政治的偏向（左派・中道・右派）を可視化し、多角的な情報比較を可能にするプラットフォーム。' } },
           { href: 'https://alltop.com/', title: { id: 'news.site.int.ss.alltop.title', message: 'AllTop' }, description: { id: 'news.site.int.ss.alltop.desc', message: '様々なトピックのトップニュースやブログ投稿を集約するニュースアグリゲーター。' } },
           { href: 'https://www.newsnow.com/us/', title: { id: 'news.site.int.ss.newsnow.title', message: 'NewsNow' }, description: { id: 'news.site.int.ss.newsnow.desc', message: '世界中のニュースソースから最新のヘッドラインをリアルタイムで集約するニュースアグリゲーター。' } },
+          { href: 'https://news.google.com/home?hl=en-US&gl=US&ceid=US:en', title: { id: 'news.site.int.ss.googlenews.title', message: 'Google News (US)' }, description: { id: 'news.site.int.ss.googlenews.desc', message: 'AIを活用して世界中のニュースソースから情報を集約し、ユーザーに合わせた情報を提供。' } },          
           { href: 'https://www.icij.org/', title: { id: 'news.site.int.ss.icij.title', message: 'ICIJ' }, description: { id: 'news.site.int.ss.icij.desc', message: '1997年にチャールズ・ルイスが米国で設立した非営利の調査報道組織。「パナマ文書」「パンドラ文書」などで知られ、国境を越えた協業で不正を追及。' } },
           { href: 'https://www.bellingcat.com/', title: { id: 'news.site.int.ss.bellingcat.title', message: 'Bellingcat' }, description: { id: 'news.site.int.ss.bellingcat.desc', message: '2014年にエリオット・ヒギンズが設立した独立調査報道グループ。公開情報（OSINT）を駆使して紛争や犯罪を調査・分析する手法で知られる。オランダに非営利財団として登記。' } },
           { href: 'https://www.propublica.org', title: { id: 'news.site.int.ss.propublica.title', message: 'ProPublica' }, description: { id: 'news.site.int.ss.propublica.desc', message: '2007年にポール・スタイガーらが米国で設立。権力の乱用や裏切りを暴くことを使命とする非営利の調査報道機関で、サンドラー財団の資金提供を受けている。ピューリッツァー賞を多数受賞。' } },
