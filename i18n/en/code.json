@@ -1738,5 +1738,37 @@
   "links.site.standards.w3c.title": {
     "message": "W3C",
     "description": "Title for W3C"
-  }  
+  },  
+  "news.site.jp.ss.googlenews.title": {
+    "message": "Google News (Japan)",
+    "description": "The title for Google News (Japan)"
+  },
+  "news.site.jp.ss.googlenews.desc": {
+    "message": "A news aggregator provided by Google. It uses AI to consolidate information from news sources around the world and provides a personalized news feed tailored to the user's interests.",
+    "description": "The description for Google News (Japan)"
+  },
+  "news.site.int.ss.googlenews.title": {
+    "message": "Google News (US)",
+    "description": "The title for Google News (US)"
+  },
+  "news.site.int.ss.googlenews.desc": {
+    "message": "The international (US) version of the news aggregator provided by Google. It utilizes AI to gather information from news sources worldwide, enabling information collection from a global perspective and personalization tailored to the user.",
+    "description": "The description for Google News (US)"
+  },
+  "news.site.int.ts.techmeme.title": {
+    "message": "Techmeme",
+    "description": "The title for Techmeme on the news page"
+  },
+  "news.site.int.ts.techmeme.desc": {
+    "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
+    "description": "The description for Techmeme on the news page"
+  },
+  "links.site.learningCommunity.techmeme.title": {
+    "message": "Techmeme",
+    "description": "The title for Techmeme on the links page"
+  },
+  "links.site.learningCommunity.techmeme.desc": {
+    "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
+    "description": "The description for Techmeme on the links page"
+  }
 }
