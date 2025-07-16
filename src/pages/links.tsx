@@ -102,6 +102,7 @@ const linksData: LinkCategoryData[] = [
     sites: [
       { href: 'https://roadmap.sh/', title: { id: 'links.site.devtools.roadmap.title', message: 'roadmap.sh' }, description: { id: 'links.site.devtools.roadmap.desc', message: '開発者向けの様々な技術領域の学習ロードマップ。次に何を学ぶべきかを示してくれる。' } },
       { href: 'https://news.ycombinator.com/', title: { id: 'links.site.devtools.hackernews.title', message: 'Hacker News' }, description: { id: 'links.site.devtools.hackernews.desc', message: 'Y Combinatorが運営する技術系ニュースサイト。世界中のGeekな議論が集まる場所。' } },
+      { href: 'https://www.techmeme.com/', title: { id: 'links.site.learningCommunity.techmeme.title', message: 'Techmeme' }, description: { id: 'links.site.learningCommunity.techmeme.desc', message: '2005年にGabe Riveraが設立。テクノロジー業界のニュースを人間とアルゴリズムを組み合わせて集約する、アグリゲーター。' } },
       { href: 'https://stackoverflow.com/', title: { id: 'links.site.devtools.stackoverflow.title', message: 'Stack Overflow' }, description: { id: 'links.site.devtools.stackoverflow.desc', message: '世界中の開発者が質問し、知識を共有するQ&Aコミュニティ。' } },
       { href: 'https://www.geeksforgeeks.org/', title: { id: 'links.site.devtools.geeksforgeeks.title', message: 'GeeksforGeeks' }, description: { id: 'links.site.devtools.geeksforgeeks.desc', message: 'コンピュータサイエンスのトピックに関する記事、チュートリアル、問題集が豊富なサイト。' } },
       { href: 'https://leetcode.com/', title: { id: 'links.site.devtools.leetcode.title', message: 'LeetCode' }, description: { id: 'links.site.devtools.leetcode.desc', message: '技術面接の準備に最適な、アルゴリズムとデータ構造の問題集。' } },
