@@ -10,6 +10,11 @@
   padding: 2rem var(--ifm-spacing-horizontal) 5rem;
   /* スマホ表示への切り替え時にpaddingの変化を滑らかにする */
   transition: padding 0.3s ease;
+  /* ライトモード用のグリッド背景を適用 */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 /* --- グリッドレイアウト --- */
@@ -83,6 +88,14 @@
 }
 
 /* --- ダークモード対応 --- */
+
+/* ダークモード用のグリッド背景を適用 */
+[data-theme='dark'] .featuresSection {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
 [data-theme='dark'] .cardIconWrapper {
   background-color: hsla(210, 100%, 75%, 0.1);
 }
