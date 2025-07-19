@@ -97,7 +97,7 @@
     "message": "Failed to restore memos. The link may be corrupted."
   },
   "page.browser-memo.alert.urlTooLongConfirm": {
-    "message": "The generated URL is very long due to the large amount of text. Please note that it may not work in some cases.\n\nWe recommend using a URL shortening service when using this URL."
+    "message": "The generated URL is very long and may not work in some environments. Do you want to continue?\n(We recommend using a URL shortening service.)"
   },
   "page.browser-memo.button.allShared": {
     "message": "Link Copied"
@@ -118,7 +118,25 @@
     "message": "Copy text"
   },
   "page.browser-memo.description": {
-    "message": "A simple notepad to temporarily save text in your browser."
+    "message": "A high-performance browser notepad that's ready to use without login or installation. Features Markdown preview and easy sharing via URL. Your data is saved only in your browser, providing a secure and private note-taking environment."
+  },
+  "page.browser-memo.faq.q1": {
+    "message": "What format can I write notes in?"
+  },
+  "page.browser-memo.faq.q2": {
+    "message": "When are my notes saved?"
+  },
+  "page.browser-memo.faq.q4": {
+    "message": "Is backing up my data necessary?"
+  },
+  "page.browser-memo.feature.autosave": {
+    "message": "Auto-save to browser"
+  },
+  "page.browser-memo.feature.markdown": {
+    "message": "Markdown Preview"
+  },
+  "page.browser-memo.feature.sharing": {
+    "message": "Data sharing via URL"
   },
   "page.browser-memo.footer.lastUpdated": {
     "message": "Last updated: "
@@ -127,13 +145,19 @@
     "message": "Click to toggle height"
   },
   "page.browser-memo.h1": {
-    "message": "Browser Memo"
+    "message": "Browser Notepad"
   },
-  "page.browser-memo.intro1": {
-    "message": "A simple notepad that works entirely in your browser. Your input is automatically saved to this browser."
+  "page.browser-memo.intro": {
+    "message": "A high-performance yet simple browser notepad that's ready to use instantly. It supports Markdown preview and URL sharing. All your input is automatically saved only in your browser, ensuring your privacy and security."
+  },
+  "page.browser-memo.memoItem.section.ariaLabel": {
+    "message": "Memo {number}"
   },
   "page.browser-memo.notes.backup": {
     "message": "This is a lightweight tool. It is strongly recommended that you back up any important data separately."
+  },
+  "page.browser-memo.notes.markdown": {
+    "message": "Notes support Markdown format. You can toggle the display with the preview button."
   },
   "page.browser-memo.notes.storage": {
     "message": "Your notes are automatically saved when you pause typing or when the text area loses focus."
@@ -144,14 +168,20 @@
   "page.browser-memo.notes.urlLengthWarning": {
     "message": "If your notes are very long, the generated shareable URL will also be very long. We recommend using a URL shortening service when sharing."
   },
+  "page.browser-memo.preview.empty": {
+    "message": "There is no content to preview."
+  },
+  "page.browser-memo.previewButton.title": {
+    "message": "Toggle preview"
+  },
   "page.browser-memo.textarea.ariaLabel": {
     "message": "Memo {number}"
   },
   "page.browser-memo.textarea.placeholder": {
-    "message": "Memo {number}"
+    "message": "Memo {number} (Markdown supported)"
   },
   "page.browser-memo.title": {
-    "message": "Browser Memo"
+    "message": "Advanced Browser Notepad - Markdown, URL Sharing, No Installation Required"
   },
   "theme.admonition.caution": {
     "message": "caution",
@@ -1738,7 +1768,7 @@
   "links.site.standards.w3c.title": {
     "message": "W3C",
     "description": "Title for W3C"
-  },  
+  },
   "news.site.jp.ss.googlenews.title": {
     "message": "Google News (Japan)",
     "description": "The title for Google News (Japan)"
