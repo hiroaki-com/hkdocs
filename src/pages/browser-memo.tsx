@@ -7,6 +7,7 @@ import { Share2, ClipboardCopy, Check, Trash2, ChevronUp, ChevronDown, Eye } fro
 import LZString from 'lz-string';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import 'github-markdown-css/github-markdown.css'; // ★ 1. この行を追加
 
 // --- 定数定義 ---
 const MEMO_COUNT = 5;
@@ -155,7 +156,8 @@ const MarkdownPreview: React.FC<{
     style.borderBottom = 'none';
   }
 
-  return <div className="markdown" style={style}><ReactMarkdown remarkPlugins={[remarkGfm]}>{previewText}</ReactMarkdown></div>;
+  // ★ 2. クラス名を"markdown"から"markdown-body"に変更
+  return <div className="markdown-body" style={style}><ReactMarkdown remarkPlugins={[remarkGfm]}>{previewText}</ReactMarkdown></div>;
 });
 
 /** 各メモ帳のUIとロジックをまとめたコンポーネント */
@@ -472,4 +474,3 @@ export default function MemoPageWrapper() {
     </>
   );
 }
-
