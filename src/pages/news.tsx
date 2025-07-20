@@ -5,6 +5,7 @@ import NewsSiteCard from '@site/src/components/NewsSiteCard';
 import styles from './news.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Download } from 'lucide-react';
+import ShareButtons from '@site/src/components/ShareButtons';
 
 type NewsSiteData = {
   href: string;
@@ -292,6 +293,9 @@ export default function NewsPage(): JSX.Element {
             ))}
           </details>
         ))}
+        <div style={{ marginBottom: '3rem' }}>
+          <ShareButtons />
+        </div>
       </main>
     </Layout>
   );

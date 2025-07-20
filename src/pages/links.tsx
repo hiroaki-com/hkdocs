@@ -5,6 +5,7 @@ import NewsSiteCard from '@site/src/components/NewsSiteCard'; // --- news page �
 import styles from './links.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Download } from 'lucide-react';
+import ShareButtons from '@site/src/components/ShareButtons';
 
 // --- データモデル定義 ---
 type LinkData = {
@@ -269,6 +270,9 @@ export default function LinksPage(): JSX.Element {
             </div>
           </details>
         ))}
+        <div style={{ marginBottom: '3rem' }}>
+          <ShareButtons />
+        </div>
       </main>
     </Layout>
   );
