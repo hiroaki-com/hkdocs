@@ -7,7 +7,8 @@ import { Share2, ClipboardCopy, Check, Trash2, ChevronUp, ChevronDown, Eye } fro
 import LZString from 'lz-string';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import 'github-markdown-css/github-markdown.css'; // ★ 1. この行を追加
+import 'github-markdown-css/github-markdown.css';
+import ShareButtons from '@site/src/components/ShareButtons';
 
 // --- 定数定義 ---
 const MEMO_COUNT = 5;
@@ -156,7 +157,6 @@ const MarkdownPreview: React.FC<{
     style.borderBottom = 'none';
   }
 
-  // ★ 2. クラス名を"markdown"から"markdown-body"に変更
   return <div className="markdown-body" style={style}><ReactMarkdown remarkPlugins={[remarkGfm]}>{previewText}</ReactMarkdown></div>;
 });
 
@@ -377,6 +377,9 @@ function MemoApp() {
           <li><Translate id="page.browser-memo.notes.backup">この機能は簡易的なものです。重要なデータは別途バックアップを取ることを強く推奨します。</Translate></li>
         </ul>
       </section>
+      <div style={{ marginBottom: '3rem' }}>
+        <ShareButtons />
+      </div>
     </main>
   );
 }
