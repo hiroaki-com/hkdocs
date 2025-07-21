@@ -86,7 +86,7 @@ export default function ShareButtons({ title: propTitle }: Props): ReactElement 
 
   return (
     <div className={styles.shareContainer}>
-      <h4 className={styles.shareTitle}>Share</h4>
+      <h5 className={styles.shareTitle}>Share</h5>
       <div className={styles.buttonGroup}>
         {showNativeShare && (
           <button

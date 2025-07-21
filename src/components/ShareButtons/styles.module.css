@@ -6,11 +6,13 @@
 }
 
 .shareTitle {
-  font-size: 1rem;
-  margin-bottom: 1.25rem;
+  font-size: 0.875rem; /* サイズを少し小さく調整 */
   font-weight: 600;
-  color: var(--ifm-color-emphasis-800);
-  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem; /* ボタンとの間隔を確保 */
+  color: var(--ifm-font-color-secondary);
+  /* 大文字に変換し、文字間を広げることでモダンな印象に */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 /* すべてのボタンを中央揃えで配置するフレックスコンテナ */
@@ -19,7 +21,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.625rem; /* 10px */
 }
 
 /* テキスト付きボタン（コピー、ネイティブシェア）の共通スタイル */
@@ -27,49 +29,51 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  height: 36px; /* アイコンのみのボタンと高さを揃え、垂直方向の中央揃えを実現 */
+  gap: 0.5rem;
+  height: 36px; /* アイコンボタンと高さを統一 */
   padding: 0 1rem;
   border-radius: 18px;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out;
   white-space: nowrap;
   border: 1px solid var(--ifm-color-emphasis-300);
-  background-color: var(--ifm-background-color);
+  background-color: transparent;
   color: var(--ifm-font-color-secondary);
 }
 
 .shareButton:hover {
-  border-color: var(--ifm-color-primary);
-  color: var(--ifm-color-primary);
-  transform: translateY(-1px);
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-400);
+  color: var(--ifm-font-color-base);
+  transform: translateY(-2px);
   box-shadow: var(--ifm-global-shadow-lw);
 }
 
-.nativeShareButton {
-  border-color: var(--ifm-color-emphasis-400);
-}
-
-/* react-shareライブラリが生成するボタンのスタイル上書き */
+/* react-shareライブラリが生成するSNSアイコンボタンのスタイル上書き */
 .buttonGroup > button[class^="react-share__ShareButton"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px; /* 他のボタンの高さと合わせ、正方形にする */
+  width: 36px;
   height: 36px;
   padding: 0 !important;
   background-color: transparent !important;
   border-radius: 50%;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease-in-out;
+  /* 通常時はアイコンをグレースケールにし、視認性を少し落とす */
+  filter: grayscale(100%);
+  opacity: 0.7;
 }
 
 .buttonGroup > button[class^="react-share__ShareButton"]:hover {
-  transform: scale(1.1) translateY(-1px);
+  /* ホバー時にブランドカラーに戻し、インタラクションを明確にする */
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: translateY(-2px) scale(1.1);
 }
 
-/* ボタン内のSVGアイコンの垂直位置を微調整 */
 .buttonGroup svg {
   vertical-align: middle;
 }
@@ -77,14 +81,14 @@
 /* --- レスポンシブ対応 --- */
 
 @media (min-width: 997px) {
-  /* PC表示ではネイティブシェアボタンを非表示 */
+  /* PC表示ではOSネイティブのシェア機能を非表示 */
   .nativeShareButton {
     display: none;
   }
 }
 
 @media (max-width: 996px) {
-  /* モバイル表示ではコピーボタンを非表示（ネイティブシェアに機能が含まれるため） */
+  /* モバイル表示ではコピーボタンを非表示（ネイティブシェアに機能が内包されるため） */
   .copyButton {
     display: none;
   }
