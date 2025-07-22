@@ -1,0 +1,26 @@
+# 認証バックエンドとしてNetlifyのGit Gatewayを指定
+backend:
+  name: git-gateway
+  branch: main
+
+# 公開フロー（下書き -> レビュー -> 公開）を有効化
+publish_mode: editorial_workflow
+
+# 画像などのアップロード先
+media_folder: "static/img/diary"
+public_folder: "/img/diary"
+
+# 「日記」コンテンツの定義
+collections:
+  - name: "diary"
+    label: "日記"
+    folder: "diary"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "投稿日", name: "date", widget: "datetime", time_format: false, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD" }
+      - { label: "著者キー", name: "authors", widget: "list", default: ["hk"] }
+      - { label: "タグ", name: "tags", widget: "list", required: false }
+      - { label: "目次を非表示にする", name: "hide_table_of_contents", widget: "boolean", default: false, required: false }
+      - { label: "本文", name: "body", widget: "markdown" }
