@@ -26,6 +26,31 @@ const config: Config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
+  // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+  // ★★★ ここから: Content-Security-Policy (CSP) の設定を追加 ★★★
+  // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        'http-equiv': 'Content-Security-Policy',
+        // 許可するドメインを定義
+        content: `
+          default-src 'self';
+          script-src 'self' 'unsafe-inline' https://unpkg.com/ https://*.auth0.com https://cdn.jsdelivr.net/ https://stats.g.doubleclick.net https://www.google-analytics.com;
+          style-src 'self' 'unsafe-inline' https://unpkg.com/ https://cdn.jsdelivr.net/ https://fonts.googleapis.com/;
+          connect-src 'self' https://*.algolia.net https://*.algolianet.com https://www.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.auth0.com;
+          img-src 'self' data: https://www.google-analytics.com;
+          font-src 'self' https://fonts.gstatic.com;
+          frame-src 'self' https://*.auth0.com;
+        `.replace(/\s{2,}/g, ' ').trim(), // 空白を整形して出力
+      },
+    },
+  ],
+  // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+  // ★★★ ここまで: CSP設定の追加はここまで ★★★
+  // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
   // 国際化（i18n）設定
   i18n: {
     defaultLocale: 'ja',
@@ -106,6 +131,7 @@ const config: Config = {
     },
   ],
 
+  // themeConfigはそのまま
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
@@ -157,7 +183,7 @@ const config: Config = {
           href: 'https://x.com/hkdocs',
           position: 'right',
           className: 'header-x-link',
-          target: '_blank',
+          target: 'blank',
           rel: 'noopener noreferrer',
           'aria-label': 'Follow on 𝕏',
         },
@@ -193,7 +219,7 @@ const config: Config = {
             {
               label: '𝕏',
               href: 'https://x.com/hkdocs',
-              props: { target: '_blank', rel: 'noopener noreferrer' },
+              props: { target: 'blank', rel: 'noopener noreferrer' },
             },
             { label: 'GitHub', href: 'https://github.com/hiroaki-com/hkdocs' },
           ],
