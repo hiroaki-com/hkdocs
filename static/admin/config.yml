@@ -1,11 +1,12 @@
+# GitHubバックエンド設定
 backend:
   name: github
   repo: hiroaki-com/hkdocs # あなたのGitHubリポジトリ
   branch: main
-  auth_type: implicit # implicit認証方式を指定
-  app_id: PPBAkvTCMYiwahqJHLTcoVvBRKBnfYKR
+  auth_type: implicit
+  app_id: Ov23lifdVbIWEmaluYcQ
 
-# メディアファイル（画像）の保存場所と公開パス
+# メディアファイル（画像）の保存場所
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
@@ -31,7 +32,7 @@ collections:
       - { label: "タグ (Tags)", name: "tags", widget: "list" }
       - { label: "本文 (Body)", name: "body", widget: "markdown" }
 
-  # `relation`ウィジェットで参照するための架空のコレクション
+  # 著者データ参照用の架空コレクション
   - name: "site_data"
     label: "サイトデータ"
     hide: true

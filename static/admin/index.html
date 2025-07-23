@@ -4,8 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
 </head>
 <body>
+  <!-- Decap CMS スクリプトと設定の読み込み -->
+  <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
+  <script>
+    // 設定ファイルの場所を明示的に指定
+    window.CMS_CONFIG_URL = "/admin/config.yml";
+  </script>
 </body>
 </html>
