@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: hiroaki-com/hkdocs # あなたのGitHubリポジトリ
+  branch: main
+  auth_type: implicit # implicit認証方式を指定
+  app_id: PPBAkvTCMYiwahqJHLTcoVvBRKBnfYKR
+
+# メディアファイル（画像）の保存場所と公開パス
+media_folder: "static/img/uploads/diary"
+public_folder: "/img/uploads/diary"
+
+# 管理するコンテンツの定義
+collections:
+  - name: "diary"
+    label: "日記 (Diary)"
+    folder: "diary"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - label: "著者 (Authors)"
+        name: "authors"
+        widget: "relation"
+        collection: "site_data"
+        file: "authors"
+        search_fields: ["name", "id"]
+        display_fields: ["name"]
+        value_field: "id"
+        multiple: true
+      - { label: "目次を非表示 (Hide ToC)", name: "hide_table_of_contents", widget: "boolean", default: false }
+      - { label: "タグ (Tags)", name: "tags", widget: "list" }
+      - { label: "本文 (Body)", name: "body", widget: "markdown" }
+
+  # `relation`ウィジェットで参照するための架空のコレクション
+  - name: "site_data"
+    label: "サイトデータ"
+    hide: true
+    files:
+      - label: "著者リスト"
+        name: "authors"
+        file: "blog/authors.yml"
+        fields:
+          - name: "authors"
+            label: "著者"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "名前", name: "name", widget: "string" }

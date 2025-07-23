@@ -20,6 +20,7 @@
     "@docusaurus/preset-classic": "3.8.0",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
+    "decap-cms-app": "^3.8.2",
     "github-markdown-css": "^5.8.1",
     "http-server": "^14.1.1",
     "lucide-react": "^0.514.0",
