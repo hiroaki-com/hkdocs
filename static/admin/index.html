@@ -4,11 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <!-- Decap CMS本体のスクリプト -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- CMSを初期化するためのスクリプトを外部ファイルとして読み込む -->
-  <script src="/admin/init.js"></script>
+  <script>
+    // PKCE認証フローのためのコールバック処理
+    // このページが認証コールバックとして読み込まれた場合、
+    // 認証情報を完了させるための処理をDecap CMSに渡す
+    if (window.location.hash.includes('access_token=')) {
+      window.CMS.auth.completeAuth(window.location.hash);
+    }
+  </script>
 </body>
 </html>

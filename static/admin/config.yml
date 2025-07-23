@@ -1,41 +1,27 @@
-# 本番環境用のDecap CMS設定
-# バックエンドとしてGitHubリポジトリを使用し、認証はAuth0に委任する
+# 最終版: 外部認証ゲートウェイを利用する設定
 backend:
-  # 使用するバックエンドのタイプ
   name: github
-  # 対象のGitHubリポジトリ ( [ユーザー名]/[リポジトリ名] )
-  repo: hiroaki-com/hkdocs
-  # コンテンツを更新するブランチ名
+  repo: hiroaki-com/hkdocs # あなたのリポジトリ
   branch: main
-  # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+  # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
   # ★★★           認証設定の核心部分           ★★★
-  # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-  # 認証方式としてAuth0を指定
-  auth_type: auth0
-  # Netlifyにデプロイした認証APIの絶対URLエンドポイント
-  auth_endpoint: https://hkdocs.netlify.app/.netlify/functions/auth
-  # Auth0アプリケーションのClient ID (Netlifyの環境変数で確認)
-  app_id: aKQr0tFC0hih9IadqFZp99YcZnBUaj9p
-
-# 画像などのメディアファイルを保存する場所
-# サイトのルートからの相対パスで指定
+  # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+  # 外部の認証プロバイダーを利用することを指定
+  auth_type: "pkce"
+  app_id: aKQr0tFC0hih9IadqFZp99YcZnBUaj9p # あなたのAuth0 Client ID
+  auth_endpoint: 'dev-m1dfi83ok2wmnn64.jp.auth0.com' # あなたのAuth0テナントの認可エンドポイント
+  
+# 画像などのメディアファイル
 media_folder: "static/img/uploads/diary"
-# CMSのUIで画像を表示する際の公開パス
 public_folder: "/img/uploads/diary"
 
-# 管理するコンテンツの定義 (コレクション)
+# 管理するコレクション
 collections:
-  - # 日記コレクション
-    name: "diary"
-    # CMSの管理画面で表示されるコレクション名
+  - name: "diary"
     label: "日記"
-    # このコレクションが管理するMarkdownファイルが置かれているディレクトリ
     folder: "diary"
-    # 新規作成を許可する
     create: true
-    # 新規作成時のファイル名の形式 (例: 2025-07-26.md)
     slug: "{{year}}-{{month}}-{{day}}"
-    # 編集画面で設定するフィールドの定義
     fields:
       - { label: "タイトル", name: "title", widget: "string", required: false }
       - { label: "内容", name: "body", widget: "markdown" }
