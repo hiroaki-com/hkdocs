@@ -7,6 +7,15 @@ backend:
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
+# コミットメッセージのカスタマイズ設定
+summary: "{{commit_type}} {{collection}} {{slug}}"
+commit_messages:
+  create: 'feat(diary): create new diary {{slug}}'
+  update: 'fix(diary): update diary {{slug}}'
+  delete: 'refactor(diary): delete diary {{slug}}'
+  uploadMedia: 'chore(assets): upload {{path}}'
+  deleteMedia: 'chore(assets): delete {{path}}'
+
 # 管理するコンテンツの定義
 collections:
   - name: "diary"
@@ -16,15 +25,11 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}"
     fields:
       - { label: "タイトル", name: "title", widget: "string" }
-      # 著者フィールドを編集画面から隠し、デフォルト値を 'hk' に固定
       - { label: "Authors", name: "authors", widget: "hidden", default: ["hk"] }
       - { label: "目次を非表示 (Hide ToC)", name: "hide_table_of_contents", widget: "boolean", default: false }
       - { label: "タグ (Tags)", name: "tags", widget: "list" }
       - { label: "本文 (Body)", name: "body", widget: "markdown" }
 
-  # 著者データ参照用の架空コレクション
-  # diaryコレクションでは直接使われなくなったが、将来的にblogなどを
-  # CMS化する際に再利用できるため、残しておくと便利です。
   - name: "site_data"
     label: "サイトデータ"
     hide: true
