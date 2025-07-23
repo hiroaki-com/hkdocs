@@ -8,5 +8,15 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
+  
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("logout", () => {
+        // ログアウトイベントを検知したら、URLをクリーンにして強制的にリロードする
+        window.location.href = "/admin/";
+      });
+    }
+  </script>
+
 </body>
 </html>
