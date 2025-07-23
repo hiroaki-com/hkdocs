@@ -7,13 +7,14 @@ backend:
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
-# コミットメッセージのカスタマイズ設定（summary行を削除）
+# コミットメッセージのカスタマイズ設定
 commit_messages:
-  create: 'feat(diary): create new diary {{slug}}'
-  update: 'fix(diary): update diary {{slug}}'
-  delete: 'refactor(diary): delete diary {{slug}}'
-  uploadMedia: 'chore(assets): upload {{path}}'
-  deleteMedia: 'chore(assets): delete {{path}}'
+  create: 'feat(diary): create new diary entry "{{slug}}"'
+  update: 'fix(diary): update diary entry "{{slug}}"'
+  delete: 'refactor(diary): delete diary entry "{{slug}}"'
+  uploadMedia: 'chore(assets): upload media file {{path}}'
+  deleteMedia: 'chore(assets): delete media file {{path}}'
+  openAuthoring: 'feat(diary): {{message}}'
 
 # 管理するコンテンツの定義
 collections:
@@ -22,11 +23,13 @@ collections:
     folder: "diary"
     create: true
     slug: "{{year}}-{{month}}-{{day}}"
+    editor:
+      preview: false
     fields:
       - { label: "タイトル", name: "title", widget: "string" }
       - { label: "Authors", name: "authors", widget: "hidden", default: ["hk"] }
       - { label: "目次を非表示 (Hide ToC)", name: "hide_table_of_contents", widget: "boolean", default: false }
-      - { label: "タグ (Tags)", name: "tags", widget: "list" }
+      - { label: "タグ (Tags)", name: "tags", widget: "list", default: [] }
       - { label: "本文 (Body)", name: "body", widget: "markdown" }
 
   - name: "site_data"
