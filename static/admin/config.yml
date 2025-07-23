@@ -1,12 +1,12 @@
-# Netlify Identityを使う場合、backendの設定はこれだけでOK
+# Netlify IdentityのGit Gatewayを利用するための設定
 backend:
-  name: git-gateway # Netlify Identityを使う場合は'git-gateway'を指定
+  name: git-gateway
 
 # メディアファイル（画像）の保存場所
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
-# 以下、コレクションの定義は変更なし
+# 管理するコンテンツの定義
 collections:
   - name: "diary"
     label: "日記 (Diary)"
@@ -15,19 +15,15 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}"
     fields:
       - { label: "タイトル", name: "title", widget: "string" }
-      - label: "著者 (Authors)"
-        name: "authors"
-        widget: "relation"
-        collection: "site_data"
-        file: "authors"
-        search_fields: ["name", "id"]
-        display_fields: ["name"]
-        value_field: "id"
-        multiple: true
+      # 著者フィールドを編集画面から隠し、デフォルト値を 'hk' に固定
+      - { label: "Authors", name: "authors", widget: "hidden", default: ["hk"] }
       - { label: "目次を非表示 (Hide ToC)", name: "hide_table_of_contents", widget: "boolean", default: false }
       - { label: "タグ (Tags)", name: "tags", widget: "list" }
       - { label: "本文 (Body)", name: "body", widget: "markdown" }
 
+  # 著者データ参照用の架空コレクション
+  # diaryコレクションでは直接使われなくなったが、将来的にblogなどを
+  # CMS化する際に再利用できるため、残しておくと便利です。
   - name: "site_data"
     label: "サイトデータ"
     hide: true
