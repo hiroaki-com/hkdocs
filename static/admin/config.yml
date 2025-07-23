@@ -7,8 +7,7 @@ backend:
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
-# コミットメッセージのカスタマイズ設定
-summary: "{{commit_type}} {{collection}} {{slug}}"
+# コミットメッセージのカスタマイズ設定（summary行を削除）
 commit_messages:
   create: 'feat(diary): create new diary {{slug}}'
   update: 'fix(diary): update diary {{slug}}'
