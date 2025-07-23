@@ -1,0 +1,12 @@
+# Netlify Build Settings
+[build]
+  # ビルドコマンドや公開ディレクトリはNetlifyが自動検出する場合が多いですが、
+  # 明示的に書いておくと確実です。
+  command = "pnpm build"
+  publish = "build"
+
+# ★★★ このセクションが重要 ★★★
+# ビルド時に使用する環境変数を定義します
+[build.environment]
+  # Netlifyの内部的なURL認識を、この値で上書きします
+  URL = "https://hkdocs.netlify.app"
