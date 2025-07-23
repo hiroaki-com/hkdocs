@@ -4,81 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
 </head>
 <body>
-  <!-- Decap CMS スクリプトと設定の読み込み -->
-  <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
-
-  <!-- ★★★ 修正点 ★★★ -->
-  <!-- ここでCMSの初期化を直接行い、認証方法を強制的に指定します -->
-  <script>
-    // CMSの初期化関数を登録
-    CMS.init({
-      config: {
-        // backendセクションをここでJavaScriptオブジェクトとして定義する
-        backend: {
-          name: 'github',
-          repo: 'hiroaki-com/hkdocs', // あなたのリポジトリ
-          branch: 'main',
-          auth_type: 'implicit',
-          app_id: 'Ov23lifdVbIWEmaluYcQ', // Client IDの文字列だけを指定
-          // Netlifyの認証を明示的に無効化
-          use_netlify_identity: false,
-        },
-        // config.ymlで定義した他の項目もここに記述
-        media_folder: "static/img/uploads/diary",
-        public_folder: "/img/uploads/diary",
-        collections: [
-          {
-            name: "diary",
-            label: "日記 (Diary)",
-            folder: "diary",
-            create: true,
-            slug: "{{year}}-{{month}}-{{day}}",
-            fields: [
-              { label: "タイトル", name: "title", widget: "string" },
-              {
-                label: "著者 (Authors)",
-                name: "authors",
-                widget: "relation",
-                collection: "site_data",
-                file: "authors",
-                search_fields: ["name", "id"],
-                display_fields: ["name"],
-                value_field: "id",
-                multiple: true
-              },
-              { label: "目次を非表示 (Hide ToC)", name: "hide_table_of_contents", widget: "boolean", default: false },
-              { label: "タグ (Tags)", name: "tags", widget: "list" },
-              { label: "本文 (Body)", name: "body", widget: "markdown" }
-            ]
-          },
-          {
-            name: "site_data",
-            label: "サイトデータ",
-            hide: true,
-            files: [
-              {
-                label: "著者リスト",
-                name: "authors",
-                file: "blog/authors.yml",
-                fields: [
-                  {
-                    name: "authors",
-                    label: "著者",
-                    widget: "list",
-                    fields: [
-                      { label: "ID", name: "id", widget: "string" },
-                      { label: "名前", name: "name", widget: "string" }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    });
-  </script>
 </body>
 </html>
