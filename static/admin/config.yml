@@ -7,24 +7,25 @@ backend:
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
-# コミットメッセージのカスタマイズ設定
-commit_messages:
-  create: 'feat(diary): create new diary entry "{{slug}}"'
-  update: 'fix(diary): update diary entry "{{slug}}"'
-  delete: 'refactor(diary): delete diary entry "{{slug}}"'
-  uploadMedia: 'chore(assets): upload media file {{path}}'
-  deleteMedia: 'chore(assets): delete media file {{path}}'
-  openAuthoring: 'feat(diary): {{message}}'
-
 # 管理するコンテンツの定義
 collections:
   - name: "diary"
-    label: "日記 (Diary)"
+    label: "Diary"
     folder: "diary"
     create: true
     slug: "{{year}}-{{month}}-{{day}}"
     editor:
       preview: false
+
+    # コレクションごとのコミットメッセージをカスタマイズ
+    commit_messages:
+      create: 'feat(diary): create new diary entry "{{slug}}"'
+      update: 'fix(diary): update diary entry "{{slug}}"'
+      delete: 'refactor(diary): delete diary entry "{{slug}}"'
+      uploadMedia: 'chore(assets): upload media file {{path}}'
+      deleteMedia: 'chore(assets): delete media file {{path}}'
+      openAuthoring: 'feat(diary): {{message}}'
+
     fields:
       - { label: "タイトル", name: "title", widget: "string" }
       - { label: "Authors", name: "authors", widget: "hidden", default: ["hk"] }
