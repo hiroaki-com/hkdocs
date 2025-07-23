@@ -1,6 +1,7 @@
 # Netlify IdentityのGit Gatewayを利用するための設定
 backend:
   name: git-gateway
+  branch: main
 
 # メディアファイル（画像）の保存場所
 media_folder: "static/img/uploads/diary"
