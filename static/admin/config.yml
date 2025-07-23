@@ -1,0 +1,24 @@
+# 本番環境用の設定
+backend:
+  name: github
+  repo: hiroaki-com/hkdocs
+  branch: main
+  # ★★★ Auth0認証の要 ★★★
+  auth_type: auth0
+  # Netlifyにデプロイした認証APIのエンドポイント
+  auth_endpoint: /.netlify/functions/auth
+  # Netlifyが自動設定したAuth0 Client ID
+  app_id: YOUR_AUTH0_CLIENT_ID 
+
+media_folder: "static/img/uploads/diary"
+public_folder: "/img/uploads/diary"
+
+collections:
+  - name: "diary"
+    label: "日記"
+    folder: "diary"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string", required: false }
+      - { label: "内容", name: "body", widget: "markdown" }
