@@ -53,123 +53,315 @@
     }
     
     /* =====================
-     * モバイル最適化 - CDN準拠の最小限調整
+     * モバイル最適化 - CDN準拠のレスポンシブ改善
      * ===================== */
     @media (max-width: 799px) {
-      /* スマホでの画面活用 - 文字とコンポーネントを小さく */
-      * {
+      /* アプリ全体のコンテナ調整 */
+      [class*="AppContainer"] {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+      
+      /* ヘッダー領域の最適化 */
+      [class*="AppHeader"] {
+        padding: 8px 12px !important;
+        min-height: 48px !important;
+      }
+      
+      [class*="AppHeaderContent"] {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+      
+      [class*="AppHeaderButton"] {
+        padding: 6px 8px !important;
+        font-size: 13px !important;
+        min-height: 32px !important;
+        white-space: nowrap !important;
+      }
+      
+      [class*="AppHeaderQuickNewButton"] {
+        width: auto !important;
+        flex: 1 !important;
+        max-width: 200px !important;
+      }
+      
+      /* ナビゲーションバーの調整 */
+      [class*="SidebarContainer"] {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 8px !important;
+      }
+      
+      [class*="SidebarNav"] {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        overflow-x: auto !important;
+        padding: 4px 0 !important;
+      }
+      
+      [class*="SidebarNavLink"] {
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+        white-space: nowrap !important;
+        border-radius: 4px !important;
+      }
+      
+      /* コレクション一覧の調整 */
+      [class*="CollectionContainer"] {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 8px !important;
+      }
+      
+      [class*="CollectionTop"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 8px 0 !important;
+      }
+      
+      [class*="CollectionTopNewButton"] {
+        width: 100% !important;
+        padding: 8px 16px !important;
+        font-size: 14px !important;
+        min-height: 40px !important;
+      }
+      
+      /* フィルターとコントロールの調整 */
+      [class*="ViewControls"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        margin: 8px 0 !important;
+      }
+      
+      [class*="SearchInput"] {
+        width: 100% !important;
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+        border-radius: 4px !important;
+      }
+      
+      [class*="FilterDropdown"] {
+        width: 100% !important;
+      }
+      
+      /* エディタ領域の調整 */
+      [class*="EditorContainer"] {
+        padding: 8px !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+      
+      [class*="ControlPaneContainer"] {
+        padding: 8px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+      
+      /* ツールバーの調整 */
+      [class*="ToolbarContainer"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 8px !important;
+        overflow-x: visible !important;
+      }
+      
+      [class*="ToolbarSection"] {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        align-items: center !important;
+      }
+      
+      [class*="ToolbarButton"] {
+        padding: 4px 8px !important;
+        font-size: 12px !important;
+        min-height: 28px !important;
+        border-radius: 3px !important;
+        white-space: nowrap !important;
+      }
+      
+      [class*="PublishedToolbarButton"] {
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+        min-height: 32px !important;
+      }
+      
+      /* リスト項目の調整 */
+      [class*="ListCard"] {
+        margin: 4px 0 !important;
+        padding: 12px !important;
+        border-radius: 6px !important;
+      }
+      
+      [class*="ListCardTitle"] {
         font-size: 14px !important;
         line-height: 1.4 !important;
       }
       
-      /* ヘッダー要素の最適化 */
+      [class*="ListCardMeta"] {
+        font-size: 12px !important;
+        margin-top: 4px !important;
+      }
+      
+      /* モーダルとドロップダウンの調整 */
+      [class*="StyledModal"] {
+        width: 95vw !important;
+        max-width: 95vw !important;
+        margin: 20px auto !important;
+        padding: 16px !important;
+      }
+      
+      [class*="DropdownList"] {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+      }
+      
+      /* フォーム要素の調整 */
+      input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+      select,
+      textarea {
+        width: 100% !important;
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+        min-height: 36px !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* エディタ内のテキスト領域 */
+      [data-slate-editor="true"],
+      [role="textbox"],
+      .cm-editor {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        padding: 12px !important;
+        border-radius: 4px !important;
+      }
+      
+      /* ボタン全般の調整 */
+      button,
+      [role="button"],
+      input[type="submit"],
+      input[type="button"] {
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+        min-height: 34px !important;
+        border-radius: 4px !important;
+        touch-action: manipulation !important;
+      }
+      
+      /* アイコンサイズの調整 */
+      svg:not([class*="DecapLogoIcon"] svg) {
+        width: 16px !important;
+        height: 16px !important;
+        flex-shrink: 0 !important;
+      }
+      
+      /* ログイン画面のDecap CMSロゴは維持 */
+      [class*="DecapLogoIcon"] svg {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 280px !important;
+      }
+      
+      /* プレビューペインの調整 */
+      [class*="PreviewPaneContainer"] {
+        padding: 8px !important;
+        width: 100% !important;
+      }
+      
+      /* タブナビゲーションの調整 */
+      [class*="EditorControlBar"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 8px !important;
+      }
+      
+      [class*="EditorControlBar"] [class*="ToolbarContainer"] {
+        order: 2 !important;
+      }
+      
+      /* メディアライブラリの調整 */
+      [class*="MediaLibrary"] {
+        padding: 8px !important;
+      }
+      
+      [class*="MediaCard"] {
+        width: calc(50% - 4px) !important;
+        margin: 2px !important;
+      }
+      
+      /* ステータス表示の調整 */
+      [class*="StatusIndicator"] {
+        font-size: 11px !important;
+        padding: 2px 6px !important;
+        border-radius: 12px !important;
+      }
+      
+      /* 全体的なフォントサイズとスペーシングの微調整 */
+      * {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+      }
+      
       h1 { font-size: 18px !important; }
       h2 { font-size: 16px !important; }
       h3 { font-size: 15px !important; }
       h4, h5, h6 { font-size: 14px !important; }
       
-      /* エディタ部分のみ読みやすいサイズに */
-      [data-slate-editor="true"],
-      [role="textbox"],
-      .cm-editor,
-      textarea {
-        font-size: 16px !important;
-        line-height: 1.5 !important;
-        padding: 8px !important;
-      }
-      
-      /* ボタンとコントロールを小さく */
-      button,
-      [role="button"],
-      input[type="submit"],
-      input[type="button"] {
-        padding: 4px 8px !important;
-        font-size: 13px !important;
-        min-height: 32px !important;
-        border-radius: 4px !important;
-      }
-      
-      /* アイコンサイズの調整 */
-      svg {
-        width: 16px !important;
-        height: 16px !important;
-      }
-
-      /* ログイン画面のDecap CMSロゴはデフォルトサイズを維持（縮小させない） */
-      [class*="DecapLogoIcon"] svg {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 335px !important; /* 元のSVGの最大幅 */
-      }
-      
-      /* パディングとマージンの縮小 */
-      [class*="Container"],
-      [class*="Panel"],
-      [class*="Section"] {
-        padding: 8px !important;
-        margin: 4px 0 !important;
-      }
-      
-      /* 編集画面での特別調整 */
-      [class*="EditorContainer"] {
-        padding: 8px !important;
-      }
-      
-      [class*="ControlPaneContainer"] {
-        padding: 8px !important;
-      }
-      
-      /* ツールバーの調整 */
-      [class*="ToolbarContainer"] {
-        padding: 4px !important;
-      }
-      
-      [class*="ToolbarButton"] {
-        padding: 2px 6px !important;
-        font-size: 12px !important;
-        margin: 1px !important;
-      }
-      
-      /* フォーム要素の調整 */
-      input:not([type="submit"]):not([type="button"]),
-      select {
-        padding: 6px !important;
-        font-size: 14px !important;
-        min-height: 32px !important;
-        border-radius: 4px !important;
-      }
-      
-      /* リスト項目の調整 */
-      [class*="List"] li,
-      [class*="Item"] {
-        padding: 8px !important;
-        font-size: 13px !important;
-      }
-      
-      /* モーダルとドロップダウンの調整 */
-      [class*="Modal"],
-      [class*="Dropdown"] {
-        font-size: 13px !important;
-      }
-      
-      /* 検索バーの調整 */
-      [class*="SearchInput"] {
-        padding: 6px !important;
-        font-size: 14px !important;
-      }
-      
-      /* 公開ボタンなど重要なアクションは少し大きめに保持 */
-      [class*="publish"] button,
-      [class*="save"] button,
-      [class*="PublishedToolbarButton"] {
-        font-size: 14px !important;
-        padding: 6px 12px !important;
-        min-height: 36px !important;
-      }
-      
       /* スムーススクロール */
       * {
         -webkit-overflow-scrolling: touch !important;
+      }
+      
+      /* 横スクロール防止 */
+      body, html, #nc-root {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+      }
+    }
+    
+    /* =====================
+     * タブレット専用調整（800px〜1023px）
+     * ===================== */
+    @media (min-width: 800px) and (max-width: 1023px) {
+      [class*="AppHeaderContent"] {
+        padding: 0 16px !important;
+      }
+      
+      [class*="SidebarContainer"] {
+        width: 240px !important;
+        position: fixed !important;
+      }
+      
+      [class*="CollectionContainer"] {
+        margin-left: 240px !important;
+        padding: 0 16px !important;
+      }
+      
+      [class*="EditorContainer"] {
+        padding: 16px !important;
       }
     }
     
