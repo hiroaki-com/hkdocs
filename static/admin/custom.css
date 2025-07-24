@@ -1,0 +1,120 @@
+/* static/admin/custom.css */
+
+/*
+ * Decap CMS Custom Stylesheet
+ * -----------------------------
+ * Concept: Simple, Modern, and Responsive.
+ */
+
+/* --- 1. 基本設定と変数定義 --- */
+:root {
+  --dc-primary-color: #2e8555; /* Docusaurusの緑を参考に */
+  --dc-secondary-bg: #f6f7f8;
+  --dc-border-color: #e0e0e0;
+  --dc-text-color: #1c1e21;
+  --dc-text-color-light: #5f6368;
+  --dc-white: #ffffff;
+  --dc-spacing-unit: 8px;
+  --dc-border-radius: 6px;
+  --dc-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--dc-font-family);
+  background-color: var(--dc-secondary-bg);
+}
+
+/* --- 2. 主要コンポーネントのスタイル調整 --- */
+
+/* ヘッダー */
+[class*='AppHeader-header'] {
+  background-color: var(--dc-white);
+  border-bottom: 1px solid var(--dc-border-color);
+}
+
+/* メインコンテナ */
+[class*='CollectionContainer-root'] {
+  background-color: var(--dc-secondary-bg);
+}
+
+/* 左カラム: コレクションリスト */
+[class*='CollectionControls-root'] {
+  background-color: var(--dc-white);
+  border-right: 1px solid var(--dc-border-color);
+  padding: var(--dc-spacing-unit);
+}
+
+/* 中央カラム: エントリーリスト */
+[class*='Entries-root'] {
+  padding: 0;
+}
+
+[class*='EntryListing-card'] {
+  border-radius: var(--dc-border-radius);
+  border: 1px solid var(--dc-border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin: calc(var(--dc-spacing-unit) * 2);
+  transition: box-shadow 0.2s ease-in-out;
+}
+[class*='EntryListing-card']:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 右カラム: エディター */
+[class*='Editor-root'] {
+  padding: calc(var(--dc-spacing-unit) * 2);
+}
+
+[class*='EditorToolbar-root'] {
+  background-color: var(--dc-white);
+  border-radius: var(--dc-border-radius) var(--dc-border-radius) 0 0;
+  border: 1px solid var(--dc-border-color);
+  border-bottom: none;
+}
+
+[class*='MarkdownControl-preview'] {
+  background-color: var(--dc-white);
+  padding: calc(var(--dc-spacing-unit) * 2);
+  border: 1px solid var(--dc-border-color);
+  border-radius: 0 0 var(--dc-border-radius) var(--dc-border-radius);
+}
+
+
+/* --- 3. レスポンシブ対応 (モバイルファースト) --- */
+
+/* 768px以下のスクリーン (スマートフォンなど) */
+@media (max-width: 768px) {
+  /* 
+    モバイルでは、左(コレクションリスト)と中央(エントリーリスト)のカラムが
+    非表示になるため、エディタをメインにスタイルを調整します。
+  */
+  
+  /* エディタの余白を調整して画面を広く使う */
+  [class*='Editor-root'] {
+    padding: var(--dc-spacing-unit);
+  }
+
+  /* 入力フィールドの視認性向上 */
+  [class*='Widget-root'] {
+      padding: calc(var(--dc-spacing-unit) * 1.5) 0;
+  }
+}
+
+/* 769px以上のスクリーン (タブレット、PC) */
+@media (min-width: 769px) {
+  /*
+    PC表示では3カラムが基本。各カラムの境界線を明確にし、
+    コンテンツエリアに集中できるよう調整します。
+  */
+
+  /* エディタとプレビューの境界を明確に */
+  [class*='Editor-previewPane'] {
+    border-left: 1px dashed var(--dc-border-color);
+    padding-left: calc(var(--dc-spacing-unit) * 3) !important;
+  }
+
+  [class*='Editor-root'] {
+    padding: calc(var(--dc-spacing-unit) * 3);
+  }
+}
