@@ -51,6 +51,18 @@
     input[type="url"] {
       touch-action: pinch-zoom !important; /* エディタ内でズーム有効 */
     }
+
+    /* デフォルト枠線の復元 - ブラウザ標準に準拠 */
+    input,
+    textarea,
+    select,
+    [data-slate-editor="true"],
+    [role="textbox"],
+    .cm-editor {
+      border: initial;
+      outline: initial;
+      box-shadow: initial;
+    }
     
     /* モバイル時の快適な操作性向上 */
     @media (max-width: 799px) {
@@ -64,46 +76,26 @@
         padding: 8px 16px !important;
       }
       
-      /* 入力フィールドの使いやすさ向上 */
+      /* 入力フィールドのデフォルト設定 */
       input,
       textarea,
+      select,
       [data-slate-editor="true"],
       [role="textbox"] {
         font-size: 16px !important; /* iOS Safariのズーム防止 */
         line-height: 1.5 !important;
         padding: 12px !important;
         border-radius: 8px !important;
-        border: 1px solid #d1d5db !important;
         background: #ffffff !important;
         transition: all 0.2s ease !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
       }
       
-      /* フォーカス時の視覚的フィードバック */
-      input:focus,
-      textarea:focus,
-      [data-slate-editor="true"]:focus,
-      [role="textbox"]:focus {
-        border-color: #6366f1 !important;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        outline: none !important;
-        background: #ffffff !important;
-      }
-      
-      /* Markdownエディタの快適性向上 */
+      /* Markdownエディタのデフォルト設定 */
       .cm-editor {
         font-size: 16px !important;
         line-height: 1.6 !important;
         border-radius: 8px !important;
-        border: 1px solid #d1d5db !important;
         background: #f9fafb !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-      }
-      
-      .cm-editor.cm-focused {
-        border-color: #6366f1 !important;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        background: #ffffff !important;
       }
       
       /* スクロール体験の改善 */
@@ -157,23 +149,12 @@
     @media (prefers-color-scheme: dark) and (max-width: 799px) {
       input,
       textarea,
+      select,
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
         background: #374151 !important;
         color: #f3f4f6 !important;
-        border-color: #6b7280 !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
-      }
-      
-      input:focus,
-      textarea:focus,
-      [data-slate-editor="true"]:focus,
-      [role="textbox"]:focus,
-      .cm-editor.cm-focused {
-        background: #1f2937 !important;
-        border-color: #8b5cf6 !important;
-        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2) !important;
       }
     }
     
@@ -231,8 +212,7 @@
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-    // Enhanced initialization script with pinch-zoom support
-    <script>
+  <script>
     // スムーズなローディング体験
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
@@ -280,8 +260,8 @@
       
       document.addEventListener('touchstart', (e) => {
         const target = e.target;
-        isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
-                    target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
+        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
+                          target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
         
         if (e.touches.length === 1) {
           touchStartY = e.touches[0].clientY;
