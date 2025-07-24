@@ -5,81 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
   <title>Content Manager</title>
   
+  <!-- Decap CMS向けレスポンシブ対応CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
   
   <style>
-    /* =====================
-     * 基本設定
-     * ===================== */
+    /*
+     * =================================================================
+     * Decap CMS カスタムスタイル
+     * 目的:
+     * - レスポンシブ表示の最適化
+     * - モバイルでの操作性向上
+     * - iOS特有の挙動（プルリフレッシュ、入力後ズーム）の制御
+     * =================================================================
+     */
+
+    /* 1. グローバル & 基本設定
+    ------------------------------------------------- */
     *, *::before, *::after {
-      box-sizing: border-box;
+      box-sizing: border-box; /* レイアウト崩れを防ぐための基本設定 */
     }
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+      overflow-x: hidden; /* 横スクロールを防止 */
       max-width: 100vw;
     }
+
+    /* 2. 操作性・UXの改善 (全画面サイズ共通)
+    ------------------------------------------------- */
     
-    /* =====================
-     * プルリフレッシュ無効化 (CSSのみで実現)
-     * ===================== */
+    /* ページの端でのスクロール連鎖（プルリフレッシュ等）を無効化 */
     html, body {
       overscroll-behavior-y: none !important;
     }
-    
-    /* =====================
-     * フォーム & エディタ領域設定
-     * ===================== */
-    
-    /* [改善] 本文エディタの行間を全画面サイズで調整 */
+
+    /* 本文エディタの行間を読みやすいように調整 */
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor {
-      line-height: 1.4; /* 広すぎた行間を狭く調整 (1.5 -> 1.4) */
+      line-height: 1.0;
     }
 
-    /* エディタ領域のピンチズームを許可 */
+    /* テキスト入力エリアでのピンチズームを許可 */
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor,
     textarea,
     input[type="text"],
     input[type="email"],
--   input[type="url"] {
+    input[type="url"] {
       touch-action: auto;
       overscroll-behavior: auto;
     }
-    
-    /* =====================
-     * モバイル最適化
-     * ===================== */
+
+    /* 3. モバイル表示の最適化 (〜799px)
+    ------------------------------------------------- */
     @media (max-width: 799px) {
       
-      /* 本文エディタのモバイル向けスタイル */
+      /* iOSでフォーム入力時に自動ズームされるのを防ぐため、フォントサイズを16pxに設定 */
       [data-slate-editor="true"],
       [role="textbox"],
-      .cm-editor {
-        width: 100%;
-        font-size: 16px !important; /* iOSの自動ズーム抑制 */
-        padding: 12px;
-        min-height: 150px;
+      .cm-editor,
+      input, 
+      textarea, 
+      select {
+        font-size: 16px !important;
       }
       
-      /* その他フォーム入力欄のモバイル向けスタイル */
-      input, textarea, select {
+      /* フォーム要素を親要素の幅いっぱいに広げる */
+      [data-slate-editor="true"],
+      [role="textbox"],
+      .cm-editor,
+      input, 
+      textarea, 
+      select {
         width: 100%;
-        font-size: 16px !important; /* iOSの自動ズーム抑制 */
       }
-      
-      /* タッチ操作の改善 */
+
+      /* ボタン類のタップ時のハイライトを無効化 */
       button, [role="button"], [class*="Button"] {
-        touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
       }
 
+      /* Decap CMSのメインコンテナの余白を調整 */
       [class*="AppMainContainer"],
       [class*="CollectionContainer"],
       [class*="EditorContainer"] {
@@ -87,7 +97,7 @@
         width: 100%;
       }
       
-      /* モーダル等のスクロール設定 */
+      /* モーダルやドロップダウンのスクロールを滑らかに */
       [class*="Modal"],
       [class*="DropdownList"] {
         max-height: 90vh;
@@ -96,22 +106,26 @@
       }
     }
     
-    /* =====================
-     * タブレット微調整
-     * ===================== */
+    /* 4. タブレット表示の微調整 (800px〜1024px)
+    ------------------------------------------------- */
     @media (min-width: 800px) and (max-width: 1024px) {
       [class*="AppMainContainer"] {
         padding: 24px;
       }
     }
     
-    /* =====================
-     * アクセシビリティ & フォーカス
-     * ===================== */
+    /* 5. アクセシビリティ & その他
+    ------------------------------------------------- */
+    
+    /* ユーザーがOSでアニメーションを減らす設定をしている場合、アニメーションを無効化 */
     @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; animation: none !important; }
+      * { 
+        transition: none !important; 
+        animation: none !important; 
+      }
     }
     
+    /* デスクトップでのフォーカス状態を分かりやすく */
     @media (min-width: 800px) {
       button:focus, input:focus, textarea:focus, select:focus {
         outline: 2px solid #3b82f6;
@@ -123,7 +137,7 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- ローディング画面（変更なし） -->
+  <!-- ▼ ローディング画面 ▼ -->
   <div id="loading-indicator" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; z-index: 9999; opacity: 1; transition: opacity 0.5s ease-out;">
     <div style="text-align: center;">
       <div style="width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
@@ -132,33 +146,38 @@
     </div>
   </div>
   <style> @keyframes spin { to { transform: rotate(360deg); } } </style>
+  <!-- ▲ ローディング画面 ▲ -->
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
-  <!-- [改善] スクリプトをシンプル化 -->
   <script>
+    /**
+     * Decap CMSの初期化とUI制御を行うスクリプト
+     * - ローディング画面の表示制御
+     * - Netlify Identity Widget のログアウト処理
+     */
+
+    // ローディング画面をフェードアウトして非表示にする
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
-      if (loader) {
+      if (loader && loader.style.opacity !== '0') {
         loader.style.opacity = '0';
-        setTimeout(() => { loader.style.display = 'none'; }, 500);
+        setTimeout(() => { loader.style.display = 'none'; }, 500); // アニメーション後に要素を削除
       }
     }
 
+    // Netlify Identityでログアウトした際に、管理画面のトップにリダイレクトする
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
+      window.netlifyIdentity.on("logout", () => {
+        document.location.href = "/admin/";
+      });
     }
 
-    // ローディング画面の制御
+    // ページの読み込み完了から少し遅れてローディング画面を非表示にする
     window.addEventListener('load', () => setTimeout(hideLoadingIndicator, 800));
-    // フォールバック
-    setTimeout(hideLoadingIndicator, 5000);
 
-    /*
-     * [改善] プルリフレッシュ防止のJavaScriptロジックを削除しました。
-     * 現在はCSSの `overscroll-behavior: none;` で同等の機能を実現できるため、不要です。
-     * これにより、コードがシンプルになり、タッチ操作時のパフォーマンスも向上します。
-     */
+    // 万が一読み込みが終わらない場合でも、5秒後には強制的に非表示にする（フォールバック）
+    setTimeout(hideLoadingIndicator, 5000);
   </script>
 </body>
 </html>
