@@ -1,12 +1,13 @@
-# static/admin/config.yml
+# static/admin/config.yml - Auth0設定版
 backend:
   name: git-gateway
   branch: main
-  # Auth0を明示的に指定
-  identity_url: "https://hkdocs.netlify.app/.netlify/identity"
-  gateway_url: "https://hkdocs.netlify.app/.netlify/git/github"
-  
-# 以下は既存設定をそのまま維持
+  auth_type: oauth2
+  auth_url: https://dev-hkdocs-cms.auth0.com/authorize
+  auth_token_url: https://dev-hkdocs-cms.auth0.com/oauth/token
+  auth_scope: openid profile email
+
+# 以下は既存設定のまま
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
