@@ -9,14 +9,12 @@
   
   <style>
     /* =====================
-     * 基本設定
+     * 基本設定 - デフォルトを尊重
      * ===================== */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      background-color: #ffffff;
-      color: #1f2937;
     }
     
     /* =====================
@@ -40,8 +38,7 @@
     }
     
     /* =====================
-     * エディタ領域設定
-     * ピンチズームを許可し、スクロール問題を解決
+     * エディタ領域のスクロール問題解決
      * ===================== */
     [data-slate-editor="true"],
     [role="textbox"],
@@ -55,159 +52,166 @@
     }
     
     /* =====================
-     * デフォルト要素のリセット
-     * レスポンシブの影響を最小限に抑制
+     * モバイル最適化 - CDNの規則に従い最小限の改善
      * ===================== */
     @media (max-width: 799px) {
-      /* ナビゲーション要素の保護 */
-      nav,
-      [class*="nav"],
-      [class*="header"],
-      [class*="toolbar"],
-      [class*="breadcrumb"] {
-        font-size: inherit !important;
-        line-height: inherit !important;
-        padding: inherit !important;
-        margin: inherit !important;
-        border-radius: inherit !important;
-        box-shadow: inherit !important;
-      }
+      /* スマホでの画面効率化 - 文字とコンポーネントを小さく */
       
-      /* 小さなコンポーネントの保護 */
-      [class*="badge"],
-      [class*="tag"],
-      [class*="chip"],
-      [class*="pill"],
-      [class*="status"],
-      [class*="icon"],
-      svg {
-        width: auto !important;
-        height: auto !important;
-        font-size: inherit !important;
-        padding: inherit !important;
-        margin: inherit !important;
-        border-radius: inherit !important;
-      }
-      
-      /* タッチターゲット - メインボタンのみ最適化 */
-      button:not(nav button):not([class*="nav"] button):not([class*="header"] button):not([class*="toolbar"] button),
-      [role="button"]:not(nav [role="button"]):not([class*="nav"] [role="button"]):not([class*="header"] [role="button"]),
-      input[type="submit"],
-      input[type="button"] {
-        min-height: 36px;
-        padding: 8px 16px;
+      /* 全体的なフォントサイズの縮小 */
+      body {
         font-size: 14px;
-        border-radius: 6px;
-        border: 1px solid #d1d5db;
-        background-color: #ffffff;
-        color: #374151;
-        font-weight: 500;
-        box-sizing: border-box;
-        transition: all 0.15s ease;
+        line-height: 1.4;
       }
       
-      button:not(nav button):not([class*="nav"] button):not([class*="header"] button):not([class*="toolbar"] button):hover,
-      [role="button"]:not(nav [role="button"]):not([class*="nav"] [role="button"]):not([class*="header"] [role="button"]):hover,
-      input[type="submit"]:hover,
-      input[type="button"]:hover {
-        background-color: #f9fafb;
-        border-color: #9ca3af;
+      /* ヘッダー部分のコンパクト化 */
+      [class*="AppHeader"] {
+        padding: 8px 12px;
       }
       
-      /* フォーム要素 - エディタ関連のみスタイリング */
-      input[type="text"]:not(nav input):not([class*="nav"] input):not([class*="search"] input),
-      input[type="email"],
-      input[type="url"],
-      textarea,
-      [data-slate-editor="true"],
-      [role="textbox"] {
-        font-size: 16px;
-        line-height: 1.5;
+      [class*="AppHeaderButton"] {
+        font-size: 13px;
+        padding: 6px 8px;
+      }
+      
+      /* ツールバーのコンパクト化 */
+      [class*="ToolbarContainer"] {
+        padding: 8px;
+      }
+      
+      [class*="ToolbarButton"] {
+        font-size: 12px;
+        padding: 4px 8px;
+        min-height: 28px;
+      }
+      
+      /* コレクション一覧のコンパクト化 */
+      [class*="CollectionCard"] {
         padding: 12px;
-        border-radius: 8px;
-        border: 1px solid #d1d5db;
-        background-color: #ffffff;
-        color: #1f2937;
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        margin: 4px 0;
       }
       
-      /* フォーカス時のスタイル */
-      input[type="text"]:not(nav input):not([class*="nav"] input):not([class*="search"] input):focus,
-      input[type="email"]:focus,
-      input[type="url"]:focus,
-      textarea:focus,
-      [data-slate-editor="true"]:focus,
-      [role="textbox"]:focus {
-        border-color: #6366f1;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      [class*="CollectionCard"] h2 {
+        font-size: 16px;
+        margin: 0 0 4px 0;
+      }
+      
+      [class*="CollectionCard"] p {
+        font-size: 13px;
+        line-height: 1.3;
+      }
+      
+      /* サイドバーのコンパクト化 */
+      [class*="SidebarContainer"] {
+        font-size: 13px;
+      }
+      
+      [class*="SidebarNavLink"] {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+      
+      /* エディタ部分の最適化 */
+      [class*="EditorContainer"] {
+        padding: 8px;
+      }
+      
+      /* フォーム要素の改善（エディタのみ） */
+      [class*="ControlPane"] input[type="text"],
+      [class*="ControlPane"] textarea,
+      [class*="ControlPane"] [data-slate-editor="true"],
+      [class*="ControlPane"] [role="textbox"] {
+        font-size: 15px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #d1d5db;
+        transition: border-color 0.2s ease;
+      }
+      
+      [class*="ControlPane"] input[type="text"]:focus,
+      [class*="ControlPane"] textarea:focus,
+      [class*="ControlPane"] [data-slate-editor="true"]:focus,
+      [class*="ControlPane"] [role="textbox"]:focus {
+        border-color: #3b82f6;
         outline: none;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
       }
       
       /* CodeMirrorエディタ */
       .cm-editor {
-        font-size: 16px;
-        line-height: 1.6;
-        border-radius: 8px;
+        font-size: 15px;
+        line-height: 1.5;
+        border-radius: 4px;
         border: 1px solid #d1d5db;
-        background-color: #ffffff;
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
       }
       
       .cm-editor.cm-focused {
-        border-color: #6366f1;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
       }
       
-      /* スムーススクロール */
+      /* ボタンの最適化 - 主要アクションのみ */
+      [class*="ControlPane"] button {
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        min-height: 32px;
+      }
+      
+      /* 公開・保存ボタンの強調 */
+      [class*="publish"] button,
+      [class*="save"] button,
+      button[class*="publish"],
+      button[class*="save"] {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        font-weight: 500;
+      }
+      
+      [class*="publish"] button:hover,
+      [class*="save"] button:hover,
+      button[class*="publish"]:hover,
+      button[class*="save"]:hover {
+        background: #2563eb;
+      }
+      
+      /* スクロール最適化 */
       * {
         -webkit-overflow-scrolling: touch;
       }
       
-      /* モーダルとドロップダウン - 控えめな改善 */
-      [class*="modal"]:not(nav [class*="modal"]):not([class*="nav"] [class*="modal"]),
-      [class*="dialog"]:not(nav [class*="dialog"]):not([class*="nav"] [class*="dialog"]) {
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        margin: 16px;
+      /* CDNの効果を補完する小さな調整 */
+      [class*="CollectionTopNewButton"] {
+        font-size: 13px;
       }
       
-      [class*="dropdown"]:not(nav [class*="dropdown"]):not([class*="nav"] [class*="dropdown"]),
-      [class*="menu"]:not(nav [class*="menu"]):not([class*="nav"] [class*="menu"]) {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-radius: 6px;
-        border: 1px solid #e5e7eb;
+      [class*="SearchInput"] {
+        font-size: 14px;
+        padding: 6px 8px;
       }
       
-      /* 主要アクションボタンの強調 */
-      button[class*="publish"]:not(nav button),
-      button[class*="save"]:not(nav button),
-      [class*="primary"]:not(nav [class*="primary"]):not([class*="nav"] [class*="primary"]) {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        color: white;
-        font-weight: 600;
-        border: none;
-        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25);
+      /* プレビューパネルのコンパクト化 */
+      [class*="PreviewPane"] {
+        font-size: 14px;
       }
       
-      button[class*="publish"]:not(nav button):hover,
-      button[class*="save"]:not(nav button):hover,
-      [class*="primary"]:not(nav [class*="primary"]):not([class*="nav"] [class*="primary"]):hover {
-        background: linear-gradient(135deg, #2563eb, #1e40af);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+      /* ドロップダウンメニューの調整（CDNで既に設定済みだが補完） */
+      [class*="DropdownList"] {
+        font-size: 13px;
+      }
+      
+      [class*="DropdownList"] li {
+        padding: 8px 12px;
       }
     }
     
     /* =====================
      * アクセシビリティ配慮
-     * アニメーション削減設定
      * ===================== */
     @media (prefers-reduced-motion: reduce) {
       * {
         transition: none !important;
         animation: none !important;
-        transform: none !important;
       }
     }
   </style>
@@ -298,7 +302,7 @@
     // メイン処理：iOS対応とプルリフレッシュ制御
     document.addEventListener('DOMContentLoaded', () => {
       // iOS Safari のビューポート設定
-      if (/iPad|iPhone|iPod/.test(navigator.userUser)) {
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
         const viewport = document.querySelector('meta[name=viewport]');
         if (viewport) {
           viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
