@@ -8,24 +8,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
   
   <style>
-    /* =====================
-     * 基本設定
-     * ===================== */
+    /* ==========================================================================
+       基本設定
+       ========================================================================== */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     
-    /* =====================
-     * プルリフレッシュ無効化
-     * 日記作成時の誤操作防止
-     * ===================== */
+    /* ==========================================================================
+       プルリフレッシュ無効化 (UX改善)
+       ========================================================================== */
     html, body {
-      touch-action: manipulation !important;
-      overscroll-behavior: none !important;
       overscroll-behavior-y: none !important;
-      -webkit-overflow-scrolling: touch !important;
     }
     
     [class*="App"],
@@ -37,10 +33,9 @@
       touch-action: manipulation !important;
     }
     
-    /* =====================
-     * エディタ領域設定
-     * ピンチズームを許可し、スクロール問題を解決
-     * ===================== */
+    /* ==========================================================================
+       エディタ領域の操作性担保 (ピンチズーム等を許可)
+       ========================================================================== */
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor,
@@ -52,124 +47,125 @@
       overscroll-behavior: auto !important;
     }
     
-    /* =====================
-     * モバイル最適化 - CDN準拠の最小限調整
-     * ===================== */
+    /* ==========================================================================
+       レスポンシブデザイン改善 (スマホ向け: max-width: 799px)
+       CDNの規則性に準拠し、既存スタイルを上書きして調整
+       ========================================================================== */
     @media (max-width: 799px) {
-      /* スマホでの画面活用 - 文字とコンポーネントを小さく */
-      * {
-        font-size: 14px !important;
-        line-height: 1.4 !important;
+      /* --- 全体的な調整 --- */
+      body, #nc-root {
+        font-size: 14px;
+        line-height: 1.5;
       }
       
-      /* ヘッダー要素の最適化 */
-      h1 { font-size: 18px !important; }
-      h2 { font-size: 16px !important; }
-      h3 { font-size: 15px !important; }
-      h4, h5, h6 { font-size: 14px !important; }
+      h1 { font-size: 1.25rem !important; } /* 20px */
+      h2 { font-size: 1.125rem !important; } /* 18px */
+      h3 { font-size: 1rem !important; } /* 16px */
+      h4, h5, h6 { font-size: 0.9rem !important; } /* 14.4px */
+
+      /* --- コンテナと余白 --- */
+      [class*="AppHeader"] {
+        padding: 4px 12px !important;
+      }
+      [class*="CollectionTopContainer"],
+      [class*="EditorContainer"] > div,
+      [class*="ControlPaneContainer"] {
+        padding: 12px !important;
+      }
+      [class*="EditorContainer"] {
+        padding: 0 !important;
+      }
+
+      /* --- ボタンとフォーム要素 (タップしやすさを考慮) --- */
+      button, [role="button"] {
+        padding: 6px 14px !important;
+        font-size: 13px !important;
+        min-height: 38px !important;
+        border-radius: 6px !important;
+      }
       
-      /* エディタ部分のみ読みやすいサイズに */
+      input:not([type="checkbox"]):not([type="radio"]),
+      select,
+      [class*="Select"] > div {
+        padding: 8px 10px !important;
+        font-size: 14px !important;
+        min-height: 40px !important;
+        border-radius: 6px !important;
+      }
+
+      /* --- 主要なアクションボタン --- */
+      [class*="publish-button"], 
+      [class*="deploy-preview-button"] {
+        font-size: 14px !important;
+        padding: 8px 16px !important;
+        min-height: 40px !important;
+      }
+      
+      /* --- エディタ本体 (可読性を最優先) --- */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor,
       textarea {
-        font-size: 16px !important;
-        line-height: 1.5 !important;
+        font-size: 16px !important; /* 読みやすさを確保 */
+        line-height: 1.6 !important;
+        padding: 12px !important;
+      }
+      
+      /* --- エディタツールバー --- */
+      [class*="EditorToolbar"] {
+        padding: 6px !important;
+        gap: 2px !important;
+      }
+      [class*="ToolbarButton"] {
+        padding: 6px !important;
+        margin: 0 !important;
+        min-width: 36px;
+        min-height: 36px;
+      }
+      [class*="ToolbarButton"] svg {
+        width: 18px !important;
+        height: 18px !important;
+      }
+      
+      /* --- コレクション (記事一覧) --- */
+      [class*="EntryListing"] {
+        padding: 0 12px !important;
+      }
+      [class*="ListItem"] a, [class*="ListItem"] > div {
+        padding: 12px 8px !important;
+      }
+      [class*="ListItem"] p {
+        font-size: 14px !important;
+      }
+
+      /* --- メディアライブラリ --- */
+      [class*="MediaLibraryCard"] {
+        width: calc(50% - 8px) !important; /* 2列表示 */
+      }
+      [class*="MediaLibraryCard"] div[class*="card-details"] {
         padding: 8px !important;
       }
-      
-      /* ボタンとコントロールを小さく */
-      button,
-      [role="button"],
-      input[type="submit"],
-      input[type="button"] {
-        padding: 4px 8px !important;
-        font-size: 13px !important;
-        min-height: 32px !important;
-        border-radius: 4px !important;
+      [class*="MediaLibraryCard"] p,
+      [class*="MediaLibraryCard"] span {
+        font-size: 12px !important;
       }
       
-      /* アイコンサイズの調整 */
+      /* --- UIコンポーネントの微調整 --- */
+      /* アイコン全般 */
       svg {
         width: 16px !important;
         height: 16px !important;
       }
-      
-      /* パディングとマージンの縮小 */
-      [class*="Container"],
-      [class*="Panel"],
-      [class*="Section"] {
-        padding: 8px !important;
-        margin: 4px 0 !important;
-      }
-      
-      /* 編集画面での特別調整 */
-      [class*="EditorContainer"] {
-        padding: 8px !important;
-      }
-      
-      [class*="ControlPaneContainer"] {
-        padding: 8px !important;
-      }
-      
-      /* ツールバーの調整 */
-      [class*="ToolbarContainer"] {
-        padding: 4px !important;
-      }
-      
-      [class*="ToolbarButton"] {
-        padding: 2px 6px !important;
-        font-size: 12px !important;
-        margin: 1px !important;
-      }
-      
-      /* フォーム要素の調整 */
-      input:not([type="submit"]):not([type="button"]),
-      select {
-        padding: 6px !important;
-        font-size: 14px !important;
-        min-height: 32px !important;
-        border-radius: 4px !important;
-      }
-      
-      /* リスト項目の調整 */
-      [class*="List"] li,
-      [class*="Item"] {
-        padding: 8px !important;
-        font-size: 13px !important;
-      }
-      
-      /* モーダルとドロップダウンの調整 */
-      [class*="Modal"],
-      [class*="Dropdown"] {
-        font-size: 13px !important;
-      }
-      
-      /* 検索バーの調整 */
-      [class*="SearchInput"] {
-        padding: 6px !important;
-        font-size: 14px !important;
-      }
-      
-      /* 公開ボタンなど重要なアクションは少し大きめに保持 */
-      [class*="publish"] button,
-      [class*="save"] button,
-      [class*="PublishedToolbarButton"] {
-        font-size: 14px !important;
-        padding: 6px 12px !important;
-        min-height: 36px !important;
-      }
-      
-      /* スムーススクロール */
-      * {
-        -webkit-overflow-scrolling: touch !important;
+      /* ユーザーメニューなど */
+      [class*="AppHeader-user-dropdown"] svg {
+         width: 24px !important;
+         height: 24px !important;
       }
     }
     
-    /* =====================
-     * アクセシビリティ配慮
-     * アニメーション削減設定
-     * ===================== */
+    /* ==========================================================================
+       アクセシビリティ配慮 (アニメーション削減)
+       ========================================================================== */
     @media (prefers-reduced-motion: reduce) {
       * {
         transition: none !important;
@@ -181,9 +177,9 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- =====================
-   * ローディング画面
-   * ===================== -->
+  <!-- ==========================================================================
+       ローディング画面
+       ========================================================================== -->
   <div id="loading-indicator" style="
     position: fixed;
     top: 0;
@@ -224,9 +220,9 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    /* =====================
-     * ユーティリティ関数
-     * ===================== */
+    /* ==========================================================================
+       ユーティリティ関数
+       ========================================================================== */
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
       if (loader) {
@@ -237,18 +233,18 @@
       }
     }
 
-    /* =====================
-     * 初期化処理
-     * ===================== */
+    /* ==========================================================================
+       初期化処理
+       ========================================================================== */
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
-    /* =====================
-     * イベントリスナー登録
-     * ===================== */
+    /* ==========================================================================
+       イベントリスナー登録
+       ========================================================================== */
     // ローディング画面の制御
     window.addEventListener('load', () => {
       setTimeout(() => {
@@ -261,68 +257,37 @@
       hideLoadingIndicator();
     }, 5000);
 
-    // メイン処理：iOS対応とプルリフレッシュ制御
+    // メイン処理：プルリフレッシュ制御など
     document.addEventListener('DOMContentLoaded', () => {
-      // iOS Safari のビューポート設定
-      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        const viewport = document.querySelector('meta[name=viewport]');
-        if (viewport) {
-          viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
-        }
-      }
-      
       // プルリフレッシュ制御用の変数
       let touchStartY = 0;
-      let isScrolling = false;
-      
+
       // タッチ開始の検出
-      document.addEventListener('touchstart', (e) => {
+      document.body.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
           touchStartY = e.touches[0].clientY;
-          isScrolling = false;
         }
       }, { passive: true });
       
-      // タッチ移動時のプルリフレッシュ防止（エディタ以外のみ）
-      document.addEventListener('touchmove', (e) => {
-        // エディタ内かどうかをチェック
+      // タッチ移動時のプルリフレッシュ防止
+      document.body.addEventListener('touchmove', (e) => {
         const target = e.target;
-        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
-                          target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
-        
-        // エディタ内の場合はプルリフレッシュ制御をスキップ
-        if (isInEditor) {
+        const isInScrollableArea = target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input, [class*="MediaLibrary-grid-scroller"]');
+
+        // スクロール可能な特定領域内にいる場合は、ブラウザのデフォルト動作を許可
+        if (isInScrollableArea) {
           return;
         }
-        
-        if (e.touches.length === 1) {
-          const touch = e.touches[0];
-          const currentY = touch.clientY;
-          const deltaY = currentY - touchStartY;
-          
-          // 下向きのスワイプで画面上端付近の場合、プルリフレッシュを防止
-          if (deltaY > 0 && window.scrollY <= 10) {
-            e.preventDefault();
-            return false;
-          }
-          
-          // 画面最上部での下向きスワイプを防止
-          if (window.scrollY === 0 && deltaY > 0) {
-            e.preventDefault();
-            return false;
-          }
-          
-          isScrolling = true;
+
+        const currentY = e.touches[0].clientY;
+        const isScrollingDown = currentY > touchStartY;
+        const isAtTop = window.scrollY === 0;
+
+        // 画面の最上部で下にスワイプしようとした場合にイベントをキャンセル
+        if (isAtTop && isScrollingDown) {
+          e.preventDefault();
         }
       }, { passive: false });
-      
-      // タッチ終了時のクリーンアップ
-      document.addEventListener('touchend', (e) => {
-        setTimeout(() => {
-          touchStartY = 0;
-          isScrolling = false;
-        }, 100);
-      }, { passive: true });
     });
   </script>
 </body>
