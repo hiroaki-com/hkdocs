@@ -1,22 +1,54 @@
-<!-- static/admin/index.html - 完全版 -->
+<!-- static/admin/index.html - Auth0直接統合版 -->
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
   
   <script>
-    // Auth0設定を強制的に使用
+    // Auth0クライアントの設定
+    const auth0Client = createAuth0Client({
+      domain: 'dev-hkdocs-cms.auth0.com',
+      clientId: 'n1qt2MOMZAB4ddlzbyar2DD6BMnpMtMI',
+      authorizationParams: {
+        audience: 'https://hkdocs.netlify.app/api',
+        redirect_uri: window.location.origin + '/admin/'
+      }
+    });
+
+    // Decap CMSにAuth0プロバイダーを登録
     if (window.CMS) {
-      // Netlify Identityを無効化
-      window.netlifyIdentity = null;
-      
-      // CMS初期化
-      window.CMS.init();
+      window.CMS.registerAuthenticationProvider({
+        name: 'auth0',
+        displayName: 'Auth0',
+        authenticate: async () => {
+          const client = await auth0Client;
+          await client.loginWithRedirect();
+        },
+        logout: async () => {
+          const client = await auth0Client;
+          await client.logout({
+            logoutParams: {
+              returnTo: window.location.origin + '/admin/'
+            }
+          });
+        },
+        getUser: async () => {
+          const client = await auth0Client;
+          const user = await client.getUser();
+          return user;
+        },
+        getToken: async () => {
+          const client = await auth0Client;
+          const token = await client.getTokenSilently();
+          return token;
+        }
+      });
     }
   </script>
 </body>
