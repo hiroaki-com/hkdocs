@@ -1,9 +1,11 @@
 # static/admin/config.yml
-# Netlify IdentityのGit Gatewayを利用し、mainブランチに保存する
-# （Auth0移行後もGit Gatewayは継続使用）
+# Auth0とGit Gatewayを利用し、mainブランチに保存する
 backend:
   name: git-gateway
   branch: main
+  # Auth0設定（環境変数が認識されない場合の代替）
+  # identity_url: "https://dev-hkdocs-cms.auth0.com"
+  # gateway_url: "https://hkdocs.netlify.app/.netlify/git/github"
 
 # メディアファイル（画像）の保存場所
 media_folder: "static/img/uploads/diary"
