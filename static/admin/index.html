@@ -23,11 +23,22 @@
       -moz-osx-font-smoothing: grayscale;
     }
     
-    /* ピンチズーム対応 + プルリフレッシュ防止 */
+    /* ピンチズーム対応 + プルリフレッシュ完全防止 */
     html, body {
       touch-action: manipulation !important; /* スワイプリロード無効化 */
-      overscroll-behavior-y: contain !important; /* 縦スクロール境界制御 */
+      overscroll-behavior: none !important; /* 全方向のオーバースクロール無効 */
+      overscroll-behavior-y: none !important; /* 縦スクロール境界制御強化 */
       -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* CMS全體でのプルリフレッシュ無効化 */
+    [class*="App"],
+    [class*="Editor"],
+    [class*="ControlPane"],
+    main,
+    #nc-root {
+      overscroll-behavior-y: none !important;
+      touch-action: manipulation !important;
     }
     
     /* エディタエリアでピンチズームを許可 */
@@ -62,8 +73,10 @@
         line-height: 1.5 !important;
         padding: 12px !important;
         border-radius: 8px !important;
-        border: 1px solid #e1e5e9 !important;
+        border: 1px solid #d1d5db !important;
+        background: #ffffff !important;
         transition: all 0.2s ease !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
       }
       
       /* フォーカス時の視覚的フィードバック */
@@ -71,9 +84,10 @@
       textarea:focus,
       [data-slate-editor="true"]:focus,
       [role="textbox"]:focus {
-        border-color: #3291ff !important;
-        box-shadow: 0 0 0 3px rgba(50, 145, 255, 0.1) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
         outline: none !important;
+        background: #ffffff !important;
       }
       
       /* Markdownエディタの快適性向上 */
@@ -81,13 +95,14 @@
         font-size: 16px !important;
         line-height: 1.6 !important;
         border-radius: 8px !important;
-        border: 1px solid #e1e5e9 !important;
-        background: #fafbfc !important;
+        border: 1px solid #d1d5db !important;
+        background: #f9fafb !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
       }
       
       .cm-editor.cm-focused {
-        border-color: #3291ff !important;
-        box-shadow: 0 0 0 3px rgba(50, 145, 255, 0.1) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
         background: #ffffff !important;
       }
       
@@ -145,9 +160,10 @@
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
-        background: #2d3748 !important;
-        color: #e2e8f0 !important;
-        border-color: #4a5568 !important;
+        background: #374151 !important;
+        color: #f3f4f6 !important;
+        border-color: #6b7280 !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
       }
       
       input:focus,
@@ -155,9 +171,9 @@
       [data-slate-editor="true"]:focus,
       [role="textbox"]:focus,
       .cm-editor.cm-focused {
-        background: #1a202c !important;
-        border-color: #63b3ed !important;
-        box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.1) !important;
+        background: #1f2937 !important;
+        border-color: #8b5cf6 !important;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2) !important;
       }
     }
     
@@ -258,33 +274,51 @@
         }
       }
       
-      // プルリフレッシュの確実な無効化（エディタ外のみ）
-      let isInEditor = false;
+      // プルリフレッシュの完全無効化（改良版）
+      let touchStartY = 0;
+      let isScrolling = false;
       
       document.addEventListener('touchstart', (e) => {
         const target = e.target;
         isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
                     target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
+        
+        if (e.touches.length === 1) {
+          touchStartY = e.touches[0].clientY;
+          isScrolling = false;
+        }
       }, { passive: true });
       
       document.addEventListener('touchmove', (e) => {
-        // エディタ外でのスワイプリフレッシュを防止
-        if (!isInEditor && e.touches.length === 1) {
+        if (e.touches.length === 1) {
           const touch = e.touches[0];
-          const startY = touch.clientY;
+          const currentY = touch.clientY;
+          const deltaY = currentY - touchStartY;
           
-          if (startY < 100 && window.scrollY === 0) {
+          // 下方向のスワイプでリロードを防止（特に画面上部での操作）
+          if (deltaY > 0 && window.scrollY <= 10) {
             e.preventDefault();
+            return false;
           }
+          
+          // 上部でのプルダウン動作を完全に無効化
+          if (window.scrollY === 0 && deltaY > 0) {
+            e.preventDefault();
+            return false;
+          }
+          
+          isScrolling = true;
         }
       }, { passive: false });
       
-      // ダブルタップズームの制御（エディタ内では許可）
+      // タッチ終了時の処理
       document.addEventListener('touchend', (e) => {
-        if (!isInEditor && e.touches.length === 0) {
-          e.preventDefault();
-        }
-      }, { passive: false });
+        // プルリフレッシュジェスチャーの無効化
+        setTimeout(() => {
+          touchStartY = 0;
+          isScrolling = false;
+        }, 100);
+      }, { passive: true });
     });
   </script>
 </body>
