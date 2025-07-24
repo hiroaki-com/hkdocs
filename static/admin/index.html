@@ -73,41 +73,54 @@
       [class*="Button"] {
         min-height: 44px !important;
         min-width: 44px !important;
-        padding: 12px 16px !important;
+        padding: 10px 16px !important;
         margin: 4px !important;
         border-radius: 8px !important;
         font-size: 16px !important;
         font-weight: 500 !important;
         touch-action: manipulation !important;
         cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
       }
       
       /* 重要なアクションボタン - より大きなタッチターゲット */
       [class*="CollectionTopNewButton"],
-      [class*="PublishedToolbarButton"] {
+      [class*="PublishedToolbarButton"],
+      [class*="UnpublishedChangesButton"] {
         min-height: 48px !important;
-        padding: 14px 20px !important;
-        font-size: 17px !important;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
         font-weight: 600 !important;
-        margin: 8px 0 !important;
+        margin: 8px 4px !important;
+        border-radius: 10px !important;
       }
       
-      /* ヘッダーボタン - 8px間隔確保 */
-      [class*="AppHeaderButton"] {
+      /* ヘッダーボタン - 適切な間隔とサイズ */
+      [class*="AppHeaderButton"],
+      [class*="HeaderButton"] {
         min-height: 44px !important;
-        padding: 10px 14px !important;
-        margin: 0 4px !important;
+        min-width: 44px !important;
+        padding: 8px 12px !important;
+        margin: 0 2px !important;
         font-size: 15px !important;
+        border-radius: 6px !important;
       }
       
       /* ナビゲーションリンク - タップしやすいサイズ */
-      [class*="SidebarNavLink"] {
+      [class*="SidebarNavLink"],
+      [class*="NavLink"] {
         min-height: 44px !important;
-        padding: 12px 16px !important;
+        padding: 10px 16px !important;
         margin: 2px 4px !important;
         border-radius: 8px !important;
         font-size: 16px !important;
         white-space: nowrap !important;
+        display: flex !important;
+        align-items: center !important;
+        text-decoration: none !important;
       }
       
       /* フォーム要素 - 適切なタッチターゲット */
@@ -115,23 +128,28 @@
       select,
       textarea {
         min-height: 44px !important;
-        padding: 12px 16px !important;
+        padding: 10px 16px !important;
         font-size: 16px !important;
         border-radius: 8px !important;
         margin: 4px 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
         -webkit-appearance: none !important;
         touch-action: manipulation !important;
+        border: 1px solid #d1d5db !important;
       }
       
       /* 検索入力 - フルード幅と適切な高さ */
-      [class*="SearchInput"] {
+      [class*="SearchInput"],
+      input[type="search"] {
         width: 100% !important;
-        min-height: 48px !important;
-        padding: 12px 16px !important;
+        min-height: 44px !important;
+        padding: 10px 16px !important;
         font-size: 16px !important;
-        border-radius: 12px !important;
+        border-radius: 10px !important;
         margin: 8px 0 !important;
         box-sizing: border-box !important;
+        border: 1px solid #d1d5db !important;
       }
       
       /* エディタテキスト領域 - 読みやすさ重視 */
@@ -141,94 +159,124 @@
         font-size: 17px !important;
         line-height: 1.6 !important;
         padding: 16px !important;
-        border-radius: 12px !important;
+        border-radius: 10px !important;
         min-height: 120px !important;
+        border: 1px solid #d1d5db !important;
       }
       
       /* リストカード - タップしやすい領域 */
-      [class*="ListCard"] {
+      [class*="ListCard"],
+      [class*="Card"] {
         min-height: 60px !important;
         padding: 16px !important;
         margin: 8px 0 !important;
-        border-radius: 12px !important;
+        border-radius: 10px !important;
         touch-action: manipulation !important;
+        cursor: pointer !important;
+        border: 1px solid #e5e7eb !important;
+        background: #ffffff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
       }
       
-      [class*="ListCardTitle"] {
-        font-size: 17px !important;
+      [class*="ListCardTitle"],
+      [class*="CardTitle"] {
+        font-size: 16px !important;
         font-weight: 600 !important;
         line-height: 1.4 !important;
         margin-bottom: 4px !important;
+        color: #111827 !important;
       }
       
-      [class*="ListCardMeta"] {
+      [class*="ListCardMeta"],
+      [class*="CardMeta"] {
         font-size: 14px !important;
-        opacity: 0.7 !important;
+        color: #6b7280 !important;
+        line-height: 1.3 !important;
       }
       
       /* ツールバーボタン - 適切な間隔 */
-      [class*="ToolbarButton"] {
+      [class*="ToolbarButton"],
+      [class*="EditorToolbarButton"] {
         min-height: 40px !important;
         min-width: 40px !important;
-        padding: 8px 12px !important;
+        padding: 6px 10px !important;
         margin: 2px !important;
         border-radius: 6px !important;
         font-size: 14px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
       
       /* ツールバーコンテナ - フレックスレイアウト */
-      [class*="ToolbarContainer"] {
+      [class*="ToolbarContainer"],
+      [class*="EditorToolbar"] {
         display: flex !important;
         flex-wrap: wrap !important;
-        gap: 8px !important;
-        padding: 12px !important;
+        gap: 4px !important;
+        padding: 8px 12px !important;
         align-items: center !important;
+        border-bottom: 1px solid #e5e7eb !important;
       }
       
       /* モーダル - 適切なサイズと余白 */
-      [class*="StyledModal"] {
+      [class*="StyledModal"],
+      [class*="Modal"] {
         width: 92vw !important;
         max-width: 92vw !important;
         max-height: 85vh !important;
-        margin: 24px auto !important;
+        margin: 16px auto !important;
         padding: 20px !important;
-        border-radius: 16px !important;
+        border-radius: 12px !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
+        background: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
       }
       
       /* ドロップダウン - 底部固定で操作しやすく */
-      [class*="DropdownList"] {
+      [class*="DropdownList"],
+      [class*="Dropdown"] {
         position: fixed !important;
         bottom: 20px !important;
         left: 16px !important;
         right: 16px !important;
         width: auto !important;
         max-height: 60vh !important;
-        border-radius: 16px !important;
+        border-radius: 12px !important;
         overflow-y: auto !important;
         box-shadow: 0 12px 32px rgba(0,0,0,0.2) !important;
         -webkit-overflow-scrolling: touch !important;
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
       }
       
-      [class*="DropdownList"] > * {
+      [class*="DropdownList"] > *,
+      [class*="Dropdown"] > * {
         min-height: 44px !important;
-        padding: 12px 16px !important;
+        padding: 10px 16px !important;
         font-size: 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        border-bottom: 1px solid #f3f4f6 !important;
       }
       
       /* アイコン - 適切なサイズ */
       svg:not([class*="DecapLogoIcon"] svg) {
-        width: 20px !important;
-        height: 20px !important;
+        width: 18px !important;
+        height: 18px !important;
         flex-shrink: 0 !important;
+        margin-right: 8px !important;
       }
       
       /* ロゴは維持 */
       [class*="DecapLogoIcon"] svg {
         width: 100% !important;
         height: auto !important;
-        max-width: 280px !important;
+        max-width: 240px !important;
+        margin-right: 0 !important;
       }
       
       /* コンテナ - レスポンシブフレームワーク */
@@ -244,16 +292,19 @@
       }
       
       /* ナビゲーション - 横スクロール最適化 */
-      [class*="SidebarContainer"] {
+      [class*="SidebarContainer"],
+      [class*="Sidebar"] {
         position: static !important;
         width: 100% !important;
         height: auto !important;
         border-right: none !important;
-        border-bottom: 1px solid #e1e5e9 !important;
+        border-bottom: 1px solid #e5e7eb !important;
         padding: 8px 0 !important;
+        background: #f9fafb !important;
       }
       
-      [class*="SidebarNav"] {
+      [class*="SidebarNav"],
+      [class*="Navigation"] {
         display: flex !important;
         overflow-x: auto !important;
         padding: 8px 16px !important;
@@ -263,17 +314,56 @@
         -ms-overflow-style: none !important;
       }
       
-      [class*="SidebarNav"]::-webkit-scrollbar {
+      [class*="SidebarNav"]::-webkit-scrollbar,
+      [class*="Navigation"]::-webkit-scrollbar {
         display: none !important;
       }
       
       /* ヘッダー - フレックスレイアウト最適化 */
-      [class*="AppHeaderContent"] {
+      [class*="AppHeaderContent"],
+      [class*="Header"] {
         display: flex !important;
         flex-wrap: wrap !important;
         align-items: center !important;
         gap: 8px !important;
         padding: 12px 16px !important;
+        background: #ffffff !important;
+        border-bottom: 1px solid #e5e7eb !important;
+      }
+      
+      /* コレクション一覧の改善 */
+      [class*="CollectionContainer"] [class*="ListCard"]:first-child {
+        margin-top: 16px !important;
+      }
+      
+      /* フォームフィールドラベル */
+      [class*="FieldLabel"],
+      label {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        margin-bottom: 6px !important;
+        display: block !important;
+        color: #374151 !important;
+      }
+      
+      /* エラーメッセージ */
+      [class*="FieldError"],
+      [class*="ErrorMessage"] {
+        font-size: 14px !important;
+        color: #dc2626 !important;
+        margin-top: 4px !important;
+        display: block !important;
+      }
+      
+      /* 成功メッセージ */
+      [class*="SuccessMessage"],
+      [class*="SuccessNotification"] {
+        font-size: 14px !important;
+        color: #059669 !important;
+        padding: 12px 16px !important;
+        border-radius: 8px !important;
+        background: #ecfdf5 !important;
+        border: 1px solid #d1fae5 !important;
       }
       
       /* パフォーマンス最適化 */
@@ -291,7 +381,8 @@
       
       /* テキスト選択の改善 */
       [class*="ListCard"],
-      [class*="Button"] {
+      [class*="Button"],
+      [class*="Card"] {
         -webkit-user-select: none !important;
         user-select: none !important;
       }
@@ -304,6 +395,32 @@
         -webkit-user-select: text !important;
         user-select: text !important;
       }
+      
+      /* ホバー効果をタッチデバイス用に調整 */
+      [class*="Button"]:active,
+      [class*="ListCard"]:active,
+      [class*="Card"]:active {
+        transform: scale(0.98) !important;
+        transition: transform 0.1s ease !important;
+      }
+    }
+    
+    /* =====================
+     * タブレットサイズの微調整
+     * ===================== */
+    @media (min-width: 800px) and (max-width: 1024px) {
+      /* タブレット向けの中間サイズ調整 */
+      [class*="AppMainContainer"] {
+        padding: 24px !important;
+      }
+      
+      [class*="ListCard"] {
+        padding: 20px !important;
+      }
+      
+      [class*="Button"] {
+        font-size: 15px !important;
+      }
     }
     
     /* =====================
@@ -314,16 +431,6 @@
       * {
         transition: none !important;
         animation: none !important;
-      }
-    }
-    
-    /* =====================
-     * ダークモード対応（システム設定に基づく）
-     * ===================== */
-    @media (prefers-color-scheme: dark) and (max-width: 799px) {
-      body {
-        background-color: #1a1a1a !important;
-        color: #ffffff !important;
       }
     }
   </style>
