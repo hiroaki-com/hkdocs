@@ -1,24 +1,14 @@
-<!-- static/admin/index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  {% comment %} <link rel="stylesheet" href="custom.css" /> {% endcomment %}
+  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
-  
-  <script>
-    // Netlify Identityを無効化
-    window.netlifyIdentity = null;
-    
-    // 環境変数が正しく読み込まれているかチェック（機密情報は表示しない）
-    console.log('Auth0 Domain available:', !!process.env.PUBLIC_AUTH0_DOMAIN);
-    console.log('Auth0 Client ID available:', !!process.env.PUBLIC_AUTH0_CLIENT_ID);
-    console.log('Auth0 Audience available:', !!process.env.PUBLIC_AUTH0_AUDIENCE);
-  </script>
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
