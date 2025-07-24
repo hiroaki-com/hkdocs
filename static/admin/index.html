@@ -1,4 +1,4 @@
-<!-- static/admin/index.html - 強制Auth0版 -->
+<!-- static/admin/index.html -->
 <!doctype html>
 <html>
 <head>
@@ -10,20 +10,13 @@
   <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
   
   <script>
-    // 環境変数を明示的に設定
-    window.process = window.process || {};
-    window.process.env = window.process.env || {};
-    window.process.env.PUBLIC_AUTH0_DOMAIN = 'dev-hkdocs-cms.auth0.com';
-    window.process.env.PUBLIC_AUTH0_CLIENT_ID = 'n1qt2MOMZAB4ddlzbyar2DD6BMnpMtMI';
-    window.process.env.PUBLIC_AUTH0_AUDIENCE = 'https://hkdocs.netlify.app/api';
-    
     // Netlify Identityを無効化
     window.netlifyIdentity = null;
     
-    // CMSを初期化
-    if (window.CMS) {
-      window.CMS.init();
-    }
+    // 環境変数が正しく読み込まれているかチェック（機密情報は表示しない）
+    console.log('Auth0 Domain available:', !!process.env.PUBLIC_AUTH0_DOMAIN);
+    console.log('Auth0 Client ID available:', !!process.env.PUBLIC_AUTH0_CLIENT_ID);
+    console.log('Auth0 Audience available:', !!process.env.PUBLIC_AUTH0_AUDIENCE);
   </script>
 </body>
 </html>
