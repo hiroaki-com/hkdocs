@@ -53,66 +53,108 @@
     }
     
     /* =====================
-     * モバイル最適化（iPhone SE基準）
-     * CDNデフォルトデザインを尊重しつつ微調整
+     * フォーム要素の重なり問題を解決
+     * CDNライブラリを補完する最小限の調整
      * ===================== */
     @media (max-width: 799px) {
-      /* CDNスタイルを補完する最小限の調整 */
+      /* フォーム要素間のマージン確保 */
+      [class*="FieldWrapper"],
+      [class*="Field"],
+      .form-group,
+      .field-wrapper {
+        margin-bottom: 20px !important;
+        clear: both !important;
+      }
+      
+      /* フォーム入力欄の確実な分離 */
+      input,
+      textarea,
+      select,
+      [data-slate-editor="true"],
+      [role="textbox"] {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 16px !important;
+        box-sizing: border-box !important;
+        font-size: 16px !important; /* iOS zoom prevention */
+        -webkit-appearance: none !important;
+      }
+      
+      /* ラベルとフィールドの関係性改善 */
+      label,
+      [class*="FieldLabel"] {
+        display: block !important;
+        margin-bottom: 8px !important;
+        font-weight: 500 !important;
+      }
       
       /* エディタ領域の読みやすさ向上 */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
-        font-size: 16px !important;
-        line-height: 1.5 !important;
-        padding: 12px !important;
         min-height: 150px !important;
+        padding: 12px !important;
+        line-height: 1.5 !important;
+        border-radius: 4px !important;
       }
       
-      /* フォーム入力のiOS最適化 */
-      input, textarea, select {
-        font-size: 16px !important; /* iOS zoom prevention */
-        -webkit-appearance: none !important;
-      }
-      
-      /* タッチ操作の改善 */
-      button, [role="button"], [class*="Button"] {
+      /* ボタン要素の改善 */
+      button,
+      [role="button"],
+      [class*="Button"] {
         touch-action: manipulation !important;
         -webkit-tap-highlight-color: transparent !important;
+        margin: 8px 0 !important;
+        min-height: 44px !important; /* タッチ操作に適したサイズ */
       }
       
-      /* 横スクロール防止 */
+      /* コンテナの横スクロール防止 */
       body, html, #nc-root {
         overflow-x: hidden !important;
         max-width: 100vw !important;
       }
       
-      /* モーダルの微調整 */
+      /* CDNスタイルとの協調 */
+      [class*="AppMainContainer"],
+      [class*="CollectionContainer"],
+      [class*="EditorContainer"] {
+        padding: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* モーダルとドロップダウンの改善 */
       [class*="Modal"] {
         max-height: 90vh !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
       }
       
-      /* ドロップダウンリストの改善 */
       [class*="DropdownList"] {
         max-height: 50vh !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
       }
       
-      /* パフォーマンス最適化 */
+      /* フォーム全体のレイアウト安定化 */
+      form,
+      [class*="Form"] {
+        display: block !important;
+        width: 100% !important;
+      }
+      
+      /* フローティング要素の無効化 */
       * {
+        float: none !important;
         -webkit-overflow-scrolling: touch !important;
         -webkit-tap-highlight-color: transparent !important;
       }
     }
     
     /* =====================
-     * タブレット微調整
+     * タブレット対応
      * ===================== */
     @media (min-width: 800px) and (max-width: 1024px) {
-      /* タブレット向けの軽微な調整のみ */
       [class*="AppMainContainer"] {
         padding: 24px !important;
       }
