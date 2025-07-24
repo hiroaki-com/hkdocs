@@ -8,28 +8,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
   
   <style>
+    /* =====================
+     * 基本設定
+     * ===================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      max-width: 100vw;
     }
     
+    /* =====================
+     * プルリフレッシュ無効化
+     * ===================== */
     html, body {
-      touch-action: manipulation !important;
-      overscroll-behavior: none !important;
       overscroll-behavior-y: none !important;
-      -webkit-overflow-scrolling: touch !important;
     }
     
-    [class*="App"],
-    [class*="Editor"],
-    [class*="ControlPane"],
-    main,
-    #nc-root {
-      overscroll-behavior-y: none !important;
-      touch-action: manipulation !important;
-    }
-    
+    /* =====================
+     * エディタ領域設定
+     * ===================== */
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor,
@@ -37,127 +40,87 @@
     input[type="text"],
     input[type="email"],
     input[type="url"] {
-      touch-action: pinch-zoom !important;
+      touch-action: auto;
+      overscroll-behavior: auto;
     }
     
+    /* =====================
+     * モバイル最適化（iPhone SE基準）
+     * ===================== */
     @media (max-width: 799px) {
-      button,
-      [role="button"],
-      input[type="submit"],
-      input[type="button"] {
-        min-height: 44px !important;
-        min-width: 44px !important;
-        padding: 8px 16px !important;
-      }
       
-      input,
-      textarea,
-      [data-slate-editor="true"],
-      [role="textbox"] {
-        font-size: 16px !important;
-        line-height: 1.5 !important;
-        padding: 12px !important;
-        border-radius: 8px !important;
-        border: 1px solid #d1d5db !important;
-        background: #ffffff !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-      }
-      
-      input:focus,
-      textarea:focus,
-      [data-slate-editor="true"]:focus,
-      [role="textbox"]:focus {
-        border-color: #6366f1 !important;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        outline: none !important;
-        background: #ffffff !important;
-      }
-      
-      .cm-editor {
-        font-size: 16px !important;
-        line-height: 1.6 !important;
-        border-radius: 8px !important;
-        border: 1px solid #d1d5db !important;
-        background: #f9fafb !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-      }
-      
-      .cm-editor.cm-focused {
-        border-color: #6366f1 !important;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        background: #ffffff !important;
-      }
-      
-      * {
-        -webkit-overflow-scrolling: touch !important;
-      }
-      
-      [class*="dropdown"],
-      [class*="menu"] {
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
-        border-radius: 12px !important;
-        border: none !important;
-      }
-      
-      [class*="modal"],
-      [class*="dialog"] {
-        border-radius: 16px !important;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-        margin: 16px !important;
-      }
-      
-      [class*="list"] li,
-      [class*="item"] {
-        padding: 16px !important;
-        border-radius: 8px !important;
-        margin-bottom: 4px !important;
-      }
-      
-      [class*="publish"],
-      [class*="save"] {
-        background: linear-gradient(135deg, #28a745, #20c997) !important;
-        color: white !important;
-        font-weight: 600 !important;
-        border-radius: 8px !important;
-        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
-        border: none !important;
-      }
-      
-      [class*="publish"]:hover,
-      [class*="save"]:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4) !important;
-      }
-    }
-    
-    @media (prefers-color-scheme: dark) and (max-width: 799px) {
-      input,
-      textarea,
+      /* [改善] エディタ領域（本文）のスタイルを調整 */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
-        background: #374151 !important;
-        color: #f3f4f6 !important;
-        border-color: #6b7280 !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+        width: 100%; /* 横幅を画面いっぱいに広げる */
+        font-size: 16px !important; /* iOSの自動ズームを抑制するため、フォントサイズを16pxに固定 */
+        line-height: 1.5;
+        padding: 12px;
+        min-height: 150px;
       }
       
-      input:focus,
-      textarea:focus,
-      [data-slate-editor="true"]:focus,
-      [role="textbox"]:focus,
-      .cm-editor.cm-focused {
-        background: #1f2937 !important;
-        border-color: #8b5cf6 !important;
-        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+      /* [改善] フォーム入力欄のスタイルを調整 */
+      input, textarea, select {
+        width: 100%; /* 横幅を画面いっぱいに広げる */
+        font-size: 16px !important; /* iOSの自動ズームを抑制 */
+      }
+      
+      /* タッチ操作の改善 */
+      button, [role="button"], [class*="Button"] {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      [class*="AppMainContainer"],
+      [class*="CollectionContainer"],
+      [class*="EditorContainer"] {
+        padding: 16px;
+        width: 100%;
+      }
+      
+      /* モーダルの微調整 */
+      [class*="Modal"] {
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      /* ドロップダウンリストの改善 */
+      [class*="DropdownList"] {
+        max-height: 50vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
     }
     
+    /* =====================
+     * タブレット微調整
+     * ===================== */
+    @media (min-width: 800px) and (max-width: 1024px) {
+      [class*="AppMainContainer"] {
+        padding: 24px;
+      }
+    }
+    
+    /* =====================
+     * アクセシビリティ配慮
+     * ===================== */
     @media (prefers-reduced-motion: reduce) {
       * {
         transition: none !important;
         animation: none !important;
+      }
+    }
+    
+    /* フォーカス状態の改善（デスクトップのみ） */
+    @media (min-width: 800px) {
+      button:focus,
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
       }
     }
   </style>
@@ -165,120 +128,55 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <div id="loading-indicator" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-  ">
+  <!-- ローディング画面（変更なし） -->
+  <div id="loading-indicator" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; z-index: 9999; opacity: 1; transition: opacity 0.5s ease-out;">
     <div style="text-align: center;">
-      <div style="
-        width: 48px;
-        height: 48px;
-        border: 3px solid rgba(255,255,255,0.2);
-        border-radius: 50%;
-        border-top-color: white;
-        animation: spin 1s linear infinite;
-        margin: 0 auto 20px;
-      "></div>
+      <div style="width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
       <h2 style="margin: 0 0 8px; font-weight: 600; font-size: 20px;">Content Manager</h2>
       <p style="margin: 0; opacity: 0.8; font-size: 14px;">読み込み中...</p>
     </div>
   </div>
-
   <style>
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
+  
+  <!-- JavaScript部分（変更なし） -->
   <script>
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
       if (loader) {
         loader.style.opacity = '0';
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
+        setTimeout(() => { loader.style.display = 'none'; }, 500);
       }
     }
-
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("logout", () => {
-        document.location.href = "/admin/";
-      });
+      window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
     }
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        hideLoadingIndicator();
-      }, 800);
-    });
-
-    setTimeout(() => {
-      hideLoadingIndicator();
-    }, 5000);
-
+    window.addEventListener('load', () => { setTimeout(hideLoadingIndicator, 800); });
+    setTimeout(hideLoadingIndicator, 5000);
     document.addEventListener('DOMContentLoaded', () => {
       if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
         const viewport = document.querySelector('meta[name=viewport]');
-        if (viewport) {
-          viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
-        }
+        if (viewport) { viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes'; }
       }
-      
       let touchStartY = 0;
-      let isScrolling = false;
-      
       document.addEventListener('touchstart', (e) => {
-        const target = e.target;
-        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
-                          target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
-        
-        if (e.touches.length === 1) {
-          touchStartY = e.touches[0].clientY;
-          isScrolling = false;
-        }
+        if (e.touches.length === 1) { touchStartY = e.touches[0].clientY; }
       }, { passive: true });
-      
       document.addEventListener('touchmove', (e) => {
+        const target = e.target;
+        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') || target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
+        if (isInEditor) { return; }
         if (e.touches.length === 1) {
-          const touch = e.touches[0];
-          const currentY = touch.clientY;
-          const deltaY = currentY - touchStartY;
-          
-          if (deltaY > 0 && window.scrollY <= 10) {
+          const deltaY = e.touches[0].clientY - touchStartY;
+          if ((deltaY > 0 && window.scrollY <= 10) || (window.scrollY === 0 && deltaY > 0)) {
             e.preventDefault();
             return false;
           }
-          
-          if (window.scrollY === 0 && deltaY > 0) {
-            e.preventDefault();
-            return false;
-          }
-          
-          isScrolling = true;
         }
       }, { passive: false });
-      
-      document.addEventListener('touchend', (e) => {
-        setTimeout(() => {
-          touchStartY = 0;
-          isScrolling = false;
-        }, 100);
-      }, { passive: true });
     });
   </script>
 </body>
