@@ -5,363 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
   
-  <!-- カスタムCSSを直接埋め込み -->
+  <!-- Community-proven mobile responsive CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
+  
+  <!-- Additional custom mobile enhancements -->
   <style>
-    /*
-     * Decap CMS Custom Stylesheet - Enhanced Version
-     * ---------------------------------------------
-     * Concept: Mobile-first responsive design with improved UX
-     */
-
-    /* --- 1. 基本設定と変数定義 --- */
-    :root {
-      --dc-primary-color: #2e8555;
-      --dc-primary-hover: #246943;
-      --dc-secondary-bg: #f6f7f8;
-      --dc-border-color: #e0e0e0;
-      --dc-text-color: #1c1e21;
-      --dc-white: #ffffff;
-      --dc-spacing-unit: 8px;
-      --dc-border-radius: 6px;
-      --dc-mobile-font-size: 16px;
-      --dc-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.05);
-      --dc-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
-      --dc-transition: all 0.3s ease;
-    }
-
-    /* --- 2. 基本スタイル (PC/モバイル共通) --- */
-    [data-decap-cms-app] {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: var(--dc-text-color);
-      line-height: 1.6;
-    }
-
-    /* ヘッダーとコントロール */
-    [data-decap-cms-app] [class*='AppHeader-header'],
-    [data-decap-cms-app] [class*='CollectionControls-root'] {
-      background-color: var(--dc-white);
-      border-color: var(--dc-border-color);
-      box-shadow: var(--dc-shadow-light);
-    }
-
-    /* コレクションコンテナ */
-    [data-decap-cms-app] [class*='CollectionContainer-root'] {
-      background-color: var(--dc-secondary-bg);
-    }
-
-    /* エントリーカード */
-    [data-decap-cms-app] [class*='EntryListing-card'] {
-      border-radius: var(--dc-border-radius);
-      border: 1px solid var(--dc-border-color);
-      box-shadow: var(--dc-shadow-light);
-      margin: calc(var(--dc-spacing-unit) * 2);
-      transition: var(--dc-transition);
-      background-color: var(--dc-white);
-    }
-
-    [data-decap-cms-app] [class*='EntryListing-card']:hover {
-      box-shadow: var(--dc-shadow-medium);
-      transform: translateY(-2px);
-    }
-
-    /* ボタンスタイル */
-    [data-decap-cms-app] button {
-      transition: var(--dc-transition);
-      border-radius: var(--dc-border-radius);
-    }
-
-    [data-decap-cms-app] button:hover {
-      transform: translateY(-1px);
-    }
-
-    /* プライマリボタン */
-    [data-decap-cms-app] [class*='Button-button'][class*='primary'] {
-      background-color: var(--dc-primary-color);
-      border-color: var(--dc-primary-color);
-    }
-
-    [data-decap-cms-app] [class*='Button-button'][class*='primary']:hover {
-      background-color: var(--dc-primary-hover);
-    }
-
-    /* --- 3. PC表示のスタイル (769px以上) --- */
-    @media (min-width: 769px) {
-      [data-decap-cms-app] [class*='Editor-previewPane'] {
-        border-left: 2px dashed var(--dc-border-color);
-        padding-left: calc(var(--dc-spacing-unit) * 3) !important;
-      }
-
-      /* PC用の余白調整 */
-      [data-decap-cms-app] [class*='Editor-root'] {
-        padding: calc(var(--dc-spacing-unit) * 3);
-      }
-    }
-
-    /*
-     * ===================================================================
-     * --- 4. モバイル表示のスタイル (768px以下) --- 【汎用的DOM対応版】
-     * ===================================================================
-     */
-    @media (max-width: 768px) {
-      /* 
-        【確認用】モバイル時の赤枠表示（日記作成・編集画面全体）
-      */
-      [data-decap-cms-app] [class*='Editor-root'] {
-        border: 3px solid #ff0000 !important;
-        border-radius: var(--dc-border-radius);
-        margin: 4px !important;
-        box-sizing: border-box;
-      }
-
-      /* 
-        【FIX ①】汎用的なコントロールパネルコンテナ
-        - 複数のパターンに対応
-      */
-      [data-decap-cms-app] [class*='ControlPaneContainer'],
-      [data-decap-cms-app] [class*='ControlPane'],
-      [data-decap-cms-app] [class*='control-pane'] {
-        width: 100% !important;
-        max-width: none !important;
-        padding: var(--dc-spacing-unit) !important;
-        margin: 0 !important;
-        box-sizing: border-box;
-        border: 2px solid #ff0000 !important; /* 確認用赤枠 */
-      }
-
-      /* 
-        【FIX ②】汎用的なコントロールコンテナ
-      */
-      [data-decap-cms-app] [class*='ControlContainer'],
-      [data-decap-cms-app] [class*='control-container'],
-      [data-decap-cms-app] [class*='field-wrapper'] {
-        width: 100% !important;
-        max-width: none !important;
-        margin-bottom: calc(var(--dc-spacing-unit) * 2) !important;
-        padding: 0 !important;
-        box-sizing: border-box;
-      }
-
-      /* 
-        【FIX ③】汎用的なフィールドラベル
-      */
-      [data-decap-cms-app] [class*='FieldLabel'],
-      [data-decap-cms-app] [class*='field-label'],
-      [data-decap-cms-app] label[for*='field'] {
-        display: block !important;
-        width: 100% !important;
-        margin-bottom: calc(var(--dc-spacing-unit) / 2) !important;
-        font-weight: 600 !important;
-        color: var(--dc-text-color) !important;
-        font-size: var(--dc-mobile-font-size) !important;
-      }
-
-      /* 
-        【FIX ④】すべてのinput要素（IDパターンとクラスパターン）
-      */
-      [data-decap-cms-app] input[id*='field'],
-      [data-decap-cms-app] input[class*='css-'],
-      [data-decap-cms-app] input[type='text'],
-      [data-decap-cms-app] input[type='email'],
-      [data-decap-cms-app] input[type='url'],
-      [data-decap-cms-app] input[type='date'],
-      [data-decap-cms-app] input[type='datetime-local'] {
-        width: 100% !important;
-        max-width: none !important;
-        font-size: var(--dc-mobile-font-size) !important;
-        box-sizing: border-box !important;
-        padding: calc(var(--dc-spacing-unit) * 1.5) !important;
-        border: 2px solid #ff0000 !important; /* 確認用赤枠 */
-        border-radius: var(--dc-border-radius) !important;
-        background-color: var(--dc-white) !important;
-        margin: 0 !important;
-      }
-
-      /* 
-        【FIX ⑤】すべてのtextarea要素
-      */
-      [data-decap-cms-app] textarea,
-      [data-decap-cms-app] [role='textbox'] {
-        width: 100% !important;
-        max-width: none !important;
-        font-size: var(--dc-mobile-font-size) !important;
-        box-sizing: border-box !important;
-        padding: calc(var(--dc-spacing-unit) * 1.5) !important;
-        border: 3px solid #ff0000 !important; /* 確認用赤枠（太め） */
-        border-radius: var(--dc-border-radius) !important;
-        background-color: var(--dc-white) !important;
-        min-height: 200px !important;
-      }
-
-      /* 
-        【FIX ⑥】Slateエディタ（data属性ベース - 最も安定）
-      */
-      [data-decap-cms-app] [data-slate-editor='true'] {
-        width: 100% !important;
-        max-width: none !important;
-        font-size: var(--dc-mobile-font-size) !important;
-        box-sizing: border-box !important;
-        padding: calc(var(--dc-spacing-unit) * 1.5) !important;
-        border: 3px solid #ff0000 !important; /* 確認用赤枠（太め） */
-        border-radius: var(--dc-border-radius) !important;
-        background-color: var(--dc-white) !important;
-        min-height: 200px !important;
-        margin: 0 !important;
-      }
-
-      /* 
-        【FIX ⑦】CodeMirrorエディタ（クラス名ベース - 安定）
-      */
-      [data-decap-cms-app] .cm-editor {
-        width: 100% !important;
-        max-width: none !important;
-        font-size: var(--dc-mobile-font-size) !important;
-        box-sizing: border-box !important;
-        border: 3px solid #ff0000 !important; /* 確認用赤枠（太め） */
-        border-radius: var(--dc-border-radius) !important;
-        padding: var(--dc-spacing-unit) !important;
-        background-color: var(--dc-white) !important;
-        min-height: 200px !important;
-        margin: 0 !important;
-      }
-
-      [data-decap-cms-app] .cm-editor .cm-scroller,
-      [data-decap-cms-app] .cm-editor .cm-content {
-        width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box !important;
-      }
-
-      /* 
-        【FIX ⑧】エディタコンテナ（汎用的パターン）
-      */
-      [data-decap-cms-app] [class*='RawEditorContainer'],
-      [data-decap-cms-app] [class*='editor-container'],
-      [data-decap-cms-app] .cms-editor-raw {
-        width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-
-      /* 
-        【FIX ⑨】ツールバー（汎用的パターン）
-      */
-      [data-decap-cms-app] [class*='EditorControlBar'],
-      [data-decap-cms-app] [class*='ToolbarContainer'],
-      [data-decap-cms-app] [class*='toolbar'] {
-        width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box !important;
-        flex-wrap: wrap !important;
-      }
-
-      /* 
-        【FIX ⑩】ツールバーボタン（汎用的パターン）
-      */
-      [data-decap-cms-app] [class*='ToolbarButton'],
-      [data-decap-cms-app] [class*='toolbar'] button,
-      [data-decap-cms-app] [role='toolbar'] button {
-        min-height: 44px !important; /* タッチフレンドリー */
-        min-width: 44px !important;
-        padding: calc(var(--dc-spacing-unit) * 1) !important;
-      }
-
-      /* 
-        【FIX ⑪】トグルボタン（汎用的パターン）
-      */
-      [data-decap-cms-app] [class*='ToggleContainer'] button,
-      [data-decap-cms-app] [role='switch'],
-      [data-decap-cms-app] button[aria-checked] {
-        min-height: 44px !important;
-        padding: calc(var(--dc-spacing-unit) * 1) !important;
-      }
-
-      /* 
-        【FIX ⑫】フォーカス状態（汎用的）
-      */
-      [data-decap-cms-app] input:focus,
-      [data-decap-cms-app] textarea:focus,
-      [data-decap-cms-app] [data-slate-editor='true']:focus,
-      [data-decap-cms-app] [role='textbox']:focus,
-      [data-decap-cms-app] .cm-editor.cm-focused {
-        border-color: #ff4444 !important; /* フォーカス時は少し薄い赤 */
-        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
-        outline: none !important;
-      }
-
-      /* 
-        【追加】全体的なレスポンシブ対応
-      */
-      [data-decap-cms-app] [class*='Editor-root'] > div {
-        max-width: none !important;
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-
-      /* 
-        【追加】エディタペインの調整
-      */
-      [data-decap-cms-app] [class*='Editor-editorPane'],
-      [data-decap-cms-app] [class*='Editor-controlPane'] {
-        width: 100% !important;
-        max-width: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        box-sizing: border-box !important;
-      }
-
-      /* 
-        【追加】プレビューパネルをモバイルでは非表示
-      */
-      [data-decap-cms-app] [class*='Editor-previewPane'] {
-        display: none !important;
-      }
-    }
-
-    /*
-     * ===================================================================
-     * --- 5. 追加のUX改善 ---
-     * ===================================================================
+    /* 
+     * 実証済みコミュニティソリューション + カスタム強化
+     * Based on: https://github.com/hithismani/responsive-decap
      */
     
-    /* ローディング状態の改善 */
-    [data-decap-cms-app] [class*='Loader-root'] {
-      background-color: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(4px);
-    }
-
-    /* エラーメッセージの改善 */
-    [data-decap-cms-app] [class*='Toast-root'] {
-      border-radius: var(--dc-border-radius);
-      box-shadow: var(--dc-shadow-medium);
-    }
-
-    /* ダークモード対応の準備 */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --dc-secondary-bg: #1a1a1a;
-        --dc-border-color: #333;
-        --dc-text-color: #e0e0e0;
-        --dc-white: #2a2a2a;
+    /* 確認用: モバイル時の赤枠表示 */
+    @media (max-width: 799px) {
+      /* 全体のエディタコンテナに赤枠 */
+      [class*='Editor'],
+      [class*='ControlPaneContainer'] {
+        border: 2px solid #ff0000 !important;
+        box-sizing: border-box !important;
       }
-    }
-
-    /* 高コントラストモード対応 */
-    @media (prefers-contrast: high) {
-      :root {
-        --dc-border-color: #000;
-        --dc-text-color: #000;
+      
+      /* すべての入力フィールドに赤枠 */
+      input,
+      textarea,
+      [data-slate-editor='true'],
+      [role='textbox'] {
+        border: 2px solid #ff0000 !important;
+        box-sizing: border-box !important;
       }
-    }
-
-    /* アニメーション無効化設定に対応 */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+      
+      /* Markdownエディタに太い赤枠 */
+      .cm-editor {
+        border: 3px solid #ff0000 !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* フォーカス時の色変更 */
+      input:focus,
+      textarea:focus,
+      [data-slate-editor='true']:focus,
+      [role='textbox']:focus,
+      .cm-editor.cm-focused {
+        border-color: #ff4444 !important;
+        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
       }
     }
   </style>
