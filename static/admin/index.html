@@ -12,120 +12,66 @@
     /*
      * =================================================================
      * Decap CMS カスタムスタイル
-     * 目的:
-     * - レスポンシブ表示の最適化
-     * - モバイルでの操作性向上
-     * - iOS特有の挙動（プルリフレッシュ、入力後ズーム）の制御
      * =================================================================
      */
 
-    /* 1. グローバル & 基本設定
-    ------------------------------------------------- */
+    /* 1. グローバル & 基本設定 */
     *, *::before, *::after {
-      box-sizing: border-box; /* レイアウト崩れを防ぐための基本設定 */
+      box-sizing: border-box;
     }
-    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden; /* 横スクロールを防止 */
+      overflow-x: hidden;
       max-width: 100vw;
     }
 
-    /* 2. 操作性・UXの改善 (全画面サイズ共通)
-    ------------------------------------------------- */
-    
-    /* ページの端でのスクロール連鎖（プルリフレッシュ等）を無効化 */
+    /* 2. 操作性・UXの改善 */
     html, body {
       overscroll-behavior-y: none !important;
     }
-
-    /* 本文エディタの行間を読みやすいように調整 */
-    [data-slate-editor="true"],
-    [role="textbox"],
-    .cm-editor {
-      line-height: 1.0;
+    [data-slate-editor="true"], [role="textbox"], .cm-editor {
+      line-height: 1.4;
     }
-
-    /* テキスト入力エリアでのピンチズームを許可 */
-    [data-slate-editor="true"],
-    [role="textbox"],
-    .cm-editor,
-    textarea,
-    input[type="text"],
-    input[type="email"],
-    input[type="url"] {
+    [data-slate-editor="true"], [role="textbox"], .cm-editor,
+    textarea, input[type="text"], input[type="email"], input[type="url"] {
       touch-action: auto;
       overscroll-behavior: auto;
     }
 
-    /* 3. モバイル表示の最適化 (〜799px)
-    ------------------------------------------------- */
+    /* 3. モバイル表示の最適化 (〜799px) */
     @media (max-width: 799px) {
-      
-      /* iOSでフォーム入力時に自動ズームされるのを防ぐため、フォントサイズを16pxに設定 */
-      [data-slate-editor="true"],
-      [role="textbox"],
-      .cm-editor,
-      input, 
-      textarea, 
-      select {
-        font-size: 16px !important;
-      }
-      
-      /* フォーム要素を親要素の幅いっぱいに広げる */
-      [data-slate-editor="true"],
-      [role="textbox"],
-      .cm-editor,
-      input, 
-      textarea, 
-      select {
+      [data-slate-editor="true"], [role="textbox"], .cm-editor,
+      input, textarea, select {
+        font-size: 16px !important; /* iOSの自動ズーム抑制 */
         width: 100%;
       }
-
-      /* ボタン類のタップ時のハイライトを無効化 */
       button, [role="button"], [class*="Button"] {
         -webkit-tap-highlight-color: transparent;
       }
-
-      /* Decap CMSのメインコンテナの余白を調整 */
-      [class*="AppMainContainer"],
-      [class*="CollectionContainer"],
-      [class*="EditorContainer"] {
+      [class*="AppMainContainer"], [class*="CollectionContainer"], [class*="EditorContainer"] {
         padding: 16px;
         width: 100%;
       }
-      
-      /* モーダルやドロップダウンのスクロールを滑らかに */
-      [class*="Modal"],
-      [class*="DropdownList"] {
+      [class*="Modal"], [class*="DropdownList"] {
         max-height: 90vh;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
     }
     
-    /* 4. タブレット表示の微調整 (800px〜1024px)
-    ------------------------------------------------- */
+    /* 4. タブレット表示の微調整 (800px〜1024px) */
     @media (min-width: 800px) and (max-width: 1024px) {
       [class*="AppMainContainer"] {
         padding: 24px;
       }
     }
     
-    /* 5. アクセシビリティ & その他
-    ------------------------------------------------- */
-    
-    /* ユーザーがOSでアニメーションを減らす設定をしている場合、アニメーションを無効化 */
+    /* 5. アクセシビリティ & その他 */
     @media (prefers-reduced-motion: reduce) {
-      * { 
-        transition: none !important; 
-        animation: none !important; 
-      }
+      * { transition: none !important; animation: none !important; }
     }
-    
-    /* デスクトップでのフォーカス状態を分かりやすく */
     @media (min-width: 800px) {
       button:focus, input:focus, textarea:focus, select:focus {
         outline: 2px solid #3b82f6;
@@ -137,10 +83,33 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- ▼ ローディング画面 ▼ -->
-  <div id="loading-indicator" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; z-index: 9999; opacity: 1; transition: opacity 0.5s ease-out;">
+  <!-- ▼ [改善] ローディング画面のデザインを変更 ▼ -->
+  <div id="loading-indicator" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3A5F45 0%, #2E4636 100%); /* 深い森をイメージした緑のグラデーション */
+    color: #F3EAD3; /* テキスト色を温かみのあるクリーム色に */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  ">
     <div style="text-align: center;">
-      <div style="width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+      <div style="
+        width: 48px;
+        height: 48px;
+        border: 3px solid rgba(243, 234, 211, 0.2); /* スピナーのベースをテキスト色に合わせて調整 */
+        border-radius: 50%;
+        border-top-color: #F3EAD3; /* スピナーの回転部分をクリーム色に */
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+      "></div>
       <h2 style="margin: 0 0 8px; font-weight: 600; font-size: 20px;">Content Manager</h2>
       <p style="margin: 0; opacity: 0.8; font-size: 14px;">読み込み中...</p>
     </div>
@@ -153,30 +122,23 @@
   <script>
     /**
      * Decap CMSの初期化とUI制御を行うスクリプト
-     * - ローディング画面の表示制御
-     * - Netlify Identity Widget のログアウト処理
      */
 
-    // ローディング画面をフェードアウトして非表示にする
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
       if (loader && loader.style.opacity !== '0') {
         loader.style.opacity = '0';
-        setTimeout(() => { loader.style.display = 'none'; }, 500); // アニメーション後に要素を削除
+        setTimeout(() => { loader.style.display = 'none'; }, 500);
       }
     }
 
-    // Netlify Identityでログアウトした際に、管理画面のトップにリダイレクトする
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
-    // ページの読み込み完了から少し遅れてローディング画面を非表示にする
     window.addEventListener('load', () => setTimeout(hideLoadingIndicator, 800));
-
-    // 万が一読み込みが終わらない場合でも、5秒後には強制的に非表示にする（フォールバック）
     setTimeout(hideLoadingIndicator, 5000);
   </script>
 </body>
