@@ -8,12 +8,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
   
   <style>
+    /* =====================
+     * 基本設定
+     * ===================== */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      background-color: #ffffff;
+      color: #1f2937;
     }
     
+    /* =====================
+     * プルリフレッシュ無効化
+     * 日記作成時の誤操作防止
+     * ===================== */
     html, body {
       touch-action: manipulation !important;
       overscroll-behavior: none !important;
@@ -30,6 +39,10 @@
       touch-action: manipulation !important;
     }
     
+    /* =====================
+     * エディタ領域設定
+     * ピンチズーム許可でテキスト編集を快適に
+     * ===================== */
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor,
@@ -40,7 +53,12 @@
       touch-action: pinch-zoom !important;
     }
     
+    /* =====================
+     * モバイル最適化
+     * スマートフォン向けUIの改善
+     * ===================== */
     @media (max-width: 799px) {
+      /* タッチターゲットサイズの最適化 */
       button,
       [role="button"],
       input[type="submit"],
@@ -50,6 +68,7 @@
         padding: 8px 16px !important;
       }
       
+      /* フォーム要素の統一スタイル - ライトモード専用 */
       input,
       textarea,
       [data-slate-editor="true"],
@@ -59,11 +78,13 @@
         padding: 12px !important;
         border-radius: 8px !important;
         border: 1px solid #d1d5db !important;
-        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
         transition: all 0.2s ease !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
       }
       
+      /* フォーカス時のスタイル */
       input:focus,
       textarea:focus,
       [data-slate-editor="true"]:focus,
@@ -71,42 +92,52 @@
         border-color: #6366f1 !important;
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
         outline: none !important;
-        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
       }
       
+      /* CodeMirrorエディタの専用スタイル */
       .cm-editor {
         font-size: 16px !important;
         line-height: 1.6 !important;
         border-radius: 8px !important;
         border: 1px solid #d1d5db !important;
-        background: #f9fafb !important;
+        background-color: #f9fafb !important;
+        color: #1f2937 !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
       }
       
       .cm-editor.cm-focused {
         border-color: #6366f1 !important;
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
       }
       
+      /* スムーススクロール */
       * {
         -webkit-overflow-scrolling: touch !important;
       }
       
+      /* ドロップダウンとメニューの改善 */
       [class*="dropdown"],
       [class*="menu"] {
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
         border-radius: 12px !important;
         border: none !important;
+        background-color: #ffffff !important;
       }
       
+      /* モーダルとダイアログの改善 */
       [class*="modal"],
       [class*="dialog"] {
         border-radius: 16px !important;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
         margin: 16px !important;
+        background-color: #ffffff !important;
       }
       
+      /* リスト項目のスタイリング */
       [class*="list"] li,
       [class*="item"] {
         padding: 16px !important;
@@ -114,6 +145,7 @@
         margin-bottom: 4px !important;
       }
       
+      /* 公開・保存ボタンの強調 */
       [class*="publish"],
       [class*="save"] {
         background: linear-gradient(135deg, #28a745, #20c997) !important;
@@ -131,29 +163,10 @@
       }
     }
     
-    @media (prefers-color-scheme: dark) and (max-width: 799px) {
-      input,
-      textarea,
-      [data-slate-editor="true"],
-      [role="textbox"],
-      .cm-editor {
-        background: #374151 !important;
-        color: #f3f4f6 !important;
-        border-color: #6b7280 !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
-      }
-      
-      input:focus,
-      textarea:focus,
-      [data-slate-editor="true"]:focus,
-      [role="textbox"]:focus,
-      .cm-editor.cm-focused {
-        background: #1f2937 !important;
-        border-color: #8b5cf6 !important;
-        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2) !important;
-      }
-    }
-    
+    /* =====================
+     * アクセシビリティ配慮
+     * アニメーション削減設定
+     * ===================== */
     @media (prefers-reduced-motion: reduce) {
       * {
         transition: none !important;
@@ -165,6 +178,9 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <!-- =====================
+   * ローディング画面
+   * ===================== -->
   <div id="loading-indicator" style="
     position: fixed;
     top: 0;
@@ -205,6 +221,9 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
+    /* =====================
+     * ユーティリティ関数
+     * ===================== */
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
       if (loader) {
@@ -215,23 +234,33 @@
       }
     }
 
+    /* =====================
+     * 初期化処理
+     * ===================== */
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
+    /* =====================
+     * イベントリスナー登録
+     * ===================== */
+    // ローディング画面の制御
     window.addEventListener('load', () => {
       setTimeout(() => {
         hideLoadingIndicator();
       }, 800);
     });
 
+    // フォールバック：5秒後に強制非表示
     setTimeout(() => {
       hideLoadingIndicator();
     }, 5000);
 
+    // メイン処理：iOS対応とプルリフレッシュ制御
     document.addEventListener('DOMContentLoaded', () => {
+      // iOS Safari のビューポート設定
       if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
         const viewport = document.querySelector('meta[name=viewport]');
         if (viewport) {
@@ -239,31 +268,32 @@
         }
       }
       
+      // プルリフレッシュ制御用の変数
       let touchStartY = 0;
       let isScrolling = false;
       
+      // タッチ開始の検出
       document.addEventListener('touchstart', (e) => {
-        const target = e.target;
-        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
-                          target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
-        
         if (e.touches.length === 1) {
           touchStartY = e.touches[0].clientY;
           isScrolling = false;
         }
       }, { passive: true });
       
+      // タッチ移動時のプルリフレッシュ防止
       document.addEventListener('touchmove', (e) => {
         if (e.touches.length === 1) {
           const touch = e.touches[0];
           const currentY = touch.clientY;
           const deltaY = currentY - touchStartY;
           
+          // 下向きのスワイプで画面上端付近の場合、プルリフレッシュを防止
           if (deltaY > 0 && window.scrollY <= 10) {
             e.preventDefault();
             return false;
           }
           
+          // 画面最上部での下向きスワイプを防止
           if (window.scrollY === 0 && deltaY > 0) {
             e.preventDefault();
             return false;
@@ -273,6 +303,7 @@
         }
       }, { passive: false });
       
+      // タッチ終了時のクリーンアップ
       document.addEventListener('touchend', (e) => {
         setTimeout(() => {
           touchStartY = 0;
