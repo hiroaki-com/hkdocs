@@ -52,16 +52,28 @@
       touch-action: pinch-zoom !important; /* エディタ内でズーム有効 */
     }
 
-    /* デフォルト枠線の復元 - ブラウザ標準に準拠 */
+    /* デフォルト枠線の復元 - 自然で美しいスタイル */
     input,
     textarea,
     select,
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor {
-      border: initial;
-      outline: initial;
-      box-shadow: initial;
+      /* ブラウザデフォルトに近い自然なスタイル */
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #333;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus,
+    [data-slate-editor="true"]:focus,
+    [role="textbox"]:focus,
+    .cm-editor.cm-focused {
+      outline: 2px solid #007acc;
+      outline-offset: 1px;
+      border-color: #007acc;
     }
     
     /* モバイル時の快適な操作性向上 */
@@ -76,7 +88,7 @@
         padding: 8px 16px !important;
       }
       
-      /* 入力フィールドのデフォルト設定 */
+      /* 入力フィールドの自然なスタイル */
       input,
       textarea,
       select,
@@ -84,18 +96,38 @@
       [role="textbox"] {
         font-size: 16px !important; /* iOS Safariのズーム防止 */
         line-height: 1.5 !important;
-        padding: 12px !important;
-        border-radius: 8px !important;
-        background: #ffffff !important;
-        transition: all 0.2s ease !important;
+        padding: 8px 12px !important;
+        border-radius: 4px !important;
+        border: 1px solid #ccc !important;
+        background-color: #fff !important;
+        color: #333 !important;
+        transition: border-color 0.2s ease !important;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus,
+      [data-slate-editor="true"]:focus,
+      [role="textbox"]:focus {
+        border-color: #007acc !important;
+        outline: 2px solid rgba(0, 122, 204, 0.2) !important;
+        outline-offset: 1px !important;
       }
       
-      /* Markdownエディタのデフォルト設定 */
+      /* Markdownエディタの自然なスタイル */
       .cm-editor {
         font-size: 16px !important;
         line-height: 1.6 !important;
-        border-radius: 8px !important;
-        background: #f9fafb !important;
+        border-radius: 4px !important;
+        border: 1px solid #ccc !important;
+        background-color: #fff !important;
+        color: #333 !important;
+      }
+
+      .cm-editor.cm-focused {
+        border-color: #007acc !important;
+        outline: 2px solid rgba(0, 122, 204, 0.2) !important;
+        outline-offset: 1px !important;
       }
       
       /* スクロール体験の改善 */
@@ -145,7 +177,7 @@
       }
     }
     
-    /* ダークデバイス対応（システム設定に応じて） */
+    /* ダークモード対応 - 自然なスタイル */
     @media (prefers-color-scheme: dark) and (max-width: 799px) {
       input,
       textarea,
@@ -153,8 +185,19 @@
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
-        background: #374151 !important;
-        color: #f3f4f6 !important;
+        background-color: #2d2d2d !important;
+        color: #fff !important;
+        border-color: #555 !important;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus,
+      [data-slate-editor="true"]:focus,
+      [role="textbox"]:focus,
+      .cm-editor.cm-focused {
+        border-color: #4da6ff !important;
+        outline: 2px solid rgba(77, 166, 255, 0.3) !important;
       }
     }
     
