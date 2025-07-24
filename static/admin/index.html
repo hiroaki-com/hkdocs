@@ -5,33 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
   <title>Content Manager</title>
   
-  <!-- Community-proven mobile responsive CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
   
-  <!-- Enhanced UX improvements -->
   <style>
-    /* 
-     * シンプル&効果的なUX強化
-     * 実証済みコミュニティソリューション + カスタム改善
-     * Based on: https://github.com/hithismani/responsive-decap
-     */
-    
-    /* 全体的なフォント改善 */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     
-    /* ピンチズーム対応 + プルリフレッシュ完全防止 */
     html, body {
-      touch-action: manipulation !important; /* スワイプリロード無効化 */
-      overscroll-behavior: none !important; /* 全方向のオーバースクロール無効 */
-      overscroll-behavior-y: none !important; /* 縦スクロール境界制御強化 */
+      touch-action: manipulation !important;
+      overscroll-behavior: none !important;
+      overscroll-behavior-y: none !important;
       -webkit-overflow-scrolling: touch !important;
     }
     
-    /* CMS全體でのプルリフレッシュ無効化 */
     [class*="App"],
     [class*="Editor"],
     [class*="ControlPane"],
@@ -41,7 +30,6 @@
       touch-action: manipulation !important;
     }
     
-    /* エディタエリアでピンチズームを許可 */
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor,
@@ -49,12 +37,10 @@
     input[type="text"],
     input[type="email"],
     input[type="url"] {
-      touch-action: pinch-zoom !important; /* エディタ内でズーム有効 */
+      touch-action: pinch-zoom !important;
     }
     
-    /* モバイル時の快適な操作性向上 */
     @media (max-width: 799px) {
-      /* タッチターゲットサイズの最適化 */
       button,
       [role="button"],
       input[type="submit"],
@@ -64,12 +50,11 @@
         padding: 8px 16px !important;
       }
       
-      /* 入力フィールドの使いやすさ向上 */
       input,
       textarea,
       [data-slate-editor="true"],
       [role="textbox"] {
-        font-size: 16px !important; /* iOS Safariのズーム防止 */
+        font-size: 16px !important;
         line-height: 1.5 !important;
         padding: 12px !important;
         border-radius: 8px !important;
@@ -79,7 +64,6 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
       }
       
-      /* フォーカス時の視覚的フィードバック */
       input:focus,
       textarea:focus,
       [data-slate-editor="true"]:focus,
@@ -90,7 +74,6 @@
         background: #ffffff !important;
       }
       
-      /* Markdownエディタの快適性向上 */
       .cm-editor {
         font-size: 16px !important;
         line-height: 1.6 !important;
@@ -106,12 +89,10 @@
         background: #ffffff !important;
       }
       
-      /* スクロール体験の改善 */
       * {
         -webkit-overflow-scrolling: touch !important;
       }
       
-      /* ドロップダウンメニューの改善 */
       [class*="dropdown"],
       [class*="menu"] {
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
@@ -119,7 +100,6 @@
         border: none !important;
       }
       
-      /* モーダルダイアログの改善 */
       [class*="modal"],
       [class*="dialog"] {
         border-radius: 16px !important;
@@ -127,7 +107,6 @@
         margin: 16px !important;
       }
       
-      /* リストアイテムのタッチ感向上 */
       [class*="list"] li,
       [class*="item"] {
         padding: 16px !important;
@@ -135,7 +114,6 @@
         margin-bottom: 4px !important;
       }
       
-      /* 保存ボタンなど重要なアクションの強調 */
       [class*="publish"],
       [class*="save"] {
         background: linear-gradient(135deg, #28a745, #20c997) !important;
@@ -153,7 +131,6 @@
       }
     }
     
-    /* ダークデバイス対応（システム設定に応じて） */
     @media (prefers-color-scheme: dark) and (max-width: 799px) {
       input,
       textarea,
@@ -177,7 +154,6 @@
       }
     }
     
-    /* アクセシビリティ改善 */
     @media (prefers-reduced-motion: reduce) {
       * {
         transition: none !important;
@@ -186,11 +162,9 @@
     }
   </style>
 
-  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Improved loading indicator -->
   <div id="loading-indicator" style="
     position: fixed;
     top: 0;
@@ -228,12 +202,9 @@
     }
   </style>
 
-  <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-    // Enhanced initialization script with pinch-zoom support
-    <script>
-    // スムーズなローディング体験
+  <script>
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
       if (loader) {
@@ -244,29 +215,23 @@
       }
     }
 
-    // Netlify Identity処理
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
-    // CMS読み込み完了の検出
     window.addEventListener('load', () => {
-      // CMS UIが完全に構築されるまで少し待つ
       setTimeout(() => {
         hideLoadingIndicator();
       }, 800);
     });
 
-    // エラー時のフォールバック
     setTimeout(() => {
       hideLoadingIndicator();
     }, 5000);
 
-    // モバイルでの操作性向上 + ピンチズーム対応
     document.addEventListener('DOMContentLoaded', () => {
-      // iOS Safariでのビューポート問題対策（ピンチズーム許可版）
       if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
         const viewport = document.querySelector('meta[name=viewport]');
         if (viewport) {
@@ -274,14 +239,13 @@
         }
       }
       
-      // プルリフレッシュの完全無効化（改良版）
       let touchStartY = 0;
       let isScrolling = false;
       
       document.addEventListener('touchstart', (e) => {
         const target = e.target;
-        isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
-                    target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
+        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
+                          target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
         
         if (e.touches.length === 1) {
           touchStartY = e.touches[0].clientY;
@@ -295,13 +259,11 @@
           const currentY = touch.clientY;
           const deltaY = currentY - touchStartY;
           
-          // 下方向のスワイプでリロードを防止（特に画面上部での操作）
           if (deltaY > 0 && window.scrollY <= 10) {
             e.preventDefault();
             return false;
           }
           
-          // 上部でのプルダウン動作を完全に無効化
           if (window.scrollY === 0 && deltaY > 0) {
             e.preventDefault();
             return false;
@@ -311,9 +273,7 @@
         }
       }, { passive: false });
       
-      // タッチ終了時の処理
       document.addEventListener('touchend', (e) => {
-        // プルリフレッシュジェスチャーの無効化
         setTimeout(() => {
           touchStartY = 0;
           isScrolling = false;
