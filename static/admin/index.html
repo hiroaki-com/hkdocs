@@ -8,45 +8,146 @@
   <!-- Community-proven mobile responsive CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
   
-  <!-- Additional custom mobile enhancements -->
+  <!-- Enhanced UX improvements -->
   <style>
     /* 
-     * 実証済みコミュニティソリューション + カスタム強化
+     * シンプル&効果的なUX強化
+     * 実証済みコミュニティソリューション + カスタム改善
      * Based on: https://github.com/hithismani/responsive-decap
      */
     
-    /* 確認用: モバイル時の赤枠表示 */
+    /* 全体的なフォント改善 */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* モバイル時の快適な操作性向上 */
     @media (max-width: 799px) {
-      /* 全体のエディタコンテナに赤枠 */
-      [class*='Editor'],
-      [class*='ControlPaneContainer'] {
-        border: 2px solid #ff0000 !important;
-        box-sizing: border-box !important;
+      /* タッチターゲットサイズの最適化 */
+      button,
+      [role="button"],
+      input[type="submit"],
+      input[type="button"] {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        padding: 8px 16px !important;
       }
       
-      /* すべての入力フィールドに赤枠 */
+      /* 入力フィールドの使いやすさ向上 */
       input,
       textarea,
-      [data-slate-editor='true'],
-      [role='textbox'] {
-        border: 2px solid #ff0000 !important;
-        box-sizing: border-box !important;
+      [data-slate-editor="true"],
+      [role="textbox"] {
+        font-size: 16px !important; /* iOS Safariのズーム防止 */
+        line-height: 1.5 !important;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        border: 1px solid #e1e5e9 !important;
+        transition: all 0.2s ease !important;
       }
       
-      /* Markdownエディタに太い赤枠 */
-      .cm-editor {
-        border: 3px solid #ff0000 !important;
-        box-sizing: border-box !important;
-      }
-      
-      /* フォーカス時の色変更 */
+      /* フォーカス時の視覚的フィードバック */
       input:focus,
       textarea:focus,
-      [data-slate-editor='true']:focus,
-      [role='textbox']:focus,
+      [data-slate-editor="true"]:focus,
+      [role="textbox"]:focus {
+        border-color: #3291ff !important;
+        box-shadow: 0 0 0 3px rgba(50, 145, 255, 0.1) !important;
+        outline: none !important;
+      }
+      
+      /* Markdownエディタの快適性向上 */
+      .cm-editor {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        border-radius: 8px !important;
+        border: 1px solid #e1e5e9 !important;
+        background: #fafbfc !important;
+      }
+      
       .cm-editor.cm-focused {
-        border-color: #ff4444 !important;
-        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
+        border-color: #3291ff !important;
+        box-shadow: 0 0 0 3px rgba(50, 145, 255, 0.1) !important;
+        background: #ffffff !important;
+      }
+      
+      /* スクロール体験の改善 */
+      * {
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      /* ドロップダウンメニューの改善 */
+      [class*="dropdown"],
+      [class*="menu"] {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+        border-radius: 12px !important;
+        border: none !important;
+      }
+      
+      /* モーダルダイアログの改善 */
+      [class*="modal"],
+      [class*="dialog"] {
+        border-radius: 16px !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+        margin: 16px !important;
+      }
+      
+      /* リストアイテムのタッチ感向上 */
+      [class*="list"] li,
+      [class*="item"] {
+        padding: 16px !important;
+        border-radius: 8px !important;
+        margin-bottom: 4px !important;
+      }
+      
+      /* 保存ボタンなど重要なアクションの強調 */
+      [class*="publish"],
+      [class*="save"] {
+        background: linear-gradient(135deg, #28a745, #20c997) !important;
+        color: white !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+        border: none !important;
+      }
+      
+      [class*="publish"]:hover,
+      [class*="save"]:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4) !important;
+      }
+    }
+    
+    /* ダークデバイス対応（システム設定に応じて） */
+    @media (prefers-color-scheme: dark) and (max-width: 799px) {
+      input,
+      textarea,
+      [data-slate-editor="true"],
+      [role="textbox"],
+      .cm-editor {
+        background: #2d3748 !important;
+        color: #e2e8f0 !important;
+        border-color: #4a5568 !important;
+      }
+      
+      input:focus,
+      textarea:focus,
+      [data-slate-editor="true"]:focus,
+      [role="textbox"]:focus,
+      .cm-editor.cm-focused {
+        background: #1a202c !important;
+        border-color: #63b3ed !important;
+        box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.1) !important;
+      }
+    }
+    
+    /* アクセシビリティ改善 */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
       }
     }
   </style>
@@ -55,14 +156,14 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Loading indicator -->
+  <!-- Improved loading indicator -->
   <div id="loading-indicator" style="
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #2e8555, #246943);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     display: flex;
     align-items: center;
@@ -74,15 +175,16 @@
   ">
     <div style="text-align: center;">
       <div style="
-        width: 40px;
-        height: 40px;
-        border: 3px solid rgba(255,255,255,0.3);
+        width: 48px;
+        height: 48px;
+        border: 3px solid rgba(255,255,255,0.2);
         border-radius: 50%;
         border-top-color: white;
         animation: spin 1s linear infinite;
-        margin: 0 auto 16px;
+        margin: 0 auto 20px;
       "></div>
-      <p>Content Manager を読み込み中...</p>
+      <h2 style="margin: 0 0 8px; font-weight: 600; font-size: 20px;">Content Manager</h2>
+      <p style="margin: 0; opacity: 0.8; font-size: 14px;">読み込み中...</p>
     </div>
   </div>
 
@@ -95,9 +197,9 @@
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-  <!-- Simplified initialization script (元のコードベース) -->
+  <!-- Enhanced initialization script -->
   <script>
-    // ローディングインジケーターを非表示にする
+    // スムーズなローディング体験
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
       if (loader) {
@@ -108,22 +210,36 @@
       }
     }
 
-    // 元のコードと同じシンプルなNetlify Identity処理
+    // Netlify Identity処理
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
-    // CMSの読み込み完了を検出
+    // CMS読み込み完了の検出
     window.addEventListener('load', () => {
-      hideLoadingIndicator();
+      // CMS UIが完全に構築されるまで少し待つ
+      setTimeout(() => {
+        hideLoadingIndicator();
+      }, 800);
     });
 
     // エラー時のフォールバック
     setTimeout(() => {
       hideLoadingIndicator();
-    }, 3000);
+    }, 5000);
+
+    // モバイルでの操作性向上
+    document.addEventListener('DOMContentLoaded', () => {
+      // iOS Safariでのビューポート問題対策
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        const viewport = document.querySelector('meta[name=viewport]');
+        if (viewport) {
+          viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        }
+      }
+    });
   </script>
 </body>
 </html>
