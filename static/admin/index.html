@@ -306,7 +306,7 @@
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-  <!-- Enhanced initialization script -->
+  <!-- Simplified initialization script (元のコードベース) -->
   <script>
     // ローディングインジケーターを非表示にする
     function hideLoadingIndicator() {
@@ -319,72 +319,22 @@
       }
     }
 
-    // Netlify Identity の設定
+    // 元のコードと同じシンプルなNetlify Identity処理
     if (window.netlifyIdentity) {
-      // ログイン状態の管理
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        } else {
-          hideLoadingIndicator();
-        }
-      });
-
-      // ログアウト処理
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
-
-      // エラーハンドリング
-      window.netlifyIdentity.on("error", err => {
-        console.error("Netlify Identity Error:", err);
-        hideLoadingIndicator();
-      });
-
-      // 初期化
-      window.netlifyIdentity.init();
     }
 
-    // Decap CMS の初期化完了を待つ
+    // CMSの読み込み完了を検出
     window.addEventListener('load', () => {
-      // CMS が読み込まれるまで少し待つ
-      setTimeout(() => {
-        hideLoadingIndicator();
-      }, 1000);
-    });
-
-    // エラー時のフォールバック
-    window.addEventListener('error', (e) => {
-      console.error('Application Error:', e);
       hideLoadingIndicator();
     });
 
-    // モバイルデバイスでの表示最適化
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // ビューポートの調整
-      const viewport = document.querySelector('meta[name=viewport]');
-      if (viewport) {
-        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-      }
-    }
-
-    // ダークモード検出とクラス追加
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark-mode');
-    }
-
-    // システム設定の変更を監視
-    if (window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
-        if (e.matches) {
-          document.documentElement.classList.add('dark-mode');
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-        }
-      });
-    }
+    // エラー時のフォールバック
+    setTimeout(() => {
+      hideLoadingIndicator();
+    }, 3000);
   </script>
 </body>
 </html>
