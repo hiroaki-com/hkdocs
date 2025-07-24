@@ -53,42 +53,256 @@
     }
     
     /* =====================
-     * CDNデフォルト活用 - 最小限の補完調整のみ
+     * 2024年ベストプラクティス準拠のモバイル最適化
+     * 参考: NN/g、WCAG、Material Design Guidelines
      * ===================== */
     @media (max-width: 799px) {
-      /* CDNで対応されていない日本語フォント最適化 */
+      /* 基本フォント - Mobile-first approach */
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif !important;
-      }
-      
-      /* エディタ内のテキスト領域のみ読みやすく調整 */
-      [data-slate-editor="true"],
-      [role="textbox"],
-      .cm-editor,
-      textarea {
         font-size: 16px !important;
         line-height: 1.5 !important;
         -webkit-text-size-adjust: 100% !important;
       }
       
-      /* Decap CMSロゴの表示調整（ログイン画面） */
+      /* タッチターゲット最適化 - 最小44x44px（WCAG準拠） */
+      button,
+      [role="button"],
+      input[type="submit"],
+      input[type="button"],
+      [class*="Button"] {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        padding: 12px 16px !important;
+        margin: 4px !important;
+        border-radius: 8px !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        touch-action: manipulation !important;
+        cursor: pointer !important;
+      }
+      
+      /* 重要なアクションボタン - より大きなタッチターゲット */
+      [class*="CollectionTopNewButton"],
+      [class*="PublishedToolbarButton"] {
+        min-height: 48px !important;
+        padding: 14px 20px !important;
+        font-size: 17px !important;
+        font-weight: 600 !important;
+        margin: 8px 0 !important;
+      }
+      
+      /* ヘッダーボタン - 8px間隔確保 */
+      [class*="AppHeaderButton"] {
+        min-height: 44px !important;
+        padding: 10px 14px !important;
+        margin: 0 4px !important;
+        font-size: 15px !important;
+      }
+      
+      /* ナビゲーションリンク - タップしやすいサイズ */
+      [class*="SidebarNavLink"] {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        margin: 2px 4px !important;
+        border-radius: 8px !important;
+        font-size: 16px !important;
+        white-space: nowrap !important;
+      }
+      
+      /* フォーム要素 - 適切なタッチターゲット */
+      input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+      select,
+      textarea {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        margin: 4px 0 !important;
+        -webkit-appearance: none !important;
+        touch-action: manipulation !important;
+      }
+      
+      /* 検索入力 - フルード幅と適切な高さ */
+      [class*="SearchInput"] {
+        width: 100% !important;
+        min-height: 48px !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        border-radius: 12px !important;
+        margin: 8px 0 !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* エディタテキスト領域 - 読みやすさ重視 */
+      [data-slate-editor="true"],
+      [role="textbox"],
+      .cm-editor {
+        font-size: 17px !important;
+        line-height: 1.6 !important;
+        padding: 16px !important;
+        border-radius: 12px !important;
+        min-height: 120px !important;
+      }
+      
+      /* リストカード - タップしやすい領域 */
+      [class*="ListCard"] {
+        min-height: 60px !important;
+        padding: 16px !important;
+        margin: 8px 0 !important;
+        border-radius: 12px !important;
+        touch-action: manipulation !important;
+      }
+      
+      [class*="ListCardTitle"] {
+        font-size: 17px !important;
+        font-weight: 600 !important;
+        line-height: 1.4 !important;
+        margin-bottom: 4px !important;
+      }
+      
+      [class*="ListCardMeta"] {
+        font-size: 14px !important;
+        opacity: 0.7 !important;
+      }
+      
+      /* ツールバーボタン - 適切な間隔 */
+      [class*="ToolbarButton"] {
+        min-height: 40px !important;
+        min-width: 40px !important;
+        padding: 8px 12px !important;
+        margin: 2px !important;
+        border-radius: 6px !important;
+        font-size: 14px !important;
+      }
+      
+      /* ツールバーコンテナ - フレックスレイアウト */
+      [class*="ToolbarContainer"] {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding: 12px !important;
+        align-items: center !important;
+      }
+      
+      /* モーダル - 適切なサイズと余白 */
+      [class*="StyledModal"] {
+        width: 92vw !important;
+        max-width: 92vw !important;
+        max-height: 85vh !important;
+        margin: 24px auto !important;
+        padding: 20px !important;
+        border-radius: 16px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      /* ドロップダウン - 底部固定で操作しやすく */
+      [class*="DropdownList"] {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 16px !important;
+        right: 16px !important;
+        width: auto !important;
+        max-height: 60vh !important;
+        border-radius: 16px !important;
+        overflow-y: auto !important;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.2) !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      [class*="DropdownList"] > * {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+      }
+      
+      /* アイコン - 適切なサイズ */
+      svg:not([class*="DecapLogoIcon"] svg) {
+        width: 20px !important;
+        height: 20px !important;
+        flex-shrink: 0 !important;
+      }
+      
+      /* ロゴは維持 */
       [class*="DecapLogoIcon"] svg {
         width: 100% !important;
         height: auto !important;
         max-width: 280px !important;
       }
       
-      /* iOS Safari での表示問題の修正 */
-      input,
-      textarea,
-      select {
-        -webkit-appearance: none !important;
-        border-radius: 4px !important;
+      /* コンテナ - レスポンシブフレームワーク */
+      [class*="AppMainContainer"],
+      [class*="CollectionContainer"],
+      [class*="EditorContainer"],
+      [class*="ControlPaneContainer"] {
+        padding: 16px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
       }
       
-      /* スムーススクロールの確実な適用 */
+      /* ナビゲーション - 横スクロール最適化 */
+      [class*="SidebarContainer"] {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e1e5e9 !important;
+        padding: 8px 0 !important;
+      }
+      
+      [class*="SidebarNav"] {
+        display: flex !important;
+        overflow-x: auto !important;
+        padding: 8px 16px !important;
+        gap: 8px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+      
+      [class*="SidebarNav"]::-webkit-scrollbar {
+        display: none !important;
+      }
+      
+      /* ヘッダー - フレックスレイアウト最適化 */
+      [class*="AppHeaderContent"] {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 8px !important;
+        padding: 12px 16px !important;
+      }
+      
+      /* パフォーマンス最適化 */
       * {
         -webkit-overflow-scrolling: touch !important;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+      
+      /* 横スクロール防止 */
+      body, html, #nc-root {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+      }
+      
+      /* テキスト選択の改善 */
+      [class*="ListCard"],
+      [class*="Button"] {
+        -webkit-user-select: none !important;
+        user-select: none !important;
+      }
+      
+      [data-slate-editor="true"],
+      [role="textbox"],
+      .cm-editor,
+      textarea,
+      input {
+        -webkit-user-select: text !important;
+        user-select: text !important;
       }
     }
     
@@ -100,6 +314,16 @@
       * {
         transition: none !important;
         animation: none !important;
+      }
+    }
+    
+    /* =====================
+     * ダークモード対応（システム設定に基づく）
+     * ===================== */
+    @media (prefers-color-scheme: dark) and (max-width: 799px) {
+      body {
+        background-color: #1a1a1a !important;
+        color: #ffffff !important;
       }
     }
   </style>
