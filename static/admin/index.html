@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
   <title>Content Manager</title>
   
   <!-- Community-proven mobile responsive CSS -->
@@ -21,6 +21,24 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* ピンチズーム対応 + プルリフレッシュ防止 */
+    html, body {
+      touch-action: manipulation !important; /* スワイプリロード無効化 */
+      overscroll-behavior-y: contain !important; /* 縦スクロール境界制御 */
+      -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* エディタエリアでピンチズームを許可 */
+    [data-slate-editor="true"],
+    [role="textbox"],
+    .cm-editor,
+    textarea,
+    input[type="text"],
+    input[type="email"],
+    input[type="url"] {
+      touch-action: pinch-zoom !important; /* エディタ内でズーム有効 */
     }
     
     /* モバイル時の快適な操作性向上 */
@@ -197,8 +215,8 @@
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-  <!-- Enhanced initialization script -->
-  <script>
+    // Enhanced initialization script with pinch-zoom support
+    <script>
     // スムーズなローディング体験
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
@@ -230,15 +248,43 @@
       hideLoadingIndicator();
     }, 5000);
 
-    // モバイルでの操作性向上
+    // モバイルでの操作性向上 + ピンチズーム対応
     document.addEventListener('DOMContentLoaded', () => {
-      // iOS Safariでのビューポート問題対策
+      // iOS Safariでのビューポート問題対策（ピンチズーム許可版）
       if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
         const viewport = document.querySelector('meta[name=viewport]');
         if (viewport) {
-          viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+          viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
         }
       }
+      
+      // プルリフレッシュの確実な無効化（エディタ外のみ）
+      let isInEditor = false;
+      
+      document.addEventListener('touchstart', (e) => {
+        const target = e.target;
+        isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
+                    target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
+      }, { passive: true });
+      
+      document.addEventListener('touchmove', (e) => {
+        // エディタ外でのスワイプリフレッシュを防止
+        if (!isInEditor && e.touches.length === 1) {
+          const touch = e.touches[0];
+          const startY = touch.clientY;
+          
+          if (startY < 100 && window.scrollY === 0) {
+            e.preventDefault();
+          }
+        }
+      }, { passive: false });
+      
+      // ダブルタップズームの制御（エディタ内では許可）
+      document.addEventListener('touchend', (e) => {
+        if (!isInEditor && e.touches.length === 0) {
+          e.preventDefault();
+        }
+      }, { passive: false });
     });
   </script>
 </body>
