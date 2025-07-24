@@ -1,10 +1,9 @@
-/* static/admin/custom.css (安全版) */
+/* static/admin/custom.css (改善版) */
 
 /*
- * Decap CMS Custom Stylesheet - v2 (Scoped)
+ * Decap CMS Custom Stylesheet - v3 (Mobile Enhanced)
  * -----------------------------
- * Concept: Simple, Modern, and Responsive.
- * Scoped to [data-decap-cms-app] to avoid conflicts with Netlify Identity Widget.
+ * Concept: Simple, Modern, and Mobile-First Responsive.
  */
 
 /* --- 1. 基本設定と変数定義 --- */
@@ -17,34 +16,25 @@
   --dc-spacing-unit: 8px;
   --dc-border-radius: 6px;
   --dc-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --dc-mobile-font-size: 16px; /* モバイルでの基本フォントサイズ */
 }
 
-/* CMSアプリのフォントを設定 */
+/* --- 2. 基本スタイル (PC/モバイル共通) --- */
 [data-decap-cms-app] {
   font-family: var(--dc-font-family);
+  color: var(--dc-text-color);
 }
 
-/* --- 2. 主要コンポーネントのスタイル調整 (セレクタを限定) --- */
-
-/* ヘッダー */
-[data-decap-cms-app] [class*='AppHeader-header'] {
+[data-decap-cms-app] [class*='AppHeader-header'],
+[data-decap-cms-app] [class*='CollectionControls-root'] {
   background-color: var(--dc-white);
-  border-bottom: 1px solid var(--dc-border-color);
+  border-color: var(--dc-border-color);
 }
 
-/* メインコンテナ */
 [data-decap-cms-app] [class*='CollectionContainer-root'] {
   background-color: var(--dc-secondary-bg);
 }
 
-/* 左カラム: コレクションリスト */
-[data-decap-cms-app] [class*='CollectionControls-root'] {
-  background-color: var(--dc-white);
-  border-right: 1px solid var(--dc-border-color);
-  padding: var(--dc-spacing-unit);
-}
-
-/* エントリーリストのカード */
 [data-decap-cms-app] [class*='EntryListing-card'] {
   border-radius: var(--dc-border-radius);
   border: 1px solid var(--dc-border-color);
@@ -56,17 +46,68 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* --- 3. レスポンシブ対応 (モバイルファースト) --- */
 
-@media (max-width: 768px) {
-  [data-decap-cms-app] [class*='Editor-root'] {
-    padding: var(--dc-spacing-unit);
-  }
-}
-
+/* --- 3. PC表示のスタイル (769px以上) --- */
 @media (min-width: 769px) {
+  /* PCではエディタとプレビューの間に区切り線を入れる */
   [data-decap-cms-app] [class*='Editor-previewPane'] {
     border-left: 1px dashed var(--dc-border-color);
     padding-left: calc(var(--dc-spacing-unit) * 3) !important;
+  }
+}
+
+
+/* --- 4. モバイル表示のスタイル (768px以下) --- */
+@media (max-width: 768px) {
+  /* 
+    【最重要】エディタ全体の左右の余白を最適化し、画面を広く使う 
+  */
+  [data-decap-cms-app] [class*='Editor-root'] {
+    padding: var(--dc-spacing-unit);
+  }
+
+  /* 
+    入力ウィジェット（タイトル、タグなど）全体の余白を調整 
+  */
+  [data-decap-cms-app] [class*='Widget-root'] {
+    padding: calc(var(--dc-spacing-unit) * 1.5) 0;
+  }
+
+  /* 
+    テキスト入力フィールド（タイトルなど）を画面幅いっぱいに広げ、操作しやすくする
+  */
+  [data-decap-cms-app] input[type='text'],
+  [data-decap-cms-app] textarea {
+    width: 100%;
+    padding: calc(var(--dc-spacing-unit) * 1.5);
+    font-size: var(--dc-mobile-font-size); /* フォントサイズを少し大きく */
+    box-sizing: border-box; /* paddingを含めてwidth:100%にするおまじない */
+  }
+
+  /*
+    Markdownエディタ本体（CodeMirror）のスタイル調整
+  */
+  [data-decap-cms-app] .cm-editor {
+    border: 2px solid #bde4ca; /* 優しい緑色の枠線 */
+    border-radius: var(--dc-border-radius);
+    padding: var(--dc-spacing-unit);
+    font-size: var(--dc-mobile-font-size); /* フォントサイズを調整 */
+  }
+
+  /*
+    エディタ上部のツールバーの背景色を変え、モバイル表示であることを明確化
+  */
+  [data-decap-cms-app] [class*='EditorToolbar-root'] {
+    background-color: #f0f8ff; /* AliceBlue */
+    border-bottom: 1px solid var(--dc-border-color);
+  }
+
+  /*
+    プレビューの見出しの上下余白を調整し、窮屈さを軽減
+  */
+  [data-decap-cms-app] [class*='MarkdownControl-preview'] h1,
+  [data-decap-cms-app] [class*='MarkdownControl-preview'] h2 {
+    margin-top: 24px;
+    margin-bottom: 12px;
   }
 }
