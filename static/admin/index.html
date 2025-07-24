@@ -24,46 +24,54 @@
     }
     
     /* =====================
-     * プルリフレッシュ無効化
+     * プルリフレッシュ無効化 (CSSのみで実現)
      * ===================== */
     html, body {
       overscroll-behavior-y: none !important;
     }
     
     /* =====================
-     * エディタ領域設定
+     * フォーム & エディタ領域設定
      * ===================== */
+    
+    /* [改善] 本文エディタの行間を全画面サイズで調整 */
+    [data-slate-editor="true"],
+    [role="textbox"],
+    .cm-editor {
+      line-height: 1.4; /* 広すぎた行間を狭く調整 (1.5 -> 1.4) */
+    }
+
+    /* エディタ領域のピンチズームを許可 */
     [data-slate-editor="true"],
     [role="textbox"],
     .cm-editor,
     textarea,
     input[type="text"],
     input[type="email"],
-    input[type="url"] {
+-   input[type="url"] {
       touch-action: auto;
       overscroll-behavior: auto;
     }
     
     /* =====================
-     * モバイル最適化（iPhone SE基準）
+     * モバイル最適化
      * ===================== */
     @media (max-width: 799px) {
       
-      /* [改善] エディタ領域（本文）のスタイルを調整 */
+      /* 本文エディタのモバイル向けスタイル */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
-        width: 100%; /* 横幅を画面いっぱいに広げる */
-        font-size: 16px !important; /* iOSの自動ズームを抑制するため、フォントサイズを16pxに固定 */
-        line-height: 1.5;
+        width: 100%;
+        font-size: 16px !important; /* iOSの自動ズーム抑制 */
         padding: 12px;
         min-height: 150px;
       }
       
-      /* [改善] フォーム入力欄のスタイルを調整 */
+      /* その他フォーム入力欄のモバイル向けスタイル */
       input, textarea, select {
-        width: 100%; /* 横幅を画面いっぱいに広げる */
-        font-size: 16px !important; /* iOSの自動ズームを抑制 */
+        width: 100%;
+        font-size: 16px !important; /* iOSの自動ズーム抑制 */
       }
       
       /* タッチ操作の改善 */
@@ -79,16 +87,10 @@
         width: 100%;
       }
       
-      /* モーダルの微調整 */
-      [class*="Modal"] {
-        max-height: 90vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      
-      /* ドロップダウンリストの改善 */
+      /* モーダル等のスクロール設定 */
+      [class*="Modal"],
       [class*="DropdownList"] {
-        max-height: 50vh;
+        max-height: 90vh;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
@@ -104,21 +106,14 @@
     }
     
     /* =====================
-     * アクセシビリティ配慮
+     * アクセシビリティ & フォーカス
      * ===================== */
     @media (prefers-reduced-motion: reduce) {
-      * {
-        transition: none !important;
-        animation: none !important;
-      }
+      * { transition: none !important; animation: none !important; }
     }
     
-    /* フォーカス状態の改善（デスクトップのみ） */
     @media (min-width: 800px) {
-      button:focus,
-      input:focus,
-      textarea:focus,
-      select:focus {
+      button:focus, input:focus, textarea:focus, select:focus {
         outline: 2px solid #3b82f6;
         outline-offset: 2px;
       }
@@ -136,13 +131,11 @@
       <p style="margin: 0; opacity: 0.8; font-size: 14px;">読み込み中...</p>
     </div>
   </div>
-  <style>
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+  <style> @keyframes spin { to { transform: rotate(360deg); } } </style>
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
-  <!-- JavaScript部分（変更なし） -->
+  <!-- [改善] スクリプトをシンプル化 -->
   <script>
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
@@ -151,33 +144,21 @@
         setTimeout(() => { loader.style.display = 'none'; }, 500);
       }
     }
+
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
     }
-    window.addEventListener('load', () => { setTimeout(hideLoadingIndicator, 800); });
+
+    // ローディング画面の制御
+    window.addEventListener('load', () => setTimeout(hideLoadingIndicator, 800));
+    // フォールバック
     setTimeout(hideLoadingIndicator, 5000);
-    document.addEventListener('DOMContentLoaded', () => {
-      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        const viewport = document.querySelector('meta[name=viewport]');
-        if (viewport) { viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes'; }
-      }
-      let touchStartY = 0;
-      document.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) { touchStartY = e.touches[0].clientY; }
-      }, { passive: true });
-      document.addEventListener('touchmove', (e) => {
-        const target = e.target;
-        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') || target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
-        if (isInEditor) { return; }
-        if (e.touches.length === 1) {
-          const deltaY = e.touches[0].clientY - touchStartY;
-          if ((deltaY > 0 && window.scrollY <= 10) || (window.scrollY === 0 && deltaY > 0)) {
-            e.preventDefault();
-            return false;
-          }
-        }
-      }, { passive: false });
-    });
+
+    /*
+     * [改善] プルリフレッシュ防止のJavaScriptロジックを削除しました。
+     * 現在はCSSの `overscroll-behavior: none;` で同等の機能を実現できるため、不要です。
+     * これにより、コードがシンプルになり、タッチ操作時のパフォーマンスも向上します。
+     */
   </script>
 </body>
 </html>
