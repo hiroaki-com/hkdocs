@@ -69,6 +69,12 @@
         min-height: 150px !important;
       }
       
+      /* フォーム入力のiOS最適化 */
+      input, textarea, select {
+        font-size: 16px !important; /* iOS zoom prevention */
+        -webkit-appearance: none !important;
+      }
+      
       /* タッチ操作の改善 */
       button, [role="button"], [class*="Button"] {
         touch-action: manipulation !important;
@@ -79,15 +85,6 @@
       body, html, #nc-root {
         overflow-x: hidden !important;
         max-width: 100vw !important;
-      }
-      
-      /* CDNのレスポンシブデザインが適用される領域 */
-      [class*="AppMainContainer"],
-      [class*="CollectionContainer"],
-      [class*="EditorContainer"] {
-        padding: 16px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
       }
       
       /* モーダルの微調整 */
