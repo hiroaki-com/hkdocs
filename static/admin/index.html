@@ -4,11 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  
+  <!-- カスタムCSSを読み込む -->
+  <link rel="stylesheet" href="custom.css" />
+
   <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- ログアウト処理の実装 -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("logout", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  </script>
 </body>
 </html>
