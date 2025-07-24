@@ -11,35 +11,31 @@
     /* =====================
      * 基本設定
      * ===================== */
+    
+    /* [改善点] すべての要素でpaddingとborderを幅の計算に含めるようにし、レイアウト崩れを防ぐ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      /* [改善点] 横スクロール防止はbodyとhtmlに限定し、!importantを削除 */
+      overflow-x: hidden;
+      max-width: 100vw;
     }
     
     /* =====================
      * プルリフレッシュ無効化
-     * 日記作成時の誤操作防止
      * ===================== */
     html, body {
-      touch-action: manipulation !important;
-      overscroll-behavior: none !important;
-      overscroll-behavior-y: none !important;
-      -webkit-overflow-scrolling: touch !important;
-    }
-    
-    [class*="App"],
-    [class*="Editor"],
-    [class*="ControlPane"],
-    main,
-    #nc-root {
-      overscroll-behavior-y: none !important;
-      touch-action: manipulation !important;
+      overscroll-behavior-y: none !important; /* これは誤操作防止のため意図的に維持 */
     }
     
     /* =====================
      * エディタ領域設定
-     * ピンチズームを許可し、スクロール問題を解決
+     * ピンチズームを許可
      * ===================== */
     [data-slate-editor="true"],
     [role="textbox"],
@@ -48,156 +44,62 @@
     input[type="text"],
     input[type="email"],
     input[type="url"] {
-      touch-action: auto !important;
-      overscroll-behavior: auto !important;
+      touch-action: auto;
+      overscroll-behavior: auto;
     }
     
     /* =====================
      * モバイル最適化（iPhone SE基準）
-     * CDNデフォルトデザインを尊重しつつ微調整
      * ===================== */
     @media (max-width: 799px) {
-      /* ============================================
-       * 【問題1対策】フォーム要素の分離とマージン確保
-       * ============================================ */
-      
-      /* フォーム全体の構造安定化 */
-      [class*="ControlPane"] > div,
-      [class*="FieldWrapper"],
-      div[class*="Field"]:not([class*="TextField"]) {
-        margin-bottom: 24px !important;
-        display: block !important;
-        width: 100% !important;
-        clear: both !important;
-      }
-      
-      /* ラベル要素の明確な分離 */
-      label,
-      [class*="FieldLabel"],
-      span[class*="Label"] {
-        display: block !important;
-        margin-bottom: 8px !important;
-        font-weight: 500 !important;
-        width: 100% !important;
-      }
-      
-      /* 入力フィールドの垂直配置強化 */
-      input:not([type="checkbox"]):not([type="radio"]),
-      textarea,
-      select,
-      [class*="Select"] > div,
-      [class*="DateTimeField"] input {
-        display: block !important;
-        width: 100% !important;
-        margin-bottom: 16px !important;
-        box-sizing: border-box !important;
-        position: relative !important;
-        z-index: 1 !important;
-      }
-      
-      /* ============================================
-       * 【問題2対策】Decap CMS実際のクラス名への対応
-       * ============================================ */
-      
-      /* 実際のDecap CMSで使用される可能性の高いセレクタ */
-      div[class*="Widget"],
-      div[class*="Control"],
-      div[class*="Field"] {
-        margin-bottom: 20px !important;
-        overflow: visible !important;
-      }
-      
-      /* ============================================
-       * 【問題3対策】レイアウト制御の改善
-       * ============================================ */
-      
-      /* フロート要素の制御を限定的に適用 */
-      [class*="ControlPane"] * {
-        float: none !important;
-      }
-      
-      /* ポジション要素の重なり防止 */
-      [class*="ControlPane"] [class*="Field"],
-      [class*="ControlPane"] [class*="Widget"] {
-        position: relative !important;
-        z-index: auto !important;
-      }
-      
-      /* ============================================
-       * 【問題4対策】プルリフレッシュ制御の調整
-       * ============================================ */
-      
-      /* エディタ領域内でのスクロールを改善 */
-      [class*="ControlPane"] {
-        touch-action: pan-y !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-      }
-      
-      /* ============================================
-       * 【問題5対策】レスポンシブブレークポイントの微調整
-       * ============================================ */
       
       /* エディタ領域の読みやすさ向上 */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
-        font-size: 16px !important;
-        line-height: 1.5 !important;
-        padding: 12px !important;
-        min-height: 150px !important;
-        margin-bottom: 16px !important;
+        /* [改善点] !importantを削除。詳細度で上書きされることを期待 */
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 12px;
+        min-height: 150px;
       }
       
-      /* フォーム入力のiOS最適化 */
+      /* フォーム入力のiOS最適化（自動ズーム防止） */
       input, textarea, select {
-        font-size: 16px !important; /* iOS zoom prevention */
-        -webkit-appearance: none !important;
-        padding: 12px !important;
-        border-radius: 4px !important;
+        /* このルールはiOSの挙動を防ぐために重要なので維持 */
+        font-size: 16px !important;
       }
       
       /* タッチ操作の改善 */
       button, [role="button"], [class*="Button"] {
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: transparent !important;
-        margin: 8px 0 !important;
-        min-height: 44px !important;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
       }
-      
-      /* 横スクロール防止 */
-      body, html, #nc-root {
-        overflow-x: hidden !important;
-        max-width: 100vw !important;
-      }
-      
-      /* CDNのレスポンシブデザインが適用される領域の微調整 */
+
+      /* 
+       * [改善点] Decap CMSのレイアウト計算を妨げないように!importantを削除。
+       * responsive.min.cssやDecap CMS本体のスタイルが適用されることを優先する。
+       * box-sizing: border-box により、paddingを加えても幅が100%を超える問題は起きにくくなっている。
+       */
       [class*="AppMainContainer"],
       [class*="CollectionContainer"],
       [class*="EditorContainer"] {
-        padding: 16px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
+        padding: 16px;
+        width: 100%;
       }
       
       /* モーダルの微調整 */
       [class*="Modal"] {
-        max-height: 90vh !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
       
       /* ドロップダウンリストの改善 */
       [class*="DropdownList"] {
-        max-height: 50vh !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-      }
-      
-      /* パフォーマンス最適化を限定的に適用 */
-      [class*="ControlPane"] * {
-        -webkit-overflow-scrolling: touch !important;
-        -webkit-tap-highlight-color: transparent !important;
+        max-height: 50vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
     }
     
@@ -205,9 +107,8 @@
      * タブレット微調整
      * ===================== */
     @media (min-width: 800px) and (max-width: 1024px) {
-      /* タブレット向けの軽微な調整のみ */
       [class*="AppMainContainer"] {
-        padding: 24px !important;
+        padding: 24px;
       }
     }
     
@@ -227,8 +128,8 @@
       input:focus,
       textarea:focus,
       select:focus {
-        outline: 2px solid #3b82f6 !important;
-        outline-offset: 2px !important;
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
       }
     }
   </style>
@@ -277,7 +178,8 @@
   </style>
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
+  
+  <!-- JavaScript部分は変更ありません -->
   <script>
     /* =====================
      * ユーティリティ関数
