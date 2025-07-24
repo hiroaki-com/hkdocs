@@ -83,15 +83,15 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- ▼ [改善] ローディング画面のデザインを変更 ▼ -->
+  <!-- ▼ セコイヤ系ローディングデザイン ▼ -->
   <div id="loading-indicator" style="
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #3A5F45 0%, #2E4636 100%); /* 深い森をイメージした緑のグラデーション */
-    color: #F3EAD3; /* テキスト色を温かみのあるクリーム色に */
+    background: linear-gradient(180deg, #1a1d1a 0%, #2c312c 30%, #3d453d 100%);
+    color: #e8dcc6;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,23 +99,184 @@
     z-index: 9999;
     opacity: 1;
     transition: opacity 0.5s ease-out;
+    overflow: hidden;
   ">
-    <div style="text-align: center;">
+    <!-- 背景の霧のような効果 -->
+    <div style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 80%, rgba(139, 127, 99, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 20%, rgba(139, 127, 99, 0.06) 0%, transparent 50%);
+      animation: mist 8s ease-in-out infinite alternate;
+    "></div>
+
+    <div style="text-align: center; position: relative;">
+      <!-- セコイヤの木のシルエット -->
       <div style="
-        width: 48px;
-        height: 48px;
-        border: 3px solid rgba(243, 234, 211, 0.2); /* スピナーのベースをテキスト色に合わせて調整 */
-        border-radius: 50%;
-        border-top-color: #F3EAD3; /* スピナーの回転部分をクリーム色に */
-        animation: spin 1s linear infinite;
+        width: 80px;
+        height: 120px;
+        margin: 0 auto 24px;
+        position: relative;
+        opacity: 0.9;
+      ">
+        <!-- 主幹 -->
+        <div style="
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          width: 8px;
+          height: 100%;
+          background: linear-gradient(180deg, #8b7f63 0%, #6b5d47 100%);
+          transform: translateX(-50%);
+          border-radius: 4px 4px 0 0;
+        "></div>
+        
+        <!-- 左側の枝々 -->
+        <div style="
+          position: absolute;
+          left: 20%;
+          bottom: 60%;
+          width: 32px;
+          height: 2px;
+          background: linear-gradient(90deg, transparent 0%, #8b7f63 30%, #6b5d47 100%);
+          border-radius: 1px;
+          animation: grow 2s ease-in-out infinite alternate;
+        "></div>
+        <div style="
+          position: absolute;
+          left: 15%;
+          bottom: 75%;
+          width: 28px;
+          height: 2px;
+          background: linear-gradient(90deg, transparent 0%, #8b7f63 30%, #6b5d47 100%);
+          border-radius: 1px;
+          animation: grow 2s ease-in-out infinite alternate 0.3s;
+        "></div>
+        <div style="
+          position: absolute;
+          left: 25%;
+          bottom: 45%;
+          width: 24px;
+          height: 2px;
+          background: linear-gradient(90deg, transparent 0%, #8b7f63 30%, #6b5d47 100%);
+          border-radius: 1px;
+          animation: grow 2s ease-in-out infinite alternate 0.6s;
+        "></div>
+        
+        <!-- 右側の枝々 -->
+        <div style="
+          position: absolute;
+          right: 20%;
+          bottom: 70%;
+          width: 30px;
+          height: 2px;
+          background: linear-gradient(270deg, transparent 0%, #8b7f63 30%, #6b5d47 100%);
+          border-radius: 1px;
+          animation: grow 2s ease-in-out infinite alternate 0.2s;
+        "></div>
+        <div style="
+          position: absolute;
+          right: 25%;
+          bottom: 55%;
+          width: 26px;
+          height: 2px;
+          background: linear-gradient(270deg, transparent 0%, #8b7f63 30%, #6b5d47 100%);
+          border-radius: 1px;
+          animation: grow 2s ease-in-out infinite alternate 0.5s;
+        "></div>
+        <div style="
+          position: absolute;
+          right: 15%;
+          bottom: 40%;
+          width: 22px;
+          height: 2px;
+          background: linear-gradient(270deg, transparent 0%, #8b7f63 30%, #6b5d47 100%);
+          border-radius: 1px;
+          animation: grow 2s ease-in-out infinite alternate 0.8s;
+        "></div>
+
+        <!-- 上部の細い枝 -->
+        <div style="
+          position: absolute;
+          left: 30%;
+          top: 15%;
+          width: 18px;
+          height: 1px;
+          background: linear-gradient(90deg, transparent 0%, #8b7f63 50%, transparent 100%);
+          animation: sway 3s ease-in-out infinite;
+        "></div>
+        <div style="
+          position: absolute;
+          right: 30%;
+          top: 20%;
+          width: 16px;
+          height: 1px;
+          background: linear-gradient(270deg, transparent 0%, #8b7f63 50%, transparent 100%);
+          animation: sway 3s ease-in-out infinite 0.4s;
+        "></div>
+      </div>
+
+      <!-- プログレスインジケーター -->
+      <div style="
+        width: 120px;
+        height: 4px;
+        background: rgba(139, 127, 99, 0.2);
+        border-radius: 2px;
         margin: 0 auto 20px;
-      "></div>
-      <h2 style="margin: 0 0 8px; font-weight: 600; font-size: 20px;">Content Manager</h2>
-      <p style="margin: 0; opacity: 0.8; font-size: 14px;">読み込み中...</p>
+        overflow: hidden;
+        position: relative;
+      ">
+        <div style="
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent 0%, #e8dcc6 50%, transparent 100%);
+          animation: flow 2s ease-in-out infinite;
+        "></div>
+      </div>
+
+      <h2 style="
+        margin: 0 0 8px;
+        font-weight: 300;
+        font-size: 24px;
+        letter-spacing: 2px;
+        opacity: 0.95;
+      ">Content Manager</h2>
+      
+      <p style="
+        margin: 0;
+        opacity: 0.7;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 1px;
+      ">読み込み中...</p>
     </div>
   </div>
-  <style> @keyframes spin { to { transform: rotate(360deg); } } </style>
-  <!-- ▲ ローディング画面 ▲ -->
+
+  <style>
+    @keyframes grow {
+      0% { opacity: 0.6; transform: scaleX(0.8); }
+      100% { opacity: 1; transform: scaleX(1); }
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-2deg); opacity: 0.7; }
+      50% { transform: rotate(2deg); opacity: 1; }
+    }
+
+    @keyframes mist {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    @keyframes flow {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  </style>
+  <!-- ▲ セコイヤ系ローディングデザイン ▲ -->
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
