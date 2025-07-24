@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
   <title>Content Manager</title>
   
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
+  
   <style>
     /* =====================
      * 基本設定
@@ -52,10 +54,91 @@
     
     /* =====================
      * モバイル最適化（iPhone SE基準）
-     * 元のコードの思想を守りつつフォーム重なり問題を解決
+     * CDNデフォルトデザインを尊重しつつ微調整
      * ===================== */
     @media (max-width: 799px) {
-      /* エディタ領域の読みやすさ向上（元のコード踏襲） */
+      /* ============================================
+       * 【問題1対策】フォーム要素の分離とマージン確保
+       * ============================================ */
+      
+      /* フォーム全体の構造安定化 */
+      [class*="ControlPane"] > div,
+      [class*="FieldWrapper"],
+      div[class*="Field"]:not([class*="TextField"]) {
+        margin-bottom: 24px !important;
+        display: block !important;
+        width: 100% !important;
+        clear: both !important;
+      }
+      
+      /* ラベル要素の明確な分離 */
+      label,
+      [class*="FieldLabel"],
+      span[class*="Label"] {
+        display: block !important;
+        margin-bottom: 8px !important;
+        font-weight: 500 !important;
+        width: 100% !important;
+      }
+      
+      /* 入力フィールドの垂直配置強化 */
+      input:not([type="checkbox"]):not([type="radio"]),
+      textarea,
+      select,
+      [class*="Select"] > div,
+      [class*="DateTimeField"] input {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 16px !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        z-index: 1 !important;
+      }
+      
+      /* ============================================
+       * 【問題2対策】Decap CMS実際のクラス名への対応
+       * ============================================ */
+      
+      /* 実際のDecap CMSで使用される可能性の高いセレクタ */
+      div[class*="Widget"],
+      div[class*="Control"],
+      div[class*="Field"] {
+        margin-bottom: 20px !important;
+        overflow: visible !important;
+      }
+      
+      /* ============================================
+       * 【問題3対策】レイアウト制御の改善
+       * ============================================ */
+      
+      /* フロート要素の制御を限定的に適用 */
+      [class*="ControlPane"] * {
+        float: none !important;
+      }
+      
+      /* ポジション要素の重なり防止 */
+      [class*="ControlPane"] [class*="Field"],
+      [class*="ControlPane"] [class*="Widget"] {
+        position: relative !important;
+        z-index: auto !important;
+      }
+      
+      /* ============================================
+       * 【問題4対策】プルリフレッシュ制御の調整
+       * ============================================ */
+      
+      /* エディタ領域内でのスクロールを改善 */
+      [class*="ControlPane"] {
+        touch-action: pan-y !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      /* ============================================
+       * 【問題5対策】レスポンシブブレークポイントの微調整
+       * ============================================ */
+      
+      /* エディタ領域の読みやすさ向上 */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor {
@@ -63,47 +146,32 @@
         line-height: 1.5 !important;
         padding: 12px !important;
         min-height: 150px !important;
+        margin-bottom: 16px !important;
       }
       
-      /* 【問題1解決】フォーム要素の垂直配置制御強化 */
-      [class*="ControlPaneContainer"] > *,
-      [class*="EditorContainer"] > *,
-      [class*="FieldWrapper"],
-      div[class*="Field"] {
-        margin-bottom: 20px !important;
-        display: block !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      
-      /* 【問題2解決】実際のDecap CMS構造に基づくセレクタ追加 */
-      input[type="text"],
-      input[type="email"], 
-      input[type="url"],
-      input[type="date"],
-      input[type="datetime-local"],
-      textarea,
-      select {
+      /* フォーム入力のiOS最適化 */
+      input, textarea, select {
         font-size: 16px !important; /* iOS zoom prevention */
         -webkit-appearance: none !important;
-        display: block !important;
-        width: 100% !important;
-        margin-bottom: 16px !important;
-        padding: 8px 12px !important;
-        box-sizing: border-box !important;
+        padding: 12px !important;
+        border-radius: 4px !important;
       }
       
-      /* 【問題3解決】ラベル要素の適切な分離 */
-      label,
-      [class*="FieldLabel"],
-      span[class*="Label"] {
-        display: block !important;
-        margin-bottom: 6px !important;
-        font-weight: 500 !important;
-        clear: both !important;
+      /* タッチ操作の改善 */
+      button, [role="button"], [class*="Button"] {
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+        margin: 8px 0 !important;
+        min-height: 44px !important;
       }
       
-      /* 元のコードのコンテナ設定を維持 */
+      /* 横スクロール防止 */
+      body, html, #nc-root {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+      }
+      
+      /* CDNのレスポンシブデザインが適用される領域の微調整 */
       [class*="AppMainContainer"],
       [class*="CollectionContainer"],
       [class*="EditorContainer"] {
@@ -112,57 +180,32 @@
         box-sizing: border-box !important;
       }
       
-      /* フォーム入力のiOS最適化（元コード踏襲） */
-      input, textarea, select {
-        font-size: 16px !important; /* iOS zoom prevention */
-        -webkit-appearance: none !important;
-      }
-      
-      /* タッチ操作の改善（元コード踏襲） */
-      button, [role="button"], [class*="Button"] {
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: transparent !important;
-      }
-      
-      /* 横スクロール防止（元コード踏襲） */
-      body, html, #nc-root {
-        overflow-x: hidden !important;
-        max-width: 100vw !important;
-      }
-      
-      /* モーダルの微調整（元コード踏襲） */
+      /* モーダルの微調整 */
       [class*="Modal"] {
         max-height: 90vh !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
       }
       
-      /* ドロップダウンリストの改善（元コード踏襲） */
+      /* ドロップダウンリストの改善 */
       [class*="DropdownList"] {
         max-height: 50vh !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
       }
       
-      /* 【問題4解決】z-indexとposition問題の対応 */
-      [class*="FieldWrapper"],
-      div[class*="Field"] {
-        position: relative !important;
-        z-index: auto !important;
-      }
-      
-      /* パフォーマンス最適化（元コード踏襲、ただし範囲限定） */
-      [class*="ControlPane"] *,
-      [class*="Editor"] * {
+      /* パフォーマンス最適化を限定的に適用 */
+      [class*="ControlPane"] * {
         -webkit-overflow-scrolling: touch !important;
         -webkit-tap-highlight-color: transparent !important;
       }
     }
     
     /* =====================
-     * タブレット対応
+     * タブレット微調整
      * ===================== */
     @media (min-width: 800px) and (max-width: 1024px) {
+      /* タブレット向けの軽微な調整のみ */
       [class*="AppMainContainer"] {
         padding: 24px !important;
       }
