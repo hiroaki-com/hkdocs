@@ -12,120 +12,66 @@
     /*
      * =================================================================
      * Decap CMS カスタムスタイル
-     * 目的:
-     * - レスポンシブ表示の最適化
-     * - モバイルでの操作性向上
-     * - iOS特有の挙動（プルリフレッシュ、入力後ズーム）の制御
      * =================================================================
      */
 
-    /* 1. グローバル & 基本設定
-    ------------------------------------------------- */
+    /* 1. グローバル & 基本設定 */
     *, *::before, *::after {
-      box-sizing: border-box; /* レイアウト崩れを防ぐための基本設定 */
+      box-sizing: border-box;
     }
-    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden; /* 横スクロールを防止 */
+      overflow-x: hidden;
       max-width: 100vw;
     }
 
-    /* 2. 操作性・UXの改善 (全画面サイズ共通)
-    ------------------------------------------------- */
-    
-    /* ページの端でのスクロール連鎖（プルリフレッシュ等）を無効化 */
+    /* 2. 操作性・UXの改善 */
     html, body {
       overscroll-behavior-y: none !important;
     }
-
-    /* 本文エディタの行間を読みやすいように調整 */
-    [data-slate-editor="true"],
-    [role="textbox"],
-    .cm-editor {
-      line-height: 1.0;
+    [data-slate-editor="true"], [role="textbox"], .cm-editor {
+      line-height: 1.4;
     }
-
-    /* テキスト入力エリアでのピンチズームを許可 */
-    [data-slate-editor="true"],
-    [role="textbox"],
-    .cm-editor,
-    textarea,
-    input[type="text"],
-    input[type="email"],
-    input[type="url"] {
+    [data-slate-editor="true"], [role="textbox"], .cm-editor,
+    textarea, input[type="text"], input[type="email"], input[type="url"] {
       touch-action: auto;
       overscroll-behavior: auto;
     }
 
-    /* 3. モバイル表示の最適化 (〜799px)
-    ------------------------------------------------- */
+    /* 3. モバイル表示の最適化 (〜799px) */
     @media (max-width: 799px) {
-      
-      /* iOSでフォーム入力時に自動ズームされるのを防ぐため、フォントサイズを16pxに設定 */
-      [data-slate-editor="true"],
-      [role="textbox"],
-      .cm-editor,
-      input, 
-      textarea, 
-      select {
-        font-size: 16px !important;
-      }
-      
-      /* フォーム要素を親要素の幅いっぱいに広げる */
-      [data-slate-editor="true"],
-      [role="textbox"],
-      .cm-editor,
-      input, 
-      textarea, 
-      select {
+      [data-slate-editor="true"], [role="textbox"], .cm-editor,
+      input, textarea, select {
+        font-size: 16px !important; /* iOSの自動ズーム抑制 */
         width: 100%;
       }
-
-      /* ボタン類のタップ時のハイライトを無効化 */
       button, [role="button"], [class*="Button"] {
         -webkit-tap-highlight-color: transparent;
       }
-
-      /* Decap CMSのメインコンテナの余白を調整 */
-      [class*="AppMainContainer"],
-      [class*="CollectionContainer"],
-      [class*="EditorContainer"] {
+      [class*="AppMainContainer"], [class*="CollectionContainer"], [class*="EditorContainer"] {
         padding: 16px;
         width: 100%;
       }
-      
-      /* モーダルやドロップダウンのスクロールを滑らかに */
-      [class*="Modal"],
-      [class*="DropdownList"] {
+      [class*="Modal"], [class*="DropdownList"] {
         max-height: 90vh;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
     }
     
-    /* 4. タブレット表示の微調整 (800px〜1024px)
-    ------------------------------------------------- */
+    /* 4. タブレット表示の微調整 (800px〜1024px) */
     @media (min-width: 800px) and (max-width: 1024px) {
       [class*="AppMainContainer"] {
         padding: 24px;
       }
     }
     
-    /* 5. アクセシビリティ & その他
-    ------------------------------------------------- */
-    
-    /* ユーザーがOSでアニメーションを減らす設定をしている場合、アニメーションを無効化 */
+    /* 5. アクセシビリティ & その他 */
     @media (prefers-reduced-motion: reduce) {
-      * { 
-        transition: none !important; 
-        animation: none !important; 
-      }
+      * { transition: none !important; animation: none !important; }
     }
-    
-    /* デスクトップでのフォーカス状態を分かりやすく */
     @media (min-width: 800px) {
       button:focus, input:focus, textarea:focus, select:focus {
         outline: 2px solid #3b82f6;
@@ -137,46 +83,147 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- ▼ ローディング画面 ▼ -->
-  <div id="loading-indicator" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; z-index: 9999; opacity: 1; transition: opacity 0.5s ease-out;">
-    <div style="text-align: center;">
-      <div style="width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
-      <h2 style="margin: 0 0 8px; font-weight: 600; font-size: 20px;">Content Manager</h2>
-      <p style="margin: 0; opacity: 0.8; font-size: 14px;">読み込み中...</p>
+  <!-- ▼ シンプル&モダンなローディングデザイン ▼ -->
+  <div id="loading-indicator" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+    overflow: hidden;
+  ">
+    <!-- 背景のパーティクル効果 -->
+    <div style="
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 45% 80%, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 200px 200px, 150px 150px, 100px 100px;
+      animation: float 20s ease-in-out infinite;
+    "></div>
+
+    <div style="text-align: center; position: relative;">
+      <!-- シンプルなスピナー -->
+      <div style="
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 32px;
+        position: relative;
+      ">
+        <div style="
+          width: 100%;
+          height: 100%;
+          border: 3px solid rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          border-top-color: rgba(255, 255, 255, 0.8);
+          animation: spin 1.2s linear infinite;
+        "></div>
+        
+        <!-- 内側のドット -->
+        <div style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 8px;
+          height: 8px;
+          background: rgba(255, 255, 255, 0.6);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          animation: pulse 2s ease-in-out infinite;
+        "></div>
+      </div>
+
+      <!-- プログレスバー -->
+      <div style="
+        width: 200px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 1px;
+        margin: 0 auto 24px;
+        overflow: hidden;
+        position: relative;
+      ">
+        <div style="
+          width: 80px;
+          height: 100%;
+          background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+          animation: progress 2s ease-in-out infinite;
+        "></div>
+      </div>
+
+      <h2 style="
+        margin: 0 0 8px;
+        font-weight: 600;
+        font-size: 22px;
+        letter-spacing: 0.5px;
+        opacity: 0.95;
+      ">Content Manager</h2>
+      
+      <p style="
+        margin: 0;
+        opacity: 0.7;
+        font-size: 14px;
+        font-weight: 400;
+      ">読み込み中...</p>
     </div>
   </div>
-  <style> @keyframes spin { to { transform: rotate(360deg); } } </style>
-  <!-- ▲ ローディング画面 ▲ -->
+
+  <style>
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    @keyframes progress {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(200px); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+  <!-- ▲ シンプル&モダンなローディングデザイン ▲ -->
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
     /**
      * Decap CMSの初期化とUI制御を行うスクリプト
-     * - ローディング画面の表示制御
-     * - Netlify Identity Widget のログアウト処理
      */
 
-    // ローディング画面をフェードアウトして非表示にする
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
       if (loader && loader.style.opacity !== '0') {
         loader.style.opacity = '0';
-        setTimeout(() => { loader.style.display = 'none'; }, 500); // アニメーション後に要素を削除
+        setTimeout(() => { loader.style.display = 'none'; }, 500);
       }
     }
 
-    // Netlify Identityでログアウトした際に、管理画面のトップにリダイレクトする
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
-    // ページの読み込み完了から少し遅れてローディング画面を非表示にする
     window.addEventListener('load', () => setTimeout(hideLoadingIndicator, 800));
-
-    // 万が一読み込みが終わらない場合でも、5秒後には強制的に非表示にする（フォールバック）
     setTimeout(hideLoadingIndicator, 5000);
   </script>
 </body>
