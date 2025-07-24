@@ -55,126 +55,147 @@
     }
     
     /* =====================
-     * モバイル最適化
-     * スマートフォン向けUIの改善
+     * デフォルト要素のリセット
+     * レスポンシブの影響を最小限に抑制
      * ===================== */
     @media (max-width: 799px) {
-      /* タッチターゲットサイズの最適化 - シンプル版 */
-      button,
-      [role="button"],
+      /* ナビゲーション要素の保護 */
+      nav,
+      [class*="nav"],
+      [class*="header"],
+      [class*="toolbar"],
+      [class*="breadcrumb"] {
+        font-size: inherit !important;
+        line-height: inherit !important;
+        padding: inherit !important;
+        margin: inherit !important;
+        border-radius: inherit !important;
+        box-shadow: inherit !important;
+      }
+      
+      /* 小さなコンポーネントの保護 */
+      [class*="badge"],
+      [class*="tag"],
+      [class*="chip"],
+      [class*="pill"],
+      [class*="status"],
+      [class*="icon"],
+      svg {
+        width: auto !important;
+        height: auto !important;
+        font-size: inherit !important;
+        padding: inherit !important;
+        margin: inherit !important;
+        border-radius: inherit !important;
+      }
+      
+      /* タッチターゲット - メインボタンのみ最適化 */
+      button:not(nav button):not([class*="nav"] button):not([class*="header"] button):not([class*="toolbar"] button),
+      [role="button"]:not(nav [role="button"]):not([class*="nav"] [role="button"]):not([class*="header"] [role="button"]),
       input[type="submit"],
       input[type="button"] {
-        min-height: 36px !important;
-        padding: 6px 12px !important;
-        font-size: 14px !important;
-        border-radius: 6px !important;
-        border: 1px solid #d1d5db !important;
-        background-color: #f9fafb !important;
-        color: #374151 !important;
-        font-weight: 500 !important;
-        box-sizing: border-box !important;
+        min-height: 36px;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        background-color: #ffffff;
+        color: #374151;
+        font-weight: 500;
+        box-sizing: border-box;
+        transition: all 0.15s ease;
       }
       
-      button:hover,
-      [role="button"]:hover,
+      button:not(nav button):not([class*="nav"] button):not([class*="header"] button):not([class*="toolbar"] button):hover,
+      [role="button"]:not(nav [role="button"]):not([class*="nav"] [role="button"]):not([class*="header"] [role="button"]):hover,
       input[type="submit"]:hover,
       input[type="button"]:hover {
-        background-color: #f3f4f6 !important;
-        border-color: #9ca3af !important;
+        background-color: #f9fafb;
+        border-color: #9ca3af;
       }
       
-      /* フォーム要素の統一スタイル - ライトモード専用 */
-      input,
+      /* フォーム要素 - エディタ関連のみスタイリング */
+      input[type="text"]:not(nav input):not([class*="nav"] input):not([class*="search"] input),
+      input[type="email"],
+      input[type="url"],
       textarea,
       [data-slate-editor="true"],
       [role="textbox"] {
-        font-size: 16px !important;
-        line-height: 1.5 !important;
-        padding: 12px !important;
-        border-radius: 8px !important;
-        border: 1px solid #d1d5db !important;
-        background-color: #ffffff !important;
-        color: #1f2937 !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+        background-color: #ffffff;
+        color: #1f2937;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       }
       
       /* フォーカス時のスタイル */
-      input:focus,
+      input[type="text"]:not(nav input):not([class*="nav"] input):not([class*="search"] input):focus,
+      input[type="email"]:focus,
+      input[type="url"]:focus,
       textarea:focus,
       [data-slate-editor="true"]:focus,
       [role="textbox"]:focus {
-        border-color: #6366f1 !important;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        outline: none !important;
-        background-color: #ffffff !important;
-        color: #1f2937 !important;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        outline: none;
       }
       
-      /* CodeMirrorエディタの専用スタイル */
+      /* CodeMirrorエディタ */
       .cm-editor {
-        font-size: 16px !important;
-        line-height: 1.6 !important;
-        border-radius: 8px !important;
-        border: 1px solid #d1d5db !important;
-        background-color: #f9fafb !important;
-        color: #1f2937 !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+        font-size: 16px;
+        line-height: 1.6;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+        background-color: #ffffff;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
       }
       
       .cm-editor.cm-focused {
-        border-color: #6366f1 !important;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        background-color: #ffffff !important;
-        color: #1f2937 !important;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
       }
       
       /* スムーススクロール */
       * {
-        -webkit-overflow-scrolling: touch !important;
+        -webkit-overflow-scrolling: touch;
       }
       
-      /* ドロップダウンとメニューの改善 */
-      [class*="dropdown"],
-      [class*="menu"] {
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
-        border-radius: 12px !important;
-        border: none !important;
-        background-color: #ffffff !important;
+      /* モーダルとドロップダウン - 控えめな改善 */
+      [class*="modal"]:not(nav [class*="modal"]):not([class*="nav"] [class*="modal"]),
+      [class*="dialog"]:not(nav [class*="dialog"]):not([class*="nav"] [class*="dialog"]) {
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        margin: 16px;
       }
       
-      /* モーダルとダイアログの改善 */
-      [class*="modal"],
-      [class*="dialog"] {
-        border-radius: 16px !important;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-        margin: 16px !important;
-        background-color: #ffffff !important;
+      [class*="dropdown"]:not(nav [class*="dropdown"]):not([class*="nav"] [class*="dropdown"]),
+      [class*="menu"]:not(nav [class*="menu"]):not([class*="nav"] [class*="menu"]) {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        border: 1px solid #e5e7eb;
       }
       
-      /* リスト項目のスタイリング */
-      [class*="list"] li,
-      [class*="item"] {
-        padding: 16px !important;
-        border-radius: 8px !important;
-        margin-bottom: 4px !important;
+      /* 主要アクションボタンの強調 */
+      button[class*="publish"]:not(nav button),
+      button[class*="save"]:not(nav button),
+      [class*="primary"]:not(nav [class*="primary"]):not([class*="nav"] [class*="primary"]) {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+        font-weight: 600;
+        border: none;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25);
       }
       
-      /* 公開・保存ボタンの強調 */
-      [class*="publish"],
-      [class*="save"] {
-        background: linear-gradient(135deg, #28a745, #20c997) !important;
-        color: white !important;
-        font-weight: 600 !important;
-        border-radius: 8px !important;
-        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
-        border: none !important;
-      }
-      
-      [class*="publish"]:hover,
-      [class*="save"]:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4) !important;
+      button[class*="publish"]:not(nav button):hover,
+      button[class*="save"]:not(nav button):hover,
+      [class*="primary"]:not(nav [class*="primary"]):not([class*="nav"] [class*="primary"]):hover {
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
       }
     }
     
@@ -186,6 +207,7 @@
       * {
         transition: none !important;
         animation: none !important;
+        transform: none !important;
       }
     }
   </style>
@@ -276,7 +298,7 @@
     // メイン処理：iOS対応とプルリフレッシュ制御
     document.addEventListener('DOMContentLoaded', () => {
       // iOS Safari のビューポート設定
-      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      if (/iPad|iPhone|iPod/.test(navigator.userUser)) {
         const viewport = document.querySelector('meta[name=viewport]');
         if (viewport) {
           viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
