@@ -1,15 +1,15 @@
 # static/admin/config.yml
-# Netlify IdentityのGit Gatewayを利用し、mainブランチに保存する
-# （Auth0移行後もGit Gatewayは継続使用）
 backend:
   name: git-gateway
   branch: main
-
-# メディアファイル（画像）の保存場所（変更なし）
+  # Auth0を明示的に指定
+  identity_url: "https://hkdocs.netlify.app/.netlify/identity"
+  gateway_url: "https://hkdocs.netlify.app/.netlify/git/github"
+  
+# 以下は既存設定をそのまま維持
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
 
-# 管理するコンテンツの定義（変更なし）
 collections:
   - name: "diary"
     label: "Diary"
@@ -19,7 +19,6 @@ collections:
     editor:
       preview: false
 
-    # コレクションごとのコミットメッセージをカスタマイズ（変更なし）
     commit_messages:
       create: 'feat(diary): create new diary entry "{{slug}}"'
       update: 'fix(diary): update diary entry "{{slug}}"'
@@ -35,7 +34,6 @@ collections:
       - { label: "タグ (Tags)", name: "tags", widget: "list", default: [] }
       - { label: "本文 (Body)", name: "body", widget: "markdown" }
 
-  # 将来の拡張用に残しておく参照用コレクション（変更なし）
   - name: "site_data"
     label: "サイトデータ"
     hide: true
