@@ -41,7 +41,7 @@
     
     /* =====================
      * エディタ領域設定
-     * ピンチズーム許可でテキスト編集を快適に
+     * ピンチズームを許可し、スクロール問題を解決
      * ===================== */
     [data-slate-editor="true"],
     [role="textbox"],
@@ -50,7 +50,8 @@
     input[type="text"],
     input[type="email"],
     input[type="url"] {
-      touch-action: pinch-zoom !important;
+      touch-action: auto !important;
+      overscroll-behavior: auto !important;
     }
     
     /* =====================
@@ -58,14 +59,28 @@
      * スマートフォン向けUIの改善
      * ===================== */
     @media (max-width: 799px) {
-      /* タッチターゲットサイズの最適化 */
+      /* タッチターゲットサイズの最適化 - シンプル版 */
       button,
       [role="button"],
       input[type="submit"],
       input[type="button"] {
-        min-height: 44px !important;
-        min-width: 44px !important;
-        padding: 8px 16px !important;
+        min-height: 36px !important;
+        padding: 6px 12px !important;
+        font-size: 14px !important;
+        border-radius: 6px !important;
+        border: 1px solid #d1d5db !important;
+        background-color: #f9fafb !important;
+        color: #374151 !important;
+        font-weight: 500 !important;
+        box-sizing: border-box !important;
+      }
+      
+      button:hover,
+      [role="button"]:hover,
+      input[type="submit"]:hover,
+      input[type="button"]:hover {
+        background-color: #f3f4f6 !important;
+        border-color: #9ca3af !important;
       }
       
       /* フォーム要素の統一スタイル - ライトモード専用 */
@@ -280,8 +295,18 @@
         }
       }, { passive: true });
       
-      // タッチ移動時のプルリフレッシュ防止
+      // タッチ移動時のプルリフレッシュ防止（エディタ以外のみ）
       document.addEventListener('touchmove', (e) => {
+        // エディタ内かどうかをチェック
+        const target = e.target;
+        const isInEditor = target.matches('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea, input') ||
+                          target.closest('[data-slate-editor="true"], [role="textbox"], .cm-editor, textarea');
+        
+        // エディタ内の場合はプルリフレッシュ制御をスキップ
+        if (isInEditor) {
+          return;
+        }
+        
         if (e.touches.length === 1) {
           const touch = e.touches[0];
           const currentY = touch.clientY;
