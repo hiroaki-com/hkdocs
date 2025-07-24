@@ -99,21 +99,199 @@
 
     /*
      * ===================================================================
-     * --- 4. モバイル表示のスタイル (768px以下) --- 【改善版】
+     * --- 4. モバイル表示のスタイル (768px以下) --- 【汎用的DOM対応版】
      * ===================================================================
      */
     @media (max-width: 768px) {
       /* 
-        【確認用】モバイル時の赤枠表示（日記作成・編集画面）
+        【確認用】モバイル時の赤枠表示（日記作成・編集画面全体）
       */
       [data-decap-cms-app] [class*='Editor-root'] {
         border: 3px solid #ff0000 !important;
         border-radius: var(--dc-border-radius);
         margin: 4px !important;
+        box-sizing: border-box;
       }
 
       /* 
-        【FIX ①】エディタコンテナを画面幅いっぱいに拡張
+        【FIX ①】汎用的なコントロールパネルコンテナ
+        - 複数のパターンに対応
+      */
+      [data-decap-cms-app] [class*='ControlPaneContainer'],
+      [data-decap-cms-app] [class*='ControlPane'],
+      [data-decap-cms-app] [class*='control-pane'] {
+        width: 100% !important;
+        max-width: none !important;
+        padding: var(--dc-spacing-unit) !important;
+        margin: 0 !important;
+        box-sizing: border-box;
+        border: 2px solid #ff0000 !important; /* 確認用赤枠 */
+      }
+
+      /* 
+        【FIX ②】汎用的なコントロールコンテナ
+      */
+      [data-decap-cms-app] [class*='ControlContainer'],
+      [data-decap-cms-app] [class*='control-container'],
+      [data-decap-cms-app] [class*='field-wrapper'] {
+        width: 100% !important;
+        max-width: none !important;
+        margin-bottom: calc(var(--dc-spacing-unit) * 2) !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+      }
+
+      /* 
+        【FIX ③】汎用的なフィールドラベル
+      */
+      [data-decap-cms-app] [class*='FieldLabel'],
+      [data-decap-cms-app] [class*='field-label'],
+      [data-decap-cms-app] label[for*='field'] {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: calc(var(--dc-spacing-unit) / 2) !important;
+        font-weight: 600 !important;
+        color: var(--dc-text-color) !important;
+        font-size: var(--dc-mobile-font-size) !important;
+      }
+
+      /* 
+        【FIX ④】すべてのinput要素（IDパターンとクラスパターン）
+      */
+      [data-decap-cms-app] input[id*='field'],
+      [data-decap-cms-app] input[class*='css-'],
+      [data-decap-cms-app] input[type='text'],
+      [data-decap-cms-app] input[type='email'],
+      [data-decap-cms-app] input[type='url'],
+      [data-decap-cms-app] input[type='date'],
+      [data-decap-cms-app] input[type='datetime-local'] {
+        width: 100% !important;
+        max-width: none !important;
+        font-size: var(--dc-mobile-font-size) !important;
+        box-sizing: border-box !important;
+        padding: calc(var(--dc-spacing-unit) * 1.5) !important;
+        border: 2px solid #ff0000 !important; /* 確認用赤枠 */
+        border-radius: var(--dc-border-radius) !important;
+        background-color: var(--dc-white) !important;
+        margin: 0 !important;
+      }
+
+      /* 
+        【FIX ⑤】すべてのtextarea要素
+      */
+      [data-decap-cms-app] textarea,
+      [data-decap-cms-app] [role='textbox'] {
+        width: 100% !important;
+        max-width: none !important;
+        font-size: var(--dc-mobile-font-size) !important;
+        box-sizing: border-box !important;
+        padding: calc(var(--dc-spacing-unit) * 1.5) !important;
+        border: 3px solid #ff0000 !important; /* 確認用赤枠（太め） */
+        border-radius: var(--dc-border-radius) !important;
+        background-color: var(--dc-white) !important;
+        min-height: 200px !important;
+      }
+
+      /* 
+        【FIX ⑥】Slateエディタ（data属性ベース - 最も安定）
+      */
+      [data-decap-cms-app] [data-slate-editor='true'] {
+        width: 100% !important;
+        max-width: none !important;
+        font-size: var(--dc-mobile-font-size) !important;
+        box-sizing: border-box !important;
+        padding: calc(var(--dc-spacing-unit) * 1.5) !important;
+        border: 3px solid #ff0000 !important; /* 確認用赤枠（太め） */
+        border-radius: var(--dc-border-radius) !important;
+        background-color: var(--dc-white) !important;
+        min-height: 200px !important;
+        margin: 0 !important;
+      }
+
+      /* 
+        【FIX ⑦】CodeMirrorエディタ（クラス名ベース - 安定）
+      */
+      [data-decap-cms-app] .cm-editor {
+        width: 100% !important;
+        max-width: none !important;
+        font-size: var(--dc-mobile-font-size) !important;
+        box-sizing: border-box !important;
+        border: 3px solid #ff0000 !important; /* 確認用赤枠（太め） */
+        border-radius: var(--dc-border-radius) !important;
+        padding: var(--dc-spacing-unit) !important;
+        background-color: var(--dc-white) !important;
+        min-height: 200px !important;
+        margin: 0 !important;
+      }
+
+      [data-decap-cms-app] .cm-editor .cm-scroller,
+      [data-decap-cms-app] .cm-editor .cm-content {
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 
+        【FIX ⑧】エディタコンテナ（汎用的パターン）
+      */
+      [data-decap-cms-app] [class*='RawEditorContainer'],
+      [data-decap-cms-app] [class*='editor-container'],
+      [data-decap-cms-app] .cms-editor-raw {
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* 
+        【FIX ⑨】ツールバー（汎用的パターン）
+      */
+      [data-decap-cms-app] [class*='EditorControlBar'],
+      [data-decap-cms-app] [class*='ToolbarContainer'],
+      [data-decap-cms-app] [class*='toolbar'] {
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        flex-wrap: wrap !important;
+      }
+
+      /* 
+        【FIX ⑩】ツールバーボタン（汎用的パターン）
+      */
+      [data-decap-cms-app] [class*='ToolbarButton'],
+      [data-decap-cms-app] [class*='toolbar'] button,
+      [data-decap-cms-app] [role='toolbar'] button {
+        min-height: 44px !important; /* タッチフレンドリー */
+        min-width: 44px !important;
+        padding: calc(var(--dc-spacing-unit) * 1) !important;
+      }
+
+      /* 
+        【FIX ⑪】トグルボタン（汎用的パターン）
+      */
+      [data-decap-cms-app] [class*='ToggleContainer'] button,
+      [data-decap-cms-app] [role='switch'],
+      [data-decap-cms-app] button[aria-checked] {
+        min-height: 44px !important;
+        padding: calc(var(--dc-spacing-unit) * 1) !important;
+      }
+
+      /* 
+        【FIX ⑫】フォーカス状態（汎用的）
+      */
+      [data-decap-cms-app] input:focus,
+      [data-decap-cms-app] textarea:focus,
+      [data-decap-cms-app] [data-slate-editor='true']:focus,
+      [data-decap-cms-app] [role='textbox']:focus,
+      [data-decap-cms-app] .cm-editor.cm-focused {
+        border-color: #ff4444 !important; /* フォーカス時は少し薄い赤 */
+        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
+        outline: none !important;
+      }
+
+      /* 
+        【追加】全体的なレスポンシブ対応
       */
       [data-decap-cms-app] [class*='Editor-root'] > div {
         max-width: none !important;
@@ -123,15 +301,7 @@
       }
 
       /* 
-        【FIX ②】エディタ全体の余白を最小限に（赤枠内の調整）
-      */
-      [data-decap-cms-app] [class*='Editor-root'] {
-        padding: calc(var(--dc-spacing-unit) / 2) !important;
-        box-sizing: border-box;
-      }
-
-      /* 
-        【FIX ③】エディタコンテンツエリアを横幅いっぱいに
+        【追加】エディタペインの調整
       */
       [data-decap-cms-app] [class*='Editor-editorPane'],
       [data-decap-cms-app] [class*='Editor-controlPane'] {
@@ -139,163 +309,14 @@
         max-width: none !important;
         padding: 0 !important;
         margin: 0 !important;
-        box-sizing: border-box;
-      }
-
-      /* 
-        【FIX ④】各ウィジェットの適切な余白設定
-      */
-      [data-decap-cms-app] [class*='Widget-root'] {
-        padding: var(--dc-spacing-unit) calc(var(--dc-spacing-unit) * 1.5) !important;
-        margin-bottom: calc(var(--dc-spacing-unit) * 2);
-        width: 100% !important;
-        box-sizing: border-box;
-      }
-
-      /* 
-        【FIX ⑤】ウィジェット内部のコンテナも横幅いっぱいに
-      */
-      [data-decap-cms-app] [class*='Widget-root'] > div {
-        width: 100% !important;
-        max-width: none !important;
-      }
-
-      /* 
-        【FIX ⑥】フォーム要素のモバイル最適化（横幅いっぱい）
-      */
-      [data-decap-cms-app] input[type='text'],
-      [data-decap-cms-app] input[type='email'],
-      [data-decap-cms-app] input[type='url'],
-      [data-decap-cms-app] input[type='date'],
-      [data-decap-cms-app] input[type='datetime-local'],
-      [data-decap-cms-app] textarea,
-      [data-decap-cms-app] select {
-        width: 100% !important;
-        max-width: none !important;
-        font-size: var(--dc-mobile-font-size);
-        box-sizing: border-box;
-        padding: calc(var(--dc-spacing-unit) * 1.5);
-        border: 2px solid #ff0000; /* 確認用赤枠 */
-        border-radius: var(--dc-border-radius);
-        background-color: var(--dc-white);
-        transition: var(--dc-transition);
-        margin: 0;
-      }
-
-      [data-decap-cms-app] input:focus,
-      [data-decap-cms-app] textarea:focus,
-      [data-decap-cms-app] select:focus {
-        border-color: #ff4444; /* フォーカス時は少し薄い赤 */
-        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
-        outline: none;
-      }
-
-      /* 
-        【FIX ⑦】Markdownエディタの強化スタイル（横幅いっぱい）
-      */
-      [data-decap-cms-app] .cm-editor {
-        width: 100% !important;
-        max-width: none !important;
-        font-size: var(--dc-mobile-font-size);
-        box-sizing: border-box;
-        border: 3px solid #ff0000 !important; /* 確認用赤枠（太め） */
-        border-radius: var(--dc-border-radius);
-        padding: var(--dc-spacing-unit);
-        background-color: var(--dc-white);
-        min-height: 200px;
-        transition: var(--dc-transition);
-        margin: 0;
-      }
-
-      [data-decap-cms-app] .cm-editor:focus-within {
-        border-color: #ff4444 !important;
-        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
-      }
-
-      /* 
-        【FIX ⑧】CodeMirrorの内部要素も横幅調整
-      */
-      [data-decap-cms-app] .cm-editor .cm-scroller,
-      [data-decap-cms-app] .cm-editor .cm-content {
-        width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box;
-      }
-
-      /* 
-        【FIX ⑨】日記特有のフィールドラベルも調整
-      */
-      [data-decap-cms-app] [class*='Widget-root'] label,
-      [data-decap-cms-app] [class*='Widget-root'] [class*='label'] {
-        display: block;
-        width: 100%;
-        margin-bottom: calc(var(--dc-spacing-unit) / 2);
-        font-weight: 600;
-        color: var(--dc-text-color);
-      }
-
-      /* 
-        【FIX ⑩】日付フィールドなどの特殊入力も調整
-      */
-      [data-decap-cms-app] [class*='DateTimeControl-root'] input,
-      [data-decap-cms-app] [class*='DateControl-root'] input,
-      [data-decap-cms-app] [class*='StringControl-root'] input {
-        width: 100% !important;
-        max-width: none !important;
-        border: 2px solid #ff0000 !important; /* 確認用赤枠 */
-      }
-
-      /* 
-        【追加】モバイル用のタッチフレンドリーボタン
-      */
-      [data-decap-cms-app] button {
-        min-height: 44px; /* Appleのタッチターゲット推奨サイズ */
-        padding: calc(var(--dc-spacing-unit) * 1.5) calc(var(--dc-spacing-unit) * 3);
-        font-size: var(--dc-mobile-font-size);
-      }
-
-      /* 
-        【追加】リストビューの改善
-      */
-      [data-decap-cms-app] [class*='EntryListing-card'] {
-        margin: var(--dc-spacing-unit);
-        padding: calc(var(--dc-spacing-unit) * 2);
-      }
-
-      /* 
-        【追加】ナビゲーションの改善
-      */
-      [data-decap-cms-app] [class*='AppHeader-header'] {
-        padding: var(--dc-spacing-unit) calc(var(--dc-spacing-unit) * 2);
+        box-sizing: border-box !important;
       }
 
       /* 
         【追加】プレビューパネルをモバイルでは非表示
       */
       [data-decap-cms-app] [class*='Editor-previewPane'] {
-        display: none;
-      }
-
-      /* 
-        【追加】メディアライブラリの最適化
-      */
-      [data-decap-cms-app] [class*='MediaLibrary-root'] {
-        padding: var(--dc-spacing-unit);
-      }
-
-      [data-decap-cms-app] [class*='MediaLibrary-card'] {
-        margin: calc(var(--dc-spacing-unit) / 2);
-      }
-
-      /* 
-        【追加】フォームコンテナ全体の調整
-      */
-      [data-decap-cms-app] [class*='ControlPane-root'],
-      [data-decap-cms-app] [class*='ControlPane-controls'] {
-        width: 100% !important;
-        max-width: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        display: none !important;
       }
     }
 
