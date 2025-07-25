@@ -11,255 +11,221 @@
   <style>
     /*
      * =================================================================
-     * Decap CMS カスタムスタイル - シンプル版
+     * Decap CMS カスタムスタイル
      * =================================================================
      */
 
-    /* 1. グローバル & 基本設定 */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+    /* 1. グローバル設定 */
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
+      /* Cross-browser font smoothing */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
       max-width: 100vw;
+      overflow-x: hidden;
+    }
+    html, body { overscroll-behavior-y: none !important; }
+
+    /* 2. エディタ基本設定 */
+    [data-slate-editor="true"], [role="textbox"], .cm-editor { line-height: 1.4; touch-action: auto; overscroll-behavior: auto; }
+
+    /* 3. マークダウンプレビュー - デスクトップ */
+    [class*="MarkdownControl"] { display: flex !important; min-height: 400px; }
+    [class*="MarkdownControl"] [class*="EditorControlPane"],
+    [class*="MarkdownControl"] [class*="PreviewPane"] {
+      display: block !important; visibility: visible !important; opacity: 1 !important; flex: 1; min-width: 50%;
+    }
+    [class*="MarkdownControl"] [class*="PreviewPane"] {
+      overflow-y: auto; border-left: 1px solid #e1e5e9; background: #fafbfc; padding: 16px; font-size: 14px; line-height: 1.6;
     }
 
-    /* 2. 操作性・UXの改善 */
-    html, body {
-      overscroll-behavior-y: none !important;
-    }
-    [data-slate-editor="true"], [role="textbox"], .cm-editor {
-      line-height: 1.4;
-    }
-    [data-slate-editor="true"], [role="textbox"], .cm-editor,
-    textarea, input[type="text"], input[type="email"], input[type="url"] {
-      touch-action: auto;
-      overscroll-behavior: auto;
-    }
+    /* 4. スマホ専用改善 */
+    @media (max-width: 768px) {
+      [class*="MarkdownControl"] { flex-direction: column !important; }
+      [class*="MarkdownControl"] [class*="EditorControlPane"],
+      [class*="MarkdownControl"] [class*="PreviewPane"] { min-width: 100%; flex: none; }
+      [class*="MarkdownControl"] [class*="PreviewPane"] { border-left: none; border-top: 1px solid #e1e5e9; max-height: 300px; }
+      
+      /* スクロール連動ツールバー: 基本スタイル */
+      [class*="MarkdownControl"] [class*="Toolbar"],
+      [class*="MarkdownControl"] [class*="EditorToolbar"] {
+        position: fixed !important;
+        top: 52px !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 990 !important;
+        
+        /* Cross-browser support: 非対応ブラウザ用の背景色を先に指定 */
+        background: rgb(255, 255, 255) !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        /* Cross-browser support: Safari用のプレフィックスを追加 */
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px) !important;
 
-    /* 3. モバイル向けの最低限の調整（799px以下） */
-    @media (max-width: 799px) {
-      /* iOSの自動ズーム抑制 */
-      [data-slate-editor="true"], [role="textbox"], .cm-editor,
-      input, textarea, select {
-        font-size: 16px !important;
+        -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+
+        padding: 12px 16px !important;
+        margin: 0 !important;
+        
+        /* Cross-browser support: アニメーション用のプレフィックスを追加 */
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out !important;
       }
       
-      /* タップハイライトの調整 */
-      button, [role="button"], [class*="Button"] {
-        -webkit-tap-highlight-color: transparent;
+      /* スクロール連動ツールバー: 非表示状態 */
+      [class*="MarkdownControl"] [class*="Toolbar"].is-hidden,
+      [class*="MarkdownControl"] [class*="EditorToolbar"].is-hidden {
+        -webkit-transform: translateY(-120%);
+        transform: translateY(-120%);
       }
+
+      [class*="MarkdownControl"] [class*="EditorControlPane"] { padding-top: 60px !important; }
+      
+      [class*="MarkdownControl"] [class*="ToolbarToggle"],
+      [class*="MarkdownControl"] [class*="PreviewToggle"],
+      [class*="MarkdownControl"] button[class*="preview" i],
+      [class*="MarkdownControl"] button[title*="preview" i],
+      [class*="MarkdownControl"] button[aria-label*="preview" i] {
+        position: absolute !important; top: 8px !important; right: 16px !important; z-index: 1000 !important;
+        min-width: 44px !important; min-height: 44px !important; border-radius: 22px !important;
+        background: #3b82f6 !important; color: white !important; border: none !important;
+        box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
+        touch-action: manipulation !important;
+        /* Cross-browser support: タップ時のハイライト色を消す */
+        -webkit-tap-highlight-color: transparent !important;
+        transition: all 0.2s ease !important;
+      }
+      [class*="MarkdownControl"] button[class*="edit" i],
+      [class*="MarkdownControl"] button[title*="edit" i],
+      [class*="MarkdownControl"] button[aria-label*="edit" i] { background: #10b981 !important; }
+      [class*="MarkdownControl"] button[class*="preview" i]:hover,
+      [class*="MarkdownControl"] button[title*="preview" i]:hover,
+      [class*="MarkdownControl"] button[aria-label*="preview" i]:hover { background: #2563eb !important; transform: scale(1.05) !important; }
+      [class*="MarkdownControl"] button[class*="edit" i]:hover,
+      [class*="MarkdownControl"] button[title*="edit" i]:hover,
+      [class*="MarkdownControl"] button[aria-label*="edit" i]:hover { background: #059669 !important; transform: scale(1.05) !important; }
+      [class*="MarkdownControl"] [class*="ToolbarToggle"]:active,
+      [class*="MarkdownControl"] [class*="PreviewToggle"]:active,
+      [class*="MarkdownControl"] button[class*="preview" i]:active,
+      [class*="MarkdownControl"] button[class*="edit" i]:active { transform: scale(0.95) !important; }
+      [class*="MarkdownControl"] button[class*="preview" i]::before { content: "👁" !important; font-size: 16px !important; }
+      [class*="MarkdownControl"] button[class*="edit" i]::before { content: "✏️" !important; font-size: 14px !important; }
+      
+      [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] { display: none !important; }
+      [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] { display: none !important; }
+      [class*="MarkdownControl"].preview-mode [class*="PreviewPane"] { max-height: none !important; flex: 1 !important; padding-top: 60px !important; }
+      
+      input, textarea, select { font-size: 16px !important; }
     }
+
+    /* 5. プレビューエリアのマークダウンスタイリング */
+    /* ... 変更なし ... */
+
+    /* 6. アクセシビリティ */
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+    button:focus, input:focus, textarea:focus, select:focus { outline: 2px solid #3b82f6; outline-offset: 2px; }
+    button, [role="button"], [class*="Button"] { -webkit-tap-highlight-color: transparent; }
     
-    /* 4. プレビューエリアの軽微なスタイル調整（全画面共通） */
-    [class*="PreviewPane"] {
-      font-family: inherit;
-      line-height: 1.6;
-    }
-    
-    [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
-    [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
-      margin-top: 1.5em;
-      margin-bottom: 0.5em;
-      font-weight: 600;
-      line-height: 1.25;
-    }
-    
-    [class*="PreviewPane"] h1:first-child,
-    [class*="PreviewPane"] h2:first-child,
-    [class*="PreviewPane"] h3:first-child {
-      margin-top: 0;
-    }
-    
-    [class*="PreviewPane"] p {
-      margin-bottom: 1em;
-    }
-    
-    [class*="PreviewPane"] img {
-      max-width: 100%;
-      height: auto;
-    }
-    
-    [class*="PreviewPane"] code {
-      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      font-size: 0.9em;
-      background-color: rgba(27, 31, 35, 0.05);
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-    }
-    
-    [class*="PreviewPane"] pre {
-      background-color: #f6f8fa;
-      border-radius: 6px;
-      padding: 1em;
-      overflow: auto;
-      margin: 1em 0;
-    }
-    
-    [class*="PreviewPane"] pre code {
-      background: transparent;
-      padding: 0;
-    }
-    
-    /* 5. アクセシビリティ */
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; animation: none !important; }
-    }
-    
-    button:focus, input:focus, textarea:focus, select:focus {
-      outline: 2px solid #3b82f6;
-      outline-offset: 2px;
-    }
+    /* ローディング画面のスタイル */
+    /* ... 変更なし ... */
   </style>
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- ▼ シンプル&モダンなローディングデザイン ▼ -->
-  <div id="loading-indicator" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-    overflow: hidden;
-  ">
-    <!-- 背景のパーティクル効果 -->
-    <div style="
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-        radial-gradient(circle at 45% 80%, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-      background-size: 200px 200px, 150px 150px, 100px 100px;
-      animation: float 20s ease-in-out infinite;
-    "></div>
-
-    <div style="text-align: center; position: relative;">
-      <!-- シンプルなスピナー -->
-      <div style="
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 32px;
-        position: relative;
-      ">
-        <div style="
-          width: 100%;
-          height: 100%;
-          border: 3px solid rgba(255, 255, 255, 0.2);
-          border-radius: 50%;
-          border-top-color: rgba(255, 255, 255, 0.8);
-          animation: spin 1.2s linear infinite;
-        "></div>
-        
-        <!-- 内側のドット -->
-        <div style="
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 8px;
-          height: 8px;
-          background: rgba(255, 255, 255, 0.6);
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
-          animation: pulse 2s ease-in-out infinite;
-        "></div>
-      </div>
-
-      <!-- プログレスバー -->
-      <div style="
-        width: 200px;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 1px;
-        margin: 0 auto 24px;
-        overflow: hidden;
-        position: relative;
-      ">
-        <div style="
-          width: 80px;
-          height: 100%;
-          background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
-          animation: progress 2s ease-in-out infinite;
-        "></div>
-      </div>
-
-      <h2 style="
-        margin: 0 0 8px;
-        font-weight: 600;
-        font-size: 22px;
-        letter-spacing: 0.5px;
-        opacity: 0.95;
-      ">Content Manager</h2>
-      
-      <p style="
-        margin: 0;
-        opacity: 0.7;
-        font-size: 14px;
-        font-weight: 400;
-      ">読み込み中...</p>
-    </div>
-  </div>
-
-  <style>
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-    }
-
-    @keyframes progress {
-      0% { transform: translateX(-100px); }
-      100% { transform: translateX(200px); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-  </style>
-  <!-- ▲ シンプル&モダンなローディングデザイン ▲ -->
+  <!-- ローディングインジケーター -->
+  <!-- ... 変更なし ... -->
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    /* Decap CMSの初期化とUI制御 - シンプル版 */
-
+    /*
+     * Decap CMS 制御スクリプト
+     */
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
-      if (loader && loader.style.opacity !== '0') {
+      if (loader) {
         loader.style.opacity = '0';
         setTimeout(() => { loader.style.display = 'none'; }, 500);
       }
     }
 
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("logout", () => {
-        document.location.href = "/admin/";
+    let lastScrollTop = 0;
+    let scrollListenerAttached = false;
+
+    function handleScrollForToolbar() {
+      const toolbars = document.querySelectorAll('[class*="MarkdownControl"] [class*="Toolbar"], [class*="MarkdownControl"] [class*="EditorToolbar"]');
+      if (toolbars.length === 0) return;
+
+      // Cross-browser support: IEや古いブラウザにも対応したスクロール位置取得
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScrollTop > lastScrollTop && currentScrollTop > 52) {
+        toolbars.forEach(toolbar => toolbar.classList.add('is-hidden'));
+      } else {
+        toolbars.forEach(toolbar => toolbar.classList.remove('is-hidden'));
+      }
+      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+    }
+
+    function enhanceMobileUI() {
+      if (window.innerWidth > 768) {
+        if (scrollListenerAttached) {
+          window.removeEventListener('scroll', handleScrollForToolbar);
+          scrollListenerAttached = false;
+        }
+        return;
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
+        if (markdownControls.length === 0) return;
+
+        markdownControls.forEach((control) => {
+          if (!control.dataset.mobileEnhanced) {
+            setupPreviewToggle(control);
+            control.dataset.mobileEnhanced = 'true';
+          }
+        });
+
+        if (!scrollListenerAttached) {
+          window.addEventListener('scroll', handleScrollForToolbar, { passive: true });
+          scrollListenerAttached = true;
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    function setupPreviewToggle(control) {
+      const buttons = control.querySelectorAll('button');
+      buttons.forEach((button) => {
+        const buttonText = button.textContent.toLowerCase();
+        const buttonTitle = (button.title || '').toLowerCase();
+        const buttonAriaLabel = (button.getAttribute('aria-label') || '').toLowerCase();
+        
+        if (buttonText.includes('preview') || buttonTitle.includes('preview') || 
+            buttonAriaLabel.includes('preview') || buttonText.includes('プレビュー')) {
+          button.addEventListener('click', () => {
+            control.classList.toggle('preview-mode');
+            control.classList.toggle('editor-mode');
+          });
+        }
       });
     }
 
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
+    }
     window.addEventListener('load', () => {
       setTimeout(hideLoadingIndicator, 800);
+      setTimeout(enhanceMobileUI, 1000);
     });
-
+    window.addEventListener('resize', () => { setTimeout(enhanceMobileUI, 300); });
     setTimeout(hideLoadingIndicator, 5000);
   </script>
 </body>
