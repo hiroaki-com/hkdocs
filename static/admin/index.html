@@ -10,7 +10,7 @@
   <style>
     /*
      * =================================================================
-     * Decap CMS カスタムスタイル - フローティングボタン案
+     * Decap CMS カスタムスタイル
      * =================================================================
      */
 
@@ -18,6 +18,7 @@
     *, *::before, *::after {
       box-sizing: border-box;
     }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -25,6 +26,7 @@
       max-width: 100vw;
       overflow-x: hidden;
     }
+    
     html, body {
       overscroll-behavior-y: none !important;
     }
@@ -60,70 +62,78 @@
 
     /* 4. スマホ専用改善 */
     @media (max-width: 768px) {
-      /* ===【A案実装】ここからフローティングボタンのスタイル === */
-
-      /* フローティングボタンのコンテナ */
-      .floating-action-button {
+      [class*="MarkdownControl"] {
+        flex-direction: column !important;
+      }
+      [class*="MarkdownControl"] [class*="EditorControlPane"],
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        min-width: 100%;
+        flex: none;
+      }
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        border-left: none;
+        border-top: 1px solid #e1e5e9;
+        max-height: 300px;
+      }
+      
+      /* スクロール連動ツールバー: 基本スタイル */
+      [class*="MarkdownControl"] [class*="Toolbar"],
+      [class*="MarkdownControl"] [class*="EditorToolbar"] {
         position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        z-index: 1000 !important;
-        display: none; /* 初期状態では非表示 */
+        top: 52px !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 990 !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        padding: 12px 16px !important;
+        margin: 0 !important;
+        transform: translateY(0);
+        transition: transform 0.3s ease-in-out !important;
+      }
+      
+      /* スクロール連動ツールバー: 非表示状態 */
+      [class*="MarkdownControl"] [class*="Toolbar"].is-hidden,
+      [class*="MarkdownControl"] [class*="EditorToolbar"].is-hidden {
+        transform: translateY(-120%);
       }
 
-      /* フローティングボタン本体のスタイル */
-      .floating-action-button button {
-        width: 56px !important;
-        height: 56px !important;
-        border-radius: 50% !important;
-        border: none !important;
-        color: white !important;
-        font-size: 24px !important;
-        line-height: 56px !important;
-        text-align: center !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
-        cursor: pointer !important;
+      [class*="MarkdownControl"] [class*="EditorControlPane"] {
+        padding-top: 60px !important;
+      }
+      
+      /* プレビュー/編集ボタンのスタイル */
+      [class*="MarkdownControl"] button[class*="preview" i],
+      [class*="MarkdownControl"] button[title*="preview" i],
+      [class*="MarkdownControl"] button[aria-label*="preview" i] {
+        position: absolute !important;
+        top: 8px !important; right: 16px !important; z-index: 1000 !important;
+        min-width: 44px !important; min-height: 44px !important; border-radius: 22px !important;
+        background: #3b82f6 !important; color: white !important; border: none !important;
+        box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
         touch-action: manipulation !important;
         -webkit-tap-highlight-color: transparent !important;
-        transition: all 0.2s ease-in-out !important;
+        transition: all 0.2s ease !important;
       }
-      .floating-action-button button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25) !important;
-      }
-      .floating-action-button button:active {
-        transform: scale(0.95);
-      }
-
-      /* 編集モード時のボタンスタイル（プレビューアイコン表示） */
-      .floating-action-button.edit-mode-active button {
-        background: #3b82f6 !important; /* 青色 */
-      }
-      .floating-action-button.edit-mode-active button::before {
-        content: "👁"; /* プレビューアイコン */
+      [class*="MarkdownControl"] button[class*="edit" i],
+      [class*="MarkdownControl"] button[title*="edit" i],
+      [class*="MarkdownControl"] button[aria-label*="edit" i] {
+        background: #10b981 !important;
       }
       
-      /* プレビューモード時のボタンスタイル（編集アイコン表示） */
-      .floating-action-button.preview-mode-active button {
-        background: #10b981 !important; /* 緑色 */
-      }
-      .floating-action-button.preview-mode-active button::before {
-        content: "✏️"; /* 編集アイコン */
-        font-size: 22px; /* 絵文字サイズ調整 */
-      }
-
-      /* ===【A案実装】ここまでフローティングボタンのスタイル === */
+      [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] { display: none !important; }
+      [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] { display: none !important; }
       
-      /* プレビューと編集エリアの表示切り替え */
-      [class*="MarkdownControl"].view-preview [class*="EditorControlPane"] {
-        display: none !important;
-      }
-      [class*="MarkdownControl"].view-edit [class*="PreviewPane"] {
-        display: none !important;
-      }
-      
-      /* iOSの自動ズーム防止 */
-      input, textarea, select, [data-slate-editor="true"], .cm-editor {
+      /* --- 【重要】iOSの自動ズーム防止 --- */
+      /* 入力フォームのフォントサイズを16pxに設定すると、自動ズームが無効になります */
+      [data-slate-editor="true"],
+      [role="textbox"],
+      .cm-editor,
+      input,
+      textarea,
+      select {
         font-size: 16px !important;
       }
     }
@@ -217,11 +227,6 @@
     </div>
   </div>
   
-  <!-- ===【A案実装】フローティングボタンのHTML要素 === -->
-  <div id="fab-container" class="floating-action-button">
-    <button id="fab-toggle-button" type="button" aria-label="Toggle Preview"></button>
-  </div>
-  
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
@@ -234,60 +239,68 @@
         }
       }
 
+      // --- スクロール制御ロジック ---
+      let lastScrollTop = 0;
+      let activeScrollContainer = null;
+
+      function handleScroll(event) {
+        const toolbars = document.querySelectorAll('[class*="MarkdownControl"] [class*="Toolbar"]');
+        if (toolbars.length === 0) return;
+        
+        const currentScrollTop = event.target.scrollTop;
+
+        if (currentScrollTop > lastScrollTop && currentScrollTop > 52) {
+          toolbars.forEach(toolbar => toolbar.classList.add('is-hidden'));
+        } else {
+          toolbars.forEach(toolbar => toolbar.classList.remove('is-hidden'));
+        }
+        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+      }
+
       // --- UI強化メインロジック ---
       function enhanceMobileUI() {
-        // PC表示では何もしない
         if (window.innerWidth > 768) {
-          const fab = document.getElementById('fab-container');
-          if (fab) fab.style.display = 'none';
+          if (activeScrollContainer) {
+            activeScrollContainer.removeEventListener('scroll', handleScroll);
+            activeScrollContainer = null;
+          }
           return;
         }
 
-        const fabContainer = document.getElementById('fab-container');
-        const fabButton = document.getElementById('fab-toggle-button');
-        if (!fabContainer || !fabButton) return;
-
-        // Decap CMSのUI構造を監視
         const observer = new MutationObserver(() => {
-          const markdownControl = document.querySelector('[class*="MarkdownControl"]');
-          
-          // Markdownエディタが表示されたら、フローティングボタンを表示
-          if (markdownControl) {
-            fabContainer.style.display = 'block';
-
-            // ボタンにイベントリスナーがなければ設定
-            if (!fabButton.dataset.listenerAttached) {
-              
-              // 初期状態を編集モードに設定
-              markdownControl.classList.add('view-edit');
-              fabContainer.classList.add('edit-mode-active');
-              
-              fabButton.addEventListener('click', () => {
-                const isPreview = markdownControl.classList.contains('view-preview');
-                
-                if (isPreview) {
-                  // 編集モードに切り替え
-                  markdownControl.classList.remove('view-preview');
-                  markdownControl.classList.add('view-edit');
-                  fabContainer.classList.remove('preview-mode-active');
-                  fabContainer.classList.add('edit-mode-active');
-                } else {
-                  // プレビューモードに切り替え
-                  markdownControl.classList.remove('view-edit');
-                  markdownControl.classList.add('view-preview');
-                  fabContainer.classList.remove('edit-mode-active');
-                  fabContainer.classList.add('preview-mode-active');
-                }
-              });
-              fabButton.dataset.listenerAttached = 'true';
-            }
-          } else {
-            // Markdownエディタがなければボタンを隠す
-            fabContainer.style.display = 'none';
+          const newScrollContainer = document.querySelector('[class*="MainView-root"]');
+          if (!newScrollContainer || newScrollContainer === activeScrollContainer) {
+            return;
           }
+
+          if (activeScrollContainer) {
+            activeScrollContainer.removeEventListener('scroll', handleScroll);
+          }
+
+          activeScrollContainer = newScrollContainer;
+          activeScrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+          
+          const markdownControls = activeScrollContainer.querySelectorAll('[class*="MarkdownControl"]');
+          markdownControls.forEach(control => {
+            if (!control.dataset.mobileEnhanced) {
+              setupPreviewToggle(control);
+              control.dataset.mobileEnhanced = 'true';
+            }
+          });
         });
 
         observer.observe(document.body, { childList: true, subtree: true });
+      }
+
+      function setupPreviewToggle(control) {
+        const previewButton = control.querySelector('button[class*="preview" i], button[title*="preview" i], button[aria-label*="preview" i]');
+        if (previewButton && !previewButton.dataset.listenerAttached) {
+          previewButton.addEventListener('click', () => {
+            control.classList.toggle('preview-mode');
+            control.classList.toggle('editor-mode');
+          });
+          previewButton.dataset.listenerAttached = 'true';
+        }
       }
       
       // --- 初期化 ---
@@ -296,7 +309,7 @@
       }
       window.addEventListener('load', () => {
         hideLoadingIndicator();
-        enhanceMobileUI();
+        setTimeout(enhanceMobileUI, 200);
       });
       window.addEventListener('resize', enhanceMobileUI);
     })();
