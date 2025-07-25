@@ -40,109 +40,63 @@
       overscroll-behavior: auto;
     }
 
-    /* 3. 全画面でマークダウンプレビューを有効化 */
-    /* マークダウンエディタのプレビューペインを表示 */
-    [class*="MarkdownControl"] [class*="EditorControlPane"],
-    [class*="MarkdownControl"] [class*="PreviewPane"] {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
+    /* 3. モバイル向けの最低限の調整（799px以下） */
+    @media (max-width: 799px) {
+      /* iOSの自動ズーム抑制 */
+      [data-slate-editor="true"], [role="textbox"], .cm-editor,
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+      
+      /* タップハイライトの調整 */
+      button, [role="button"], [class*="Button"] {
+        -webkit-tap-highlight-color: transparent;
+      }
     }
     
-    /* プレビューペインのスタイリング */
-    [class*="MarkdownControl"] [class*="PreviewPane"] {
-      border-left: 1px solid #e1e5e9;
-      background: #fafbfc;
-      padding: 16px;
-      font-size: 14px;
+    /* 4. プレビューエリアの軽微なスタイル調整（全画面共通） */
+    [class*="PreviewPane"] {
+      font-family: inherit;
       line-height: 1.6;
     }
     
-    /* エディタとプレビューの分割表示 */
-    [class*="MarkdownControl"] {
-      display: flex !important;
-      height: auto;
-      min-height: 400px;
-    }
-    
-    [class*="MarkdownControl"] [class*="EditorControlPane"] {
-      flex: 1;
-      min-width: 50%;
-    }
-    
-    [class*="MarkdownControl"] [class*="PreviewPane"] {
-      flex: 1;
-      min-width: 50%;
-      overflow-y: auto;
-    }
-    
-    /* モバイル対応 */
-    @media (max-width: 768px) {
-      [class*="MarkdownControl"] {
-        flex-direction: column !important;
-      }
-      
-      [class*="MarkdownControl"] [class*="EditorControlPane"],
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        min-width: 100%;
-        flex: none;
-      }
-      
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        border-left: none;
-        border-top: 1px solid #e1e5e9;
-        max-height: 300px;
-      }
-      
-      /* モバイルでのフォントサイズ調整 */
-      [data-slate-editor="true"], [role="textbox"], .cm-editor,
-      input, textarea, select {
-        font-size: 16px !important; /* iOSの自動ズーム抑制 */
-      }
-    }
-    
-    /* プレビューエリアのマークダウンスタイリング */
     [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
     [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
       font-weight: 600;
       line-height: 1.25;
     }
     
-    [class*="PreviewPane"] h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
-    [class*="PreviewPane"] h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
-    [class*="PreviewPane"] h3 { font-size: 1.25em; }
-    [class*="PreviewPane"] h4 { font-size: 1em; }
-    [class*="PreviewPane"] h5 { font-size: 0.875em; }
-    [class*="PreviewPane"] h6 { font-size: 0.85em; color: #6a737d; }
-    
-    [class*="PreviewPane"] p {
-      margin-bottom: 16px;
-      line-height: 1.6;
+    [class*="PreviewPane"] h1:first-child,
+    [class*="PreviewPane"] h2:first-child,
+    [class*="PreviewPane"] h3:first-child {
+      margin-top: 0;
     }
     
-    [class*="PreviewPane"] blockquote {
-      padding: 0 16px;
-      color: #6a737d;
-      border-left: 4px solid #dfe2e5;
-      margin: 16px 0;
+    [class*="PreviewPane"] p {
+      margin-bottom: 1em;
+    }
+    
+    [class*="PreviewPane"] img {
+      max-width: 100%;
+      height: auto;
     }
     
     [class*="PreviewPane"] code {
-      padding: 2px 4px;
-      background: rgba(27, 31, 35, 0.05);
-      border-radius: 3px;
-      font-size: 85%;
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.9em;
+      background-color: rgba(27, 31, 35, 0.05);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
     }
     
     [class*="PreviewPane"] pre {
-      padding: 16px;
-      background: #f6f8fa;
+      background-color: #f6f8fa;
       border-radius: 6px;
+      padding: 1em;
       overflow: auto;
-      margin: 16px 0;
+      margin: 1em 0;
     }
     
     [class*="PreviewPane"] pre code {
@@ -150,46 +104,7 @@
       padding: 0;
     }
     
-    [class*="PreviewPane"] ul, [class*="PreviewPane"] ol {
-      padding-left: 24px;
-      margin-bottom: 16px;
-    }
-    
-    [class*="PreviewPane"] li {
-      margin-bottom: 4px;
-    }
-    
-    [class*="PreviewPane"] table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 16px 0;
-    }
-    
-    [class*="PreviewPane"] table th,
-    [class*="PreviewPane"] table td {
-      border: 1px solid #dfe2e5;
-      padding: 8px 16px;
-    }
-    
-    [class*="PreviewPane"] table th {
-      background: #f6f8fa;
-      font-weight: 600;
-    }
-    
-    [class*="PreviewPane"] img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    
-    [class*="PreviewPane"] hr {
-      border: none;
-      border-top: 1px solid #e1e4e8;
-      margin: 24px 0;
-    }
-    
-    /* 4. アクセシビリティ */
+    /* 5. アクセシビリティ */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
@@ -197,10 +112,6 @@
     button:focus, input:focus, textarea:focus, select:focus {
       outline: 2px solid #3b82f6;
       outline-offset: 2px;
-    }
-    
-    button, [role="button"], [class*="Button"] {
-      -webkit-tap-highlight-color: transparent;
     }
   </style>
 
