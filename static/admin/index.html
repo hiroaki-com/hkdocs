@@ -76,6 +76,7 @@
         max-height: 300px;
       }
       
+      /* スクロール連動ツールバー: 基本スタイル */
       [class*="MarkdownControl"] [class*="Toolbar"],
       [class*="MarkdownControl"] [class*="EditorToolbar"] {
         position: fixed !important;
@@ -93,15 +94,18 @@
         transition: transform 0.3s ease-in-out !important;
       }
       
+      /* スクロール連動ツールバー: 非表示状態 */
       [class*="MarkdownControl"] [class*="Toolbar"].is-hidden,
       [class*="MarkdownControl"] [class*="EditorToolbar"].is-hidden {
         transform: translateY(-120%);
       }
 
+      /* 固定ツールバー分のスペースをエディタ上部に確保 */
       [class*="MarkdownControl"] [class*="EditorControlPane"] {
         padding-top: 60px !important;
       }
       
+      /* プレビュー/編集ボタンのスタイル */
       [class*="MarkdownControl"] button[class*="preview" i],
       [class*="MarkdownControl"] button[title*="preview" i],
       [class*="MarkdownControl"] button[aria-label*="preview" i] {
@@ -120,22 +124,23 @@
         -webkit-tap-highlight-color: transparent !important;
         transition: all 0.2s ease !important;
       }
-
       [class*="MarkdownControl"] button[class*="edit" i],
       [class*="MarkdownControl"] button[title*="edit" i],
       [class*="MarkdownControl"] button[aria-label*="edit" i] {
         background: #10b981 !important;
       }
       
-      [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] {
-        display: none !important;
-      }
-
-      [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] {
-        display: none !important;
-      }
+      [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] { display: none !important; }
+      [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] { display: none !important; }
       
-      input, textarea, select {
+      /* --- 【改善点】iOSの自動ズーム防止 --- */
+      /* 入力フォームのフォントサイズを16px以上に設定すると、自動ズームが無効になります */
+      [data-slate-editor="true"],
+      [role="textbox"],
+      .cm-editor,
+      input,
+      textarea,
+      select {
         font-size: 16px !important;
       }
     }
@@ -143,17 +148,11 @@
     /* 5. プレビューエリアのマークダウンスタイリング */
     [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
     [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
+      margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25;
     }
     [class*="PreviewPane"] h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
     [class*="PreviewPane"] h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
     [class*="PreviewPane"] h3 { font-size: 1.25em; }
-    [class*="PreviewPane"] h4 { font-size: 1em; }
-    [class*="PreviewPane"] h5 { font-size: 0.875em; }
-    [class*="PreviewPane"] h6 { font-size: 0.85em; color: #6a737d; }
     [class*="PreviewPane"] p { margin-bottom: 16px; line-height: 1.6; }
     [class*="PreviewPane"] blockquote { padding: 0 1em; color: #6a737d; border-left: 0.25em solid #dfe2e5; margin: 1em 0; }
     [class*="PreviewPane"] code { padding: .2em .4em; margin: 0; font-size: 85%; background-color: rgba(27,31,35,.05); border-radius: 3px; }
@@ -167,36 +166,19 @@
     [class*="PreviewPane"] ul, [class*="PreviewPane"] ol { padding-left: 2em; margin-bottom: 16px; }
 
     /* 6. アクセシビリティ */
-    @media (prefers-reduced-motion: reduce) {
-      * { 
-        transition: none !important;
-        animation: none !important;
-      }
-    }
-    button:focus, input:focus, textarea:focus, select:focus {
-      outline: 2px solid #3b82f6;
-      outline-offset: 2px;
-    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+    button:focus, input:focus, textarea:focus, select:focus { outline: 2px solid #3b82f6; outline-offset: 2px; }
     
     /* 7. ローディング画面 */
     #loading-indicator {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #ffffff; display: flex; align-items: center; justify-content: center;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      z-index: 9999;
-      opacity: 1;
-      transition: opacity 0.5s ease-out;
-      overflow: hidden;
+      z-index: 9999; opacity: 1; transition: opacity 0.5s ease-out; overflow: hidden;
     }
     .loading-bg {
-      position: absolute;
-      width: 100%; height: 100%;
+      position: absolute; width: 100%; height: 100%;
       background-image: 
         radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
         radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
@@ -207,28 +189,18 @@
     .loading-content { text-align: center; position: relative; }
     .loading-spinner-wrapper { width: 60px; height: 60px; margin: 0 auto 32px; position: relative; }
     .loading-spinner {
-      width: 100%; height: 100%;
-      border: 3px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      border-top-color: rgba(255, 255, 255, 0.8);
+      width: 100%; height: 100%; border: 3px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%; border-top-color: rgba(255, 255, 255, 0.8);
       animation: spin 1.2s linear infinite;
     }
     .loading-pulse {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 8px; height: 8px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulse 2s ease-in-out infinite;
+      position: absolute; top: 50%; left: 50%; width: 8px; height: 8px;
+      background: rgba(255, 255, 255, 0.6); border-radius: 50%;
+      transform: translate(-50%, -50%); animation: pulse 2s ease-in-out infinite;
     }
     .loading-progress-bar {
-      width: 200px; height: 2px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 1px;
-      margin: 0 auto 24px;
-      overflow: hidden;
-      position: relative;
+      width: 200px; height: 2px; background: rgba(255, 255, 255, 0.2);
+      border-radius: 1px; margin: 0 auto 24px; overflow: hidden; position: relative;
     }
     .loading-progress-shine {
       width: 80px; height: 100%;
@@ -239,18 +211,9 @@
     .loading-text { margin: 0; opacity: 0.7; font-size: 14px; font-weight: 400; }
 
     @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-    }
-    @keyframes progress {
-      0% { transform: translateX(-100px); }
-      100% { transform: translateX(200px); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
+    @keyframes pulse { 0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); } }
+    @keyframes progress { 0% { transform: translateX(-100px); } 100% { transform: translateX(200px); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
   </style>
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -285,7 +248,7 @@
 
       // --- スクロール制御ロジック ---
       let lastScrollTop = 0;
-      let activeScrollContainer = null; // 現在アクティブなスクロール要素を保持
+      let activeScrollContainer = null;
 
       function handleScroll(event) {
         const toolbars = document.querySelectorAll('[class*="MarkdownControl"] [class*="Toolbar"]');
@@ -304,7 +267,6 @@
       // --- UI強化メインロジック ---
       function enhanceMobileUI() {
         if (window.innerWidth > 768) {
-          // PC表示に切り替わったら、アクティブなリスナーを解除
           if (activeScrollContainer) {
             activeScrollContainer.removeEventListener('scroll', handleScroll);
             activeScrollContainer = null;
@@ -312,26 +274,19 @@
           return;
         }
 
-        // DOMの変更を監視して、常に最新のUIに対応
         const observer = new MutationObserver(() => {
-          // Decap CMSのUI構造が変わるたびに、スクロール要素を再探索
           const newScrollContainer = document.querySelector('[class*="MainView-root"]');
-
-          // 新しいコンテナが見つからないか、既に対象としていれば処理を中断
           if (!newScrollContainer || newScrollContainer === activeScrollContainer) {
             return;
           }
 
-          // **【重要】** 以前のコンテナからイベントリスナーを確実に削除
           if (activeScrollContainer) {
             activeScrollContainer.removeEventListener('scroll', handleScroll);
           }
 
-          // 新しいコンテナをアクティブにし、イベントリスナーを登録
           activeScrollContainer = newScrollContainer;
           activeScrollContainer.addEventListener('scroll', handleScroll, { passive: true });
           
-          // プレビューボタンの機能もここで設定
           const markdownControls = activeScrollContainer.querySelectorAll('[class*="MarkdownControl"]');
           markdownControls.forEach(control => {
             if (!control.dataset.mobileEnhanced) {
@@ -346,13 +301,11 @@
 
       function setupPreviewToggle(control) {
         const previewButton = control.querySelector('button[class*="preview" i], button[title*="preview" i], button[aria-label*="preview" i]');
-        // イベントの重複登録を避けるためのチェック
         if (previewButton && !previewButton.dataset.listenerAttached) {
           previewButton.addEventListener('click', () => {
             control.classList.toggle('preview-mode');
             control.classList.toggle('editor-mode');
           });
-          // リスナーが登録されたことをマーク
           previewButton.dataset.listenerAttached = 'true';
         }
       }
@@ -363,7 +316,6 @@
       }
       window.addEventListener('load', () => {
         hideLoadingIndicator();
-        // わずかに遅延させて、Decap CMSの初期描画を待つ
         setTimeout(enhanceMobileUI, 200);
       });
       window.addEventListener('resize', enhanceMobileUI);
