@@ -67,8 +67,134 @@
         padding: 24px;
       }
     }
+
+    /* 5. PC画面でのマークダウンプレビュー機能復活 (1025px以上) */
+    @media (min-width: 1025px) {
+      /* マークダウンエディタのプレビューペインを表示 */
+      [class*="MarkdownControl"] [class*="EditorControlPane"],
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
+      /* プレビューペインのスタイリング */
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        border-left: 1px solid #e1e5e9;
+        background: #fafbfc;
+        padding: 16px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      
+      /* エディタとプレビューの分割表示 */
+      [class*="MarkdownControl"] {
+        display: flex !important;
+        height: auto;
+        min-height: 400px;
+      }
+      
+      [class*="MarkdownControl"] [class*="EditorControlPane"] {
+        flex: 1;
+        min-width: 50%;
+      }
+      
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        flex: 1;
+        min-width: 50%;
+        overflow-y: auto;
+      }
+      
+      /* プレビューエリアのマークダウンスタイリング */
+      [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
+      [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+      
+      [class*="PreviewPane"] h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
+      [class*="PreviewPane"] h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
+      [class*="PreviewPane"] h3 { font-size: 1.25em; }
+      [class*="PreviewPane"] h4 { font-size: 1em; }
+      [class*="PreviewPane"] h5 { font-size: 0.875em; }
+      [class*="PreviewPane"] h6 { font-size: 0.85em; color: #6a737d; }
+      
+      [class*="PreviewPane"] p {
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+      
+      [class*="PreviewPane"] blockquote {
+        padding: 0 16px;
+        color: #6a737d;
+        border-left: 4px solid #dfe2e5;
+        margin: 16px 0;
+      }
+      
+      [class*="PreviewPane"] code {
+        padding: 2px 4px;
+        background: rgba(27, 31, 35, 0.05);
+        border-radius: 3px;
+        font-size: 85%;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      }
+      
+      [class*="PreviewPane"] pre {
+        padding: 16px;
+        background: #f6f8fa;
+        border-radius: 6px;
+        overflow: auto;
+        margin: 16px 0;
+      }
+      
+      [class*="PreviewPane"] pre code {
+        background: transparent;
+        padding: 0;
+      }
+      
+      [class*="PreviewPane"] ul, [class*="PreviewPane"] ol {
+        padding-left: 24px;
+        margin-bottom: 16px;
+      }
+      
+      [class*="PreviewPane"] li {
+        margin-bottom: 4px;
+      }
+      
+      [class*="PreviewPane"] table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+      }
+      
+      [class*="PreviewPane"] table th,
+      [class*="PreviewPane"] table td {
+        border: 1px solid #dfe2e5;
+        padding: 8px 16px;
+      }
+      
+      [class*="PreviewPane"] table th {
+        background: #f6f8fa;
+        font-weight: 600;
+      }
+      
+      [class*="PreviewPane"] img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      
+      [class*="PreviewPane"] hr {
+        border: none;
+        border-top: 1px solid #e1e4e8;
+        margin: 24px 0;
+      }
+    }
     
-    /* 5. アクセシビリティ & その他 */
+    /* 6. アクセシビリティ & その他 */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
@@ -217,13 +343,49 @@
       }
     }
 
+    // PC画面でのマークダウンプレビュー機能を有効化
+    function enableMarkdownPreviewOnDesktop() {
+      // 画面サイズがPC以上の場合のみ実行
+      if (window.innerWidth >= 1025) {
+        // Decap CMSが完全に読み込まれるのを待つ
+        const checkCMS = setInterval(() => {
+          const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
+          if (markdownControls.length > 0) {
+            markdownControls.forEach(control => {
+              // プレビューペインが非表示になっている場合、表示する
+              const previewPane = control.querySelector('[class*="PreviewPane"]');
+              if (previewPane) {
+                previewPane.style.display = 'block';
+                previewPane.style.visibility = 'visible';
+                previewPane.style.opacity = '1';
+              }
+            });
+            clearInterval(checkCMS);
+          }
+        }, 500);
+
+        // 10秒後にタイムアウト
+        setTimeout(() => clearInterval(checkCMS), 10000);
+      }
+    }
+
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
-    window.addEventListener('load', () => setTimeout(hideLoadingIndicator, 800));
+    window.addEventListener('load', () => {
+      setTimeout(hideLoadingIndicator, 800);
+      // CMS読み込み後にプレビュー機能を有効化
+      setTimeout(enableMarkdownPreviewOnDesktop, 1000);
+    });
+
+    // リサイズ時にも再チェック
+    window.addEventListener('resize', () => {
+      setTimeout(enableMarkdownPreviewOnDesktop, 300);
+    });
+
     setTimeout(hideLoadingIndicator, 5000);
   </script>
 </body>

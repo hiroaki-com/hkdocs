@@ -3,13 +3,18 @@
 backend:
   name: git-gateway
   branch: main
-  # Auth0設定（環境変数が認識されない場合の代替）
-  # identity_url: "https://dev-hkdocs-cms.auth0.com"
-  # gateway_url: "https://hkdocs.netlify.app/.netlify/git/github"
 
 # メディアファイル（画像）の保存場所
 media_folder: "static/img/uploads/diary"
 public_folder: "/img/uploads/diary"
+
+# グローバルコミットメッセージのカスタマイズ
+commit_messages:
+  create: 'feat({{collection}}): create new {{collection}} entry "{{slug}}"'
+  update: 'fix({{collection}}): update {{collection}} entry "{{slug}}"'
+  delete: 'refactor({{collection}}): delete {{collection}} entry "{{slug}}"'
+  uploadMedia: 'chore(assets): upload media file {{path}}'
+  deleteMedia: 'chore(assets): delete media file {{path}}'
 
 # 管理するコンテンツの定義
 collections:
@@ -19,16 +24,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}"
     editor:
-      preview: false
-
-    # コレクションごとのコミットメッセージをカスタマイズ
-    commit_messages:
-      create: 'feat(diary): create new diary entry "{{slug}}"'
-      update: 'fix(diary): update diary entry "{{slug}}"'
-      delete: 'refactor(diary): delete diary entry "{{slug}}"'
-      uploadMedia: 'chore(assets): upload media file {{path}}'
-      deleteMedia: 'chore(assets): delete media file {{path}}'
-      openAuthoring: 'feat(diary): {{message}}'
+      preview: true  # PC画面でのマークダウンプレビューを有効化
 
     fields:
       - { label: "タイトル", name: "title", widget: "string" }
