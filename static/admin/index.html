@@ -11,7 +11,7 @@
   <style>
     /*
      * =================================================================
-     * Decap CMS カスタムスタイル（シンプル版）
+     * Decap CMS カスタムスタイル - シンプル版
      * =================================================================
      */
 
@@ -19,7 +19,6 @@
     *, *::before, *::after {
       box-sizing: border-box;
     }
-    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -32,34 +31,76 @@
     html, body {
       overscroll-behavior-y: none !important;
     }
-    
     [data-slate-editor="true"], [role="textbox"], .cm-editor {
       line-height: 1.4;
-      touch-action: auto;
-      overscroll-behavior: auto;
     }
-    
+    [data-slate-editor="true"], [role="textbox"], .cm-editor,
     textarea, input[type="text"], input[type="email"], input[type="url"] {
       touch-action: auto;
       overscroll-behavior: auto;
-      font-size: 16px; /* iOSの自動ズーム抑制 */
     }
 
-    /* 3. タップハイライトの調整 */
-    button, [role="button"], [class*="Button"] {
-      -webkit-tap-highlight-color: transparent;
+    /* 3. 全画面でマークダウンプレビューを有効化 */
+    /* マークダウンエディタのプレビューペインを表示 */
+    [class*="MarkdownControl"] [class*="EditorControlPane"],
+    [class*="MarkdownControl"] [class*="PreviewPane"] {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
     }
-
-    /* 4. マークダウンプレビューのスタイリング（全画面対応） */
+    
+    /* プレビューペインのスタイリング */
     [class*="MarkdownControl"] [class*="PreviewPane"] {
       border-left: 1px solid #e1e5e9;
       background: #fafbfc;
       padding: 16px;
       font-size: 14px;
       line-height: 1.6;
+    }
+    
+    /* エディタとプレビューの分割表示 */
+    [class*="MarkdownControl"] {
+      display: flex !important;
+      height: auto;
+      min-height: 400px;
+    }
+    
+    [class*="MarkdownControl"] [class*="EditorControlPane"] {
+      flex: 1;
+      min-width: 50%;
+    }
+    
+    [class*="MarkdownControl"] [class*="PreviewPane"] {
+      flex: 1;
+      min-width: 50%;
       overflow-y: auto;
     }
-
+    
+    /* モバイル対応 */
+    @media (max-width: 768px) {
+      [class*="MarkdownControl"] {
+        flex-direction: column !important;
+      }
+      
+      [class*="MarkdownControl"] [class*="EditorControlPane"],
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        min-width: 100%;
+        flex: none;
+      }
+      
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        border-left: none;
+        border-top: 1px solid #e1e5e9;
+        max-height: 300px;
+      }
+      
+      /* モバイルでのフォントサイズ調整 */
+      [data-slate-editor="true"], [role="textbox"], .cm-editor,
+      input, textarea, select {
+        font-size: 16px !important; /* iOSの自動ズーム抑制 */
+      }
+    }
+    
     /* プレビューエリアのマークダウンスタイリング */
     [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
     [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
@@ -69,18 +110,8 @@
       line-height: 1.25;
     }
     
-    [class*="PreviewPane"] h1 { 
-      font-size: 2em; 
-      border-bottom: 1px solid #eaecef; 
-      padding-bottom: 8px; 
-    }
-    
-    [class*="PreviewPane"] h2 { 
-      font-size: 1.5em; 
-      border-bottom: 1px solid #eaecef; 
-      padding-bottom: 8px; 
-    }
-    
+    [class*="PreviewPane"] h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
+    [class*="PreviewPane"] h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
     [class*="PreviewPane"] h3 { font-size: 1.25em; }
     [class*="PreviewPane"] h4 { font-size: 1em; }
     [class*="PreviewPane"] h5 { font-size: 0.875em; }
@@ -158,17 +189,18 @@
       margin: 24px 0;
     }
     
-    /* 5. アクセシビリティ */
+    /* 4. アクセシビリティ */
     @media (prefers-reduced-motion: reduce) {
-      * { 
-        transition: none !important; 
-        animation: none !important; 
-      }
+      * { transition: none !important; animation: none !important; }
     }
     
     button:focus, input:focus, textarea:focus, select:focus {
       outline: 2px solid #3b82f6;
       outline-offset: 2px;
+    }
+    
+    button, [role="button"], [class*="Button"] {
+      -webkit-tap-highlight-color: transparent;
     }
   </style>
 
@@ -297,7 +329,7 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    /* Decap CMSの初期化とUI制御（シンプル版） */
+    /* Decap CMSの初期化とUI制御 - シンプル版 */
 
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
