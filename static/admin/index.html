@@ -11,7 +11,7 @@
   <style>
     /*
      * =================================================================
-     * Decap CMS カスタムスタイル
+     * Decap CMS カスタムスタイル - シンプル版
      * =================================================================
      */
 
@@ -40,199 +40,78 @@
       overscroll-behavior: auto;
     }
 
-    /* 3. モバイル表示の最適化 (〜799px) - プレビュー完全無効化 */
+    /* 3. モバイル向けの最低限の調整（799px以下） */
     @media (max-width: 799px) {
+      /* iOSの自動ズーム抑制 */
       [data-slate-editor="true"], [role="textbox"], .cm-editor,
       input, textarea, select {
-        font-size: 16px !important; /* iOSの自動ズーム抑制 */
-        width: 100%;
+        font-size: 16px !important;
       }
+      
+      /* タップハイライトの調整 */
       button, [role="button"], [class*="Button"] {
         -webkit-tap-highlight-color: transparent;
       }
-      [class*="AppMainContainer"], [class*="CollectionContainer"], [class*="EditorContainer"] {
-        padding: 16px;
-        width: 100%;
-      }
-      [class*="Modal"], [class*="DropdownList"] {
-        max-height: 90vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      
-      /* マークダウンプレビューを強制非表示 */
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        display: none !important;
-        visibility: hidden !important;
-        width: 0 !important;
-        height: 0 !important;
-      }
-      [class*="MarkdownControl"] {
-        display: block !important;
-      }
-      [class*="MarkdownControl"] [class*="EditorControlPane"] {
-        width: 100% !important;
-        flex: none !important;
-      }
     }
     
-    /* 4. タブレット表示の微調整 (800px〜1024px) - プレビュー完全無効化 */
-    @media (min-width: 800px) and (max-width: 1024px) {
-      [class*="AppMainContainer"] {
-        padding: 24px;
-      }
-      
-      /* マークダウンプレビューを強制非表示 */
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        display: none !important;
-        visibility: hidden !important;
-        width: 0 !important;
-        height: 0 !important;
-      }
-      [class*="MarkdownControl"] {
-        display: block !important;
-      }
-      [class*="MarkdownControl"] [class*="EditorControlPane"] {
-        width: 100% !important;
-        flex: none !important;
-      }
-    }
-
-    /* 5. PC画面でのマークダウンプレビュー機能復活 (1025px以上) */
-    @media (min-width: 1025px) {
-      /* マークダウンエディタのプレビューペインを表示 */
-      [class*="MarkdownControl"] [class*="EditorControlPane"],
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-      }
-      
-      /* プレビューペインのスタイリング */
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        border-left: 1px solid #e1e5e9;
-        background: #fafbfc;
-        padding: 16px;
-        font-size: 14px;
-        line-height: 1.6;
-      }
-      
-      /* エディタとプレビューの分割表示 */
-      [class*="MarkdownControl"] {
-        display: flex !important;
-        height: auto;
-        min-height: 400px;
-      }
-      
-      [class*="MarkdownControl"] [class*="EditorControlPane"] {
-        flex: 1;
-        min-width: 50%;
-      }
-      
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        flex: 1;
-        min-width: 50%;
-        overflow-y: auto;
-      }
-      
-      /* プレビューエリアのマークダウンスタイリング */
-      [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
-      [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
-        margin-top: 24px;
-        margin-bottom: 16px;
-        font-weight: 600;
-        line-height: 1.25;
-      }
-      
-      [class*="PreviewPane"] h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
-      [class*="PreviewPane"] h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
-      [class*="PreviewPane"] h3 { font-size: 1.25em; }
-      [class*="PreviewPane"] h4 { font-size: 1em; }
-      [class*="PreviewPane"] h5 { font-size: 0.875em; }
-      [class*="PreviewPane"] h6 { font-size: 0.85em; color: #6a737d; }
-      
-      [class*="PreviewPane"] p {
-        margin-bottom: 16px;
-        line-height: 1.6;
-      }
-      
-      [class*="PreviewPane"] blockquote {
-        padding: 0 16px;
-        color: #6a737d;
-        border-left: 4px solid #dfe2e5;
-        margin: 16px 0;
-      }
-      
-      [class*="PreviewPane"] code {
-        padding: 2px 4px;
-        background: rgba(27, 31, 35, 0.05);
-        border-radius: 3px;
-        font-size: 85%;
-        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      }
-      
-      [class*="PreviewPane"] pre {
-        padding: 16px;
-        background: #f6f8fa;
-        border-radius: 6px;
-        overflow: auto;
-        margin: 16px 0;
-      }
-      
-      [class*="PreviewPane"] pre code {
-        background: transparent;
-        padding: 0;
-      }
-      
-      [class*="PreviewPane"] ul, [class*="PreviewPane"] ol {
-        padding-left: 24px;
-        margin-bottom: 16px;
-      }
-      
-      [class*="PreviewPane"] li {
-        margin-bottom: 4px;
-      }
-      
-      [class*="PreviewPane"] table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 16px 0;
-      }
-      
-      [class*="PreviewPane"] table th,
-      [class*="PreviewPane"] table td {
-        border: 1px solid #dfe2e5;
-        padding: 8px 16px;
-      }
-      
-      [class*="PreviewPane"] table th {
-        background: #f6f8fa;
-        font-weight: 600;
-      }
-      
-      [class*="PreviewPane"] img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 4px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-      
-      [class*="PreviewPane"] hr {
-        border: none;
-        border-top: 1px solid #e1e4e8;
-        margin: 24px 0;
-      }
+    /* 4. プレビューエリアの軽微なスタイル調整（全画面共通） */
+    [class*="PreviewPane"] {
+      font-family: inherit;
+      line-height: 1.6;
     }
     
-    /* 6. アクセシビリティ & その他 */
+    [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
+    [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    
+    [class*="PreviewPane"] h1:first-child,
+    [class*="PreviewPane"] h2:first-child,
+    [class*="PreviewPane"] h3:first-child {
+      margin-top: 0;
+    }
+    
+    [class*="PreviewPane"] p {
+      margin-bottom: 1em;
+    }
+    
+    [class*="PreviewPane"] img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    [class*="PreviewPane"] code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.9em;
+      background-color: rgba(27, 31, 35, 0.05);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    
+    [class*="PreviewPane"] pre {
+      background-color: #f6f8fa;
+      border-radius: 6px;
+      padding: 1em;
+      overflow: auto;
+      margin: 1em 0;
+    }
+    
+    [class*="PreviewPane"] pre code {
+      background: transparent;
+      padding: 0;
+    }
+    
+    /* 5. アクセシビリティ */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
-    @media (min-width: 800px) {
-      button:focus, input:focus, textarea:focus, select:focus {
-        outline: 2px solid #3b82f6;
-        outline-offset: 2px;
-      }
+    
+    button:focus, input:focus, textarea:focus, select:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
     }
   </style>
 
@@ -361,7 +240,7 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    /* Decap CMSの初期化とUI制御 */
+    /* Decap CMSの初期化とUI制御 - シンプル版 */
 
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
@@ -369,53 +248,6 @@
         loader.style.opacity = '0';
         setTimeout(() => { loader.style.display = 'none'; }, 500);
       }
-    }
-
-    /* PC画面でのマークダウンプレビュー機能を強制的に制御 */
-    function controlMarkdownPreview() {
-      const screenWidth = window.innerWidth;
-      const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
-      
-      markdownControls.forEach(control => {
-        const previewPane = control.querySelector('[class*="PreviewPane"]');
-        const editorPane = control.querySelector('[class*="EditorControlPane"]');
-        
-        if (previewPane && editorPane) {
-          if (screenWidth >= 1025) {
-            // PC: プレビュー表示
-            previewPane.style.display = 'block';
-            previewPane.style.visibility = 'visible';
-            previewPane.style.opacity = '1';
-            control.style.display = 'flex';
-          } else {
-            // モバイル・タブレット: プレビュー完全非表示
-            previewPane.style.display = 'none';
-            previewPane.style.visibility = 'hidden';
-            previewPane.style.width = '0';
-            previewPane.style.height = '0';
-            control.style.display = 'block';
-            editorPane.style.width = '100%';
-            editorPane.style.flex = 'none';
-          }
-        }
-      });
-    }
-
-    /* CMS読み込み監視とプレビュー制御 */
-    function initializePreviewControl() {
-      const observer = new MutationObserver(() => {
-        controlMarkdownPreview();
-      });
-      
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class']
-      });
-      
-      // 定期チェック（フォールバック）
-      setInterval(controlMarkdownPreview, 1000);
     }
 
     if (window.netlifyIdentity) {
@@ -426,12 +258,6 @@
 
     window.addEventListener('load', () => {
       setTimeout(hideLoadingIndicator, 800);
-      setTimeout(initializePreviewControl, 1000);
-    });
-
-    /* リサイズ時の即座対応 */
-    window.addEventListener('resize', () => {
-      controlMarkdownPreview();
     });
 
     setTimeout(hideLoadingIndicator, 5000);
