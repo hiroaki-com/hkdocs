@@ -4,11 +4,11 @@ backend:
   branch: main
   # コミットメッセージのカスタマイズ（backendセクション内に配置）
   commit_messages:
-    create: 'feat(diary): create new diary entry "{{slug}}"'
-    update: 'fix(diary): update diary entry "{{slug}}"'
-    delete: 'refactor(diary): delete diary entry "{{slug}}"'
-    uploadMedia: 'chore(assets): upload media file "{{path}}"'
-    deleteMedia: 'chore(assets): delete media file "{{path}}"'
+    create: 'docs(diary): add new entry "{{slug}}"'
+    update: 'docs(diary): revise entry "{{slug}}"'
+    delete: 'docs(diary): remove entry "{{slug}}"'
+    uploadMedia: 'docs(assets): add media "{{path}}"'
+    deleteMedia: 'docs(assets): remove media "{{path}}"'
 
 # メディアファイル（画像）の保存場所
 media_folder: "static/img/uploads/diary"
