@@ -24,8 +24,8 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
       max-width: 100vw;
+      overflow-x: hidden;
     }
     
     html, body {
@@ -74,7 +74,6 @@
       /* 基本レイアウト */
       [class*="MarkdownControl"] {
         flex-direction: column !important;
-        position: relative;
       }
       
       [class*="MarkdownControl"] [class*="EditorControlPane"],
@@ -89,31 +88,33 @@
         max-height: 300px;
       }
       
-      /* プレビューボタンエリアの確保 - メニューバー問題解決 */
-      [class*="MarkdownControl"] [class*="EditorControlPane"] {
-        padding-top: 60px !important; /* ツールバー分のスペース確保 */
-        margin-top: -50px !important; /* 上部のオーバーラップ回避 */
-        position: relative;
-        z-index: 1;
-      }
-      
-      /* ツールバーの固定配置改善 */
+      /* ===【改善】ツールバーの固定を position: sticky に変更 === */
+      /* これにより、スクロールしてもツールバーが画面上部に留まり続ける */
       [class*="MarkdownControl"] [class*="Toolbar"],
       [class*="MarkdownControl"] [class*="EditorToolbar"] {
-        position: fixed !important;
+        position: sticky !important; /* fixedからstickyに変更 */
         top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 999 !important;
+        z-index: 999 !important; /* 重なり順を最優先に */
+        
+        /* スタイリング */
         background: rgba(255, 255, 255, 0.95) !important;
         backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px);
         border-bottom: 1px solid #e1e5e9 !important;
         padding: 12px 16px !important;
         margin: 0 !important;
+        width: 100% !important; /* 幅を確保 */
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
       }
+
+      /* ===【改善】エディタ部分の調整 === */
+      /* sticky化したツールバーの高さ分だけ、エディタ上部に余白を確保する */
+      [class*="MarkdownControl"] [class*="EditorControlPane"] {
+        padding-top: 60px !important; /* ツールバーの高さ分のスペースを確保 */
+        /* margin-topとposition指定は不要になったため削除 */
+      }
       
-      /* プレビューボタンの最適化 */
+      /* プレビューボタンの最適化 (変更なし、ツールバーに追従して固定される) */
       [class*="MarkdownControl"] [class*="ToolbarToggle"],
       [class*="MarkdownControl"] [class*="PreviewToggle"],
       [class*="MarkdownControl"] button[class*="preview" i],
@@ -123,8 +124,6 @@
         top: 8px !important;
         right: 16px !important;
         z-index: 1000 !important;
-        
-        /* ボタンスタイル */
         min-width: 44px !important;
         min-height: 44px !important;
         border-radius: 22px !important;
@@ -132,21 +131,17 @@
         color: white !important;
         border: none !important;
         box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
-        
-        /* タッチ最適化 */
         touch-action: manipulation !important;
         -webkit-tap-highlight-color: transparent !important;
         transition: all 0.2s ease !important;
       }
       
-      /* エディターボタンのスタイル */
       [class*="MarkdownControl"] button[class*="edit" i],
       [class*="MarkdownControl"] button[title*="edit" i],
       [class*="MarkdownControl"] button[aria-label*="edit" i] {
         background: #10b981 !important;
       }
       
-      /* ホバー・アクティブ効果 */
       [class*="MarkdownControl"] button[class*="preview" i]:hover,
       [class*="MarkdownControl"] button[title*="preview" i]:hover,
       [class*="MarkdownControl"] button[aria-label*="preview" i]:hover {
@@ -162,7 +157,6 @@
         transform: scale(1.05) !important;
       }
       
-      /* アクティブ状態 */
       [class*="MarkdownControl"] [class*="ToolbarToggle"]:active,
       [class*="MarkdownControl"] [class*="PreviewToggle"]:active,
       [class*="MarkdownControl"] button[class*="preview" i]:active,
@@ -170,7 +164,6 @@
         transform: scale(0.95) !important;
       }
       
-      /* ボタンアイコン */
       [class*="MarkdownControl"] button[class*="preview" i]::before,
       [class*="MarkdownControl"] button[title*="preview" i]::before,
       [class*="MarkdownControl"] button[aria-label*="preview" i]::before {
@@ -187,19 +180,14 @@
         display: inline-block !important;
       }
       
-      /* プレビューモード切り替え */
-      [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] {
-        display: none !important;
-      }
+      /* プレビューモード切り替え (変更なし) */
+      [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] { display: none !important; }
+      [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] { display: none !important; }
       
       [class*="MarkdownControl"].preview-mode [class*="PreviewPane"] {
         max-height: none !important;
         flex: 1 !important;
         padding-top: 60px !important; /* ツールバー分のスペース */
-      }
-      
-      [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] {
-        display: none !important;
       }
       
       /* フォントサイズ調整（iOS自動ズーム抑制） */
@@ -208,250 +196,147 @@
         font-size: 16px !important;
       }
       
-      /* スクロール改善 */
       [class*="MarkdownControl"] [class*="PreviewPane"] {
         -webkit-overflow-scrolling: touch !important;
         scroll-behavior: smooth !important;
       }
     }
 
-    /* 5. プレビューエリアのマークダウンスタイリング */
+    /* 5. プレビューエリアのマークダウンスタイリング (変更なし) */
     [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
-    [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-    }
-    
-    [class*="PreviewPane"] h1 { 
-      font-size: 2em; 
-      border-bottom: 1px solid #eaecef; 
-      padding-bottom: 8px; 
-    }
-    
-    [class*="PreviewPane"] h2 { 
-      font-size: 1.5em; 
-      border-bottom: 1px solid #eaecef; 
-      padding-bottom: 8px; 
-    }
-    
+    [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; }
+    [class*="PreviewPane"] h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
+    [class*="PreviewPane"] h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
     [class*="PreviewPane"] h3 { font-size: 1.25em; }
     [class*="PreviewPane"] h4 { font-size: 1em; }
     [class*="PreviewPane"] h5 { font-size: 0.875em; }
     [class*="PreviewPane"] h6 { font-size: 0.85em; color: #6a737d; }
-    
-    [class*="PreviewPane"] p {
-      margin-bottom: 16px;
-      line-height: 1.6;
-    }
-    
-    [class*="PreviewPane"] blockquote {
-      padding: 0 16px;
-      color: #6a737d;
-      border-left: 4px solid #dfe2e5;
-      margin: 16px 0;
-    }
-    
-    [class*="PreviewPane"] code {
-      padding: 2px 4px;
-      background: rgba(27, 31, 35, 0.05);
-      border-radius: 3px;
-      font-size: 85%;
-      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    }
-    
-    [class*="PreviewPane"] pre {
-      padding: 16px;
-      background: #f6f8fa;
-      border-radius: 6px;
-      overflow: auto;
-      margin: 16px 0;
-    }
-    
-    [class*="PreviewPane"] pre code {
-      background: transparent;
-      padding: 0;
-    }
-    
-    [class*="PreviewPane"] ul, [class*="PreviewPane"] ol {
-      padding-left: 24px;
-      margin-bottom: 16px;
-    }
-    
-    [class*="PreviewPane"] li {
-      margin-bottom: 4px;
-    }
-    
-    [class*="PreviewPane"] table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 16px 0;
-    }
-    
-    [class*="PreviewPane"] table th,
-    [class*="PreviewPane"] table td {
-      border: 1px solid #dfe2e5;
-      padding: 8px 16px;
-    }
-    
-    [class*="PreviewPane"] table th {
-      background: #f6f8fa;
-      font-weight: 600;
-    }
-    
-    [class*="PreviewPane"] img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    
-    [class*="PreviewPane"] hr {
-      border: none;
-      border-top: 1px solid #e1e4e8;
-      margin: 24px 0;
-    }
+    [class*="PreviewPane"] p { margin-bottom: 16px; line-height: 1.6; }
+    [class*="PreviewPane"] blockquote { padding: 0 16px; color: #6a737d; border-left: 4px solid #dfe2e5; margin: 16px 0; }
+    [class*="PreviewPane"] code { padding: 2px 4px; background: rgba(27, 31, 35, 0.05); border-radius: 3px; font-size: 85%; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+    [class*="PreviewPane"] pre { padding: 16px; background: #f6f8fa; border-radius: 6px; overflow: auto; margin: 16px 0; }
+    [class*="PreviewPane"] pre code { background: transparent; padding: 0; }
+    [class*="PreviewPane"] ul, [class*="PreviewPane"] ol { padding-left: 24px; margin-bottom: 16px; }
+    [class*="PreviewPane"] li { margin-bottom: 4px; }
+    [class*="PreviewPane"] table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    [class*="PreviewPane"] table th, [class*="PreviewPane"] table td { border: 1px solid #dfe2e5; padding: 8px 16px; }
+    [class*="PreviewPane"] table th { background: #f6f8fa; font-weight: 600; }
+    [class*="PreviewPane"] img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+    [class*="PreviewPane"] hr { border: none; border-top: 1px solid #e1e4e8; margin: 24px 0; }
 
-    /* 6. アクセシビリティ */
+    /* 6. アクセシビリティ (変更なし) */
     @media (prefers-reduced-motion: reduce) {
-      * { 
-        transition: none !important; 
-        animation: none !important; 
-      }
+      * { transition: none !important; animation: none !important; }
     }
-    
     button:focus, input:focus, textarea:focus, select:focus {
       outline: 2px solid #3b82f6;
       outline-offset: 2px;
     }
-    
     button, [role="button"], [class*="Button"] {
       -webkit-tap-highlight-color: transparent;
     }
-  </style>
 
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <!-- ローディングインジケーター -->
-  <div id="loading-indicator" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-    overflow: hidden;
-  ">
-    <div style="
+    /* ===【リファクタリング】ローディング画面のスタイル === */
+    #loading-indicator {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+      overflow: hidden;
+    }
+    .loading-bg {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background-image: 
         radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
         radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
         radial-gradient(circle at 45% 80%, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
       background-size: 200px 200px, 150px 150px, 100px 100px;
       animation: float 20s ease-in-out infinite;
-    "></div>
-
-    <div style="text-align: center; position: relative;">
-      <div style="
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 32px;
-        position: relative;
-      ">
-        <div style="
-          width: 100%;
-          height: 100%;
-          border: 3px solid rgba(255, 255, 255, 0.2);
-          border-radius: 50%;
-          border-top-color: rgba(255, 255, 255, 0.8);
-          animation: spin 1.2s linear infinite;
-        "></div>
-        
-        <div style="
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 8px;
-          height: 8px;
-          background: rgba(255, 255, 255, 0.6);
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
-          animation: pulse 2s ease-in-out infinite;
-        "></div>
-      </div>
-
-      <div style="
-        width: 200px;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 1px;
-        margin: 0 auto 24px;
-        overflow: hidden;
-        position: relative;
-      ">
-        <div style="
-          width: 80px;
-          height: 100%;
-          background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
-          animation: progress 2s ease-in-out infinite;
-        "></div>
-      </div>
-
-      <h2 style="
-        margin: 0 0 8px;
-        font-weight: 600;
-        font-size: 22px;
-        letter-spacing: 0.5px;
-        opacity: 0.95;
-      ">Content Manager</h2>
-      
-      <p style="
-        margin: 0;
-        opacity: 0.7;
-        font-size: 14px;
-        font-weight: 400;
-      ">読み込み中...</p>
-    </div>
-  </div>
-
-  <style>
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
+    .loading-content { text-align: center; position: relative; }
+    .loading-spinner-wrapper { width: 60px; height: 60px; margin: 0 auto 32px; position: relative; }
+    .loading-spinner {
+      width: 100%; height: 100%;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      border-top-color: rgba(255, 255, 255, 0.8);
+      animation: spin 1.2s linear infinite;
+    }
+    .loading-pulse {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 8px; height: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .loading-progress-bar {
+      width: 200px; height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 1px;
+      margin: 0 auto 24px;
+      overflow: hidden;
+      position: relative;
+    }
+    .loading-progress-shine {
+      width: 80px; height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+      animation: progress 2s ease-in-out infinite;
+    }
+    .loading-title { margin: 0 0 8px; font-weight: 600; font-size: 22px; letter-spacing: 0.5px; opacity: 0.95; }
+    .loading-text { margin: 0; opacity: 0.7; font-size: 14px; font-weight: 400; }
 
+    /* アニメーション */
+    @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulse {
       0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
       50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
     }
-
     @keyframes progress {
       0% { transform: translateX(-100px); }
       100% { transform: translateX(200px); }
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
     }
   </style>
 
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- ローディングインジケーター (リファクタリング) -->
+  <div id="loading-indicator">
+    <div class="loading-bg"></div>
+    <div class="loading-content">
+      <div class="loading-spinner-wrapper">
+        <div class="loading-spinner"></div>
+        <div class="loading-pulse"></div>
+      </div>
+      <div class="loading-progress-bar">
+        <div class="loading-progress-shine"></div>
+      </div>
+      <h2 class="loading-title">Content Manager</h2>
+      <p class="loading-text">読み込み中...</p>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    /* Decap CMS制御スクリプト - リファクタリング版 */
+    /* 
+     * Decap CMS制御スクリプト (ロジックは変更せず安全性を維持)
+     */
 
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
@@ -461,14 +346,17 @@
       }
     }
 
+    // モバイルでのプレビュー表示を強化する関数
     function enhanceMobilePreview() {
       if (window.innerWidth > 768) return; // モバイルのみ実行
 
+      // MutationObserverでDecap CMSのUI生成を監視
       const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
           if (mutation.type === 'childList') {
             const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
             markdownControls.forEach(function(control) {
+              // 未処理の要素のみイベントリスナーを設定
               if (!control.dataset.mobileEnhanced) {
                 enhanceMarkdownControl(control);
                 control.dataset.mobileEnhanced = 'true';
@@ -484,16 +372,20 @@
       });
     }
 
+    // プレビューボタンにクリックイベントを追加する関数
     function enhanceMarkdownControl(control) {
       const buttons = control.querySelectorAll('button');
       buttons.forEach(function(button) {
+        // ボタンのテキスト、title属性、aria-label属性からプレビューボタンを特定
         const buttonText = button.textContent.toLowerCase();
         const buttonTitle = (button.title || '').toLowerCase();
         const buttonAriaLabel = (button.getAttribute('aria-label') || '').toLowerCase();
         
         if (buttonText.includes('preview') || buttonTitle.includes('preview') || 
             buttonAriaLabel.includes('preview') || buttonText.includes('プレビュー')) {
+          
           button.addEventListener('click', function() {
+            // モード切り替え用のクラスをトグル
             if (control.classList.contains('preview-mode')) {
               control.classList.remove('preview-mode');
               control.classList.add('editor-mode');
@@ -506,22 +398,26 @@
       });
     }
 
-    // 初期化
+    // 初期化処理
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/admin/";
       });
     }
 
+    // ページのロードが完了したら、ローディング画面を非表示にし、モバイル強化機能を実行
     window.addEventListener('load', () => {
+      // 少し遅延させて、Decap CMSの描画を待つ
       setTimeout(hideLoadingIndicator, 800);
       setTimeout(enhanceMobilePreview, 1000);
     });
-
+    
+    // ウィンドウサイズが変更されたときも実行（PC/スマホ表示切り替え対応）
     window.addEventListener('resize', function() {
       setTimeout(enhanceMobilePreview, 300);
     });
 
+    // 万が一のためのフェイルセーフ
     setTimeout(hideLoadingIndicator, 5000);
   </script>
 </body>
