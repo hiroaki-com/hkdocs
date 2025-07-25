@@ -40,7 +40,7 @@
       overscroll-behavior: auto;
     }
 
-    /* 3. モバイル表示の最適化 (〜799px) */
+    /* 3. モバイル表示の最適化 (〜799px) - プレビュー完全無効化 */
     @media (max-width: 799px) {
       [data-slate-editor="true"], [role="textbox"], .cm-editor,
       input, textarea, select {
@@ -59,12 +59,42 @@
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
+      
+      /* マークダウンプレビューを強制非表示 */
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      [class*="MarkdownControl"] {
+        display: block !important;
+      }
+      [class*="MarkdownControl"] [class*="EditorControlPane"] {
+        width: 100% !important;
+        flex: none !important;
+      }
     }
     
-    /* 4. タブレット表示の微調整 (800px〜1024px) */
+    /* 4. タブレット表示の微調整 (800px〜1024px) - プレビュー完全無効化 */
     @media (min-width: 800px) and (max-width: 1024px) {
       [class*="AppMainContainer"] {
         padding: 24px;
+      }
+      
+      /* マークダウンプレビューを強制非表示 */
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      [class*="MarkdownControl"] {
+        display: block !important;
+      }
+      [class*="MarkdownControl"] [class*="EditorControlPane"] {
+        width: 100% !important;
+        flex: none !important;
       }
     }
 
@@ -331,9 +361,7 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    /**
-     * Decap CMSの初期化とUI制御を行うスクリプト
-     */
+    /* Decap CMSの初期化とUI制御 */
 
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
@@ -343,30 +371,51 @@
       }
     }
 
-    // PC画面でのマークダウンプレビュー機能を有効化
-    function enableMarkdownPreviewOnDesktop() {
-      // 画面サイズがPC以上の場合のみ実行
-      if (window.innerWidth >= 1025) {
-        // Decap CMSが完全に読み込まれるのを待つ
-        const checkCMS = setInterval(() => {
-          const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
-          if (markdownControls.length > 0) {
-            markdownControls.forEach(control => {
-              // プレビューペインが非表示になっている場合、表示する
-              const previewPane = control.querySelector('[class*="PreviewPane"]');
-              if (previewPane) {
-                previewPane.style.display = 'block';
-                previewPane.style.visibility = 'visible';
-                previewPane.style.opacity = '1';
-              }
-            });
-            clearInterval(checkCMS);
+    /* PC画面でのマークダウンプレビュー機能を強制的に制御 */
+    function controlMarkdownPreview() {
+      const screenWidth = window.innerWidth;
+      const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
+      
+      markdownControls.forEach(control => {
+        const previewPane = control.querySelector('[class*="PreviewPane"]');
+        const editorPane = control.querySelector('[class*="EditorControlPane"]');
+        
+        if (previewPane && editorPane) {
+          if (screenWidth >= 1025) {
+            // PC: プレビュー表示
+            previewPane.style.display = 'block';
+            previewPane.style.visibility = 'visible';
+            previewPane.style.opacity = '1';
+            control.style.display = 'flex';
+          } else {
+            // モバイル・タブレット: プレビュー完全非表示
+            previewPane.style.display = 'none';
+            previewPane.style.visibility = 'hidden';
+            previewPane.style.width = '0';
+            previewPane.style.height = '0';
+            control.style.display = 'block';
+            editorPane.style.width = '100%';
+            editorPane.style.flex = 'none';
           }
-        }, 500);
+        }
+      });
+    }
 
-        // 10秒後にタイムアウト
-        setTimeout(() => clearInterval(checkCMS), 10000);
-      }
+    /* CMS読み込み監視とプレビュー制御 */
+    function initializePreviewControl() {
+      const observer = new MutationObserver(() => {
+        controlMarkdownPreview();
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
+      });
+      
+      // 定期チェック（フォールバック）
+      setInterval(controlMarkdownPreview, 1000);
     }
 
     if (window.netlifyIdentity) {
@@ -377,13 +426,12 @@
 
     window.addEventListener('load', () => {
       setTimeout(hideLoadingIndicator, 800);
-      // CMS読み込み後にプレビュー機能を有効化
-      setTimeout(enableMarkdownPreviewOnDesktop, 1000);
+      setTimeout(initializePreviewControl, 1000);
     });
 
-    // リサイズ時にも再チェック
+    /* リサイズ時の即座対応 */
     window.addEventListener('resize', () => {
-      setTimeout(enableMarkdownPreviewOnDesktop, 300);
+      controlMarkdownPreview();
     });
 
     setTimeout(hideLoadingIndicator, 5000);
