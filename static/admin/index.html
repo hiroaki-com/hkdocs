@@ -11,7 +11,7 @@
   <style>
     /*
      * =================================================================
-     * Decap CMS カスタムスタイル - シンプル版
+     * Decap CMS カスタムスタイル - 最小限構成
      * =================================================================
      */
 
@@ -23,29 +23,33 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-      max-width: 100vw;
     }
 
     /* 2. 操作性・UXの改善 */
-    html, body {
-      overscroll-behavior-y: none !important;
-    }
     [data-slate-editor="true"], [role="textbox"], .cm-editor {
       line-height: 1.4;
     }
-    [data-slate-editor="true"], [role="textbox"], .cm-editor,
-    textarea, input[type="text"], input[type="email"], input[type="url"] {
-      touch-action: auto;
-      overscroll-behavior: auto;
-    }
 
-    /* 3. モバイル向けの最低限の調整（799px以下） */
+    /* 3. モバイル向けの必要最小限の調整 */
     @media (max-width: 799px) {
       /* iOSの自動ズーム抑制 */
       [data-slate-editor="true"], [role="textbox"], .cm-editor,
       input, textarea, select {
         font-size: 16px !important;
+      }
+      
+      /* responsive-decapでプレビューボタンが隠れる問題を修正 */
+      [class*="ControlPaneContainer"] [class*="PreviewButton"],
+      [class*="EditorControlBar"] [class*="PreviewButton"],
+      [class*="ToolbarContainer"] [class*="PreviewButton"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
+      /* プレビューボタンの配置調整 */
+      [class*="EditorControlBar"] {
+        overflow: visible !important;
       }
       
       /* タップハイライトの調整 */
@@ -54,57 +58,7 @@
       }
     }
     
-    /* 4. プレビューエリアの軽微なスタイル調整（全画面共通） */
-    [class*="PreviewPane"] {
-      font-family: inherit;
-      line-height: 1.6;
-    }
-    
-    [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
-    [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
-      margin-top: 1.5em;
-      margin-bottom: 0.5em;
-      font-weight: 600;
-      line-height: 1.25;
-    }
-    
-    [class*="PreviewPane"] h1:first-child,
-    [class*="PreviewPane"] h2:first-child,
-    [class*="PreviewPane"] h3:first-child {
-      margin-top: 0;
-    }
-    
-    [class*="PreviewPane"] p {
-      margin-bottom: 1em;
-    }
-    
-    [class*="PreviewPane"] img {
-      max-width: 100%;
-      height: auto;
-    }
-    
-    [class*="PreviewPane"] code {
-      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      font-size: 0.9em;
-      background-color: rgba(27, 31, 35, 0.05);
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-    }
-    
-    [class*="PreviewPane"] pre {
-      background-color: #f6f8fa;
-      border-radius: 6px;
-      padding: 1em;
-      overflow: auto;
-      margin: 1em 0;
-    }
-    
-    [class*="PreviewPane"] pre code {
-      background: transparent;
-      padding: 0;
-    }
-    
-    /* 5. アクセシビリティ */
+    /* 4. アクセシビリティ */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
