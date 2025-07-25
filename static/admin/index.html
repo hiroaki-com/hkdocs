@@ -11,14 +11,15 @@
   <style>
     /*
      * =================================================================
-     * Decap CMS カスタムスタイル - スマホプレビューボタン改善版
+     * Decap CMS カスタムスタイル - 左下固定プレビューボタン版
      * =================================================================
      */
 
-    /* 1. グローバル & 基本設定 */
+    /* 1. グローバル基本設定 */
     *, *::before, *::after {
       box-sizing: border-box;
     }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -27,21 +28,18 @@
       max-width: 100vw;
     }
 
-    /* 2. 操作性・UXの改善 */
+    /* 2. 操作性改善 */
     html, body {
       overscroll-behavior-y: none !important;
     }
+    
     [data-slate-editor="true"], [role="textbox"], .cm-editor {
       line-height: 1.4;
-    }
-    [data-slate-editor="true"], [role="textbox"], .cm-editor,
-    textarea, input[type="text"], input[type="email"], input[type="url"] {
       touch-action: auto;
       overscroll-behavior: auto;
     }
 
-    /* 3. 全画面でマークダウンプレビューを有効化 */
-    /* マークダウンエディタのプレビューペインを表示 */
+    /* 3. マークダウンプレビュー基本設定 */
     [class*="MarkdownControl"] [class*="EditorControlPane"],
     [class*="MarkdownControl"] [class*="PreviewPane"] {
       display: block !important;
@@ -49,7 +47,6 @@
       opacity: 1 !important;
     }
     
-    /* プレビューペインのスタイリング */
     [class*="MarkdownControl"] [class*="PreviewPane"] {
       border-left: 1px solid #e1e5e9;
       background: #fafbfc;
@@ -58,27 +55,25 @@
       line-height: 1.6;
     }
     
-    /* エディタとプレビューの分割表示 */
     [class*="MarkdownControl"] {
       display: flex !important;
       height: auto;
       min-height: 400px;
     }
     
-    [class*="MarkdownControl"] [class*="EditorControlPane"] {
+    [class*="MarkdownControl"] [class*="EditorControlPane"],
+    [class*="MarkdownControl"] [class*="PreviewPane"] {
       flex: 1;
       min-width: 50%;
     }
     
     [class*="MarkdownControl"] [class*="PreviewPane"] {
-      flex: 1;
-      min-width: 50%;
       overflow-y: auto;
     }
     
-    /* 4. スマホ専用プレビューボタン改善 */
+    /* 4. モバイル専用設定 */
     @media (max-width: 768px) {
-      /* マークダウンコントロールの基本レイアウト */
+      /* 基本レイアウト */
       [class*="MarkdownControl"] {
         flex-direction: column !important;
         position: relative;
@@ -94,70 +89,64 @@
         border-left: none;
         border-top: 1px solid #e1e5e9;
         max-height: 300px;
+        -webkit-overflow-scrolling: touch;
       }
       
-      /* プレビュー切り替えボタンの固定配置 */
-      [class*="MarkdownControl"] [class*="ToolbarToggle"],
-      [class*="MarkdownControl"] [class*="PreviewToggle"],
-      [class*="MarkdownControl"] button[class*="preview" i],
-      [class*="MarkdownControl"] button[title*="preview" i],
-      [class*="MarkdownControl"] button[aria-label*="preview" i] {
-        position: sticky !important;
-        top: 16px !important;
-        right: 16px !important;
-        z-index: 100 !important;
-        float: right !important;
+      /* 左下固定プレビューボタン */
+      [class*="MarkdownControl"]::after {
+        content: "👁";
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        width: 56px;
+        height: 56px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+        z-index: 1000;
         
-        /* ボタンのスタイリング改善 */
-        min-width: 48px !important;
-        min-height: 48px !important;
-        border-radius: 24px !important;
-        background: #3b82f6 !important;
-        color: white !important;
-        border: none !important;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
         
-        /* タッチ操作の改善 */
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: transparent !important;
-        
-        /* アニメーション */
-        transition: all 0.2s ease !important;
+        transition: all 0.3s ease;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
       }
       
-      /* ホバー・アクティブ状態 */
-      [class*="MarkdownControl"] [class*="ToolbarToggle"]:hover,
-      [class*="MarkdownControl"] [class*="PreviewToggle"]:hover,
-      [class*="MarkdownControl"] button[class*="preview" i]:hover,
-      [class*="MarkdownControl"] button[title*="preview" i]:hover,
-      [class*="MarkdownControl"] button[aria-label*="preview" i]:hover {
-        background: #2563eb !important;
-        transform: scale(1.05) !important;
-        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+      /* プレビューモード時のボタン表示切り替え */
+      [class*="MarkdownControl"].preview-mode::after {
+        content: "✏️";
+        background: #10b981;
       }
       
-      [class*="MarkdownControl"] [class*="ToolbarToggle"]:active,
-      [class*="MarkdownControl"] [class*="PreviewToggle"]:active,
-      [class*="MarkdownControl"] button[class*="preview" i]:active,
-      [class*="MarkdownControl"] button[title*="preview" i]:active,
-      [class*="MarkdownControl"] button[aria-label*="preview" i]:active {
-        transform: scale(0.95) !important;
+      /* ボタンホバー効果 */
+      [class*="MarkdownControl"]::after:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
       }
       
-      /* ツールバー全体の改善 */
+      [class*="MarkdownControl"].preview-mode::after:hover {
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+      }
+      
+      /* ツールバー改善 */
       [class*="MarkdownControl"] [class*="Toolbar"],
       [class*="MarkdownControl"] [class*="EditorToolbar"] {
-        position: sticky !important;
-        top: 0 !important;
-        z-index: 99 !important;
-        background: rgba(255, 255, 255, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        border-bottom: 1px solid #e1e5e9 !important;
-        padding: 8px 16px !important;
-        margin: 0 !important;
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #e1e5e9;
+        padding: 8px 16px;
       }
       
-      /* プレビューとエディターの切り替え改善 */
+      /* モード切り替え制御 */
       [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] {
         display: none !important;
       }
@@ -171,60 +160,19 @@
         display: none !important;
       }
       
-      /* フローティングアクションボタン風のスタイル */
-      [class*="MarkdownControl"]::after {
-        content: "";
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        width: 56px;
-        height: 56px;
-        background: #10b981;
-        border-radius: 50%;
-        box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
-        z-index: 1000;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+      /* エディター下部余白確保 */
+      [class*="MarkdownControl"] [class*="EditorControlPane"] {
+        padding-bottom: 80px;
       }
       
-      /* エディター内でスクロール時にプレビューボタンを目立たせる */
-      [class*="MarkdownControl"]:hover::after {
-        opacity: 0.1;
-      }
-      
-      /* モバイルでのフォントサイズ調整 */
-      [data-slate-editor="true"], [role="textbox"], .cm-editor,
-      input, textarea, select {
-        font-size: 16px !important; /* iOSの自動ズーム抑制 */
-      }
-      
-      /* プレビューボタンのアイコン改善 */
-      [class*="MarkdownControl"] button[class*="preview" i]::before,
-      [class*="MarkdownControl"] button[title*="preview" i]::before,
-      [class*="MarkdownControl"] button[aria-label*="preview" i]::before {
-        content: "👁" !important;
-        font-size: 18px !important;
-        display: inline-block !important;
-      }
-      
-      /* エディターボタンとプレビューボタンの区別 */
-      [class*="MarkdownControl"] button[class*="edit" i],
-      [class*="MarkdownControl"] button[title*="edit" i],
-      [class*="MarkdownControl"] button[aria-label*="edit" i] {
-        background: #10b981 !important;
-      }
-      
-      [class*="MarkdownControl"] button[class*="edit" i]::before,
-      [class*="MarkdownControl"] button[title*="edit" i]::before,
-      [class*="MarkdownControl"] button[aria-label*="edit" i]::before {
-        content: "✏️" !important;
+      /* iOSズーム抑制 */
+      input, textarea, select,
+      [data-slate-editor="true"], [role="textbox"], .cm-editor {
         font-size: 16px !important;
-        display: inline-block !important;
       }
     }
     
-    /* プレビューエリアのマークダウンスタイリング */
+    /* 5. プレビューエリアスタイリング */
     [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
     [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
       margin-top: 24px;
@@ -233,8 +181,18 @@
       line-height: 1.25;
     }
     
-    [class*="PreviewPane"] h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
-    [class*="PreviewPane"] h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
+    [class*="PreviewPane"] h1 { 
+      font-size: 2em; 
+      border-bottom: 1px solid #eaecef; 
+      padding-bottom: 8px; 
+    }
+    
+    [class*="PreviewPane"] h2 { 
+      font-size: 1.5em; 
+      border-bottom: 1px solid #eaecef; 
+      padding-bottom: 8px; 
+    }
+    
     [class*="PreviewPane"] h3 { font-size: 1.25em; }
     [class*="PreviewPane"] h4 { font-size: 1em; }
     [class*="PreviewPane"] h5 { font-size: 0.875em; }
@@ -278,10 +236,6 @@
       margin-bottom: 16px;
     }
     
-    [class*="PreviewPane"] li {
-      margin-bottom: 4px;
-    }
-    
     [class*="PreviewPane"] table {
       border-collapse: collapse;
       width: 100%;
@@ -312,9 +266,12 @@
       margin: 24px 0;
     }
     
-    /* 5. アクセシビリティ */
+    /* 6. アクセシビリティ */
     @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; animation: none !important; }
+      * { 
+        transition: none !important; 
+        animation: none !important; 
+      }
     }
     
     button:focus, input:focus, textarea:focus, select:focus {
@@ -325,61 +282,12 @@
     button, [role="button"], [class*="Button"] {
       -webkit-tap-highlight-color: transparent;
     }
-    
-    /* 6. 追加のモバイルUX改善 */
-    @media (max-width: 768px) {
-      /* スクロール時の影響軽減 */
-      [class*="MarkdownControl"] [class*="EditorControlPane"] {
-        padding-bottom: 80px !important; /* フローティングボタンのスペース確保 */
-      }
-      
-      /* プレビュー時のスクロール改善 */
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        -webkit-overflow-scrolling: touch !important;
-        scroll-behavior: smooth !important;
-      }
-      
-      /* ツールチップ風の説明文 */
-      [class*="MarkdownControl"] button[class*="preview" i]:hover::after,
-      [class*="MarkdownControl"] button[title*="preview" i]:hover::after {
-        content: "プレビュー表示";
-        position: absolute;
-        top: -35px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 12px;
-        white-space: nowrap;
-        pointer-events: none;
-        z-index: 1001;
-      }
-      
-      [class*="MarkdownControl"] button[class*="edit" i]:hover::after,
-      [class*="MarkdownControl"] button[title*="edit" i]:hover::after {
-        content: "編集モード";
-        position: absolute;
-        top: -35px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 12px;
-        white-space: nowrap;
-        pointer-events: none;
-        z-index: 1001;
-      }
-    }
   </style>
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- ▼ シンプル&モダンなローディングデザイン ▼ -->
+  <!-- ローディング画面 -->
   <div id="loading-indicator" style="
     position: fixed;
     top: 0;
@@ -397,7 +305,6 @@
     transition: opacity 0.5s ease-out;
     overflow: hidden;
   ">
-    <!-- 背景のパーティクル効果 -->
     <div style="
       position: absolute;
       width: 100%;
@@ -411,7 +318,6 @@
     "></div>
 
     <div style="text-align: center; position: relative;">
-      <!-- シンプルなスピナー -->
       <div style="
         width: 60px;
         height: 60px;
@@ -427,7 +333,6 @@
           animation: spin 1.2s linear infinite;
         "></div>
         
-        <!-- 内側のドット -->
         <div style="
           position: absolute;
           top: 50%;
@@ -441,7 +346,6 @@
         "></div>
       </div>
 
-      <!-- プログレスバー -->
       <div style="
         width: 200px;
         height: 2px;
@@ -496,12 +400,11 @@
       50% { transform: translateY(-10px); }
     }
   </style>
-  <!-- ▲ シンプル&モダンなローディングデザイン ▲ -->
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    /* Decap CMSの初期化とUI制御 - スマホプレビューボタン改善版 */
+    /* Decap CMS初期化とUI制御 */
 
     function hideLoadingIndicator() {
       const loader = document.getElementById('loading-indicator');
@@ -511,55 +414,50 @@
       }
     }
 
-    // スマホでのプレビュー切り替え機能強化
-    function enhanceMobilePreview() {
-      // プレビューボタンの動的制御
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.type === 'childList') {
-            // マークダウンエディターが追加されたときの処理
-            const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
-            markdownControls.forEach(function(control) {
-              if (!control.dataset.mobileEnhanced) {
-                enhanceMarkdownControl(control);
-                control.dataset.mobileEnhanced = 'true';
-              }
-            });
-          }
-        });
-      });
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-    }
-
-    function enhanceMarkdownControl(control) {
-      // モバイルでのみ実行
+    // 左下固定ボタンの制御
+    function initMobilePreviewButton() {
       if (window.innerWidth <= 768) {
-        // プレビューボタンを見つけて強化
-        const buttons = control.querySelectorAll('button');
-        buttons.forEach(function(button) {
-          const buttonText = button.textContent.toLowerCase();
-          const buttonTitle = (button.title || '').toLowerCase();
-          const buttonAriaLabel = (button.getAttribute('aria-label') || '').toLowerCase();
-          
-          if (buttonText.includes('preview') || buttonTitle.includes('preview') || 
-              buttonAriaLabel.includes('preview') || buttonText.includes('プレビュー')) {
-            button.addEventListener('click', function() {
-              // プレビューモードの切り替え
-              if (control.classList.contains('preview-mode')) {
-                control.classList.remove('preview-mode');
-                control.classList.add('editor-mode');
-              } else {
-                control.classList.add('preview-mode');
-                control.classList.remove('editor-mode');
-              }
-            });
-          }
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+              const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
+              markdownControls.forEach(function(control) {
+                if (!control.dataset.buttonEnhanced) {
+                  addButtonClickHandler(control);
+                  control.dataset.buttonEnhanced = 'true';
+                }
+              });
+            }
+          });
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
         });
       }
+    }
+
+    function addButtonClickHandler(control) {
+      // 疑似要素ボタンのクリックイベントを処理
+      control.addEventListener('click', function(e) {
+        const rect = control.getBoundingClientRect();
+        const buttonX = 24 + 28; // left + radius
+        const buttonY = window.innerHeight - 24 - 28; // bottom + radius
+        
+        // クリック位置が左下ボタンエリア内かチェック
+        if (e.clientX >= 24 && e.clientX <= 80 && 
+            e.clientY >= window.innerHeight - 80 && e.clientY <= window.innerHeight - 24) {
+          
+          if (control.classList.contains('preview-mode')) {
+            control.classList.remove('preview-mode');
+            control.classList.add('editor-mode');
+          } else {
+            control.classList.add('preview-mode');
+            control.classList.remove('editor-mode');
+          }
+        }
+      });
     }
 
     if (window.netlifyIdentity) {
@@ -570,12 +468,11 @@
 
     window.addEventListener('load', () => {
       setTimeout(hideLoadingIndicator, 800);
-      setTimeout(enhanceMobilePreview, 1000); // CMS読み込み後に実行
+      setTimeout(initMobilePreviewButton, 1000);
     });
 
-    // リサイズ時の再適用
     window.addEventListener('resize', function() {
-      setTimeout(enhanceMobilePreview, 300);
+      setTimeout(initMobilePreviewButton, 300);
     });
 
     setTimeout(hideLoadingIndicator, 5000);
