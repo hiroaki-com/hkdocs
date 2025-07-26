@@ -112,22 +112,65 @@
     }
 
     /* 5. プレビュー/編集ボタンのスタイル（全画面サイズ共通） */
+    /* より具体的なセレクタでDecap CMSのデフォルトスタイルを上書き */
+    div[class*="MarkdownControl"] div[class*="Toolbar"] button[class*="preview" i],
+    div[class*="MarkdownControl"] div[class*="Toolbar"] button[title*="preview" i],
+    div[class*="MarkdownControl"] div[class*="Toolbar"] button[aria-label*="preview" i],
+    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[class*="preview" i],
+    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[title*="preview" i],
+    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[aria-label*="preview" i],
     [class*="MarkdownControl"] button[class*="preview" i],
     [class*="MarkdownControl"] button[title*="preview" i],
     [class*="MarkdownControl"] button[aria-label*="preview" i] {
       position: absolute !important;
-      top: 8px !important; right: 16px !important; z-index: 1000 !important;
-      min-width: 44px !important; min-height: 44px !important; border-radius: 22px !important;
-      background: #3b82f6 !important; color: white !important; border: none !important;
+      top: 8px !important; 
+      right: 16px !important; 
+      z-index: 1000 !important;
+      min-width: 44px !important; 
+      min-height: 44px !important; 
+      border-radius: 22px !important;
+      background: #3b82f6 !important; 
+      color: white !important; 
+      border: none !important;
       box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
       touch-action: manipulation !important;
       -webkit-tap-highlight-color: transparent !important;
       transition: all 0.2s ease !important;
+      /* デフォルトの位置指定を強制的に上書き */
+      left: auto !important;
+      bottom: auto !important;
+      margin: 0 !important;
+      transform: none !important;
     }
+    
+    div[class*="MarkdownControl"] div[class*="Toolbar"] button[class*="edit" i],
+    div[class*="MarkdownControl"] div[class*="Toolbar"] button[title*="edit" i],
+    div[class*="MarkdownControl"] div[class*="Toolbar"] button[aria-label*="edit" i],
+    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[class*="edit" i],
+    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[title*="edit" i],
+    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[aria-label*="edit" i],
     [class*="MarkdownControl"] button[class*="edit" i],
     [class*="MarkdownControl"] button[title*="edit" i],
     [class*="MarkdownControl"] button[aria-label*="edit" i] {
       background: #10b981 !important;
+      position: absolute !important;
+      top: 8px !important; 
+      right: 16px !important; 
+      z-index: 1000 !important;
+      min-width: 44px !important; 
+      min-height: 44px !important; 
+      border-radius: 22px !important;
+      color: white !important; 
+      border: none !important;
+      box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3) !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: transparent !important;
+      transition: all 0.2s ease !important;
+      /* デフォルトの位置指定を強制的に上書き */
+      left: auto !important;
+      bottom: auto !important;
+      margin: 0 !important;
+      transform: none !important;
     }
 
     /* 6. プレビューエリアのマークダウンスタイリング */
