@@ -6,11 +6,7 @@
   <title>Content Manager</title>
   
   <style>
-    /*
-     * =================================================================
-     * responsive-decap CSS（モバイル対応: 右CDNベースにカスタム｜https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css）
-     * =================================================================
-     */
+    /* responsive-decap CSS（モバイル対応）｜右CDNベースにカスタム｜https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css） */
     @media (max-width:799px){
       [class*=DropdownList]{
         position:fixed!important;
@@ -110,7 +106,7 @@
         margin-top:20px!important;
       }
 
-      /* iOS自動ズーム防止（16px以上に統一） */
+      /* iOS自動ズーム防止 */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor,
@@ -121,11 +117,6 @@
       }
     }
 
-    /*
-     * =================================================================
-     * 基本設定（最小限）
-     * =================================================================
-     */
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -138,90 +129,20 @@
       overscroll-behavior-y: contain;
     }
 
-    /*
-     * =================================================================
-     * プルツーリフレッシュ防止の追加設定
-     * =================================================================
-     */
     html {
       overscroll-behavior: contain;
-    }
-
-    /*
-     * =================================================================
-     * ローディング画面
-     * =================================================================
-     */
-    #loading-indicator {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #8296ebe9 0%, #314fd7c5 100%);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 1;
-      transition: opacity 0.5s ease-out;
-    }
-    
-    #loading-indicator .loading-content {
-      text-align: center;
-    }
-    
-    #loading-indicator .loading-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 20px;
-    }
-    
-    #loading-indicator .loading-title {
-      margin: 0 0 8px;
-      font-size: 20px;
-      font-weight: 600;
-    }
-    
-    #loading-indicator .loading-text {
-      margin: 0;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
   </style>
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <div id="loading-indicator">
-    <div class="loading-content">
-      <div class="loading-spinner"></div>
-      <h2 class="loading-title">Content Manager</h2>
-      <p class="loading-text">読み込み中...</p>
-    </div>
-  </div>
+
   
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
     (function() {
-      function hideLoadingIndicator() {
-        const loader = document.getElementById('loading-indicator');
-        if (loader) {
-          loader.style.opacity = '0';
-          setTimeout(() => { loader.style.display = 'none'; }, 500);
-        }
-      }
-      
       // プルツーリフレッシュを防止するJavaScript処理
       function preventPullToRefresh() {
         let startY = 0;
@@ -249,15 +170,12 @@
         }, { passive: false });
       }
       
-      // --- 初期化 ---
+      // Netlify Identity 初期化
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
       }
       
-      window.addEventListener('load', function() {
-        hideLoadingIndicator();
-        preventPullToRefresh();
-      });
+      window.addEventListener('load', preventPullToRefresh);
     })();
   </script>
 </body>
