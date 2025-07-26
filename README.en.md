@@ -25,27 +25,29 @@ A personal knowledge base that consolidates a tech blog, work notes, and a diary
 - **Multilingual Support**: `Japanese/English support via Docusaurus i18n.`
 - **CI/CD Automation**: `Automated deployment from build to Cloud Run via GitHub Actions.`
 - **Social Integration**: `Automatically posts new article information to X (formerly Twitter).`
+- **CMS Integration**: `Update diary content via Decap CMS.`
 
 ## Tech Stack
 
-| Category         | Technology / Service                                                              |
-| ---------------- | --------------------------------------------------------------------------------- |
-| Framework        | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
-| Language         | [TypeScript](https://www.typescriptlang.org/)                                     |
-| UI Library       | [React](https://reactjs.org/) `v19`                                               |
-| Package Manager  | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
-| Containerization | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
-| Hosting          | [Google Cloud Run](https://cloud.google.com/run)                                  |
-| CI/CD            | [GitHub Actions](https://github.com/features/actions)                             |
-| Search           | [Algolia DocSearch](https://docsearch.algolia.com/)                               |
+| Category             | Technology / Service                                                              |
+| -------------------- | --------------------------------------------------------------------------------- |
+| Framework            | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
+| Language             | [TypeScript](https://www.typescriptlang.org/)                                     |
+| UI Library           | [React](https://reactjs.org/) `v19`                                               |
+| Package Manager      | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
+| Containerization     | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
+| Hosting              | [Google Cloud Run](https://cloud.google.com/run)                                  |
+| CI/CD                | [GitHub Actions](https://github.com/features/actions)                             |
+| Search               | [Algolia DocSearch](https://docsearch.algolia.com/)                               |
+| Content Management   | [Decap CMS](https://decapcms.org/), [Git Gateway](https://www.netlify.com/products/git-gateway/) |
 
 ## System Architecture
-
 
 ```mermaid
 graph LR
     subgraph "Development & CI/CD"
         Developer([fa:fa-user Developer]) -- "① Code Push" --> GitHub(fa:fa-github GitHub)
+        Admin([fa:fa-user-shield Admin]) -- "①' Update Diary (CMS)" --> GitHub
         GitHub -- "② Trigger" --> Actions(fa:fa-cogs Actions)
         Actions -- "③ Build & Deploy" --> CR(fa:fa-cloud Cloud Run)
         Actions -.-> |Auto-Post| X(fa:fa-twitter X)
@@ -81,7 +83,8 @@ Detailed system design and development conventions are managed in the following 
 │   ├── components/       # Custom React components
 │   ├── pages/            # Custom pages (e.g., News, Profile)
 │   └── css/              # Custom CSS
-├── static/               # Static assets (e.g., images)
+├── static/               # Static assets (images, CMS config, etc.)
+│   └── admin/            # Decap CMS (Content Management System) configuration
 ├── spec/                 # System specifications
 ├── Dockerfile            # Dockerfile for production (Cloud Run)
 ├── Dockerfile.dev        # Dockerfile for development
