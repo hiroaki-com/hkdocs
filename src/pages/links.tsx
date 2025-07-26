@@ -20,7 +20,7 @@ type LinkCategoryData = {
   sites: LinkData[];
 };
 
-// --- データソース (変更なし) ---
+// --- データソース ---
 const linksData: LinkCategoryData[] = [
   {
     id: 'backend',
@@ -42,6 +42,7 @@ const linksData: LinkCategoryData[] = [
     sites: [
       { href: 'https://developer.mozilla.org/', title: { id: 'links.site.frontend.mdn.title', message: 'MDN Web Docs' }, description: { id: 'links.site.frontend.mdn.desc', message: 'Web技術のデファクトスタンダード。HTML, CSS, JavaScript等の公式リファレンス。' } },
       { href: 'https://web.dev/', title: { id: 'links.site.frontend.webdev.title', message: 'web.dev' }, description: { id: 'links.site.frontend.webdev.desc', message: 'GoogleによるモダンなWeb開発のベストプラクティス集。パフォーマンス、アクセシビリティなど。' } },
+      { href: 'https://jamstack.org/', title: { id: 'links.site.frontend.jamstack.title', message: 'Jamstack' }, description: { id: 'links.site.frontend.jamstack.desc', message: 'JavaScript、API、Markupの頭文字を取ったモダンなWebアーキテクチャ。パフォーマンス、セキュリティ、スケーラビリティの向上を目指す。' } },
       { href: 'https://react.dev/', title: { id: 'links.site.frontend.react.title', message: 'React' }, description: { id: 'links.site.frontend.react.desc', message: 'コンポーネントベースUIを構築するための宣言的JavaScriptライブラリ。' } },
       { href: 'https://nextjs.org/docs', title: { id: 'links.site.frontend.nextjs.title', message: 'Next.js Docs' }, description: { id: 'links.site.frontend.nextjs.desc', message: 'Reactをベースにしたプロダクションフレームワーク。多彩なレンダリング戦略を提供。' } },
       { href: 'https://www.typescriptlang.org/docs/', title: { id: 'links.site.frontend.ts.title', message: 'TypeScript Docs' }, description: { id: 'links.site.frontend.ts.desc', message: '静的型付けを導入し、大規模開発の堅牢性を高めるJavaScriptのスーパーセット。' } },
@@ -61,6 +62,7 @@ const linksData: LinkCategoryData[] = [
       { href: 'https://www.terraform.io/docs', title: { id: 'links.site.cloud.terraform.title', message: 'Terraform Docs' }, description: { id: 'links.site.cloud.terraform.desc', message: 'Infrastructure as Codeを実現する代表的なツールの公式ドキュメント。' } },
       { href: 'https://cloud.google.com/build/docs', title: { id: 'links.site.cloud.gcb.title', message: 'Google Cloud Build' }, description: { id: 'links.site.cloud.gcb.desc', message: 'GCP上でCI/CDパイプラインを実行するためのマネージドサービス。' } },
       { href: 'https://docs.github.com/actions', title: { id: 'links.site.cloud.ghactions.title', message: 'GitHub Actions' }, description: { id: 'links.site.cloud.ghactions.desc', message: 'GitHubに統合されたCI/CDプラットフォーム。ワークフローを自動化。' } },
+      { href: 'https://docs.netlify.com/', title: { id: 'links.site.cloud.netlify.title', message: 'Netlify' }, description: { id: 'links.site.cloud.netlify.desc', message: 'GitHub/GitLab等と連携し、ビルド、デプロイ、ホスティングを自動化するプラットフォーム。Jamstackアーキテクチャの中核を担う存在。' } },
     ],
   },
   {
@@ -88,6 +90,7 @@ const linksData: LinkCategoryData[] = [
     title: { id: 'links.majorCategory.documentation', message: 'ドキュメント & 作図' },
     sites: [
       { href: 'https://docusaurus.io/', title: { id: 'links.site.docs.docusaurus.title', message: 'Docusaurus' }, description: { id: 'links.site.docs.docusaurus.desc', message: 'React製の静的サイトジェネレーター。ドキュメントサイト構築に最適。' } },
+      { href: 'https://decapcms.org/docs/intro/', title: { id: 'links.site.docs.decapcms.title', message: 'Decap CMS' }, description: { id: 'links.site.docs.decapcms.desc', message: 'Gitリポジトリをバックエンドとして利用するオープンソースのヘッドレスCMS。静的サイトジェネレーターとの親和性が高い。' } },
       { href: 'https://obsidian.md/', title: { id: 'links.site.docs.obsidian.title', message: 'Obsidian' }, description: { id: 'links.site.docs.obsidian.desc', message: 'ローカルのMarkdownファイルで動作する、強力な第二の脳としてのナレッジベースツール。' } },
       { href: 'https://www.markdownguide.org', title: { id: 'links.site.docs.markdown.title', message: 'Markdown Guide' }, description: { id: 'links.site.docs.markdown.desc', message: 'Markdown記法の基本から拡張機能までを網羅した包括的なガイド。' } },
       { href: 'https://mermaid-js.github.io/', title: { id: 'links.site.docs.mermaid.title', message: 'Mermaid' }, description: { id: 'links.site.docs.mermaid.desc', message: 'Markdownのようなテキストから図やチャートを生成するライブラリ。' } },
