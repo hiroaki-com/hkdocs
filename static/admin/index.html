@@ -38,6 +38,58 @@
       overscroll-behavior: auto;
     }
 
+    /* 2.1. テキストエリアスクロールバー改善 */
+    [data-slate-editor="true"], 
+    [role="textbox"], 
+    .cm-editor,
+    [class*="MarkdownControl"] textarea,
+    [class*="EditorControlPane"] textarea,
+    [class*="text"] textarea {
+      overflow-y: scroll !important;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e0 #f7fafc;
+    }
+
+    /* Webkit系ブラウザ用スクロールバーカスタム */
+    [data-slate-editor="true"]::-webkit-scrollbar,
+    [role="textbox"]::-webkit-scrollbar,
+    .cm-editor::-webkit-scrollbar,
+    [class*="MarkdownControl"] textarea::-webkit-scrollbar,
+    [class*="EditorControlPane"] textarea::-webkit-scrollbar,
+    [class*="text"] textarea::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    [data-slate-editor="true"]::-webkit-scrollbar-track,
+    [role="textbox"]::-webkit-scrollbar-track,
+    .cm-editor::-webkit-scrollbar-track,
+    [class*="MarkdownControl"] textarea::-webkit-scrollbar-track,
+    [class*="EditorControlPane"] textarea::-webkit-scrollbar-track,
+    [class*="text"] textarea::-webkit-scrollbar-track {
+      background: #f7fafc;
+      border-radius: 4px;
+    }
+
+    [data-slate-editor="true"]::-webkit-scrollbar-thumb,
+    [role="textbox"]::-webkit-scrollbar-thumb,
+    .cm-editor::-webkit-scrollbar-thumb,
+    [class*="MarkdownControl"] textarea::-webkit-scrollbar-thumb,
+    [class*="EditorControlPane"] textarea::-webkit-scrollbar-thumb,
+    [class*="text"] textarea::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 4px;
+      border: 1px solid #f7fafc;
+    }
+
+    [data-slate-editor="true"]::-webkit-scrollbar-thumb:hover,
+    [role="textbox"]::-webkit-scrollbar-thumb:hover,
+    .cm-editor::-webkit-scrollbar-thumb:hover,
+    [class*="MarkdownControl"] textarea::-webkit-scrollbar-thumb:hover,
+    [class*="EditorControlPane"] textarea::-webkit-scrollbar-thumb:hover,
+    [class*="text"] textarea::-webkit-scrollbar-thumb:hover {
+      background: #a0aec0;
+    }
+
     /* 3. マークダウンプレビュー - デスクトップ */
     @media (min-width: 769px) {
       [class*="MarkdownControl"] {
@@ -62,25 +114,6 @@
 
     /* 4. スマホ専用改善 */
     @media (max-width: 768px) {
-      /* メインツールバーの位置調整 - 意図しないエリア問題の修正 */
-      .css-1gtfcgu-ToolbarContainer,
-      [class*="ToolbarContainer"] {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        z-index: auto !important;
-        transform: none !important;
-      }
-      
-      /* メインビューのパディング調整 */
-      [class*="MainView-root"],
-      [class*="MainView"],
-      .css-1vb14mx-EditorContainer {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-      }
-      
       [class*="MarkdownControl"] {
         flex-direction: column !important;
       }
@@ -95,11 +128,11 @@
         max-height: 300px;
       }
       
-      /* エディタ用ツールバー: 基本スタイル */
+      /* ツールバー: 基本スタイル */
       [class*="MarkdownControl"] [class*="Toolbar"],
       [class*="MarkdownControl"] [class*="EditorToolbar"] {
         position: sticky !important;
-        top: 0 !important;
+        top: 52px !important;
         z-index: 990 !important;
         background: rgba(255, 255, 255, 0.95) !important;
         -webkit-backdrop-filter: blur(10px);
@@ -110,10 +143,27 @@
       }
 
       [class*="MarkdownControl"] [class*="EditorControlPane"] {
-        padding-top: 0 !important;
+        padding-top: 60px !important;
       }
       
-
+      /* プレビュー/編集ボタンのスタイル */
+      [class*="MarkdownControl"] button[class*="preview" i],
+      [class*="MarkdownControl"] button[title*="preview" i],
+      [class*="MarkdownControl"] button[aria-label*="preview" i] {
+        position: absolute !important;
+        top: 8px !important; right: 16px !important; z-index: 1000 !important;
+        min-width: 44px !important; min-height: 44px !important; border-radius: 22px !important;
+        background: #3b82f6 !important; color: white !important; border: none !important;
+        box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+        transition: all 0.2s ease !important;
+      }
+      [class*="MarkdownControl"] button[class*="edit" i],
+      [class*="MarkdownControl"] button[title*="edit" i],
+      [class*="MarkdownControl"] button[aria-label*="edit" i] {
+        background: #10b981 !important;
+      }
       
       [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] { display: none !important; }
       [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] { display: none !important; }
@@ -130,69 +180,7 @@
       }
     }
 
-    /* 5. プレビュー/編集ボタンのスタイル（全画面サイズ共通） */
-    /* より具体的なセレクタでDecap CMSのデフォルトスタイルを上書き */
-    div[class*="MarkdownControl"] div[class*="Toolbar"] button[class*="preview" i],
-    div[class*="MarkdownControl"] div[class*="Toolbar"] button[title*="preview" i],
-    div[class*="MarkdownControl"] div[class*="Toolbar"] button[aria-label*="preview" i],
-    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[class*="preview" i],
-    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[title*="preview" i],
-    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[aria-label*="preview" i],
-    [class*="MarkdownControl"] button[class*="preview" i],
-    [class*="MarkdownControl"] button[title*="preview" i],
-    [class*="MarkdownControl"] button[aria-label*="preview" i] {
-      position: absolute !important;
-      top: 8px !important; 
-      right: 16px !important; 
-      z-index: 1000 !important;
-      min-width: 44px !important; 
-      min-height: 44px !important; 
-      border-radius: 22px !important;
-      background: #3b82f6 !important; 
-      color: white !important; 
-      border: none !important;
-      box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
-      touch-action: manipulation !important;
-      -webkit-tap-highlight-color: transparent !important;
-      transition: all 0.2s ease !important;
-      /* デフォルトの位置指定を強制的に上書き */
-      left: auto !important;
-      bottom: auto !important;
-      margin: 0 !important;
-      transform: none !important;
-    }
-    
-    div[class*="MarkdownControl"] div[class*="Toolbar"] button[class*="edit" i],
-    div[class*="MarkdownControl"] div[class*="Toolbar"] button[title*="edit" i],
-    div[class*="MarkdownControl"] div[class*="Toolbar"] button[aria-label*="edit" i],
-    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[class*="edit" i],
-    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[title*="edit" i],
-    div[class*="MarkdownControl"] div[class*="EditorToolbar"] button[aria-label*="edit" i],
-    [class*="MarkdownControl"] button[class*="edit" i],
-    [class*="MarkdownControl"] button[title*="edit" i],
-    [class*="MarkdownControl"] button[aria-label*="edit" i] {
-      background: #10b981 !important;
-      position: absolute !important;
-      top: 8px !important; 
-      right: 16px !important; 
-      z-index: 1000 !important;
-      min-width: 44px !important; 
-      min-height: 44px !important; 
-      border-radius: 22px !important;
-      color: white !important; 
-      border: none !important;
-      box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3) !important;
-      touch-action: manipulation !important;
-      -webkit-tap-highlight-color: transparent !important;
-      transition: all 0.2s ease !important;
-      /* デフォルトの位置指定を強制的に上書き */
-      left: auto !important;
-      bottom: auto !important;
-      margin: 0 !important;
-      transform: none !important;
-    }
-
-    /* 6. プレビューエリアのマークダウンスタイリング */
+    /* 5. プレビューエリアのマークダウンスタイリング */
     [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
     [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
       margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25;
@@ -212,11 +200,11 @@
     [class*="PreviewPane"] table th { background: #f6f8fa; font-weight: 600; }
     [class*="PreviewPane"] ul, [class*="PreviewPane"] ol { padding-left: 2em; margin-bottom: 16px; }
 
-    /* 7. アクセシビリティ */
+    /* 6. アクセシビリティ */
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
     button:focus, input:focus, textarea:focus, select:focus { outline: 2px solid #3b82f6; outline-offset: 2px; }
     
-    /* 8. ローディング画面 */
+    /* 7. ローディング画面 */
     #loading-indicator {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
