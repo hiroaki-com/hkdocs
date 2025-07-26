@@ -134,11 +134,22 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
       margin: 0;
       padding: 0;
+      /* プルツーリフレッシュを無効化 */
+      overscroll-behavior-y: contain;
     }
 
     /*
      * =================================================================
-     * ローディング画面（シンプル版）
+     * プルツーリフレッシュ防止の追加設定
+     * =================================================================
+     */
+    html {
+      overscroll-behavior: contain;
+    }
+
+    /*
+     * =================================================================
+     * ローディング画面
      * =================================================================
      */
     #loading-indicator {
@@ -147,7 +158,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #8296ebe9 0%, #314fd7c5 100%);
       color: white;
       display: flex;
       align-items: center;
@@ -211,12 +222,42 @@
         }
       }
       
+      // プルツーリフレッシュを防止するJavaScript処理
+      function preventPullToRefresh() {
+        let startY = 0;
+        let isScrollable = false;
+        
+        document.addEventListener('touchstart', function(e) {
+          startY = e.touches[0].pageY;
+          // スクロール可能な要素かどうかをチェック
+          const target = e.target;
+          isScrollable = target.scrollTop > 0 || 
+                        target.closest('[class*="EditorContainer"]') ||
+                        target.closest('textarea') ||
+                        target.closest('[data-slate-editor]') ||
+                        target.closest('.cm-editor');
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', function(e) {
+          const currentY = e.touches[0].pageY;
+          const deltaY = currentY - startY;
+          
+          // ページトップで下方向にスワイプしようとした場合のみ防止
+          if (deltaY > 0 && window.scrollY === 0 && !isScrollable) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+      }
+      
       // --- 初期化 ---
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
       }
       
-      window.addEventListener('load', hideLoadingIndicator);
+      window.addEventListener('load', function() {
+        hideLoadingIndicator();
+        preventPullToRefresh();
+      });
     })();
   </script>
 </body>
