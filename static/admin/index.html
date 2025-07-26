@@ -76,13 +76,11 @@
         max-height: 300px;
       }
       
-      /* スクロール連動ツールバー: 基本スタイル */
+      /* ツールバー: 基本スタイル */
       [class*="MarkdownControl"] [class*="Toolbar"],
       [class*="MarkdownControl"] [class*="EditorToolbar"] {
-        position: fixed !important;
+        position: sticky !important;
         top: 52px !important;
-        left: 0 !important;
-        right: 0 !important;
         z-index: 990 !important;
         background: rgba(255, 255, 255, 0.95) !important;
         -webkit-backdrop-filter: blur(10px);
@@ -90,14 +88,6 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
         padding: 12px 16px !important;
         margin: 0 !important;
-        transform: translateY(0);
-        transition: transform 0.3s ease-in-out !important;
-      }
-      
-      /* スクロール連動ツールバー: 非表示状態 */
-      [class*="MarkdownControl"] [class*="Toolbar"].is-hidden,
-      [class*="MarkdownControl"] [class*="EditorToolbar"].is-hidden {
-        transform: translateY(-120%);
       }
 
       [class*="MarkdownControl"] [class*="EditorControlPane"] {
@@ -239,48 +229,14 @@
         }
       }
 
-      // --- スクロール制御ロジック ---
-      let lastScrollTop = 0;
-      let activeScrollContainer = null;
-
-      function handleScroll(event) {
-        const toolbars = document.querySelectorAll('[class*="MarkdownControl"] [class*="Toolbar"]');
-        if (toolbars.length === 0) return;
-        
-        const currentScrollTop = event.target.scrollTop;
-
-        if (currentScrollTop > lastScrollTop && currentScrollTop > 52) {
-          toolbars.forEach(toolbar => toolbar.classList.add('is-hidden'));
-        } else {
-          toolbars.forEach(toolbar => toolbar.classList.remove('is-hidden'));
-        }
-        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-      }
-
       // --- UI強化メインロジック ---
       function enhanceMobileUI() {
         if (window.innerWidth > 768) {
-          if (activeScrollContainer) {
-            activeScrollContainer.removeEventListener('scroll', handleScroll);
-            activeScrollContainer = null;
-          }
           return;
         }
 
         const observer = new MutationObserver(() => {
-          const newScrollContainer = document.querySelector('[class*="MainView-root"]');
-          if (!newScrollContainer || newScrollContainer === activeScrollContainer) {
-            return;
-          }
-
-          if (activeScrollContainer) {
-            activeScrollContainer.removeEventListener('scroll', handleScroll);
-          }
-
-          activeScrollContainer = newScrollContainer;
-          activeScrollContainer.addEventListener('scroll', handleScroll, { passive: true });
-          
-          const markdownControls = activeScrollContainer.querySelectorAll('[class*="MarkdownControl"]');
+          const markdownControls = document.querySelectorAll('[class*="MarkdownControl"]');
           markdownControls.forEach(control => {
             if (!control.dataset.mobileEnhanced) {
               setupPreviewToggle(control);
