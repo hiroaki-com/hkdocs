@@ -94,24 +94,7 @@
         padding-top: 60px !important;
       }
       
-      /* プレビュー/編集ボタンのスタイル */
-      [class*="MarkdownControl"] button[class*="preview" i],
-      [class*="MarkdownControl"] button[title*="preview" i],
-      [class*="MarkdownControl"] button[aria-label*="preview" i] {
-        position: absolute !important;
-        top: 8px !important; right: 16px !important; z-index: 1000 !important;
-        min-width: 44px !important; min-height: 44px !important; border-radius: 22px !important;
-        background: #3b82f6 !important; color: white !important; border: none !important;
-        box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: transparent !important;
-        transition: all 0.2s ease !important;
-      }
-      [class*="MarkdownControl"] button[class*="edit" i],
-      [class*="MarkdownControl"] button[title*="edit" i],
-      [class*="MarkdownControl"] button[aria-label*="edit" i] {
-        background: #10b981 !important;
-      }
+
       
       [class*="MarkdownControl"].preview-mode [class*="EditorControlPane"] { display: none !important; }
       [class*="MarkdownControl"].editor-mode [class*="PreviewPane"] { display: none !important; }
@@ -128,7 +111,26 @@
       }
     }
 
-    /* 5. プレビューエリアのマークダウンスタイリング */
+    /* 5. プレビュー/編集ボタンのスタイル（全画面サイズ共通） */
+    [class*="MarkdownControl"] button[class*="preview" i],
+    [class*="MarkdownControl"] button[title*="preview" i],
+    [class*="MarkdownControl"] button[aria-label*="preview" i] {
+      position: absolute !important;
+      top: 8px !important; right: 16px !important; z-index: 1000 !important;
+      min-width: 44px !important; min-height: 44px !important; border-radius: 22px !important;
+      background: #3b82f6 !important; color: white !important; border: none !important;
+      box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: transparent !important;
+      transition: all 0.2s ease !important;
+    }
+    [class*="MarkdownControl"] button[class*="edit" i],
+    [class*="MarkdownControl"] button[title*="edit" i],
+    [class*="MarkdownControl"] button[aria-label*="edit" i] {
+      background: #10b981 !important;
+    }
+
+    /* 6. プレビューエリアのマークダウンスタイリング */
     [class*="PreviewPane"] h1, [class*="PreviewPane"] h2, [class*="PreviewPane"] h3,
     [class*="PreviewPane"] h4, [class*="PreviewPane"] h5, [class*="PreviewPane"] h6 {
       margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25;
@@ -148,11 +150,11 @@
     [class*="PreviewPane"] table th { background: #f6f8fa; font-weight: 600; }
     [class*="PreviewPane"] ul, [class*="PreviewPane"] ol { padding-left: 2em; margin-bottom: 16px; }
 
-    /* 6. アクセシビリティ */
+    /* 7. アクセシビリティ */
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
     button:focus, input:focus, textarea:focus, select:focus { outline: 2px solid #3b82f6; outline-offset: 2px; }
     
-    /* 7. ローディング画面 */
+    /* 8. ローディング画面 */
     #loading-indicator {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
