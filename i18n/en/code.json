@@ -1800,5 +1800,29 @@
   "links.site.learningCommunity.techmeme.desc": {
     "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
     "description": "The description for Techmeme on the links page"
+  },
+  "links.site.frontend.jamstack.title": {
+    "message": "Jamstack",
+    "description": "The title for Jamstack on the links page"
+  },
+  "links.site.frontend.jamstack.desc": {
+    "message": "A modern web architecture named after JavaScript, APIs, and Markup. It aims to improve performance, security, and scalability.",
+    "description": "The description for Jamstack on the links page"
+  },
+  "links.site.cloud.netlify.title": {
+    "message": "Netlify",
+    "description": "The title for Netlify on the links page"
+  },
+  "links.site.cloud.netlify.desc": {
+    "message": "A platform that automates building, deploying, and hosting by linking with GitHub/GitLab. It is a core component of the Jamstack architecture.",
+    "description": "The description for Netlify on the links page"
+  },
+  "links.site.docs.decapcms.title": {
+    "message": "Decap CMS",
+    "description": "The title for Decap CMS on the links page"
+  },
+  "links.site.docs.decapcms.desc": {
+    "message": "An open-source headless CMS that uses a Git repository as its backend. It provides an intuitive UI for managing Markdown content and has high affinity with static site generators.",
+    "description": "The description for Decap CMS on the links page"
   }
 }
