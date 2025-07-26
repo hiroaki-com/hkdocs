@@ -1,4 +1,4 @@
-HkDocs Specification (As of 2025/07/03)
+HkDocs Specification (As of 2025/07/27)
 =======================================
 
 
@@ -30,6 +30,8 @@ II. Technology Stack
   * CI/CD: GitHub Actions
     - GCP Authentication: using Workload Identity Federation
   * Search: Algolia DocSearch
+  * Content Management (CMS)
+    - CMS: Decap CMS (formerly Netlify CMS)
   * Analytics: Google Analytics (GA4)
   * Social Integration: Twitter API v2 (for automatic posting of new articles)
   * Development Environment Management:
@@ -39,12 +41,12 @@ II. Technology Stack
 
 III. System Architecture
 ------------------------
-  The system process begins with a developer pushing code to GitHub.
-  GitHub Actions detects this push and automatically deploys to the staging
-  or production environment depending on the branch. This process includes
-  building a Docker image, pushing it to Artifact Registry, and deploying
-  it to Cloud Run. End users access the site running on Cloud Run and can
-  utilize the high-speed full-text search functionality provided by Algolia.
+  The system process begins with a developer pushing code to GitHub or an administrator
+  updating content via the CMS. GitHub Actions detects this and automatically
+  deploys to the staging or production environment depending on the branch.
+  This process includes building a Docker image, pushing it to Artifact Registry,
+  and deploying it to Cloud Run. End users access the site running on Cloud Run
+  and can utilize the high-speed full-text search functionality provided by Algolia.
 
 
 IV. Configuration Details: Source Code Management (GitHub)
@@ -57,8 +59,9 @@ IV. Configuration Details: Source Code Management (GitHub)
 
   * Branching Strategy:
     - `main`: The stable branch deployed to the production environment. Direct
-      commits are prohibited; it is updated only via Pull Requests from the
-      `develop` branch.
+      commits are generally prohibited; it is updated only via Pull Requests
+      from the `develop` branch. However, updates to diary content via Decap
+      CMS are committed directly to this branch.
     - `develop`: The integration branch for all development work. This is the
       deployment target for the staging environment. Feature branches are
       merged into this branch upon completion.
@@ -70,7 +73,9 @@ IV. Configuration Details: Source Code Management (GitHub)
   * Commit Messages:
     To improve readability and make history tracking easier, commit messages
     should refer to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-    specification.
+    specification. Commits made via the CMS use an auto-generated message
+    based on the configuration file (`static/admin/config.yml`), such as
+    `docs(diary): add new entry "..."`.
 
   * Pull Request (PR) Workflow:
     - Merging to `develop`: A Pull Request is created from a feature branch to
@@ -167,14 +172,16 @@ VII. Site Structure (Content) - Docusaurus
   * Blog: Stored in the `blog/` directory.
     Posts technical discussions and development logs in chronological order.
   * Diary: Stored in the `diary/` directory.
-    Functions as a separate blog for personal daily records.
+    Functions as a separate blog for personal daily records. It is integrated
+    with Decap CMS, allowing content to be created and updated from a
+    web-based admin interface (`/admin/`).
   * Custom Pages:
     - News (`src/pages/news.tsx`): A page that categorizes and lists links
       to major domestic and international news sites for daily information
       gathering.
     - Browser Memo (`src/pages/browser-memo.tsx`): A simple, browser-only
       memo tool page.
-    - Profile (`src/pages/profile.md`): A self-introduction page.
+    - Profile (`src/pages/profile.mdx`): A self-introduction page.
   * Multilingual Support (i18n): Managed in the `i18n/en` directory.
     Supports Japanese (default) and English, providing UI text and
     translation files for each piece of content.
@@ -207,6 +214,13 @@ VIII. System Flow
      - Users can search content quickly using the Algolia search form on the site.
      - Users can switch between Japanese and English displays using the
        language switcher.
+
+  5. Diary Update via CMS:
+     - An administrator accesses `/admin/` and authenticates.
+     - They create, edit, and save a diary entry through the Decap CMS UI.
+     - The save operation commits the changes directly to the `main` branch.
+     - This commit to the `main` branch triggers an automatic deployment to the
+       production environment.
 
 
 IX. Security and Operations
