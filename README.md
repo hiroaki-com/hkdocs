@@ -19,12 +19,13 @@
 - Tech & Exam Docs: `学びの体系的な整理と、資格試験の記録`
 - Blog & Diary: `技術的な学びを綴るブログと、日々の記録を残す日記`
 - Browser Memo: `ブラウザ完結型の軽量メモツール`
-- News Links: `日々の情報収集に役立つ国内外のニュースサイトリンク集`
+- News & Links: `日々の情報収集に役立つ国内外のニュースサイト、学習に役立つリファレンスリンク集`
 
 #### システム
 - Multilingual Support: `Docusaurus i18nによる日本語／英語 対応`
 - CI/CD Automation: `GitHub ActionsによるビルドからCloud Runへの自動デプロイ`
 - Social Integration: `新規記事の情報をX (旧Twitter) へ自動投稿`
+- CMS Integration: `Decap CMSによる日記コンテンツの更新`
 
 ### 技術スタック
 
@@ -38,6 +39,7 @@
 | ホスティング     | [Google Cloud Run](https://cloud.google.com/run)                                  |
 | CI/CD            | [GitHub Actions](https://github.com/features/actions)                             |
 | 検索             | [Algolia DocSearch](https://docsearch.algolia.com/)                               |
+| コンテンツ管理   | [Decap CMS](https://decapcms.org/)|
 
 ### システム構成
 
@@ -45,6 +47,7 @@
 graph LR
     subgraph "開発 & CI/CD"
         Developer([fa:fa-user 開発者]) -- "① Code Push" --> GitHub(fa:fa-github GitHub)
+        Admin([fa:fa-user-shield 管理者]) -- "①' 日記更新 (CMS)" --> GitHub
         GitHub -- "② トリガー" --> Actions(fa:fa-cogs Actions)
         Actions -- "③ ビルド & デプロイ" --> CR(fa:fa-cloud Cloud Run)
         Actions -.-> |自動投稿| X(fa:fa-twitter X)
@@ -80,7 +83,8 @@ graph LR
 │   ├── components/       # カスタムReactコンポーネント
 │   ├── pages/            # カスタムページ (ニュース、プロフィールなど)
 │   └── css/              # カスタムCSS
-├── static/               # 静的アセット (例: 画像)
+├── static/               # 静的アセット (画像、CMS設定など)
+│   └── admin/            # Decap CMS（コンテンツ管理システム）の設定
 ├── spec/                 # システム仕様書
 ├── Dockerfile            # 本番環境用Dockerfile (Cloud Run)
 ├── Dockerfile.dev        # 開発環境用Dockerfile
