@@ -22,7 +22,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}"
     editor:
-      preview: true  # PC画面でのマークダウンプレビューを有効化
+      preview: true  # マークダウンプレビューを有効化
 
     fields:
       - { label: "タイトル", name: "title", widget: "string" }
