@@ -38,8 +38,9 @@
       overscroll-behavior: auto;
     }
 
-    /* 3. マークダウンプレビュー - デスクトップ */
-    @media (min-width: 769px) {
+    /* 3. マークダウンプレビュー強化（responsive-decapを補完） */
+    @media (min-width: 800px) {
+      /* デスクトップ: サイドバイサイドレイアウト */
       [class*="MarkdownControl"] {
         display: flex !important;
         min-height: 400px;
@@ -60,42 +61,9 @@
       }
     }
 
-    /* 4. スマホ専用改善 */
-    @media (max-width: 768px) {
-      [class*="MarkdownControl"] {
-        flex-direction: column !important;
-      }
-      [class*="MarkdownControl"] [class*="EditorControlPane"],
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        min-width: 100%;
-        flex: none;
-      }
-      [class*="MarkdownControl"] [class*="PreviewPane"] {
-        border-left: none;
-        border-top: 1px solid #e1e5e9;
-        max-height: 300px;
-      }
-      
-      /* ツールバー: 基本スタイル */
-      [class*="MarkdownControl"] [class*="Toolbar"],
-      [class*="MarkdownControl"] [class*="EditorToolbar"] {
-        position: sticky !important;
-        top: 52px !important;
-        z-index: 990 !important;
-        background: rgba(255, 255, 255, 0.95) !important;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px) !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-        padding: 12px 16px !important;
-        margin: 0 !important;
-      }
-
-      [class*="MarkdownControl"] [class*="EditorControlPane"] {
-        padding-top: 60px !important;
-      }
-      
-      /* --- 【重要】iOSの自動ズーム防止 --- */
-      /* 入力フォームのフォントサイズを16pxに設定すると、自動ズームが無効になります */
+    /* 4. モバイル強化（responsive-decapの799px基準に合わせる） */
+    @media (max-width: 799px) {
+      /* iOSの自動ズーム防止 - responsive-decapで対応されていない重要な設定 */
       [data-slate-editor="true"],
       [role="textbox"],
       .cm-editor,
@@ -103,6 +71,17 @@
       textarea,
       select {
         font-size: 16px !important;
+      }
+      
+      /* マークダウンエディタのモバイル最適化 */
+      [class*="MarkdownControl"] {
+        flex-direction: column !important;
+      }
+      
+      [class*="MarkdownControl"] [class*="PreviewPane"] {
+        border-left: none !important;
+        border-top: 1px solid #e1e5e9 !important;
+        max-height: 300px !important;
       }
     }
 
