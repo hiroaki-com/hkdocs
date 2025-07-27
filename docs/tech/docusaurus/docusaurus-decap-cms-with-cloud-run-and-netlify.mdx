@@ -1,0 +1,224 @@
+---
+title: Cloud Run上のDocusaurusサイトにDecap CMSを導入した記録
+authors: [hk]
+tags: [docusaurus, decap-cms, netlify, cloud-run, ci/cd]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+このサイトのコンテンツ管理を効率化するため、ヘッドレスCMSであるDecap CMS（旧Netlify CMS）を導入しました。この記事では、その導入プロセスと技術的な判断、そして遭遇した問題の解決策について記録します。
+
+<Admonition type="note" title="最終的な構成">
+CMSの管理画面はNetlifyで、公開サイトはGoogle Cloud Runでホストするハイブリッド構成を採用しました。
+<ul>
+  <li>
+    <strong>CMS管理環境 (Netlify)</strong>
+    <ul>
+      <li><strong>URL:</strong> <code>https://[your-site].netlify.app/admin/</code></li>
+      <li><strong>役割:</strong> Decap CMSの管理画面を提供し、Netlify Identityで認証。</li>
+    </ul>
+  </li>
+  <li>
+    <strong>公開サイト環境 (Google Cloud Run)</strong>
+    <ul>
+      <li><strong>URL:</strong> <code>https://[your-custom-domain].com/</code></li>
+      <li><strong>役割:</strong> 静的サイトをホストし、既存のCI/CDパイプラインを維持。</li>
+    </ul>
+  </li>
+</ul>
+</Admonition>
+
+<br/>
+この記事が、同様の構成を検討している方の参考になれば幸いです。
+
+
+{/* truncate */}
+
+
+### 1. アーキテクチャ選定の背景
+
+最終的なハイブリッド構成に至るまでには、いくつかの技術的な検討と試行錯誤がありました。
+
+#### Auth0連携案の断念
+
+当初、認証プロバイダとしてAuth0の利用を検討しました。しかし、OAuth 2.0の認可フローを安全に実装するには、サーバーサイドで動作する認証プロキシが別途必要になることが分かりました。
+
+Netlifyホスティングではこのプロキシ機能が内部的に提供されていますが、Google Cloud Run環境では自前で構築・運用する必要があり、構成が複雑化してしまいます。プロジェクトのシンプルさを維持するため、この案は見送ることにしました。
+
+#### GitHub連携におけるリダイレクト問題
+
+次に、サーバーサイドが不要なImplicit Grant方式でのGitHub連携を試みました。しかし、設定ファイル (`config.yml`) でGitHubを指定したにもかかわらず、ログイン時にNetlifyの認証画面 (`https://api.netlify.com/auth`) へ強制的にリダイレクトされる問題が発生しました。
+
+調査の結果、Decap CMSがNetlifyのドメイン (`.netlify.app`) 上で動作していることを検知すると、設定ファイルの内容よりもNetlify Identityを優先して使用する仕様であることが原因でした。
+
+#### ハイブリッド構成の決定
+
+この仕様を問題ではなく、利点として活用する方針に転換しました。
+
+:::info[最終的な方針]
+Netlifyが提供する堅牢な認証基盤（Netlify Identity）を無償で活用し、認証という課題を解決します。CMSの管理機能のみをNetlifyに担当させ、公開サイトはCloud Runで運用する**ハイブリッド構成**を最終的に採用しました。
+:::
+
+### 2. 具体的な実装手順
+
+ここからは、最終的に採用したハイブリッド構成を実現するための具体的な設定手順を解説します。
+
+#### 手順1: Netlify側の設定
+
+1.  **Identityの有効化**: Netlifyプロジェクトの `Identity` タブを開き、`Enable Identity` をクリックします。
+2.  **認証プロバイダーの設定**: `Identity` > `Authentication providers` で `GitHub` を有効化します。
+3.  **Git Gatewayの有効化**: `Identity` > `Services` で `Enable Git Gateway` をクリックします。これがリポジトリと連携する上で重要になります。
+4.  **管理者ユーザーの招待**: `Identity` タブの `Invite users` から、ご自身のGitHubアカウントに紐づくメールアドレス宛に招待を送信し、承諾します。
+5.  **カスタムドメインの削除**: `Domain management` を開き、このNetlifyプロジェクトで直接ホストしないカスタムドメインが登録されている場合は、すべて削除します。
+
+#### 手順2: リポジトリ側の設定
+
+1.  **ディレクトリとファイルの作成**: プロジェクトのルートで以下のコマンドを実行し、CMS用のディレクトリとファイルを作成します。
+    ```bash title="CMS用ディレクトリとファイルの作成"
+    mkdir -p static/admin
+    touch static/admin/index.html static/admin/config.yml
+    ```
+
+2.  **`static/admin/index.html` の設定**: このファイルは、Decap CMS管理画面のエントリーポイントです。`netlify-identity-widget.js` で認証機能を、`decap-cms.js` で管理画面UIを読み込みます。
+
+    ```html title="static/admin/index.html"
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
+      <title>Content Manager</title>
+      <style>
+        @media (max-width:799px){ body { padding: 0 !important; } .app-header { display: none !important; } .css-1hvr85l-App-Styles-AppMainView-AppMainView { padding: 0 10px !important; } }
+        body { margin: 0; padding: 0 15px; background-color: #f9f9f9; }
+      </style>
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    </head>
+    <body>
+      <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+      <script>
+        (function() {
+          function preventPullToRefresh() {
+            let startY = 0;
+            document.body.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+            document.body.addEventListener('touchmove', (e) => {
+              const y = e.touches[0].clientY;
+              if (document.scrollingElement.scrollTop === 0 && y > startY && document.body.scrollHeight === document.body.clientHeight) {
+                e.preventDefault();
+              }
+            }, { passive: false });
+          }
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
+          }
+          window.addEventListener('load', preventPullToRefresh);
+        })();
+      </script>
+    </body>
+    </html>
+    ```
+
+3.  **`static/admin/config.yml` の設定**: このファイルは、Decap CMSの動作を定義する最も重要な設定ファイルです。
+
+    <ul>
+      <li><code>backend</code>: 認証方式（<code>git-gateway</code>）とリポジトリの接続情報を定義します。</li>
+      <li><code>media_folder</code>: 画像などのメディアファイルをアップロードするパスを指定します。</li>
+      <li><code>collections</code>: 管理するコンテンツの集合を定義します。<code>fields</code>セクションで、CMSの編集画面に表示される入力フォーム（タイトル、本文、タグなど）を定義します。</li>
+    </ul>
+
+    ```yaml title="static/admin/config.yml"
+    backend:
+      name: git-gateway
+      branch: main
+      commit_messages:
+        create: 'docs(diary): add new entry "{{slug}}"'
+        update: 'docs(diary): revise entry "{{slug}}"'
+        delete: 'docs(diary): remove entry "{{slug}}"'
+        uploadMedia: 'docs(assets): add media "{{path}}"'
+        deleteMedia: 'docs(assets): remove media "{{path}}"'
+
+    media_folder: "static/img/uploads/diary"
+    public_folder: "/img/uploads/diary"
+
+    collections:
+      - name: "diary"
+        label: "Diary"
+        folder: "diary"
+        create: true
+        slug: "{{year}}-{{month}}-{{day}}"
+        editor:
+          preview: true
+        fields:
+          - { label: "タイトル", name: "title", widget: "string" }
+          - { label: "Authors", name: "authors", widget: "hidden", default: ["hk"] }
+          - { label: "目次を非表示", name: "hide_table_of_contents", widget: "boolean", default: false }
+          - { label: "タグ", name: "tags", widget: "list", default: [] }
+          - { label: "本文", name: "body", widget: "markdown" }
+    ```
+
+#### 手順3: デプロイと利用開始
+
+1.  上記で作成・編集したファイルをGitリポジトリにコミットし、プッシュします。
+2.  Netlify側で自動的にデプロイが開始されます。
+3.  デプロイ完了後、ブラウザでCMS管理画面にアクセスします。<br/>
+    `https://[あなたのサイト名].netlify.app/admin/`
+
+<Admonition type="tip" title="ヒント">
+設定変更が反映されない場合、ブラウザのキャッシュが原因の可能性があります。スーパーリロード（<code>Cmd/Ctrl + Shift + R</code>）を試してください。
+</Admonition>
+
+### 3. 実装時のトラブルシューティング
+
+最後に、今回の実装プロセスで実際に直面した問題と、その解決策を備忘録としてまとめます。
+
+#### 問題1: 画面が空白になる (`appendChild` エラー)
+
+-   **現象**: CMS管理画面 (`/admin/`) にアクセスすると画面が真っ白になり、コンソールに `Uncaught TypeError: Cannot read properties of null (reading 'appendChild')` が表示されました。
+-   **原因**: JavaScriptがDOMを描画しようとした時点で、描画先の `<body>` 要素がまだ構築されていなかったためです。
+-   **対策**: `static/admin/index.html` 内の `<script>` タグを、`<head>` から `<body>` タグの閉じタグ直前に移動しました。
+
+#### 問題2: 意図しないEmail/Passwordフォームが表示される
+
+-   **現象**: 期待していた `Login with GitHub` ボタンではなく、Netlify Identity標準のEmail/Password入力フォームが表示されました。
+-   **原因**: Netlify Identityは有効でしたが、GitHubリポジトリと連携するための `Git Gateway` サービスが有効化されていませんでした。
+-   **対策**: Netlifyの管理画面で `Identity` > `Services` を開き、`Enable Git Gateway` をクリックしました。
+
+#### 問題3: 認証後に意図しないドメインへリダイレクトされる
+
+-   **現象**: GitHubでの認証後、CMS管理画面 (`netlify.app`) に戻らず、公開サイトのドメイン (`https://[your-custom-domain].com/...`) にリダイレクトされました。
+-   **原因**: Netlify Identityは、認証後のリダイレクト先として `Domain management` で設定されたプライマリドメインを最優先するためです。
+-   **対策**: Netlifyプロジェクトの `Domain management` 設定から、このプロジェクトで直接ホストしないカスタムドメインの設定を完全に削除しました。
+
+#### 問題4: 保存時に `reference does not exist` エラーが発生する
+
+-   **現象**: CMSでコンテンツを保存しようとすると、`Failed to persist entry: API_Error: reference does not exist` というエラーが表示されました。
+-   **原因**: リポジトリのデフォルトブランチが `main` であるのに対し、Decap CMSが古いデフォルト名である `master` ブランチに書き込もうとしていたためです。
+-   **対策**: `static/admin/config.yml` の `backend` セクションに `branch: main` を明記し、保存先のブランチを固定しました。
+
+    ```yaml title="static/admin/config.yml の修正例"
+    backend:
+      name: git-gateway
+      # この行を追記して、リポジトリのデフォルトブランチに合わせる
+      branch: main
+    ```
+
+#### 問題5: カスタムコミットメッセージが反映されない
+
+-   **現象**: `config.yml` で `commit_messages` を設定しても反映されず、デフォルトのコミットメッセージが使用されました。
+-   **原因**: 古い `summary` 設定と新しい `commit_messages` 設定がファイル内に共存していました。Decap CMSは設定が競合すると、安全のために両方を無視する仕様でした。
+-   **対策**: ファイルから古い `summary` の記述を完全に削除し、`commit_messages` に設定を一本化しました。
+
+<br/>
+<ShareButtons />
+<br/>
+
+<Admonition type="note" title="参考文献">
+<ul>
+    <li><a href="https://decapcms.org/docs/git-gateway-backend/" target="_blank" rel="noopener noreferrer">Decap CMS | Git Gateway Backend</a></li>
+    <li><a href="https://decapcms.org/docs/docusaurus/" target="_blank" rel="noopener noreferrer">Decap CMS | Docusaurus Integration</a></li>
+    <li><a href="https://docs.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify Docs</a></li>
+    <li><a href="https://docs.netlify.com/manage/security/secure-access-to-sites/git-gateway/" target="_blank" rel="noopener noreferrer">Netlify Docs | Git Gateway</a></li>
+    <li><a href="https://docs.netlify.com/extend/install-and-use/setup-guides/auth0/" target="_blank" rel="noopener noreferrer">Netlify Docs | Auth0 Setup Guide</a></li>
+</ul>
+</Admonition>
