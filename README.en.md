@@ -13,6 +13,8 @@ A personal knowledge base that consolidates a tech blog, work notes, and a diary
 
 🇯🇵 [日本語 Readme](./README.md)
 
+📘 [System Specification](./spec/SYSTEM_SPECIFICATION.en.md)
+
 ## Features
 
 ### Contents
@@ -58,12 +60,6 @@ graph LR
         Visitor -- "⑤ Search" <--> Algolia(fa:fa-search Algolia)
     end
 ```
-
-## Project Specification
-
-Detailed system design and development conventions are managed in the following document.
-
-- 📘 **[System Specification](./spec/SYSTEM_SPECIFICATION.en.md)**
 
 ## Directory Structure
 
