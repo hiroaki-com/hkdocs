@@ -13,6 +13,8 @@
 
 🔤 [English README](./README.en.md)
 
+📘 [システム仕様書](./spec/SYSTEM_SPECIFICATION.md)
+
 ### 主な機能
 
 #### コンテンツ
@@ -58,12 +60,6 @@ graph LR
         Visitor -- "⑤ 検索" <--> Algolia(fa:fa-search Algolia)
     end
 ```
-
-### 仕様書
-
-システムの詳細設計や開発規約は、以下のドキュメントで管理しています。
-
-📘 **[システム仕様書](./spec/SYSTEM_SPECIFICATION.md)**
 
 ### ディレクトリ構成
 
