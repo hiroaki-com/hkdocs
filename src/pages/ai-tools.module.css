@@ -9,6 +9,8 @@
   max-width: 1040px;
   margin: 0 auto;
   padding: 1.5rem 1rem var(--ifm-spacing-horizontal);
+  background-color: var(--ifm-background-color-subtle);
+  border-radius: var(--ifm-global-radius);
 }
 
 /* ページヘッダー: Flexboxでタイトルとボタンを左右に分割 */
@@ -17,6 +19,11 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--ifm-background-color);
+  border-radius: var(--ifm-global-radius);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 .pageHeaderTitle {
@@ -25,18 +32,19 @@
 
 .pageHeader h1 {
   margin-bottom: 0.5rem;
+  color: var(--ifm-heading-color);
 }
 
 .pageHeader p {
   font-size: 1rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--ifm-font-color-secondary);
 }
 
 /* ダウンロードボタンのスタイル */
 .downloadButton {
-  background-color: transparent;
-  border: 0.5px solid var(--ifm-color-emphasis-300);
-  color: var(--ifm-color-emphasis-800);
+  background-color: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-font-color-base);
   border-radius: var(--ifm-button-border-radius);
   cursor: pointer;
   display: flex;
@@ -46,51 +54,86 @@
   height: 38px;
   padding: 0;
   margin-top: 0.5rem;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: var(--ifm-transition-fast);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
 .downloadButton:hover {
-  background-color: var(--ifm-hover-overlay);
-  border-color: var(--ifm-color-emphasis-600);
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* 大カテゴリのセクション */
 .majorCategorySection {
   margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--ifm-background-color);
+  border-radius: var(--ifm-global-radius);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* 大カテゴリのタイトル (h2) */
 .majorCategoryTitle {
-  font-size: 1.0rem;
+  font-size: 1.1rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
   font-weight: 600;
+  color: var(--ifm-heading-color);
 }
 
 /* カードグリッド */
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* 上下に1rem、左右に0の余白を設定 */
-  gap: 1rem 0;
+  gap: 1rem;
+  padding: 0.5rem;
+  background-color: var(--ifm-background-color);
+  border-radius: calc(var(--ifm-global-radius) - 4px);
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.03);
 }
 
-/* グリッド内のカードの角を四角にする */
+/* グリッド内のカードの角を統一 */
 .cardGrid > * {
-  border-radius: 0;
+  border-radius: var(--ifm-global-radius);
+  transition: var(--ifm-transition-fast);
 }
-
 
 /* --- ダークモード用の調整 --- */
-[data-theme='dark'] .majorCategoryTitle {
-  border-bottom-color: var(--ifm-color-emphasis-300);
+[data-theme='dark'] .mainContainer {
+  background-color: #1a1b23;
 }
 
-[data-theme='dark'] .pageHeader p {
-  color: var(--ifm-font-color-secondary);
+[data-theme='dark'] .pageHeader {
+  background-color: #25262f;
+  border-color: var(--ifm-color-emphasis-300);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
+[data-theme='dark'] .majorCategorySection {
+  background-color: #25262f;
+  border-color: var(--ifm-color-emphasis-300);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .cardGrid {
+  background-color: #25262f;
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .downloadButton {
+  background-color: #25262f;
+  border-color: var(--ifm-color-emphasis-400);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .downloadButton:hover {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4);
+}
 
 /* --- アンカーリンク付き見出しのためのスタイル --- */
 /* テキストとアンカーリンクを内包し、アンカーの位置決めの基準点となるコンテナ */
@@ -105,8 +148,9 @@
   padding-left: 0.25em; /* テキストとの間に余白を設ける */
   top: 0;
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+  transition: var(--ifm-transition-fast);
   text-decoration: none;
+  color: var(--ifm-color-primary);
 }
 
 /* h2見出し(.sectionHeading)の領域にホバーした際に、その中のアンカーリンクを表示する */
@@ -114,6 +158,9 @@
   opacity: 1;
 }
 
+.anchorLink:hover {
+  color: var(--ifm-color-primary-dark);
+}
 
 /* --- レスポンシブ対応 --- */
 
@@ -130,6 +177,7 @@
   .pageHeader {
     flex-direction: column;
     align-items: flex-start;
+    padding: 1rem;
   }
   
   /* スマホではダウンロードボタンを非表示 */
@@ -151,8 +199,12 @@
 
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    /* スマホ表示でも同様に上下の余白を設定 */
-    gap: 1rem 0;
+    gap: 0.75rem;
+    padding: 0.5rem;
+  }
+  
+  .majorCategorySection {
+    padding: 1rem;
   }
 }
 
