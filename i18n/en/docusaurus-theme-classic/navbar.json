@@ -46,5 +46,9 @@
   "item.label.その他": {
     "message": "Other",
     "description": "Navbar item with label その他"
+  },
+  "item.label.AIツール集": {
+    "message": "AI tools",
+    "description": "Navbar item with label AIツール集"
   }
 }

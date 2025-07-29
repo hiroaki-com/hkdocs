@@ -47,10 +47,6 @@
   "homepage.features.tech.title": {
     "message": "Tech"
   },
-  "homepage.meta.description": {
-    "message": "This is a technical blog that compiles technical information and daily learnings. It also offers tools such as a browser-based notepad, a list of news sites, and collections of links to technical resources and academic papers.",
-    "description": "The meta description for the homepage"
-  },
   "links.download.header.siteName": {
     "message": "SiteName"
   },
@@ -1824,5 +1820,153 @@
   "links.site.docs.decapcms.desc": {
     "message": "An open-source headless CMS that uses a Git repository as its backend. It provides an intuitive UI for managing Markdown content and has high affinity with static site generators.",
     "description": "The description for Decap CMS on the links page"
+  },
+  "homepage.features.aiTools.title": {
+    "message": "AI Tools"
+  },
+  "homepage.features.aiTools.description": {
+    "message": "AI tools for development & productivity enhancement."
+  },
+  "homepage.meta.description": {
+    "message": "This is a technical blog that compiles technical information and daily learnings. It also offers tools such as a browser-based notepad, a list of news sites, collections of links to technical resources and academic papers, and an AI tools collection.",
+    "description": "The meta description for the homepage"
+  },
+  "aiTools.page.title": {
+    "message": "AI Tools"
+  },
+  "aiTools.page.description": {
+    "message": "A comprehensive collection of AI tools useful for development and productivity enhancement."
+  },
+  "aiTools.page.heading": {
+    "message": "AI Tools"
+  },
+  "aiTools.page.subheading": {
+    "message": "AI Tools for Development & Productivity"
+  },
+  "aiTools.page.downloadButtonAriaLabel": {
+    "message": "Download AI tools list"
+  },
+  "aiTools.page.downloadButtonTooltip": {
+    "message": "Download CSV list"
+  },
+  "aiTools.download.header.toolName": {
+    "message": "ToolName"
+  },
+  "aiTools.majorCategory.aiChat": {
+    "message": "Generative AI Chat"
+  },
+  "aiTools.majorCategory.programmingSupport": {
+    "message": "Programming Support"
+  },
+  "aiTools.majorCategory.aiDevelopmentPlatform": {
+    "message": "AI Development Platform"
+  },
+  "aiTools.majorCategory.appIntegrationAutomation": {
+    "message": "App Integration & Automation"
+  },
+  "aiTools.majorCategory.informationResearch": {
+    "message": "Information & Research"
+  },
+  "aiTools.tool.aiChat.chatgpt.title": {
+    "message": "ChatGPT"
+  },
+  "aiTools.tool.aiChat.chatgpt.desc": {
+    "message": "A versatile AI chatbot that excels at human-like text generation, answering complex questions, and supporting a wide range of writing and coding tasks."
+  },
+  "aiTools.tool.aiChat.claude.title": {
+    "message": "Claude"
+  },
+  "aiTools.tool.aiChat.claude.desc": {
+    "message": "An AI assistant that excels at reading long texts and complex reasoning, emphasizing polite and safe dialogue. Capable of processing up to 200,000 tokens in a single session."
+  },
+  "aiTools.tool.aiChat.gemini.title": {
+    "message": "Google Gemini"
+  },
+  "aiTools.tool.aiChat.gemini.desc": {
+    "message": "A multimodal AI deeply integrated with Google's services that can understand and process multiple data formats including text, code, and images."
+  },
+  "aiTools.tool.aiChat.copilot.title": {
+    "message": "Microsoft Copilot"
+  },
+  "aiTools.tool.aiChat.copilot.desc": {
+    "message": "An AI assistant capable of providing answers based on the latest web information and generating images. Enables seamless use in daily work through native integration with Windows and Office products."
+  },
+  "aiTools.tool.programming.githubCopilot.title": {
+    "message": "GitHub Copilot"
+  },
+  "aiTools.tool.programming.githubCopilot.desc": {
+    "message": "An AI pair programmer that provides code completion, suggestions, and entire function creation within developers' editors. Trained on vast amounts of code from GitHub, enabling highly accurate contextual suggestions."
+  },
+  "aiTools.tool.programming.tabnine.title": {
+    "message": "Tabnine"
+  },
+  "aiTools.tool.programming.tabnine.desc": {
+    "message": "An AI that learns team-specific code and coding conventions while prioritizing privacy to personalize code completion. Can run in local environments."
+  },
+  "aiTools.tool.programming.cursor.title": {
+    "message": "Cursor"
+  },
+  "aiTools.tool.programming.cursor.desc": {
+    "message": "An AI-native code editor that enables code editing, refactoring, and debugging through natural language instructions."
+  },
+  "aiTools.tool.programming.cody.title": {
+    "message": "Sourcegraph Cody"
+  },
+  "aiTools.tool.programming.cody.desc": {
+    "message": "Code search and AI completion for large-scale repositories. Supports multiple LLM selection and can batch process codebases up to 1M tokens."
+  },
+  "aiTools.tool.aiDev.aiStudio.title": {
+    "message": "Google AI Studio"
+  },
+  "aiTools.tool.aiDev.aiStudio.desc": {
+    "message": "A tool for testing Google's latest AI models (Gemini family) in the browser and developing prototypes. Features powerful prompt-to-code generation capabilities."
+  },
+  "aiTools.tool.aiDev.anthropicConsole.title": {
+    "message": "Anthropic Console"
+  },
+  "aiTools.tool.aiDev.anthropicConsole.desc": {
+    "message": "A developer platform for testing Anthropic's AI models (Claude family) and using them via API. Features long-text processing capabilities and safety-focused models."
+  },
+  "aiTools.tool.automation.n8n.title": {
+    "message": "n8n"
+  },
+  "aiTools.tool.automation.n8n.desc": {
+    "message": "A tool for building complex multi-step automation workflows using a visual editor. Open source and can be run on your own servers."
+  },
+  "aiTools.tool.automation.make.title": {
+    "message": "Make"
+  },
+  "aiTools.tool.automation.make.desc": {
+    "message": "An automation platform that allows visual workflow creation by connecting app icons through drag-and-drop. Enables intuitive creation of complex branching and loop processing."
+  },
+  "aiTools.tool.automation.zapier.title": {
+    "message": "Zapier"
+  },
+  "aiTools.tool.automation.zapier.desc": {
+    "message": "An automation tool supporting over 7,000 app integrations. Features AI-powered workflow construction suggestions and serves as the standard tool for workflow automation."
+  },
+  "aiTools.tool.research.perplexity.title": {
+    "message": "Perplexity AI"
+  },
+  "aiTools.tool.research.perplexity.desc": {
+    "message": "An AI search engine that provides accurate answers with cited web sources in response to questions. Delivers reliable, source-backed responses in a conversational format."
+  },
+  "aiTools.tool.research.notebookLM.title": {
+    "message": "NotebookLM"
+  },
+  "aiTools.tool.research.notebookLM.desc": {
+    "message": "A Google-made AI research assistant that helps integrate information and discover insights based on user-uploaded materials."
+  },
+  "aiTools.tool.research.tenbin.title": {
+    "message": "Tenbin AI by GMO"
+  },
+  "aiTools.tool.research.tenbin.desc": {
+    "message": "A web tool that enables simultaneous comparison and evaluation of outputs from multiple major LLMs (GPT, Gemini, Claude, etc.) using the same prompt. Ideal for model selection and prompt tuning."
+  },
+  "aiTools.tool.research.elicit.title": {
+    "message": "Elicit"
+  },
+  "aiTools.tool.research.elicit.desc": {
+    "message": "An AI research assistant specialized in searching, summarizing, and analyzing research papers. Rich in features for efficiently extracting insights from vast academic literature."
   }
 }
