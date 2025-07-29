@@ -143,6 +143,7 @@ const config: Config = {
             { to: '/diary', label: '日記' },
             { to: '/news', label: 'ニュース' },
             { to: '/links', label: '資料集' },
+            { to: '/ai-tools', label: 'AIツール集' },
             { to: '/browser-memo', label: 'ブラウザメモ' },
             { to: '/profile', label: 'プロフィール' },
           ],
@@ -183,6 +184,7 @@ const config: Config = {
           items: [
             { label: 'ニュース', to: '/news' },
             { label: '資料集', to: '/links' },
+            { label: 'AIツール集', to: '/ai-tools' },
             { label: 'ブラウザメモ', to: '/browser-memo' },
             { label: 'プロフィール', to: '/profile' },
           ],

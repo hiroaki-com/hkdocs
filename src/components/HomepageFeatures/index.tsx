@@ -14,6 +14,7 @@ import {
   NotebookPen,
   Newspaper,
   LibrarySquare, // 資料集用のアイコン
+  Bot, // AIツール集用のアイコン
   type LucideProps,
 } from 'lucide-react';
 
@@ -27,6 +28,7 @@ const IconUser: SvgIconType = UserCircle;
 const IconBrowserMemo: SvgIconType = NotebookPen;
 const IconNews: SvgIconType = Newspaper;
 const IconLinks: SvgIconType = LibrarySquare;
+const IconAITools: SvgIconType = Bot;
 
 type FeatureCardProps = {
   title: string;
@@ -134,6 +136,20 @@ export default function HomepageFeatures(): JSX.Element {
               </Translate>
             }
             link="/links"
+          />
+          {/* AIツール集カード */}
+          <FeatureCard
+            title={translate({
+              id: 'homepage.features.aiTools.title',
+              message: 'AIツール集',
+            })}
+            Icon={IconAITools}
+            description={
+              <Translate id="homepage.features.aiTools.description">
+                開発・業務効率化のためのAIツール。
+              </Translate>
+            }
+            link="/ai-tools"
           />
           <FeatureCard
             title={translate({
