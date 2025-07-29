@@ -25,11 +25,36 @@ collections:
       preview: true  # マークダウンプレビューを有効化
 
     fields:
-      - { label: "タイトル", name: "title", widget: "string" }
+      - { 
+          label: "タイトル", 
+          name: "title", 
+          widget: "string",
+          default: "{{year}}-{{month}}-{{day}} 今日の日記"
+        }
       - { label: "Authors", name: "authors", widget: "hidden", default: ["hk"] }
       - { label: "目次を非表示", name: "hide_table_of_contents", widget: "boolean", default: false }
       - { label: "タグ", name: "tags", widget: "list", default: [] }
-      - { label: "本文", name: "body", widget: "markdown" }
+      - { 
+          label: "本文", 
+          name: "body", 
+          widget: "markdown",
+          default: |
+            ### 天気について
+
+
+            <!-- truncate -->
+
+
+            ### 体調について
+
+
+            ### 作業について
+
+
+            ### その他
+
+
+        }
 
   # 将来の拡張用参照コレクション
   - name: "site_data"
