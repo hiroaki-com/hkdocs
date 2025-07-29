@@ -1,0 +1,167 @@
+/**
+ * ai-tools.module.css
+ * AIツール集ページのスタイル
+ * links.module.css とデザイン/レイアウトを統一
+ */
+
+/* メインコンテンツ全体のコンテナ */
+.mainContainer {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem var(--ifm-spacing-horizontal);
+}
+
+/* ページヘッダー: Flexboxでタイトルとボタンを左右に分割 */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.pageHeaderTitle {
+  text-align: left;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0.5rem;
+}
+
+.pageHeader p {
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* ダウンロードボタンのスタイル */
+.downloadButton {
+  background-color: transparent;
+  border: 0.5px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-800);
+  border-radius: var(--ifm-button-border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.downloadButton:hover {
+  background-color: var(--ifm-hover-overlay);
+  border-color: var(--ifm-color-emphasis-600);
+}
+
+/* 大カテゴリのセクション */
+.majorCategorySection {
+  margin-bottom: 1.5rem;
+}
+
+/* 大カテゴリのタイトル (h2) */
+.majorCategoryTitle {
+  font-size: 1.0rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  font-weight: 600;
+}
+
+/* カードグリッド */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* 上下に1rem、左右に0の余白を設定 */
+  gap: 1rem 0;
+}
+
+/* グリッド内のカードの角を四角にする */
+.cardGrid > * {
+  border-radius: 0;
+}
+
+
+/* --- ダークモード用の調整 --- */
+[data-theme='dark'] .majorCategoryTitle {
+  border-bottom-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .pageHeader p {
+  color: var(--ifm-font-color-secondary);
+}
+
+
+/* --- アンカーリンク付き見出しのためのスタイル --- */
+/* テキストとアンカーリンクを内包し、アンカーの位置決めの基準点となるコンテナ */
+.anchorContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.anchorLink {
+  position: absolute;
+  left: 100%; /* .anchorContainer の右端からの相対位置 */
+  padding-left: 0.25em; /* テキストとの間に余白を設ける */
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+/* h2見出し(.sectionHeading)の領域にホバーした際に、その中のアンカーリンクを表示する */
+.sectionHeading:hover .anchorLink {
+  opacity: 1;
+}
+
+
+/* --- レスポンシブ対応 --- */
+
+/* 中画面 (996px以下) では3カラムに */
+@media (max-width: 996px) {
+  .cardGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 小画面 (767px以下) では2カラムに */
+@media (max-width: 767px) {
+  /* スマホではヘッダーを縦積み・左寄せに */
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* スマホではダウンロードボタンを非表示 */
+  .downloadButton {
+    display: none;
+  }
+  
+  .pageHeader h1 {
+    font-size: 1.5rem;
+  }
+
+  .pageHeader p {
+    font-size: 0.7rem;
+  }
+
+  .majorCategoryTitle {
+    font-size: 1.0rem;
+  }
+
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    /* スマホ表示でも同様に上下の余白を設定 */
+    gap: 1rem 0;
+  }
+}
+
+/* --- その他 --- */
+
+/* アコーディオンのマーカー(▼)を非表示 */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
