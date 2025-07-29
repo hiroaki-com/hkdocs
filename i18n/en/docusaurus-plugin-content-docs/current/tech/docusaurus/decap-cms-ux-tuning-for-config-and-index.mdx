@@ -1,0 +1,170 @@
+---
+title: Optimizing Decap CMS UX with config.yml and index.html Enhancements
+authors: [hk]
+sidebar_position: 17
+tags: [docusaurus, decap-cms, ux, css, javascript]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+In a previous article, I explained [how to integrate Decap CMS into a Docusaurus site](i18n/en/docusaurus-plugin-content-docs/current/tech/docusaurus/docusaurus-decap-cms-with-cloud-run-and-netlify.mdx). While this setup provided a solid foundation for content updates, I found room for improvement in day-to-day use, especially regarding mobile usability and streamlining repetitive input.
+
+This article details the practical customizations I applied to [**`static/admin/config.yml`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/config.yml) and [**`static/admin/index.html`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/index.html) to address these challenges.
+
+-   **`config.yml` optimization**: Settings to reduce manual input and prevent errors.
+-   **`index.html` modification**: Adding CSS and JavaScript to improve mobile usability.
+
+These tweaks have created an environment where I can comfortably update articles not only from a PC but also from a smartphone. I hope this serves as a helpful example of leveraging the high customizability of Git-based CMS.
+
+{/* truncate */}
+
+### **1. Enhancing Operational Efficiency with `config.yml`**
+
+The [**`config.yml`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/config.yml) file is not just for defining CMS fields and storage locations; it's a flexible configuration file where you can build in "tricks" to streamline daily operations.
+
+#### Enhancement 1: Automating Commit Messages with Conventional Commits
+
+When content is updated via the CMS, a Git commit history is created. To make this history easy to understand later, I configured it to automatically generate messages that follow the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+
+In the `commit_messages` section, you can specify templates for actions like `create`, `update`, etc. Using placeholders like `{{slug}}` and `{{path}}`, it's easy to see at a glance which file was affected.
+
+```yaml title="static/admin/config.yml"
+backend:
+  name: git-gateway
+  branch: main
+  # Customize commit messages to follow the convention
+  commit_messages:
+    create: 'docs(diary): add new entry "{{slug}}"'
+    update: 'docs(diary): revise entry "{{slug}}"'
+    delete: 'docs(diary): remove entry "{{slug}}"'
+    uploadMedia: 'docs(assets): add media "{{path}}"'
+    deleteMedia: 'docs(assets): remove media "{{path}}"'
+```
+
+This ensures that even updates from the CMS maintain a high-quality log, comparable to manual commits.
+
+#### Enhancement 2: Improving the Writing Experience by Automating Repetitive Tasks
+
+For content like a daily diary, automating a few tasks can significantly improve the writing experience.
+
+-   **Automatic file naming**: By specifying a date-based template (`{{year}}-{{month}}-{{day}}`) for the `slug`, I eliminated the need to manually think of file names and ensured a consistent naming convention.
+-   **Template insertion**: By setting default values with headings in the `body` field, a template is automatically inserted when creating a new entry, allowing me to start writing immediately.
+-   **Enabling real-time preview**: Setting `editor: preview: true` allows me to check the rendered output in a side pane while writing Markdown.
+
+```yaml title="static/admin/config.yml"
+collections:
+  - name: "diary"
+    label: "Diary"
+    folder: "diary"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}" # Automatically generate file names with dates
+    editor:
+      preview: true  # Enable Markdown preview
+    fields:
+      # ... (omitted) ...
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        # Template to be automatically inserted on new entry creation
+        default: "### About the Weather\n\n\n<!-- truncate -->\n\n\n### About My Condition\n\n\n### About My Work\n\n\n### Other\n\n"
+```
+
+These settings allow me to focus on the content itself without interrupting my train of thought.
+
+#### Enhancement 3: Automating Repetitive Input with Hidden Fields
+
+The author of the article is always myself, so entering it every time is inefficient. Such fixed values can be automatically set without being visible to the user by combining `widget: "hidden"` and `default`.
+
+```yaml title="static/admin/config.yml"
+# ...
+fields:
+  - label: "Authors"
+    name: "authors"
+    widget: "hidden" # Hide from the UI
+    default: ["hk"]   # Set a default value
+```
+
+This allows necessary metadata to be added without the user even thinking about it.
+
+---
+
+### **2. Improving Mobile UX with `index.html`**
+
+The default UI of Decap CMS is primarily designed for PC use, and its usability on smartphones left room for improvement. To solve this, I directly added custom CSS and JavaScript to [**`static/admin/index.html`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/index.html) to enhance the mobile experience.
+
+#### Enhancement 1: Global UI Optimization with Custom CSS
+
+Inside the `<style>` tag of `index.html`, I added smartphone-specific styles using the `@media (max-width:799px)` media query, along with other fine-tuned adjustments.
+
+-   **Layout adjustments**: I adjusted the size of buttons and input forms and hid unnecessary UI elements to maximize screen space.
+-   **Preventing auto-zoom on iOS**: By setting the `font-size` of `input` and `textarea` to `16px` or more, I suppressed the automatic zoom behavior when a form is selected.
+-   **Unifying layout standards**: Applying `box-sizing: border-box;` globally prevents unintentional layout breaks caused by CSS customizations.
+-   **Font optimization**: Specifying system fonts (`-apple-system`, `Roboto`, etc.) ensures a natural and readable display on each OS.
+
+```html title="Part of static/admin/index.html"
+<style>
+  @media (max-width:799px){
+    /* ...layout adjustment CSS... */
+    [data-slate-editor="true"], input, textarea {
+      font-size: 16px !important;
+    }
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic UI', Roboto, sans-serif;
+  }
+</style>
+```
+
+#### Enhancement 2: Improving Interactions with JavaScript
+
+I also made improvements to usability, not just appearance, with JavaScript.
+
+-   **Disabling "pull-to-refresh"**: This prevents accidental page reloads when swiping down on the screen while editing on a mobile browser. It monitors `touchstart` and `touchmove` events and cancels only downward swipes at the very top of the page.
+-   **Automatic redirect after logout**: After the logout process is complete, it automatically redirects to the login page (`/admin/`). This prevents users from getting confused about what to do next.
+
+```html title="Part of static/admin/index.html"
+<script>
+  (function() {
+    function preventPullToRefresh() {
+      // ... pull-to-refresh prevention logic ...
+    }
+    
+    if (window.netlifyIdentity) {
+      // Redirect to the login page on logout
+      window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
+    }
+    
+    window.addEventListener('load', preventPullToRefresh);
+  })();
+</script>
+```
+
+These scripts effectively reduce stress from accidental operations without hindering intended scrolling behavior.
+
+### **Conclusion**
+
+By modifying just two files, `config.yml` and `index.html`, you can significantly improve the usability of Decap CMS.
+
+-   **`config.yml`**: Enhance **operational efficiency** by automating input using `slug` and `default` values.
+-   **`index.html`**: Improve **mobile UX** by adjusting the UI and interactions with custom CSS and JavaScript.
+
+A major advantage of Git-based CMS is the flexibility to customize it to your own workflow. I hope this article provides some hints for making your CMS environment more comfortable.
+
+<br/>
+<ShareButtons />
+<br/>
+
+<Admonition type="note" title="References">
+<ul>
+    <li><a href="https://decapcms.org/docs/configuration-options/" target="_blank" rel="noopener noreferrer">Decap CMS | Configuration Options</a></li>
+    <li><a href="https://decapcms.org/docs/collection-folder/" target="_blank" rel="noopener noreferrer">Decap CMS | Collections</a></li>
+    <li><a href="https://decapcms.org/docs/widgets/" target="_blank" rel="noopener noreferrer">Decap CMS | Widgets</a></li>
+    <li><a href="https://decapcms.org/docs/git-gateway-backend/" target="_blank" rel="noopener noreferrer">Decap CMS | Git Gateway Backend</a></li>
+    <li><a href="https://github.com/netlify/netlify-identity-widget" target="_blank" rel="noopener noreferrer">Netlify | Netlify Identity widget</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior" target="_blank" rel="noopener noreferrer">MDN Web Docs | overscroll-behavior</a></li>
+</ul>
+</Admonition>
