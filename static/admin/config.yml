@@ -25,11 +25,25 @@ collections:
       preview: true  # マークダウンプレビューを有効化
 
     fields:
-      - { label: "タイトル", name: "title", widget: "string" }
-      - { label: "Authors", name: "authors", widget: "hidden", default: ["hk"] }
-      - { label: "目次を非表示", name: "hide_table_of_contents", widget: "boolean", default: false }
-      - { label: "タグ", name: "tags", widget: "list", default: [] }
-      - { label: "本文", name: "body", widget: "markdown" }
+      - label: "タイトル"
+        name: "title"
+        widget: "string"
+      - label: "Authors"
+        name: "authors"
+        widget: "hidden"
+        default: ["hk"]
+      - label: "目次を非表示"
+        name: "hide_table_of_contents"
+        widget: "boolean"
+        default: false
+      - label: "タグ"
+        name: "tags"
+        widget: "list"
+        default: []
+      - label: "本文"
+        name: "body"
+        widget: "markdown"
+        default: "### 天気について\n\n\n<!-- truncate -->\n\n\n### 体調について\n\n\n### 作業について\n\n\n### その他\n\n"
 
   # 将来の拡張用参照コレクション
   - name: "site_data"
