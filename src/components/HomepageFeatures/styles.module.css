@@ -2,6 +2,7 @@
  * HomepageFeatures/styles.module.css
  * ホームページの特集セクションのスタイル。
  * 透明なカードが隙間なく並ぶ、ミニマルなグリッドデザイン。
+ * ヒーローセクションと統一されたブランドカラーを使用。
  */
 
 /* --- セクション全体 --- */
@@ -10,11 +11,13 @@
   padding: 2rem var(--ifm-spacing-horizontal) 5rem;
   /* スマホ表示への切り替え時にpaddingの変化を滑らかにする */
   transition: padding 0.3s ease;
-  /* ライトモード用のグリッド背景を適用 */
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
-  background-size: 20px 20px;
+  
+  /* ヒーローセクションと連続するデザイン：ブランドカラーのグリッド + 自然なフェードアウト */
+  background:
+    linear-gradient(rgba(180, 216, 252, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 216, 252, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(180, 216, 252, 0.05) 0%, var(--ifm-background-color) 30%);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
 }
 
 /* --- グリッドレイアウト --- */
@@ -89,11 +92,13 @@
 
 /* --- ダークモード対応 --- */
 
-/* ダークモード用のグリッド背景を適用 */
+/* ダークモード用：ヒーローセクションと統一されたデザイン */
 [data-theme='dark'] .featuresSection {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background:
+    linear-gradient(rgba(135, 206, 235, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(135, 206, 235, 0.02) 1px, transparent 1px),
+    linear-gradient(180deg, hsla(210, 100%, 15%, 0.2) 0%, var(--ifm-background-color) 30%);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
 }
 
 [data-theme='dark'] .cardIconWrapper {
