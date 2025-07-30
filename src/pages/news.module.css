@@ -14,8 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
+  margin-bottom: 1rem;
   background-color: var(--ifm-background-color);
   border-radius: var(--ifm-global-radius);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
@@ -72,15 +71,15 @@
 
 .majorCategoryTitle {
   font-size: 1.0rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   font-weight: 600;
   color: var(--ifm-heading-color);
 }
 
 /* --- Secondary Content Area (Simplified) --- */
 .subCategorySection {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.7rem;
   padding: 1rem;
   background-color: var(--ifm-color-emphasis-50);
   border-radius: calc(var(--ifm-global-radius) - 2px);
