@@ -1,7 +1,7 @@
 import React, { JSX, ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
-import NewsSiteCard from '@site/src/components/NewsSiteCard';
+import LinksCard from '@site/src/components/LinksCard';
 import styles from './ai-tools.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Download } from 'lucide-react';
@@ -246,7 +246,7 @@ export default function AIToolsPage(): JSX.Element {
             <div className={styles.cardGrid}>
               {category.tools.map((tool) => (
                 <div key={tool.href}>
-                  <NewsSiteCard
+                  <LinksCard
                     href={tool.href}
                     title={translate(tool.title)}
                     description={translate(tool.description)}

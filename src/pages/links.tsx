@@ -1,7 +1,7 @@
 import React, { JSX, ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
-import NewsSiteCard from '@site/src/components/NewsSiteCard'; // --- news page と共通化 ---
+import LinksCard from '@site/src/components/LinksCard'; // --- news page と共通化 ---
 import styles from './links.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Download } from 'lucide-react';
@@ -263,7 +263,7 @@ export default function LinksPage(): JSX.Element {
             <div className={styles.cardGrid}>
               {category.sites.map((site) => (
                 <div key={site.href}>
-                  <NewsSiteCard
+                  <LinksCard
                     href={site.href}
                     title={translate(site.title)}
                     description={translate(site.description)}
