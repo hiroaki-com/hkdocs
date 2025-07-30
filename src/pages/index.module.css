@@ -5,7 +5,7 @@
   position: relative;
   overflow: hidden;
   
-  /* --- 「指紋」をイメージしたグラデーションを復元 --- */
+  /* ブランドカラーのグラデーション */
   background:
     radial-gradient(ellipse at 50% 0%, rgb(180, 216, 252) 0%, transparent 70%),
     var(--ifm-background-color);
@@ -13,11 +13,10 @@
 }
 
 [data-theme='dark'] .heroBanner {
-  /* --- ダークモード用のグラデーションを復元 --- */
+  /* ダークモード用のグラデーション */
   background:
     radial-gradient(ellipse at 50% 0%, hsla(210, 100%, 15%, 0.5) 0%, hsla(210, 100%, 15%, 0) 70%),
     linear-gradient(180deg, hsl(220, 13%, 15%), var(--ifm-background-color) 80%);
-  border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
 
 .heroTitle {
@@ -28,7 +27,7 @@
   color: var(--ifm-heading-color);
   margin-bottom: 1rem;
   
-  /* --- タイトルの文字間を広げる --- */
+  /* タイトルの文字間を広げる */
   letter-spacing: 0.08em;
 }
 
