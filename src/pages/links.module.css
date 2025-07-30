@@ -22,7 +22,6 @@
   padding: 1.5rem;
   background-color: var(--ifm-background-color);
   border-radius: var(--ifm-global-radius);
-  border: 1px solid var(--ifm-color-emphasis-200);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -72,16 +71,14 @@
   padding: 1.5rem;
   background-color: var(--ifm-background-color);
   border-radius: var(--ifm-global-radius);
-  border: 1px solid var(--ifm-color-emphasis-200);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* 大カテゴリのタイトル (h2) */
 .majorCategoryTitle {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
   font-weight: 600;
   color: var(--ifm-heading-color);
 }
@@ -108,15 +105,8 @@
   background-color: #1a1b23;
 }
 
-[data-theme='dark'] .pageHeader {
-  background-color: #25262f;
-  border-color: var(--ifm-color-emphasis-300);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-}
-
 [data-theme='dark'] .majorCategorySection {
   background-color: #25262f;
-  border-color: var(--ifm-color-emphasis-300);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -173,11 +163,21 @@
 
 /* 小画面 (767px以下) では2カラムに */
 @media (max-width: 767px) {
+  /* スマートフォン画面では完全に全幅表示 */
+  .mainContainer {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    max-width: none;
+  }
+  
   /* スマホではヘッダーを縦積み・左寄せに */
   .pageHeader {
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
+    margin: 0 0 1rem 0;
+    border-radius: 0;
   }
   
   /* スマホではダウンロードボタンを非表示 */
@@ -194,7 +194,7 @@
   }
 
   .majorCategoryTitle {
-    font-size: 1.0rem;
+    font-size: 0.8rem;
   }
 
   .cardGrid {
@@ -205,6 +205,8 @@
   
   .majorCategorySection {
     padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0;
   }
 }
 
