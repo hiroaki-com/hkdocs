@@ -14,7 +14,7 @@ type Props = {
   description: React.ReactNode;
 };
 
-export default function NewsSiteCard({ href, title, description }: Props): JSX.Element {
+export default function LinksCard({ href, title, description }: Props): JSX.Element {
   const domain = new URL(href).hostname;
 
   // 試行するファビコンAPIのURLリスト。Google APIを優先する。
