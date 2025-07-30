@@ -38,7 +38,7 @@
   /* --- Sizing --- */
   --ifm-heading-font-size-1: 1.7rem;
   --ifm-heading-font-size-2-rsdE: 1.5rem;
-  --doc-card-title-font-size: 0.9rem;
+  --doc-card-title-font-size: 0.80rem; /* --- DocCard Title セクションのテキストサイズ --- */
   --ifm-container-width-xl: 1280px;
 
   /* --- Border Radius --- */
@@ -153,11 +153,26 @@ html {
   border-radius: var(--ifm-global-radius);
   box-shadow: var(--ifm-global-shadow-lw);
   transition: var(--ifm-transition-slow);
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(30, 136, 229, 0.15);
 }
 
 .card:hover {
   box-shadow: var(--ifm-global-shadow-md);
   transform: translateY(-2px);
+  background-color: rgba(30, 136, 229, 0.08);
+  border-color: rgba(30, 136, 229, 0.35);
+}
+
+[data-theme='dark'] .card {
+  background-color: rgba(22, 27, 34, 0.75);
+  border-color: rgba(122, 160, 218, 0.15);
+}
+
+[data-theme='dark'] .card:hover {
+  background-color: rgba(122, 160, 218, 0.12);
+  border-color: rgba(122, 160, 218, 0.4);
 }
 
 /* --- Buttons --- */
