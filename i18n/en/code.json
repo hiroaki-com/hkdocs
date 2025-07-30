@@ -1333,6 +1333,14 @@
     "message": "TechRxiv",
     "description": "Title for TechRxiv"
   },
+  "links.site.academic.elicit.desc": {
+    "message": "AI research assistant automates from paper search to summarization. Efficiently discover and analyze relevant papers for research questions.",
+    "description": "Description for Elicit"
+  },
+  "links.site.academic.elicit.title": {
+    "message": "Elicit",
+    "description": "Title for Elicit"
+  },
   "links.site.ai.kaggle.desc": {
     "message": "The world's largest community for data science competitions, public datasets, and learning resources.",
     "description": "Description for Kaggle Learn"
