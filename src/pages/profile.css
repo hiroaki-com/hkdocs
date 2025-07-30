@@ -1,53 +1,71 @@
-/* src/pages/profile.css - Final Git Graph with Optimized Colors & Contrast */
+/*
+ * src/pages/profile.css
+ * Gitログデザインを基盤に、ホバー時のインタラクションを洗練させた最終改善版
+ */
 
+:root {
+  /* ホバー時のアニメーション速度などを一元管理 */
+  --transition-speed: 0.25s;
+}
+
+/* --- 各エントリーのテーマカラーを変数として定義。ホバー時にこの色を適用する --- */
+.log-entry:nth-child(1) { --graph-color: #28a745; }
+.log-entry:nth-child(2) { --graph-color: var(--ifm-color-primary); }
+.log-entry:nth-child(3) { --graph-color: #dc3545; }
+.log-entry:nth-child(4) { --graph-color: #fd7e14; }
+.log-entry:nth-child(5) { --graph-color: #6f42c1; }
+.log-entry:nth-child(6) { --graph-color: #20c997; }
+.log-entry:nth-child(7) { --graph-color: #6c757d; }
+.log-entry:nth-child(8) { --graph-color: #ffc107; }
+
+
+/* --- 基本レイアウト --- */
 .git-log-profile {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
-  color: var(--ifm-font-color-base);
   position: relative;
-  margin-left: 10px;
-  font-size: 0.9rem;
+  margin-left: 20px;
+  font-size: 0.95rem;
 }
 
-/* Git風の縦線 - より落ち着いた色調 */
+/* Gitログ風の縦線（デフォルトは控えめな色） */
 .git-log-profile::before {
   content: '';
   position: absolute;
   left: 20px;
   top: 0;
   bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, 
-    var(--ifm-color-emphasis-400) 0%,
-    var(--ifm-color-emphasis-300) 50%,
-    var(--ifm-color-emphasis-400) 100%);
+  width: 1px; /* 線を細くして、より繊細な印象に */
+  background-color: var(--ifm-color-emphasis-300);
   z-index: 0;
 }
 
+
+/* --- ログエントリーの基本とホバー効果 --- */
 .log-entry {
   display: flex;
   position: relative;
-  padding: 16px 0 16px 40px;
-  transition: background-color 0.2s ease;
+  padding: 20px 0 20px 40px;
+  border-radius: 8px;
+  transition: all var(--transition-speed) ease-out;
 }
 
 .log-entry:hover {
-  background-color: var(--ifm-color-emphasis-50);
-  margin-left: -8px;
-  margin-right: -8px;
-  padding-left: 48px;
-  border-radius: 6px;
+  background-color: var(--ifm-hover-overlay);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme='dark'] .log-entry:hover {
-  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Git風のグラフ要素 */
+
+/* --- Gitグラフ要素（点と線） --- */
 .log-entry .graph {
   position: absolute;
   left: -12px;
-  top: 20px;
+  top: 24px;
   width: 24px;
   height: 24px;
   display: flex;
@@ -56,230 +74,93 @@
   z-index: 1;
 }
 
-/* 調和のとれたカラフルなコミットノード */
-.log-entry:nth-child(1) .graph::before {
-  background: linear-gradient(135deg, #28a745 0%, #20893a 100%); /* GitHub green */
-}
-
-.log-entry:nth-child(2) .graph::before {
-  background: linear-gradient(135deg, var(--ifm-color-primary-light) 0%, var(--ifm-color-primary-dark) 100%); /* Site primary */
-}
-
-.log-entry:nth-child(3) .graph::before {
-  background: linear-gradient(135deg, #dc3545 0%, #bd2130 100%); /* Bootstrap red */
-}
-
-.log-entry:nth-child(4) .graph::before {
-  background: linear-gradient(135deg, #fd7e14 0%, #e8590c 100%); /* Bootstrap orange */
-}
-
-.log-entry:nth-child(5) .graph::before {
-  background: linear-gradient(135deg, #6f42c1 0%, #59359a 100%); /* Bootstrap purple */
-}
-
-.log-entry:nth-child(6) .graph::before {
-  background: linear-gradient(135deg, #20c997 0%, #1ba085 100%); /* Bootstrap teal */
-}
-
-.log-entry:nth-child(7) .graph::before {
-  background: linear-gradient(135deg, #6c757d 0%, #545b62 100%); /* Bootstrap gray */
-}
-
-.log-entry:nth-child(8) .graph::before {
-  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); /* Bootstrap yellow */
-}
-
-/* コミットノード */
+/* コミットノード（点）のスタイル */
 .log-entry .graph::before {
   content: '';
-  width: 8px;
+  width: 8px;   /* デフォルトの点を小さく */
   height: 8px;
   border-radius: 50%;
+  /* デフォルトは背景に溶け込む控えめなボーダーと背景色 */
   border: 2px solid var(--ifm-background-color);
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  background: var(--ifm-color-emphasis-400);
+  transition: all var(--transition-speed) ease-in-out;
 }
 
-.log-entry:hover .graph::before {
-  width: 10px;
-  height: 10px;
-  box-shadow: 
-    0 0 0 2px rgba(255, 255, 255, 0.9),
-    0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme='dark'] .log-entry:hover .graph::before {
-  box-shadow: 
-    0 0 0 2px rgba(0, 0, 0, 0.8),
-    0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* ブランチライン（横線）- より統一された色調 */
-.log-entry:nth-child(1) .graph::after { background-color: #28a745; }
-.log-entry:nth-child(2) .graph::after { background-color: var(--ifm-color-primary); }
-.log-entry:nth-child(3) .graph::after { background-color: #dc3545; }
-.log-entry:nth-child(4) .graph::after { background-color: #fd7e14; }
-.log-entry:nth-child(5) .graph::after { background-color: #6f42c1; }
-.log-entry:nth-child(6) .graph::after { background-color: #20c997; }
-.log-entry:nth-child(7) .graph::after { background-color: #6c757d; }
-.log-entry:nth-child(8) .graph::after { background-color: #ffc107; }
-
+/* ブランチライン（横線）のスタイル */
 .log-entry .graph::after {
   content: '';
   position: absolute;
-  left: 12px;
+  left: 11px;
   top: 50%;
-  width: 16px;
-  height: 1px;
-  background-color: var(--ifm-color-emphasis-300);
-  transition: opacity 0.2s ease, width 0.2s ease;
-  opacity: 0.7;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 1px; /* 線を細く */
+  background-color: var(--ifm-color-emphasis-400); /* デフォルトは控えめな色 */
+  transition: all var(--transition-speed) ease-in-out;
 }
 
+/* ホバー時に、定義したテーマカラーを点と線に適用 */
+.log-entry:hover .graph::before {
+  background: var(--graph-color);
+  transform: scale(1.2);
+  box-shadow: 0 0 8px -2px var(--graph-color);
+}
 .log-entry:hover .graph::after {
-  opacity: 1;
-  width: 20px;
+  background-color: var(--graph-color);
+  width: 22px; /* ホバー時に少し伸ばす */
 }
 
-.log-entry .message {
+
+/* --- テキストと見出し --- */
+.message {
   flex: 1;
 }
-
 .commit-header {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 12px;
 }
-
-/* テキストはコントラストで表現 - 動きを削除 */
 .commit-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ifm-font-color-base);
-  margin: 0;
-  transition: color 0.2s ease;
-}
-
-.log-entry:hover .commit-title {
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--ifm-heading-color);
+  margin: 0;
 }
-
 .commit-body {
   color: var(--ifm-font-color-secondary);
-  transition: color 0.2s ease;
+  transition: color var(--transition-speed) ease;
 }
-
 .log-entry:hover .commit-body {
   color: var(--ifm-font-color-base);
 }
 
-.commit-body p {
-  margin-bottom: 0.8rem;
-}
 
-/* 洗練されたref-tags */
+/* --- タグ類（ref, skill） --- */
 .ref-tag {
   display: inline-block;
-  padding: 3px 8px;
-  border-radius: 12px;
+  padding: 4px 10px;
+  border-radius: 16px;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   font-family: ui-monospace, 'SF Mono', monospace;
-  text-decoration: none !important;
   margin-left: 12px;
-  transition: all 0.2s ease;
+  color: #fff !important;
+  transition: all var(--transition-speed) ease;
+  text-decoration: none !important;
 }
-
 .ref-tag:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
+.ref-tag.head { background: #28a745; }
+.ref-tag.branch { background: var(--ifm-color-primary); }
 
-[data-theme='dark'] .ref-tag:hover {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.ref-tag.head { 
-  background: linear-gradient(135deg, #28a745 0%, #20893a 100%);
-  color: #fff !important;
-}
-
-.ref-tag.branch { 
-  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%);
-  color: #fff !important;
-}
-
-/* リスト - コントラスト重視 */
-.log-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.log-list li {
-  position: relative;
-  padding-left: 1.5em;
-  margin-bottom: 0.6rem;
-  color: var(--ifm-font-color-secondary);
-  transition: color 0.2s ease;
-}
-
-.log-list li:hover {
-  color: var(--ifm-font-color-base);
-}
-
-.log-list li::before {
-  content: "│";
-  position: absolute;
-  left: 0.3em;
-  color: var(--ifm-color-emphasis-400);
-  font-weight: normal;
-  font-family: ui-monospace, 'SF Mono', monospace;
-  transition: all 0.2s ease;
-  opacity: 0.6;
-}
-
-.log-list li:hover::before {
-  color: var(--ifm-color-primary);
-  content: "├";
-  opacity: 1;
-}
-
-/* 強いコントラストの日付表示 */
-.log-list .commit-date {
-  color: var(--ifm-color-emphasis-700);
-  font-size: 0.8rem;
-  margin-left: 0.5em;
-  font-family: ui-monospace, 'SF Mono', monospace;
-  background-color: var(--ifm-color-emphasis-100);
-  padding: 1px 4px;
-  border-radius: 3px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-[data-theme='dark'] .log-list .commit-date {
-  color: var(--ifm-color-emphasis-400);
-  background-color: var(--ifm-color-emphasis-200);
-}
-
-.log-entry:hover .commit-date {
-  background-color: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary-dark);
-}
-
-[data-theme='dark'] .log-entry:hover .commit-date {
-  background-color: rgba(var(--ifm-color-primary-rgb), 0.15);
-  color: var(--ifm-color-primary-light);
-}
-
-/* スキルタグ - 明確なコントラスト */
 .skill-tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
-
 .skill-tag {
   background-color: var(--ifm-color-emphasis-100);
   color: var(--ifm-color-emphasis-800);
@@ -288,124 +169,71 @@
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all var(--transition-speed) ease;
   cursor: default;
 }
-
-.skill-tag:hover {
-  background-color: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary-dark);
-  border-color: var(--ifm-color-primary-light);
-  transform: translateY(-1px);
-}
-
 [data-theme='dark'] .skill-tag {
   background-color: var(--ifm-color-emphasis-200);
-  color: var(--ifm-color-emphasis-600);
+  color: var(--ifm-color-emphasis-700);
   border-color: var(--ifm-color-emphasis-300);
 }
-
-[data-theme='dark'] .skill-tag:hover {
-  background-color: rgba(var(--ifm-color-primary-rgb), 0.15);
-  color: var(--ifm-color-primary-light);
-  border-color: var(--ifm-color-primary-dark);
-}
-
-/* 高コントラストリンク */
-.commit-body a {
-  color: var(--ifm-color-primary-dark);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.commit-body a:hover {
+.skill-tag:hover {
   color: var(--ifm-color-primary-darker);
-  text-decoration: underline;
+  border-color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary-lightest);
+  transform: translateY(-2px);
+}
+[data-theme='dark'] .skill-tag:hover {
+  color: var(--ifm-color-primary-light);
+  border-color: var(--ifm-color-primary);
+  background-color: rgba(var(--ifm-color-primary-rgb), 0.15);
 }
 
-[data-theme='dark'] .commit-body a {
+
+/* --- リストやリンクのスタイル --- */
+.log-list {
+  list-style: none;
+  padding-left: 0;
+}
+.log-list li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.6rem;
+}
+/* このアニメーションは秀逸なため維持し、トランジションを適用 */
+.log-list li::before {
+  content: "│";
+  position: absolute;
+  left: 0.3em;
+  color: var(--ifm-color-emphasis-400);
+  font-family: ui-monospace, 'SF Mono', monospace;
+  transition: all var(--transition-speed) ease-in-out;
+}
+.log-list li:hover::before {
+  color: var(--ifm-color-primary);
+  content: "├";
+  transform: scale(1.2);
+}
+.commit-body a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-speed) ease;
+}
+.commit-body a:hover {
+  border-bottom-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary-dark);
+}
+[data-theme='dark'] .commit-body a:hover {
   color: var(--ifm-color-primary-light);
 }
 
-[data-theme='dark'] .commit-body a:hover {
-  color: var(--ifm-color-primary-lightest);
-}
-
-/* 強調テキスト */
-.commit-body strong,
-.commit-body b {
-  color: var(--ifm-font-color-base);
-  font-weight: 600;
-}
-
-/* コードブロック */
-.commit-body code {
-  background-color: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-800);
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-size: 0.9em;
-  font-weight: 600;
-}
-
-[data-theme='dark'] .commit-body code {
-  background-color: var(--ifm-color-emphasis-200);
-  color: var(--ifm-color-emphasis-600);
-}
-
-/* 最初と最後のエントリーの特別処理 */
-.log-entry:first-child .graph::before {
-  box-shadow: 0 0 6px rgba(40, 167, 69, 0.4), 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.log-entry:last-child::after {
-  content: '';
-  position: absolute;
-  left: 8px;
-  bottom: -8px;
-  width: 1px;
-  height: 8px;
-  background: linear-gradient(180deg, var(--ifm-color-emphasis-300) 0%, transparent 100%);
-}
-
-/* レスポンシブ */
+/* --- レスポンシブ対応 --- */
 @media (max-width: 768px) {
-  .git-log-profile::before {
-    left: 16px;
-  }
-  
-  .log-entry {
-    padding: 16px 0 16px 32px;
-  }
-  
-  .log-entry:hover {
-    margin-left: -4px;
-    margin-right: -4px;
-    padding-left: 36px;
-  }
-  
-  .log-entry .graph {
-    left: -8px;
-    width: 20px;
-    height: 20px;
-  }
-  
-  .log-entry .graph::after {
-    width: 12px;
-  }
-  
-  .log-entry:hover .graph::after {
-    width: 16px;
-  }
-  
-  .commit-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .ref-tag {
-    margin-left: 0;
-    margin-top: 6px;
-  }
+  .git-log-profile { margin-left: 10px; }
+  .git-log-profile::before { left: 16px; }
+  .log-entry { padding-left: 32px; }
+  .log-entry .graph { left: -8px; }
+  .commit-header { flex-direction: column; align-items: flex-start; }
+  .ref-tag { margin-left: 0; margin-top: 8px; }
 }
