@@ -20,18 +20,18 @@
   --ifm-heading-line-height: 1.3;
 
   /* --- Colors: Light Mode --- */
-  --ifm-color-primary: #2563eb;
-  --ifm-color-primary-dark: #1d4ed8;
-  --ifm-color-primary-darker: #1e40af;
-  --ifm-color-primary-darkest: #1e3a8a;
-  --ifm-color-primary-light: #3b82f6;
-  --ifm-color-primary-lighter: #60a5fa;
-  --ifm-color-primary-lightest: #93c5fd;
+  --ifm-color-primary: #1e88e5;
+  --ifm-color-primary-dark: #1976d2;
+  --ifm-color-primary-darker: #1769c0;
+  --ifm-color-primary-darkest: #1565c0;
+  --ifm-color-primary-light: #42a5f5;
+  --ifm-color-primary-lighter: #64b5f6;
+  --ifm-color-primary-lightest: #90caf9;
 
   /* --- Fonts: Light Mode --- */
-  --ifm-font-color-base: #374151;
-  --ifm-font-color-secondary: #6b7280;
-  --ifm-heading-color: #111827;
+  --ifm-font-color-base: #24292e;
+  --ifm-font-color-secondary: #586069;
+  --ifm-heading-color: #1c2024;
   --ifm-link-color: var(--ifm-color-primary);
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
 
@@ -60,48 +60,48 @@
 
   /* --- Components: Light Mode --- */
   --ifm-background-color: #ffffff;
-  --ifm-navbar-background-color: rgba(255, 255, 255, 0.8);
-  --ifm-navbar-border-color: #e5e7eb;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  --ifm-navbar-border-color: rgba(0, 0, 0, 0.08);
   --ifm-code-font-size: 90%;
-  --ifm-code-background: #f3f4f6;
-  --docusaurus-highlighted-code-line-bg: rgba(37, 99, 235, 0.08);
+  --ifm-code-background: #f6f8fa;
+  --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
 
   /* --- Icon SVG Definitions (Light Mode) --- */
-  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23374151' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
-  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23374151' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
+  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
 }
 
 [data-theme='dark'] {
   /* --- Colors: Dark Mode --- */
-  --ifm-color-primary: #60a5fa;
-  --ifm-color-primary-dark: #3b82f6;
-  --ifm-color-primary-darker: #2563eb;
-  --ifm-color-primary-darkest: #1d4ed8;
-  --ifm-color-primary-light: #93c5fd;
-  --ifm-color-primary-lighter: #bfdbfe;
-  --ifm-color-primary-lightest: #dbeafe;
+  --ifm-color-primary: #7aa0da;
+  --ifm-color-primary-dark: #688cc7;
+  --ifm-color-primary-darker: #5678b4;
+  --ifm-color-primary-darkest: #4564a1;
+  --ifm-color-primary-light: #8fb3e3;
+  --ifm-color-primary-lighter: #a4c5ed;
+  --ifm-color-primary-lightest: #bad8f6;
 
   /* --- Fonts: Dark Mode --- */
-  --ifm-font-color-base: #e5e7eb;
-  --ifm-font-color-secondary: #9ca3af;
-  --ifm-heading-color: #f9fafb;
-  --ifm-link-color: var(--ifm-color-primary);
-  --ifm-link-hover-color: var(--ifm-color-primary-light);
+  --ifm-font-color-base: #c9d1d9;
+  --ifm-font-color-secondary: #8b949e;
+  --ifm-heading-color: #f0f6fc;
+  --ifm-link-color: var(--ifm-color-primary-light);
+  --ifm-link-hover-color: var(--ifm-color-primary-lighter);
 
   /* --- Shadows: Dark Mode --- */
   --ifm-global-shadow-lw: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
   --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
 
   /* --- Components: Dark Mode --- */
-  --ifm-background-color: #0f172a;
-  --ifm-navbar-background-color: rgba(15, 23, 42, 0.8);
-  --ifm-navbar-border-color: #334155;
-  --ifm-code-background: #1e293b;
-  --docusaurus-highlighted-code-line-bg: rgba(96, 165, 250, 0.1);
+  --ifm-background-color: #161b22;
+  --ifm-navbar-background-color: rgba(22, 27, 34, 0.85);
+  --ifm-navbar-border-color: rgba(255, 255, 255, 0.209);
+  --ifm-code-background: #0d1117;
+  --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13);
 
   /* --- Icon SVG Definitions (Dark Mode) --- */
-  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23e5e7eb' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
-  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23e5e7eb' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
+  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
 }
 
 /*
@@ -200,9 +200,9 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
 
 /* --- Announcement Bar --- */
 .theme-announcement-bar {
-  background-color: #f0f9ff;
-  border-bottom: 1px solid #e0f2fe;
-  color: #0369a1;
+  background-color: #e3f2fd;
+  border-bottom: 1px solid #c1d9f1;
+  color: #1a5c96;
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.5rem 1rem;
@@ -210,9 +210,9 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
 }
 
 [data-theme='dark'] .theme-announcement-bar {
-  background-color: #1e293b;
-  border-bottom-color: #334155;
-  color: #93c5fd;
+  background-color: #263249;
+  border-bottom-color: #3a4a69;
+  color: #a4c5ed;
 }
 
 .theme-announcement-bar div[class*='announcementBarContent_'],
