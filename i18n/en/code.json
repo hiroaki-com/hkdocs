@@ -1341,6 +1341,14 @@
     "message": "Elicit",
     "description": "Title for Elicit"
   },
+  "links.site.academic.pubmed.title": {
+    "message": "PubMed",
+    "description": "Title for PubMed"
+  },
+  "links.site.academic.pubmed.desc": {
+    "message": "World's largest database for medical and life sciences literature. Search peer-reviewed papers including MEDLINE.",
+    "description": "Description for PubMed"
+  },
   "links.site.ai.kaggle.desc": {
     "message": "The world's largest community for data science competitions, public datasets, and learning resources.",
     "description": "Description for Kaggle Learn"
