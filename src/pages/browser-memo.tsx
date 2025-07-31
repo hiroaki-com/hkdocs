@@ -351,7 +351,7 @@ function MemoApp() {
   return (
     <main style={{ padding: '1.5rem' }}>
       <h1 style={{ fontSize: '1.5rem' }}><Translate id="page.browser-memo.h1">ブラウザメモ帳</Translate></h1>
-      <p><Translate id="page.browser-memo.intro">すぐに使える高機能でシンプルなブラウザメモ帳です。MarkdownプレビューやURL共有にも対応。入力内容はすべてお使いのブラウザにのみ自動保存されるため、安全にご利用いただけます。</Translate></p>
+      <p style={{ fontSize: '0.7em' }}><Translate id="page.browser-memo.intro">すぐに使える高機能でシンプルなブラウザメモ帳です。MarkdownプレビューやURL共有にも対応。入力内容はすべてお使いのブラウザにのみ自動保存されるため、安全にご利用いただけます。</Translate></p>
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', margin: '2rem 0' }}>
         <button type="button" className={`button button--sm ${isAllShared ? 'button--success' : 'button--primary'}`} onClick={handleShareAll} disabled={!hasContent} style={{ display: 'flex', alignItems: 'center' }}>
