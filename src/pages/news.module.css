@@ -2,6 +2,11 @@
  * src/pages/news.module.css
  */
 
+/* ==========================================================================
+   メインレイアウト
+   ========================================================================== */
+
+/* メインコンテンツ全体のコンテナ */
 .mainContainer {
   max-width: 1040px;
   margin: 0 auto;
@@ -10,6 +15,11 @@
   border-radius: var(--ifm-global-radius);
 }
 
+/* ==========================================================================
+   ページヘッダー
+   ========================================================================== */
+
+/* ページヘッダー: タイトルとボタンを配置 */
 .pageHeader {
   display: flex;
   justify-content: space-between;
@@ -34,7 +44,7 @@
   color: var(--ifm-font-color-secondary);
 }
 
-/* --- Main Component: Download Button (Side Area) --- */
+/* ダウンロードボタンのスタイル */
 .downloadButton {
   background-color: var(--ifm-background-color);
   border: 1px solid var(--ifm-color-emphasis-300);
@@ -60,70 +70,97 @@
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
 }
 
-/* --- Main Content Area --- */
+/* ==========================================================================
+   カテゴリセクション
+   ========================================================================== */
+
+/* 大カテゴリのセクションコンテナ */
 .majorCategorySection {
   margin-bottom: 1.5rem;
   padding: 1.5rem;
   background-color: var(--ifm-background-color);
   border-radius: var(--ifm-global-radius);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--ifm-global-shadow-sm);
 }
 
+/* 大カテゴリのタイトル */
 .majorCategoryTitle {
-  font-size: 1.0rem;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
   font-weight: 600;
   color: var(--ifm-heading-color);
+  border-bottom: none;
 }
 
-/* --- Secondary Content Area (Simplified) --- */
+/* サブカテゴリのセクション（カードグリッドの背景となる） */
 .subCategorySection {
   margin-bottom: 0.7rem;
   padding: 1rem;
-  background-color: var(--ifm-color-emphasis-50);
-  border-radius: calc(var(--ifm-global-radius) - 2px);
+  /* メインセクションより少し暗い色にし、視覚的な階層を作る */
+  background-color: var(--ifm-background-color-subtle);
+  border-radius: var(--ifm-global-radius);
 }
 
+/* サブカテゴリのタイトル */
 .categoryTitle {
-  font-size: 1.0rem;
-  margin-bottom: 1.0rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
   color: var(--ifm-font-color-base);
   font-weight: 600;
 }
 
+/* カードを配置するグリッドコンテナ */
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  padding: 0.5rem;
-  background-color: var(--ifm-background-color);
-  border-radius: calc(var(--ifm-global-radius) - 4px);
-  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+  /* 背景や影は親の.subCategorySectionや子カードが持つためリセット */
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
 }
 
+/* グリッド内の各カードの基本スタイル */
 .cardGrid > * {
   border-radius: var(--ifm-global-radius);
-  transition: var(--ifm-transition-fast);
+  transition: background-color var(--ifm-transition-fast);
+  box-shadow: var(--ifm-global-shadow-sm);
 }
 
-/* --- Dark Mode Adjustments --- */
+/* カードホバー時のスタイル（背景色を変更） */
+.cardGrid > *:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+/* ==========================================================================
+   ダークモード用の調整
+   ========================================================================== */
+
 [data-theme='dark'] .mainContainer {
   background-color: #1a1b23;
 }
 
+/* ダークモード: 大カテゴリのセクション背景 */
 [data-theme='dark'] .majorCategorySection {
-  background-color: #25262f;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  background-color: var(--ifm-color-emphasis-100);
+  box-shadow: none;
 }
 
+/* ダークモード: サブカテゴリのセクション背景 */
 [data-theme='dark'] .subCategorySection {
-  background-color: #1f2028;
+  /* ベース背景と同じ色にし、セクション内で沈んだように見せる */
+  background-color: var(--ifm-background-color);
 }
 
-[data-theme='dark'] .cardGrid {
-  background-color: #25262f;
-  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+/* ダークモード: カードの影 */
+[data-theme='dark'] .cardGrid > * {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ダークモード: カードホバー時のスタイル */
+[data-theme='dark'] .cardGrid > *:hover {
+  background-color: var(--ifm-color-emphasis-150);
 }
 
 [data-theme='dark'] .downloadButton {
@@ -136,7 +173,11 @@
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4);
 }
 
-/* --- Anchor Link Styles --- */
+/* ==========================================================================
+   ユーティリティ
+   ========================================================================== */
+
+/* アンカーリンク付き見出しのためのスタイル */
 .anchorContainer {
   position: relative;
   display: inline-block;
@@ -161,15 +202,28 @@
   color: var(--ifm-color-primary-dark);
 }
 
-/* --- Responsive Design --- */
+/* アコーディオンのマーカー(▼)を非表示 */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ==========================================================================
+   レスポンシブ対応
+   ========================================================================== */
+
+/* 中画面 (996px以下): 3カラム */
 @media (max-width: 996px) {
   .cardGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* 小画面 (767px以下): 2カラム + 全幅表示 */
 @media (max-width: 767px) {
-  /* スマートフォン画面では完全に全幅表示 */
+  /* メインコンテナを全幅に */
   .mainContainer {
     padding: 0;
     margin: 0;
@@ -177,6 +231,7 @@
     max-width: none;
   }
   
+  /* ヘッダーを縦積みに変更 */
   .pageHeader {
     flex-direction: column;
     align-items: flex-start;
@@ -185,6 +240,7 @@
     border-radius: 0;
   }
   
+  /* ダウンロードボタンを非表示 */
   .downloadButton {
     display: none;
   }
@@ -198,19 +254,20 @@
   }
   
   .majorCategoryTitle {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   
   .categoryTitle {
     font-size: 0.8rem;
   }
   
+  /* グリッドを2カラムに */
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
-    padding: 0.5rem;
   }
   
+  /* セクションの余白と角丸を調整 */
   .majorCategorySection {
     padding: 1rem;
     margin-bottom: 1rem;
@@ -220,15 +277,6 @@
   .subCategorySection {
     padding: 0.75rem;
     margin-bottom: 1rem;
-    border-radius: 0;
+    border-radius: var(--ifm-global-radius);
   }
-}
-
-/* --- Details/Summary Reset --- */
-summary {
-  list-style: none;
-}
-
-summary::-webkit-details-marker {
-  display: none;
 }

@@ -1,8 +1,11 @@
 /**
  * links.module.css
- * 資料集ページのスタイル
- * news.module.css とデザイン/レイアウトを統一
+ * ai-tools.module.css とデザイン/レイアウトを統一
  */
+
+/* ==========================================================================
+   メインレイアウト
+   ========================================================================== */
 
 /* メインコンテンツ全体のコンテナ */
 .mainContainer {
@@ -13,7 +16,11 @@
   border-radius: var(--ifm-global-radius);
 }
 
-/* ページヘッダー: Flexboxでタイトルとボタンを左右に分割 */
+/* ==========================================================================
+   ページヘッダー
+   ========================================================================== */
+
+/* ページヘッダー: タイトルとボタンを配置 */
 .pageHeader {
   display: flex;
   justify-content: space-between;
@@ -64,54 +71,83 @@
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
 }
 
-/* 大カテゴリのセクション */
+/* ==========================================================================
+   大カテゴリセクション
+   ========================================================================== */
+
+/* 大カテゴリのセクションコンテナ */
 .majorCategorySection {
-  margin-bottom: 0.7rem;
-  padding: 1.0rem;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
   background-color: var(--ifm-background-color);
   border-radius: var(--ifm-global-radius);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--ifm-global-shadow-sm);
+  transition: var(--ifm-transition-fast);
 }
 
 /* 大カテゴリのタイトル (h2) */
 .majorCategoryTitle {
-  font-size: 1.0rem;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
   font-weight: 600;
   color: var(--ifm-heading-color);
+  border-bottom: none;
 }
 
-/* カードグリッド */
+/* カードを配置するグリッドコンテナ */
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  padding: 0.5rem;
-  background-color: var(--ifm-background-color);
-  border-radius: calc(var(--ifm-global-radius) - 4px);
-  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+  padding: 1rem;
+  /* セクション背景より少し暗い色にし、視覚的な階層を作る */
+  background-color: var(--ifm-background-color-subtle);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: none;
 }
 
-/* グリッド内のカードの角を四角にする */
+/* グリッド内の各カードの基本スタイル */
 .cardGrid > * {
   border-radius: var(--ifm-global-radius);
-  transition: var(--ifm-transition-fast);
+  transition: background-color var(--ifm-transition-fast);
+  box-shadow: var(--ifm-global-shadow-sm);
 }
 
-/* --- ダークモード用の調整 --- */
+/* カードホバー時のスタイル（背景色を変更） */
+.cardGrid > *:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+
+/* ==========================================================================
+   ダークモード用の調整
+   ========================================================================== */
+
 [data-theme='dark'] .mainContainer {
   background-color: #1a1b23;
 }
 
+/* ダークモード: セクション背景 */
 [data-theme='dark'] .majorCategorySection {
-  background-color: #25262f;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  background-color: var(--ifm-color-emphasis-100);
+  box-shadow: none;
 }
 
+/* ダークモード: グリッド背景 */
 [data-theme='dark'] .cardGrid {
-  background-color: #25262f;
-  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+  /* ベース背景と同じ色にし、セクション内で沈んだように見せる */
+  background-color: var(--ifm-background-color);
+}
+
+/* ダークモード: カードの影 */
+[data-theme='dark'] .cardGrid > * {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ダークモード: カードホバー時のスタイル */
+[data-theme='dark'] .cardGrid > *:hover {
+  background-color: var(--ifm-color-emphasis-150);
 }
 
 [data-theme='dark'] .downloadButton {
@@ -124,8 +160,12 @@
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4);
 }
 
-/* --- アンカーリンク付き見出しのためのスタイル --- */
-/* テキストとアンカーリンクを内包し、アンカーの位置決めの基準点となるコンテナ */
+
+/* ==========================================================================
+   ユーティリティ
+   ========================================================================== */
+
+/* アンカーリンク付き見出しのためのスタイル */
 .anchorContainer {
   position: relative;
   display: inline-block;
@@ -133,8 +173,8 @@
 
 .anchorLink {
   position: absolute;
-  left: 100%; /* .anchorContainer の右端からの相対位置 */
-  padding-left: 0.25em; /* テキストとの間に余白を設ける */
+  left: 100%;
+  padding-left: 0.25em;
   top: 0;
   opacity: 0;
   transition: var(--ifm-transition-fast);
@@ -142,7 +182,6 @@
   color: var(--ifm-color-primary);
 }
 
-/* h2見出し(.sectionHeading)の領域にホバーした際に、その中のアンカーリンクを表示する */
 .sectionHeading:hover .anchorLink {
   opacity: 1;
 }
@@ -151,18 +190,28 @@
   color: var(--ifm-color-primary-dark);
 }
 
-/* --- レスポンシブ対応 --- */
+/* アコーディオンのマーカー(▼)を非表示 */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
 
-/* 中画面 (996px以下) では3カラムに */
+/* ==========================================================================
+   レスポンシブ対応
+   ========================================================================== */
+
+/* 中画面 (996px以下): 3カラム */
 @media (max-width: 996px) {
   .cardGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* 小画面 (767px以下) では2カラムに */
+/* 小画面 (767px以下): 2カラム + 全幅表示 */
 @media (max-width: 767px) {
-  /* スマートフォン画面では完全に全幅表示 */
+  /* メインコンテナを全幅に */
   .mainContainer {
     padding: 0;
     margin: 0;
@@ -170,7 +219,7 @@
     max-width: none;
   }
   
-  /* スマホではヘッダーを縦積み・左寄せに */
+  /* ヘッダーを縦積みに変更 */
   .pageHeader {
     flex-direction: column;
     align-items: flex-start;
@@ -179,7 +228,7 @@
     border-radius: 0;
   }
   
-  /* スマホではダウンロードボタンを非表示 */
+  /* ダウンロードボタンを非表示 */
   .downloadButton {
     display: none;
   }
@@ -193,28 +242,20 @@
   }
 
   .majorCategoryTitle {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
+  /* グリッドを2カラムに */
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
   
+  /* セクションの余白と角丸を調整 */
   .majorCategorySection {
     padding: 1rem;
     margin-bottom: 0.5rem;
     border-radius: 0;
   }
-}
-
-/* --- その他 --- */
-
-/* アコーディオンのマーカー(▼)を非表示 */
-summary {
-  list-style: none;
-}
-summary::-webkit-details-marker {
-  display: none;
 }
