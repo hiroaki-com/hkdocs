@@ -2,115 +2,276 @@
  * HomepageFeatures/styles.module.css
  * ホームページの特集セクションのスタイル。
  * 透明なカードが隙間なく並ぶ、ミニマルなグリッドデザイン。
- * ヒーローセクションと統一されたブランドカラーを使用。
+ * シンプル・レトロかつモダンな明暗コントラストによるデザイン。
  */
+
+/* CSS Variables for Enhanced Design */
+:root {
+  --retro-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --retro-shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.08);
+  --retro-glow: 0 0 20px rgba(180, 216, 252, 0.15);
+  --modern-blur: blur(0.5px);
+  --gradient-overlay-light: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+  --gradient-overlay-dark: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
 
 /* --- セクション全体 --- */
 .featuresSection {
   /* 大画面では左右に余白を設ける */
   padding: 2rem var(--ifm-spacing-horizontal) 5rem;
   /* スマホ表示への切り替え時にpaddingの変化を滑らかにする */
-  transition: padding 0.3s ease;
+  transition: padding 0.3s ease, background 0.4s ease;
+  position: relative;
   
-  /* ヒーローセクションと連続するデザイン：ブランドカラーのグリッド + 自然なフェードアウト */
+  /* モダンなレイヤードデザイン：微細なグリッド + 深度感のある背景 */
   background:
-    linear-gradient(rgba(180, 216, 252, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(180, 216, 252, 0.03) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(180, 216, 252, 0.05) 0%, var(--ifm-background-color) 30%);
-  background-size: 20px 20px, 20px 20px, 100% 100%;
+    /* 微細なドットパターン - レトロ感 */
+    radial-gradient(circle at 50% 50%, rgba(180, 216, 252, 0.08) 1px, transparent 1px),
+    /* 縦横のグリッドライン - モダン感 */
+    linear-gradient(rgba(180, 216, 252, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 216, 252, 0.02) 1px, transparent 1px),
+    /* 奥行きのあるグラデーション */
+    linear-gradient(160deg, 
+      rgba(180, 216, 252, 0.08) 0%,
+      rgba(180, 216, 252, 0.02) 40%,
+      var(--ifm-background-color) 70%
+    );
+  background-size: 4px 4px, 24px 24px, 24px 24px, 100% 100%;
+  background-position: 0 0, 0 0, 0 0, 0 0;
 }
 
 /* --- グリッドレイアウト --- */
 .featureGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* カード間の余白をなくし、タイル状に配置 */
   gap: 0;
+  position: relative;
+  /* 全体に微細な影を追加して浮遊感を演出 */
+  filter: drop-shadow(var(--retro-shadow-light));
 }
 
 /* --- カードの基本スタイル --- */
 .featureCardLink {
   display: flex;
   flex-direction: column;
-  background-color: transparent;
-  /* カード間のgapがないため、paddingでコンテンツ周囲の余白を確保 */
-  padding: 1.5rem;
+  background: transparent;
+  padding: 2rem 1.5rem;
   text-decoration: none;
   color: inherit;
   border-radius: 0;
   border: none;
-  transition: background-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* レトロモダンな境界線 */
+  border-right: 1px solid rgba(180, 216, 252, 0.08);
+  border-bottom: 1px solid rgba(180, 216, 252, 0.08);
 }
 
+/* カードホバー効果 - 明暗コントラストによる深度表現 */
 .featureCardLink:hover {
-  background-color: var(--ifm-hover-overlay);
+  background: 
+    var(--gradient-overlay-light),
+    radial-gradient(circle at center, rgba(180, 216, 252, 0.12) 0%, transparent 70%);
+  transform: translateY(-2px);
+  box-shadow: var(--retro-shadow-medium);
+  border-color: rgba(180, 216, 252, 0.15);
+}
+
+/* ホバー時の光る効果 */
+.featureCardLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.featureCardLink:hover::before {
+  left: 100%;
 }
 
 /* --- カード内部のコンテンツ --- */
 .cardHeader {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .cardIconWrapper {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  margin-right: 1rem;
-  border-radius: 0;
-  background-color: var(--ifm-color-primary-lightest);
+  width: 48px;
+  height: 48px;
+  margin-right: 1.2rem;
+  border-radius: 8px;
+  background: 
+    linear-gradient(135deg, 
+      rgba(180, 216, 252, 0.15) 0%, 
+      rgba(180, 216, 252, 0.05) 100%
+    );
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    var(--retro-shadow-light);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* アイコンラッパーのモダンな光沢効果 */
+.cardIconWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    transparent 100%
+  );
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
 }
 
 .cardIcon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   color: var(--ifm-color-primary-dark);
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 .featureTitle {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
   line-height: 1.3;
+  color: var(--ifm-font-color-base);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: color 0.3s ease;
 }
 
 .featureDescription {
   color: var(--ifm-font-color-secondary);
   line-height: 1.6;
   margin: 0;
-  /* 同じ行のカードの高さを揃えるためのキープロパティ */
   flex-grow: 1;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+/* ホバー時のアニメーション */
+.featureCardLink:hover .cardIconWrapper {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    var(--retro-shadow-medium),
+    var(--retro-glow);
 }
 
 .featureCardLink:hover .cardIcon {
   color: var(--ifm-color-primary);
+  transform: scale(1.1);
+}
+
+.featureCardLink:hover .featureTitle {
+  color: var(--ifm-color-primary-dark);
+}
+
+.featureCardLink:hover .featureDescription {
+  opacity: 1;
 }
 
 /* --- ダークモード対応 --- */
-
-/* ダークモード用：ヒーローセクションと統一されたデザイン */
 [data-theme='dark'] .featuresSection {
   background:
-    linear-gradient(rgba(135, 206, 235, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(135, 206, 235, 0.02) 1px, transparent 1px),
-    linear-gradient(180deg, hsla(210, 100%, 15%, 0.2) 0%, var(--ifm-background-color) 30%);
-  background-size: 20px 20px, 20px 20px, 100% 100%;
+    /* ダークモードでのドットパターン */
+    radial-gradient(circle at 50% 50%, rgba(135, 206, 235, 0.06) 1px, transparent 1px),
+    /* より深い青のグリッド */
+    linear-gradient(rgba(135, 206, 235, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(135, 206, 235, 0.025) 1px, transparent 1px),
+    /* ダークなグラデーション */
+    linear-gradient(160deg, 
+      hsla(210, 100%, 15%, 0.3) 0%,
+      hsla(210, 100%, 10%, 0.1) 40%,
+      var(--ifm-background-color) 70%
+    );
+  background-size: 4px 4px, 24px 24px, 24px 24px, 100% 100%;
+}
+
+[data-theme='dark'] .featureCardLink {
+  border-right: 1px solid rgba(135, 206, 235, 0.06);
+  border-bottom: 1px solid rgba(135, 206, 235, 0.06);
+}
+
+[data-theme='dark'] .featureCardLink:hover {
+  background: 
+    var(--gradient-overlay-dark),
+    radial-gradient(circle at center, rgba(135, 206, 235, 0.08) 0%, transparent 70%);
+  border-color: rgba(135, 206, 235, 0.12);
+  box-shadow: 
+    var(--retro-shadow-medium),
+    0 0 25px rgba(135, 206, 235, 0.1);
+}
+
+[data-theme='dark'] .featureCardLink::before {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(135, 206, 235, 0.15), 
+    transparent
+  );
 }
 
 [data-theme='dark'] .cardIconWrapper {
-  background-color: hsla(210, 100%, 75%, 0.1);
+  background: 
+    linear-gradient(135deg, 
+      rgba(135, 206, 235, 0.12) 0%, 
+      rgba(135, 206, 235, 0.04) 100%
+    );
+  box-shadow: 
+    inset 0 1px 0 rgba(135, 206, 235, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .cardIconWrapper::after {
+  background: linear-gradient(180deg, 
+    rgba(135, 206, 235, 0.1) 0%, 
+    transparent 100%
+  );
 }
 
 [data-theme='dark'] .cardIcon {
   color: var(--ifm-color-primary-light);
 }
 
+[data-theme='dark'] .featureTitle {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .featureCardLink:hover .cardIconWrapper {
+  box-shadow: 
+    inset 0 1px 0 rgba(135, 206, 235, 0.3),
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(135, 206, 235, 0.2);
+}
+
 [data-theme='dark'] .featureCardLink:hover .cardIcon {
   color: var(--ifm-color-primary-lightest);
+}
+
+[data-theme='dark'] .featureCardLink:hover .featureTitle {
+  color: var(--ifm-color-primary-light);
 }
 
 /* --- レスポンシブ対応 --- */
@@ -118,29 +279,82 @@
   .featureGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  /* 2列レイアウトでの境界線調整 */
+  .featureCardLink:nth-child(odd) {
+    border-right: 1px solid rgba(180, 216, 252, 0.08);
+  }
+  
+  .featureCardLink:nth-child(even) {
+    border-right: none;
+  }
+  
+  [data-theme='dark'] .featureCardLink:nth-child(odd) {
+    border-right: 1px solid rgba(135, 206, 235, 0.06);
+  }
 }
 
 /* スマホサイズ (767px以下) ではモダンなニュースサイト風のレイアウトに */
 @media (max-width: 767px) {
   .featuresSection {
-    /* 左右の余白をなくし、コンテンツを画面幅いっぱいに広げる */
     padding-left: 0;
     padding-right: 0;
+    /* モバイルでの背景パターンを簡素化 */
+    background:
+      linear-gradient(160deg, 
+        rgba(180, 216, 252, 0.05) 0%,
+        var(--ifm-background-color) 50%
+      );
   }
+  
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+  
   .featureCardLink {
-    /* カード内の余白を少し詰めてバランスを調整 */
-    padding: 1.2rem;
+    padding: 1.5rem 1.2rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(180, 216, 252, 0.08);
+  }
+  
+  .featureCardLink:last-child {
+    border-bottom: none;
+  }
+  
+  [data-theme='dark'] .featuresSection {
+    background:
+      linear-gradient(160deg, 
+        hsla(210, 100%, 15%, 0.2) 0%,
+        var(--ifm-background-color) 50%
+      );
+  }
+  
+  [data-theme='dark'] .featureCardLink {
+    border-bottom: 1px solid rgba(135, 206, 235, 0.06);
   }
 }
 
 @media (max-width: 430px) {
   .featureCardLink {
-    padding: 1rem;
+    padding: 1.2rem 1rem;
   }
+  
+  .cardIconWrapper {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .cardIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
   .featureTitle {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
+  
   .featureDescription {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
   }
 }
