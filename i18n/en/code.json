@@ -1573,6 +1573,14 @@
     "message": "Docusaurus",
     "description": "Title for Docusaurus"
   },
+  "links.site.docs.mdx.title": {
+    "message": "MDX",
+    "description": "Title for MDX"
+  },
+  "links.site.docs.mdx.desc": {
+    "message": "Format that enables JSX components within Markdown. Perfect for creating interactive documentation and blog posts.",
+    "description": "Description for MDX"
+  },  
   "links.site.docs.drawio.desc": {
     "message": "A powerful free diagramming tool that can be used in the browser. Supports creating all kinds of diagrams, including flowcharts, UML, and network diagrams.",
     "description": "Description for draw.io"
