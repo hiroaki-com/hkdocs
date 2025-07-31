@@ -134,12 +134,6 @@ html {
   background-color: var(--ifm-background-color);
 }
 
-*:focus-visible {
-  outline: var(--ifm-focus-ring-width) solid var(--ifm-focus-ring-color);
-  outline-offset: 2px;
-  border-radius: var(--ifm-global-radius);
-}
-
 /*
  * 3. Component Overrides
  * -------------------------------------------------------------------------- */
