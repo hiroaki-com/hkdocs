@@ -12,12 +12,13 @@ import ShareButtons from '@site/src/components/ShareButtons';
 
 // --- 定数定義 ---
 const MEMO_COUNT = 5;
-const STORAGE_KEY = 'hkdocs-browser-memo-v8-data'; // ローカルストレージのキー。バージョン変更時はこの値を更新する
-const DEFAULT_TEXTAREA_MIN_HEIGHT = 210; // テキストエリアの最小の高さ (px)
-const URL_LENGTH_WARNING_THRESHOLD = 1900; // URL共有時の文字数警告閾値
-const DEBOUNCE_SAVE_DELAY = 500; // 自動保存の遅延時間 (ms)
-const RESIZE_MIN_WIDTH_PERCENT = 20; // 左右リサイズ時の最小幅パーセント
-const RESIZE_MAX_WIDTH_PERCENT = 80; // 左右リサイズ時の最大幅パーセント
+// ローカルストレージのキー。データ構造の変更時はこの値を更新して互換性問題を回避する
+const STORAGE_KEY = 'hkdocs-browser-memo-v8-data';
+const DEFAULT_TEXTAREA_MIN_HEIGHT = 210; // px
+const URL_LENGTH_WARNING_THRESHOLD = 1900;
+const DEBOUNCE_SAVE_DELAY = 500; // ms
+const RESIZE_MIN_WIDTH_PERCENT = 20;
+const RESIZE_MAX_WIDTH_PERCENT = 80;
 
 // --- 型定義 ---
 interface MemoItem {
@@ -25,15 +26,13 @@ interface MemoItem {
   lastUpdated: number | null;
   isManuallyMinimized: boolean;
 }
-type SharedMemo = { i: number; t: string }; // URL共有用のコンパクトなメモデータ型
+// URL共有用のコンパクトなメモデータ型
+type SharedMemo = { i: number; t: string };
 
 // --- ヘルパー関数 ---
-/** 空のメモ配列を生成する */
 const createInitialMemoItems = (): MemoItem[] => Array(MEMO_COUNT).fill(null).map(() => ({ text: '', lastUpdated: null, isManuallyMinimized: false }));
 
 // --- カスタムフック ---
-
-/** CSSメディアクエリ文字列にマッチするかどうかを返すフック */
 const useMediaQuery = (query: string): boolean => {
   const [matches, setMatches] = useState(false);
   useEffect(() => {
@@ -46,7 +45,6 @@ const useMediaQuery = (query: string): boolean => {
   return matches;
 };
 
-/** 左右パネルのリサイズ機能を管理するフック */
 const useResizablePanels = (initialPosition: number) => {
   const [dividerPosition, setDividerPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
@@ -94,12 +92,13 @@ const MemoTextarea: React.FC<{
   isInSideBySide?: boolean; hasTopBar: boolean;
 }> = React.memo(({ initialText, onSave, isMinimized, onHeightChange, placeholder, ariaLabel, id, isInSideBySide, hasTopBar }) => {
   const [text, setText] = useState(initialText);
+  const [isFocused, setIsFocused] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => { setText(initialText); }, [initialText]);
 
-  // テキストの量に応じてテキストエリアの高さを動的に調整
+  // テキスト量に応じて高さを動的に調整
   useEffect(() => {
     const textarea = textareaRef.current;
     if (!textarea) return;
@@ -109,23 +108,25 @@ const MemoTextarea: React.FC<{
     textarea.style.overflowY = isMinimized ? 'auto' : 'hidden';
   }, [text, isMinimized, onHeightChange]);
 
-  // 入力後、少し時間が経ってから保存処理を発火 (デバウンス)
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
     setText(newValue);
     if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    // デバウンスによる自動保存
     debounceTimeout.current = setTimeout(() => onSave(newValue), DEBOUNCE_SAVE_DELAY);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    setIsFocused(false);
     if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
     onSave(e.target.value);
   };
 
   const style: React.CSSProperties = {
     width: '100%', minHeight: `${DEFAULT_TEXTAREA_MIN_HEIGHT}px`, padding: '10px', fontSize: '16px',
-    border: 'none', borderRadius: 0, backgroundColor: 'var(--ifm-background-color)',
+    borderRadius: 0, backgroundColor: 'var(--ifm-background-color)',
     color: 'var(--ifm-font-color-base)', resize: 'none',
+    transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
   };
   
   if (!isInSideBySide) {
@@ -133,9 +134,29 @@ const MemoTextarea: React.FC<{
     style.borderRadius = hasTopBar ? 0 : 'var(--ifm-global-radius) var(--ifm-global-radius) 0 0';
     style.borderTop = hasTopBar ? 'none' : '1px solid var(--ifm-color-emphasis-300)';
     style.borderBottom = 'none';
+  } else {
+    // side-by-side表示時にフォーカスON/OFFでレイアウトがずれるのを防ぐため、透明な枠線を常に維持
+    style.border = '1px solid transparent';
   }
 
-  return <textarea id={id} ref={textareaRef} value={text} onChange={handleChange} onBlur={handleBlur} aria-label={ariaLabel} placeholder={placeholder} rows={1} style={style} />;
+  if (isFocused) {
+    style.outline = 'none';
+    style.borderColor = 'var(--ifm-color-primary)';
+    style.boxShadow = `0 0 0 2px var(--ifm-focus-ring-color)`;
+  }
+
+  return <textarea
+    id={id}
+    ref={textareaRef}
+    value={text}
+    onChange={handleChange}
+    onFocus={() => setIsFocused(true)}
+    onBlur={handleBlur}
+    aria-label={ariaLabel}
+    placeholder={placeholder}
+    rows={1}
+    style={style}
+  />;
 });
 
 const MarkdownPreview: React.FC<{
@@ -160,7 +181,6 @@ const MarkdownPreview: React.FC<{
   return <div className="markdown-body" style={style}><ReactMarkdown remarkPlugins={[remarkGfm]}>{previewText}</ReactMarkdown></div>;
 });
 
-/** 各メモ帳のUIとロジックをまとめたコンポーネント */
 const MemoItemComponent: React.FC<{
   memo: MemoItem; index: number; onSave: (index: number, value: string) => void;
   currentLocale: string;
@@ -205,7 +225,6 @@ const MemoItemComponent: React.FC<{
     </div>
   );
 
-  // パフォーマンス最適化: スタイルオブジェクトをメモ化
   const wrapperStyle = useMemo((): React.CSSProperties => {
     const style: React.CSSProperties = { position: 'relative' };
     if (showSideBySidePreview) {
@@ -258,13 +277,11 @@ const MemoItemComponent: React.FC<{
   );
 };
 
-/** アプリケーションのメインコンポーネント。状態管理と主要なロジックを担う */
 function MemoApp() {
   const { i18n: { currentLocale } } = useDocusaurusContext();
   const [memoItems, setMemoItems] = useState<MemoItem[]>([]);
   const [isAllShared, setIsAllShared] = useState<boolean>(false);
 
-  /** URLハッシュからメモを復元する */
   const restoreFromUrlHash = useCallback((hash: string): MemoItem[] | null => {
     if (!hash) return null;
 
@@ -289,7 +306,7 @@ function MemoApp() {
     return null;
   }, []);
 
-  /** 初回マウント時にローカルストレージまたはURLハッシュからメモを復元 */
+  // 初回ロード時にローカルストレージまたはURLハッシュからメモを復元
   useEffect(() => {
     const hash = window.location.hash.slice(1);
     const restoredFromHash = restoreFromUrlHash(hash);
@@ -309,7 +326,7 @@ function MemoApp() {
     setMemoItems(initialMemos);
   }, [restoreFromUrlHash]);
 
-  /** メモの状態が変化したらローカルストレージに自動保存 */
+  // メモが更新されたらローカルストレージに保存
   useEffect(() => {
     if (memoItems.length > 0) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(memoItems));
@@ -384,7 +401,6 @@ function MemoApp() {
   );
 }
 
-/** JSON-LDスキーマを動的に<head>に追加・削除するフック */
 const useJsonLdSchema = (schema: object | null) => {
   useEffect(() => {
     if (!schema) return;
@@ -412,7 +428,6 @@ function MemoPageContent() {
   const pageTitle = translate({ id: 'page.browser-memo.title', message: '高機能ブラウザメモ帳 - Markdown・URL共有対応・インストール不要' });
   const pageDescription = translate({ id: 'page.browser-memo.description', message: 'ログイン・インストール不要ですぐに使える高機能なブラウザメモ帳。Markdownプレビュー、URLでの簡単共有に対応。データはあなたのブラウザ内だけに保存されるため、安全でプライベートなメモ環境を提供します。' });
 
-  // パフォーマンス最適化: JSON-LDスキーマオブジェクトをメモ化
   const softwareApplicationSchema = useMemo(() => {
     const pageUrl = `${siteConfig.url}${siteConfig.baseUrl}${currentLocale === 'ja' ? '' : currentLocale + '/'}browser-memo/`;
     return {
@@ -461,7 +476,6 @@ function MemoPageContent() {
   );
 }
 
-/** Docusaurusの<BrowserOnly>でラップし、ブラウザ環境でのみコンテンツを描画するエントリーポイント */
 export default function MemoPageWrapper() {
   return (
     <>
