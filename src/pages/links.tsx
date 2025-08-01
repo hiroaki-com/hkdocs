@@ -90,6 +90,7 @@ const linksData: LinkCategoryData[] = [
     title: { id: 'links.majorCategory.documentation', message: 'ドキュメント & 作図' },
     sites: [
       { href: 'https://docusaurus.io/', title: { id: 'links.site.docs.docusaurus.title', message: 'Docusaurus' }, description: { id: 'links.site.docs.docusaurus.desc', message: 'React製の静的サイトジェネレーター。ドキュメントサイト構築に最適。' } },
+      { href: 'https://mdxjs.com/', title: { id: 'links.site.docs.mdx.title', message: 'MDX' }, description: { id: 'links.site.docs.mdx.desc', message: 'MarkdownにJSXを組み込み可能にする形式。インタラクティブなドキュメントやブログ記事の作成に最適。' } },
       { href: 'https://decapcms.org/docs/intro/', title: { id: 'links.site.docs.decapcms.title', message: 'Decap CMS' }, description: { id: 'links.site.docs.decapcms.desc', message: 'Gitリポジトリをバックエンドとして利用するオープンソースのヘッドレスCMS。静的サイトジェネレーターとの親和性が高い。' } },
       { href: 'https://obsidian.md/', title: { id: 'links.site.docs.obsidian.title', message: 'Obsidian' }, description: { id: 'links.site.docs.obsidian.desc', message: 'ローカルのMarkdownファイルで動作する、強力な第二の脳としてのナレッジベースツール。' } },
       { href: 'https://www.markdownguide.org', title: { id: 'links.site.docs.markdown.title', message: 'Markdown Guide' }, description: { id: 'links.site.docs.markdown.desc', message: 'Markdown記法の基本から拡張機能までを網羅した包括的なガイド。' } },

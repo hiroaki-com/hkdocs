@@ -82,6 +82,7 @@
   color: var(--ifm-font-color-secondary);
   line-height: 1.6;
   margin: 0;
+  font-size: 0.8rem;
   /* 同じ行のカードの高さを揃えるためのキープロパティ */
   flex-grow: 1;
 }
@@ -141,6 +142,6 @@
     font-size: 0.8rem;
   }
   .featureDescription {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
   }
 }
