@@ -1329,6 +1329,22 @@
     "message": "A preprint server for electrical engineering and CS fields, established by IEEE.",
     "description": "Description for TechRxiv"
   },
+  "links.site.academic.mesh.title": {
+    "message": "MeSH",
+    "description": "Title for MeSH"
+  },
+  "links.site.academic.mesh.desc": {
+    "message": "Medical Subject Headings controlled vocabulary maintained by the National Library of Medicine. Hierarchically structured terms enhance literature search efficiency in PubMed and other databases.",
+    "description": "Description for MeSH"
+  },
+  "links.site.academic.thesaurus.title": {
+    "message": "Thesaurus Browser",
+    "description": "Title for Thesaurus Browser"
+  },
+  "links.site.academic.thesaurus.desc": {
+    "message": "Search tool for medical controlled vocabulary and MeSH terms with direct links to related PubMed articles.",
+    "description": "Description for Thesaurus Browser"
+  },
   "links.site.academic.techrxiv.title": {
     "message": "TechRxiv",
     "description": "Title for TechRxiv"
