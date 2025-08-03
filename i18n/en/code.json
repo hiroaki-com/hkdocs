@@ -1365,6 +1365,14 @@
     "message": "World's largest database for medical and life sciences literature. Search peer-reviewed papers including MEDLINE.",
     "description": "Description for PubMed"
   },
+  "links.site.academic.mdpi.desc": {
+    "message": "Swiss-based multidisciplinary academic publisher. Over 390 peer-reviewed open access journals freely available under CC BY license.",
+    "description": "Description for MDPI"
+  },
+  "links.site.academic.mdpi.title": {
+    "message": "MDPI",
+    "description": "Title for MDPI"
+  },
   "links.site.ai.kaggle.desc": {
     "message": "The world's largest community for data science competitions, public datasets, and learning resources.",
     "description": "Description for Kaggle Learn"
