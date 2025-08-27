@@ -88,6 +88,11 @@ const aiToolsData: AIToolCategoryData[] = [
         title: { id: 'aiTools.tool.aiDev.anthropicConsole.title', message: 'Anthropic Console' }, 
         description: { id: 'aiTools.tool.aiDev.anthropicConsole.desc', message: 'AnthropicのAIモデル（Claudeファミリー）をテストし、API経由で利用するための開発者向けプラットフォーム。長文処理能力や安全性を重視したモデルが特徴。' }
       },
+      { 
+        href: 'https://python.langchain.com/docs/integrations/providers/', 
+        title: { id: 'aiTools.tool.aiDev.langchain.title', message: 'LangChain' }, 
+        description: { id: 'aiTools.tool.aiDev.langchain.desc', message: '大規模言語モデル（LLM）を活用したアプリ開発を簡素化するPythonライブラリ。多様なAIプロバイダーやデータソースを抽象化し、一貫したインターフェースで利用可能。' }
+      },
     ],
   },
   {
@@ -138,6 +143,7 @@ const aiToolsData: AIToolCategoryData[] = [
     ],
   },
 ];
+
 
 /**
  * ホバー時に右側にアンカーリンク('#')を表示する見出しコンポーネント

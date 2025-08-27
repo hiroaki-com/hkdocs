@@ -1453,6 +1453,14 @@
     "message": "Python 3 Docs",
     "description": "Title for Python 3 Docs"
   },
+  "links.site.backend.langchain.title": {
+    "message": "LangChain Docs",
+    "description": "Title for LangChain Docs"
+  },
+  "links.site.backend.langchain.desc": {
+    "message": "A Python framework for developing applications that leverage Large Language Models (LLMs).",
+    "description": "Description for LangChain Docs"
+  },
   "links.site.cloud.docker.desc": {
     "message": "The de facto standard for container virtualization technology. Official documentation.",
     "description": "Description for Docker Docs"
@@ -1974,6 +1982,14 @@
   },
   "aiTools.tool.aiDev.anthropicConsole.desc": {
     "message": "A developer platform for testing Anthropic's AI models (Claude family) and using them via API. Features long-text processing capabilities and safety-focused models."
+  },
+  "aiTools.tool.aiDev.langchain.title": {
+    "message": "LangChain",
+    "description": "Title for LangChain"
+  },
+  "aiTools.tool.aiDev.langchain.desc": {
+    "message": "A Python library that simplifies the development of applications leveraging Large Language Models (LLMs). It abstracts diverse AI providers and data sources, enabling their use through a consistent interface.",
+    "description": "Description for LangChain"
   },
   "aiTools.tool.automation.n8n.title": {
     "message": "n8n"
