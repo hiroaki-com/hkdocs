@@ -58,6 +58,8 @@ const config: Config = {
           showLastUpdateTime: true,
         },
         blog: {
+          blogSidebarTitle: 'All posts',
+          blogSidebarCount: 'ALL',
           showReadingTime: true,
           feedOptions: {
             type: ['rss', 'atom'],
@@ -88,6 +90,8 @@ const config: Config = {
         blogDescription: '体調など雑多な日常の記録',
         showReadingTime: false,
         authorsMapPath: '../blog/authors.yml',
+          blogSidebarTitle: 'All posts',
+          blogSidebarCount: 'ALL',
       } satisfies PluginContentBlog.Options,
     ],
   ],
