@@ -741,6 +741,22 @@
     "message": "Al Jazeera",
     "description": "Title for Al Jazeera"
   },
+  "news.site.int.ge.arabnews.title": {
+    "message": "Arab News",
+    "description": "Title for the Arab News site"
+  },
+  "news.site.int.ge.arabnews.desc": {
+    "message": "An English-language daily newspaper founded in Saudi Arabia in 1975. It internationally disseminates news on business, politics, and culture from a Saudi Arabian and Middle Eastern perspective.",
+    "description": "Description for the Arab News site"
+  },
+  "news.site.int.ge.khaleejtimes.title": {
+    "message": "Khaleej Times",
+    "description": "Title for the Khaleej Times site"
+  },
+  "news.site.int.ge.khaleejtimes.desc": {
+    "message": "Founded in 1978, it is the longest-running English-language daily newspaper in the United Arab Emirates (UAE). Based in Dubai, it provides comprehensive coverage of Gulf and international news.",
+    "description": "Description for the Khaleej Times site"
+  },
   "news.site.int.ge.ap.desc": {
     "message": "A non-profit cooperative news agency founded in 1846 by five New York City newspapers. Known for its speed and objectivity, it distributes articles to media worldwide.",
     "description": "Description for Associated Press (AP)"
