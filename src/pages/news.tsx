@@ -38,10 +38,23 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://www.nikkei.com/', title: { id: 'news.site.jp.ge.nikkei.title', message: '日本経済新聞' }, description: { id: 'news.site.jp.ge.nikkei.desc', message: '1876年、益田孝（三井物産創業者）により創刊。株式会社日本経済新聞社が運営。経済に特化した報道で知られ、日経平均株価の算出元でもある。2015年に英フィナンシャル・タイムズを買収。' } },
           { href: 'https://www.bloomberg.co.jp/', title: { id: 'news.site.jp.ge.bloomberg.title', message: 'Bloomberg Japan' }, description: { id: 'news.site.jp.ge.bloomberg.desc', message: '1981年にマイケル・ブルームバーグが米国で設立したBloomberg L.P.の日本語版。金融情報端末「ブルームバーグ・ターミナル」を中核事業とし、金融・経済へ大きな影響力を持つ。' } },
           { href: 'https://www.businessinsider.jp/', title: { id: 'news.site.jp.ge.bi.title', message: 'Business Insider Japan' }, description: { id: 'news.site.jp.ge.bi.desc', message: '2007年にヘンリー・ブロジェットが米国で設立した経済メディアの日本版で、株式会社メディアジーンが運営。ミレニアル世代を主なターゲットとし、ビジネス、金融、テクノロジーニュースを配信する。' } },
-          { href: 'https://www.47news.jp/', title: { id: 'news.site.jp.ge.47news.title', message: '47NEWS' }, description: { id: 'news.site.jp.ge.47news.desc', message: '2006年設立。株式会社全国新聞ネットが運営。共同通信と全国の地方新聞52社が参加し、中央と地方双方の視点からニュースを提供する。' } },
           { href: 'https://jp.reuters.com/', title: { id: 'news.site.jp.ge.reuters.title', message: 'ロイター' }, description: { id: 'news.site.jp.ge.reuters.desc', message: '1851年にポール・ジュリアス・ロイターが英国で設立した国際通信社の日本語版。トムソン・ロイターが運営。速報性の高いグローバルな取材網を持つ世界三大通信社の一つ。' } },
           { href: 'https://minkabu.jp/', title: { id: 'news.site.jp.ge.minkabu.title', message: 'みんかぶ' }, description: { id: 'news.site.jp.ge.minkabu.desc', message: '2006年に瓜生憲が設立。株式会社MINKABU THE INFONOIDが運営。AIとクラウドインプットを活用した株価予想など、個人投資家向けの金融情報に特化した独自コンテンツを提供。' } },
           { href: 'https://sekai-kabuka.com/pc-index.html', title: { id: 'news.site.jp.ge.sekaikabuka.title', message: '世界の株価' }, description: { id: 'news.site.jp.ge.sekaikabuka.desc', message: '世界の主要な株価指数、為替、商品先物、仮想通貨などのマーケットデータを一覧表示することに特化したサイト。' } },
+        ],
+      },
+      {
+        id: 'japan-general-politics',
+        title: { id: 'news.category.general-politics-jp', message: '総合・政治' },
+        sites: [
+          { href: 'https://mainichi.jp/', title: { id: 'news.site.jp.gp.mainichi.title', message: '毎日新聞' }, description: { id: 'news.site.jp.gp.mainichi.desc', message: '1872年、『東京日日新聞』として創刊。株式会社毎日新聞社が運営。日本の主要な全国紙の一つ。一面にコラム『余録』を掲載しているほか、選抜高等学校野球大会や毎日映画コンクールなどを主催している。' } },
+          { href: 'https://www.yomiuri.co.jp/', title: { id: 'news.site.jp.gp.yomiuri.title', message: '読売新聞' }, description: { id: 'news.site.jp.gp.yomiuri.desc', message: '1874年、子安峻らにより日就社から創刊。読売新聞グループ本社が運営。日本の主要な全国紙の一つ。一面にコラム『編集手帳』を掲載しているほか、プロ野球球団の読売巨人軍を保有している。' } },
+          { href: 'https://www.asahi.com/', title: { id: 'news.site.jp.gp.asahi.title', message: '朝日新聞' }, description: { id: 'news.site.jp.gp.asahi.desc', message: '1879年、村山龍平、上野理一らにより大阪で創刊。株式会社朝日新聞社が運営。日本の主要な全国紙の一つ。一面に1904年から続くコラム『天声人語』を掲載しているほか、全国高等学校野球選手権大会などを主催している。' } },
+          { href: 'https://www.sankei.com/', title: { id: 'news.site.jp.gp.sankei.title', message: '産経新聞' }, description: { id: 'news.site.jp.gp.sankei.desc', message: '1933年、前田久吉が大阪で『日本工業新聞』を創刊したのが前身。株式会社産業経済新聞社が運営。正式名称は『産業経済新聞』。全国紙の一つで、一面にコラム『産経抄』を掲載している。' } },
+          { href: 'https://www.jiji.com/', title: { id: 'news.site.jp.gp.jiji.title', message: '時事通信' }, description: { id: 'news.site.jp.gp.jiji.desc', message: '1945年設立。株式会社時事通信社が運営。国内外のニュースを新聞社や放送局などの報道機関へ配信する通信社。 ウェブサイト「時事ドットコムニュース」を通じて、一般読者にもニュースを提供している。' } },
+          { href: 'https://www.47news.jp/', title: { id: 'news.site.jp.gp.47news.title', message: '47NEWS' }, description: { id: 'news.site.jp.gp.47news.desc', message: '2006年設立。株式会社全国新聞ネットが運営。共同通信と全国の地方新聞52社が参加し、中央と地方双方の視点からニュースを提供する。' } },
+          { href: 'https://www.seikyoonline.com/', title: { id: 'news.site.jp.gp.seikyo.title', message: '聖教新聞' }, description: { id: 'news.site.jp.gp.seikyo.desc', message: '1951年創刊。聖教新聞社が運営する宗教法人・創価学会の機関紙。同会の活動や理念、会員の体験談、仏法に関する解説などを掲載している。' } },
+          { href: 'https://www.jcp.or.jp/akahata/', title: { id: 'news.site.jp.gp.akahata.title', message: 'しんぶん赤旗' }, description: { id: 'news.site.jp.gp.akahata.desc', message: '1928年創刊。日本共産党中央委員会が運営する機関紙。党の政策や見解のほか、独自の調査に基づく告発記事などを掲載。日刊紙と週１回発行の「日曜版」がある。' } },
         ],
       },
       {
@@ -127,6 +140,7 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://www.rt.com/', title: { id: 'news.site.int.ge.rt.title', message: 'RT (Russia Today)' }, description: { id: 'news.site.int.ge.rt.desc', message: '2005年にロシア政府の資金提供により設立された国際ニュースチャンネル。ANO TV-Novostiが運営。ロシアの視点から国際ニュースを多言語で報道。' } },
           { href: 'https://sputniknews.com/', title: { id: 'news.site.int.ge.sputnik.title', message: 'Sputnik' }, description: { id: 'news.site.int.ge.sputnik.desc', message: '2014年にロシア政府が国営通信社再編の一環として設立。国営メディアグループ「ロシア・セゴドニャ」が運営。30以上の言語でニュースやラジオを配信し、ロシアの公式見解を伝達。' } },
           { href: 'https://kyivindependent.com/', title: { id: 'news.site.int.ge.kyivindependent.title', message: 'Kyiv Independent' }, description: { id: 'news.site.int.ge.kyivindependent.desc', message: '2021年にKyiv Postの元ジャーナリストらによって設立されたウクライナの独立系英字ニュースメディア。ロシアのウクライナ侵攻に関する報道で国際的に知られ、調査報道に重点。' } },
+          { href: 'https://polymarket.com/', title: { id: 'news.site.int.ge.polymarket.title', message: 'Polymarket' }, description: { id: 'news.site.int.ge.polymarket.desc', message: '2020年にShayne Coplanが設立。ブロックチェーン技術を活用した予測市場プラットフォーム。ユーザーは政治、経済、時事問題など様々なイベントの結果に賭けることで、集合知による未来予測を形成する。' } },
         ],
       },
       {

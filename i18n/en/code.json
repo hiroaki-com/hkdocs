@@ -997,13 +997,21 @@
     "message": "WIRED",
     "description": "Title for WIRED"
   },
-  "news.site.jp.ge.47news.desc": {
-    "message": "Established in 2006. Operated by Zenkoku Shimbun NET Co., Ltd. Kyodo News and 52 local newspapers from across the country participate, providing news from both central and regional perspectives.",
-    "description": "Description for 47NEWS"
+  "news.site.int.ge.polymarket.title": {
+    "message": "Polymarket",
+    "description": "Title for Polymarket"
   },
-  "news.site.jp.ge.47news.title": {
+  "news.site.int.ge.polymarket.desc": {
+    "message": "Founded in 2020 by Shayne Coplan. A prediction market platform utilizing blockchain technology. Users bet on the outcomes of various events such as politics, economics, and current affairs, forming future predictions based on collective intelligence.",
+    "description": "Description for Polymarket"
+  },
+  "news.site.jp.gp.47news.title": {
     "message": "47NEWS",
     "description": "Title for 47NEWS"
+  },
+  "news.site.jp.gp.47news.desc": {
+    "message": "Established in 2006. Operated by ZENKOKU SHIMBUN NET Co., Ltd. Kyodo News and 52 local newspapers across Japan participate, providing news from both central and regional perspectives.",
+    "description": "Description for 47NEWS"
   },
   "news.site.jp.ge.bi.desc": {
     "message": "The Japanese edition of the economic media founded in the U.S. in 2007 by Henry Blodget, operated by Mediagene Inc. It primarily targets millennials and delivers news on business, finance, and technology.",
@@ -1061,6 +1069,66 @@
     "message": "Yahoo! JAPAN News",
     "description": "Title for Yahoo! JAPAN News"
   },
+  "news.category.general-politics-jp": {
+    "message": "General & Politics",
+    "description": "Category title for Japanese general and politics news"
+  },
+  "news.site.jp.gp.mainichi.title": {
+    "message": "Mainichi Shimbun",
+    "description": "Title for Mainichi Shimbun"
+  },
+  "news.site.jp.gp.mainichi.desc": {
+    "message": "Founded in 1872 as the 'Tokyo Nichi Nichi Shimbun.' Operated by The Mainichi Newspapers Co., Ltd. One of Japan's major national newspapers. It features the column 'Yoroku' on its front page and hosts events such as the National High School Baseball Invitational Tournament and the Mainichi Film Concours.",
+    "description": "Description for Mainichi Shimbun"
+  },
+  "news.site.jp.gp.yomiuri.title": {
+    "message": "Yomiuri Shimbun",
+    "description": "Title for Yomiuri Shimbun"
+  },
+  "news.site.jp.gp.yomiuri.desc": {
+    "message": "Founded in 1874 by Takashi Koyasu and others from the Nisshusha company. Operated by The Yomiuri Shimbun Holdings. One of Japan's major national newspapers. It features the column 'Henshu Techo' on its front page and owns the professional baseball team, the Yomiuri Giants.",
+    "description": "Description for Yomiuri Shimbun"
+  },
+  "news.site.jp.gp.asahi.title": {
+    "message": "Asahi Shimbun",
+    "description": "Title for Asahi Shimbun"
+  },
+  "news.site.jp.gp.asahi.desc": {
+    "message": "Founded in Osaka in 1879 by Ryohei Murayama, Riichi Ueno, and others. Operated by The Asahi Shimbun Company. One of Japan's major national newspapers. It features the column 'Tensei Jingo,' which has been running since 1904, on its front page and hosts events like the National High School Baseball Championship.",
+    "description": "Description for Asahi Shimbun"
+  },
+  "news.site.jp.gp.sankei.title": {
+    "message": "Sankei Shimbun",
+    "description": "Title for Sankei Shimbun"
+  },
+  "news.site.jp.gp.sankei.desc": {
+    "message": "Its predecessor was the 'Nihon Kogyo Shimbun,' founded in Osaka in 1933 by Hisakichi Maeda. Operated by Sankei Shimbun Co., Ltd. Its official name is the 'Sangyo Keizai Shimbun.' It is one of the national newspapers and features the column 'Sankeisho' on its front page.",
+    "description": "Description for Sankei Shimbun"
+  },
+  "news.site.jp.gp.jiji.title": {
+    "message": "Jiji Press",
+    "description": "Title for Jiji Press"
+  },
+  "news.site.jp.gp.jiji.desc": {
+    "message": "Established in 1945. Operated by Jiji Press Ltd. A news agency that distributes domestic and international news to media organizations such as newspapers and broadcasting stations. It also provides news to the general public through its website 'jiji.com'.",
+    "description": "Description for Jiji Press"
+  },
+  "news.site.jp.gp.seikyo.title": {
+    "message": "Seikyo Shimbun",
+    "description": "Title for Seikyo Shimbun"
+  },
+  "news.site.jp.gp.seikyo.desc": {
+    "message": "Founded in 1951. The official newspaper of the religious corporation Soka Gakkai, operated by the Seikyo Shimbun Co. It covers the organization's activities, philosophy, members' testimonials, and explanations of Buddhist principles.",
+    "description": "Description for Seikyo Shimbun"
+  },
+  "news.site.jp.gp.akahata.title": {
+    "message": "Shimbun Akahata",
+    "description": "Title for Shimbun Akahata"
+  },
+  "news.site.jp.gp.akahata.desc": {
+    "message": "Founded in 1928. The official newspaper of the Central Committee of the Japanese Communist Party. In addition to the party's policies and views, it publishes exposé articles based on its own investigations. It has a daily edition and a once-a-week 'Sunday Edition'.",
+    "description": "Description for Shimbun Akahata"
+  },  
   "news.site.jp.lw.tenki.desc": {
     "message": "Official weather forecast media of the Japan Weather Association. Also provides extensive disaster prevention information.",
     "description": "Description for tenki.jp"
