@@ -23,18 +23,6 @@
   "homepage.features.exams.title": {
     "message": "Exams"
   },
-  "homepage.features.links.description": {
-    "message": "A collection of reference links useful for development and learning."
-  },
-  "homepage.features.links.title": {
-    "message": "Links"
-  },
-  "homepage.features.news.description": {
-    "message": "A list of sites useful for daily information gathering."
-  },
-  "homepage.features.news.title": {
-    "message": "News"
-  },
   "homepage.features.profile.description": {
     "message": "About me."
   },
@@ -46,48 +34,6 @@
   },
   "homepage.features.tech.title": {
     "message": "Tech"
-  },
-  "links.download.header.siteName": {
-    "message": "SiteName"
-  },
-  "links.page.description": {
-    "message": "A collection of useful links to technical documents and tools for development and learning."
-  },
-  "links.page.downloadButtonAriaLabel": {
-    "message": "Download resource site list"
-  },
-  "links.page.downloadButtonTooltip": {
-    "message": "Download CSV list"
-  },
-  "links.page.heading": {
-    "message": "Links"
-  },
-  "links.page.subheading": {
-    "message": "References for Development & Learning"
-  },
-  "links.page.title": {
-    "message": "Links"
-  },
-  "news.download.header.siteName": {
-    "message": "Site Name"
-  },
-  "news.page.description": {
-    "message": "A curated list of news sites to help you keep up with domestic and international affairs and technology trends."
-  },
-  "news.page.downloadButtonAriaLabel": {
-    "message": "Download news site list"
-  },
-  "news.page.downloadButtonTooltip": {
-    "message": "Download CSV list"
-  },
-  "news.page.heading": {
-    "message": "News"
-  },
-  "news.page.subheading": {
-    "message": "For daily information gathering"
-  },
-  "news.page.title": {
-    "message": "News List"
   },
   "page.browser-memo.alert.restoreFailed": {
     "message": "Failed to restore memos. The link may be corrupted."
@@ -633,1334 +579,6 @@
     "message": "On this page",
     "description": "The label used by the button on the collapsible TOC component"
   },
-  "news.majorCategory.international": {
-    "message": "International",
-    "description": "Major category title for International news sites"
-  },
-  "news.majorCategory.japan": {
-    "message": "Japan",
-    "description": "Major category title for Japanese news sites"
-  },
-  "news.category.audio-podcast-int": {
-    "message": "Audio & Podcasts",
-    "description": "Category title for international audio and podcasts"
-  },
-  "news.category.general-economy-int": {
-    "message": "General & Economy",
-    "description": "Category title for international general and economy news"
-  },
-  "news.category.general-economy-jp": {
-    "message": "General & Economy",
-    "description": "Category title for Japanese general and economy news"
-  },
-  "news.category.life-weather-jp": {
-    "message": "Life & Weather",
-    "description": "Category title for Japanese life and weather news"
-  },
-  "news.category.press-release-jp": {
-    "message": "Press Releases",
-    "description": "Category title for Japanese press release sites"
-  },
-  "news.category.security-jp": {
-    "message": "Security & IT Professional",
-    "description": "Category title for Japanese security and IT professional news"
-  },
-  "news.category.summary-sites-int": {
-    "message": "Aggregators & Journalism",
-    "description": "Category title for international news aggregators and journalism"
-  },
-  "news.category.summary-sites-jp": {
-    "message": "Aggregators",
-    "description": "Category title for Japanese news aggregators"
-  },
-  "news.category.tech-science-int": {
-    "message": "Technology & Science",
-    "description": "Category title for international technology and science news"
-  },
-  "news.category.tech-science-jp": {
-    "message": "Technology & Science",
-    "description": "Category title for Japanese technology and science news"
-  },
-  "news.category.tv-news-jp": {
-    "message": "TV News",
-    "description": "Category title for Japanese TV news sites"
-  },
-  "news.site.int.ap.bbc.desc": {
-    "message": "The international broadcasting arm of the British Broadcasting Corporation (BBC), established in 1932. It delivers news and documentaries to the world in over 40 languages via radio, online, and podcasts.",
-    "description": "Description for BBC World Service"
-  },
-  "news.site.int.ap.bbc.title": {
-    "message": "BBC World Service",
-    "description": "Title for BBC World Service"
-  },
-  "news.site.int.ap.cnn.desc": {
-    "message": "Audio content such as news and documentaries provided by CNN.",
-    "description": "Description for CNN Audio"
-  },
-  "news.site.int.ap.cnn.title": {
-    "message": "CNN Audio",
-    "description": "Title for CNN Audio"
-  },
-  "news.site.int.ap.economist.desc": {
-    "message": "In-depth political and economic analysis podcasts from The Economist magazine.",
-    "description": "Description for The Economist Podcasts"
-  },
-  "news.site.int.ap.economist.title": {
-    "message": "The Economist Podcasts",
-    "description": "Title for The Economist Podcasts"
-  },
-  "news.site.int.ap.npr.desc": {
-    "message": "A weekend news and information program from National Public Radio (NPR) in the United States.",
-    "description": "Description for NPR Weekend Edition"
-  },
-  "news.site.int.ap.npr.title": {
-    "message": "NPR Weekend Edition",
-    "description": "Title for NPR Weekend Edition"
-  },
-  "news.site.int.ap.sed.desc": {
-    "message": "A podcast and blog offering daily news, interviews, and discussions on software engineering.",
-    "description": "Description for Software Engineering Daily"
-  },
-  "news.site.int.ap.sed.title": {
-    "message": "Software Engineering Daily",
-    "description": "Title for Software Engineering Daily"
-  },
-  "news.site.int.ge.afp.desc": {
-    "message": "A French news agency, successor to an organization founded in 1835 by Charles-Louis Havas. It is the world's oldest news agency and has a strong focus on visual reporting, including photos and videos.",
-    "description": "Description for Agence France-Presse (AFP)"
-  },
-  "news.site.int.ge.afp.title": {
-    "message": "Agence France-Presse (AFP)",
-    "description": "Title for Agence France-Presse (AFP)"
-  },
-  "news.site.int.ge.aljazeera.desc": {
-    "message": "Established in 1996 with funding from the government of Qatar and operated by the Al Jazeera Media Network. An international news organization that broadcasts global news from a Middle Eastern and Arab world perspective, distinct from Western media.",
-    "description": "Description for Al Jazeera"
-  },
-  "news.site.int.ge.aljazeera.title": {
-    "message": "Al Jazeera",
-    "description": "Title for Al Jazeera"
-  },
-  "news.site.int.ge.arabnews.title": {
-    "message": "Arab News",
-    "description": "Title for the Arab News site"
-  },
-  "news.site.int.ge.arabnews.desc": {
-    "message": "An English-language daily newspaper founded in Saudi Arabia in 1975. It internationally disseminates news on business, politics, and culture from a Saudi Arabian and Middle Eastern perspective.",
-    "description": "Description for the Arab News site"
-  },
-  "news.site.int.ge.khaleejtimes.title": {
-    "message": "Khaleej Times",
-    "description": "Title for the Khaleej Times site"
-  },
-  "news.site.int.ge.khaleejtimes.desc": {
-    "message": "Founded in 1978, it is the longest-running English-language daily newspaper in the United Arab Emirates (UAE). Based in Dubai, it provides comprehensive coverage of Gulf and international news.",
-    "description": "Description for the Khaleej Times site"
-  },
-  "news.site.int.ge.ap.desc": {
-    "message": "A non-profit cooperative news agency founded in 1846 by five New York City newspapers. Known for its speed and objectivity, it distributes articles to media worldwide.",
-    "description": "Description for Associated Press (AP)"
-  },
-  "news.site.int.ge.ap.title": {
-    "message": "Associated Press (AP)",
-    "description": "Title for Associated Press (AP)"
-  },
-  "news.site.int.ge.bi.desc": {
-    "message": "Founded in the U.S. in 2007 by Henry Blodget and operated by Axel Springer SE. It delivers business and technology news with high speed and has multiple international editions worldwide.",
-    "description": "Description for Business Insider"
-  },
-  "news.site.int.ge.bi.title": {
-    "message": "Business Insider",
-    "description": "Title for Business Insider"
-  },
-  "news.site.int.ge.bloomberg.desc": {
-    "message": "Founded in the U.S. in 1981 by Michael Bloomberg. A leading global economic and financial media company, with the Bloomberg Terminal financial data and analysis tool at its core.",
-    "description": "Description for Bloomberg"
-  },
-  "news.site.int.ge.bloomberg.title": {
-    "message": "Bloomberg",
-    "description": "Title for Bloomberg"
-  },
-  "news.site.int.ge.chinadaily.desc": {
-    "message": "The only English-language daily newspaper published by the Communist Party of China. It communicates China's official views and developments.",
-    "description": "Description for China Daily"
-  },
-  "news.site.int.ge.chinadaily.title": {
-    "message": "China Daily",
-    "description": "Title for China Daily"
-  },
-  "news.site.int.ge.digiday.desc": {
-    "message": "An international edition of a specialized media that delves into the transformation of digital media, marketing, advertising, and retail.",
-    "description": "Description for Digiday"
-  },
-  "news.site.int.ge.digiday.title": {
-    "message": "Digiday",
-    "description": "Title for Digiday"
-  },
-  "news.site.int.ge.dw.desc": {
-    "message": "Germany's international public broadcaster, established in 1953. Although funded by the German federal government, its editorial independence is legally guaranteed. It broadcasts news from a German and European perspective in over 30 languages.",
-    "description": "Description for Deutsche Welle"
-  },
-  "news.site.int.ge.dw.title": {
-    "message": "Deutsche Welle",
-    "description": "Title for Deutsche Welle"
-  },
-  "news.site.int.ge.fox.desc": {
-    "message": "Founded in the U.S. in 1996 by Rupert Murdoch and operated by Fox News Media. Known for its conservative perspective, it is a cable news network with high viewership in the United States.",
-    "description": "Description for Fox News"
-  },
-  "news.site.int.ge.fox.title": {
-    "message": "Fox News",
-    "description": "Title for Fox News"
-  },
-  "news.site.int.ge.kyivindependent.desc": {
-    "message": "An independent English-language news media in Ukraine, founded in 2021 by former journalists of the Kyiv Post. It is internationally known for its coverage of the Russian invasion of Ukraine and focuses on investigative reporting.",
-    "description": "Description for Kyiv Independent"
-  },
-  "news.site.int.ge.kyivindependent.title": {
-    "message": "Kyiv Independent",
-    "description": "Title for Kyiv Independent"
-  },
-  "news.site.int.ge.lemonde.desc": {
-    "message": "The English edition of France's leading newspaper, founded in 1944 by Hubert Beuve-Méry. It is renowned for its detailed analysis of international affairs and high-quality investigative journalism.",
-    "description": "Description for Le Monde (English)"
-  },
-  "news.site.int.ge.lemonde.title": {
-    "message": "Le Monde (English)",
-    "description": "Title for Le Monde (English)"
-  },
-  "news.site.int.ge.nikkei.desc": {
-    "message": "Launched in 2013 by Nikkei Inc. It reports on Asian business, economy, and politics in English from the perspective of a Japanese media outlet. Known for its specialized coverage of Asia.",
-    "description": "Description for Nikkei Asia"
-  },
-  "news.site.int.ge.nikkei.title": {
-    "message": "Nikkei Asia",
-    "description": "Title for Nikkei Asia"
-  },
-  "news.site.int.ge.reuters.desc": {
-    "message": "Founded in the UK in 1851 by Paul Julius Reuter and operated by Thomson Reuters. A global news agency known for its fact-based, impartial, and prompt reporting, with operations in over 190 countries.",
-    "description": "Description for Reuters"
-  },
-  "news.site.int.ge.reuters.title": {
-    "message": "Reuters",
-    "description": "Title for Reuters"
-  },
-  "news.site.int.ge.rt.desc": {
-    "message": "An international news channel established in 2005 with funding from the Russian government. Operated by ANO TV-Novosti, it reports international news in multiple languages from a Russian perspective.",
-    "description": "Description for RT (Russia Today)"
-  },
-  "news.site.int.ge.rt.title": {
-    "message": "RT (Russia Today)",
-    "description": "Title for RT (Russia Today)"
-  },
-  "news.site.int.ge.sputnik.desc": {
-    "message": "Established in 2014 by the Russian government as part of a restructuring of state news agencies. Operated by the state media group 'Rossiya Segodnya,' it broadcasts news and radio in over 30 languages, conveying Russia's official views.",
-    "description": "Description for Sputnik"
-  },
-  "news.site.int.ge.sputnik.title": {
-    "message": "Sputnik",
-    "description": "Title for Sputnik"
-  },
-  "news.site.int.ge.wsj.desc": {
-    "message": "Founded in the U.S. in 1889 by Charles Dow and others. Operated by Dow Jones & Company, a subsidiary of News Corp. It is characterized by high-quality investigative reporting in the business and financial sectors.",
-    "description": "Description for The Wall Street Journal"
-  },
-  "news.site.int.ge.wsj.title": {
-    "message": "The Wall Street Journal",
-    "description": "Title for The Wall Street Journal"
-  },
-  "news.site.int.ge.xinhua.desc": {
-    "message": "China's state news agency, established in 1931. It is China's largest and official news organization, distributing the official views and news of the Communist Party of China domestically and internationally in multiple languages.",
-    "description": "Description for Xinhua (新華社)"
-  },
-  "news.site.int.ge.xinhua.title": {
-    "message": "Xinhua (新華社)",
-    "description": "Title for Xinhua (新華社)"
-  },
-  "news.site.int.ss.alltop.desc": {
-    "message": "A news aggregator that compiles top news and blog posts on various topics.",
-    "description": "Description for AllTop"
-  },
-  "news.site.int.ss.alltop.title": {
-    "message": "AllTop",
-    "description": "Title for AllTop"
-  },
-  "news.site.int.ss.bellingcat.desc": {
-    "message": "An independent investigative journalism group founded in 2014 by Eliot Higgins. Known for its methods of investigating and analyzing conflicts and crimes using open-source intelligence (OSINT). Registered as a non-profit foundation in the Netherlands.",
-    "description": "Description for Bellingcat"
-  },
-  "news.site.int.ss.bellingcat.title": {
-    "message": "Bellingcat",
-    "description": "Title for Bellingcat"
-  },
-  "news.site.int.ss.ground.desc": {
-    "message": "Founded in Canada in 2017 by former NASA engineers including Harleen Kaur. A platform that visualizes the political bias (left, center, right) of various media outlets on a single news story, enabling multi-faceted information comparison.",
-    "description": "Description for Ground News"
-  },
-  "news.site.int.ss.ground.title": {
-    "message": "Ground News",
-    "description": "Title for Ground News"
-  },
-  "news.site.int.ss.icij.desc": {
-    "message": "A non-profit investigative reporting organization founded in the U.S. in 1997 by Charles Lewis. Known for the 'Panama Papers' and 'Pandora Papers,' it pursues wrongdoing through cross-border collaboration.",
-    "description": "Description for ICIJ"
-  },
-  "news.site.int.ss.icij.title": {
-    "message": "ICIJ",
-    "description": "Title for ICIJ"
-  },
-  "news.site.int.ss.intercept.desc": {
-    "message": "Founded in 2014 by Glenn Greenwald and others, operated by First Look Media. Sparked by the reporting on the Edward Snowden documents, it advocates for confrontational journalism on issues like national surveillance, war, and human rights.",
-    "description": "Description for The Intercept"
-  },
-  "news.site.int.ss.intercept.title": {
-    "message": "The Intercept",
-    "description": "Title for The Intercept"
-  },
-  "news.site.int.ss.marshall.desc": {
-    "message": "A non-profit news organization founded in the U.S. in 2014 by Neil Barsky. It focuses specifically on the U.S. criminal justice system, aiming to raise public awareness of its inequalities.",
-    "description": "Description for The Marshall Project"
-  },
-  "news.site.int.ss.marshall.title": {
-    "message": "The Marshall Project",
-    "description": "Title for The Marshall Project"
-  },
-  "news.site.int.ss.newsnow.desc": {
-    "message": "A news aggregator that compiles the latest headlines from news sources worldwide in real-time.",
-    "description": "Description for NewsNow"
-  },
-  "news.site.int.ss.newsnow.title": {
-    "message": "NewsNow",
-    "description": "Title for NewsNow"
-  },
-  "news.site.int.ss.occrp.desc": {
-    "message": "Founded in 2006 by Drew Sullivan and Paul Radu. An international non-profit network of investigative journalists specializing in organized crime and corruption. It pursues cross-border crime in collaboration with media outlets worldwide.",
-    "description": "Description for OCCRP"
-  },
-  "news.site.int.ss.occrp.title": {
-    "message": "OCCRP",
-    "description": "Title for OCCRP"
-  },
-  "news.site.int.ss.propublica.desc": {
-    "message": "A non-profit investigative journalism organization founded in the U.S. in 2007 by Paul Steiger. With a mission to expose abuses of power and betrayals of public trust, it is funded by the Sandler Foundation and has won numerous Pulitzer Prizes.",
-    "description": "Description for ProPublica"
-  },
-  "news.site.int.ss.propublica.title": {
-    "message": "ProPublica",
-    "description": "Title for ProPublica"
-  },
-  "news.site.int.ts.geekwire.desc": {
-    "message": "Reports on technology, startups, and innovation, with a focus on Seattle and the Pacific Northwest.",
-    "description": "Description for GeekWire"
-  },
-  "news.site.int.ts.geekwire.title": {
-    "message": "GeekWire",
-    "description": "Title for GeekWire"
-  },
-  "news.site.int.ts.mit.desc": {
-    "message": "Founded and operated by the Massachusetts Institute of Technology (MIT) since 1899. One of the world's most authoritative technology magazines, analyzing the commercial, political, and social impacts of emerging technologies.",
-    "description": "Description for MIT Technology Review"
-  },
-  "news.site.int.ts.mit.title": {
-    "message": "MIT Technology Review",
-    "description": "Title for MIT Technology Review"
-  },
-  "news.site.int.ts.sciencedaily.desc": {
-    "message": "Daily news that delivers the latest scientific research press releases.",
-    "description": "Description for ScienceDaily"
-  },
-  "news.site.int.ts.sciencedaily.title": {
-    "message": "ScienceDaily",
-    "description": "Title for ScienceDaily"
-  },
-  "news.site.int.ts.scitech.desc": {
-    "message": "A media outlet that provides a wide range of the latest research and news in the fields of science and technology.",
-    "description": "Description for SciTechDaily"
-  },
-  "news.site.int.ts.scitech.title": {
-    "message": "SciTechDaily",
-    "description": "Title for SciTechDaily"
-  },
-  "news.site.int.ts.techcrunch.desc": {
-    "message": "Founded in the U.S. in 2005 by Michael Arrington and operated by Yahoo Inc. A leading media outlet reporting on startups and the technology industry, it hosts the large-scale conference 'Disrupt.'",
-    "description": "Description for TechCrunch"
-  },
-  "news.site.int.ts.techcrunch.title": {
-    "message": "TechCrunch",
-    "description": "Title for TechCrunch"
-  },
-  "news.site.int.ts.wired.desc": {
-    "message": "Founded in the U.S. in 1993 by Louis Rossetto and others, operated by Condé Nast. A media outlet that has influenced the world with its style of deeply exploring the impact of technology on culture, economy, and politics, and contemplating the future.",
-    "description": "Description for WIRED"
-  },
-  "news.site.int.ts.wired.title": {
-    "message": "WIRED",
-    "description": "Title for WIRED"
-  },
-  "news.site.int.ge.polymarket.title": {
-    "message": "Polymarket",
-    "description": "Title for Polymarket"
-  },
-  "news.site.int.ge.polymarket.desc": {
-    "message": "Founded in 2020 by Shayne Coplan. A prediction market platform utilizing blockchain technology. Users bet on the outcomes of various events such as politics, economics, and current affairs, forming future predictions based on collective intelligence.",
-    "description": "Description for Polymarket"
-  },
-  "news.site.jp.gp.47news.title": {
-    "message": "47NEWS",
-    "description": "Title for 47NEWS"
-  },
-  "news.site.jp.gp.47news.desc": {
-    "message": "Established in 2006. Operated by ZENKOKU SHIMBUN NET Co., Ltd. Kyodo News and 52 local newspapers across Japan participate, providing news from both central and regional perspectives.",
-    "description": "Description for 47NEWS"
-  },
-  "news.site.jp.ge.bi.desc": {
-    "message": "The Japanese edition of the economic media founded in the U.S. in 2007 by Henry Blodget, operated by Mediagene Inc. It primarily targets millennials and delivers news on business, finance, and technology.",
-    "description": "Description for Business Insider Japan"
-  },
-  "news.site.jp.ge.bi.title": {
-    "message": "Business Insider Japan",
-    "description": "Title for Business Insider Japan"
-  },
-  "news.site.jp.ge.bloomberg.desc": {
-    "message": "The Japanese version of Bloomberg L.P., founded in the U.S. in 1981 by Michael Bloomberg. Its core business is the financial information terminal 'Bloomberg Terminal,' and it has a significant influence on finance and the economy.",
-    "description": "Description for Bloomberg Japan"
-  },
-  "news.site.jp.ge.bloomberg.title": {
-    "message": "Bloomberg Japan",
-    "description": "Title for Bloomberg Japan"
-  },
-  "news.site.jp.ge.minkabu.desc": {
-    "message": "Founded in 2006 by Ken Uryu. Operated by MINKABU THE INFONOID, Inc. It provides unique content specialized in financial information for individual investors, such as stock price forecasts using AI and cloud input.",
-    "description": "Description for Minkabu"
-  },
-  "news.site.jp.ge.minkabu.title": {
-    "message": "Minkabu",
-    "description": "Title for Minkabu"
-  },
-  "news.site.jp.ge.nikkei.desc": {
-    "message": "Founded in 1876 by Takashi Masuda (founder of Mitsui & Co.). Operated by Nikkei Inc. Known for its specialized economic reporting and is the source of the Nikkei Stock Average. Acquired the Financial Times in 2015.",
-    "description": "Description for Nikkei"
-  },
-  "news.site.jp.ge.nikkei.title": {
-    "message": "Nikkei",
-    "description": "Title for Nikkei"
-  },
-  "news.site.jp.ge.reuters.desc": {
-    "message": "The Japanese version of the international news agency founded in the UK in 1851 by Paul Julius Reuter. Operated by Thomson Reuters, it is one of the world's top three news agencies with a fast and global reporting network.",
-    "description": "Description for Reuters Japan"
-  },
-  "news.site.jp.ge.reuters.title": {
-    "message": "Reuters Japan",
-    "description": "Title for Reuters Japan"
-  },
-  "news.site.jp.ge.sekaikabuka.desc": {
-    "message": "A site specialized in displaying market data for major global stock indices, currencies, commodity futures, and cryptocurrencies at a glance.",
-    "description": "Description for Sekai Kabuka"
-  },
-  "news.site.jp.ge.sekaikabuka.title": {
-    "message": "Sekai Kabuka (World Stock Prices)",
-    "description": "Title for Sekai Kabuka"
-  },
-  "news.site.jp.ge.yahoo.desc": {
-    "message": "Service launched in 1996. Operated by LINE Yahoo Corporation. Originating from Yahoo! Inc., founded by Jerry Yang and others. Japan's largest news aggregator, distributing news from numerous content providers.",
-    "description": "Description for Yahoo! JAPAN News"
-  },
-  "news.site.jp.ge.yahoo.title": {
-    "message": "Yahoo! JAPAN News",
-    "description": "Title for Yahoo! JAPAN News"
-  },
-  "news.category.general-politics-jp": {
-    "message": "General & Politics",
-    "description": "Category title for Japanese general and politics news"
-  },
-  "news.site.jp.gp.mainichi.title": {
-    "message": "Mainichi Shimbun",
-    "description": "Title for Mainichi Shimbun"
-  },
-  "news.site.jp.gp.mainichi.desc": {
-    "message": "Founded in 1872 as the 'Tokyo Nichi Nichi Shimbun.' Operated by The Mainichi Newspapers Co., Ltd. One of Japan's major national newspapers. It features the column 'Yoroku' on its front page and hosts events such as the National High School Baseball Invitational Tournament and the Mainichi Film Concours.",
-    "description": "Description for Mainichi Shimbun"
-  },
-  "news.site.jp.gp.yomiuri.title": {
-    "message": "Yomiuri Shimbun",
-    "description": "Title for Yomiuri Shimbun"
-  },
-  "news.site.jp.gp.yomiuri.desc": {
-    "message": "Founded in 1874 by Takashi Koyasu and others from the Nisshusha company. Operated by The Yomiuri Shimbun Holdings. One of Japan's major national newspapers. It features the column 'Henshu Techo' on its front page and owns the professional baseball team, the Yomiuri Giants.",
-    "description": "Description for Yomiuri Shimbun"
-  },
-  "news.site.jp.gp.asahi.title": {
-    "message": "Asahi Shimbun",
-    "description": "Title for Asahi Shimbun"
-  },
-  "news.site.jp.gp.asahi.desc": {
-    "message": "Founded in Osaka in 1879 by Ryohei Murayama, Riichi Ueno, and others. Operated by The Asahi Shimbun Company. One of Japan's major national newspapers. It features the column 'Tensei Jingo,' which has been running since 1904, on its front page and hosts events like the National High School Baseball Championship.",
-    "description": "Description for Asahi Shimbun"
-  },
-  "news.site.jp.gp.sankei.title": {
-    "message": "Sankei Shimbun",
-    "description": "Title for Sankei Shimbun"
-  },
-  "news.site.jp.gp.sankei.desc": {
-    "message": "Its predecessor was the 'Nihon Kogyo Shimbun,' founded in Osaka in 1933 by Hisakichi Maeda. Operated by Sankei Shimbun Co., Ltd. Its official name is the 'Sangyo Keizai Shimbun.' It is one of the national newspapers and features the column 'Sankeisho' on its front page.",
-    "description": "Description for Sankei Shimbun"
-  },
-  "news.site.jp.gp.jiji.title": {
-    "message": "Jiji Press",
-    "description": "Title for Jiji Press"
-  },
-  "news.site.jp.gp.jiji.desc": {
-    "message": "Established in 1945. Operated by Jiji Press Ltd. A news agency that distributes domestic and international news to media organizations such as newspapers and broadcasting stations. It also provides news to the general public through its website 'jiji.com'.",
-    "description": "Description for Jiji Press"
-  },
-  "news.site.jp.gp.seikyo.title": {
-    "message": "Seikyo Shimbun",
-    "description": "Title for Seikyo Shimbun"
-  },
-  "news.site.jp.gp.seikyo.desc": {
-    "message": "Founded in 1951. The official newspaper of the religious corporation Soka Gakkai, operated by the Seikyo Shimbun Co. It covers the organization's activities, philosophy, members' testimonials, and explanations of Buddhist principles.",
-    "description": "Description for Seikyo Shimbun"
-  },
-  "news.site.jp.gp.akahata.title": {
-    "message": "Shimbun Akahata",
-    "description": "Title for Shimbun Akahata"
-  },
-  "news.site.jp.gp.akahata.desc": {
-    "message": "Founded in 1928. The official newspaper of the Central Committee of the Japanese Communist Party. In addition to the party's policies and views, it publishes exposé articles based on its own investigations. It has a daily edition and a once-a-week 'Sunday Edition'.",
-    "description": "Description for Shimbun Akahata"
-  },  
-  "news.site.jp.lw.tenki.desc": {
-    "message": "Official weather forecast media of the Japan Weather Association. Also provides extensive disaster prevention information.",
-    "description": "Description for tenki.jp"
-  },
-  "news.site.jp.lw.tenki.title": {
-    "message": "tenki.jp",
-    "description": "Title for tenki.jp"
-  },
-  "news.site.jp.lw.yahoo.desc": {
-    "message": "Weather forecasts and disaster information provided by Yahoo! Japan.",
-    "description": "Description for Yahoo! Weather & Disasters"
-  },
-  "news.site.jp.lw.yahoo.title": {
-    "message": "Yahoo! Weather & Disasters",
-    "description": "Title for Yahoo! Weather & Disasters"
-  },
-  "news.site.jp.pr.kyodo.desc": {
-    "message": "A press release distribution service operated by Kyodo News. Provides reliable corporate information.",
-    "description": "Description for Kyodo News PR Wire"
-  },
-  "news.site.jp.pr.kyodo.title": {
-    "message": "Kyodo News PR Wire",
-    "description": "Title for Kyodo News PR Wire"
-  },
-  "news.site.jp.pr.prtimes.desc": {
-    "message": "One of Japan's largest press release distribution services. Get the latest corporate information quickly.",
-    "description": "Description for PR TIMES"
-  },
-  "news.site.jp.pr.prtimes.title": {
-    "message": "PR TIMES",
-    "description": "Title for PR TIMES"
-  },
-  "news.site.jp.sec.ipa.desc": {
-    "message": "A public organization under the jurisdiction of the Ministry of Economy, Trade and Industry, established in 2004. It supports Japan's national IT strategy from a technical standpoint and is responsible for publishing the '10 Major Security Threats' and conducting the Information Technology Engineers Examination.",
-    "description": "Description for IPA"
-  },
-  "news.site.jp.sec.ipa.title": {
-    "message": "IPA (Information-technology Promotion Agency, Japan)",
-    "description": "Title for IPA"
-  },
-  "news.site.jp.sec.secnext.desc": {
-    "message": "Launched in 2004. A professional news site for cybersecurity and personal information protection operated by News Gaia Inc. It promptly reports on incidents and vulnerabilities.",
-    "description": "Description for Security NEXT"
-  },
-  "news.site.jp.sec.secnext.title": {
-    "message": "Security NEXT",
-    "description": "Title for Security NEXT"
-  },
-  "news.site.jp.ss.ceek.desc": {
-    "message": "A news search engine that allows cross-searching of major domestic news.",
-    "description": "Description for CEEK.JP News"
-  },
-  "news.site.jp.ss.ceek.title": {
-    "message": "CEEK.JP News",
-    "description": "Title for CEEK.JP News"
-  },
-  "news.site.jp.ts.ascii.desc": {
-    "message": "A web media originating from 'Monthly ASCII,' founded in 1977 by Kazuhiko Nishi. Operated by KADOKAWA ASCII Research Laboratories, Inc. It has a history since the dawn of personal computers in Japan and provides timely news on PCs, IT, and gadgets.",
-    "description": "Description for ASCII.jp"
-  },
-  "news.site.jp.ts.ascii.title": {
-    "message": "ASCII.jp",
-    "description": "Title for ASCII.jp"
-  },
-  "news.site.jp.ts.cnet.desc": {
-    "message": "The Japanese version of the technology news site founded in the U.S. in 1994 by Halsey Minor and others. Operated by Asahi Interactive, Inc. It has a strong focus on IT product reviews and information on corporate solutions.",
-    "description": "Description for CNET Japan"
-  },
-  "news.site.jp.ts.cnet.title": {
-    "message": "CNET Japan",
-    "description": "Title for CNET Japan"
-  },
-  "news.site.jp.ts.gigazine.desc": {
-    "message": "Launched in 2000 by Keito Yamazaki and operated by OSA Inc. Known for its in-depth articles based on unique perspectives and detailed reporting. It covers a wide range of topics from gadget reviews to science and food culture.",
-    "description": "Description for GIGAZINE"
-  },
-  "news.site.jp.ts.gigazine.title": {
-    "message": "GIGAZINE",
-    "description": "Title for GIGAZINE"
-  },
-  "news.site.jp.ts.mit.desc": {
-    "message": "The Japanese edition of the world's oldest technology magazine, founded in 1899 by the Massachusetts Institute of Technology (MIT). Operated by KADOKAWA ASCII Research Laboratories, Inc. It analyzes the social and economic impact of new technologies.",
-    "description": "Description for MIT Technology Review Japan"
-  },
-  "news.site.jp.ts.mit.title": {
-    "message": "MIT Technology Review Japan",
-    "description": "Title for MIT Technology Review Japan"
-  },
-  "news.site.jp.ts.wired.desc": {
-    "message": "The Japanese edition of the technology culture magazine founded in the U.S. in 1993 by Louis Rossetto and others. Operated by Condé Nast Japan, it is known for exploring the impact of technology on culture, society, and lifestyle with future-oriented insights.",
-    "description": "Description for WIRED Japan"
-  },
-  "news.site.jp.ts.wired.title": {
-    "message": "WIRED Japan",
-    "description": "Title for WIRED Japan"
-  },
-  "news.site.jp.tv.asahi.desc": {
-    "message": "The news site of TV Asahi. Disseminates information from a unique perspective.",
-    "description": "Description for TV Asahi NEWS"
-  },
-  "news.site.jp.tv.asahi.title": {
-    "message": "TV Asahi NEWS",
-    "description": "Title for TV Asahi NEWS"
-  },
-  "news.site.jp.tv.fuji.desc": {
-    "message": "News distribution site by the news division of Fuji Television.",
-    "description": "Description for Fuji TV NEWS"
-  },
-  "news.site.jp.tv.fuji.title": {
-    "message": "Fuji TV NEWS",
-    "description": "Title for Fuji TV NEWS"
-  },
-  "news.site.jp.tv.nhk.desc": {
-    "message": "The comprehensive news site of the Japan Broadcasting Corporation (NHK). Provides a wide range of domestic and international news.",
-    "description": "Description for NHK NEWS WEB"
-  },
-  "news.site.jp.tv.nhk.title": {
-    "message": "NHK NEWS WEB",
-    "description": "Title for NHK NEWS WEB"
-  },
-  "news.site.jp.tv.ntv.desc": {
-    "message": "The news site of Nippon Television. Provides timely news.",
-    "description": "Description for NTV NEWS"
-  },
-  "news.site.jp.tv.ntv.title": {
-    "message": "NTV NEWS",
-    "description": "Title for NTV NEWS"
-  },
-  "news.site.jp.tv.tbs.desc": {
-    "message": "The news site of TBS Television. Reports in detail on current events and social issues.",
-    "description": "Description for TBS NEWS"
-  },
-  "news.site.jp.tv.tbs.title": {
-    "message": "TBS NEWS",
-    "description": "Title for TBS NEWS"
-  },
-  "news.site.jp.tv.tx.desc": {
-    "message": "A specialized economic and business news site from TV Tokyo.",
-    "description": "Description for TV Tokyo BIZ"
-  },
-  "news.site.jp.tv.tx.title": {
-    "message": "TV Tokyo BIZ",
-    "description": "Title for TV Tokyo BIZ"
-  },
-  "links.majorCategory.academicResearch": {
-    "message": "Papers",
-    "description": "Category title for academic research links"
-  },
-  "links.majorCategory.backend": {
-    "message": "Backend",
-    "description": "Category title for backend links"
-  },
-  "links.majorCategory.cloudInfra": {
-    "message": "Cloud & Infrastructure",
-    "description": "Category title for cloud and infrastructure links"
-  },
-  "links.majorCategory.data": {
-    "message": "Data",
-    "description": "Category title for data-related links"
-  },
-  "links.majorCategory.documentation": {
-    "message": "Documentation & Diagramming",
-    "description": "Category title for documentation and diagramming tools"
-  },
-  "links.majorCategory.frontend": {
-    "message": "Frontend",
-    "description": "Category title for frontend links"
-  },
-  "links.majorCategory.learningCommunity": {
-    "message": "Learning & Community",
-    "description": "Category title for learning and community links"
-  },
-  "links.majorCategory.security": {
-    "message": "Security",
-    "description": "Category title for security links"
-  },
-  "links.majorCategory.standardsOrgs": {
-    "message": "Standards Organizations",
-    "description": "Category title for standards organizations"
-  },
-  "links.majorCategory.versionControl": {
-    "message": "Version Control",
-    "description": "Category title for version control links"
-  },
-  "links.site.academic.acm.desc": {
-    "message": "Covers all journals and international conference proceedings published by the ACM, the largest academic society in computing.",
-    "description": "Description for ACM Digital Library"
-  },
-  "links.site.academic.acm.title": {
-    "message": "ACM Digital Library",
-    "description": "Title for ACM Digital Library"
-  },
-  "links.site.academic.arxiv.desc": {
-    "message": "A pioneering open-access platform for free public access to pre-peer-reviewed papers in physics, mathematics, CS, etc.",
-    "description": "Description for arXiv"
-  },
-  "links.site.academic.arxiv.title": {
-    "message": "arXiv",
-    "description": "Title for arXiv"
-  },
-  "links.site.academic.citeseerx.desc": {
-    "message": "A search engine that automatically extracts and links citation information for papers in the computer and information science fields.",
-    "description": "Description for CiteSeerX"
-  },
-  "links.site.academic.citeseerx.title": {
-    "message": "CiteSeerX",
-    "description": "Title for CiteSeerX"
-  },
-  "links.site.academic.dblp.desc": {
-    "message": "A bibliographic information database specializing in CS, accurately tracking researchers' paper lists and co-author networks.",
-    "description": "Description for DBLP"
-  },
-  "links.site.academic.dblp.title": {
-    "message": "DBLP",
-    "description": "Title for DBLP"
-  },
-  "links.site.academic.doaj.desc": {
-    "message": "A directory that includes only high-quality, reliable open access journals that meet quality standards.",
-    "description": "Description for DOAJ"
-  },
-  "links.site.academic.doaj.title": {
-    "message": "DOAJ",
-    "description": "Title for DOAJ"
-  },
-  "links.site.academic.ieee.desc": {
-    "message": "A digital library that provides academic journals, papers, and technical standards in electrical engineering and CS published by IEEE.",
-    "description": "Description for IEEE Xplore"
-  },
-  "links.site.academic.ieee.title": {
-    "message": "IEEE Xplore",
-    "description": "Title for IEEE Xplore"
-  },
-  "links.site.academic.medrxiv.desc": {
-    "message": "A preprint server specializing in medicine, clinical, and health sciences. Shares the latest research findings promptly.",
-    "description": "Description for medRxiv"
-  },
-  "links.site.academic.medrxiv.title": {
-    "message": "medRxiv",
-    "description": "Title for medRxiv"
-  },
-  "links.site.academic.researchrabbit.desc": {
-    "message": "A literature survey tool that visually explores related papers to foster new discoveries. Also known as the 'Spotify for Papers.'",
-    "description": "Description for ResearchRabbit"
-  },
-  "links.site.academic.researchrabbit.title": {
-    "message": "ResearchRabbit",
-    "description": "Title for ResearchRabbit"
-  },
-  "links.site.academic.scholar.desc": {
-    "message": "A search engine that allows cross-searching of papers and books in all academic fields and tracks citation counts.",
-    "description": "Description for Google Scholar"
-  },
-  "links.site.academic.scholar.title": {
-    "message": "Google Scholar",
-    "description": "Title for Google Scholar"
-  },
-  "links.site.academic.scispace.desc": {
-    "message": "A platform that uses AI to assist in searching, understanding, and writing research papers, contributing to the efficiency of literature reviews.",
-    "description": "Description for Scispace"
-  },
-  "links.site.academic.scispace.title": {
-    "message": "Scispace",
-    "description": "Title for Scispace"
-  },
-  "links.site.academic.semanticscholar.desc": {
-    "message": "Utilizes AI to support literature searches by automatically generating paper summaries and visualizing high-impact citations.",
-    "description": "Description for Semantic Scholar"
-  },
-  "links.site.academic.semanticscholar.title": {
-    "message": "Semantic Scholar",
-    "description": "Title for Semantic Scholar"
-  },
-  "links.site.academic.ssrn.desc": {
-    "message": "One of the world's largest platforms for sharing working papers and preprints, primarily in the social sciences and humanities.",
-    "description": "Description for SSRN"
-  },
-  "links.site.academic.ssrn.title": {
-    "message": "SSRN",
-    "description": "Title for SSRN"
-  },
-  "links.site.academic.techrxiv.desc": {
-    "message": "A preprint server for electrical engineering and CS fields, established by IEEE.",
-    "description": "Description for TechRxiv"
-  },
-  "links.site.academic.mesh.title": {
-    "message": "MeSH",
-    "description": "Title for MeSH"
-  },
-  "links.site.academic.mesh.desc": {
-    "message": "Medical Subject Headings controlled vocabulary maintained by the National Library of Medicine. Hierarchically structured terms enhance literature search efficiency in PubMed and other databases.",
-    "description": "Description for MeSH"
-  },
-  "links.site.academic.thesaurus.title": {
-    "message": "Thesaurus Browser",
-    "description": "Title for Thesaurus Browser"
-  },
-  "links.site.academic.thesaurus.desc": {
-    "message": "Search tool for medical controlled vocabulary and MeSH terms with direct links to related PubMed articles.",
-    "description": "Description for Thesaurus Browser"
-  },
-  "links.site.academic.techrxiv.title": {
-    "message": "TechRxiv",
-    "description": "Title for TechRxiv"
-  },
-  "links.site.academic.elicit.desc": {
-    "message": "AI research assistant automates from paper search to summarization. Efficiently discover and analyze relevant papers for research questions.",
-    "description": "Description for Elicit"
-  },
-  "links.site.academic.elicit.title": {
-    "message": "Elicit",
-    "description": "Title for Elicit"
-  },
-  "links.site.academic.pubmed.title": {
-    "message": "PubMed",
-    "description": "Title for PubMed"
-  },
-  "links.site.academic.pubmed.desc": {
-    "message": "World's largest database for medical and life sciences literature. Search peer-reviewed papers including MEDLINE.",
-    "description": "Description for PubMed"
-  },
-  "links.site.academic.mdpi.desc": {
-    "message": "Swiss-based multidisciplinary academic publisher. Over 390 peer-reviewed open access journals freely available under CC BY license.",
-    "description": "Description for MDPI"
-  },
-  "links.site.academic.mdpi.title": {
-    "message": "MDPI",
-    "description": "Title for MDPI"
-  },
-  "links.site.ai.kaggle.desc": {
-    "message": "The world's largest community for data science competitions, public datasets, and learning resources.",
-    "description": "Description for Kaggle Learn"
-  },
-  "links.site.ai.kaggle.title": {
-    "message": "Kaggle Learn",
-    "description": "Title for Kaggle Learn"
-  },
-  "links.site.ai.kubeflow.desc": {
-    "message": "A platform for deploying and managing ML workflows on Kubernetes.",
-    "description": "Description for Kubeflow Docs"
-  },
-  "links.site.ai.kubeflow.title": {
-    "message": "Kubeflow Docs",
-    "description": "Title for Kubeflow Docs"
-  },
-  "links.site.backend.django.desc": {
-    "message": "A Python framework for rapidly developing robust and scalable web applications.",
-    "description": "Description for Django Docs"
-  },
-  "links.site.backend.django.title": {
-    "message": "Django Docs",
-    "description": "Title for Django Docs"
-  },
-  "links.site.backend.drf.desc": {
-    "message": "A toolkit for building powerful and flexible Web APIs with Django.",
-    "description": "Description for Django REST Framework"
-  },
-  "links.site.backend.drf.title": {
-    "message": "Django REST Framework",
-    "description": "Title for Django REST Framework"
-  },
-  "links.site.backend.fastapi.desc": {
-    "message": "A modern, fast web framework based on Python 3.6+ type hints.",
-    "description": "Description for FastAPI"
-  },
-  "links.site.backend.fastapi.title": {
-    "message": "FastAPI",
-    "description": "Title for FastAPI"
-  },
-  "links.site.backend.flask.desc": {
-    "message": "A lightweight and extensible Python micro web framework.",
-    "description": "Description for Flask"
-  },
-  "links.site.backend.flask.title": {
-    "message": "Flask",
-    "description": "Title for Flask"
-  },
-  "links.site.backend.nestjs.desc": {
-    "message": "A Node.js framework for building efficient and scalable server-side applications.",
-    "description": "Description for NestJS"
-  },
-  "links.site.backend.nestjs.title": {
-    "message": "NestJS",
-    "description": "Title for NestJS"
-  },
-  "links.site.backend.node.desc": {
-    "message": "Official documentation for the asynchronous event-driven JavaScript runtime environment.",
-    "description": "Description for Node.js Docs"
-  },
-  "links.site.backend.node.title": {
-    "message": "Node.js Docs",
-    "description": "Title for Node.js Docs"
-  },
-  "links.site.backend.openapi.desc": {
-    "message": "A standard specification for describing RESTful APIs. Rich ecosystem.",
-    "description": "Description for OpenAPI Specification"
-  },
-  "links.site.backend.openapi.title": {
-    "message": "OpenAPI Specification",
-    "description": "Title for OpenAPI Specification"
-  },
-  "links.site.backend.python.desc": {
-    "message": "Official Python 3 documentation, from language specifications to the standard library.",
-    "description": "Description for Python 3 Docs"
-  },
-  "links.site.backend.python.title": {
-    "message": "Python 3 Docs",
-    "description": "Title for Python 3 Docs"
-  },
-  "links.site.backend.langchain.title": {
-    "message": "LangChain Docs",
-    "description": "Title for LangChain Docs"
-  },
-  "links.site.backend.langchain.desc": {
-    "message": "A Python framework for developing applications that leverage Large Language Models (LLMs).",
-    "description": "Description for LangChain Docs"
-  },
-  "links.site.cloud.docker.desc": {
-    "message": "The de facto standard for container virtualization technology. Official documentation.",
-    "description": "Description for Docker Docs"
-  },
-  "links.site.cloud.docker.title": {
-    "message": "Docker Docs",
-    "description": "Title for Docker Docs"
-  },
-  "links.site.cloud.gcb.desc": {
-    "message": "A managed service for running CI/CD pipelines on GCP.",
-    "description": "Description for Google Cloud Build"
-  },
-  "links.site.cloud.gcb.title": {
-    "message": "Google Cloud Build",
-    "description": "Title for Google Cloud Build"
-  },
-  "links.site.cloud.gcp.desc": {
-    "message": "Complete GCP documentation, including quickstarts, tutorials, and comprehensive guides.",
-    "description": "Description for Google Cloud Docs"
-  },
-  "links.site.cloud.gcp.title": {
-    "message": "Google Cloud Docs",
-    "description": "Title for Google Cloud Docs"
-  },
-  "links.site.cloud.gcpArch.desc": {
-    "message": "The Cloud Architecture Center provides reference architectures, design guidance, and best practices.",
-    "description": "Description for Cloud Architecture Center"
-  },
-  "links.site.cloud.gcpArch.title": {
-    "message": "Cloud Architecture Center",
-    "description": "Title for Cloud Architecture Center"
-  },
-  "links.site.cloud.ghactions.desc": {
-    "message": "A CI/CD platform integrated with GitHub. Automates workflows.",
-    "description": "Description for GitHub Actions"
-  },
-  "links.site.cloud.ghactions.title": {
-    "message": "GitHub Actions",
-    "description": "Title for GitHub Actions"
-  },
-  "links.site.cloud.terraform.desc": {
-    "message": "Official documentation for the leading tool for achieving Infrastructure as Code.",
-    "description": "Description for Terraform Docs"
-  },
-  "links.site.cloud.terraform.title": {
-    "message": "Terraform Docs",
-    "description": "Title for Terraform Docs"
-  },
-  "links.site.data.bigquery.desc": {
-    "message": "A serverless data warehouse that can analyze petabytes of data.",
-    "description": "Description for BigQuery Docs"
-  },
-  "links.site.data.bigquery.title": {
-    "message": "BigQuery Docs",
-    "description": "Title for BigQuery Docs"
-  },
-  "links.site.data.dbt.desc": {
-    "message": "The 'T' in ELT tool that helps with data transformation in a data warehouse.",
-    "description": "Description for dbt Docs"
-  },
-  "links.site.data.dbt.title": {
-    "message": "dbt Docs",
-    "description": "Title for dbt Docs"
-  },
-  "links.site.data.sqlzoo.desc": {
-    "message": "A site where you can learn SQL practically through interactive tutorials and exercises.",
-    "description": "Description for SQLZoo"
-  },
-  "links.site.data.sqlzoo.title": {
-    "message": "SQLZoo",
-    "description": "Title for SQLZoo"
-  },
-  "links.site.devtools.geeksforgeeks.desc": {
-    "message": "A site rich in articles, tutorials, and problems on computer science topics.",
-    "description": "Description for GeeksforGeeks"
-  },
-  "links.site.devtools.geeksforgeeks.title": {
-    "message": "GeeksforGeeks",
-    "description": "Title for GeeksforGeeks"
-  },
-  "links.site.devtools.git.desc": {
-    "message": "Official documentation for the distributed version control system Git.",
-    "description": "Description for Git Official Docs"
-  },
-  "links.site.devtools.git.title": {
-    "message": "Git Official Docs",
-    "description": "Title for Git Official Docs"
-  },
-  "links.site.devtools.github.desc": {
-    "message": "Official documentation for GitHub features like code hosting, collaborative development, and Actions.",
-    "description": "Description for GitHub Docs"
-  },
-  "links.site.devtools.github.title": {
-    "message": "GitHub Docs",
-    "description": "Title for GitHub Docs"
-  },
-  "links.site.devtools.hackernews.desc": {
-    "message": "A tech news site run by Y Combinator. A place where geeky discussions from around the world gather.",
-    "description": "Description for Hacker News"
-  },
-  "links.site.devtools.hackernews.title": {
-    "message": "Hacker News",
-    "description": "Title for Hacker News"
-  },
-  "links.site.devtools.learngit.desc": {
-    "message": "An excellent learning tool to learn Git branching operations visually and interactively.",
-    "description": "Description for Learn Git Branching"
-  },
-  "links.site.devtools.learngit.title": {
-    "message": "Learn Git Branching",
-    "description": "Title for Learn Git Branching"
-  },
-  "links.site.devtools.leetcode.desc": {
-    "message": "A collection of algorithm and data structure problems, ideal for preparing for technical interviews.",
-    "description": "Description for LeetCode"
-  },
-  "links.site.devtools.leetcode.title": {
-    "message": "LeetCode",
-    "description": "Title for LeetCode"
-  },
-  "links.site.devtools.roadmap.desc": {
-    "message": "Learning roadmaps for various technical fields for developers. Shows you what to learn next.",
-    "description": "Description for roadmap.sh"
-  },
-  "links.site.devtools.roadmap.title": {
-    "message": "roadmap.sh",
-    "description": "Title for roadmap.sh"
-  },
-  "links.site.devtools.stackoverflow.desc": {
-    "message": "A Q&A community where developers from all over the world ask questions and share knowledge.",
-    "description": "Description for Stack Overflow"
-  },
-  "links.site.devtools.stackoverflow.title": {
-    "message": "Stack Overflow",
-    "description": "Title for Stack Overflow"
-  },
-  "links.site.docs.docusaurus.desc": {
-    "message": "A static site generator built with React. Ideal for building documentation sites.",
-    "description": "Description for Docusaurus"
-  },
-  "links.site.docs.docusaurus.title": {
-    "message": "Docusaurus",
-    "description": "Title for Docusaurus"
-  },
-  "links.site.docs.mdx.title": {
-    "message": "MDX",
-    "description": "Title for MDX"
-  },
-  "links.site.docs.mdx.desc": {
-    "message": "Format that enables JSX components within Markdown. Perfect for creating interactive documentation and blog posts.",
-    "description": "Description for MDX"
-  },  
-  "links.site.docs.drawio.desc": {
-    "message": "A powerful free diagramming tool that can be used in the browser. Supports creating all kinds of diagrams, including flowcharts, UML, and network diagrams.",
-    "description": "Description for draw.io"
-  },
-  "links.site.docs.drawio.title": {
-    "message": "draw.io",
-    "description": "Title for draw.io"
-  },
-  "links.site.docs.excalidraw.desc": {
-    "message": "An online whiteboard for quickly creating hand-drawn style diagrams. Powerful collaborative editing features make it ideal for team brainstorming and design discussions.",
-    "description": "Description for Excalidraw"
-  },
-  "links.site.docs.excalidraw.title": {
-    "message": "Excalidraw",
-    "description": "Title for Excalidraw"
-  },
-  "links.site.docs.figma.desc": {
-    "message": "A collaborative platform for everything from UI design to chart creation. An online tool widely used in the engineering design process.",
-    "description": "Description for Figma"
-  },
-  "links.site.docs.figma.title": {
-    "message": "Figma",
-    "description": "Title for Figma"
-  },
-  "links.site.docs.markdown.desc": {
-    "message": "A comprehensive guide covering everything from the basics of Markdown syntax to extended features.",
-    "description": "Description for Markdown Guide"
-  },
-  "links.site.docs.markdown.title": {
-    "message": "Markdown Guide",
-    "description": "Title for Markdown Guide"
-  },
-  "links.site.docs.mermaid.desc": {
-    "message": "A library for generating diagrams and charts from text like Markdown.",
-    "description": "Description for Mermaid"
-  },
-  "links.site.docs.mermaid.title": {
-    "message": "Mermaid",
-    "description": "Title for Mermaid"
-  },
-  "links.site.docs.obsidian.desc": {
-    "message": "A powerful knowledge base tool as a second brain, working on local Markdown files.",
-    "description": "Description for Obsidian"
-  },
-  "links.site.docs.obsidian.title": {
-    "message": "Obsidian",
-    "description": "Title for Obsidian"
-  },
-  "links.site.docs.plantuml.desc": {
-    "message": "A tool for quickly creating UML diagrams from a simple text description language.",
-    "description": "Description for PlantUML"
-  },
-  "links.site.docs.plantuml.title": {
-    "message": "PlantUML",
-    "description": "Title for PlantUML"
-  },
-  "links.site.frontend.caniuse.desc": {
-    "message": "An essential tool for checking the browser support status of front-end technologies.",
-    "description": "Description for Can I use..."
-  },
-  "links.site.frontend.caniuse.title": {
-    "message": "Can I use...",
-    "description": "Title for Can I use..."
-  },
-  "links.site.frontend.mdn.desc": {
-    "message": "The de facto standard for web technologies. Official reference for HTML, CSS, JavaScript, etc.",
-    "description": "Description for MDN Web Docs"
-  },
-  "links.site.frontend.mdn.title": {
-    "message": "MDN Web Docs",
-    "description": "Title for MDN Web Docs"
-  },
-  "links.site.frontend.nextjs.desc": {
-    "message": "A production framework based on React. Offers a variety of rendering strategies.",
-    "description": "Description for Next.js Docs"
-  },
-  "links.site.frontend.nextjs.title": {
-    "message": "Next.js Docs",
-    "description": "Title for Next.js Docs"
-  },
-  "links.site.frontend.playwright.desc": {
-    "message": "A framework for automating reliable end-to-end testing.",
-    "description": "Description for Playwright"
-  },
-  "links.site.frontend.playwright.title": {
-    "message": "Playwright",
-    "description": "Title for Playwright"
-  },
-  "links.site.frontend.react.desc": {
-    "message": "A declarative JavaScript library for building component-based UIs.",
-    "description": "Description for React"
-  },
-  "links.site.frontend.react.title": {
-    "message": "React",
-    "description": "Title for React"
-  },
-  "links.site.frontend.tailwind.desc": {
-    "message": "A utility-first CSS framework. Quickly build custom designs within your HTML.",
-    "description": "Description for Tailwind CSS"
-  },
-  "links.site.frontend.tailwind.title": {
-    "message": "Tailwind CSS",
-    "description": "Title for Tailwind CSS"
-  },
-  "links.site.frontend.ts.desc": {
-    "message": "A superset of JavaScript that introduces static typing, enhancing the robustness of large-scale development.",
-    "description": "Description for TypeScript Docs"
-  },
-  "links.site.frontend.ts.title": {
-    "message": "TypeScript Docs",
-    "description": "Title for TypeScript Docs"
-  },
-  "links.site.frontend.vite.desc": {
-    "message": "A next-generation front-end tool featuring a fast development server and build.",
-    "description": "Description for Vite"
-  },
-  "links.site.frontend.vite.title": {
-    "message": "Vite",
-    "description": "Title for Vite"
-  },
-  "links.site.frontend.webdev.desc": {
-    "message": "A collection of best practices for modern web development by Google. Performance, accessibility, etc.",
-    "description": "Description for web.dev"
-  },
-  "links.site.frontend.webdev.title": {
-    "message": "web.dev",
-    "description": "Title for web.dev"
-  },
-  "links.site.security.awesomesec.desc": {
-    "message": "A curated list of tools, resources, libraries, etc., related to security.",
-    "description": "Description for Awesome Security (GitHub)"
-  },
-  "links.site.security.awesomesec.title": {
-    "message": "Awesome Security (GitHub)",
-    "description": "Title for Awesome Security (GitHub)"
-  },
-  "links.site.security.cisa.desc": {
-    "message": "The U.S. Cybersecurity and Infrastructure Security Agency. Provides threat information and alerts.",
-    "description": "Description for CISA"
-  },
-  "links.site.security.cisa.title": {
-    "message": "CISA",
-    "description": "Title for CISA"
-  },
-  "links.site.security.hacksplaining.desc": {
-    "message": "A site where you can learn about security vulnerabilities through interactive lessons.",
-    "description": "Description for Hacksplaining"
-  },
-  "links.site.security.hacksplaining.title": {
-    "message": "Hacksplaining",
-    "description": "Title for Hacksplaining"
-  },
-  "links.site.security.mitocw.desc": {
-    "message": "Provides free access to MIT lecture materials. Also rich in cybersecurity-related courses.",
-    "description": "Description for MIT OpenCourseWare"
-  },
-  "links.site.security.mitocw.title": {
-    "message": "MIT OpenCourseWare",
-    "description": "Title for MIT OpenCourseWare"
-  },
-  "links.site.security.nist.desc": {
-    "message": "The U.S. National Institute of Standards and Technology. Famous for its Cybersecurity Framework, etc.",
-    "description": "Description for NIST"
-  },
-  "links.site.security.nist.title": {
-    "message": "NIST",
-    "description": "Title for NIST"
-  },
-  "links.site.security.owasp.desc": {
-    "message": "An open community aimed at improving the security of web applications.",
-    "description": "Description for OWASP"
-  },
-  "links.site.security.owasp.title": {
-    "message": "OWASP",
-    "description": "Title for OWASP"
-  },
-  "links.site.security.portswigger.desc": {
-    "message": "A free online learning resource on web security vulnerabilities by PortSwigger.",
-    "description": "Description for Web Security Academy"
-  },
-  "links.site.security.portswigger.title": {
-    "message": "Web Security Academy",
-    "description": "Title for Web Security Academy"
-  },
-  "links.site.security.securitynext.desc": {
-    "message": "A specialized media that provides the latest information on cybersecurity, incidents, vulnerabilities, and countermeasures.",
-    "description": "Description for Security NEXT"
-  },
-  "links.site.security.securitynext.title": {
-    "message": "Security NEXT",
-    "description": "Title for Security NEXT"
-  },
-  "links.site.standards.ietf.desc": {
-    "message": "A volunteer-based organization that develops technical standards for the Internet.",
-    "description": "Description for IETF"
-  },
-  "links.site.standards.ietf.title": {
-    "message": "IETF",
-    "description": "Title for IETF"
-  },
-  "links.site.standards.w3c.desc": {
-    "message": "An international standards organization that develops technical standards for the World Wide Web.",
-    "description": "Description for W3C"
-  },
-  "links.site.standards.w3c.title": {
-    "message": "W3C",
-    "description": "Title for W3C"
-  },
-  "news.site.jp.ss.googlenews.title": {
-    "message": "Google News (Japan)",
-    "description": "The title for Google News (Japan)"
-  },
-  "news.site.jp.ss.googlenews.desc": {
-    "message": "A news aggregator provided by Google. It uses AI to consolidate information from news sources around the world and provides a personalized news feed tailored to the user's interests.",
-    "description": "The description for Google News (Japan)"
-  },
-  "news.site.int.ss.googlenews.title": {
-    "message": "Google News (US)",
-    "description": "The title for Google News (US)"
-  },
-  "news.site.int.ss.googlenews.desc": {
-    "message": "The international (US) version of the news aggregator provided by Google. It utilizes AI to gather information from news sources worldwide, enabling information collection from a global perspective and personalization tailored to the user.",
-    "description": "The description for Google News (US)"
-  },
-  "news.site.int.ts.techmeme.title": {
-    "message": "Techmeme",
-    "description": "The title for Techmeme on the news page"
-  },
-  "news.site.int.ts.techmeme.desc": {
-    "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
-    "description": "The description for Techmeme on the news page"
-  },
-  "links.site.learningCommunity.techmeme.title": {
-    "message": "Techmeme",
-    "description": "The title for Techmeme on the links page"
-  },
-  "links.site.learningCommunity.techmeme.desc": {
-    "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
-    "description": "The description for Techmeme on the links page"
-  },
-  "links.site.frontend.jamstack.title": {
-    "message": "Jamstack",
-    "description": "The title for Jamstack on the links page"
-  },
-  "links.site.frontend.jamstack.desc": {
-    "message": "A modern web architecture named after JavaScript, APIs, and Markup. It aims to improve performance, security, and scalability.",
-    "description": "The description for Jamstack on the links page"
-  },
-  "links.site.cloud.netlify.title": {
-    "message": "Netlify",
-    "description": "The title for Netlify on the links page"
-  },
-  "links.site.cloud.netlify.desc": {
-    "message": "A platform that automates building, deploying, and hosting by linking with GitHub/GitLab. It is a core component of the Jamstack architecture.",
-    "description": "The description for Netlify on the links page"
-  },
-  "links.site.docs.decapcms.title": {
-    "message": "Decap CMS",
-    "description": "The title for Decap CMS on the links page"
-  },
-  "links.site.docs.decapcms.desc": {
-    "message": "An open-source headless CMS that uses a Git repository as its backend. It provides an intuitive UI for managing Markdown content and has high affinity with static site generators.",
-    "description": "The description for Decap CMS on the links page"
-  },
   "homepage.features.aiTools.title": {
     "message": "AI Tools"
   },
@@ -2116,5 +734,1387 @@
   },
   "aiTools.tool.research.elicit.desc": {
     "message": "An AI research assistant specialized in searching, summarizing, and analyzing research papers. Rich in features for efficiently extracting insights from vast academic literature."
+  },
+  "homepage.features.news.description": {
+    "message": "A list of sites useful for daily information gathering."
+  },
+  "homepage.features.news.title": {
+    "message": "News"
+  },
+  "news.page.description": {
+    "message": "A curated list of news sites to help you keep up with domestic and international affairs and technology trends."
+  },
+  "news.page.downloadButtonAriaLabel": {
+    "message": "Download news site list"
+  },
+  "news.page.downloadButtonTooltip": {
+    "message": "Download CSV list"
+  },
+  "news.page.heading": {
+    "message": "News"
+  },
+  "news.page.subheading": {
+    "message": "For daily information gathering"
+  },
+  "news.page.title": {
+    "message": "News List"
+  },
+  "news.download.header.siteName": {
+    "message": "Site Name"
+  },
+  "news.majorCategory.international": {
+    "message": "International",
+    "description": "Major category title for International news sites"
+  },
+  "news.majorCategory.japan": {
+    "message": "Japan",
+    "description": "Major category title for Japanese news sites"
+  },
+  "news.category.audio-podcast-int": {
+    "message": "Audio & Podcasts",
+    "description": "Category title for international audio and podcasts"
+  },
+  "news.category.general-economy-int": {
+    "message": "General & Economy",
+    "description": "Category title for international general and economy news"
+  },
+  "news.category.general-economy-jp": {
+    "message": "General & Economy",
+    "description": "Category title for Japanese general and economy news"
+  },
+  "news.category.general-politics-jp": {
+    "message": "General & Politics",
+    "description": "Category title for Japanese general and politics news"
+  },
+  "news.category.life-weather-jp": {
+    "message": "Life & Weather",
+    "description": "Category title for Japanese life and weather news"
+  },
+  "news.category.press-release-jp": {
+    "message": "Press Releases",
+    "description": "Category title for Japanese press release sites"
+  },
+  "news.category.security-jp": {
+    "message": "Security & IT Professional",
+    "description": "Category title for Japanese security and IT professional news"
+  },
+  "news.category.summary-sites-int": {
+    "message": "Aggregators & Journalism",
+    "description": "Category title for international news aggregators and journalism"
+  },
+  "news.category.summary-sites-jp": {
+    "message": "Aggregators",
+    "description": "Category title for Japanese news aggregators"
+  },
+  "news.category.tech-science-int": {
+    "message": "Technology & Science",
+    "description": "Category title for international technology and science news"
+  },
+  "news.category.tech-science-jp": {
+    "message": "Technology & Science",
+    "description": "Category title for Japanese technology and science news"
+  },
+  "news.category.tv-news-jp": {
+    "message": "TV News",
+    "description": "Category title for Japanese TV news sites"
+  },
+  "news.site.int.ap.bbc.desc": {
+    "message": "The international broadcasting arm of the British Broadcasting Corporation (BBC), established in 1932. It delivers news and documentaries to the world in over 40 languages via radio, online, and podcasts.",
+    "description": "Description for BBC World Service"
+  },
+  "news.site.int.ap.bbc.title": {
+    "message": "BBC World Service",
+    "description": "Title for BBC World Service"
+  },
+  "news.site.int.ap.cnn.desc": {
+    "message": "Audio content such as news and documentaries provided by CNN.",
+    "description": "Description for CNN Audio"
+  },
+  "news.site.int.ap.cnn.title": {
+    "message": "CNN Audio",
+    "description": "Title for CNN Audio"
+  },
+  "news.site.int.ap.economist.desc": {
+    "message": "In-depth political and economic analysis podcasts from The Economist magazine.",
+    "description": "Description for The Economist Podcasts"
+  },
+  "news.site.int.ap.economist.title": {
+    "message": "The Economist Podcasts",
+    "description": "Title for The Economist Podcasts"
+  },
+  "news.site.int.ap.npr.desc": {
+    "message": "A weekend news and information program from National Public Radio (NPR) in the United States.",
+    "description": "Description for NPR Weekend Edition"
+  },
+  "news.site.int.ap.npr.title": {
+    "message": "NPR Weekend Edition",
+    "description": "Title for NPR Weekend Edition"
+  },
+  "news.site.int.ap.sed.desc": {
+    "message": "A podcast and blog offering daily news, interviews, and discussions on software engineering.",
+    "description": "Description for Software Engineering Daily"
+  },
+  "news.site.int.ap.sed.title": {
+    "message": "Software Engineering Daily",
+    "description": "Title for Software Engineering Daily"
+  },
+  "news.site.int.ge.afp.desc": {
+    "message": "A French news agency, successor to an organization founded in 1835 by Charles-Louis Havas. It is the world's oldest news agency and has a strong focus on visual reporting, including photos and videos.",
+    "description": "Description for Agence France-Presse (AFP)"
+  },
+  "news.site.int.ge.afp.title": {
+    "message": "Agence France-Presse (AFP)",
+    "description": "Title for Agence France-Presse (AFP)"
+  },
+  "news.site.int.ge.aljazeera.desc": {
+    "message": "Established in 1996 with funding from the government of Qatar and operated by the Al Jazeera Media Network. An international news organization that broadcasts global news from a Middle Eastern and Arab world perspective, distinct from Western media.",
+    "description": "Description for Al Jazeera"
+  },
+  "news.site.int.ge.aljazeera.title": {
+    "message": "Al Jazeera",
+    "description": "Title for Al Jazeera"
+  },
+  "news.site.int.ge.ap.desc": {
+    "message": "A non-profit cooperative news agency founded in 1846 by five New York City newspapers. Known for its speed and objectivity, it distributes articles to media worldwide.",
+    "description": "Description for Associated Press (AP)"
+  },
+  "news.site.int.ge.ap.title": {
+    "message": "Associated Press (AP)",
+    "description": "Title for Associated Press (AP)"
+  },
+  "news.site.int.ge.arabnews.desc": {
+    "message": "An English-language daily newspaper founded in Saudi Arabia in 1975. It internationally disseminates news on business, politics, and culture from a Saudi Arabian and Middle Eastern perspective.",
+    "description": "Description for the Arab News site"
+  },
+  "news.site.int.ge.arabnews.title": {
+    "message": "Arab News",
+    "description": "Title for the Arab News site"
+  },
+  "news.site.int.ge.bi.desc": {
+    "message": "Founded in the U.S. in 2007 by Henry Blodget and operated by Axel Springer SE. It delivers business and technology news with high speed and has multiple international editions worldwide.",
+    "description": "Description for Business Insider"
+  },
+  "news.site.int.ge.bi.title": {
+    "message": "Business Insider",
+    "description": "Title for Business Insider"
+  },
+  "news.site.int.ge.bloomberg.desc": {
+    "message": "Founded in the U.S. in 1981 by Michael Bloomberg. A leading global economic and financial media company, with the Bloomberg Terminal financial data and analysis tool at its core.",
+    "description": "Description for Bloomberg"
+  },
+  "news.site.int.ge.bloomberg.title": {
+    "message": "Bloomberg",
+    "description": "Title for Bloomberg"
+  },
+  "news.site.int.ge.chinadaily.desc": {
+    "message": "The only English-language daily newspaper published by the Communist Party of China. It communicates China's official views and developments.",
+    "description": "Description for China Daily"
+  },
+  "news.site.int.ge.chinadaily.title": {
+    "message": "China Daily",
+    "description": "Title for China Daily"
+  },
+  "news.site.int.ge.digiday.desc": {
+    "message": "An international edition of a specialized media that delves into the transformation of digital media, marketing, advertising, and retail.",
+    "description": "Description for Digiday"
+  },
+  "news.site.int.ge.digiday.title": {
+    "message": "Digiday",
+    "description": "Title for Digiday"
+  },
+  "news.site.int.ge.dw.desc": {
+    "message": "Germany's international public broadcaster, established in 1953. Although funded by the German federal government, its editorial independence is legally guaranteed. It broadcasts news from a German and European perspective in over 30 languages.",
+    "description": "Description for Deutsche Welle"
+  },
+  "news.site.int.ge.dw.title": {
+    "message": "Deutsche Welle",
+    "description": "Title for Deutsche Welle"
+  },
+  "news.site.int.ge.fox.desc": {
+    "message": "Founded in the U.S. in 1996 by Rupert Murdoch and operated by Fox News Media. Known for its conservative perspective, it is a cable news network with high viewership in the United States.",
+    "description": "Description for Fox News"
+  },
+  "news.site.int.ge.fox.title": {
+    "message": "Fox News",
+    "description": "Title for Fox News"
+  },
+  "news.site.int.ge.khaleejtimes.desc": {
+    "message": "Founded in 1978, it is the longest-running English-language daily newspaper in the United Arab Emirates (UAE). Based in Dubai, it provides comprehensive coverage of Gulf and international news.",
+    "description": "Description for the Khaleej Times site"
+  },
+  "news.site.int.ge.khaleejtimes.title": {
+    "message": "Khaleej Times",
+    "description": "Title for the Khaleej Times site"
+  },
+  "news.site.int.ge.kyivindependent.desc": {
+    "message": "An independent English-language news media in Ukraine, founded in 2021 by former journalists of the Kyiv Post. It is internationally known for its coverage of the Russian invasion of Ukraine and focuses on investigative reporting.",
+    "description": "Description for Kyiv Independent"
+  },
+  "news.site.int.ge.kyivindependent.title": {
+    "message": "Kyiv Independent",
+    "description": "Title for Kyiv Independent"
+  },
+  "news.site.int.ge.lemonde.desc": {
+    "message": "The English edition of France's leading newspaper, founded in 1944 by Hubert Beuve-Méry. It is renowned for its detailed analysis of international affairs and high-quality investigative journalism.",
+    "description": "Description for Le Monde (English)"
+  },
+  "news.site.int.ge.lemonde.title": {
+    "message": "Le Monde (English)",
+    "description": "Title for Le Monde (English)"
+  },
+  "news.site.int.ge.nikkei.desc": {
+    "message": "Launched in 2013 by Nikkei Inc. It reports on Asian business, economy, and politics in English from the perspective of a Japanese media outlet. Known for its specialized coverage of Asia.",
+    "description": "Description for Nikkei Asia"
+  },
+  "news.site.int.ge.nikkei.title": {
+    "message": "Nikkei Asia",
+    "description": "Title for Nikkei Asia"
+  },
+  "news.site.int.ge.polymarket.desc": {
+    "message": "Founded in 2020 by Shayne Coplan. A prediction market platform utilizing blockchain technology. Users bet on the outcomes of various events such as politics, economics, and current affairs, forming future predictions based on collective intelligence.",
+    "description": "Description for Polymarket"
+  },
+  "news.site.int.ge.polymarket.title": {
+    "message": "Polymarket",
+    "description": "Title for Polymarket"
+  },
+  "news.site.int.ge.reuters.desc": {
+    "message": "Founded in the UK in 1851 by Paul Julius Reuter and operated by Thomson Reuters. A global news agency known for its fact-based, impartial, and prompt reporting, with operations in over 190 countries.",
+    "description": "Description for Reuters"
+  },
+  "news.site.int.ge.reuters.title": {
+    "message": "Reuters",
+    "description": "Title for Reuters"
+  },
+  "news.site.int.ge.rt.desc": {
+    "message": "An international news channel established in 2005 with funding from the Russian government. Operated by ANO TV-Novosti, it reports international news in multiple languages from a Russian perspective.",
+    "description": "Description for RT (Russia Today)"
+  },
+  "news.site.int.ge.rt.title": {
+    "message": "RT (Russia Today)",
+    "description": "Title for RT (Russia Today)"
+  },
+  "news.site.int.ge.sputnik.desc": {
+    "message": "Established in 2014 by the Russian government as part of a restructuring of state news agencies. Operated by the state media group 'Rossiya Segodnya,' it broadcasts news and radio in over 30 languages, conveying Russia's official views.",
+    "description": "Description for Sputnik"
+  },
+  "news.site.int.ge.sputnik.title": {
+    "message": "Sputnik",
+    "description": "Title for Sputnik"
+  },
+  "news.site.int.ge.wsj.desc": {
+    "message": "Founded in the U.S. in 1889 by Charles Dow and others. Operated by Dow Jones & Company, a subsidiary of News Corp. It is characterized by high-quality investigative reporting in the business and financial sectors.",
+    "description": "Description for The Wall Street Journal"
+  },
+  "news.site.int.ge.wsj.title": {
+    "message": "The Wall Street Journal",
+    "description": "Title for The Wall Street Journal"
+  },
+  "news.site.int.ge.xinhua.desc": {
+    "message": "China's state news agency, established in 1931. It is China's largest and official news organization, distributing the official views and news of the Communist Party of China domestically and internationally in multiple languages.",
+    "description": "Description for Xinhua (新華社)"
+  },
+  "news.site.int.ge.xinhua.title": {
+    "message": "Xinhua (新華社)",
+    "description": "Title for Xinhua (新華社)"
+  },
+  "news.site.int.ss.alltop.desc": {
+    "message": "A news aggregator that compiles top news and blog posts on various topics.",
+    "description": "Description for AllTop"
+  },
+  "news.site.int.ss.alltop.title": {
+    "message": "AllTop",
+    "description": "Title for AllTop"
+  },
+  "news.site.int.ss.bellingcat.desc": {
+    "message": "An independent investigative journalism group founded in 2014 by Eliot Higgins. Known for its methods of investigating and analyzing conflicts and crimes using open-source intelligence (OSINT). Registered as a non-profit foundation in the Netherlands.",
+    "description": "Description for Bellingcat"
+  },
+  "news.site.int.ss.bellingcat.title": {
+    "message": "Bellingcat",
+    "description": "Title for Bellingcat"
+  },
+  "news.site.int.ss.googlenews.desc": {
+    "message": "The international (US) version of the news aggregator provided by Google. It utilizes AI to gather information from news sources worldwide, enabling information collection from a global perspective and personalization tailored to the user.",
+    "description": "The description for Google News (US)"
+  },
+  "news.site.int.ss.googlenews.title": {
+    "message": "Google News (US)",
+    "description": "The title for Google News (US)"
+  },
+  "news.site.int.ss.ground.desc": {
+    "message": "Founded in Canada in 2017 by former NASA engineers including Harleen Kaur. A platform that visualizes the political bias (left, center, right) of various media outlets on a single news story, enabling multi-faceted information comparison.",
+    "description": "Description for Ground News"
+  },
+  "news.site.int.ss.ground.title": {
+    "message": "Ground News",
+    "description": "Title for Ground News"
+  },
+  "news.site.int.ss.icij.desc": {
+    "message": "A non-profit investigative reporting organization founded in the U.S. in 1997 by Charles Lewis. Known for the 'Panama Papers' and 'Pandora Papers,' it pursues wrongdoing through cross-border collaboration.",
+    "description": "Description for ICIJ"
+  },
+  "news.site.int.ss.icij.title": {
+    "message": "ICIJ",
+    "description": "Title for ICIJ"
+  },
+  "news.site.int.ss.intercept.desc": {
+    "message": "Founded in 2014 by Glenn Greenwald and others, operated by First Look Media. Sparked by the reporting on the Edward Snowden documents, it advocates for confrontational journalism on issues like national surveillance, war, and human rights.",
+    "description": "Description for The Intercept"
+  },
+  "news.site.int.ss.intercept.title": {
+    "message": "The Intercept",
+    "description": "Title for The Intercept"
+  },
+  "news.site.int.ss.marshall.desc": {
+    "message": "A non-profit news organization founded in the U.S. in 2014 by Neil Barsky. It focuses specifically on the U.S. criminal justice system, aiming to raise public awareness of its inequalities.",
+    "description": "Description for The Marshall Project"
+  },
+  "news.site.int.ss.marshall.title": {
+    "message": "The Marshall Project",
+    "description": "Title for The Marshall Project"
+  },
+  "news.site.int.ss.newsnow.desc": {
+    "message": "A news aggregator that compiles the latest headlines from news sources worldwide in real-time.",
+    "description": "Description for NewsNow"
+  },
+  "news.site.int.ss.newsnow.title": {
+    "message": "NewsNow",
+    "description": "Title for NewsNow"
+  },
+  "news.site.int.ss.occrp.desc": {
+    "message": "Founded in 2006 by Drew Sullivan and Paul Radu. An international non-profit network of investigative journalists specializing in organized crime and corruption. It pursues cross-border crime in collaboration with media outlets worldwide.",
+    "description": "Description for OCCRP"
+  },
+  "news.site.int.ss.occrp.title": {
+    "message": "OCCRP",
+    "description": "Title for OCCRP"
+  },
+  "news.site.int.ss.propublica.desc": {
+    "message": "A non-profit investigative journalism organization founded in the U.S. in 2007 by Paul Steiger. With a mission to expose abuses of power and betrayals of public trust, it is funded by the Sandler Foundation and has won numerous Pulitzer Prizes.",
+    "description": "Description for ProPublica"
+  },
+  "news.site.int.ss.propublica.title": {
+    "message": "ProPublica",
+    "description": "Title for ProPublica"
+  },
+  "news.site.int.ts.geekwire.desc": {
+    "message": "Reports on technology, startups, and innovation, with a focus on Seattle and the Pacific Northwest.",
+    "description": "Description for GeekWire"
+  },
+  "news.site.int.ts.geekwire.title": {
+    "message": "GeekWire",
+    "description": "Title for GeekWire"
+  },
+  "news.site.int.ts.mit.desc": {
+    "message": "Founded and operated by the Massachusetts Institute of Technology (MIT) since 1899. One of the world's most authoritative technology magazines, analyzing the commercial, political, and social impacts of emerging technologies.",
+    "description": "Description for MIT Technology Review"
+  },
+  "news.site.int.ts.mit.title": {
+    "message": "MIT Technology Review",
+    "description": "Title for MIT Technology Review"
+  },
+  "news.site.int.ts.sciencedaily.desc": {
+    "message": "Daily news that delivers the latest scientific research press releases.",
+    "description": "Description for ScienceDaily"
+  },
+  "news.site.int.ts.sciencedaily.title": {
+    "message": "ScienceDaily",
+    "description": "Title for ScienceDaily"
+  },
+  "news.site.int.ts.scitech.desc": {
+    "message": "A media outlet that provides a wide range of the latest research and news in the fields of science and technology.",
+    "description": "Description for SciTechDaily"
+  },
+  "news.site.int.ts.scitech.title": {
+    "message": "SciTechDaily",
+    "description": "Title for SciTechDaily"
+  },
+  "news.site.int.ts.techcrunch.desc": {
+    "message": "Founded in the U.S. in 2005 by Michael Arrington and operated by Yahoo Inc. A leading media outlet reporting on startups and the technology industry, it hosts the large-scale conference 'Disrupt.'",
+    "description": "Description for TechCrunch"
+  },
+  "news.site.int.ts.techcrunch.title": {
+    "message": "TechCrunch",
+    "description": "Title for TechCrunch"
+  },
+  "news.site.int.ts.techmeme.desc": {
+    "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
+    "description": "The description for Techmeme on the news page"
+  },
+  "news.site.int.ts.techmeme.title": {
+    "message": "Techmeme",
+    "description": "The title for Techmeme on the news page"
+  },
+  "news.site.int.ts.wired.desc": {
+    "message": "Founded in the U.S. in 1993 by Louis Rossetto and others, operated by Condé Nast. A media outlet that has influenced the world with its style of deeply exploring the impact of technology on culture, economy, and politics, and contemplating the future.",
+    "description": "Description for WIRED"
+  },
+  "news.site.int.ts.wired.title": {
+    "message": "WIRED",
+    "description": "Title for WIRED"
+  },
+  "news.site.jp.ge.bi.desc": {
+    "message": "The Japanese edition of the economic media founded in the U.S. in 2007 by Henry Blodget, operated by Mediagene Inc. It primarily targets millennials and delivers news on business, finance, and technology.",
+    "description": "Description for Business Insider Japan"
+  },
+  "news.site.jp.ge.bi.title": {
+    "message": "Business Insider Japan",
+    "description": "Title for Business Insider Japan"
+  },
+  "news.site.jp.ge.bloomberg.desc": {
+    "message": "The Japanese version of Bloomberg L.P., founded in the U.S. in 1981 by Michael Bloomberg. Its core business is the financial information terminal 'Bloomberg Terminal,' and it has a significant influence on finance and the economy.",
+    "description": "Description for Bloomberg Japan"
+  },
+  "news.site.jp.ge.bloomberg.title": {
+    "message": "Bloomberg Japan",
+    "description": "Title for Bloomberg Japan"
+  },
+  "news.site.jp.ge.minkabu.desc": {
+    "message": "Founded in 2006 by Ken Uryu. Operated by MINKABU THE INFONOID, Inc. It provides unique content specialized in financial information for individual investors, such as stock price forecasts using AI and cloud input.",
+    "description": "Description for Minkabu"
+  },
+  "news.site.jp.ge.minkabu.title": {
+    "message": "Minkabu",
+    "description": "Title for Minkabu"
+  },
+  "news.site.jp.ge.nikkei.desc": {
+    "message": "Founded in 1876 by Takashi Masuda (founder of Mitsui & Co.). Operated by Nikkei Inc. Known for its specialized economic reporting and is the source of the Nikkei Stock Average. Acquired the Financial Times in 2015.",
+    "description": "Description for Nikkei"
+  },
+  "news.site.jp.ge.nikkei.title": {
+    "message": "Nikkei",
+    "description": "Title for Nikkei"
+  },
+  "news.site.jp.ge.reuters.desc": {
+    "message": "The Japanese version of the international news agency founded in the UK in 1851 by Paul Julius Reuter. Operated by Thomson Reuters, it is one of the world's top three news agencies with a fast and global reporting network.",
+    "description": "Description for Reuters Japan"
+  },
+  "news.site.jp.ge.reuters.title": {
+    "message": "Reuters Japan",
+    "description": "Title for Reuters Japan"
+  },
+  "news.site.jp.ge.sekaikabuka.desc": {
+    "message": "A site specialized in displaying market data for major global stock indices, currencies, commodity futures, and cryptocurrencies at a glance.",
+    "description": "Description for Sekai Kabuka"
+  },
+  "news.site.jp.ge.sekaikabuka.title": {
+    "message": "Sekai Kabuka (World Stock Prices)",
+    "description": "Title for Sekai Kabuka"
+  },
+  "news.site.jp.ge.yahoo.desc": {
+    "message": "Service launched in 1996. Operated by LINE Yahoo Corporation. Originating from Yahoo! Inc., founded by Jerry Yang and others. Japan's largest news aggregator, distributing news from numerous content providers.",
+    "description": "Description for Yahoo! JAPAN News"
+  },
+  "news.site.jp.ge.yahoo.title": {
+    "message": "Yahoo! JAPAN News",
+    "description": "Title for Yahoo! JAPAN News"
+  },
+  "news.site.jp.gp.47news.desc": {
+    "message": "Established in 2006. Operated by ZENKOKU SHIMBUN NET Co., Ltd. Kyodo News and 52 local newspapers across Japan participate, providing news from both central and regional perspectives.",
+    "description": "Description for 47NEWS"
+  },
+  "news.site.jp.gp.47news.title": {
+    "message": "47NEWS",
+    "description": "Title for 47NEWS"
+  },
+  "news.site.jp.gp.akahata.desc": {
+    "message": "Founded in 1928. The official newspaper of the Central Committee of the Japanese Communist Party. In addition to the party's policies and views, it publishes exposé articles based on its own investigations. It has a daily edition and a once-a-week 'Sunday Edition'.",
+    "description": "Description for Shimbun Akahata"
+  },
+  "news.site.jp.gp.akahata.title": {
+    "message": "Shimbun Akahata",
+    "description": "Title for Shimbun Akahata"
+  },
+  "news.site.jp.gp.asahi.desc": {
+    "message": "Founded in Osaka in 1879 by Ryohei Murayama, Riichi Ueno, and others. Operated by The Asahi Shimbun Company. One of Japan's major national newspapers. It features the column 'Tensei Jingo,' which has been running since 1904, on its front page and hosts events like the National High School Baseball Championship.",
+    "description": "Description for Asahi Shimbun"
+  },
+  "news.site.jp.gp.asahi.title": {
+    "message": "Asahi Shimbun",
+    "description": "Title for Asahi Shimbun"
+  },
+  "news.site.jp.gp.jiji.desc": {
+    "message": "Established in 1945. Operated by Jiji Press Ltd. A news agency that distributes domestic and international news to media organizations such as newspapers and broadcasting stations. It also provides news to the general public through its website 'jiji.com'.",
+    "description": "Description for Jiji Press"
+  },
+  "news.site.jp.gp.jiji.title": {
+    "message": "Jiji Press",
+    "description": "Title for Jiji Press"
+  },
+  "news.site.jp.gp.mainichi.desc": {
+    "message": "Founded in 1872 as the 'Tokyo Nichi Nichi Shimbun.' Operated by The Mainichi Newspapers Co., Ltd. One of Japan's major national newspapers. It features the column 'Yoroku' on its front page and hosts events such as the National High School Baseball Invitational Tournament and the Mainichi Film Concours.",
+    "description": "Description for Mainichi Shimbun"
+  },
+  "news.site.jp.gp.mainichi.title": {
+    "message": "Mainichi Shimbun",
+    "description": "Title for Mainichi Shimbun"
+  },
+  "news.site.jp.gp.sankei.desc": {
+    "message": "Its predecessor was the 'Nihon Kogyo Shimbun,' founded in Osaka in 1933 by Hisakichi Maeda. Operated by Sankei Shimbun Co., Ltd. Its official name is the 'Sangyo Keizai Shimbun.' It is one of the national newspapers and features the column 'Sankeisho' on its front page.",
+    "description": "Description for Sankei Shimbun"
+  },
+  "news.site.jp.gp.sankei.title": {
+    "message": "Sankei Shimbun",
+    "description": "Title for Sankei Shimbun"
+  },
+  "news.site.jp.gp.seikyo.desc": {
+    "message": "Founded in 1951. The official newspaper of the religious corporation Soka Gakkai, operated by the Seikyo Shimbun Co. It covers the organization's activities, philosophy, members' testimonials, and explanations of Buddhist principles.",
+    "description": "Description for Seikyo Shimbun"
+  },
+  "news.site.jp.gp.seikyo.title": {
+    "message": "Seikyo Shimbun",
+    "description": "Title for Seikyo Shimbun"
+  },
+  "news.site.jp.gp.yomiuri.desc": {
+    "message": "Founded in 1874 by Takashi Koyasu and others from the Nisshusha company. Operated by The Yomiuri Shimbun Holdings. One of Japan's major national newspapers. It features the column 'Henshu Techo' on its front page and owns the professional baseball team, the Yomiuri Giants.",
+    "description": "Description for Yomiuri Shimbun"
+  },
+  "news.site.jp.gp.yomiuri.title": {
+    "message": "Yomiuri Shimbun",
+    "description": "Title for Yomiuri Shimbun"
+  },
+  "news.site.jp.lw.tenki.desc": {
+    "message": "Official weather forecast media of the Japan Weather Association. Also provides extensive disaster prevention information.",
+    "description": "Description for tenki.jp"
+  },
+  "news.site.jp.lw.tenki.title": {
+    "message": "tenki.jp",
+    "description": "Title for tenki.jp"
+  },
+  "news.site.jp.lw.yahoo.desc": {
+    "message": "Weather forecasts and disaster information provided by Yahoo! Japan.",
+    "description": "Description for Yahoo! Weather & Disasters"
+  },
+  "news.site.jp.lw.yahoo.title": {
+    "message": "Yahoo! Weather & Disasters",
+    "description": "Title for Yahoo! Weather & Disasters"
+  },
+  "news.site.jp.pr.kyodo.desc": {
+    "message": "A press release distribution service operated by Kyodo News. Provides reliable corporate information.",
+    "description": "Description for Kyodo News PR Wire"
+  },
+  "news.site.jp.pr.kyodo.title": {
+    "message": "Kyodo News PR Wire",
+    "description": "Title for Kyodo News PR Wire"
+  },
+  "news.site.jp.pr.prtimes.desc": {
+    "message": "One of Japan's largest press release distribution services. Get the latest corporate information quickly.",
+    "description": "Description for PR TIMES"
+  },
+  "news.site.jp.pr.prtimes.title": {
+    "message": "PR TIMES",
+    "description": "Title for PR TIMES"
+  },
+  "news.site.jp.sec.ipa.desc": {
+    "message": "A public organization under the jurisdiction of the Ministry of Economy, Trade and Industry, established in 2004. It supports Japan's national IT strategy from a technical standpoint and is responsible for publishing the '10 Major Security Threats' and conducting the Information Technology Engineers Examination.",
+    "description": "Description for IPA"
+  },
+  "news.site.jp.sec.ipa.title": {
+    "message": "IPA (Information-technology Promotion Agency, Japan)",
+    "description": "Title for IPA"
+  },
+  "news.site.jp.sec.secnext.desc": {
+    "message": "Launched in 2004. A professional news site for cybersecurity and personal information protection operated by News Gaia Inc. It promptly reports on incidents and vulnerabilities.",
+    "description": "Description for Security NEXT"
+  },
+  "news.site.jp.sec.secnext.title": {
+    "message": "Security NEXT",
+    "description": "Title for Security NEXT"
+  },
+  "news.site.jp.ss.ceek.desc": {
+    "message": "A news search engine that allows cross-searching of major domestic news.",
+    "description": "Description for CEEK.JP News"
+  },
+  "news.site.jp.ss.ceek.title": {
+    "message": "CEEK.JP News",
+    "description": "Title for CEEK.JP News"
+  },
+  "news.site.jp.ss.googlenews.desc": {
+    "message": "A news aggregator provided by Google. It uses AI to consolidate information from news sources around the world and provides a personalized news feed tailored to the user's interests.",
+    "description": "The description for Google News (Japan)"
+  },
+  "news.site.jp.ss.googlenews.title": {
+    "message": "Google News (Japan)",
+    "description": "The title for Google News (Japan)"
+  },
+  "news.site.jp.ts.ascii.desc": {
+    "message": "A web media originating from 'Monthly ASCII,' founded in 1977 by Kazuhiko Nishi. Operated by KADOKAWA ASCII Research Laboratories, Inc. It has a history since the dawn of personal computers in Japan and provides timely news on PCs, IT, and gadgets.",
+    "description": "Description for ASCII.jp"
+  },
+  "news.site.jp.ts.ascii.title": {
+    "message": "ASCII.jp",
+    "description": "Title for ASCII.jp"
+  },
+  "news.site.jp.ts.cnet.desc": {
+    "message": "The Japanese version of the technology news site founded in the U.S. in 1994 by Halsey Minor and others. Operated by Asahi Interactive, Inc. It has a strong focus on IT product reviews and information on corporate solutions.",
+    "description": "Description for CNET Japan"
+  },
+  "news.site.jp.ts.cnet.title": {
+    "message": "CNET Japan",
+    "description": "Title for CNET Japan"
+  },
+  "news.site.jp.ts.gigazine.desc": {
+    "message": "Launched in 2000 by Keito Yamazaki and operated by OSA Inc. Known for its in-depth articles based on unique perspectives and detailed reporting. It covers a wide range of topics from gadget reviews to science and food culture.",
+    "description": "Description for GIGAZINE"
+  },
+  "news.site.jp.ts.gigazine.title": {
+    "message": "GIGAZINE",
+    "description": "Title for GIGAZINE"
+  },
+  "news.site.jp.ts.mit.desc": {
+    "message": "The Japanese edition of the world's oldest technology magazine, founded in 1899 by the Massachusetts Institute of Technology (MIT). Operated by KADOKAWA ASCII Research Laboratories, Inc. It analyzes the social and economic impact of new technologies.",
+    "description": "Description for MIT Technology Review Japan"
+  },
+  "news.site.jp.ts.mit.title": {
+    "message": "MIT Technology Review Japan",
+    "description": "Title for MIT Technology Review Japan"
+  },
+  "news.site.jp.ts.wired.desc": {
+    "message": "The Japanese edition of the technology culture magazine founded in the U.S. in 1993 by Louis Rossetto and others. Operated by Condé Nast Japan, it is known for exploring the impact of technology on culture, society, and lifestyle with future-oriented insights.",
+    "description": "Description for WIRED Japan"
+  },
+  "news.site.jp.ts.wired.title": {
+    "message": "WIRED Japan",
+    "description": "Title for WIRED Japan"
+  },
+  "news.site.jp.tv.asahi.desc": {
+    "message": "The news site of TV Asahi. Disseminates information from a unique perspective.",
+    "description": "Description for TV Asahi NEWS"
+  },
+  "news.site.jp.tv.asahi.title": {
+    "message": "TV Asahi NEWS",
+    "description": "Title for TV Asahi NEWS"
+  },
+  "news.site.jp.tv.fuji.desc": {
+    "message": "News distribution site by the news division of Fuji Television.",
+    "description": "Description for Fuji TV NEWS"
+  },
+  "news.site.jp.tv.fuji.title": {
+    "message": "Fuji TV NEWS",
+    "description": "Title for Fuji TV NEWS"
+  },
+  "news.site.jp.tv.nhk.desc": {
+    "message": "The comprehensive news site of the Japan Broadcasting Corporation (NHK). Provides a wide range of domestic and international news.",
+    "description": "Description for NHK NEWS WEB"
+  },
+  "news.site.jp.tv.nhk.title": {
+    "message": "NHK NEWS WEB",
+    "description": "Title for NHK NEWS WEB"
+  },
+  "news.site.jp.tv.ntv.desc": {
+    "message": "The news site of Nippon Television. Provides timely news.",
+    "description": "Description for NTV NEWS"
+  },
+  "news.site.jp.tv.ntv.title": {
+    "message": "NTV NEWS",
+    "description": "Title for NTV NEWS"
+  },
+  "news.site.jp.tv.tbs.desc": {
+    "message": "The news site of TBS Television. Reports in detail on current events and social issues.",
+    "description": "Description for TBS NEWS"
+  },
+  "news.site.jp.tv.tbs.title": {
+    "message": "TBS NEWS",
+    "description": "Title for TBS NEWS"
+  },
+  "news.site.jp.tv.tx.desc": {
+    "message": "A specialized economic and business news site from TV Tokyo.",
+    "description": "Description for TV Tokyo BIZ"
+  },
+  "news.site.jp.tv.tx.title": {
+    "message": "TV Tokyo BIZ",
+    "description": "Title for TV Tokyo BIZ"
+  },
+  "homepage.features.links.description": {
+    "message": "A collection of reference links useful for development and learning."
+  },
+  "homepage.features.links.title": {
+    "message": "Links"
+  },
+  "links.page.description": {
+    "message": "A collection of useful links to technical documents and tools for development and learning."
+  },
+  "links.page.downloadButtonAriaLabel": {
+    "message": "Download resource site list"
+  },
+  "links.page.downloadButtonTooltip": {
+    "message": "Download CSV list"
+  },
+  "links.page.heading": {
+    "message": "Links"
+  },
+  "links.page.subheading": {
+    "message": "References for Development & Learning"
+  },
+  "links.page.title": {
+    "message": "Links"
+  },
+  "links.download.header.siteName": {
+    "message": "SiteName"
+  },
+  "links.majorCategory.academicResearch": {
+    "message": "Papers",
+    "description": "Category title for academic research links"
+  },
+  "links.majorCategory.backend": {
+    "message": "Backend",
+    "description": "Category title for backend links"
+  },
+  "links.majorCategory.cloudInfra": {
+    "message": "Cloud & Infrastructure",
+    "description": "Category title for cloud and infrastructure links"
+  },
+  "links.majorCategory.data": {
+    "message": "Data",
+    "description": "Category title for data-related links"
+  },
+  "links.majorCategory.documentation": {
+    "message": "Documentation & Diagramming",
+    "description": "Category title for documentation and diagramming tools"
+  },
+  "links.majorCategory.frontend": {
+    "message": "Frontend",
+    "description": "Category title for frontend links"
+  },
+  "links.majorCategory.learningCommunity": {
+    "message": "Learning & Community",
+    "description": "Category title for learning and community links"
+  },
+  "links.majorCategory.security": {
+    "message": "Security",
+    "description": "Category title for security links"
+  },
+  "links.majorCategory.standardsOrgs": {
+    "message": "Standards Organizations",
+    "description": "Category title for standards organizations"
+  },
+  "links.majorCategory.versionControl": {
+    "message": "Version Control",
+    "description": "Category title for version control links"
+  },
+  "links.site.academic.acm.desc": {
+    "message": "Covers all journals and international conference proceedings published by the ACM, the largest academic society in computing.",
+    "description": "Description for ACM Digital Library"
+  },
+  "links.site.academic.acm.title": {
+    "message": "ACM Digital Library",
+    "description": "Title for ACM Digital Library"
+  },
+  "links.site.academic.arxiv.desc": {
+    "message": "A pioneering open-access platform for free public access to pre-peer-reviewed papers in physics, mathematics, CS, etc.",
+    "description": "Description for arXiv"
+  },
+  "links.site.academic.arxiv.title": {
+    "message": "arXiv",
+    "description": "Title for arXiv"
+  },
+  "links.site.academic.citeseerx.desc": {
+    "message": "A search engine that automatically extracts and links citation information for papers in the computer and information science fields.",
+    "description": "Description for CiteSeerX"
+  },
+  "links.site.academic.citeseerx.title": {
+    "message": "CiteSeerX",
+    "description": "Title for CiteSeerX"
+  },
+  "links.site.academic.dblp.desc": {
+    "message": "A bibliographic information database specializing in CS, accurately tracking researchers' paper lists and co-author networks.",
+    "description": "Description for DBLP"
+  },
+  "links.site.academic.dblp.title": {
+    "message": "DBLP",
+    "description": "Title for DBLP"
+  },
+  "links.site.academic.doaj.desc": {
+    "message": "A directory that includes only high-quality, reliable open access journals that meet quality standards.",
+    "description": "Description for DOAJ"
+  },
+  "links.site.academic.doaj.title": {
+    "message": "DOAJ",
+    "description": "Title for DOAJ"
+  },
+  "links.site.academic.elicit.desc": {
+    "message": "AI research assistant automates from paper search to summarization. Efficiently discover and analyze relevant papers for research questions.",
+    "description": "Description for Elicit"
+  },
+  "links.site.academic.elicit.title": {
+    "message": "Elicit",
+    "description": "Title for Elicit"
+  },
+  "links.site.academic.ieee.desc": {
+    "message": "A digital library that provides academic journals, papers, and technical standards in electrical engineering and CS published by IEEE.",
+    "description": "Description for IEEE Xplore"
+  },
+  "links.site.academic.ieee.title": {
+    "message": "IEEE Xplore",
+    "description": "Title for IEEE Xplore"
+  },
+  "links.site.academic.mdpi.desc": {
+    "message": "Swiss-based multidisciplinary academic publisher. Over 390 peer-reviewed open access journals freely available under CC BY license.",
+    "description": "Description for MDPI"
+  },
+  "links.site.academic.mdpi.title": {
+    "message": "MDPI",
+    "description": "Title for MDPI"
+  },
+  "links.site.academic.medrxiv.desc": {
+    "message": "A preprint server specializing in medicine, clinical, and health sciences. Shares the latest research findings promptly.",
+    "description": "Description for medRxiv"
+  },
+  "links.site.academic.medrxiv.title": {
+    "message": "medRxiv",
+    "description": "Title for medRxiv"
+  },
+  "links.site.academic.mesh.desc": {
+    "message": "Medical Subject Headings controlled vocabulary maintained by the National Library of Medicine. Hierarchically structured terms enhance literature search efficiency in PubMed and other databases.",
+    "description": "Description for MeSH"
+  },
+  "links.site.academic.mesh.title": {
+    "message": "MeSH",
+    "description": "Title for MeSH"
+  },
+  "links.site.academic.pubmed.desc": {
+    "message": "World's largest database for medical and life sciences literature. Search peer-reviewed papers including MEDLINE.",
+    "description": "Description for PubMed"
+  },
+  "links.site.academic.pubmed.title": {
+    "message": "PubMed",
+    "description": "Title for PubMed"
+  },
+  "links.site.academic.researchrabbit.desc": {
+    "message": "A literature survey tool that visually explores related papers to foster new discoveries. Also known as the 'Spotify for Papers.'",
+    "description": "Description for ResearchRabbit"
+  },
+  "links.site.academic.researchrabbit.title": {
+    "message": "ResearchRabbit",
+    "description": "Title for ResearchRabbit"
+  },
+  "links.site.academic.scholar.desc": {
+    "message": "A search engine that allows cross-searching of papers and books in all academic fields and tracks citation counts.",
+    "description": "Description for Google Scholar"
+  },
+  "links.site.academic.scholar.title": {
+    "message": "Google Scholar",
+    "description": "Title for Google Scholar"
+  },
+  "links.site.academic.scispace.desc": {
+    "message": "A platform that uses AI to assist in searching, understanding, and writing research papers, contributing to the efficiency of literature reviews.",
+    "description": "Description for Scispace"
+  },
+  "links.site.academic.scispace.title": {
+    "message": "Scispace",
+    "description": "Title for Scispace"
+  },
+  "links.site.academic.semanticscholar.desc": {
+    "message": "Utilizes AI to support literature searches by automatically generating paper summaries and visualizing high-impact citations.",
+    "description": "Description for Semantic Scholar"
+  },
+  "links.site.academic.semanticscholar.title": {
+    "message": "Semantic Scholar",
+    "description": "Title for Semantic Scholar"
+  },
+  "links.site.academic.ssrn.desc": {
+    "message": "One of the world's largest platforms for sharing working papers and preprints, primarily in the social sciences and humanities.",
+    "description": "Description for SSRN"
+  },
+  "links.site.academic.ssrn.title": {
+    "message": "SSRN",
+    "description": "Title for SSRN"
+  },
+  "links.site.academic.techrxiv.desc": {
+    "message": "A preprint server for electrical engineering and CS fields, established by IEEE.",
+    "description": "Description for TechRxiv"
+  },
+  "links.site.academic.techrxiv.title": {
+    "message": "TechRxiv",
+    "description": "Title for TechRxiv"
+  },
+  "links.site.academic.thesaurus.desc": {
+    "message": "Search tool for medical controlled vocabulary and MeSH terms with direct links to related PubMed articles.",
+    "description": "Description for Thesaurus Browser"
+  },
+  "links.site.academic.thesaurus.title": {
+    "message": "Thesaurus Browser",
+    "description": "Title for Thesaurus Browser"
+  },
+  "links.site.ai.kaggle.desc": {
+    "message": "The world's largest community for data science competitions, public datasets, and learning resources.",
+    "description": "Description for Kaggle Learn"
+  },
+  "links.site.ai.kaggle.title": {
+    "message": "Kaggle Learn",
+    "description": "Title for Kaggle Learn"
+  },
+  "links.site.ai.kubeflow.desc": {
+    "message": "A platform for deploying and managing ML workflows on Kubernetes.",
+    "description": "Description for Kubeflow Docs"
+  },
+  "links.site.ai.kubeflow.title": {
+    "message": "Kubeflow Docs",
+    "description": "Title for Kubeflow Docs"
+  },
+  "links.site.backend.django.desc": {
+    "message": "A Python framework for rapidly developing robust and scalable web applications.",
+    "description": "Description for Django Docs"
+  },
+  "links.site.backend.django.title": {
+    "message": "Django Docs",
+    "description": "Title for Django Docs"
+  },
+  "links.site.backend.drf.desc": {
+    "message": "A toolkit for building powerful and flexible Web APIs with Django.",
+    "description": "Description for Django REST Framework"
+  },
+  "links.site.backend.drf.title": {
+    "message": "Django REST Framework",
+    "description": "Title for Django REST Framework"
+  },
+  "links.site.backend.fastapi.desc": {
+    "message": "A modern, fast web framework based on Python 3.6+ type hints.",
+    "description": "Description for FastAPI"
+  },
+  "links.site.backend.fastapi.title": {
+    "message": "FastAPI",
+    "description": "Title for FastAPI"
+  },
+  "links.site.backend.flask.desc": {
+    "message": "A lightweight and extensible Python micro web framework.",
+    "description": "Description for Flask"
+  },
+  "links.site.backend.flask.title": {
+    "message": "Flask",
+    "description": "Title for Flask"
+  },
+  "links.site.backend.langchain.desc": {
+    "message": "A Python framework for developing applications that leverage Large Language Models (LLMs).",
+    "description": "Description for LangChain Docs"
+  },
+  "links.site.backend.langchain.title": {
+    "message": "LangChain Docs",
+    "description": "Title for LangChain Docs"
+  },
+  "links.site.backend.nestjs.desc": {
+    "message": "A Node.js framework for building efficient and scalable server-side applications.",
+    "description": "Description for NestJS"
+  },
+  "links.site.backend.nestjs.title": {
+    "message": "NestJS",
+    "description": "Title for NestJS"
+  },
+  "links.site.backend.node.desc": {
+    "message": "Official documentation for the asynchronous event-driven JavaScript runtime environment.",
+    "description": "Description for Node.js Docs"
+  },
+  "links.site.backend.node.title": {
+    "message": "Node.js Docs",
+    "description": "Title for Node.js Docs"
+  },
+  "links.site.backend.openapi.desc": {
+    "message": "A standard specification for describing RESTful APIs. Rich ecosystem.",
+    "description": "Description for OpenAPI Specification"
+  },
+  "links.site.backend.openapi.title": {
+    "message": "OpenAPI Specification",
+    "description": "Title for OpenAPI Specification"
+  },
+  "links.site.backend.python.desc": {
+    "message": "Official Python 3 documentation, from language specifications to the standard library.",
+    "description": "Description for Python 3 Docs"
+  },
+  "links.site.backend.python.title": {
+    "message": "Python 3 Docs",
+    "description": "Title for Python 3 Docs"
+  },
+  "links.site.cloud.docker.desc": {
+    "message": "The de facto standard for container virtualization technology. Official documentation.",
+    "description": "Description for Docker Docs"
+  },
+  "links.site.cloud.docker.title": {
+    "message": "Docker Docs",
+    "description": "Title for Docker Docs"
+  },
+  "links.site.cloud.gcb.desc": {
+    "message": "A managed service for running CI/CD pipelines on GCP.",
+    "description": "Description for Google Cloud Build"
+  },
+  "links.site.cloud.gcb.title": {
+    "message": "Google Cloud Build",
+    "description": "Title for Google Cloud Build"
+  },
+  "links.site.cloud.gcp.desc": {
+    "message": "Complete GCP documentation, including quickstarts, tutorials, and comprehensive guides.",
+    "description": "Description for Google Cloud Docs"
+  },
+  "links.site.cloud.gcp.title": {
+    "message": "Google Cloud Docs",
+    "description": "Title for Google Cloud Docs"
+  },
+  "links.site.cloud.gcpArch.desc": {
+    "message": "The Cloud Architecture Center provides reference architectures, design guidance, and best practices.",
+    "description": "Description for Cloud Architecture Center"
+  },
+  "links.site.cloud.gcpArch.title": {
+    "message": "Cloud Architecture Center",
+    "description": "Title for Cloud Architecture Center"
+  },
+  "links.site.cloud.ghactions.desc": {
+    "message": "A CI/CD platform integrated with GitHub. Automates workflows.",
+    "description": "Description for GitHub Actions"
+  },
+  "links.site.cloud.ghactions.title": {
+    "message": "GitHub Actions",
+    "description": "Title for GitHub Actions"
+  },
+  "links.site.cloud.netlify.desc": {
+    "message": "A platform that automates building, deploying, and hosting by linking with GitHub/GitLab. It is a core component of the Jamstack architecture.",
+    "description": "The description for Netlify on the links page"
+  },
+  "links.site.cloud.netlify.title": {
+    "message": "Netlify",
+    "description": "The title for Netlify on the links page"
+  },
+  "links.site.cloud.terraform.desc": {
+    "message": "Official documentation for the leading tool for achieving Infrastructure as Code.",
+    "description": "Description for Terraform Docs"
+  },
+  "links.site.cloud.terraform.title": {
+    "message": "Terraform Docs",
+    "description": "Title for Terraform Docs"
+  },
+  "links.site.data.bigquery.desc": {
+    "message": "A serverless data warehouse that can analyze petabytes of data.",
+    "description": "Description for BigQuery Docs"
+  },
+  "links.site.data.bigquery.title": {
+    "message": "BigQuery Docs",
+    "description": "Title for BigQuery Docs"
+  },
+  "links.site.data.dbt.desc": {
+    "message": "The 'T' in ELT tool that helps with data transformation in a data warehouse.",
+    "description": "Description for dbt Docs"
+  },
+  "links.site.data.dbt.title": {
+    "message": "dbt Docs",
+    "description": "Title for dbt Docs"
+  },
+  "links.site.data.sqlzoo.desc": {
+    "message": "A site where you can learn SQL practically through interactive tutorials and exercises.",
+    "description": "Description for SQLZoo"
+  },
+  "links.site.data.sqlzoo.title": {
+    "message": "SQLZoo",
+    "description": "Title for SQLZoo"
+  },
+  "links.site.devtools.geeksforgeeks.desc": {
+    "message": "A site rich in articles, tutorials, and problems on computer science topics.",
+    "description": "Description for GeeksforGeeks"
+  },
+  "links.site.devtools.geeksforgeeks.title": {
+    "message": "GeeksforGeeks",
+    "description": "Title for GeeksforGeeks"
+  },
+  "links.site.devtools.git.desc": {
+    "message": "Official documentation for the distributed version control system Git.",
+    "description": "Description for Git Official Docs"
+  },
+  "links.site.devtools.git.title": {
+    "message": "Git Official Docs",
+    "description": "Title for Git Official Docs"
+  },
+  "links.site.devtools.github.desc": {
+    "message": "Official documentation for GitHub features like code hosting, collaborative development, and Actions.",
+    "description": "Description for GitHub Docs"
+  },
+  "links.site.devtools.github.title": {
+    "message": "GitHub Docs",
+    "description": "Title for GitHub Docs"
+  },
+  "links.site.devtools.hackernews.desc": {
+    "message": "A tech news site run by Y Combinator. A place where geeky discussions from around the world gather.",
+    "description": "Description for Hacker News"
+  },
+  "links.site.devtools.hackernews.title": {
+    "message": "Hacker News",
+    "description": "Title for Hacker News"
+  },
+  "links.site.devtools.learngit.desc": {
+    "message": "An excellent learning tool to learn Git branching operations visually and interactively.",
+    "description": "Description for Learn Git Branching"
+  },
+  "links.site.devtools.learngit.title": {
+    "message": "Learn Git Branching",
+    "description": "Title for Learn Git Branching"
+  },
+  "links.site.devtools.leetcode.desc": {
+    "message": "A collection of algorithm and data structure problems, ideal for preparing for technical interviews.",
+    "description": "Description for LeetCode"
+  },
+  "links.site.devtools.leetcode.title": {
+    "message": "LeetCode",
+    "description": "Title for LeetCode"
+  },
+  "links.site.devtools.roadmap.desc": {
+    "message": "Learning roadmaps for various technical fields for developers. Shows you what to learn next.",
+    "description": "Description for roadmap.sh"
+  },
+  "links.site.devtools.roadmap.title": {
+    "message": "roadmap.sh",
+    "description": "Title for roadmap.sh"
+  },
+  "links.site.devtools.stackoverflow.desc": {
+    "message": "A Q&A community where developers from all over the world ask questions and share knowledge.",
+    "description": "Description for Stack Overflow"
+  },
+  "links.site.devtools.stackoverflow.title": {
+    "message": "Stack Overflow",
+    "description": "Title for Stack Overflow"
+  },
+  "links.site.docs.decapcms.desc": {
+    "message": "An open-source headless CMS that uses a Git repository as its backend. It provides an intuitive UI for managing Markdown content and has high affinity with static site generators.",
+    "description": "The description for Decap CMS on the links page"
+  },
+  "links.site.docs.decapcms.title": {
+    "message": "Decap CMS",
+    "description": "The title for Decap CMS on the links page"
+  },
+  "links.site.docs.docusaurus.desc": {
+    "message": "A static site generator built with React. Ideal for building documentation sites.",
+    "description": "Description for Docusaurus"
+  },
+  "links.site.docs.docusaurus.title": {
+    "message": "Docusaurus",
+    "description": "Title for Docusaurus"
+  },
+  "links.site.docs.drawio.desc": {
+    "message": "A powerful free diagramming tool that can be used in the browser. Supports creating all kinds of diagrams, including flowcharts, UML, and network diagrams.",
+    "description": "Description for draw.io"
+  },
+  "links.site.docs.drawio.title": {
+    "message": "draw.io",
+    "description": "Title for draw.io"
+  },
+  "links.site.docs.excalidraw.desc": {
+    "message": "An online whiteboard for quickly creating hand-drawn style diagrams. Powerful collaborative editing features make it ideal for team brainstorming and design discussions.",
+    "description": "Description for Excalidraw"
+  },
+  "links.site.docs.excalidraw.title": {
+    "message": "Excalidraw",
+    "description": "Title for Excalidraw"
+  },
+  "links.site.docs.figma.desc": {
+    "message": "A collaborative platform for everything from UI design to chart creation. An online tool widely used in the engineering design process.",
+    "description": "Description for Figma"
+  },
+  "links.site.docs.figma.title": {
+    "message": "Figma",
+    "description": "Title for Figma"
+  },
+  "links.site.docs.markdown.desc": {
+    "message": "A comprehensive guide covering everything from the basics of Markdown syntax to extended features.",
+    "description": "Description for Markdown Guide"
+  },
+  "links.site.docs.markdown.title": {
+    "message": "Markdown Guide",
+    "description": "Title for Markdown Guide"
+  },
+  "links.site.docs.mdx.desc": {
+    "message": "Format that enables JSX components within Markdown. Perfect for creating interactive documentation and blog posts.",
+    "description": "Description for MDX"
+  },
+  "links.site.docs.mdx.title": {
+    "message": "MDX",
+    "description": "Title for MDX"
+  },
+  "links.site.docs.mermaid.desc": {
+    "message": "A library for generating diagrams and charts from text like Markdown.",
+    "description": "Description for Mermaid"
+  },
+  "links.site.docs.mermaid.title": {
+    "message": "Mermaid",
+    "description": "Title for Mermaid"
+  },
+  "links.site.docs.obsidian.desc": {
+    "message": "A powerful knowledge base tool as a second brain, working on local Markdown files.",
+    "description": "Description for Obsidian"
+  },
+  "links.site.docs.obsidian.title": {
+    "message": "Obsidian",
+    "description": "Title for Obsidian"
+  },
+  "links.site.docs.plantuml.desc": {
+    "message": "A tool for quickly creating UML diagrams from a simple text description language.",
+    "description": "Description for PlantUML"
+  },
+  "links.site.docs.plantuml.title": {
+    "message": "PlantUML",
+    "description": "Title for PlantUML"
+  },
+  "links.site.frontend.caniuse.desc": {
+    "message": "An essential tool for checking the browser support status of front-end technologies.",
+    "description": "Description for Can I use..."
+  },
+  "links.site.frontend.caniuse.title": {
+    "message": "Can I use...",
+    "description": "Title for Can I use..."
+  },
+  "links.site.frontend.jamstack.desc": {
+    "message": "A modern web architecture named after JavaScript, APIs, and Markup. It aims to improve performance, security, and scalability.",
+    "description": "The description for Jamstack on the links page"
+  },
+  "links.site.frontend.jamstack.title": {
+    "message": "Jamstack",
+    "description": "The title for Jamstack on the links page"
+  },
+  "links.site.frontend.mdn.desc": {
+    "message": "The de facto standard for web technologies. Official reference for HTML, CSS, JavaScript, etc.",
+    "description": "Description for MDN Web Docs"
+  },
+  "links.site.frontend.mdn.title": {
+    "message": "MDN Web Docs",
+    "description": "Title for MDN Web Docs"
+  },
+  "links.site.frontend.nextjs.desc": {
+    "message": "A production framework based on React. Offers a variety of rendering strategies.",
+    "description": "Description for Next.js Docs"
+  },
+  "links.site.frontend.nextjs.title": {
+    "message": "Next.js Docs",
+    "description": "Title for Next.js Docs"
+  },
+  "links.site.frontend.playwright.desc": {
+    "message": "A framework for automating reliable end-to-end testing.",
+    "description": "Description for Playwright"
+  },
+  "links.site.frontend.playwright.title": {
+    "message": "Playwright",
+    "description": "Title for Playwright"
+  },
+  "links.site.frontend.react.desc": {
+    "message": "A declarative JavaScript library for building component-based UIs.",
+    "description": "Description for React"
+  },
+  "links.site.frontend.react.title": {
+    "message": "React",
+    "description": "Title for React"
+  },
+  "links.site.frontend.tailwind.desc": {
+    "message": "A utility-first CSS framework. Quickly build custom designs within your HTML.",
+    "description": "Description for Tailwind CSS"
+  },
+  "links.site.frontend.tailwind.title": {
+    "message": "Tailwind CSS",
+    "description": "Title for Tailwind CSS"
+  },
+  "links.site.frontend.ts.desc": {
+    "message": "A superset of JavaScript that introduces static typing, enhancing the robustness of large-scale development.",
+    "description": "Description for TypeScript Docs"
+  },
+  "links.site.frontend.ts.title": {
+    "message": "TypeScript Docs",
+    "description": "Title for TypeScript Docs"
+  },
+  "links.site.frontend.vite.desc": {
+    "message": "A next-generation front-end tool featuring a fast development server and build.",
+    "description": "Description for Vite"
+  },
+  "links.site.frontend.vite.title": {
+    "message": "Vite",
+    "description": "Title for Vite"
+  },
+  "links.site.frontend.webdev.desc": {
+    "message": "A collection of best practices for modern web development by Google. Performance, accessibility, etc.",
+    "description": "Description for web.dev"
+  },
+  "links.site.frontend.webdev.title": {
+    "message": "web.dev",
+    "description": "Title for web.dev"
+  },
+  "links.site.learningCommunity.techmeme.desc": {
+    "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
+    "description": "The description for Techmeme on the links page"
+  },
+  "links.site.learningCommunity.techmeme.title": {
+    "message": "Techmeme",
+    "description": "The title for Techmeme on the links page"
+  },
+  "links.site.security.awesomesec.desc": {
+    "message": "A curated list of tools, resources, libraries, etc., related to security.",
+    "description": "Description for Awesome Security (GitHub)"
+  },
+  "links.site.security.awesomesec.title": {
+    "message": "Awesome Security (GitHub)",
+    "description": "Title for Awesome Security (GitHub)"
+  },
+  "links.site.security.cisa.desc": {
+    "message": "The U.S. Cybersecurity and Infrastructure Security Agency. Provides threat information and alerts.",
+    "description": "Description for CISA"
+  },
+  "links.site.security.cisa.title": {
+    "message": "CISA",
+    "description": "Title for CISA"
+  },
+  "links.site.security.hacksplaining.desc": {
+    "message": "A site where you can learn about security vulnerabilities through interactive lessons.",
+    "description": "Description for Hacksplaining"
+  },
+  "links.site.security.hacksplaining.title": {
+    "message": "Hacksplaining",
+    "description": "Title for Hacksplaining"
+  },
+  "links.site.security.mitocw.desc": {
+    "message": "Provides free access to MIT lecture materials. Also rich in cybersecurity-related courses.",
+    "description": "Description for MIT OpenCourseWare"
+  },
+  "links.site.security.mitocw.title": {
+    "message": "MIT OpenCourseWare",
+    "description": "Title for MIT OpenCourseWare"
+  },
+  "links.site.security.nist.desc": {
+    "message": "The U.S. National Institute of Standards and Technology. Famous for its Cybersecurity Framework, etc.",
+    "description": "Description for NIST"
+  },
+  "links.site.security.nist.title": {
+    "message": "NIST",
+    "description": "Title for NIST"
+  },
+  "links.site.security.owasp.desc": {
+    "message": "An open community aimed at improving the security of web applications.",
+    "description": "Description for OWASP"
+  },
+  "links.site.security.owasp.title": {
+    "message": "OWASP",
+    "description": "Title for OWASP"
+  },
+  "links.site.security.portswigger.desc": {
+    "message": "A free online learning resource on web security vulnerabilities by PortSwigger.",
+    "description": "Description for Web Security Academy"
+  },
+  "links.site.security.portswigger.title": {
+    "message": "Web Security Academy",
+    "description": "Title for Web Security Academy"
+  },
+  "links.site.security.securitynext.desc": {
+    "message": "A specialized media that provides the latest information on cybersecurity, incidents, vulnerabilities, and countermeasures.",
+    "description": "Description for Security NEXT"
+  },
+  "links.site.security.securitynext.title": {
+    "message": "Security NEXT",
+    "description": "Title for Security NEXT"
+  },
+  "links.site.standards.ietf.desc": {
+    "message": "A volunteer-based organization that develops technical standards for the Internet.",
+    "description": "Description for IETF"
+  },
+  "links.site.standards.ietf.title": {
+    "message": "IETF",
+    "description": "Title for IETF"
+  },
+  "links.site.standards.w3c.desc": {
+    "message": "An international standards organization that develops technical standards for the World Wide Web.",
+    "description": "Description for W3C"
+  },
+  "links.site.standards.w3c.title": {
+    "message": "W3C",
+    "description": "Title for W3C"
   }
 }
