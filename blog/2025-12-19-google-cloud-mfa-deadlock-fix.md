@@ -8,6 +8,8 @@ tags: [google cloud, mfa, security, troubleshooting, billing, account recovery]
 
 本件について、最終的に**無事ログインに成功し、解決いたしました。** 同様の事象でこの記事を訪れた方に向けて、解決に至った結論を共有します。
 
+![Google Cloud MFA Login Barrier](/img/google_cloud_access_blocked_1.png)
+
 #### サポートへの相談と調査の結果
 当初、Billing（請求）サポート経由で専用チームへの調査を依頼しましたが、部門間（Billingチーム ⇄ テクニカルチーム）で担当範囲の調整に時間を要する結果となりました。最終的には「テクニカルチームの担当範囲外のため調査不可」との通達を受け、公式コミュニティの活用を促される形で対応が終了しました。
 
