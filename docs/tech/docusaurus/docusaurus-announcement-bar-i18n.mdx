@@ -1,0 +1,121 @@
+---
+title: Docusaurusのアナウンスメントバーを多言語化(i18n)する最も手軽な方法
+authors: [hk]
+sidebar_position: 18
+tags: [docusaurus, i18n, typescript, configuration, announcement-bar, announcement bar]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+Docusaurusで構築したサイトを多言語対応（i18n）させる際、記事本文やUIパーツの翻訳は標準的な手順でスムーズに行えます。しかし、サイト上部に表示する「アナウンスメントバー（Announcement Bar）」の翻訳に関しては、少し特殊な対応が必要でした。
+
+この記事では、`docusaurus.config.ts` で定義するアナウンスメントバーが言語を切り替えても日本語のままになってしまう問題と、それを解決するための環境変数 `process.env.DOCUSAURUS_CURRENT_LOCALE` を活用した設定方法を紹介します。
+
+-   **発生した課題**: 言語切り替えを行ってもアナウンスメントバーが翻訳されない
+-   **解決策**: 設定ファイル内で現在のロケール判定を行う条件分岐を追加
+
+JSONファイルによる翻訳定義が効かずに困っている方への解決策となれば幸いです。
+
+{/* truncate */}
+
+### **1. 発生した問題：翻訳定義が反映されない**
+
+Docusaurusの多言語化機能を利用して、日本語（デフォルト）と英語のサイトを構築している際、英語版（`/en/`）にアクセスしてもアナウンスメントバーが日本語のまま表示され続ける現象に遭遇しました。
+
+#### 失敗したアプローチ：JSONによる翻訳定義
+
+通常、Docusaurusのテーマやプラグインのテキストは `i18n/{locale}/code.json` に翻訳データを定義することでローカライズ可能です。当初、アナウンスメントバーも同様の手法で翻訳できると考え、以下のように設定しました。
+
+まずは `docusaurus.config.ts` でIDとデフォルトの文言を定義します。
+
+```typescript title="docusaurus.config.ts"
+announcementBar: {
+  id: 'maintenance_notice',
+  content: '🚀 6月1日にメンテナンスを実施します。',
+  backgroundColor: '#73a8e6',
+  textColor: '#fcf3f0',
+  isCloseable: true,
+},
+```
+
+次に、英語用の翻訳ファイル `i18n/en/code.json` に対応するキーとメッセージを追加しました。
+
+```json title="i18n/en/code.json"
+{
+  "theme.announcementBar.content": {
+    "message": "🚀 Maintenance scheduled for June 1st.",
+    "description": "Maintenance notice"
+  }
+}
+```
+
+しかし、この方法では**英語に切り替わりません**でした。
+
+#### 原因
+
+Docusaurusの設定ファイル（`docusaurus.config.ts`など）は、Reactコンポーネントツリーの外側で評価されます。そのため、コンポーネント内で行われるような標準的な翻訳APIのルックアップ（JSONファイルの参照）が、設定値である `announcementBar.content` に対しては自動的に適用されないことが原因でした。
+
+---
+
+### **2. 解決方法：`DOCUSAURUS_CURRENT_LOCALE` の活用**
+
+この問題を解決するために、環境変数 `process.env.DOCUSAURUS_CURRENT_LOCALE` を使用します。これにより、ビルド時に現在のロケール情報を取得し、直接設定値を書き換えることが可能です。
+
+`docusaurus.config.ts` を以下のように修正しました。
+
+```typescript title="docusaurus.config.ts"
+announcementBar: {
+  id: 'maintenance_notice',
+  // ロケールに応じて表示する文字列を分岐させる
+  content:
+    process.env.DOCUSAURUS_CURRENT_LOCALE === 'en'
+      ? '🚀 Maintenance scheduled for June 1st.'
+      : '🚀 6月1日にメンテナンスを実施します。',
+  backgroundColor: '#73a8e6',
+  textColor: '#fcf3f0',
+  isCloseable: true,
+},
+```
+
+三項演算子を用いて、現在のロケールが `'en'` の場合は英語のメッセージを、それ以外（日本語）の場合は日本語のメッセージを設定します。
+
+この修正により、英語版サイトでは正しく英語のアナウンスメントが表示されるようになりました。HTMLタグを含めることも可能なので、言語ごとに異なるリンク先を設定したい場合にも有効です。
+
+### **3. 技術的背景と応用**
+
+この `process.env.DOCUSAURUS_CURRENT_LOCALE` は、Docusaurus v2.4.0（2023年3月リリース）で導入された機能です。
+
+[リリースノート](https://docusaurus.io/blog/releases/2.4#translations) には以下のように記載されており、アナウンスメントバーだけでなく、**サイトのタイトル (`title`) やタグライン (`tagline`)、`baseUrl`** といった設定ファイル内の他の要素も、同様の手法でローカライズ可能であることが示されています。
+
+> **Translations**
+>
+> #8677 introduces a new `process.env.DOCUSAURUS_CURRENT_LOCALE` (experimental) allowing you to localize your config file, including site title, tagline, announcement bar, baseUrl...
+>
+> （意訳: 新しい環境変数 `process.env.DOCUSAURUS_CURRENT_LOCALE` を導入しました。これにより、サイトタイトル、タグライン、アナウンスメントバー、baseUrlなどを含む設定ファイルをローカライズできるようになります。）
+
+これまで `docusaurus.config.ts` 内の定義はJSON翻訳ファイルの対象外となることが多く、苦肉の策が必要でしたが、この環境変数の導入によりシンプルに解決できるようになりました。
+
+もし、サイトタイトルやヘッダーのキャッチコピーなどが言語切り替え時に変わらない問題に直面した場合も、まずはこの `process.env.DOCUSAURUS_CURRENT_LOCALE` を使った分岐を試してみるのが最も確実なアプローチと言えそうです。
+
+### **まとめ**
+
+アナウンスメントバーのような `docusaurus.config.ts` 内の設定値の翻訳には、JSONファイルではなく環境変数を活用した条件分岐が有効です。
+
+*   **JSON翻訳は効かない**: 設定ファイルの値は自動翻訳されない場合がある。
+*   **環境変数で分岐する**: `process.env.DOCUSAURUS_CURRENT_LOCALE` を使って直接値を出し分ける。
+*   **他の設定にも応用可能**: サイトタイトルやタグラインなども同様の方法で翻訳できる。
+
+Docusaurusのi18n機能は強力ですが、設定ファイル周りには少し工夫が必要です。この記事がスムーズな多言語サイト構築の一助になれば幸いです。
+
+<br/>
+<ShareButtons />
+<br/>
+
+<Admonition type="note" title="参考文献">
+<ul>
+    <li><a href="https://github.com/facebook/docusaurus/issues/4542" target="_blank" rel="noopener noreferrer">GitHub Issue | Announcement bar is not translated</a></li>
+    <li><a href="https://docusaurus.io/blog/releases/2.4#translations" target="_blank" rel="noopener noreferrer">Docusaurus 2.4 Release Notes | Translations</a></li>
+    <li><a href="https://docusaurus.io/docs/api/themes/configuration#announcement-bar" target="_blank" rel="noopener noreferrer">Docusaurus Docs | Announcement Bar</a></li>
+</ul>
+</Admonition>
