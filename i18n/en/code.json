@@ -1210,6 +1210,22 @@
     "message": "Yahoo! JAPAN News",
     "description": "Title for Yahoo! JAPAN News"
   },
+  "news.site.jp.ge.shikiho.title": {
+    "message": "Shikiho Online",
+    "description": "Title for Shikiho Online"
+  },
+  "news.site.jp.ge.shikiho.desc": {
+    "message": "Operated by Toyo Keizai Inc., founded in 1895. The web version of 'Kaisha Shikiho' (Japan Company Handbook), the investor's bible launched in 1936. Provides corporate analysis, breaking news, and detailed financial data through its own reporting network.",
+    "description": "Description for Shikiho Online"
+  },
+  "news.site.jp.ge.finviz.title": {
+    "message": "finviz",
+    "description": "Title for finviz"
+  },
+  "news.site.jp.ge.finviz.desc": {
+    "message": "Founded by Juraj Duris in 2007. Short for Financial Visualizations. Provides market data for stocks and futures visually and intuitively using heat maps (tree maps) and screeners.",
+    "description": "Description for finviz"
+  },  
   "news.site.jp.gp.47news.desc": {
     "message": "Established in 2006. Operated by ZENKOKU SHIMBUN NET Co., Ltd. Kyodo News and 52 local newspapers across Japan participate, providing news from both central and regional perspectives.",
     "description": "Description for 47NEWS"
