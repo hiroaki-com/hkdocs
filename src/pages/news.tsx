@@ -40,7 +40,9 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://www.businessinsider.jp/', title: { id: 'news.site.jp.ge.bi.title', message: 'Business Insider Japan' }, description: { id: 'news.site.jp.ge.bi.desc', message: '2007年にヘンリー・ブロジェットが米国で設立した経済メディアの日本版で、株式会社メディアジーンが運営。ミレニアル世代を主なターゲットとし、ビジネス、金融、テクノロジーニュースを配信する。' } },
           { href: 'https://jp.reuters.com/', title: { id: 'news.site.jp.ge.reuters.title', message: 'ロイター' }, description: { id: 'news.site.jp.ge.reuters.desc', message: '1851年にポール・ジュリアス・ロイターが英国で設立した国際通信社の日本語版。トムソン・ロイターが運営。速報性の高いグローバルな取材網を持つ世界三大通信社の一つ。' } },
           { href: 'https://minkabu.jp/', title: { id: 'news.site.jp.ge.minkabu.title', message: 'みんかぶ' }, description: { id: 'news.site.jp.ge.minkabu.desc', message: '2006年に瓜生憲が設立。株式会社MINKABU THE INFONOIDが運営。AIとクラウドインプットを活用した株価予想など、個人投資家向けの金融情報に特化した独自コンテンツを提供。' } },
+          { href: 'https://shikiho.toyokeizai.net/news?id=sokuho', title: { id: 'news.site.jp.ge.shikiho.title', message: '四季報オンライン' }, description: { id: 'news.site.jp.ge.shikiho.desc', message: '1895年創業の東洋経済新報社が運営。1936年創刊の投資家のバイブル『会社四季報』のWeb版。独自の取材網による企業分析や速報ニュース、詳細な財務データなどを提供する。' } },
           { href: 'https://sekai-kabuka.com/pc-index.html', title: { id: 'news.site.jp.ge.sekaikabuka.title', message: '世界の株価' }, description: { id: 'news.site.jp.ge.sekaikabuka.desc', message: '世界の主要な株価指数、為替、商品先物、仮想通貨などのマーケットデータを一覧表示することに特化したサイト。' } },
+          { href: 'https://finviz.com/futures.ashx', title: { id: 'news.site.jp.ge.finviz.title', message: 'finviz' }, description: { id: 'news.site.jp.ge.finviz.desc', message: '2007年にJuraj Durisが設立。Financial Visualizationsの略。株式や先物などの市場データを、ヒートマップ（ツリーマップ）やスクリーナーを用いて視覚的・直感的に提供する。' } },
         ],
       },
       {
