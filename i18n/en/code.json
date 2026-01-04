@@ -1050,6 +1050,22 @@
     "message": "Ground News",
     "description": "Title for Ground News"
   },
+  "news.site.int.ss.foreignaffairs.title": {
+    "message": "Foreign Affairs",
+    "description": "Title for Foreign Affairs"
+  },
+  "news.site.int.ss.foreignaffairs.desc": {
+    "message": "Founded in 1922 and published by the Council on Foreign Relations (CFR), a U.S. think tank. It is a specialized journal on international relations and foreign policy, featuring essays by politicians and scholars, and is considered one of the most authoritative media in the field.",
+    "description": "Description for Foreign Affairs"
+  },
+  "news.site.int.ss.yan.title": {
+    "message": "YourAnonNews",
+    "description": "Title for YourAnonNews"
+  },
+  "news.site.int.ss.yan.desc": {
+    "message": "A primary information hub associated with the international hacktivist collective 'Anonymous.' It aggregates news from activists, leaked information, and topics often uncovered by mainstream media.",
+    "description": "Description for YourAnonNews"
+  },  
   "news.site.int.ss.icij.desc": {
     "message": "A non-profit investigative reporting organization founded in the U.S. in 1997 by Charles Lewis. Known for the 'Panama Papers' and 'Pandora Papers,' it pursues wrongdoing through cross-border collaboration.",
     "description": "Description for ICIJ"
