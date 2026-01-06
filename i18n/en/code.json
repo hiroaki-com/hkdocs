@@ -586,7 +586,7 @@
     "message": "AI tools for development & productivity enhancement."
   },
   "homepage.meta.description": {
-    "message": "This is a technical blog that compiles technical information and daily learnings. It also offers tools such as a browser-based notepad, a list of news sites, collections of links to technical resources and academic papers, and an AI tools collection.",
+    "message": "This is a technical blog where I share what I learn through my daily experiences. It also provides tools such as a browser-based notepad, a list of news sites, and collections of links to technical resources and research papers.",
     "description": "The meta description for the homepage"
   },
   "aiTools.page.title": {

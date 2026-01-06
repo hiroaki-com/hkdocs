@@ -28,6 +28,7 @@ collections:
       - label: "タイトル"
         name: "title"
         widget: "string"
+        default: "2026-01-01 天気、体調"
       - label: "Authors"
         name: "authors"
         widget: "hidden"
@@ -43,7 +44,7 @@ collections:
       - label: "本文"
         name: "body"
         widget: "markdown"
-        default: "### 天気について\n\n\n<!-- truncate -->\n\n\n### 体調について\n\n\n### 作業について\n\n\n### その他\n\n"
+        default: "### 天気\n\n\n<!-- truncate -->\n\n\n### 体調\n\n\n### 作業\n\n\n### その他\n\n"
 
   # 将来の拡張用参照コレクション
   - name: "site_data"

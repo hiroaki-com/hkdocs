@@ -66,7 +66,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconBook}
             description={
               <Translate id="homepage.features.tech.description">
-                日常の学びやブログ記事を整理。
+                実装の記録をトピック別で整理しています。
               </Translate>
             }
             link="/docs/intro"
@@ -79,7 +79,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconGraduationCap}
             description={
               <Translate id="homepage.features.exams.description">
-                資格試験の学習ノートや感想など。
+                資格試験の学習ノートや体験記です。
               </Translate>
             }
             link="/docs/category/exams"
@@ -92,7 +92,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconEdit}
             description={
               <Translate id="homepage.features.blog.description">
-                技術的な学びに関するフランクな記事。
+                日常作業で経験したことをフランクに執筆したブログ記事です。
               </Translate>
             }
             link="/blog"
@@ -105,7 +105,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconClock}
             description={
               <Translate id="homepage.features.diary.description">
-                日々の記録や個人的な雑記メモ。
+                自分を知るために綴る日記です。
               </Translate>
             }
             link="/diary"
@@ -118,7 +118,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconNews}
             description={
               <Translate id="homepage.features.news.description">
-                日々の情報収集に役立つサイト一覧。
+                日々の情報収集に役立つサイト一覧です。
               </Translate>
             }
             link="/news"
@@ -132,7 +132,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconLinks}
             description={
               <Translate id="homepage.features.links.description">
-                開発や学習に役立つリファレンスリンク集。
+                開発や学習に役立つリファレンスリンク集です。
               </Translate>
             }
             link="/links"
@@ -146,7 +146,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconAITools}
             description={
               <Translate id="homepage.features.aiTools.description">
-                開発・業務効率化のためのAIツール。
+                開発・業務効率化のためのAIツール集です。
               </Translate>
             }
             link="/ai-tools"
@@ -159,7 +159,7 @@ export default function HomepageFeatures(): JSX.Element {
             Icon={IconBrowserMemo}
             description={
               <Translate id="homepage.features.browserMemo.description">
-                ブラウザだけで使える軽量メモ機能。
+                ブラウザだけで使える軽量メモ機能です。
               </Translate>
             }
             link="/browser-memo"
