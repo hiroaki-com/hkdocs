@@ -29,7 +29,7 @@ export default function Home(): JSX.Element {
   // 検索エンジンやSNS向けの紹介文（メタディスクリプション）
   const metaDescription = translate({
     id: 'homepage.meta.description',
-    message: '技術情報、日々の学びをまとめた技術ブログです。ブラウザメモ帳、ニュースサイト一覧、技術・論文のリンク集なども提供しています。',
+    message: '私が経験した日々の学びの技術ブログです。ブラウザメモ帳、ニュースサイト一覧、技術・論文のリンク集なども提供しています。',
     description: 'The meta description for the homepage',
   });
 
