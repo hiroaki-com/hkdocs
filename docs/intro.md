@@ -6,5 +6,6 @@ last_update:
 
 # Tech Intro
 
-`Tech`ページは、日々のメモ（`Obsidian`）や`Blog` 記事の再整理など、日常の中で貯めた技術メモの整理場所です。
+`Tech`ページでは、私が実際に経験した技術的な知見を、日々のメモ（`Obsidian`）などから記事として整理執筆し、トピック別で格納しています。
+
 ![Hk Dog](/img/dog2.png)
