@@ -1,24 +1,24 @@
 {
   "homepage.features.blog.description": {
-    "message": "Casual articles about technical learnings."
+    "message": "Casual blog posts about experiences from everyday work."
   },
   "homepage.features.blog.title": {
     "message": "Blog"
   },
   "homepage.features.browserMemo.description": {
-    "message": "A lightweight memo function usable only in the browser."
+    "message": "A lightweight note-taking tool that works in the browser."
   },
   "homepage.features.browserMemo.title": {
     "message": "Browser Memo"
   },
   "homepage.features.diary.description": {
-    "message": "Daily records and personal miscellaneous notes."
+    "message": "A diary written to help me understand myself."
   },
   "homepage.features.diary.title": {
     "message": "Diary"
   },
   "homepage.features.exams.description": {
-    "message": "Study notes and reviews for certification exams."
+    "message": "Study notes and personal accounts of certification exams."
   },
   "homepage.features.exams.title": {
     "message": "Exams"
@@ -30,7 +30,7 @@
     "message": "Profile"
   },
   "homepage.features.tech.description": {
-    "message": "Organizing daily learnings and blog posts."
+    "message": "Implementation notes organized by topic."
   },
   "homepage.features.tech.title": {
     "message": "Tech"
@@ -583,7 +583,7 @@
     "message": "AI Tools"
   },
   "homepage.features.aiTools.description": {
-    "message": "AI tools for development & productivity enhancement."
+    "message": "A collection of AI tools for development and productivity."
   },
   "homepage.meta.description": {
     "message": "This is a technical blog where I share what I learn through my daily experiences. It also provides tools such as a browser-based notepad, a list of news sites, and collections of links to technical resources and research papers.",
@@ -736,7 +736,7 @@
     "message": "An AI research assistant specialized in searching, summarizing, and analyzing research papers. Rich in features for efficiently extracting insights from vast academic literature."
   },
   "homepage.features.news.description": {
-    "message": "A list of sites useful for daily information gathering."
+    "message": "A list of websites useful for daily information gathering."
   },
   "homepage.features.news.title": {
     "message": "News"
@@ -1459,7 +1459,7 @@
     "description": "Title for TV Tokyo BIZ"
   },
   "homepage.features.links.description": {
-    "message": "A collection of reference links useful for development and learning."
+    "message": "A collection of reference links helpful for development and learning."
   },
   "homepage.features.links.title": {
     "message": "Links"
