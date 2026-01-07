@@ -1,0 +1,12 @@
+# robots.txt for hkdocs.com
+# Site: https://hkdocs.com/
+# Updated: 2026-01-07
+User-agent: *
+# Disallow admin interface (Decap CMS)
+Disallow: /admin/
+# Allow everything else
+Allow: /
+# Sitemaps
+# Docusaurus generates separate sitemaps for each locale
+Sitemap: https://hkdocs.com/sitemap.xml
+Sitemap: https://hkdocs.com/en/sitemap.xml
