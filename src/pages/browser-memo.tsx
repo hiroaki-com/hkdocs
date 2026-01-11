@@ -9,6 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import 'github-markdown-css/github-markdown.css';
 import ShareButtons from '@site/src/components/ShareButtons';
+import mermaid from 'mermaid';
 
 // --- 定数定義 ---
 const MEMO_COUNT = 5;
@@ -159,6 +160,19 @@ const MemoTextarea: React.FC<{
   />;
 });
 
+const MermaidPreview: React.FC<{ chart: string }> = React.memo(({ chart }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (ref.current) {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+      mermaid.initialize({ startOnLoad: false, theme });
+      ref.current.removeAttribute('data-processed');
+      mermaid.run({ nodes: [ref.current] }).catch(() => {});
+    }
+  }, [chart]);
+  return <div ref={ref} className="mermaid" style={{ display: 'flex', justifyContent: 'center', margin: '1em 0', overflowX: 'auto' }}>{chart}</div>;
+});
+
 const MarkdownPreview: React.FC<{
   text: string; isMinimized: boolean; isInSideBySide?: boolean; hasTopBar: boolean;
 }> = React.memo(({ text, isMinimized, isInSideBySide, hasTopBar }) => {
@@ -178,7 +192,25 @@ const MarkdownPreview: React.FC<{
     style.borderBottom = 'none';
   }
 
-  return <div className="markdown-body" style={style}><ReactMarkdown remarkPlugins={[remarkGfm]}>{previewText}</ReactMarkdown></div>;
+  return (
+    <div className="markdown-body" style={style}>
+      <ReactMarkdown 
+        remarkPlugins={[remarkGfm]}
+        components={{
+          code(props) {
+            const { children, className, node, ...rest } = props;
+            const match = /language-(\w+)/.exec(className || '');
+            if (match && match[1] === 'mermaid') {
+              return <MermaidPreview chart={String(children).replace(/\n$/, '')} />;
+            }
+            return <code className={className} {...rest}>{children}</code>;
+          }
+        }}
+      >
+        {previewText}
+      </ReactMarkdown>
+    </div>
+  );
 });
 
 const MemoItemComponent: React.FC<{
@@ -368,7 +400,7 @@ function MemoApp() {
   return (
     <main style={{ padding: '1.5rem' }}>
       <h1 style={{ fontSize: '1.5rem' }}><Translate id="page.browser-memo.h1">ブラウザメモ帳</Translate></h1>
-      <p style={{ fontSize: '0.7em' }}><Translate id="page.browser-memo.intro">すぐに使える高機能でシンプルなブラウザメモ帳です。MarkdownプレビューやURL共有にも対応。入力内容はすべてお使いのブラウザにのみ自動保存されるため、安全にご利用いただけます。</Translate></p>
+      <p style={{ fontSize: '0.7em' }}><Translate id="page.browser-memo.intro">すぐに使える高機能でシンプルなブラウザメモ帳です。Markdown、Mermaidプレビュー、URL共有に対応。入力内容はすべてお使いのブラウザにのみ自動保存されるため、安全にご利用いただけます。</Translate></p>
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', margin: '2rem 0' }}>
         <button type="button" className={`button button--sm ${isAllShared ? 'button--success' : 'button--primary'}`} onClick={handleShareAll} disabled={!hasContent} style={{ display: 'flex', alignItems: 'center' }}>
@@ -389,6 +421,7 @@ function MemoApp() {
         <h3 id="notes-title" style={{fontSize: '1.1rem'}}><Translate id="page.browser-memo.notes.title">ご利用上の注意</Translate></h3>
         <ul>
           <li><Translate id="page.browser-memo.notes.markdown">メモはMarkdown形式に対応しています。プレビューボタンで表示を切り替えられます。</Translate></li>
+          <li><Translate id="page.browser-memo.notes.mermaid">Mermaid記法にも対応しています。コードブロックで `mermaid` を指定（```mermaid ... ```）すると図として描画されます。</Translate></li>
           <li><Translate id="page.browser-memo.notes.storage">メモの内容は、入力が少し止まるか、フォーカスが外れたタイミングで自動的に保存されます。</Translate></li>
           <li><Translate id="page.browser-memo.notes.urlLengthWarning">メモの内容が非常に長い場合、生成されるURLも長くなります。共有機能を使用する際は、短縮URLサービスの利用を推奨します。</Translate></li>
           <li><Translate id="page.browser-memo.notes.backup">この機能は簡易的なものです。重要なデータは別途バックアップを取ることを強く推奨します。</Translate></li>
@@ -426,7 +459,7 @@ function MemoPageContent() {
   const { siteConfig, i18n: { currentLocale } } = useDocusaurusContext();
   
   const pageTitle = translate({ id: 'page.browser-memo.title', message: '高機能ブラウザメモ帳 - Markdown・URL共有対応・インストール不要' });
-  const pageDescription = translate({ id: 'page.browser-memo.description', message: 'ログイン・インストール不要ですぐに使える高機能なブラウザメモ帳。Markdownプレビュー、URLでの簡単共有に対応。データはあなたのブラウザ内だけに保存されるため、安全でプライベートなメモ環境を提供します。' });
+  const pageDescription = translate({ id: 'page.browser-memo.description', message: 'ログイン・インストール不要ですぐに使える高機能なブラウザメモ帳。Markdown・Mermaidプレビュー、URLでの簡単共有に対応。データはあなたのブラウザ内だけに保存されるため、安全でプライベートなメモ環境を提供します。' });
 
   const softwareApplicationSchema = useMemo(() => {
     const pageUrl = `${siteConfig.url}${siteConfig.baseUrl}${currentLocale === 'ja' ? '' : currentLocale + '/'}browser-memo/`;
