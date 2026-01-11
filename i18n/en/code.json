@@ -90,7 +90,7 @@
     "message": "Browser Notepad"
   },
   "page.browser-memo.intro": {
-    "message": "A high-performance yet simple browser notepad that's ready to use instantly. It supports Markdown preview and URL sharing. All your input is automatically saved only in your browser, ensuring your privacy and security."
+    "message": "A high-performance yet simple browser notepad that's ready to use instantly. It supports Markdown, Mermaid preview, and URL sharing. All your input is automatically saved only in your browser, ensuring safe usage."
   },
   "page.browser-memo.memoItem.section.ariaLabel": {
     "message": "Memo {number}"
