@@ -84,68 +84,63 @@ function filterContentFiles(files) {
 }
 
 function getArticleUrl(filePath, frontmatter) {
-  let relativePath;
   const siteUrl = SITE_URL.endsWith('/') ? SITE_URL.slice(0, -1) : SITE_URL;
-  let baseUrlPath = BASE_URL;
-  if (!baseUrlPath.startsWith('/')) baseUrlPath = '/' + baseUrlPath;
-  if (!baseUrlPath.endsWith('/')) baseUrlPath += '/';
+  let baseUrlPath = BASE_URL || '';
+  
+  if (baseUrlPath && !baseUrlPath.startsWith('/')) baseUrlPath = '/' + baseUrlPath;
+  if (baseUrlPath && !baseUrlPath.endsWith('/')) baseUrlPath += '/';
   if (baseUrlPath === '//') baseUrlPath = '/';
 
   const ext = path.extname(filePath);
   const baseFilename = path.basename(filePath, ext);
+  let relativePath;
 
   if (filePath.startsWith('blog/')) {
-    let slug = frontmatter.slug || baseFilename; // slugがあれば優先、なければファイル名
-    const dateMatch = slug.match(/^(\d{4})-(\d{2})-(\d{2})-/); // YYYY-MM-DD- 形式のチェック
+    const slug = frontmatter.slug || baseFilename;
+    const dateMatch = slug.match(/^(\d{4})-(\d{2})-(\d{2})-/);
 
     if (dateMatch) {
-      // ファイル名に YYYY-MM-DD- プレフィックスがある場合、URLに /YYYY/MM/DD/ を含める
-      const year = dateMatch[1];
-      const month = dateMatch[2];
-      const day = dateMatch[3];
-      const actualSlug = slug.substring(dateMatch[0].length); // 日付プレフィックスを除いたスラッグ
-      relativePath = path.join('blog', year, month, day, actualSlug);
+      const [year, month, day] = [dateMatch[1], dateMatch[2], dateMatch[3]];
+      const actualSlug = slug.substring(dateMatch[0].length);
+      relativePath = path.posix.join('blog', year, month, day, actualSlug);
     } else {
-      // 日付プレフィックスがない場合 (またはslugフロントマターで上書きされた場合)
-      relativePath = path.join('blog', slug);
+      relativePath = path.posix.join('blog', slug);
     }
   } else if (filePath.startsWith('docs/')) {
     const dir = path.dirname(filePath);
     const relativeDir = dir.startsWith('docs/') ? dir.substring('docs/'.length) : dir;
-    let id = frontmatter.id || frontmatter.slug || baseFilename;
+    const id = frontmatter.id || frontmatter.slug || baseFilename;
+    
     if (id.toLowerCase() === 'index' || (relativeDir && id.toLowerCase() === path.basename(relativeDir).toLowerCase())) {
-        relativePath = path.join('docs', relativeDir);
+      relativePath = path.posix.join('docs', relativeDir);
     } else {
-        relativePath = path.join('docs', relativeDir, id);
+      relativePath = path.posix.join('docs', relativeDir, id);
     }
   } else {
     return null;
   }
-  // Windowsパス区切り文字をURLスラッシュに置換し、baseUrlを結合
-  const fullRelativePath = (baseUrlPath + relativePath.replace(/\\/g, '/')).replace(/\/\//g, '/');
-  return siteUrl + fullRelativePath;
+
+  const fullPath = (baseUrlPath + relativePath).replace(/\/+/g, '/');
+  return siteUrl + fullPath;
 }
 
-function createPostText(title, articleUrl, frontmatter) {
-  let text = `${ARTICLE_PREFIX}${title}\n${articleUrl}`;
-  const hashtags = (frontmatter.tags && Array.isArray(frontmatter.tags))
-    ? frontmatter.tags
-        .map(tag => `#${tag.replace(/\s+/g, '').replace(/-/g, '_')}`)
-        .filter(tag => (text + "\n" + tag).length <= MAX_POST_LENGTH)
-        .join(' ')
-    : '';
-  if (hashtags) text += `\n${hashtags}`;
-
-  if (text.length > MAX_POST_LENGTH) {
-    const baseLength = (ARTICLE_PREFIX + '\n' + articleUrl + (hashtags ? '\n' + hashtags : '') + ELLIPSIS).length;
-    const maxTitleLength = MAX_POST_LENGTH - baseLength;
-    const truncatedTitle = title.length > maxTitleLength ? title.substring(0, Math.max(0, maxTitleLength)) + ELLIPSIS : title;
-    text = `${ARTICLE_PREFIX}${truncatedTitle}\n${articleUrl}`;
-    if (hashtags && (text + "\n" + hashtags).length <= MAX_POST_LENGTH) {
-        text += `\n${hashtags}`;
-    }
+function createPostText(title, articleUrl) {
+  const text = `${ARTICLE_PREFIX}${title}\n${articleUrl}`;
+  
+  if (text.length <= MAX_POST_LENGTH) {
+    return text;
   }
-  return text;
+
+  const baseLength = ARTICLE_PREFIX.length + articleUrl.length + 1 + ELLIPSIS.length;
+  const maxTitleLength = MAX_POST_LENGTH - baseLength;
+  
+  if (maxTitleLength <= 0) {
+    console.warn(`${LOG_PREFIX} Warning: URL is too long to fit with any title text.`);
+    return `${ARTICLE_PREFIX}${ELLIPSIS}\n${articleUrl}`;
+  }
+
+  const truncatedTitle = title.substring(0, maxTitleLength) + ELLIPSIS;
+  return `${ARTICLE_PREFIX}${truncatedTitle}\n${articleUrl}`;
 }
 
 async function processArticleFile(filePath) {
@@ -158,6 +153,7 @@ async function processArticleFile(filePath) {
       console.log(`${LOG_PREFIX} Skipping draft/unlisted file: ${filePath}`);
       return;
     }
+    
     if (!frontmatter.title) {
       console.warn(`${LOG_PREFIX} Skipping ${filePath}: 'title' not found in frontmatter.`);
       return;
@@ -169,7 +165,7 @@ async function processArticleFile(filePath) {
       return;
     }
 
-    const postText = createPostText(frontmatter.title, articleUrl, frontmatter);
+    const postText = createPostText(frontmatter.title, articleUrl);
     console.log(`${LOG_PREFIX} Attempting to post to X: "${postText}"`);
 
     const { data: createdPost } = await rwClient.v2.tweet({ text: postText });
@@ -194,11 +190,13 @@ async function main() {
     console.log(`${LOG_PREFIX} No new content files found to post.`);
     return;
   }
+  
   console.log(`${LOG_PREFIX} Found ${newContentFiles.length} new content file(s) to process:`, newContentFiles);
 
   for (const file of newContentFiles) {
     await processArticleFile(file);
   }
+  
   console.log(`${LOG_PREFIX} Finished processing all new content files.`);
 }
 
