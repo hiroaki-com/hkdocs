@@ -7,10 +7,13 @@ const { TwitterApi } = require('twitter-api-v2');
 
 const MAX_POST_LENGTH = 280;
 const ELLIPSIS = '...';
-const ARTICLE_PREFIX = '新規投稿: ';
+const ARTICLE_PREFIX = '‼️📝: ';
 const LOG_PREFIX = '[PostToX]';
 const TARGET_DIRS = ['blog/', 'docs/'];
 const TARGET_EXTS = ['.md', '.mdx'];
+const DEPLOYMENT_WAIT_MS = 180000;
+const URL_VERIFICATION_RETRY_COUNT = 5;
+const URL_VERIFICATION_RETRY_DELAY_MS = 30000;
 
 const {
   X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET,
@@ -124,6 +127,44 @@ function getArticleUrl(filePath, frontmatter) {
   return siteUrl + fullPath;
 }
 
+async function verifyUrlAccessible(url, retries = URL_VERIFICATION_RETRY_COUNT) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      console.log(`${LOG_PREFIX} Verifying URL accessibility (attempt ${attempt}/${retries}): ${url}`);
+      
+      const response = await fetch(url, {
+        method: 'HEAD',
+        redirect: 'follow',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; BlogPostVerifier/1.0)'
+        }
+      });
+
+      if (response.ok) {
+        console.log(`${LOG_PREFIX} URL verified accessible: ${url} (status: ${response.status})`);
+        return true;
+      }
+
+      console.warn(`${LOG_PREFIX} URL returned non-OK status: ${response.status}`);
+      
+      if (attempt < retries) {
+        console.log(`${LOG_PREFIX} Waiting ${URL_VERIFICATION_RETRY_DELAY_MS / 1000}s before retry...`);
+        await new Promise(resolve => setTimeout(resolve, URL_VERIFICATION_RETRY_DELAY_MS));
+      }
+    } catch (error) {
+      console.error(`${LOG_PREFIX} Error verifying URL (attempt ${attempt}/${retries}):`, error.message);
+      
+      if (attempt < retries) {
+        console.log(`${LOG_PREFIX} Waiting ${URL_VERIFICATION_RETRY_DELAY_MS / 1000}s before retry...`);
+        await new Promise(resolve => setTimeout(resolve, URL_VERIFICATION_RETRY_DELAY_MS));
+      }
+    }
+  }
+
+  console.error(`${LOG_PREFIX} URL verification failed after ${retries} attempts: ${url}`);
+  return false;
+}
+
 function createPostText(title, articleUrl) {
   const text = `${ARTICLE_PREFIX}${title}\n${articleUrl}`;
   
@@ -136,7 +177,16 @@ function createPostText(title, articleUrl) {
   
   if (maxTitleLength <= 0) {
     console.warn(`${LOG_PREFIX} Warning: URL is too long to fit with any title text.`);
-    return `${ARTICLE_PREFIX}${ELLIPSIS}\n${articleUrl}`;
+    const fallbackText = `${ARTICLE_PREFIX}${ELLIPSIS}\n${articleUrl}`;
+    
+    if (fallbackText.length > MAX_POST_LENGTH) {
+      console.error(`${LOG_PREFIX} Error: URL itself exceeds character limit. Truncating URL.`);
+      const maxUrlLength = MAX_POST_LENGTH - ARTICLE_PREFIX.length - ELLIPSIS.length - 1;
+      const truncatedUrl = articleUrl.substring(0, maxUrlLength - ELLIPSIS.length) + ELLIPSIS;
+      return `${ARTICLE_PREFIX}${ELLIPSIS}\n${truncatedUrl}`;
+    }
+    
+    return fallbackText;
   }
 
   const truncatedTitle = title.substring(0, maxTitleLength) + ELLIPSIS;
@@ -162,6 +212,12 @@ async function processArticleFile(filePath) {
     const articleUrl = getArticleUrl(filePath, frontmatter);
     if (!articleUrl) {
       console.warn(`${LOG_PREFIX} Skipping ${filePath}: Could not determine URL.`);
+      return;
+    }
+
+    const isAccessible = await verifyUrlAccessible(articleUrl);
+    if (!isAccessible) {
+      console.error(`${LOG_PREFIX} Skipping ${filePath}: URL is not accessible after verification: ${articleUrl}`);
       return;
     }
 
@@ -192,6 +248,8 @@ async function main() {
   }
   
   console.log(`${LOG_PREFIX} Found ${newContentFiles.length} new content file(s) to process:`, newContentFiles);
+  console.log(`${LOG_PREFIX} Waiting ${DEPLOYMENT_WAIT_MS / 1000}s for deployment to complete...`);
+  await new Promise(resolve => setTimeout(resolve, DEPLOYMENT_WAIT_MS));
 
   for (const file of newContentFiles) {
     await processArticleFile(file);
