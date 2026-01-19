@@ -1,5 +1,5 @@
 ---
-title: How to Connect Google Colab with GitHub
+title: A Step-by-Step Guide to Integrating Google Colab with GitHub
 authors: [hk]
 tags: [google-colab, github, vscode, git, python, development]
 ---
@@ -7,157 +7,208 @@ tags: [google-colab, github, vscode, git, python, development]
 import Admonition from '@theme/Admonition';
 import ShareButtons from '@site/src/components/ShareButtons';
 
-This article provides a practical guide for transitioning Python code created in Google Colab to a full-fledged development workflow using VSCode on a MacBook and GitHub. It outlines the specific steps for those who have previously developed only in Colab to establish a more efficient development system by setting up version control with GitHub and a comfortable local editing environment with VSCode.
+*2026/01/19 Update: Rewritten to reflect the latest environment.*
 
-- **Repository Setup**: Preparing the receiving environment on GitHub.
-- **Initial Sync**: Safely migrating code from Colab to GitHub.
-- **Local Environment**: Setting up the editing environment in VSCode.
-- **Operational Workflow**: Establishing a daily development cycle.
+This guide explains practical steps to transition Python code created in Google Colab into a full-scale development flow using VSCode on MacBook and GitHub. For those who have been developing exclusively on Colab, we will cover specific steps to establish version control with GitHub and build a comfortable local editing environment with VSCode, streamlining your development process.
+
+- **Repository Preparation**: Setting up the environment on GitHub.
+- **Initial Integration**: Securely migrating code from Colab to GitHub.
+- **Local Environment**: Setting up VSCode for editing.
+- **Workflow**: Establishing a daily development cycle.
 
 {/* truncate */}
 
-## Current Situation and Goals
+### Current Situation and Goals
 
-<Admonition type="info" title="Starting Point and Goals">
+<Admonition type="info" title="Starting Point and Goal">
   <ul>
     <li>
       <strong>Current Situation</strong>
       <ul>
-        <li>Code exists only on Google Colab (.ipynb file).</li>
-        <li>A private repository is ready on GitHub.</li>
-        <li>No code exists in the local environment.</li>
-        <li>Version control with Git has not been implemented.</li>
+        <li>Code exists only on Google Colab (.ipynb files).</li>
+        <li>You have a GitHub account, but no repository for this project.</li>
+        <li>No code exists in your local environment.</li>
+        <li>Version control with Git is not yet implemented.</li>
       </ul>
     </li>
     <li>
-      <strong>Goals</strong>
+      <strong>Goal</strong>
       <ul>
-        <li>Manage code change history with GitHub.</li>
-        <li>A comfortable editing environment on MacBook/VSCode.</li>
-        <li>Smooth operational checks in Google Colab.</li>
+        <li>Manage code history with GitHub.</li>
+        <li>Comfortable editing environment on MacBook/VSCode.</li>
+        <li>Smooth execution and verification on Google Colab.</li>
       </ul>
     </li>
   </ul>
 </Admonition>
 
-## 1. GitHub Repository Setup
+### 1. Preparing the GitHub Repository
 
-To accept saves from Colab, you first need to create a `main` branch in your repository.
+First, prepare a "box" (repository) on GitHub to accept the files from Colab.
 
-1.  Open your GitHub repository.
-2.  **Create a README file**: Click "Create a new file" or "Add a README file." Creating a `README.md` will automatically generate the `main` branch.
+![Creating a GitHub Repository](/img/colab_github_01_create_new_repo.png)
 
-## 2. Initial Save from Colab to GitHub
+1.  Log in to GitHub and select `New repository` from the `+` icon in the top right corner.
+2.  Enter a name in `Repository name` (e.g., `colab-data-analysis`).
+3.  Select `Public` or `Private`. Private is recommended for personal projects.
+4.  Check `Add a README file` under `Initialize this repository with:`.
+    *   *Note: Creating a README here automatically generates the `main` branch, making the subsequent Colab integration smoother.*
+5.  Click the `Create repository` button to finish.
+
+### 2. Initial Save from Colab to GitHub
+
+Save your currently open Colab notebook to the repository you just created.
 
 1.  Open the target notebook in Colab.
-2.  From the menu, select **File > Save a copy in GitHub**.
-3.  Configure the destination:
-    - **Repository**: Select `your-username/your-repository-name`.
+2.  Select `File` > `Save a copy in GitHub` from the menu.
+
+![Select Save a copy in GitHub from menu](/img/colab_github_02_menu_save_copy_to_github.png)
+
+<Admonition type="tip" title="GitHub Authorization">
+  If this is your first time or your session has expired, a popup will appear asking for permission for Google Colab to access GitHub. Click the "Authorize googlecolab" button to allow the integration.
+</Admonition>
+
+![GitHub Authorization Process](/img/colab_github_03_auth_process.png)
+
+3.  Configure the save settings.
+    - **Repository**: Select the `your-username/your-repository-name` created earlier.
     - **Branch**: Select `main`.
-    - **Commit message**: Enter a clear message, such as "Initial commit of notebook from Colab."
-4.  Click the `OK` button to execute the save.
+    - **Commit message**: Enter a clear message like `Initial commit of notebook from Colab`.
 
-## 3. Local Development Environment Setup
+![Save settings dialog](/img/colab_github_04_save_settings_dialog.png)
 
-### Clone the Repository
+4.  Click `OK` to execute the save.
 
-1.  In your GitHub repository, click the green "Code▼" button.
-2.  Copy the HTTPS URL.
-3.  Open your terminal and run the following command:
+### 3. Setting Up the Local Development Environment
+
+Download the code from GitHub to your local machine (MacBook) and set up the editing environment.
+
+#### Cloning the Repository
+
+1.  On the GitHub repository page, click the green `Code▼` button.
+
+![GitHub Code Button](/img/colab_github_05_clone_code_button.png)
+
+2.  Select the `HTTPS` tab and copy the displayed URL.
+3.  Open your terminal, navigate to the directory where you want to save the project, and run the clone command.
 
 ```bash
-git clone [COPIED_REPOSITORY_URL]
+# Move to the Documents folder (or any location you prefer)
+cd ~/Documents
+
+# Clone the repository
+git clone [Paste the copied repository URL]
+
+# Move into the created repository folder
+cd [repository-name]
 ```
 
-### VSCode Setup
+#### VSCode Settings
 
-1.  Open the cloned folder in VSCode.
-2.  Install useful extensions for development:
-    -   **Python**
-    -   **Jupyter**
-3.  To make `.ipynb` files easier to manage with Git, configure them to open in a text-based format.
-    -   Right-click the file > "Open With..." > "Text Editor."
-    -   This will display the file in JSON format, making it easier to see changes and diffs.
+*Note: While this guide uses VSCode, the basic flow is similar for other editors like Cursor or PyCharm. Please refer to the Jupyter instructions for your specific editor.*
 
-## 4. Daily Development Workflow
+1.  Open the cloned folder in VSCode (typing `code .` in the terminal is convenient).
+2.  Install useful extensions for development. Search for and install the following from the VSCode Extensions tab:
+    -   `Python`
+    -   `Jupyter`
+3.  To make `.ipynb` files easier to manage with Git, it is recommended to configure them to open as text by default for diffing purposes.
+    -   Right-click the `.ipynb` file in the Explorer > `Open With...` > `Text Editor`.
 
-### From Editing to Saving on GitHub
+![VSCode Right Click Menu](/img/colab_github_06_vscode_right_click_menu.png)
+
+![VSCode Select Text Editor](/img/colab_github_07_vscode_select_text_editor.png)
+
+    -   This displays the file in raw JSON format, making it easier to check Git diffs. Of course, when you want to execute or edit it as a notebook, you can double-click to open it in the standard Jupyter format.
+
+### 4. Daily Development Workflow
+
+#### From Editing to Saving on GitHub
 
 1.  **Edit Code in VSCode**
-    -   Freely implement your ideas and edit code in your local environment.
+    -   Implement ideas and edit your code freely in your local environment.
 
 2.  **Save Changes to GitHub**
-    -   Once you're done editing, run the following commands in the terminal to push your changes to GitHub.
+    -   Once editing is complete, run the following commands in the terminal to push your changes to GitHub.
+    -   Using conventions like [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages makes management easier.
 
     ```bash
     git add .
-    git commit -m "feat: Improve user authentication logic"
+    
+    # Message examples: feat(feature), fix(bugfix), docs(documentation), style(formatting), etc.
+    git commit -m "feat: add data preprocessing logic"
+    
     git push origin main
     ```
 
-3.  **Verify in Colab**
-    -   Open Colab, select **File > Open notebook**, and switch to the **GitHub** tab.
-    -   Search using your repository URL (`https://github.com/your-username/your-repository-name`).
-    -   Open the updated notebook and run it to verify its operation.
+3.  **Verify Operation in Colab**
+    -   Open Colab, select `File` > `Open notebook`, and switch to the `GitHub` tab.
+
+![Colab Open Notebook GitHub Tab](/img/colab_github_08_open_notebook_github_tab.png)
+
+    -   Search using the repository URL (`https://github.com/your-username/your-repository-name`).
+
+![Colab Repository Search](/img/colab_github_09_search_repo_url.png)
+
+    -   Open the updated notebook and run it to verify operation.
 
 ---
 
-## Key Operational Rules
+### Important Operational Rules
 
-To maintain a smooth workflow and avoid conflicts, it's crucial to follow these rules.
+To maintain smooth integration and avoid conflicts, it is crucial to follow these rules.
 
-### 1. Sync Before Starting Work
+#### 1. Confirm Sync Before Starting (Most Important)
 
-**No matter which environment you're editing in, always fetch the latest version from GitHub first.**
+**It is easy to forget where you last edited the code.**
+If you make small fixes in Colab and then start working locally without syncing, you will lose consistency. Regardless of which environment you start in, **always retrieve the latest state from GitHub before working.**
 
--   **When working locally**:
-    ```bash
-    git pull origin main
-    ```
--   **When working in Colab**:
-    -   Re-open the latest notebook from "File > Open notebook > GitHub" tab.
+-   **When starting locally**:
+    -   Run `git pull origin main` first to fetch the latest version.
+-   **When starting in Colab**:
+    -   Tabs left open in the browser may contain old states. We recommend explicitly re-opening the notebook via `File` > `Open notebook` > `GitHub` tab.
 
-### 2. Save Upon Completion
+#### 2. Save When Finished
 
-**When you finish editing, always save (push) your changes to GitHub.**
+**When you finish editing, always save (push) your changes to GitHub to signal the end of your work.**
 
--   **If you edited locally**:
+-   **If edited locally**:
     ```bash
     git add .
-    git commit -m "Description of changes"
+    git commit -m "docs: update analysis comments"
     git push origin main
     ```
--   **If you edited in Colab**:
-    -   Execute "File > Save a copy in GitHub" and save with a commit message describing the changes.
+-   **If edited in Colab**:
+    -   Execute `File` > `Save a copy in GitHub`. If you close the browser without doing this, changes made in Colab will not be reflected in GitHub.
 
-### 3. Avoid Simultaneous Edits in Multiple Places
+#### 3. Avoid Simultaneous Editing
 
-**Do not edit the same file in multiple environments at the same time, as this is the leading cause of conflicts.**
-Start working in a new environment only after the work in the previous one is completed and saved to GitHub.
+**Do not edit the same file in multiple environments simultaneously, as this is the biggest cause of conflicts.**
+Strictly follow the relay process: "Finish local work & Push" -> "Pull in Colab (Re-open) & Start work".
 
-### 4. Handling Conflicts
+#### 4. Dealing with Conflicts
 
-If a conflict occurs, handle it calmly in your local environment.
+If a conflict occurs, stay calm and resolve it in your local environment.
 
 1.  Check the status with `git status`.
-2.  If necessary, stash your current changes with `git stash`.
-3.  Fetch the latest version from the remote with `git pull origin main`.
-4.  Use VSCode's diff view to resolve the conflicts, then commit and push again.
+2.  Use `git stash` to temporarily save current changes if necessary.
+3.  Get the latest remote version with `git pull origin main`.
+4.  Use VSCode's diff view features to resolve the conflict, then commit and push again.
 
-## Summary
+### Summary
 
-Following these steps will help you build an efficient development environment that integrates Google Colab, GitHub, and local VSCode.
+By following these steps, you can build an efficient development environment integrating Google Colab, GitHub, and local VSCode.
 
 -   **GitHub**: Reliable version control and code history retention.
--   **Local VSCode**: A comfortable and feature-rich editing environment.
--   **Google Colab**: A powerful execution environment with access to GPUs/TPUs.
+-   **Local VSCode**: A comfortable, high-functionality editing environment.
+-   **Google Colab**: Execution environment utilizing powerful GPUs/TPUs.
 
-By leveraging the strengths of each tool and adhering to proper operational rules, you can create a flexible and safe development workflow that minimizes the risk of conflicts.
+By leveraging the strengths of each tool and adhering to proper operational rules, you can realize a flexible and secure development workflow while minimizing the risk of conflicts.
 
 <ShareButtons />
 
 ### References
 
--   [Google Colab | GitHub Integration](https://colab.research.google.com/github/)
+-   [Google Colab | Using Google Colab with GitHub](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
 -   [GitHub Docs | Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 -   [Visual Studio Code | Jupyter Notebooks](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
+-   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
