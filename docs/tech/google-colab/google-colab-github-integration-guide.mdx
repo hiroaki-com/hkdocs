@@ -1,7 +1,7 @@
 ---
 title: Google Colab を GitHub 連携するための手順
 authors: [hk]
-tags: [google-colab, github, vscode, git, python, development]
+tags: [google-colab, github, vscode, cursor, git, python, development]
 ---
 
 import Admonition from '@theme/Admonition';
@@ -9,11 +9,13 @@ import ShareButtons from '@site/src/components/ShareButtons';
 
 *2026/01/19 更新: 最新の環境に合わせて記事内容をリライトしました。*
 
-Google Colabで作成したPythonコードを、MacBookのVSCodeとGitHubを使って本格的な開発フローに移行するための実践的な手順を解説します。これまでColab上でのみ開発を行っていた方が、GitHubでのバージョン管理とローカルVSCodeでの快適な編集環境を構築し、より効率的な開発体制を整えるための具体的なステップを紹介します。
+Google Colabで作成したPythonコードを、GitHubを介してローカル環境（VSCodeやCursor、PyCharmなど）と連携し、本格的な開発フローに移行するための実践的な手順を解説します。
+
+これまでColab上でのみ開発を行っていた方が、GitHubでのバージョン管理と、使い慣れたローカルエディタでの快適な編集環境を構築し、より効率的な開発体制を整えるための具体的なステップを紹介します。
 
 - **リポジトリの準備**: GitHub上での受け入れ環境の構築
 - **初回連携**: ColabからGitHubへの安全なコード移行
-- **ローカル環境**: VSCodeでの編集環境セットアップ
+- **ローカル環境**: モダンなエディタ（VSCode/Cursor等）でのセットアップ
 - **運用ワークフロー**: 日常的な開発サイクルの確立
 
 {/* truncate */}
@@ -27,16 +29,16 @@ Google Colabで作成したPythonコードを、MacBookのVSCodeとGitHubを使�
       <ul>
         <li>コードはGoogle Colab上にのみ存在（.ipynbファイル）</li>
         <li>GitHubアカウントは所持しているが、連携用のリポジトリは未作成</li>
-        <li>ローカル環境にはコードが存在しない</li>
-        <li>Gitによるバージョン管理は未実施</li>
+        <li>ローカル環境にはまだコードが存在しない</li>
+        <li>Gitによるバージョン管理ができていない</li>
       </ul>
     </li>
     <li>
       <strong>目標</strong>
       <ul>
-        <li>GitHubでコードの変更履歴を管理</li>
-        <li>MacBook/VSCodeでの快適な編集環境</li>
-        <li>Google Colabでのスムーズな動作確認</li>
+        <li>GitHubでコードの変更履歴を確実に管理する</li>
+        <li>VSCodeやCursorなどのローカルエディタで快適に編集する</li>
+        <li>Google Colabでスムーズに動作確認・GPU実行を行う</li>
       </ul>
     </li>
   </ul>
@@ -81,7 +83,7 @@ Google Colabで作成したPythonコードを、MacBookのVSCodeとGitHubを使�
 
 ### 3. ローカル開発環境のセットアップ
 
-GitHub上のコードをローカル（MacBook）にダウンロードし、編集環境を整えます。
+GitHub上のコードをローカルマシンにダウンロードし、使い慣れたエディタで編集できる環境を整えます。
 
 #### リポジトリのクローン
 
@@ -93,7 +95,7 @@ GitHub上のコードをローカル（MacBook）にダウンロードし、編�
 3.  ターミナルを開き、プロジェクトを保存したいディレクトリへ移動してから、クローン（複製）コマンドを実行します。
 
 ```bash
-# ドキュメントフォルダへ移動（任意の場所でOKです）
+# 作業フォルダへ移動（任意の場所でOKです）
 cd ~/Documents
 
 # リポジトリをクローン
@@ -103,106 +105,86 @@ git clone [コピーしたリポジトリURL]
 cd [リポジトリ名]
 ```
 
-#### VSCodeの設定
+#### エディタの設定（VSCode / Cursor 共通）
 
-※ ここではVSCodeを例に説明しますが、CursorやPyCharmなど他のエディタを使用する場合も基本的な流れは同様です。各エディタのJupyter対応手順を参照してください。
+ここでは、現在最も人気のある **VSCode** や、そのフォークでありAI補完に強い **Cursor** を例に説明します。
 
-1.  クローンしたフォルダをVSCodeで開きます（ターミナルで `code .` と打つと便利です）。
-2.  開発に便利な拡張機能をインストールします。VSCodeの拡張機能タブから以下を検索・インストールしてください。
-    -   `Python`
-    -   `Jupyter`
-3.  `.ipynb` ファイルをGitで管理しやすくするため、標準のエディタではなくテキストベースで開くように設定することをお勧めします。
-    -   エクスプローラー上で `.ipynb` ファイルを右クリック > `別のエディターで開く...` > `テキストエディター` を選択します。
-
-![VSCode右クリックメニュー](/img/colab_github_06_vscode_right_click_menu.png)
+1.  クローンしたフォルダをエディタで開きます（ターミナルで `code .` や `cursor .` と打つと便利です）。
+2.  Jupyter Notebook（.ipynb）を快適に扱うための拡張機能をインストールします。
+    -   `Python`: 言語サポート
+    -   `Jupyter`: ノートブックのレンダリング・実行に必要
+3.  **.ipynb ファイルをGitで管理しやすくするコツ**
+    - Gitの差分（diff）をテキストベースで厳密に確認したい場合は、エクスプローラー上で `.ipynb` ファイルを右クリック > `別のエディターで開く...` > `テキストエディター` を選択します。
 
 ![VSCodeテキストエディター選択](/img/colab_github_07_vscode_select_text_editor.png)
 
-    -   これにより、ファイルが生のJSON形式で表示され、Gitの変更差分（diff）が確認しやすくなります。もちろん、通常通りノートブックとして実行・編集したい場合は、ダブルクリックでJupyter形式で開くことができます。
+![VSCode右クリックメニュー](/img/colab_github_06_vscode_right_click_menu.png)
+
+これにより、ファイルが生のJSON形式で表示され、どの行が変更されたかを確認しやすくなります。通常通りノートブックとして編集・実行したい場合は、ダブルクリックで通常のJupyter形式として開けます。
 
 ### 4. 日常の開発ワークフロー
 
 #### 編集からGitHub保存まで
 
-1.  **VSCodeでコード編集**
-    -   ローカル環境で自由にアイデアを実装し、コードを編集します。
+1.  **ローカルエディタでコード編集**
+    -   使い慣れたエディタ（VSCode/Cursor等）で自由にコードを編集・補完します。
 
-2.  **変更をGitHubに保存**
-    -   編集が完了したら、ターミナルで以下のコマンドを実行して変更内容をGitHubにプッシュします。
-    -   コミットメッセージには、[Conventional Commits](https://www.conventionalcommits.org/ja/v1.0.0/)などの規則性を意識すると管理しやすくなります。
+2.  **変更をGitHubに保存（Push）**
+    -   編集が完了したら、ターミナルで以下のコマンドを実行して変更内容をGitHubに送信します。
 
     ```bash
     git add .
     
-    # メッセージ例: feat(機能追加), fix(修正), docs(ドキュメント), style(書式) など
+    # メッセージ例: feat(機能追加), fix(修正), docs(ドキュメント) など
     git commit -m "feat: データ前処理ロジックを追加"
     
     git push origin main
     ```
 
-3.  **Colabで動作確認**
+3.  **Colabで動作確認（Pull）**
     -   Colabを開き、`ファイル` > `ノートブックを開く` を選択し、`GitHub` タブに切り替えます。
 
 ![Colab ノートブックを開く GitHubタブ](/img/colab_github_08_open_notebook_github_tab.png)
 
-    -   リポジトリURL（`https://github.com/your-username/your-repository-name`）で検索します。
+    -   対象のリポジトリを選択（またはURLで検索）し、最新版に更新されたノートブックを開いて実行します。
 
 ![Colab リポジトリ検索](/img/colab_github_09_search_repo_url.png)
-
-    -   最新版に更新されたノートブックを開き、実行して動作を確認します。
 
 ---
 
 ### 重要な運用ルール
 
-スムーズな連携を維持し、コンフリクト（編集の競合）を避けるために、以下のルールを守ることが重要です。
+スムーズな連携を維持し、コンフリクト（編集の競合）を避けるために、以下のルールを徹底しましょう。
 
-#### 1. 作業開始前の同期確認（最重要）
+#### 1. 作業開始前の「同期」確認（最重要）
 
-**「最後にどこで編集したか」は意外と忘れがちです。**
-Colabでちょっとした修正をしたままローカルで作業を始めると、整合性が取れなくなります。どの環境で編集を始める場合でも、**作業前に必ずGitHubから最新の状態を取得してください。**
+どの環境で編集を始める場合でも、**作業前に必ず最新の状態を取得**してください。
 
 -   **ローカルで作業を開始する場合**:
     -   まず `git pull origin main` を実行し、リモートの最新版を取り込みます。
 -   **Colabで作業を開始する場合**:
-    -   ブラウザで開いたままのタブは古い状態の可能性があります。`ファイル` > `ノートブックを開く` > `GitHub` タブから、意識的に開き直すことを推奨します。
+    -   ブラウザで開いたままのタブは古い状態の可能性があります。`ファイル` > `ノートブックを開く` > `GitHub` タブから、**常に最新のコミットを開き直す**ことを推奨します。
 
-#### 2. 編集完了時の保存
+#### 2. 編集完了時の「保存」
 
-**編集が完了したら、作業終了の合図として必ずその内容をGitHubに保存（プッシュ）してください。**
+**編集が完了したら、必ずその内容をGitHubにプッシュしてください。**
 
--   **ローカルで編集した場合**:
-    ```bash
-    git add .
-    git commit -m "docs: 分析結果のコメントを追記"
-    git push origin main
-    ```
--   **Colabで編集した場合**:
-    -   `ファイル` > `GitHubにコピーを保存` を実行します。これを忘れてブラウザを閉じると、Colab上での変更はGitHubに反映されません。
+-   **ローカルで編集した場合**: `git push` を忘れない。
+-   **Colabで編集した場合**: `ファイル` > `GitHubにコピーを保存` を実行。これを忘れてブラウザを閉じると、Colabでの変更は消えてしまいます。
 
-#### 3. 複数の場所での同時編集を避ける
+#### 3. コンフリクト発生時の対処
 
-**コンフリクトの最大の原因となるため、同じファイルを複数の環境で同時に編集しないでください。**
-「ローカルでの作業をPushして終了」→「ColabでPull（開き直し）して作業開始」というバトンタッチを徹底しましょう。
-
-#### 4. コンフリクト発生時の対処
-
-万が一、競合（コンフリクト）が発生してしまった場合は、落ち着いてローカル環境で対処します。
-
-1.  `git status` で状況を確認します。
-2.  必要に応じて `git stash` で現在の変更を一時退避させます。
-3.  `git pull origin main` でリモートの最新版を取得します。
-4.  VSCodeの差分表示機能などを活用し、コンフリクトを解消してから再度コミット・プッシュします。
+万が一、競合（コンフリクト）が発生してしまった場合は、ローカル環境（VSCode等）で解消するのが最も簡単です。VSCodeやCursorには強力なコンフリクト解消ツールが内蔵されているため、差分を比較してどちらの変更を残すか選択しましょう。
 
 ### まとめ
 
-この手順により、Google ColabとGitHub、ローカルVSCodeが連携した効率的な開発環境が構築できます。
+この手順により、Google ColabとGitHub、そして使い慣れたローカルエディタが連携した強力な開発環境が構築できます。
 
--   **GitHub**: 確実なバージョン管理とコード履歴の保持
--   **ローカルVSCode**: 快適で高機能な編集環境
--   **Google Colab**: 強力なGPU/TPUを活用した実行環境
+-   **GitHub**: 確実なバージョン管理とバックアップ
+-   **ローカルエディタ (VSCode/Cursor等)**: AI補完や強力な拡張機能を活用した高速なコーディング
+-   **Google Colab**: クラウド上のGPU/TPUリソースによる実行環境
 
-それぞれのツールの強みを活かし、適切な運用ルールを守ることで、コンフリクトのリスクを最小限に抑えながら、柔軟で安全な開発ワークフローを実現しましょう。
+それぞれのツールの強みを活かし、適切な運用ルールを守ることで、コンフリクトのリスクを抑えながら柔軟で安全な開発ワークフローを実現しましょう。
 
 <ShareButtons />
 
@@ -211,4 +193,5 @@ Colabでちょっとした修正をしたままローカルで作業を始める
 -   [Google Colab | GitHub との連携](https://colab.research.google.com/github/)
 -   [GitHub Docs | リポジトリのクローン](https://docs.github.com/ja/repositories/creating-and-managing-repositories/cloning-a-repository)
 -   [Visual Studio Code | Jupyter Notebooks](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
+-   [Cursor | The AI Code Editor](https://cursor.sh/)
 -   [Conventional Commits (日本語)](https://www.conventionalcommits.org/ja/v1.0.0/)
