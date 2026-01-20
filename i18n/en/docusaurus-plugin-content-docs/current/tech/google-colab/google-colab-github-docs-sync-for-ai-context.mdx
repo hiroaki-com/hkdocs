@@ -1,0 +1,114 @@
+---
+title: "Sync GitHub Docs to Google Drive: Efficiently Gather Accurate Sources for NotebookLM and Claude Projects"
+authors: [hk]
+tags: [google-colab, github, python, notebooklm, automation, rag, claude-projects]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+Recently, AI tools that "get smarter by reading your data," such as NotebookLM and Claude Projects, have become incredibly useful. When researching how to use new libraries or brainstorming specifications, feeding "official documentation" into these AIs drastically improves the accuracy of their responses.
+
+However, the tricky part is **"how to prepare that documentation."**
+Manually converting websites to PDF or downloading files one by one to re-upload them is honestly a huge hassle.
+
+So, I created a tool on Google Colab that **"automatically saves a specified folder from a GitHub URL directly to Google Drive."** With this, you can quickly add OSS documentation to your AI's "brain (context)."
+
+{/* truncate */}
+
+### What I Built
+
+<Admonition type="tip" title="🚀 Try it now">
+  No messy environment setup is required. You can run it immediately in your browser via the links below.
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      <strong>⚡️ Run on Google Colab</strong><br/>
+      <a href="https://colab.research.google.com/drive/1rFXK52rq7V8TD_iMT-JZ1qqLzlP5qnlx" target="_blank" rel="noopener noreferrer">GitHub Docs Sync Tool (Google Drive Integration)</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Click here to open the script. Just click the play button to run it.</small>
+    </li>
+    <li>
+      <strong>🐙 View Code on GitHub</strong><br/>
+      <a href="https://github.com/hiroaki-com/github_docs_sync/blob/main/README.en.md" target="_blank" rel="noopener noreferrer">hiroaki-com/github_docs_sync</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Check the source code, Star, or Fork the repository here.</small>
+    </li>
+  </ul>
+</Admonition>
+
+### Why I Made This
+
+When using AI in development, I often face the problem that **"the information the AI knows is outdated."**
+Especially with fast-evolving libraries like Next.js or LangChain, AI often confidently suggests old syntax, forcing me to go check the documentation myself anyway.
+
+The best way to solve this is to "feed the AI the latest official documentation."
+
+#### Borrowing from GitHub, not Scraping
+
+While scraping websites is one way to gather information, running crawlers indiscriminately against someone else's server isn't something I like to do as an engineer. It feels intrusive.
+
+However, **OSS documentation hosted on GitHub** is a different story.
+In most cases, these are managed in Markdown format within a `docs/` directory and are publicly available as part of the repository. This allows us to copy the data locally using standard Git procedures, while maintaining respect and gratitude towards the community providing the wonderful OSS.
+
+I believe "official Markdown files" are the best data source—they are easy for AI to read and easy for us to handle.
+
+### How to Use
+
+You don't need to write any Python code. Just fill in the form on Colab and press the button.
+
+#### 1. Find the URL of the information you need (Important)
+
+First, find where the "documentation you want the AI to read" is located on GitHub. This is the only step you need to do manually.
+
+Open the target repository and look for a folder named `docs` or `documentation`. You can use the URL directly from your browser's address bar.
+
+*   `Entire Repository`: `https://github.com/vercel/next.js`
+*   `Specific Folder`: `https://github.com/vercel/next.js/tree/canary/docs`
+
+<Admonition type="tip" title="Specifying a subdirectory is recommended">
+  Since an entire repository often includes test codes and images which can be heavy, the key is to specify <strong>only the URL of the folder containing the necessary documentation</strong>.
+</Admonition>
+
+#### 2. Set the URL in Colab
+
+Open Colab and paste the URL you just found into the "Settings Form" section. You can specify up to 5 URLs, which is convenient for grabbing related libraries all at once.
+
+```python
+# Just paste the URL copied from your browser
+repo_url_1 = "https://github.com/vercel/next.js/tree/canary/docs"
+repo_url_2 = "https://github.com/facebook/react/tree/main/packages/react-dom/docs"
+```
+
+#### 3. Run and Save to Drive
+
+Press the play button (▶). You will be asked for permission to connect to Google Drive.
+Once authorized, the script will fetch the data from GitHub and automatically save it to a `GitHub_Documents` folder within your Google Drive.
+
+After that, simply open NotebookLM or Claude Projects and select this Drive folder as your data source.
+
+### Key Features and Technical Points
+
+This isn't just a simple downloader; I tuned the usability specifically for AI data collection.
+
+-   **Sparse Checkout (Partial Fetching)**
+    Even for huge repositories (like monorepos), it pinpoints and fetches only the specified `docs` folder. Since it doesn't download unnecessary data, processing is fast and it doesn't clutter your Drive storage.
+-   **Automated URL Parsing**
+    It automatically determines the "branch name" and "path" from URLs like `tree/main/docs`. You don't need to worry about Git commands; just pasting the browser URL works.
+-   **Direct Save to Google Drive**
+    By integrating Colab with Drive, files are transferred entirely within the cloud, without needing to go through your local PC.
+-   **Maintains Folder Structure**
+    It saves the folder structure as-is without compressing it into a Zip file. This preserves the hierarchy, helping the AI understand "what is written in which file" and improving context comprehension.
+
+### Summary
+
+The shortest path to improving AI accuracy is giving it a "correct cheat sheet."
+
+With this tool, you can easily import high-quality documentation from GitHub into your own AI environment. I hope this helps when you need to "write code based on the latest specifications" or "know the exact usage of a library."
+
+<ShareButtons />
+
+### References
+
+-   [Google Help | About NotebookLM](https://support.google.com/notebooklm/answer/14271427?hl=en)
+-   [Anthropic Help Center | What are Projects?](https://support.anthropic.com/en/articles/9517075-what-are-projects)
+-   [Git - git-sparse-checkout Documentation](https://git-scm.com/docs/git-sparse-checkout)
+-   [Google Colab | External data: Drive, Sheets, and Cloud Storage](https://colab.research.google.com/notebooks/io.ipynb)
