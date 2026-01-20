@@ -1,0 +1,115 @@
+---
+title: GitHubドキュメントをGoogle Driveへ同期し、NotebookLMやClaude Projectsのために正確な情報源を効率的に収集したい。
+authors: [hk]
+tags: [google-colab, github, python, notebooklm, automation, rag, claude-projects]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+最近、NotebookLMやClaude Projectsのような「自分のデータを読み込ませて賢くするAI」がすごく便利ですよね。
+新しいライブラリの使い方を調べたり、仕様について壁打ちしたりするとき、これらのAIに`「公式ドキュメント」`を読み込ませると、回答の精度が劇的に上がります。
+
+ただ、ここで一つ面倒なのが`「どうやってドキュメントを準備するか」`です。
+WebサイトをちまちまPDF化したり、手動でファイルをダウンロードしてアップロードし直すのは、正直かなり手間がかかります。
+
+そこで、`「GitHubのURLを貼るだけで、指定したフォルダをGoogle Driveへ自動的に保存してくれるツール」`をGoogle Colabで作ってみました。これを使えば、OSSのドキュメントをサクッとAIの「脳みそ（コンテキスト）」に追加できます。
+
+{/* truncate */}
+
+### 作ったもの
+
+<Admonition type="tip" title="🚀 今すぐ試す">
+  面倒な環境構築は不要です。以下のリンクからブラウザ上ですぐに実行できます。
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      <strong>⚡️ Google Colab で実行する</strong><br/>
+      <a href="https://colab.research.google.com/drive/1cmGI_kG3qd46SA0YjpBJa4GOwkaN-8mH" target="_blank" rel="noopener noreferrer">GitHub Docs Sync Tool (Google Drive連携)</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>スクリプトの実行はこちら。クリックして再生ボタンを押すだけで動きます。</small>
+    </li>
+    <li>
+      <strong>🐙 GitHub でコードを見る</strong><br/>
+      <a href="https://github.com/hiroaki-com/github_docs_sync" target="_blank" rel="noopener noreferrer">hiroaki-com/github_docs_sync</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>ソースコードの確認や、Star / Fork はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+### なぜこれを作ったのか
+
+開発の現場でAIを使っていると、「AIが知っている情報が古い」という問題によく直面します。
+特にNext.jsやLangChainのような進化の速いライブラリだと、AIが自信満々に古い書き方を提案してくることがあって、結局自分でドキュメントを見に行く羽目になりがちです。
+
+これを解決するには「最新の公式ドキュメントをAIに渡す」のが一番です。
+
+#### スクレイピングではなく、GitHubから借用する
+
+情報を集める手段として「Webサイトのスクレイピング」も考えられますが、無作為にクローラーを回して相手のサーバーに負荷をかけるのは、エンジニアとしてあまりやりたくありません。心理的にも抵抗があります。
+
+その点、`GitHub上で公開されているOSSのドキュメント`であれば話は別です。
+多くの場合 `docs/` ディレクトリなどにMarkdown形式で管理されており、リポジトリの一部として公開されています。これなら、素晴らしいOSSを公開してくれているコミュニティへの感謝とリスペクトを持ちつつ、Gitの正規の手順で手元にコピーさせていただくことができます。
+
+「公式が提供しているMarkdownファイル」こそ、AIにとっても読みやすく、私たちにとっても扱いやすい最高の情報源だと考えました。
+
+### 使い方
+
+Pythonのコードを書く必要はありません。Colabのフォームに入力してボタンを押すだけです。
+
+#### 1. 欲しい情報のURLを探す（重要）
+
+まず、GitHub上で「AIに読ませたいドキュメント」がどこにあるかを探します。ここだけは手動で行う必要があります。
+
+対象のリポジトリを開き、`docs` や `documentation` といったフォルダを探してみてください。ブラウザのアドレスバーのURLがそのまま使えます。
+
+*   `リポジトリ全体`: `https://github.com/vercel/next.js`
+*   `特定のフォルダ`: `https://github.com/vercel/next.js/tree/canary/docs`
+
+<Admonition type="tip" title="サブディレクトリ指定がおすすめ">
+  リポジトリ全体だとテストコードや画像なども含まれて重くなるので、<strong>必要なドキュメントが入っているフォルダのURL</strong>を指定するのがポイントです。
+</Admonition>
+
+#### 2. ColabでURLを設定する
+
+Colabを開き、「設定フォーム」セクションに先ほど調べたURLを貼り付けます。最大5つまで指定できるので、関連するライブラリをまとめて取得するのも便利です。
+
+```python
+# ブラウザからコピーしたURLをそのまま貼ればOK
+repo_url_1 = "https://github.com/vercel/next.js/tree/canary/docs"
+repo_url_2 = "https://github.com/facebook/react/tree/main/packages/react-dom/docs"
+```
+
+#### 3. 実行してDriveに保存
+
+再生ボタン（▶）を押すと、Google Driveへの接続許可が求められます。
+許可すると、スクリプトがGitHubからデータを取得し、あなたのGoogle Drive内の `GitHub_Documents` フォルダへ自動的に保存します。
+
+あとは、NotebookLMやClaude Projectsを開いて、データソースとしてこのDriveフォルダを指定するだけです。
+
+### 主な機能と技術的なポイント
+
+単なるダウンローダーではなく、AIのためのデータ収集ツールとして使い勝手を調整しています。
+
+-   `Sparse Checkout (部分取得)`
+    巨大なリポジトリ（モノレポなど）でも、指定した `docs` フォルダだけをピンポイントで取得します。余計なデータをダウンロードしないため、処理が高速でDriveの容量も圧迫しません。
+-   `URL解析の自動化`
+    `tree/main/docs` のようなURLから「ブランチ名」と「パス」を自動判別します。ユーザーはGitコマンドを意識せず、ブラウザのURLをペタッと貼るだけでOKです。
+-   `Google Driveへのダイレクト保存`
+    ColabとDriveを連携させることで、ローカルPCを経由せず、クラウド上で完結してファイルを受け渡せます。
+-   `フォルダ構造の維持`
+    Zipなどで圧縮せずそのままのフォルダ構造で保存するため、AIに読み込ませた際も「どのファイルに何が書いてあるか」の階層構造が維持され、コンテキストの理解を助けます。
+
+### まとめ
+
+AIの回答精度を上げる一番の近道は、AIに「正確なカンニングペーパー」を渡してあげることです。
+
+このツールを使えば、GitHub上の質の高いドキュメントを、手軽に自分のAI環境に取り込むことができます。「最新の仕様に基づいたコードを書いてほしい」「このライブラリの正確な使い方が知りたい」といった場面で、ぜひ役立ててみてください。
+
+<ShareButtons />
+
+### 参考文献
+
+-   [Google Help | NotebookLM について](https://support.google.com/notebooklm/answer/14271427?hl=ja)
+-   [Anthropic Help Center | What are Projects?](https://support.anthropic.com/en/articles/9517075-what-are-projects)
+-   [Git - git-sparse-checkout Documentation](https://git-scm.com/docs/git-sparse-checkout)
+-   [Google Colab | 外部データの操作: ドライブ、スプレッドシート、Google Cloud Storage](https://colab.research.google.com/notebooks/io.ipynb)

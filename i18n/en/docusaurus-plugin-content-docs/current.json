@@ -26,5 +26,13 @@
   "sidebar.tutorialSidebar.category.Google Apps Script.link.generated-index.description": {
     "message": "Notes on using Google Apps Script to streamline Google Docs editing.",
     "description": "The generated-index page description for category Google Apps Script in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Google Colab": {
+    "message": "Google Colab",
+    "description": "The label for category Google Colab in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Google Colab.link.generated-index.description": {
+    "message": "Notes on implementations and tips for Google Colab.",
+    "description": "The generated-index page description for category Google Colab in sidebar tutorialSidebar"
   }
 }

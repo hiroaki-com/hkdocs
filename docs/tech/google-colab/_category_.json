@@ -1,0 +1,8 @@
+{
+  "label": "Google Colab",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Google Colabでの実装やTipsに関する備忘録です。"
+  }
+}
