@@ -4,6 +4,12 @@ authors: [hk]
 tags: [Docusaurus, Algolia, i18n, DocSearch, Crawler, チュートリアル]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 Docusaurusで構築した多言語（i18n）サイトへのAlgolia DocSearch導入時、**検索結果に複数言語が混在する**という課題への直面。日本語での検索時に英語ページがヒットするなど、ユーザー体験を損なう事態が発生しがちです。
 
 本記事では、この問題を解決し、**サイトの表示言語と連動した最適な検索体験**を実現するための具体的な設定手順を備忘録として整理します。
@@ -205,5 +211,7 @@ export default config;
 -   **高い検索品質**: 各言語に最適化されたインデックス設定による、より関連性の高い検索結果の提供。
 -   **優れた拡張性**: 将来的な言語追加時も、クローラー設定への同パターン追加による容易なスケール。
 
+<ShareButtons />
 
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 

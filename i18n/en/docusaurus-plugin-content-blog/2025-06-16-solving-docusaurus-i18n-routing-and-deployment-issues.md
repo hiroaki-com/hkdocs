@@ -127,3 +127,11 @@ I now enforce a practice of placing the translated version of any new page in th
 ### 4. Conclusion
 
 This series of troubles was a complex, chain-reaction problem caused by a poor choice of local development server and a dependency management mistake in the Docker build. By systematically isolating the cause at each layer and applying the right tools and configurations, I was able to rebuild a robust development and deployment foundation that allows for stable operation of the i18n feature.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

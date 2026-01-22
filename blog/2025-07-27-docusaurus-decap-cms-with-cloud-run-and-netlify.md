@@ -3,6 +3,13 @@ title: Cloud Run上のDocusaurusサイトにDecap CMSを導入した記録
 authors: [hk]
 tags: [docusaurus, decap-cms, netlify, cloud-run, ci/cd]
 ---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 このサイトのコンテンツ管理を効率化するため、ヘッドレスCMSであるDecap CMS（旧Netlify CMS）を導入しました。この記事では、その導入プロセスと技術的な判断、そして遭遇した問題の解決策について記録します。
 
 最終的に、CMSの管理画面はNetlifyで、公開サイトはGoogle Cloud Runで運用する、という少し特殊なハイブリッド構成に落ち着きました。
@@ -243,6 +250,6 @@ Netlifyホスティングではこのプロキシ機能が内部的に提供さ�
         create: 'docs(diary): add new entry "{{slug}}"'
     ```
 
-import ShareButtons from '@site/src/components/ShareButtons';
-
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

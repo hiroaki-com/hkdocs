@@ -4,6 +4,12 @@ authors: [hk]
 tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 この記事では、Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装した際の手順とトラブルシューティングの記録を整理します。
 
 機能：
@@ -370,3 +376,7 @@ https://docusaurus.io/docs/seo
 8.  **VS Codeでの型解決エラー (`Cannot find module ...` 等):**
     *   **解決策:** VS Codeを完全に再起動してください。コマンドパレット (Ctrl+Shift+P または Cmd+Shift+P) から `TypeScript: Restart TS server` を実行してください。
 
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

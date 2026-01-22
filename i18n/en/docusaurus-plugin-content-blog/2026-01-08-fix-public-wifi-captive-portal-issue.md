@@ -110,3 +110,10 @@ The problem of public WiFi authentication screens not appearing is surprisingly 
 
 By practicing these simple maintenance steps, I found that connecting to public WiFi on both Mac and iPhone became significantly more comfortable.
 This is a setting that is easily overlooked, but if you are struggling with similar issues, why not review your WiFi settings today?
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

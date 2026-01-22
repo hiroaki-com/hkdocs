@@ -105,3 +105,11 @@ If the `last_update` key exists, Docusaurus will prioritize it over the Git comm
 By simply configuring `docusaurus.config.ts` and adding to the Front Matter of each article, you can easily display a "Last Updated" date on your Docs articles. A major advantage of this method is that it's very easy to implement because it doesn't require any changes to your CI/CD setup.
 
 However, since the date is managed manually, you must be careful not to forget to update the Front Matter when the article content is changed. It's important to weigh the accuracy of information against the ease of maintenance and choose the method that best suits your project.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docusaurus, react, typescript, localStorage, ブラウザ機能]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 この記事では、DocusaurusサイトにReactとTypeScriptを利用して、クライアントサイドで動作するシンプルなブラウザメモ機能を実装した際の主要な仕様と技術的ポイントを整理。
 
 #### 1. 基本機能と目的
@@ -100,4 +106,7 @@ Docusaurusの標準機能とReactの柔軟性を組み合わせることで、�
 UI/UXの細かな調整（高さ調整ロジック、ホバーエフェクトなど）が、使い勝手に大きく影響する点を再認識。
 今後の拡張としては、メモの並び替え、マークダウン対応、個別のメモ削除などが考えられるが、今回はシンプルさを優先。
 
----
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

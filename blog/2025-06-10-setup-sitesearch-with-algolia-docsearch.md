@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docusaurus]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 この記事では、Algolia DocSearch を使用して、サイト内検索機能を設定した際の手順と課題解決の経緯を整理します。
 
 ### DocusaurusにAlgolia DocSearchを実装した際の記録
@@ -134,3 +140,8 @@ Docusaurus v3はJavaScriptによって動的にコンテンツを描画するSPA
 *   Docusaurus v2以降やReact/Vue等のSPAにAlgoliaを適用する場合、`renderJavaScript: true`の設定は必須の可能性が高い。
 *   「セレクタは正しいのにデータが抽出できない」場合、まずクローラーのJavaScriptレンダリング設定の確認。
 *   クローラーのテスト実行機能（Run a test）で取得した生のHTMLを確認することが、問題の切り分けに極めて有効。
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

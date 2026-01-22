@@ -7,6 +7,10 @@ tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
 import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 This article outlines the procedures and troubleshooting steps for implementing a GitHub Action that detects new articles and posts them to X as Twitter Cards.
 
@@ -368,3 +372,9 @@ Detect new posts with GitHub Actions and post them to X as Twitter Cards.
     *   **Solution:** Check the `url`, `baseUrl`, and `themeConfig.image` settings in `docusaurus.config.ts`. Ensure that `title`, `description`, and `image` are properly set in the article's frontmatter. Test with the [X Card Validator](https://cards-dev.twitter.com/validator). Check the OGP meta tags (`og:title`, `og:description`, `og:image`, etc.) in the generated HTML source.
 8.  **Type resolution errors in VS Code (`Cannot find module ...`, etc.):**
     *   **Solution:** Completely restart VS Code. From the Command Palette (Ctrl+Shift+P or Cmd+Shift+P), run `TypeScript: Restart TS server`.
+
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

@@ -5,6 +5,12 @@ last_update:
 tags: [docusaurus, frontmatter]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 当サイト（Docusaurus）のドキュメント記事に、情報の鮮度を示す「最終更新日」を表示させる簡単な実装方法の整理します。
 `Docsフォルダ`には、`Blogフォルダ`のように、作成日など日付の記載がデフォルトではされないようなので追加することを決定しました。
 Gitの履歴に依存せず、CI/CDの設定変更も不要な、Front Matterを利用した方法の採用しました。
@@ -105,3 +111,9 @@ Docusaurusで最終更新日を表示させるためのオプションの有効�
 `docusaurus.config.ts` の設定と各記事のFront Matterへの追記だけで、Docs記事に「最終更新日」を簡単に表示することが可能。この方法はCI/CDの設定変更が不要なため、非常に手軽に導入できる点が大きなメリット。
 
 ただし、日付は手動管理のため、記事更新時のFront Matterの更新忘れには注意が必要。情報の正確性と運用の手軽さを天秤にかけ、プロジェクトに合った方法の選択が望ましい。
+
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

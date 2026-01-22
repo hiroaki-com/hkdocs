@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docusaurus, react, typescript, i18n, css-modules, ui/ux]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 この記事では、Docusaurusサイト内に、国内外のニュースサイトを一覧できる「ニュースページ」を実装した際の整理をします。
 
 #### 1. ページの目的と主要機能
@@ -153,6 +159,6 @@ HTML標準機能とCSSを最大限に活用し、軽量でアクセシブルなU
     これにより、UIをクリーンに保ちつつ、必要な時に機能の存在をユーザーに提示。
 
 
-import ShareButtons from '@site/src/components/ShareButtons';
-
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

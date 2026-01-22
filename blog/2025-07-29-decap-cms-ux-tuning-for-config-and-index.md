@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docusaurus, decap-cms, ux, css, javascript]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 以前の記事で、[DocusaurusサイトにDecap CMSを導入した方法](/blog/2025-07-27-docusaurus-decap-cms-with-cloud-run-and-netlify.md)について解説しました。導入によってコンテンツ更新の基盤は整いましたが、実際に日々利用する中で、特にモバイル環境での使い勝手や定型入力の効率化に改善の余地があると感じていました。
 
 この記事では、それらの課題を解決するために[**`static/admin/config.yml`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/config.yml)と[**`static/admin/index.html`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/index.html)に施した、より実践的なカスタマイズの内容を紹介します。
@@ -150,9 +156,10 @@ Decap CMSのデフォルトUIはPCでの利用が主眼に置かれており、�
 
 GitベースのCMSは、このように自分の使い方に合わせて柔軟にカスタマイズできる点が大きな利点です。この記事が、皆さんのCMS環境をより快適にするためのヒントになれば幸いです。
 
-import ShareButtons from '@site/src/components/ShareButtons';
 
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 ##### 参考文献
 

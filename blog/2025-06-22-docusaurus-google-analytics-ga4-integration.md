@@ -4,6 +4,12 @@ authors: [hk]
 tags: [Docusaurus, Google Analytics, GA4, gtag]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 Docusaurusで構築した当サイトにGoogle Analytics 4 (GA4) を導入し、アクセス解析を行うための設定手順を備忘録として整理します。
 
 **機能:**
@@ -104,3 +110,9 @@ export default config;
 3.  **Google Tag Assistant Companion:**
     *   Chrome拡張機能「Tag Assistant Companion」を導入。
     *   デバッグしたいページURLをTag Assistantサイトで指定し、Gtagが正しく認識・発火しているかを確認。    
+
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

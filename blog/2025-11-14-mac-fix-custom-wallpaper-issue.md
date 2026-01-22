@@ -4,6 +4,12 @@ authors: [hk]
 tags: [mac, wallpaper, desktop, finder, bug, 壁紙, 壁紙設定]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ### 1. 概要
 
 本記事では、MacBookで任意の画像ファイルを壁紙（デスクトップピクチャ）として設定する際、システム設定からの操作では反映が不安定であったり、再起動後に設定がリセットされてしまう事象に対する、解決手順をまとめたものです。地味に長年困っていた本件の解決法が分かったので共有いたします。
@@ -79,3 +85,7 @@ MacBookにてカスタム画像を壁紙として設定する際、以下の課�
 今回紹介した操作により、システム設定を経由した際の不安定な動作を回避し、任意の画像を確実に壁紙として設定・保持することが可能になるかと思います。
 意外と自分では見つけることが難しい設定なので、皆様の一助となれば幸甚です。
 
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

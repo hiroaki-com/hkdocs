@@ -7,6 +7,10 @@ tags: [docusaurus, i18n, routing, deployment, docker, cloudrun]
 ---
 
 import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 This article chronicles the journey of identifying and resolving two tricky problems encountered after adding internationalization (i18n) to a Docusaurus v3 site: **"client-side routing collapse"** and **"container startup failure on Cloud Run."**
 
@@ -137,3 +141,9 @@ When adding a new page, I enforce the practice of also adding its translated ver
 ### 4. Summary
 
 This series of issues was a compound problem stemming from a poor choice of local development server and a dependency management mistake in the Docker build process. By systematically isolating the cause at each layer and applying the right tools and configurations, I was able to re-establish a robust development and deployment foundation for reliably operating the i18n-enabled site.
+
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
