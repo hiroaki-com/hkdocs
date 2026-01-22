@@ -85,3 +85,11 @@ This can also be done with a single policy. Select the **Policy type** **Conditi
 This article covered how to use Artifact Registry's cleanup policies to automatically delete old Docker images and save on storage costs.
 
 Once set up, it works automatically, making it an essential task for any developer using a CI/CD pipeline. I highly recommend trying it out in your own projects.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

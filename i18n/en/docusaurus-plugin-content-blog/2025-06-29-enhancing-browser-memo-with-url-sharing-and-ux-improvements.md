@@ -106,3 +106,11 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, ... }) => {
 ##### Optimization for the Docusaurus Environment
 
 Since the feature depends on browser-only APIs like `localStorage`, the entire component was wrapped with the `<BrowserOnly>` component provided by Docusaurus. This prevents errors during server-side builds and ensures stability.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

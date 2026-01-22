@@ -7,6 +7,10 @@ tags: [docusaurus, frontmatter]
 ---
 
 import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 当サイト（Docusaurus）のドキュメント記事に、情報の鮮度を示す「最終更新日」を表示させる簡単な実装方法の整理。
 `Docs`フォルダの記事には、`Blog`フォルダのように作成日などがデフォルトで表示されないため、この機能を追加。
@@ -115,3 +119,8 @@ last_update:
 <Admonition type="caution" title="手動更新の注意点">
 この方法では日付は手動管理のため、記事内容を更新した際のFront Matterの更新忘れには注意が必要。情報の正確性と運用の手軽さを天秤にかけ、プロジェクトに合った方法の選択が望ましい。
 </Admonition>
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

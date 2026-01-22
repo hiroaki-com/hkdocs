@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docusaurus, react, typescript, performance, ux, lz-string]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ### ブラウザメモ機能：URL共有とUI/UX改善の実装記録
 
 #### はじめに
@@ -105,3 +111,7 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, ... }) => {
 
 `localStorage`などブラウザ専用APIに依存するため、コンポーネント全体をDocusaurusが提供する`<BrowserOnly>`でラップ。これにより、サーバーサイドでのビルド時にエラーが発生するのを防ぎ、安定性を確保。
 
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

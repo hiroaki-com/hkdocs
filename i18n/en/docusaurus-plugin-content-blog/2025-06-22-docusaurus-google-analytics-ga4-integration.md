@@ -104,3 +104,11 @@ After deploying the changes, access your public site and verify the setup using 
 3.  **Google Tag Assistant Companion:**
     *   Install the "Tag Assistant Companion" Chrome extension.
     *   On the Tag Assistant website, enter the URL of the page you want to debug and check if the Gtag is correctly identified and firing.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

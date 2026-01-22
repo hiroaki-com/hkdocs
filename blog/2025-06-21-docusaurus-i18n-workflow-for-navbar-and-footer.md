@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docusaurus, i18n, react, typescript, workflow]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 Docusaurusサイトの主要UI、`ナビゲーションバー`と`フッター`を国際化（i18n）編集した際の備忘録として整理します。
 
 #### 1. 目的
@@ -126,3 +132,7 @@ Docusaurusのi18n機能は、サイトのテキストを多言語に対応させ
     *   ナビゲーションバーとフッターに「Portfolio」リンクが表示されていることを確認。
     *   サイト右上の言語スイッチャーで言語を切り替え、両方の表示が意図通りかチェック。
 
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

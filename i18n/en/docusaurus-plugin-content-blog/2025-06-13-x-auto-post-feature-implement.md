@@ -365,4 +365,11 @@ https://docusaurus.io/docs/seo
     *   **Solution:** Check the `url`, `baseUrl`, and `themeConfig.image` settings in `docusaurus.config.ts`. Ensure that `title`, `description`, and `image` are set correctly in the article's front matter. Test with the [X Card Validator](https://cards-dev.twitter.com/validator). Inspect the OGP meta tags (`og:title`, `og:description`, `og:image`, etc.) in the generated HTML source.
 8.  **Type resolution errors in VS Code (`Cannot find module ...`, etc.):**
     *   **Solution:** Completely restart VS Code. From the Command Palette (Ctrl+Shift+P or Cmd+Shift+P), run `TypeScript: Restart TS server`.
-    
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

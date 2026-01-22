@@ -4,6 +4,12 @@ authors: [hk] # 執筆者名に置き換えてください
 tags: [docusaurus, アイコン, css, svg] # 適切なタグに置き換えてください
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 この記事では、Docusaurusサイトのナビゲーションバーにアイコンや特定の記号を表示させるための主要な編集パターンを3つ整理します。
 
 
@@ -156,4 +162,7 @@ Docusaurusのナビゲーションアイテム設定オブジェクトが持つ 
 
 最終的には、実装の容易さ、メンテナンス性、デザインの要求レベル、パフォーマンスへの影響などを総合的に比較検討し、最適なアプローチを選択することが重要。
 
----
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

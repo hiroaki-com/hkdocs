@@ -2148,5 +2148,9 @@
   "links.site.standards.w3c.title": {
     "message": "W3C",
     "description": "Title for W3C"
-  }
+  },
+  "component.GitHubStarLink.text": {
+      "message": "If this site helped you, please support us with a star! 🌟",
+      "description": "The text asking for a GitHub star support"
+    }
 }

@@ -115,3 +115,11 @@ Finally, confirm that your site is correctly displayed at the custom domain `htt
 2.  Verify that the site loads and that the HTTPS connection is active (check for the lock icon in the address bar).
 3.  Test that links and other features on the site work as intended.
 4.  If necessary, also check SEO-related files like `https://hkdocs.com/sitemap.xml`.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

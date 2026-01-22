@@ -1,12 +1,17 @@
 ---
 slug: docusaurus-share-button-implementation-log
 title: 'Docusaurusにシェアボタンを実装した記録'
+sidebar_position: 15
 authors: [hk]
 tags: [docusaurus, react, typescript, css-modules, ui/ux]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
 import Admonition from '@theme/Admonition';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 
 このサイトの各記事に、SNSでコンテンツを共有するためのシェアボタンを設置しました。この記事では、その実装プロセスと、背景にある技術的な判断について記録します。
 
@@ -190,3 +195,9 @@ import ShareButtons from '@site/src/components/ShareButtons';
 
 
 </Admonition>
+
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+<ShareButtons />
+

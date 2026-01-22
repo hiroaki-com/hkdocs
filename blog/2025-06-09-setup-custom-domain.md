@@ -4,6 +4,11 @@ authors: [hk]
 tags: [docusaurus]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 この記事では、Google Cloud Run でホスティングしている 当サイト（Docusaurus）に、Value Domain で取得したカスタムドメイン `hkdocs.com` を設定した際の手順を整理します。
 
 **前提環境:**
@@ -115,3 +120,8 @@ Docusaurus の設定変更を反映させるため、サイトを再ビルドし
 2.  サイトが表示され、HTTPS接続 (アドレスバーの鍵マーク) が有効であることを確認します。
 3.  サイト内のリンクや機能が意図通りに動作するかテストします。
 4.  必要であれば、`https://hkdocs.com/sitemap.xml` などのSEO関連ファイルも確認します。
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

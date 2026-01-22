@@ -88,3 +88,11 @@ Here’s a brief explanation of what each part of the command does:
 In this article, we showed you how to customize your Mac's key-press behavior with a single, simple command in the Terminal.
 
 This tweak can significantly improve productivity, especially for developers who use editors like Vim or writers who frequently need to type repeating characters. Give it a try
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
