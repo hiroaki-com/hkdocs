@@ -1,0 +1,155 @@
+---
+slug: docusaurus-github-star-button-implementation
+title: 'Implementing a GitHub Star Support Button in Docusaurus'
+sidebar_position: 20
+authors: [hk]
+tags: [docusaurus, react, typescript, api, ui/ux, github star]
+---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import Admonition from '@theme/Admonition';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+To visualize reader empathy and boost motivation for site operation, I have added a "GitHub Star Support Button" to each article.
+
+Instead of using existing badge services or official buttons, I created a custom component that blends perfectly with the site's design. This article records the design decision to avoid OAuth authentication, measures taken against GitHub API rate limits, and implementation techniques specific to Docusaurus.
+
+The finished component works as shown above (please give it a star if you find this site helpful 🌟).
+
+### Design Policy: Simplicity and Reducing User Burden
+
+Implementing a GitHub Star feature usually requires OAuth authentication or a backend, but I deliberately adopted the **"Transition to Repository Page"** method.
+
+:::info[Design Policy]
+OAuth authentication creates a psychological and operational hurdle for users who simply want to give a star.
+By adopting a simple flow of **"Click to open the repository, then press the star there,"** I minimized both development costs (no backend required) and user burden.
+:::
+
+### Implementation Details
+
+The implementation consists of the following component and style definitions:
+
+<ul>
+  <li>
+    <code>src/components/GitHubStarLink/index.tsx</code>
+    <a href="https://github.com/hiroaki-com/hkdocs/blob/develop/src/components/GitHubStarLink/index.tsx" target="_blank" rel="noopener noreferrer"> (View on GitHub)</a>
+  </li>
+  <li>
+    <code>src/components/GitHubStarLink/styles.module.css</code>
+    <a href="https://github.com/hiroaki-com/hkdocs/blob/develop/src/components/GitHubStarLink/styles.module.css" target="_blank" rel="noopener noreferrer"> (View on GitHub)</a>
+  </li>
+</ul>
+
+Here are the technical highlights:
+
+#### 1. API Rate Limiting and Caching (`index.tsx`)
+
+The GitHub API (unauthenticated) has a strict IP limit of **60 requests per hour**. If the API is hit every time an article is viewed, this limit will be reached very quickly.
+
+To address this, I implemented a simple caching mechanism using `sessionStorage`.
+
+```tsx title="src/components/GitHubStarLink/index.tsx"
+// Cache expiration time (30 minutes)
+const CACHE_DURATION = 1000 * 60 * 30;
+
+// ...
+
+useEffect(() => {
+  const fetchStars = async () => {
+    const cacheKey = `gh-stars-${repo}`;
+    
+    // 1. Check Cache
+    try {
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        const { count, timestamp } = JSON.parse(cached);
+        // Use cache if within duration, skipping API call
+        if (Date.now() - timestamp < CACHE_DURATION) {
+          setStarCount(count);
+          return;
+        }
+      }
+    } catch (e) { /* ignore */ }
+
+    // 2. API Call
+    try {
+      const response = await fetch(`https://api.github.com/repos/${repo}`);
+      if (!response.ok) throw new Error('API Error');
+      const data = await response.json();
+      
+      setStarCount(data.stargazers_count);
+      
+      // 3. Update Cache
+      sessionStorage.setItem(cacheKey, JSON.stringify({
+        count: data.stargazers_count,
+        timestamp: Date.now()
+      }));
+    } catch (error) {
+      // Fallback on error (e.g., hide count)
+    }
+  };
+  fetchStars();
+}, [repo, showCount]);
+```
+
+#### 2. Styling and i18n Support (`styles.module.css`)
+
+The design follows the GitHub UI context while automatically adjusting to the Docusaurus theme (Light/Dark mode).
+
+Especially in light mode, appropriate light gray background colors and borders are set to prevent the white badge from blending into the background.
+
+```css title="src/components/GitHubStarLink/styles.module.css"
+/* Light mode: Clean design with subdued colors */
+.container {
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  /* ... */
+}
+
+/* Dark mode: Use transparency layers to stand out from the background */
+[data-theme='dark'] .container {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+```
+
+Additionally, `@docusaurus/Translate` is used to automatically translate messages when switching languages (English/Japanese).
+
+### How to Use the Component
+
+Import and place the component within your MDX file.
+
+:::warning[Note on Import Position]
+The `import` statement must be placed at the very top of the file (directly below the Front Matter). Placing it below the `<!-- truncate -->` marker may cause component resolution errors when generating the blog list page.
+:::
+
+```mdx
+---
+title: Article Title
+---
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+Article content...
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+```
+
+### Summary
+
+By eliminating OAuth authentication and complex backends, I was able to implement a practical star button using only frontend techniques (cache control). Being able to implement features that fit the site's design perfectly without compromising user experience is a unique benefit of a custom implementation.
+
+Currently, the `import` statement needs to be written for each article, but I plan to improve this in the future by using the `MDXComponents` feature of Docusaurus to register the component globally, allowing it to be used with just the tag (To-Be).
+
+<Admonition type="note" title="References">
+
+- [GitHub REST API: Get a repository](https://docs.github.com/ja/rest/repos/repos?apiVersion=2022-11-28#get-a-repository)
+- [Docusaurus Docs: MDX and React Components](https://docusaurus.io/docs/markdown-features/react)
+- [Web Storage API: sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
+- [Docusaurus i18n: Translate](https://docusaurus.io/docs/docusaurus-core/#translate)
+
+</Admonition>
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<ShareButtons />
