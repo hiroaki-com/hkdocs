@@ -1,0 +1,155 @@
+---
+slug: docusaurus-github-star-button-implementation
+title: 'DocusaurusにGitHubスターの応援ボタンを実装した備忘録'
+sidebar_position: 20
+authors: [hk]
+tags: [docusaurus, react, typescript, api, ui/ux, github star]
+---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import Admonition from '@theme/Admonition';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+コンテンツへの共感を可視化し、サイト運営のモチベーションを高めるため、各記事に「GitHubスターの応援ボタン」を設置しました。
+
+既存のバッジサービスや公式ボタンを使用せず、サイトのデザインに完全に調和する独自コンポーネントを作成しました。この記事では、OAuth認証を回避した設計判断や、GitHub APIのレート制限対策、Docusaurus特有の実装テクニックについて記録します。
+
+完成したコンポーネントは上記の通り動作します（よろしければ応援のスターをお願いします🌟）。
+
+### 設計方針：シンプルさとユーザー負担の軽減
+
+GitHubのスター機能を実装するには、通常OAuth認証やバックエンドが必要になりますが、今回はあえて「リポジトリページへの遷移方式」を採用しました。
+
+:::info[設計方針]
+OAuth認証は、単にスターを押したいだけのユーザーにとって心理的・操作的なハードルとなります。
+**「クリックでリポジトリを開き、そこでスターを押してもらう」** というシンプルなフローを採用することで、開発コスト（バックエンド不要）とユーザー負担の両方を最小化しました。
+:::
+
+### 実装ファイルの詳細
+
+実装は、以下のコンポーネントとスタイル定義で行いました。
+
+<ul>
+  <li>
+    <code>src/components/GitHubStarLink/index.tsx</code>
+    <a href="https://github.com/hiroaki-com/hkdocs/blob/develop/src/components/GitHubStarLink/index.tsx" target="_blank" rel="noopener noreferrer"> (View on GitHub)</a>
+  </li>
+  <li>
+    <code>src/components/GitHubStarLink/styles.module.css</code>
+    <a href="https://github.com/hiroaki-com/hkdocs/blob/develop/src/components/GitHubStarLink/styles.module.css" target="_blank" rel="noopener noreferrer"> (View on GitHub)</a>
+  </li>
+</ul>
+
+以下、技術的なハイライトです。
+
+#### 1. APIレート制限対策とキャッシュ (`index.tsx`)
+
+GitHub API（認証なし）には、**1時間あたり60リクエスト**という厳格なIP制限があります。記事を閲覧するたびにAPIを叩いていると、すぐに制限に達してしまいます。
+
+そこで、`sessionStorage` を活用した簡易的なキャッシュ機構を実装しました。
+
+```tsx title="src/components/GitHubStarLink/index.tsx"
+// キャッシュの有効期限 (30分)
+const CACHE_DURATION = 1000 * 60 * 30;
+
+// ...
+
+useEffect(() => {
+  const fetchStars = async () => {
+    const cacheKey = `gh-stars-${repo}`;
+    
+    // 1. キャッシュの確認
+    try {
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        const { count, timestamp } = JSON.parse(cached);
+        // 有効期限内ならキャッシュを使用し、APIコールをスキップ
+        if (Date.now() - timestamp < CACHE_DURATION) {
+          setStarCount(count);
+          return;
+        }
+      }
+    } catch (e) { /* ignore */ }
+
+    // 2. APIコール
+    try {
+      const response = await fetch(`https://api.github.com/repos/${repo}`);
+      if (!response.ok) throw new Error('API Error');
+      const data = await response.json();
+      
+      setStarCount(data.stargazers_count);
+      
+      // 3. キャッシュの更新
+      sessionStorage.setItem(cacheKey, JSON.stringify({
+        count: data.stargazers_count,
+        timestamp: Date.now()
+      }));
+    } catch (error) {
+      // エラー時はフォールバック（カウント非表示など）
+    }
+  };
+  fetchStars();
+}, [repo, showCount]);
+```
+
+#### 2. スタイリングとi18n対応 (`styles.module.css`)
+
+デザインはGitHubのUI文脈を踏襲しつつ、Docusaurusのテーマ（ライト/ダークモード）に自動追従するように調整しました。
+
+特にライトモード時、白いバッジが背景に埋没しないよう、薄いグレーの背景色と境界線 (`border`) を適切に設定しています。
+
+```css title="src/components/GitHubStarLink/styles.module.css"
+/* ライトモード：色味を抑えたクリーンなデザイン */
+.container {
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  /* ... */
+}
+
+/* ダークモード：透過レイヤーで背景から浮き上がらせる */
+[data-theme='dark'] .container {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+```
+
+また、`@docusaurus/Translate` を使用して、多言語（英語/日本語）切り替え時にメッセージが自動で翻訳されるように実装しています。
+
+### コンポーネントの使用方法
+
+MDXファイル内でコンポーネントをインポートして配置します。
+
+:::warning[インポート位置の注意]
+`import` 文は必ずファイルの最上部（Front Matterの直下）に記述する必要があります。`<!-- truncate -->` マーカーより下に記述すると、ブログ一覧ページの生成時にコンポーネント解決エラーが発生する可能性があります。
+:::
+
+```mdx
+---
+title: 記事タイトル
+---
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+記事の本文...
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+```
+
+### まとめ
+
+OAuth認証や複雑なバックエンドを排除し、フロントエンドの工夫（キャッシュ制御）のみで実用的なスターボタンを実装できました。ユーザー体験を損なわず、かつサイトのデザインに完全に馴染む機能を実装できたことは、外部サービスに依存しない自作ならではのメリットです。
+
+なお、現在は記事ごとに `import` 文を記述していますが、Docusaurusの `MDXComponents` 機能を使用すればグローバルにコンポーネントを登録できるため、将来的にはインポート不要でタグのみ記述できるよう改善する予定です（To-Be案件）。
+
+<Admonition type="note" title="参考文献">
+
+- [GitHub REST API: Get a repository](https://docs.github.com/ja/rest/repos/repos?apiVersion=2022-11-28#get-a-repository)
+- [Docusaurus Docs: MDX and React Components](https://docusaurus.io/docs/markdown-features/react)
+- [Web Storage API: sessionStorage](https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage)
+- [Docusaurus i18n: Translate](https://docusaurus.io/docs/docusaurus-core/#translate)
+
+</Admonition>
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<ShareButtons />
