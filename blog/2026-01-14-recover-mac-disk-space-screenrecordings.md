@@ -4,6 +4,12 @@ authors: [hk]
 tags: [mac, storage, terminal, cleanup, maintenance, macOS, screen recording, ディスク容量, メンテナンス, Mac重い, パソコン重い]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ![システム設定のストレージ画面](/img/mac_storage_settings_cleanup.png)
 
 ### 1. はじめに
@@ -113,3 +119,8 @@ Filesystem     Size   Used   Avail Capacity
 
 特に、私のように仕事やプライベートで画面収録をよく利用される方は、保存し損ねた一時ファイルが残っている可能性があります。
 ターミナルでの操作に抵抗がある方でも、このフォルダのチェックだけなら簡単に行えますので、一度確認してみてはいかがでしょうか。
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

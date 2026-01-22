@@ -6,6 +6,11 @@ last_update:
 tags: [Docusaurus, Docker, Docker Compose, tutorial]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 This article documents the steps for introducing `Docker Compose` to a Docusaurus project for local development.
 
 :::info[Background]
@@ -147,3 +152,8 @@ pnpm-debug.log*
 
 4.  **Stopping the Development Environment**
     Stop the containers by pressing `Ctrl + C` in the terminal where the development server is running. To completely remove the containers and associated resources (like networks), run the `docker-compose down` command.
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

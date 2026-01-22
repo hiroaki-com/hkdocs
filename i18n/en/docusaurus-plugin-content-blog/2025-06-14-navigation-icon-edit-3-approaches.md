@@ -155,3 +155,11 @@ The method you choose for displaying navigation icons can be selected based on y
 
 Ultimately, it is important to compare factors like ease of implementation, maintainability, design requirements, and performance impact to select the most suitable approach.
 
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

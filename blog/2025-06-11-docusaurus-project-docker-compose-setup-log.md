@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docker, docker-compose]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 この記事では、Docusaurusのローカル環境開発時のために、`Docker Compose`を導入した際の手順を整理します。
 
 背景：
@@ -139,3 +145,7 @@ pnpm-debug.log*
 4.  **開発環境の停止**
     開発サーバーを起動したターミナルで`Ctrl + C`を押すことでコンテナを停止。コンテナと関連リソース（ネットワークなど）を完全に削除する場合は、`docker-compose down`コマンドを実行。
 
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

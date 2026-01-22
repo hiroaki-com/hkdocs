@@ -7,6 +7,10 @@ tags: [docusaurus, i18n]
 ---
 
 import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 This article outlines the steps to implement the internationalization (i18n) feature on a Docusaurus site, enabling content switching between Japanese (default) and English.
 
@@ -190,3 +194,9 @@ To prevent issues after deployment, perform a final check using the same build a
 ### 5. Deployment
 
 Once the final local verification is complete, deploy the generated `build` directory to your production hosting environment (e.g., Google Cloud Run, Vercel, Netlify). If you are using automated deployment with GitHub Actions, commit all your changes and merge them into the branch that triggers deployment (e.g., `main`).
+
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

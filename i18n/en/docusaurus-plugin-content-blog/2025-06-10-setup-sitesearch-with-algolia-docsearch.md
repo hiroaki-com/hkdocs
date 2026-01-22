@@ -134,3 +134,11 @@ This change forces the crawler to load the fully rendered HTML after JavaScript 
 *   When applying Algolia to SPAs like Docusaurus v2+, React, or Vue, the `renderJavaScript: true` setting is likely mandatory.
 *   If your selectors are correct but no data is being extracted, first check the crawler's JavaScript rendering setting.
 *   Using the crawler's "Run a test" feature to inspect the raw HTML it fetches is extremely useful for troubleshooting and isolating the problem.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

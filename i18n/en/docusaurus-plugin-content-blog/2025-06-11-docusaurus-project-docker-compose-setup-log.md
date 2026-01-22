@@ -138,3 +138,11 @@ pnpm-debug.log*
 
 4.  **Stopping the Development Environment**
     Press `Ctrl + C` in the terminal where the development server is running to stop the container. To completely remove the container and its associated resources (like networks), run the `docker-compose down` command.
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

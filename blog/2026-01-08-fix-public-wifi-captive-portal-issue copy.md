@@ -4,6 +4,12 @@ authors: [hk]
 tags: [mac, iPhone, WiFi, captive portal, network, bug, 公衆WiFi, キャプティブポータル, ネットワーク設定, Japnan travel, travel japan]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ### 1. はじめに
 
 カフェやホテルなどで公衆WiFiに接続しようとした際、認証画面（キャプティブポータル）がなかなか表示されない、あるいは全く出てこない経験はありませんか？
@@ -111,3 +117,7 @@ Macと同様に、iPhoneでも接続履歴を整理することで効果が期�
 私自身、これらの簡単なメンテナンスを実践したことで、MacでもiPhoneでも認証画面がすぐに表示されるようになり、外出先でのネット接続が非常に快適になりました。
 意外と放置しがちな本件ですが、もし同様の現象でお困りの方は、ぜひ一度ご自身のWiFi設定を見直してみてはいかがでしょうか。
 
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

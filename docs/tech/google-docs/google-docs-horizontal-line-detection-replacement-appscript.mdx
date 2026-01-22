@@ -6,6 +6,11 @@ last_update:
 tags: [Google Docs, Apps Script, GAS, チュートリアル]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 # Googleドキュメント用「水平線の検知／置換」AppScript
 
 ### 作成の経緯
@@ -69,3 +74,8 @@ function replaceHorizontalRules() {
     parentBody.insertParagraph(index, '置換後の文字列');
   }
 }
+```
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

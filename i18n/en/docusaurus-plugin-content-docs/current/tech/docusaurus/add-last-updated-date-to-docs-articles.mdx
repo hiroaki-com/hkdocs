@@ -7,6 +7,10 @@ tags: [docusaurus, frontmatter]
 ---
 
 import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 This article outlines a simple method for displaying a "Last Updated" date on our Docusaurus documentation articles to indicate the freshness of the information.
 Unlike the `Blog` folder, articles in the `Docs` folder do not display creation dates by default, so we are adding this feature.
@@ -115,3 +119,8 @@ By simply configuring `docusaurus.config.ts` and adding front matter to each art
 <Admonition type="caution" title="A Note on Manual Updates">
 With this method, the date is managed manually, so be careful not to forget to update the front matter when you revise the article's content. It's important to weigh the accuracy of information against the ease of maintenance and choose the method that best suits your project.
 </Admonition>
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

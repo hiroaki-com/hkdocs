@@ -7,6 +7,11 @@ tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
 import Admonition from '@theme/Admonition';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 
 この記事では、Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装した際の手順とトラブルシューティングの記録を整理します。
 
@@ -372,3 +377,8 @@ Github Actions で新規投稿を検知し、TwitterカードとしてXへPOST�
     *   **解決策:** `docusaurus.config.ts` の `url`, `baseUrl`, `themeConfig.image` 設定を確認してください。記事のフロントマターで `title`, `description`, `image` が適切に設定されているか確認してください。[X Card Validator](https://cards-dev.twitter.com/validator) でテストしてください。生成されたHTMLソースのOGPメタタグ (`og:title`, `og:description`, `og:image` 等) を確認してください。
 8.  **VS Codeでの型解決エラー (`Cannot find module ...` 等):**
     *   **解決策:** VS Codeを完全に再起動してください。コマンドパレット (Ctrl+Shift+P または Cmd+Shift+P) から `TypeScript: Restart TS server` を実行してください。
+
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+<ShareButtons />

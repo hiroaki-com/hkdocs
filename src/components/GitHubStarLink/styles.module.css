@@ -1,0 +1,113 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px; /* 要素間の間隔 */
+    margin: 1.5rem 0;
+    padding: 0.6rem 1rem;
+    
+    /* ライトモード：薄いグレー背景 */
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--ifm-global-radius);
+  }
+  
+  /* GitHub猫アイコン（Octocat） */
+  .ghLogo {
+    width: 20px;
+    height: 20px;
+    fill: #24292f; /* GitHubのブランドカラー */
+    margin-right: 2px;
+  }
+  
+  .text {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ifm-color-content);
+    margin-right: 4px; /* ボタンとの間隔を少し開ける */
+  }
+  
+  .linkWrapper {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    text-decoration: none !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    
+    /* ボタン全体を囲む枠線を追加して、白背景でも埋没しないようにする */
+    border: 1px solid rgba(27, 31, 35, 0.15);
+  }
+  
+  .linkWrapper:hover {
+    text-decoration: none !important;
+    border-color: rgba(27, 31, 35, 0.2);
+  }
+  
+  /* 左側：GitHubボタン */
+  .starButton {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    background-color: #4f5860;
+    color: #ffffff;
+    font-weight: 600;
+    transition: background-color 0.2s;
+  }
+  
+  .linkWrapper:hover .starButton {
+    background-color: #5a646e;
+  }
+  
+  /* アイコン */
+  .icon {
+    width: 14px;
+    height: 14px;
+    fill: #f0f6fc;
+    transition: fill 0.2s ease;
+  }
+  
+  .linkWrapper:hover .icon {
+    fill: #e3b341;
+  }
+  
+  /* 右側：カウントバッジ */
+  .countBadge {
+    display: flex;
+    align-items: center;
+    padding: 3px 8px;
+    /* 背景と同化しないよう、GitHubライクな薄いグレーを設定 */
+    background-color: #f6f8fa;
+    color: #24292f;
+    font-weight: 600;
+    border-left: 1px solid rgba(27,31,35,0.15);
+  }
+  
+  /* ダークモード調整 */
+  [data-theme='dark'] .container {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  [data-theme='dark'] .ghLogo {
+    fill: #f0f6fc; /* ダークモードでは白っぽく */
+  }
+  
+  [data-theme='dark'] .linkWrapper {
+    border-color: rgba(240, 246, 252, 0.1);
+  }
+  
+  [data-theme='dark'] .countBadge {
+    background-color: #373e47;
+    color: #f0f6fc;
+    border-left-color: #555;
+  }
+  

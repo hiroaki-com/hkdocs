@@ -7,6 +7,10 @@ tags: [docusaurus, algolia, docsearch, search]
 ---
 
 import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 This article outlines the steps and troubleshooting process for setting up an internal site search feature using Algolia DocSearch.
 
@@ -140,3 +144,8 @@ This change made the crawler read the fully rendered HTML after JavaScript execu
 *   When applying Algolia to SPAs like Docusaurus v2+, React, or Vue, the `renderJavaScript: true` setting is likely essential.
 *   If "the selectors are correct but no data is being extracted," the first thing to check is the crawler's JavaScript rendering setting.
 *   Using the crawler's test run feature (Run a test) to check the raw HTML it retrieves is extremely effective for isolating the problem.
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

@@ -7,6 +7,10 @@ tags: [docusaurus, react, typescript, performance, ux, lz-string]
 ---
 
 import Admonition from '@theme/Admonition';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 
 以前に実装した [ブラウザメモ](/browser-memo) 機能に対し、ユーザーからのフィードバックと技術的課題に基づき、大幅な機能改善を実施。
 
@@ -111,3 +115,6 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, ... }) => {
 ##### Docusaurus環境への最適化
 
 `localStorage`などブラウザ専用APIに依存するため、コンポーネント全体をDocusaurusが提供する`<BrowserOnly>`でラップ。これにより、サーバーサイドでのビルド時にエラーが発生するのを防ぎ、安定性を確保。
+
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

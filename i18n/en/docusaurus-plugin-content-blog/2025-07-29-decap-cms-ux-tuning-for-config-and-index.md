@@ -151,8 +151,12 @@ By making a few changes to two files, `config.yml` and `index.html`, you can sig
 The ability to flexibly customize a Git-based CMS to fit your own workflow is a major advantage. I hope this article provides some helpful hints for making your own CMS environment more comfortable.
 
 import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 
 ##### Refs
 

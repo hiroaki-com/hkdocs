@@ -4,6 +4,12 @@ authors: [hk]
 tags: [google cloud, artifact registry, cloud run, docker, cost-optimization]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ### Artifact Registryで膨らむストレージ料金への対策
 
 GitHub ActionsなどでCI/CDを組み、Google Cloud Runへデプロイする運用。その実行のたびに、新しいDockerイメージがArtifact Registryにプッシュされていく。これは非常に便利な仕組みである一方、何もしなければ古いイメージは溜まる一方。「**気づいたらストレージ料金が想定より高い…**」そんな経験はありませんか？
@@ -87,3 +93,9 @@ Artifact Registryでは保持ポリシーが優先されるため、この2つ�
 今回は、Artifact Registryのクリーンアップポリシーを活用し、不要なDockerイメージを自動で削除することで、ストレージコストを節約する方法の紹介。
 
 一度設定してしまえば、あとは放置できるため、CI/CDパイプラインを運用するすべての開発者にとって、必須の作業と言える。ぜひ、自身のプロジェクトでもお試しを。
+
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

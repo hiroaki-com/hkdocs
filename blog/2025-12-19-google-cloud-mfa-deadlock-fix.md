@@ -4,6 +4,12 @@ authors: [hk]
 tags: [google cloud, mfa, security, troubleshooting, billing, account recovery]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ### 0. 【解決編】その後の経緯と結論（2025年12月更新）
 
 本件について、最終的に**無事ログインに成功し、解決いたしました。** 同様の事象でこの記事を訪れた方に向けて、解決に至った結論を共有します。
@@ -148,4 +154,7 @@ Google Cloudコンソールアクセス ＞ [Go to settings] ＞ パスワード
 * **[Google アカウント ヘルプ コミュニティ](https://support.google.com/accounts/community)**
   - 公式のヘルプ記事で解決しない場合に、他のユーザーやエキスパートからアドバイスを求めることができる公式フォーラムです。
 
----
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
