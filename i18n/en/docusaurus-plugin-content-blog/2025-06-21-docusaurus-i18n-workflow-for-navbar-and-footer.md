@@ -125,4 +125,11 @@ Create a production build to check if the edited translations are displayed corr
     *   Access `http://localhost:3000/en/`.
     *   Confirm that the "Portfolio" link is displayed in the navbar and footer.
     *   Use the language switcher in the top-right corner of the site to switch between languages and check that both displays are as intended.
-    
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

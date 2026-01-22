@@ -4,6 +4,12 @@ authors: [hk]
 tags: [mac, accent mark, accent menu, productivity]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ### Macで快適な文字入力を取り戻す
 
 Macで文章を作成したり、コードを書いたりしている時、`a`キーを長押ししたら`aaaaa...`と連続で入力されてほしいのに、以下のようなアクセント記号（例：`à`）付き文字の選択メニュー（`アクセントメニュー`）が表示されて困った経験はありませんか？
@@ -89,3 +95,7 @@ defaults write -g ApplePressAndHoldEnabled -bool true
 
 この設定は、特にVimなどのエディタを多用する開発者や、同じ文字を連続で入力することが多いライターの方にとって、作業効率を大きく向上させるはずです。ぜひ試してみてください。
 
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

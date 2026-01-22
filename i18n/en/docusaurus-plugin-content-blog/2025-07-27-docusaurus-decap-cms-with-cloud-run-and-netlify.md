@@ -245,5 +245,8 @@ Finally, I'll summarize the problems I actually faced during this implementation
     ```
 
 import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

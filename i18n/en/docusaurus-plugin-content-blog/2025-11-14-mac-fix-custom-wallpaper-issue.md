@@ -78,3 +78,10 @@ On the other hand, Finder's "Services" feature likely interacts with the file sy
 ### Conclusion
 By following the steps described in this article, you should be able to bypass the unstable behavior of System Settings and reliably set and retain any image as your wallpaper.
 This is one of those settings that can be surprisingly difficult to figure out on your own, so I hope this guide helps others who have encountered the same frustrating issue.
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

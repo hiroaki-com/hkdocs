@@ -4,6 +4,12 @@ authors: [hk]
 tags: [docusaurus, react, typescript, css-modules, ui/ux]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 ### シェアボタンを実装する
 
 このサイトの各記事に、SNSで共有するためのシェアボタンを設置しました。この記事では、その実装プロセスと、背景にある技術的な判断などについて記録します。
@@ -129,6 +135,6 @@ const TwitterShareButton = OriginalTwitterShareButton as any;
 この方法の利点は、型チェックを無効にする範囲を問題のある箇所のみに限定できることです。コードを読む誰もが、なぜここで型キャストが行われているのかを明確に理解でき、将来ライブラリが更新された際には、この数行を削除するだけで簡単に本来の型安全な状態に戻せます。
 
 
-import ShareButtons from '@site/src/components/ShareButtons';
-
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

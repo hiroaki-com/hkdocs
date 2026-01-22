@@ -4,6 +4,12 @@ authors: [hk]
 tags: [google-colab, github, vscode, git, python, development]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+
 Google Colabで作成したPythonコードを、MacBookのVSCodeとGitHubを使って本格的な開発フローに移行するための実践的な手順を解説します。これまでColab上でのみ開発を行っていた方が、GitHubでのバージョン管理とローカルVSCodeでの快適な編集環境を構築し、より効率的な開発体制を整えるための具体的なステップを紹介します。
 
 - **リポジトリの準備**: GitHub上での受け入れ環境の構築
@@ -137,9 +143,10 @@ git push origin main
 
 それぞれの環境の特性を活かしながら、柔軟で安全な開発ワークフローを実現できます。適切な運用ルールを守ることで、コンフリクトを避けながら、どこからでも効率的に開発を進めることができるでしょう。
 
-import ShareButtons from '@site/src/components/ShareButtons';
 
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 ##### 参考文献
 

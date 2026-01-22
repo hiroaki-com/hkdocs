@@ -100,3 +100,11 @@ Using `localStorage` is convenient, but care must be taken with data structure v
 I was reminded that small UI/UX adjustments (like the height adjustment logic and hover effects) have a significant impact on usability.
 Future enhancements could include sorting memos, Markdown support, or deleting individual memos, but for now, simplicity was the priority.
 
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

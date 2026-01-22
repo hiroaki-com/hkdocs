@@ -113,3 +113,9 @@ If you feel like your Mac is running out of space but you can't find any large f
 Especially if you frequently use screen recording for work or personal use like I do, there is a possibility that failed temporary files are still lurking there.
 Even if you are not comfortable using the Terminal, checking this specific folder is easy to do. Why not give your Mac a quick check-up?
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

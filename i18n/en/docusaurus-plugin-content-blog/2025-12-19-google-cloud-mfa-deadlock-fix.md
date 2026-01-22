@@ -130,3 +130,11 @@ Access Google Cloud Console > [Go to settings] > Enter password > Identity verif
 - Google Account: [USER_EMAIL]@example.com
 - Owner Name: [USER_NAME]
 (*Google Workspace is not used)
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

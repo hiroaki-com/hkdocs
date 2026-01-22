@@ -178,3 +178,11 @@ To prevent issues after deployment, perform a final check in your local environm
 ### 5. Deployment
 
 Once the final local check is complete, deploy the generated `build` directory to your production hosting environment (e.g., Google Cloud Run, Vercel, Netlify). If you are using a CI/CD pipeline like GitHub Actions for automatic deployment, commit all your changes up to this point and merge them into the branch that triggers deployment (e.g., `main`).
+
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

@@ -6,6 +6,11 @@ last_update:
 tags: [Docusaurus, Algolia, i18n, DocSearch, Crawler, tutorial]
 ---
 
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 When implementing Algolia DocSearch on a multi-language (i18n) site built with Docusaurus, a common challenge is that **search results contain a mix of multiple languages**. This often leads to a poor user experience, such as English pages appearing in search results when a user is searching in Japanese.
 
 This article serves as a guide, providing concrete steps to solve this problem and achieve an **optimal search experience that aligns with the site's display language**.
@@ -206,3 +211,8 @@ By applying these settings, you can dramatically improve the Algolia search expe
 -   **Optimal Search Experience**: Users can search only the content in the language they are currently viewing, receiving accurate, noise-free results.
 -   **High Search Quality**: Index settings optimized for each language provide more relevant search results.
 -   **Excellent Scalability**: When adding new languages in the future, you can easily scale by adding a similar pattern to the crawler configuration.
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

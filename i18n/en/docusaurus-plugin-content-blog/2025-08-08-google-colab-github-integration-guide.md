@@ -138,8 +138,12 @@ This procedure enables the construction of an efficient development environment 
 By leveraging the characteristics of each environment, you can realize a flexible and safe development workflow. By following proper operational rules, you can avoid conflicts while efficiently advancing development from anywhere.
 
 import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
 
 ##### References
 

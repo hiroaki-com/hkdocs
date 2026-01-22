@@ -151,4 +151,10 @@ A lightweight and accessible UI is constructed by maximizing the use of standard
     }
     ```
     This keeps the UI clean while providing functionality to users when they need it.
-    
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

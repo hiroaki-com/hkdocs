@@ -7,6 +7,10 @@ tags: [docusaurus, react, typescript, localStorage, browser-feature]
 ---
 
 import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
 
 This article outlines the key specifications and technical points for implementing a simple, client-side browser memo feature in a Docusaurus site using React and TypeScript.
 
@@ -107,3 +111,8 @@ By combining the standard features of Docusaurus with the flexibility of React, 
 Using `localStorage` is convenient, but care must be taken with data structure versioning and error handling.
 I was reminded that fine-tuning the UI/UX (like the height adjustment logic and hover effects) has a significant impact on usability.
 Future enhancements could include reordering memos, markdown support, or individual memo deletion, but simplicity was prioritized for this implementation.
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />

@@ -127,5 +127,8 @@ const TwitterShareButton = OriginalTwitterShareButton as any;
 The advantage of this method is that it limits the scope of disabling type checking to only the problematic parts. Anyone reading the code can clearly understand why the type casting is being done, and when the library is updated in the future, it's easy to revert to the original type-safe state by simply removing these few lines.
 
 import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
