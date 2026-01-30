@@ -1831,6 +1831,14 @@
     "message": "Terraform Docs",
     "description": "Title for Terraform Docs"
   },
+  "links.site.cloud.cloudflare.desc": {
+    "message": "Official documentation for edge computing platform including Workers, Pages, and R2. Provides global CDN and serverless execution environment.",
+    "description": "Description for Cloudflare Developers"
+  },
+  "links.site.cloud.cloudflare.title": {
+    "message": "Cloudflare Developers",
+    "description": "Title for Cloudflare Developers"
+  },  
   "links.site.data.bigquery.desc": {
     "message": "A serverless data warehouse that can analyze petabytes of data.",
     "description": "Description for BigQuery Docs"
