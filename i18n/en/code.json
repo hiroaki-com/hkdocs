@@ -735,6 +735,24 @@
   "aiTools.tool.research.elicit.desc": {
     "message": "An AI research assistant specialized in searching, summarizing, and analyzing research papers. Rich in features for efficiently extracting insights from vast academic literature."
   },
+  "aiTools.tool.programming.claudeCode.title": {
+    "message": "Claude Code"
+  },
+  "aiTools.tool.programming.claudeCode.desc": {
+    "message": "A command-line tool that allows developers to delegate coding tasks directly to Claude from the terminal. Provides AI assistance integrated into development workflows, from code generation to debugging."
+  },
+  "aiTools.tool.aiDev.openaiPlatform.title": {
+    "message": "OpenAI Platform"
+  },
+  "aiTools.tool.aiDev.openaiPlatform.desc": {
+    "message": "A developer platform providing API access to diverse AI models including OpenAI's GPT models, DALL-E, and Whisper. Enables rapid development with comprehensive documentation and sample code."
+  },
+  "aiTools.tool.aiDev.ollama.title": {
+    "message": "Ollama"
+  },
+  "aiTools.tool.aiDev.ollama.desc": {
+    "message": "A tool for easily running open-source LLMs in local environments. Supports various models including Llama, Mistral, and Gemma, enabling AI development while maintaining privacy."
+  },
   "homepage.features.news.description": {
     "message": "A list of websites useful for daily information gathering."
   },
