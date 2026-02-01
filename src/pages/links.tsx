@@ -59,6 +59,7 @@ const linksData: LinkCategoryData[] = [
     sites: [
       { href: 'https://cloud.google.com/docs', title: { id: 'links.site.cloud.gcp.title', message: 'Google Cloud Docs' }, description: { id: 'links.site.cloud.gcp.desc', message: 'クイックスタート、チュートリアル、包括的なガイドを含む完全なGCPドキュメント。' } },
       { href: 'https://cloud.google.com/architecture', title: { id: 'links.site.cloud.gcpArch.title', message: 'Cloud Architecture Center' }, description: { id: 'links.site.cloud.gcpArch.desc', message: '参照アーキテクチャ、設計ガイダンス、ベストプラクティスを提供するクラウドアーキテクチャセンター。' } },
+      { href: 'https://developers.cloudflare.com/', title: { id: 'links.site.cloud.cloudflare.title', message: 'Cloudflare Developers' }, description: { id: 'links.site.cloud.cloudflare.desc', message: 'Workers、Pages、R2などのエッジコンピューティングプラットフォームの公式ドキュメント。グローバルなCDNとサーバーレス実行環境を提供。' } },
       { href: 'https://docs.docker.com/', title: { id: 'links.site.cloud.docker.title', message: 'Docker Docs' }, description: { id: 'links.site.cloud.docker.desc', message: 'コンテナ仮想化技術のデファクトスタンダード。公式ドキュメント。' } },
       { href: 'https://www.terraform.io/docs', title: { id: 'links.site.cloud.terraform.title', message: 'Terraform Docs' }, description: { id: 'links.site.cloud.terraform.desc', message: 'Infrastructure as Codeを実現する代表的なツールの公式ドキュメント。' } },
       { href: 'https://cloud.google.com/build/docs', title: { id: 'links.site.cloud.gcb.title', message: 'Google Cloud Build' }, description: { id: 'links.site.cloud.gcb.desc', message: 'GCP上でCI/CDパイプラインを実行するためのマネージドサービス。' } },

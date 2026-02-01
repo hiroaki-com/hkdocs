@@ -72,6 +72,11 @@ const aiToolsData: AIToolCategoryData[] = [
         title: { id: 'aiTools.tool.programming.cody.title', message: 'Sourcegraph Cody' }, 
         description: { id: 'aiTools.tool.programming.cody.desc', message: '大規模リポジトリを対象にしたコード検索とAI補完。複数LLMを選択可能で、1Mトークン規模のコードベースを一括処理できる。' }
       },
+      { 
+        href: 'https://code.claude.com/docs', 
+        title: { id: 'aiTools.tool.programming.claudeCode.title', message: 'Claude Code' }, 
+        description: { id: 'aiTools.tool.programming.claudeCode.desc', message: 'ターミナルから直接Claudeにコーディング作業を委譲できるコマンドラインツール。コード生成からデバッグまで、開発ワークフローに統合された形でAI支援を受けられる。' }
+      },
     ],
   },
   {
@@ -89,9 +94,19 @@ const aiToolsData: AIToolCategoryData[] = [
         description: { id: 'aiTools.tool.aiDev.anthropicConsole.desc', message: 'AnthropicのAIモデル（Claudeファミリー）をテストし、API経由で利用するための開発者向けプラットフォーム。長文処理能力や安全性を重視したモデルが特徴。' }
       },
       { 
+        href: 'https://developers.openai.com/', 
+        title: { id: 'aiTools.tool.aiDev.openaiPlatform.title', message: 'OpenAI Platform' }, 
+        description: { id: 'aiTools.tool.aiDev.openaiPlatform.desc', message: 'OpenAIのGPTモデルやDALL-E、Whisperなど多様なAIモデルをAPI経由で利用できる開発者プラットフォーム。豊富なドキュメントとサンプルコードで迅速な開発が可能。' }
+      },
+      { 
         href: 'https://python.langchain.com/docs/integrations/providers/', 
         title: { id: 'aiTools.tool.aiDev.langchain.title', message: 'LangChain' }, 
         description: { id: 'aiTools.tool.aiDev.langchain.desc', message: '大規模言語モデル（LLM）を活用したアプリ開発を簡素化するPythonライブラリ。多様なAIプロバイダーやデータソースを抽象化し、一貫したインターフェースで利用可能。' }
+      },
+      { 
+        href: 'https://ollama.com/', 
+        title: { id: 'aiTools.tool.aiDev.ollama.title', message: 'Ollama' }, 
+        description: { id: 'aiTools.tool.aiDev.ollama.desc', message: 'オープンソースのLLMをローカル環境で簡単に実行できるツール。Llama、Mistral、Gemmaなど多様なモデルに対応し、プライバシーを保ちながらAI開発が可能。' }
       },
     ],
   },
@@ -124,21 +139,6 @@ const aiToolsData: AIToolCategoryData[] = [
         href: 'https://www.perplexity.ai', 
         title: { id: 'aiTools.tool.research.perplexity.title', message: 'Perplexity AI' }, 
         description: { id: 'aiTools.tool.research.perplexity.desc', message: '質問に対して、ウェブ上の情報源を明記した上で、正確な答えを直接生成するAI検索エンジン。出典付きで信頼性の高い回答を対話形式で提供。' }
-      },
-      { 
-        href: 'https://notebooklm.google', 
-        title: { id: 'aiTools.tool.research.notebookLM.title', message: 'NotebookLM' }, 
-        description: { id: 'aiTools.tool.research.notebookLM.desc', message: 'ユーザーがアップロードした資料に基づいて、情報の統合やインサイトの発見を支援するGoogle製のAIリサーチアシスタント。' }
-      },
-      { 
-        href: 'https://tenbin.ai/', 
-        title: { id: 'aiTools.tool.research.tenbin.title', message: '天秤AI by GMO' }, 
-        description: { id: 'aiTools.tool.research.tenbin.desc', message: '複数の主要なLLM（GPT, Gemini, Claudeなど）の出力を、同じプロンプトで同時に比較・評価できるウェブツール。モデル選定やプロンプトチューニングに最適。' }
-      },
-      { 
-        href: 'https://elicit.com', 
-        title: { id: 'aiTools.tool.research.elicit.title', message: 'Elicit' }, 
-        description: { id: 'aiTools.tool.research.elicit.desc', message: '研究論文の検索、要約、分析に特化したAIリサーチアシスタント。膨大な学術文献から効率的に知見を得るための機能が豊富。' }
       },
     ],
   },
