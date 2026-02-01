@@ -10,6 +10,7 @@ import remarkGfm from 'remark-gfm';
 import 'github-markdown-css/github-markdown.css';
 import ShareButtons from '@site/src/components/ShareButtons';
 import mermaid from 'mermaid';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 // --- 定数定義 ---
 const MEMO_COUNT = 5;
@@ -400,6 +401,11 @@ function MemoApp() {
   return (
     <main style={{ padding: '1.5rem' }}>
       <h1 style={{ fontSize: '1.5rem' }}><Translate id="page.browser-memo.h1">ブラウザメモ帳</Translate></h1>
+      
+      <div style={{ margin: '0.5rem 0 1rem 0' }}>
+        <GitHubStarLink repo="hiroaki-com/hkdocs" />
+      </div>
+
       <p style={{ fontSize: '0.7em' }}><Translate id="page.browser-memo.intro">すぐに使える高機能でシンプルなブラウザメモ帳です。Markdown、Mermaidプレビュー、URL共有に対応。入力内容はすべてお使いのブラウザにのみ自動保存されるため、安全にご利用いただけます。</Translate></p>
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', margin: '2rem 0' }}>
@@ -427,6 +433,11 @@ function MemoApp() {
           <li><Translate id="page.browser-memo.notes.backup">この機能は簡易的なものです。重要なデータは別途バックアップを取ることを強く推奨します。</Translate></li>
         </ul>
       </section>
+
+      <div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
+        <GitHubStarLink repo="hiroaki-com/hkdocs" />
+      </div>
+
       <div style={{ marginBottom: '3rem' }}>
         <ShareButtons />
       </div>
