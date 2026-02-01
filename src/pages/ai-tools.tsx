@@ -47,6 +47,11 @@ const aiToolsData: AIToolCategoryData[] = [
         title: { id: 'aiTools.tool.aiChat.copilot.title', message: 'Microsoft Copilot' }, 
         description: { id: 'aiTools.tool.aiChat.copilot.desc', message: '最新のWeb情報に基づいた回答や画像生成が可能なAIアシスタント。WindowsやOffice製品とのネイティブな連携により日常業務でシームレスに利用可能。' }
       },
+      { 
+        href: 'https://grok.com/', 
+        title: { id: 'aiTools.tool.aiChat.grok.title', message: 'Grok' }, 
+        description: { id: 'aiTools.tool.aiChat.grok.desc', message: 'X（旧Twitter）のリアルタイム情報に直接アクセスできるAIチャットボット。最新のソーシャルメディア動向やニュースに基づいた回答が特徴。' }
+      },
     ],
   },
   {
