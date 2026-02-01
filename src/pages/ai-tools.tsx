@@ -6,6 +6,7 @@ import styles from './ai-tools.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Download } from 'lucide-react';
 import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 // --- データモデル定義 ---
 type AIToolData = {
@@ -262,6 +263,9 @@ export default function AIToolsPage(): JSX.Element {
             </div>
           </details>
         ))}
+        <div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
+          <GitHubStarLink repo="hiroaki-com/hkdocs" />
+        </div>
         <div style={{ marginBottom: '3rem' }}>
           <ShareButtons />
         </div>
