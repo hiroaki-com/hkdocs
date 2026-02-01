@@ -130,6 +130,11 @@ const aiToolsData: AIToolCategoryData[] = [
         title: { id: 'aiTools.tool.automation.zapier.title', message: 'Zapier' }, 
         description: { id: 'aiTools.tool.automation.zapier.desc', message: '7,000を超える圧倒的な数のアプリ連携に対応した自動化ツール。AIがワークフローの構築を提案する機能も持ち、ワークフロー自動化の標準的なツール。' }
       },
+      { 
+        href: 'https://openclaw.ai/', 
+        title: { id: 'aiTools.tool.automation.openclaw.title', message: 'OpenClaw' }, 
+        description: { id: 'aiTools.tool.automation.openclaw.desc', message: 'ローカル環境で動作するオープンソースのAIパーソナルアシスタント。WhatsAppやTelegram等の既存メッセージツールと連携し、タスク自動化やワークフロー管理を自律的に実行。' }
+      },
     ],
   },
   {

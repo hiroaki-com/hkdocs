@@ -75,6 +75,7 @@ const linksData: LinkCategoryData[] = [
       { href: 'https://git-scm.com/docs', title: { id: 'links.site.devtools.git.title', message: 'Git Official Docs' }, description: { id: 'links.site.devtools.git.desc', message: '分散バージョン管理システムGitの公式ドキュメント。' } },
       { href: 'https://docs.github.com/', title: { id: 'links.site.devtools.github.title', message: 'GitHub Docs' }, description: { id: 'links.site.devtools.github.desc', message: 'コードホスティング、共同開発、ActionsなどGitHub機能の公式ドキュメント。' } },
       { href: 'https://learngitbranching.js.org/', title: { id: 'links.site.devtools.learngit.title', message: 'Learn Git Branching' }, description: { id: 'links.site.devtools.learngit.desc', message: 'Gitのブランチ操作を視覚的かつインタラクティブに学べる、非常に優れた学習ツール。' } },
+      { href: 'https://gitingest.com/', title: { id: 'links.site.devtools.gitingest.title', message: 'GitIngest' }, description: { id: 'links.site.devtools.gitingest.desc', message: 'GitリポジトリのコードベースをLLMが処理しやすいフォーマットに変換するツール。' } },
     ],
   },
   {

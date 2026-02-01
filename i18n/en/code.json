@@ -649,6 +649,12 @@
   "aiTools.tool.aiChat.copilot.desc": {
     "message": "An AI assistant capable of providing answers based on the latest web information and generating images. Enables seamless use in daily work through native integration with Windows and Office products."
   },
+  "aiTools.tool.aiChat.grok.title": {
+    "message": "Grok"
+  },
+  "aiTools.tool.aiChat.grok.desc": {
+    "message": "An AI chatbot with direct access to real-time information from X (formerly Twitter). Features responses based on the latest social media trends and news."
+  },
   "aiTools.tool.programming.githubCopilot.title": {
     "message": "GitHub Copilot"
   },
@@ -710,6 +716,12 @@
   },
   "aiTools.tool.automation.zapier.desc": {
     "message": "An automation tool supporting over 7,000 app integrations. Features AI-powered workflow construction suggestions and serves as the standard tool for workflow automation."
+  },
+  "aiTools.tool.automation.openclaw.title": {
+    "message": "OpenClaw"
+  },
+  "aiTools.tool.automation.openclaw.desc": {
+    "message": "An open-source AI personal assistant that runs in local environments. Integrates with existing messaging tools like WhatsApp and Telegram to autonomously execute task automation and workflow management."
   },
   "aiTools.tool.research.perplexity.title": {
     "message": "Perplexity AI"
@@ -1898,6 +1910,12 @@
   "links.site.devtools.learngit.desc": {
     "message": "An excellent learning tool to learn Git branching operations visually and interactively.",
     "description": "Description for Learn Git Branching"
+  },
+  "links.site.devtools.gitingest.title": {
+    "message": "GitIngest"
+  },
+  "links.site.devtools.gitingest.desc": {
+    "message": "A tool that converts Git repository codebases into LLM-friendly formats."
   },
   "links.site.devtools.learngit.title": {
     "message": "Learn Git Branching",
