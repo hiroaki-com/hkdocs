@@ -1,0 +1,226 @@
+---
+title: 無料のGoogle Colab環境で複数のローカルLLMモデルをお試し比較テストしたい。
+authors: [hk]
+tags: [ollama, google-colab, llm, benchmark, python, automation, local-llm]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
+
+最近、ローカルで動作するLLM（Large Language Model）がかなり充実してきましたよね。
+Llama、Qwen、Mistralなど、様々なモデルが公開されていて、「どれが自分のユースケースに合っているかな？」と迷うことも多いと思います。
+
+ローカル環境にセットアップする前に、無料のクラウド環境で気軽に試せたら便利だなと思い、「Google ColabでOllamaモデルを複数同時にテストし、性能を自動比較してくれるツール」を作ってみました。自分の使いたいプロンプトで実際に動かして、体感として確かめられます。
+
+{/* truncate */}
+
+### 作ったもの
+
+<Admonition type="tip" title="🚀 今すぐ試す">
+  面倒な環境構築は不要です。以下のリンクからブラウザ上ですぐに実行できます。
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Google Colab で実行する<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/ollama-llm-benchmark/blob/main/ollama_multi_model_benchmarker_ja.ipynb" target="_blank" rel="noopener noreferrer">Ollama Multi-Model Benchmarker (日本語版)</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>スクリプトの実行はこちら。クリックして再生ボタンを押すだけで動きます。</small>
+    </li>
+    <li>
+      🐙 GitHub でコードを見る<br/>
+      <a href="https://github.com/hiroaki-com/ollama-llm-benchmark" target="_blank" rel="noopener noreferrer">hiroaki-com/ollama-llm-benchmark</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>ソースコードの確認や、Star / Fork はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+### なぜこれを作ったのか
+
+ローカルLLMを使いたいなと思ったとき、まず「どのモデルを選べばいいのか」で迷いました。
+
+ベンチマーク結果はネットに載っていますし、[aidatatools/ollama-benchmark](https://github.com/aidatatools/ollama-benchmark)のようなローカル環境での測定ツールもあります。ただ、それらは一般的なタスクでの評価なので、自分が実際に使いたいプロンプトでどうなのかは、やっぱり試してみないとわからないなと感じました。
+
+かといって、ローカル環境にOllamaをセットアップして、大きなモデルを何個もダウンロードして順番に試すのは、時間もストレージも大変です。
+「まずはクラウドで軽く試してから、良さそうなモデルだけローカルに入れたい」と思い、Google Colabの無料T4 GPUを使ったベンチマークツールを作ってみました。
+
+### 使い方
+
+Pythonのコードを書く必要はありません。Colabのフォームに入力してボタンを押すだけです。
+
+#### 1. Model Registryでモデルリストを設定
+
+まず、Model Registryセルでテスト対象のモデルをカンマ区切りで入力します。
+
+```python
+model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, ministral-3:8b"
+```
+
+<Admonition type="tip" title="モデル名の確認方法">
+  モデル名は <a href="https://ollama.com/search" target="_blank" rel="noopener noreferrer">Ollama公式サイト</a> で検索して、正式名称を確認してください。
+</Admonition>
+
+T4 GPU環境での選定目安
+
+| モデルサイズ | 実行速度 | 推奨度 |
+|:---:|:---:|:---|
+| 8B | 高速 | ⭐⭐⭐ 推奨 |
+| 14B | 中速 | ⭐⭐ 実用可 |
+| 20B以上 | 低速 | ⭐ 非推奨 |
+
+#### 2. チェックボックスでモデルを選択
+
+セルを実行すると、入力したモデルのチェックボックスが表示されます。
+
+![Model Selector UI](https://github.com/user-attachments/assets/1902325b-695c-445e-aad1-df50977b942e)
+
+- ✅ Select All Models : 全モデルを一括選択
+- 個別のチェックボックス : 特定モデルのみ選択可能
+
+一度モデルリストを設定しておけば、実行のたびにチェックボックスで簡単にテスト対象を調整できます。
+
+#### 3. Benchmarkerを実行
+
+Ollama Multi-Model Benchmarkerセルで以下のパラメータを設定します。
+
+```python
+save_to_drive = True           # 結果をGoogle Driveに保存
+timeout_seconds = 1000         # 1モデルあたりの最大処理時間（秒）
+custom_test_prompt = ""        # カスタムプロンプト（空欄でデフォルト使用）
+```
+
+カスタムプロンプトの例
+
+```python
+# コーディングタスク
+custom_test_prompt = "Pythonで再帰的にフィボナッチ数列を計算する関数を書いてください"
+
+# 日本語の要約タスク
+custom_test_prompt = "以下の文章を3文で要約してください..."
+```
+
+再生ボタン（▶）を押すと、選択したモデルが順番にテストされます。
+
+#### 4. 結果を確認
+
+ベンチマーク完了後、以下の形式で結果が表示されます。
+
+![Benchmark Results Table](https://github.com/user-attachments/assets/7d07fc00-113f-4d4a-9e7d-18dd8c138e7d)
+
+カテゴリ別トップ
+
+| Category | Model | Score |
+|:---|:---|:---|
+| ⚡ Fastest Generation | qwen3:8b | 45.23 t/s |
+| ⏱️ Most Responsive | ministral-3:8b | 0.12 s |
+| 📥 Quickest Pull | qwen2.5-coder:7b | 23.4 s |
+
+詳細メトリクス
+
+| Model | Speed | TTFT | Total | Tok | Pull | Load | Size |
+|:---|---:|---:|---:|---:|---:|---:|---:|
+| `qwen3:8b` | 45.23 t/s | 0.15s | 12.3s | 500 | 45.2s | 2.1s | 4.7GB |
+
+![Performance Graphs](https://github.com/user-attachments/assets/bde4e010-7d5c-4fdf-9798-022b4182052a)
+
+さらに、6種類のグラフで視覚的に比較できます：
+- 生成速度（Tokens/Sec）
+- Time To First Token（応答速度）
+- 総処理時間
+- モデルロード時間
+- ダウンロード時間
+- モデルサイズ
+
+### 主な機能と技術的なポイント
+
+実用性を意識して、いくつか工夫を入れています。
+
+-   柔軟なモデル選択UI
+    
+    カンマ区切り入力とチェックボックスを組み合わせることで、大量のモデルリストから簡単にテスト対象を絞り込めます。「全選択」を外して特定モデルだけ再テストする、といった使い方もできます。
+    
+-   Single Source of Truth設計
+    
+    モデルリストはModel Registryセルの1箇所でのみ管理します。コード内の複数箇所に同じリストを書く必要がないため、後から編集するときも楽です。
+    
+-   包括的な性能指標
+    
+    生成速度（tokens/sec）だけでなく、Time To First Token（TTFT）、総処理時間、モデルロード時間、ダウンロード時間、モデルサイズなど、実際に使うときに気になる指標を一通り測定します。
+    
+-   自動結果保存
+    
+    save_to_drive = Trueに設定すると、測定結果がGoogle DriveのMyDrive/OllamaBenchmarksフォルダに自動保存されます。統合JSON、セッション別アーカイブ、モデルサイズキャッシュの3種類のファイルで管理されるので、過去の結果と見比べるのも簡単です。
+
+    ```
+    Google Drive/MyDrive/OllamaBenchmarks/
+    ├── benchmark_results.json          # 統合結果
+    ├── session_logs/
+    │   └── YYYYMMDD_HHMMSS_session.json  # セッション別
+    └── model_size_cache.json           # サイズキャッシュ
+    ```
+
+-   視覚化レポート
+    
+    matplotlibによる6種類のグラフと、Markdown形式のテーブルで結果を表示します。各モデルの実際の応答テキストもプレビューできるので、生成品質も確認できます。
+
+-   ディスク容量チェック
+    
+    モデルダウンロード前に自動的にディスク容量をチェックして、不足している場合はスキップします。ダウンロード待ちで無駄に時間を使わずに済みます。
+
+-   モデルサイズキャッシュ
+    
+    一度測定したモデルのサイズはキャッシュされるので、2回目以降の実行時はディスク容量の事前確認が速くなります。
+
+### メトリクスの見方
+
+測定される主な指標とその意味を解説します。
+
+| メトリクス | 説明 | 単位 |
+|:---|:---|:---:|
+| Speed | トークン生成速度 | tokens/sec |
+| TTFT | Time To First Token（最初の応答までの時間） | 秒 |
+| Total | 総処理時間（プロンプト送信から完了まで） | 秒 |
+| Tok | 生成されたトークン数 | - |
+| Pull | モデルダウンロード時間 | 秒 |
+| Load | VRAMへのロード時間 | 秒 |
+| Size | モデルのディスク/VRAMサイズ | GB |
+
+用途によって注目したいメトリクスも変わってきます：
+
+- チャット用途なら、TTFT（応答速度）が気になるところ。ユーザーを待たせない速さが大事ですね。
+- コード生成なら、Speed（生成速度）が便利。長いコードも速く書いてくれます。
+- VRAMやディスク容量が限られているなら、Size（モデルサイズ）を見て小さめのモデルを選ぶと良さそうです。
+- サーバーレス環境など、起動が頻繁にある場合は、Pull + Load時間も気にしておくと便利です。
+
+### デフォルトプロンプト
+
+カスタムプロンプトを指定しない場合、以下のプロンプトが使われます。
+
+```
+Write a recursive Python function with type hints and a docstring to compute 
+the factorial of a number, test it with n = 5, and show only the code and the 
+expected result.
+```
+
+コード生成能力と論理的思考を測るのに使いやすいプロンプトです。
+
+### まとめ
+
+ローカルLLMを選ぶとき、スペック表だけ見ても実際の使い心地はわかりにくいですよね。
+自分のプロンプトで動かしてみて、「これなら使えそう」と確かめてからローカル環境に入れる、という流れが個人的には安心でした。
+
+このツールが、同じように「まずは試してみたいな」と思っている方の参考になれば嬉しいです。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
+
+### 参考文献
+
+-   [Ollama](https://ollama.com/)
+-   [Ollama GitHub Repository](https://github.com/ollama/ollama)
+-   [Ollama API Documentation](https://github.com/ollama/ollama/blob/main/docs/api.md)
+-   [Google Colab](https://colab.research.google.com/)
+-   [aidatatools/ollama-benchmark](https://github.com/aidatatools/ollama-benchmark)
+-   [Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)

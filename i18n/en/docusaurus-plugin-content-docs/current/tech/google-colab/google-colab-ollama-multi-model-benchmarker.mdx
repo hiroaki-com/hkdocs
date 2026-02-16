@@ -1,0 +1,223 @@
+---
+title: Comparing Multiple Local LLM Models on Free Google Colab
+authors: [hk]
+tags: [ollama, google-colab, llm, benchmark, python, automation, local-llm]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
+
+Recently, locally-running LLMs (Large Language Models) have become quite sophisticated. With models like Llama, Qwen, and Mistral publicly available, you might find yourself wondering: "Which model best fits my use case?"
+
+Before setting up a local environment, I thought it would be convenient to test models easily in a free cloud environment. So I created a tool that "tests multiple Ollama models simultaneously on Google Colab and automatically compares their performance." You can run them with your own prompts and verify their capabilities firsthand.
+
+{/* truncate */}
+
+### What I Built
+
+<Admonition type="tip" title="🚀 Try It Now">
+  No complicated setup required. You can run it directly in your browser via the link below.
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Run on Google Colab<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/ollama-llm-benchmark/blob/main/ollama_multi_model_benchmarker_en.ipynb" target="_blank" rel="noopener noreferrer">Ollama Multi-Model Benchmarker (English)</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Execute the script here. Just click and press the play button to get started.</small>
+    </li>
+    <li>
+      🐙 View Code on GitHub<br/>
+      <a href="https://github.com/hiroaki-com/ollama-llm-benchmark" target="_blank" rel="noopener noreferrer">hiroaki-com/ollama-llm-benchmark</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Check the source code, or Star / Fork the repository.</small>
+    </li>
+  </ul>
+</Admonition>
+
+### Why I Created This
+
+When I wanted to use local LLMs, the first challenge was: "Which model should I choose?"
+
+While benchmark results are available online, and there are local measurement tools like [aidatatools/ollama-benchmark](https://github.com/aidatatools/ollama-benchmark), those evaluations use general tasks. I felt that I wouldn't really know how a model performs until I tried it with my actual prompts.
+
+However, setting up Ollama locally, downloading multiple large models, and testing them sequentially requires significant time and storage. I wanted to "test lightly in the cloud first, then install only the promising models locally," so I created this benchmark tool using Google Colab's free T4 GPU.
+
+### How to Use
+
+No need to write Python code. Just fill in the Colab form and press the button.
+
+#### 1. Configure Model List in Model Registry
+
+First, enter the test target models in comma-separated format in the Model Registry cell.
+
+```python
+model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, ministral-3:8b"
+```
+
+<Admonition type="tip" title="How to Verify Model Names">
+  Check model names by searching on the <a href="https://ollama.com/search" target="_blank" rel="noopener noreferrer">official Ollama website</a> to confirm the official names.
+</Admonition>
+
+Model Selection Guidelines for T4 GPU
+
+| Model Size | Execution Speed | Recommendation |
+|:---:|:---:|:---|
+| 8B | Fast | ⭐⭐⭐ Recommended |
+| 14B | Medium | ⭐⭐ Usable |
+| 20B+ | Slow | ⭐ Not Recommended |
+
+#### 2. Select Models with Checkboxes
+
+When you run the cell, checkboxes for the entered models will appear.
+
+![Model Selector UI](https://github.com/user-attachments/assets/f707af33-81ca-427b-85dd-f9b3d32e3280)
+
+- ✅ Select All Models: Batch select all models
+- Individual checkboxes: Select specific models only
+
+Once you've set up the model list, you can easily adjust test targets with checkboxes on each run.
+
+#### 3. Run the Benchmarker
+
+Configure the following parameters in the Ollama Multi-Model Benchmarker cell.
+
+```python
+save_to_drive = True           # Save results to Google Drive
+timeout_seconds = 1000         # Maximum processing time per model (seconds)
+custom_test_prompt = ""        # Custom prompt (uses default if empty)
+```
+
+Custom Prompt Examples
+
+```python
+# Coding task
+custom_test_prompt = "Write a Python function to recursively calculate the Fibonacci sequence"
+
+# Summarization task
+custom_test_prompt = "Summarize the following text in 3 sentences..."
+```
+
+Press the play button (▶) to test the selected models sequentially.
+
+#### 4. Review Results
+
+After benchmark completion, results are displayed in the following format.
+
+![Benchmark Results Table](https://github.com/user-attachments/assets/7d07fc00-113f-4d4a-9e7d-18dd8c138e7d)
+
+Top Performers by Category
+
+| Category | Model | Score |
+|:---|:---|:---|
+| ⚡ Fastest Generation | qwen3:8b | 45.23 t/s |
+| ⏱️ Most Responsive | ministral-3:8b | 0.12 s |
+| 📥 Quickest Pull | qwen2.5-coder:7b | 23.4 s |
+
+Detailed Metrics
+
+| Model | Speed | TTFT | Total | Tok | Pull | Load | Size |
+|:---|---:|---:|---:|---:|---:|---:|---:|
+| `qwen3:8b` | 45.23 t/s | 0.15s | 12.3s | 500 | 45.2s | 2.1s | 4.7GB |
+
+![Performance Graphs](https://github.com/user-attachments/assets/bde4e010-7d5c-4fdf-9798-022b4182052a)
+
+Additionally, 6 types of graphs provide visual comparison:
+- Generation Speed (Tokens/Sec)
+- Time To First Token (Response Speed)
+- Total Processing Time
+- Model Load Time
+- Download Time
+- Model Size
+
+### Key Features and Technical Highlights
+
+I've incorporated several enhancements focused on practicality.
+
+-   Flexible Model Selection UI
+    
+    By combining comma-separated input with checkboxes, you can easily narrow down test targets from a large model list. You can also use it by unchecking "Select All" and retesting only specific models.
+    
+-   Single Source of Truth Design
+    
+    The model list is managed in only one location: the Model Registry cell. No need to write the same list in multiple places in the code, making later edits easier.
+    
+-   Comprehensive Performance Metrics
+    
+    Beyond generation speed (tokens/sec), it measures all the metrics you'd care about in actual use: Time To First Token (TTFT), total processing time, model load time, download time, and model size.
+    
+-   Automatic Result Saving
+    
+    Set save_to_drive = True to automatically save measurement results to the MyDrive/OllamaBenchmarks folder in Google Drive. With three types of files—integrated JSON, session-specific archives, and model size cache—comparing past results is simple.
+
+    ```
+    Google Drive/MyDrive/OllamaBenchmarks/
+    ├── benchmark_results.json          # Integrated results
+    ├── session_logs/
+    │   └── YYYYMMDD_HHMMSS_session.json  # Session-specific
+    └── model_size_cache.json           # Size cache
+    ```
+
+-   Visualization Reports
+    
+    Results are displayed with 6 types of matplotlib graphs and Markdown-formatted tables. You can also preview each model's actual response text to verify generation quality.
+
+-   Disk Space Check
+    
+    Automatically checks disk space before model download, skipping if insufficient. This saves you from wasting time waiting for downloads.
+
+-   Model Size Cache
+    
+    Once a model's size is measured, it's cached, speeding up disk space pre-checks on subsequent runs.
+
+### Understanding the Metrics
+
+Here's an explanation of the main measured metrics and their meanings.
+
+| Metric | Description | Unit |
+|:---|:---|:---:|
+| Speed | Token generation speed | tokens/sec |
+| TTFT | Time To First Token (time to first response) | seconds |
+| Total | Total processing time (from prompt submission to completion) | seconds |
+| Tok | Number of generated tokens | - |
+| Pull | Model download time | seconds |
+| Load | VRAM loading time | seconds |
+| Size | Model disk/VRAM size | GB |
+
+The metrics you focus on will vary by use case:
+
+- For chat applications, TTFT (response speed) matters. You don't want to keep users waiting.
+- For code generation, Speed (generation speed) is useful. It can write long code quickly.
+- If VRAM or disk capacity is limited, check Size (model size) to choose smaller models.
+- In serverless environments where frequent startups occur, it's useful to consider Pull + Load time as well.
+
+### Default Prompt
+
+If no custom prompt is specified, the following prompt is used:
+
+```
+Write a recursive Python function with type hints and a docstring to compute 
+the factorial of a number, test it with n = 5, and show only the code and the 
+expected result.
+```
+
+This prompt is useful for measuring code generation capability and logical thinking.
+
+### Conclusion
+
+When choosing a local LLM, it's hard to get a real sense of usability just by looking at spec sheets. Personally, I felt more confident about the workflow of running it with my own prompts, confirming "this seems usable," and then installing it in my local environment.
+
+I hope this tool helps those who, like me, want to "try it out first."
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
+
+### References
+
+-   [Ollama](https://ollama.com/)
+-   [Ollama GitHub Repository](https://github.com/ollama/ollama)
+-   [Ollama API Documentation](https://github.com/ollama/ollama/blob/main/docs/api.md)
+-   [Google Colab](https://colab.research.google.com/)
+-   [aidatatools/ollama-benchmark](https://github.com/aidatatools/ollama-benchmark)
+-   [Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
