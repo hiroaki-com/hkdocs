@@ -1,0 +1,60 @@
+---
+title: "Releasing Ollama Multi-Model Benchmarker: Compare Local LLMs for Free on Google Colab"
+date: "2026-02-18"
+description: "An open-source tool that automatically benchmarks multiple Ollama models on Google Colab and visualizes their performance side by side."
+authors: [hk]
+tags: [release, ollama, llm, benchmark, google-colab, open-source]
+image: /img/og/ollama-llm-benchmark.png
+---
+
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
+
+<div style={{ marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/843f3ff9-5ef8-43d3-bc17-9e617f677a97"
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+  />
+</div>
+
+Today we are releasing **Ollama Multi-Model Benchmarker**, an open-source tool for evaluating local LLMs before committing to a setup. It runs multiple Ollama models sequentially on Google Colab's free T4 GPU and produces a side-by-side comparison of generation speed, responsiveness, model size, and more.
+
+{/* truncate */}
+
+
+## Background
+
+The number of publicly available local LLMs — Llama, Qwen, Mistral, and others — is growing rapidly. General benchmark scores provide a useful starting point, but they rarely reflect how a model performs on your specific prompts and tasks.
+
+At the same time, downloading and running several large models locally requires significant storage and time. This tool is built around a simpler workflow: try models in the cloud first, then install only the ones that meet your needs locally.
+
+## Features
+
+**No code required.** Enter model names in a Colab form, select them with checkboxes, and press the run button.
+
+The tool measures six metrics: generation speed (tokens/sec), Time to First Token (TTFT), total processing time, model load time, download time, and model size. These cover the dimensions that matter most depending on your use case — whether that is interactive chat, code generation, or a resource-constrained environment.
+
+Results are presented as a table alongside six charts, and the actual generated text from each model is shown inline for a quick quality check. Setting `save_to_drive = True` saves results to Google Drive as JSON, making it easy to compare runs across sessions.
+
+Disk space is checked automatically before each download and insufficient capacity causes the model to be skipped gracefully. Model sizes are cached after the first run, speeding up subsequent executions.
+
+## Recommended Model Sizes for T4
+
+On Google Colab's T4 GPU, 8B to 14B parameter models offer the best balance of speed and quality. Models above 20B parameters run significantly slower and are generally not practical in this environment.
+
+## Getting Started
+
+No setup needed. Open the Colab notebook below and press the run button.
+
+- **Run on Google Colab**: [Ollama Multi-Model Benchmarker](https://colab.research.google.com/github/hiroaki-com/ollama-llm-benchmark/blob/main/ollama_multi_model_benchmarker_en.ipynb)
+- **View source on GitHub**: [hiroaki-com/ollama-llm-benchmark](https://github.com/hiroaki-com/ollama-llm-benchmark)
+
+Feedback and pull requests are welcome.
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
