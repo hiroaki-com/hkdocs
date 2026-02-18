@@ -1,0 +1,59 @@
+---
+title: "Google ColabでローカルLLMを無料比較できるOSSツール「Ollama Multi-Model Benchmarker」をリリースしました"
+date: "2026-02-18"
+description: "複数のOllamaモデルをGoogle Colab上で自動ベンチマークし、性能を一括比較できるオープンソースツールのリリースを発表します。"
+authors: [hk]
+tags: [release, ollama, llm, benchmark, google-colab, open-source]
+---
+
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
+
+<div style={{ marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/843f3ff9-5ef8-43d3-bc17-9e617f677a97"
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+  />
+</div>
+
+本日、ローカルLLMの選定を支援するオープンソースツール **Ollama Multi-Model Benchmarker** を公開しました。Google Colabの無料T4 GPU環境上で複数のOllamaモデルを一括テストし、生成速度・応答性・モデルサイズなどの指標を自動で比較・可視化します。
+
+{/* truncate */}
+
+
+## 背景
+
+Llama、Qwen、Mistralをはじめ、公開されるローカルLLMの数は急速に増えています。各モデルの特性を把握するうえで、一般的なベンチマークスコアは参考になりますが、自分のユースケースに特化したプロンプトで実際に動かしてみるまで、実用的な適性はわかりません。
+
+かといって、ローカル環境に複数のモデルをセットアップしてひとつひとつ試すのは、ストレージと時間の両面でコストがかかります。本ツールは「まずクラウドで試してから、有望なモデルだけローカルに導入する」というワークフローを実現するために開発しました。
+
+## 主な機能
+
+**コードを書かずに実行できる設計**になっています。Colabのフォームにモデル名を入力し、チェックボックスで対象を選んで再生ボタンを押すだけです。
+
+測定する指標は生成速度（tokens/sec）、Time To First Token（TTFT）、総処理時間、モデルロード時間、ダウンロード時間、モデルサイズの6種類で、チャット・コード生成・制約の大きい環境など、用途ごとに注目すべき指標が異なることを考慮しています。
+
+結果はテーブルと6種類のグラフで表示され、各モデルの実際の出力テキストもその場で確認できます。`save_to_drive = True` を指定すると、測定結果がGoogle DriveのJSON形式で自動保存されるため、セッションをまたいだ比較も可能です。
+
+モデルダウンロード前にディスク容量を自動チェックし、容量不足の場合はスキップします。一度測定したモデルのサイズはキャッシュされ、以降の実行を高速化します。
+
+## T4環境でのモデル選定の目安
+
+Google ColabのT4 GPUで実用的に動作するモデルサイズは8Bから14Bが中心です。20B以上のモデルは生成速度が大幅に低下するため、用途に合わせたサイズ選定が重要になります。
+
+## 使い始める
+
+環境構築は不要です。以下のColabリンクを開き、再生ボタンを押すだけで実行できます。
+
+- **Google Colab で実行する**: [Ollama Multi-Model Benchmarker (日本語版)](https://colab.research.google.com/github/hiroaki-com/ollama-llm-benchmark/blob/main/ollama_multi_model_benchmarker_ja.ipynb)
+- **ソースコードを見る**: [hiroaki-com/ollama-llm-benchmark on GitHub](https://github.com/hiroaki-com/ollama-llm-benchmark)
+
+フィードバックやPull Requestはいずれも歓迎します。
+
+<GitHubStarLink repo="hiroaki-com/ollama-llm-benchmark" />
