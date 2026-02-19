@@ -1,0 +1,192 @@
+---
+title: I Built a Tool on Google Colab to Convert Demo Videos to GIF and MP4
+authors: [hk]
+tags: [ffmpeg, google-colab, gif, mp4, python, automation, demo-video]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+When you share a tool or product on GitHub or social media, attaching a demo video or GIF makes a huge difference in how well it communicates.
+But the moment you actually try to convert a video, you hit a wall: "SaaS tools require a subscription," "local apps are bloated," or "I have to look up the FFmpeg command every single time."
+
+So I built a tool that runs FFmpeg in Google Colab's free environment and converts screen recordings directly to GIF or MP4 — no environment setup, no software installation, just a browser.
+
+{/* truncate */}
+
+### What I Built
+
+<Admonition type="tip" title="🚀 Try It Now">
+  No setup required. Click the links below to run it in your browser instantly.
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Run in Google Colab<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_en.ipynb" target="_blank" rel="noopener noreferrer">Make Demo GIF / MP4</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Just open the link and run the cells from top to bottom.</small>
+    </li>
+    <li>
+      🐙 View the code on GitHub<br/>
+      <a href="https://github.com/hiroaki-com/colab-video-converter" target="_blank" rel="noopener noreferrer">hiroaki-com/colab-video-converter</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Browse the source code, or leave a Star / Fork.</small>
+    </li>
+  </ul>
+</Admonition>
+
+<div style={{ textAlign: 'center', marginBottom: '24px' }}>
+  <img
+    src="https://github.com/user-attachments/assets/c7ecf5d8-2225-43d8-9063-f89199389e82"
+    alt="Make Demo GIF / MP4 demo"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+  />
+</div>
+
+### Why I Built This
+
+Embedding a GIF in a GitHub README noticeably improves a project's first impression. Because visitors can instantly see the tool in action, I think it also increases the chances they'll actually read the page.
+
+That said, the process of converting a screen recording to GIF has always been quietly tedious.
+
+- **SaaS tools**: Convenient because everything runs in the browser, but fine-grained quality settings often require a paid plan.
+- **Local GUI apps**: Some are downloadable and usable, but they tend to break with OS updates and become a maintenance headache.
+- **Using FFmpeg directly**: The most flexible option, but looking up the right options every time is a drag. I always forget how to write the `palettegen` + `paletteuse` combination.
+
+As an engineer, getting up to speed on video conversion tools isn't where my learning should go, and paying ongoing SaaS fees didn't sit right either. I figured I'd rather build something myself that I could reuse however I wanted.
+
+Google Colab lets you run FFmpeg for free, and building a UI inside a notebook means I never have to type the same commands again. That was the idea behind this tool.
+
+### How to Use It
+
+No Python code required. Just run the cells from top to bottom and interact with the UI.
+
+#### ① Setup
+
+Run the first cell. FFmpeg installs automatically.
+
+#### ② Upload Your Video
+
+A file selection dialog opens — choose the video(s) you want to convert. Select multiple files if you want to merge them together.
+
+Supported input formats: `.mov` `.mp4` `.avi` `.mkv` `.webm`
+
+#### ③ Set the Merge Order (for multiple files)
+
+If you uploaded multiple videos, use the dropdowns to specify the order they should be merged. This step is skipped automatically for a single file.
+
+#### ④ Configure Output Format, Quality, and Speed
+
+Use the radio buttons to select your output format and quality.
+
+**Choosing an Output Format**
+
+| Format | Characteristics | Best For | Not Ideal For |
+|:---|:---|:---|:---|
+| GIF | Auto-plays, loops, works in any Markdown renderer. 256 colors, larger file size. | GitHub README, Zenn / Qiita | Size-constrained environments |
+| MP4 (H.264) | High quality, small file size, full color. Requires a media player. | X / Slack / GitHub README (click-to-play) | Scenarios requiring auto-play or looping |
+
+**GIF Quality Presets**
+
+| Preset | Width | FPS | Colors | Use Case |
+|:---|:---:|:---:|:---:|:---|
+| GitHub README | 960px | 15fps | 256 | README embedding (recommended) |
+| SNS / Lightweight | 640px | 10fps | 128 | Minimize file size |
+| High Quality | 1280px | 20fps | 256 | Quality-first output |
+| Custom | any | any | any | Fine-grained control |
+
+**MP4 Quality Presets**
+
+| Preset | CRF | Notes |
+|:---|:---:|:---|
+| High Quality | 18 | Larger file size |
+| Standard | 23 | Balanced (recommended) |
+| Lightweight | 28 | Smaller file size |
+| Custom | 0–51 | Fine-grained control |
+
+You can also adjust playback speed. Bumping a long recording to 1.5x or 2.0x is a great way to condense it into a tighter demo.
+
+#### ⑤ Run the Conversion
+
+Press the play button (▶) to start. If you want to tweak the settings and redo the conversion, just change the settings in step ④ and re-run this cell — no need to start from the top.
+
+#### ⑥ Preview the Result
+
+Once conversion finishes, you can preview the output directly inside the notebook. GIFs display inline; MP4s embed a player.
+
+#### ⑦ Save
+
+Select a save destination using the radio buttons and run the cell.
+
+| Destination | Description |
+|:---|:---|
+| Download locally | Saved via the browser download dialog |
+| Save to Google Drive | Auto-copied to the specified path (includes mount step) |
+| Both | Executes both options simultaneously |
+
+### Key Features and Technical Notes
+
+A few things I put thought into:
+
+- **High-quality GIF conversion**
+
+  GIF output quality depends heavily on FFmpeg filter configuration. This tool uses a two-pass `palettegen` + `paletteuse` approach:
+```
+  [0:v] fps=15,scale=960:-1:flags=lanczos,split [a][b];
+  [a] palettegen=max_colors=256:stats_mode=full [p];
+  [b][p] paletteuse=dither=floyd_steinberg:diff_mode=rectangle
+```
+
+  The `lanczos` filter improves resize quality, and `floyd_steinberg` dithering produces smoother color gradients. Custom mode also supports `bayer` dithering, letting you tune the quality-vs-file-size tradeoff.
+
+- **Automatic file size warning**
+
+  If a GIF exceeds 15 MB, the notebook automatically displays a warning with suggestions for reducing the size. Since GitHub's GIF limit is 10 MB, this lets you catch the issue before trying to embed it in a README.
+
+- **Playback speed adjustment**
+
+  Speed is controlled with the `setpts` filter. Bumping a longer recording to 1.5x or 2.0x also meaningfully reduces file size.
+```python
+  speed_filter = f'setpts={1/speed:.4f}*PTS,'  # e.g., 1.5x speed → setpts=0.6667*PTS
+```
+
+- **Merging multiple videos**
+
+  Uses FFmpeg's concat with `-c copy` to copy the codec without re-encoding, so merging is fast. The dropdown UI lets you freely specify the merge order.
+
+- **Separated settings and execution cells**
+
+  The settings cell (step ④) and the conversion cell (step ⑤) are kept separate, so if you want to re-convert with different quality settings, you only need to re-run step ⑤ — no need to restart from the beginning.
+
+### Platform Size Limits
+
+Limits vary by platform, so here's a reference. Zenn's 3 MB cap is quite strict — a realistic target is the SNS / Lightweight preset (640px / 10fps / 128 colors) combined with 1.5x playback speed.
+
+| Platform | Supported Formats | Size Limit |
+|:---|:---|:---|
+| GitHub README | GIF / MP4 / MOV | 100 MB (video) / 10 MB (GIF) |
+| Zenn | GIF | 3 MB |
+| Qiita | GIF / MP4 | 100 MB |
+| X (standard) | MP4 / MOV | 512 MB |
+| Slack | GIF / MP4 / MOV and more | 1 GB |
+
+### Wrapping Up
+
+Three things aligned: I was tired of looking up FFmpeg commands every time, I didn't want to keep paying for a SaaS conversion tool, and I didn't want to install yet another local app. So I built this myself.
+
+Packaging it as a Google Colab notebook means it runs in any browser, anywhere, with a GUI for all the settings. Personally, attaching GIFs to READMEs has gotten dramatically easier since I started using it.
+
+If you've ever thought "converting demo videos is such a pain every time," I hope this helps.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+### References
+
+- [FFmpeg Documentation](https://ffmpeg.org/documentation.html)
+- [FFmpeg Filters: palettegen](https://ffmpeg.org/ffmpeg-filters.html#palettegen)
+- [FFmpeg Filters: paletteuse](https://ffmpeg.org/ffmpeg-filters.html#paletteuse)
+- [Google Colab](https://colab.research.google.com/)
+- [ipywidgets Documentation](https://ipywidgets.readthedocs.io/)

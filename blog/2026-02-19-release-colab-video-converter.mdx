@@ -1,0 +1,50 @@
+---
+title: "画面録画をGIF・MP4に変換するGoogle Colabツール「Make Demo GIF / MP4」をリリースしました"
+date: "2026-02-19"
+description: "画面録画をGitHub / SNS向けのGIFまたはMP4に変換するオープンソースツールのリリースを発表します。ffmpegをベースにColabのUIで完結します。"
+authors: [hk]
+tags: [release, ffmpeg, google-colab, gif, mp4, open-source]
+---
+
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <img
+    src="https://github.com/user-attachments/assets/c7ecf5d8-2225-43d8-9063-f89199389e82"
+    alt="Make Demo GIF / MP4 デモ"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+  />
+</div>
+
+本日、画面録画をGitHubのREADMEやSNS向けのGIF・MP4に変換するオープンソースツール **Make Demo GIF / MP4** を公開しました。Google Colab上でffmpegを動かし、複数動画の結合・品質調整・再生速度変更をすべてノートブックのUI上で完結できます。
+
+{/* truncate */}
+
+## 背景
+
+GitHubのREADMEにデモのGIFを添付すると、プロジェクトの第一印象と伝達効率が大きく向上します。ただし、画面録画をGIFやMP4に変換する工程には継続的な摩擦がありました。SaaSの変換ツールは細かい品質調整に有料プランを要求することが多く、ローカルのGUIツールはOSのアップデートで動作が壊れるリスクを伴います。ffmpegを直接使う方法が最も自由度は高いですが、`palettegen`と`paletteuse`を組み合わせた高品質GIF変換のオプションは毎回調べることになりがちです。
+
+変換作業のキャッチアップに時間を使うことは開発の本質ではなく、かつこの作業は繰り返し発生します。Google Colabの無料環境でffmpegを動かし、設定UIをノートブック上に構築することで、環境への依存を排除した再利用可能なツールとして整理しました。
+
+## 主な機能
+
+コードを書かずに実行できる設計になっています。セルを上から順に実行し、アップロードとラジオボタンの操作だけで変換が完了します。
+
+出力形式はGIF（自動再生・ループ）とMP4（H.264）を選択できます。GIFはGitHub READMEやZenn・Qiitaへの埋め込みに、MP4はXやSlackなどサイズ効率が重要な場面に向いています。品質プリセットとして「GitHub README用（960px / 15fps）」「SNS・軽量用（640px / 10fps）」「高品質（1280px / 20fps）」を用意しており、カスタム指定も可能です。
+
+複数の動画ファイルをアップロードしてドロップダウンで結合順を指定する機能、0.75xから2.0xの再生速度変更、Google Driveへの自動保存も備えています。GIFが15MBを超えた場合は自動で警告を表示し、軽量化の手順を案内します。
+
+GIF変換の内部では`palettegen`と`paletteuse`の2パスアプローチを採用し、`lanczos`リサイズと`floyd_steinberg`ディザリングを組み合わせることで高品質な出力を実現しています。
+
+## 使い始める
+
+環境構築は不要です。以下のColabリンクを開き、セルを上から順に実行してください。
+
+- **Google Colab で実行する**: [Make Demo GIF / MP4（日本語版）](https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_ja.ipynb)
+- **ソースコードを見る**: [hiroaki-com/colab-video-converter on GitHub](https://github.com/hiroaki-com/colab-video-converter)
+
+フィードバックやPull Requestはいずれも歓迎します。
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
