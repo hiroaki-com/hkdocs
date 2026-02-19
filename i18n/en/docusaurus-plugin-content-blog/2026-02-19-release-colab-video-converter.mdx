@@ -1,0 +1,50 @@
+---
+title: "Releasing \"Make Demo GIF / MP4\" — A Google Colab Tool for Converting Screen Recordings to GIF & MP4"
+date: "2026-02-19"
+description: "Announcing the release of an open-source tool that converts screen recordings into GIF or MP4 optimized for GitHub and social media. Built on FFmpeg, everything runs inside a Colab notebook UI."
+authors: [hk]
+tags: [release, ffmpeg, google-colab, gif, mp4, open-source]
+---
+
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <img
+    src="https://github.com/user-attachments/assets/c7ecf5d8-2225-43d8-9063-f89199389e82"
+    alt="Make Demo GIF / MP4 demo"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+  />
+</div>
+
+Today I'm releasing **Make Demo GIF / MP4**, an open-source tool that converts screen recordings into GIFs or MP4s optimized for GitHub READMEs and social media. It runs FFmpeg on Google Colab, letting you merge multiple videos, tune quality, and adjust playback speed — all through a notebook UI, no command line required.
+
+{/* truncate */}
+
+## Background
+
+Embedding a demo GIF in a GitHub README dramatically improves a project's first impression and how quickly readers grasp what it does. Even so, the process of converting a screen recording into a GIF or MP4 has always involved friction. SaaS converters often lock fine-grained quality controls behind paid plans, and local GUI tools risk breaking whenever the OS updates. Using FFmpeg directly offers the most flexibility, but options like the two-pass `palettegen` + `paletteuse` approach for high-quality GIFs are easy to forget and end up requiring a lookup every time.
+
+Spending time relearning conversion workflows isn't core development work — and it's a task that keeps coming back. By running FFmpeg in Google Colab's free environment and building a settings UI directly inside the notebook, I was able to package this into a reusable tool with no local environment dependencies.
+
+## Key Features
+
+The tool is designed to run without writing any code. Just execute the cells top to bottom, upload your files, and make selections with radio buttons — conversion is complete.
+
+You can output as GIF (auto-playing, looping) or MP4 (H.264). GIF works best for embedding in GitHub READMEs, Zenn, and Qiita; MP4 is better suited for platforms like X or Slack where file size efficiency matters. Built-in quality presets include "GitHub README (960px / 15fps)", "SNS / Lightweight (640px / 10fps)", and "High Quality (1280px / 20fps)", with fully custom settings also available.
+
+Additional features include uploading multiple video files and specifying merge order via a dropdown, playback speed adjustment from 0.75x to 2.0x, and auto-saving to Google Drive. If a GIF exceeds 15 MB, the notebook automatically displays a warning with suggestions for reducing the file size.
+
+Internally, GIF conversion uses a two-pass `palettegen` + `paletteuse` approach combined with `lanczos` resizing and `floyd_steinberg` dithering to produce high-quality output.
+
+## Getting Started
+
+No environment setup needed. Open the Colab link below and run the cells from top to bottom.
+
+- **Run in Google Colab**: [Make Demo GIF / MP4](https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_en.ipynb)
+- **View the source**: [hiroaki-com/colab-video-converter on GitHub](https://github.com/hiroaki-com/colab-video-converter)
+
+Feedback and pull requests are both welcome.
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
