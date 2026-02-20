@@ -1,7 +1,7 @@
 ---
 title: Fixing Captive Portal Issues｜Tips to Improve Public WiFi Connection Performance
 authors: [hk]
-tags: [mac, iPhone, WiFi, captive portal, network, bug, public WiFi, network settings]
+tags: [mac, iPhone, WiFi, captive portal, network, bug]
 ---
 
 ### 1. Introduction
