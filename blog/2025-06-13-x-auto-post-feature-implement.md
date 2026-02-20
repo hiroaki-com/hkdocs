@@ -1,7 +1,7 @@
 ---
 title: Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装の記録
 authors: [hk]
-tags: [Github Actions, Twitter API, Twitter Card, Docusaurus]
+tags: [GitHub Actions, Twitter API, Twitter Card, Docusaurus]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
