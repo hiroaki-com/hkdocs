@@ -37,6 +37,10 @@ cloudrun:
   label: Cloud Run
   permalink: /cloudrun-alt
   description: Google Cloud Runへのアプリケーションのデプロイに関する記事。
+cloud-run:
+  label: Cloud Run
+  permalink: /cloud-run-hyphen
+  description: Google Cloud Runへのアプリケーションのデプロイに関する記事。
 'artifact registry':
   label: Artifact Registry
   permalink: /artifact-registry
@@ -65,6 +69,18 @@ deployment:
   label: Deployment
   permalink: /deployment
   description: アプリケーションのデプロイ戦略や実践に関する記事。
+netlify:
+  label: Netlify
+  permalink: /netlify
+  description: Netlifyを利用したホスティングやCI/CDに関する記事。
+decap-cms:
+  label: Decap CMS
+  permalink: /decap-cms
+  description: Decap CMS（旧Netlify CMS）の設定やカスタマイズに関する記事。
+'ci/cd':
+  label: CI/CD
+  permalink: /ci-cd
+  description: 継続的インテグレーション・継続的デリバリーに関する記事。
 
 # -----------------------------------------------------------------------------
 # Internationalization (i18n)
@@ -165,6 +181,242 @@ localStorage:
   label: Twitter Card
   permalink: /twitter-card
   description: Twitter/Xでリッチなリンクプレビューを表示するTwitter Cardの設定に関する記事。
+javascript:
+  label: JavaScript
+  permalink: /javascript
+  description: JavaScriptの実装やテクニックに関する記事。
+
+# -----------------------------------------------------------------------------
+# Development Tools & Languages
+# -----------------------------------------------------------------------------
+github:
+  label: GitHub
+  permalink: /github
+  description: GitHubを利用した開発やコラボレーションに関する記事。
+git:
+  label: Git
+  permalink: /git
+  description: Gitのバージョン管理や操作に関する記事。
+vscode:
+  label: VS Code
+  permalink: /vscode
+  description: Visual Studio Codeの設定や拡張機能に関する記事。
+python:
+  label: Python
+  permalink: /python
+  description: Pythonのコードや活用事例に関する記事。
+development:
+  label: Development
+  permalink: /development
+  description: ソフトウェア開発全般に関する記事。
+
+# -----------------------------------------------------------------------------
+# Google Colab & AI/ML
+# -----------------------------------------------------------------------------
+google-colab:
+  label: Google Colab
+  permalink: /google-colab
+  description: Google Colaboratoryの活用や設定に関する記事。
+ollama:
+  label: Ollama
+  permalink: /ollama
+  description: Ollamaを使ったローカルLLM実行に関する記事。
+llm:
+  label: LLM
+  permalink: /llm
+  description: 大規模言語モデル（LLM）の活用や評価に関する記事。
+benchmark:
+  label: Benchmark
+  permalink: /benchmark
+  description: パフォーマンスやモデルのベンチマークに関する記事。
+open-source:
+  label: Open Source
+  permalink: /open-source
+  description: オープンソースプロジェクトやツールに関する記事。
+release:
+  label: Release
+  permalink: /release
+  description: プロダクトや機能のリリースに関する記事。
+ffmpeg:
+  label: FFmpeg
+  permalink: /ffmpeg
+  description: FFmpegを使った動画・音声処理に関する記事。
+gif:
+  label: GIF
+  permalink: /gif
+  description: GIF画像の作成や変換に関する記事。
+mp4:
+  label: MP4
+  permalink: /mp4
+  description: MP4動画の処理や変換に関する記事。
+
+# -----------------------------------------------------------------------------
+# Architecture & Best Practices
+# -----------------------------------------------------------------------------
+12factor:
+  label: 12 Factor App
+  permalink: /12factor
+  description: The Twelve-Factor Appの原則に関する記事。
+'The Twelve Factors':
+  label: The Twelve Factors
+  permalink: /the-twelve-factors
+  description: The Twelve-Factor Appの各原則に関する記事。
+twelve-principles:
+  label: Twelve Principles
+  permalink: /twelve-principles
+  description: The Twelve-Factor Appの原則に関する記事（英語）。
+cheatsheet:
+  label: Cheatsheet
+  permalink: /cheatsheet
+  description: 技術的なチートシートやクイックリファレンスに関する記事。
+12の原則:
+  label: 12の原則
+  permalink: /12の原則
+  description: The Twelve-Factor Appの12の原則に関する記事。
+12の法則:
+  label: 12の法則
+  permalink: /12の法則
+  description: The Twelve-Factor Appの12の法則に関する記事。
+
+# -----------------------------------------------------------------------------
+# Security & Account
+# -----------------------------------------------------------------------------
+mfa:
+  label: MFA
+  permalink: /mfa
+  description: 多要素認証（MFA）の設定やトラブルシューティングに関する記事。
+security:
+  label: Security
+  permalink: /security
+  description: セキュリティ設定やベストプラクティスに関する記事。
+troubleshooting:
+  label: Troubleshooting
+  permalink: /troubleshooting
+  description: 技術的な問題の診断・解決に関する記事。
+billing:
+  label: Billing
+  permalink: /billing
+  description: クラウドや各種サービスの課金・請求に関する記事。
+'account recovery':
+  label: Account Recovery
+  permalink: /account-recovery
+  description: アカウント復旧に関する記事。
+
+# -----------------------------------------------------------------------------
+# Storage & Maintenance
+# -----------------------------------------------------------------------------
+storage:
+  label: Storage
+  permalink: /storage
+  description: ストレージ管理や容量最適化に関する記事。
+terminal:
+  label: Terminal
+  permalink: /terminal
+  description: ターミナルやコマンドラインの操作に関する記事。
+cleanup:
+  label: Cleanup
+  permalink: /cleanup
+  description: 不要ファイルやリソースの整理・削除に関する記事。
+maintenance:
+  label: Maintenance
+  permalink: /maintenance
+  description: システムやアプリケーションのメンテナンスに関する記事。
+macOS:
+  label: macOS
+  permalink: /macos
+  description: macOSの設定や操作に関する記事。
+'screen recording':
+  label: Screen Recording
+  permalink: /screen-recording
+  description: 画面収録ファイルの管理に関する記事。
+'disk space':
+  label: Disk Space
+  permalink: /disk-space
+  description: ディスク容量の確認や管理に関する記事。
+'slow mac':
+  label: Slow Mac
+  permalink: /slow-mac
+  description: Macの動作が重い場合の対処法に関する記事。
+ディスク容量:
+  label: ディスク容量
+  permalink: /ディスク容量
+  description: ディスク容量の確認や管理に関する記事。
+メンテナンス:
+  label: メンテナンス
+  permalink: /メンテナンス
+  description: システムやアプリケーションのメンテナンスに関する記事。
+Mac重い:
+  label: Mac重い
+  permalink: /mac重い
+  description: Macの動作が重い場合の対処法に関する記事。
+パソコン重い:
+  label: パソコン重い
+  permalink: /パソコン重い
+  description: パソコンの動作が重い場合の対処法に関する記事。
+
+# -----------------------------------------------------------------------------
+# Mac - Desktop & Display
+# -----------------------------------------------------------------------------
+wallpaper:
+  label: Wallpaper
+  permalink: /wallpaper
+  description: 壁紙の設定や管理に関する記事。
+desktop:
+  label: Desktop
+  permalink: /desktop
+  description: デスクトップ環境の設定に関する記事。
+finder:
+  label: Finder
+  permalink: /finder
+  description: macOSのFinderに関する記事。
+bug:
+  label: Bug
+  permalink: /bug
+  description: バグや不具合の報告・対処に関する記事。
+壁紙:
+  label: 壁紙
+  permalink: /壁紙
+  description: 壁紙の設定や管理に関する記事。
+壁紙設定:
+  label: 壁紙設定
+  permalink: /壁紙設定
+  description: macOSの壁紙設定に関する記事。
+
+# -----------------------------------------------------------------------------
+# Network & Travel
+# -----------------------------------------------------------------------------
+iPhone:
+  label: iPhone
+  permalink: /iphone
+  description: iPhoneの設定やトラブルシューティングに関する記事。
+WiFi:
+  label: WiFi
+  permalink: /wifi
+  description: Wi-Fi接続や設定に関する記事。
+'captive portal':
+  label: Captive Portal
+  permalink: /captive-portal
+  description: 公衆Wi-Fiのキャプティブポータルに関する記事。
+network:
+  label: Network
+  permalink: /network
+  description: ネットワーク設定やトラブルシューティングに関する記事。
+japan-travel:
+  label: Japan Travel
+  permalink: /japan-travel
+  description: 日本旅行に関するTIPSやガイドに関する記事。
+公衆WiFi:
+  label: 公衆WiFi
+  permalink: /公衆wifi
+  description: 公衆Wi-Fiの利用に関する記事。
+キャプティブポータル:
+  label: キャプティブポータル
+  permalink: /キャプティブポータル
+  description: キャプティブポータルに関する記事。
+ネットワーク設定:
+  label: ネットワーク設定
+  permalink: /ネットワーク設定
+  description: ネットワーク設定やトラブルシューティングに関する記事。
 
 # -----------------------------------------------------------------------------
 # Others
@@ -217,3 +469,4 @@ certification:
   label: Certification
   permalink: /certification
   description: プロフェッショナル認定資格に関する情報。
+  
