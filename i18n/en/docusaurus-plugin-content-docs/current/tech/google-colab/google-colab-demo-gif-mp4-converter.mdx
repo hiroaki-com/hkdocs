@@ -15,6 +15,8 @@ But the moment you actually try to convert a video, you hit a wall: "SaaS tools 
 
 So I built a tool that runs FFmpeg in Google Colab's free environment and converts screen recordings directly to GIF or MP4 — no environment setup, no software installation, just a browser.
 
+**[New Feature]** The tool now includes an **optional zoom feature** that lets you highlight specific moments in your screen recordings. Perfect for drawing attention to key interactions in demo videos.
+
 {/* truncate */}
 
 ### What I Built
@@ -107,15 +109,59 @@ Use the radio buttons to select your output format and quality.
 
 You can also adjust playback speed. Bumping a long recording to 1.5x or 2.0x is a great way to condense it into a tighter demo.
 
-#### ⑤ Run the Conversion
+#### ⑤ Generate Preview
 
-Press the play button (▶) to start. If you want to tweak the settings and redo the conversion, just change the settings in step ④ and re-run this cell — no need to start from the top.
+Press the play button (▶) to generate a preview. This creates a preview video at the same resolution and frame rate as your final output, allowing you to check timestamps for zoom settings. If you want to tweak the settings and regenerate the preview, just change the settings in step ④ and re-run this cell — no need to start from the top.
 
-#### ⑥ Preview the Result
+The preview uses a fast encoding preset and excludes audio to speed up generation.
 
-Once conversion finishes, you can preview the output directly inside the notebook. GIFs display inline; MP4s embed a player.
+#### ⑥ Review Preview
 
-#### ⑦ Save
+The preview video plays directly in the notebook with playback controls. Use the play/pause controls to identify the exact timestamps where you want to apply zoom effects. Note down these times — you'll need them for the next step if you want to add zoom.
+
+#### ⑦ Zoom Settings (Optional)
+
+**New Feature**: You can now add zoom effects to highlight specific moments in your demo video.
+
+How it works:
+1. Check the "Add zoom" checkbox to enable the zoom feature
+2. Click "+ Add Zoom Event" to add a new zoom configuration
+3. For each zoom event, configure:
+   - **Zoom area**: Select from a 3×3 grid (top-left, center, bottom-right, etc.)
+   - **Max zoom**: Peak zoom multiplier (1.1× to 5.0×)
+   - **Start (s)**: Timestamp when zoom begins
+   - **In (s)**: Duration to ramp from 1× to peak zoom
+   - **Hold (s)**: Duration to hold at peak zoom
+   - **Out (s)**: Duration to ramp from peak zoom back to 1×
+
+**Example Timeline**: If you set Start=5.0, In=0.3, Hold=1.0, Out=0.3, the zoom will:
+- Start at 5.0 seconds
+- Zoom in from 1× to max over 0.3 seconds (5.0 → 5.3s)
+- Hold at max zoom for 1.0 seconds (5.3 → 6.3s)
+- Zoom out from max to 1× over 0.3 seconds (6.3 → 6.6s)
+- Return to normal playback after 6.6 seconds
+
+**Tips**:
+- You can add multiple zoom events — perfect for highlighting several key moments
+- Make sure zoom events don't overlap in time
+- The 3×3 grid makes it easy to zoom into UI elements at specific screen positions
+- Uncheck "Add zoom" to disable all zoom effects and return to standard output
+
+**Use Cases**:
+- Drawing attention to a button click in a UI walkthrough
+- Highlighting code changes in an editor
+- Emphasizing specific data in a dashboard demo
+- Zooming into form fields during an input demonstration
+
+#### ⑧ Final Export
+
+Press the play button (▶) to generate the final output with all your settings applied, including any zoom effects you configured. If you want to adjust zoom settings and re-export, just modify step ⑦ and re-run this cell.
+
+The final export uses:
+- **For GIF**: Full palette generation with your chosen dithering method
+- **For MP4**: Slow preset for maximum compression efficiency (with audio if enabled)
+
+#### ⑨ Save
 
 Select a save destination using the radio buttons and run the cell.
 
@@ -155,9 +201,46 @@ A few things I put thought into:
 
   Uses FFmpeg's concat with `-c copy` to copy the codec without re-encoding, so merging is fast. The dropdown UI lets you freely specify the merge order.
 
-- **Separated settings and execution cells**
+- **Separated preview and final output**
 
-  The settings cell (step ④) and the conversion cell (step ⑤) are kept separate, so if you want to re-convert with different quality settings, you only need to re-run step ⑤ — no need to restart from the beginning.
+  The workflow is now split into preview generation (step ⑤) and final export (step ⑧). This lets you review the exact timestamps in a full-quality preview before configuring zoom effects, and you can iterate on zoom settings without re-generating the base video.
+
+- **Zoom functionality with FFmpeg zoompan filter**
+
+  The zoom feature uses FFmpeg's `zoompan` filter to create smooth, dynamic zoom effects. Each zoom event is converted into a series of mathematical expressions that control the zoom level, x-position, and y-position frame-by-frame:
+
+  ```python
+  # Example: Zoom into the center (area 5) with max zoom 2.0x
+  # Timeline: start=5.0, in=0.3, hold=1.0, out=0.3
+  # → Zoom from 1x to 2x over 0.3s, hold 2x for 1.0s, return to 1x over 0.3s
+  
+  zoompan=z='if(gte(on,150),if(lt(on,159),(1+(2.0-1)*(on-150)/9),\
+              if(lt(on,189),2.0,\
+              if(lt(on,198),(2.0-(2.0-1)*(on-189)/9),1))),1)':
+          x='if(between(on,150,198),max(0,min(iw-iw/zoom,480-iw/(2*zoom))),0)':
+          y='if(between(on,150,198),max(0,min(ih-ih/zoom,270-ih/(2*zoom))),0)':
+          d=1:s=960x540:fps=15
+  ```
+
+  The tool automatically:
+  - Converts timestamps to frame numbers based on the video's FPS
+  - Calculates zoom center coordinates from the 3×3 grid position
+  - Generates smooth interpolation curves for zoom in/out transitions
+  - Handles multiple overlapping zoom events with proper precedence
+
+- **Audio tempo adjustment for speed changes**
+
+  When playback speed is adjusted for MP4 output with audio enabled, the tool uses FFmpeg's `atempo` filter. Since `atempo` only supports 0.5× to 2.0× per filter instance, the tool chains multiple filters for speeds outside this range:
+
+  ```python
+  # Example: 3.0x speed requires two atempo filters
+  # 3.0 = 2.0 × 1.5
+  speed_filter = 'atempo=2.0,atempo=1.5'
+  ```
+
+- **Efficient preview workflow**
+
+  The preview (step ⑤) is generated with the `fast` preset to speed up iteration. The final export (step ⑧) then uses the `slow` preset for maximum compression efficiency. If no zoom effects are configured, step ⑧ can reuse the preview's video stream directly with `-c:v copy`, making the final export nearly instantaneous.
 
 ### Platform Size Limits
 
@@ -175,9 +258,9 @@ Limits vary by platform, so here's a reference. Zenn's 3 MB cap is quite strict 
 
 Three things aligned: I was tired of looking up FFmpeg commands every time, I didn't want to keep paying for a SaaS conversion tool, and I didn't want to install yet another local app. So I built this myself.
 
-Packaging it as a Google Colab notebook means it runs in any browser, anywhere, with a GUI for all the settings. Personally, attaching GIFs to READMEs has gotten dramatically easier since I started using it.
+Packaging it as a Google Colab notebook means it runs in any browser, anywhere, with a GUI for all the settings. The new zoom feature makes it even easier to create professional-looking demo videos that highlight exactly what matters. Personally, attaching GIFs to READMEs has gotten dramatically easier since I started using it.
 
-If you've ever thought "converting demo videos is such a pain every time," I hope this helps.
+If you've ever thought "converting demo videos is such a pain every time" or "I wish I could emphasize specific moments in my screen recordings," I hope this helps.
 
 <ShareButtons />
 
@@ -188,5 +271,6 @@ If you've ever thought "converting demo videos is such a pain every time," I hop
 - [FFmpeg Documentation](https://ffmpeg.org/documentation.html)
 - [FFmpeg Filters: palettegen](https://ffmpeg.org/ffmpeg-filters.html#palettegen)
 - [FFmpeg Filters: paletteuse](https://ffmpeg.org/ffmpeg-filters.html#paletteuse)
+- [FFmpeg Filters: zoompan](https://ffmpeg.org/ffmpeg-filters.html#zoompan)
 - [Google Colab](https://colab.research.google.com/)
 - [ipywidgets Documentation](https://ipywidgets.readthedocs.io/)
