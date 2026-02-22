@@ -10,7 +10,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <GitHubStarLink repo="hiroaki-com/hkdocs" />
 
-*Updated January 19, 2026: Content rewritten to reflect the latest development environment.*
+*Updated Feb 22, 2026: Operation procedures for Colab and GitHub were revised to align with the latest recommended workflow.*
+*Updated Jan 19, 2026: Content rewritten to reflect the latest development environment.*
 
 In this guide, we will explain practical steps to migrate your Python code from Google Colab to a professional development workflow using GitHub and local editors like VSCode or Cursor.
 
@@ -155,34 +156,62 @@ This displays the file in its raw JSON format, making it easier to track changes
 
 ---
 
-### Important Best Practices
+### Important Operation Rules
 
-To maintain a smooth integration and avoid merge conflicts, follow these rules:
+Treat GitHub as the single source of truth and follow the rules below to avoid conflicts from editing in both Colab and local.
 
-#### 1. Always "Sync" Before You Start (Most Important)
+---
 
-It is easy to forget where you made the last edit. **Before starting work in any environment, always pull the latest state from GitHub.**
+#### 1. When working locally
 
--   **Starting locally**:
-    -   Run `git pull origin main` first to get the latest remote changes.
--   **Starting on Colab**:
-    -   Don't just use an old browser tab. Go to `File` > `Open notebook` > `GitHub` tab to **explicitly re-open the latest commit**.
+**Before starting work**
 
-#### 2. "Save" When You Finish
+Run `git pull origin main` before you start editing. If you have unpushed changes, commit and push first, then pull.
 
-**Once your edits are done, always push your work back to GitHub as a "hand-off."**
+**When you finish editing**
 
--   **Local edits**: Don't forget to `git push`.
--   **Colab edits**: Run `File` > `Save a copy in GitHub`. If you close the browser without doing this, your Colab changes will be lost.
+Run `git add .` → `git commit -m "message"` → `git push origin main`.
 
-#### 3. Avoid Simultaneous Editing
+---
 
-**To prevent messy conflicts, do not edit the same file in multiple environments at the same time.**
-Strictly follow the "Push from Local → Open in Colab" or "Save from Colab → Pull to Local" relay.
+#### 2. When working on Colab
 
-#### 4. Handling Conflicts
+**Before starting work**
 
-If a conflict occurs, it is easiest to resolve it in your local environment (VSCode/Cursor). These editors have built-in conflict resolution tools that allow you to visually compare and choose which changes to keep.
+Do not keep using an existing tab. Each time, open the notebook via `File` > `Open notebook` > `GitHub` tab.
+
+> 🚨 Edits are not saved to GitHub automatically. Changes will be lost if you close the browser.
+
+**When you finish editing**
+
+- `File` > `Save a copy in GitHub` (recommended)
+- If you need to continue later, `File` > `Save a copy in Drive` is also acceptable
+- After saving, run `git pull origin main` on your local machine to sync
+- Do not start work directly from the Drive-saved copy
+
+---
+
+#### 3. No simultaneous editing
+
+The following are strictly prohibited:
+
+- Saving to GitHub from Colab while you have unpushed local changes
+- Editing the same content in Colab and locally at the same time
+- Using a Drive-saved copy for long-term work
+
+Always follow **"Sync before editing → Edit → Push to GitHub."**
+
+---
+
+#### 4. When a conflict occurs
+
+Resolve conflicts in your local environment.
+
+1. Conflict is detected when you run `git pull`
+2. Resolve using the diff/merge tools in VSCode/Cursor, etc.
+3. After fixing, commit and push
+
+Resolving conflicts on Colab is difficult; **always handle conflicts locally.**
 
 ### Conclusion
 
