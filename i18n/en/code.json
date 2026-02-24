@@ -101,6 +101,9 @@
   "page.browser-memo.notes.markdown": {
     "message": "Notes support Markdown format. You can toggle the display with the preview button."
   },
+  "page.browser-memo.notes.mermaid": {
+    "message": "Mermaid syntax is also supported. Specify `mermaid` in a code block (```mermaid ... ```) to render diagrams."
+  },
   "page.browser-memo.notes.storage": {
     "message": "Your notes are automatically saved when you pause typing or when the text area loses focus."
   },
