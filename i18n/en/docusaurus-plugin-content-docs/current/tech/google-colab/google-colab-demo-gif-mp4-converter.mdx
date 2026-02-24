@@ -1,5 +1,5 @@
 ---
-title: I Built a Tool on Google Colab to Convert Demo Videos to GIF and MP4
+title: I Built a Google Colab Tool to Convert Screen Recordings to GIF and MP4
 authors: [hk]
 tags: [ffmpeg, google-colab, gif, mp4, python, automation, demo-video]
 ---
@@ -10,84 +10,85 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <GitHubStarLink repo="hiroaki-com/colab-video-converter" />
 
-When you share a tool or product on GitHub or social media, attaching a demo video or GIF makes a huge difference in how well it communicates.
-But the moment you actually try to convert a video, you hit a wall: "SaaS tools require a subscription," "local apps are bloated," or "I have to look up the FFmpeg command every single time."
+*🗓 2026/02/24 — Zoom feature overhauled. Start times can now be recorded automatically while the preview plays, and overlapping zoom events are detected and blocked.*
 
-So I built a tool that runs FFmpeg in Google Colab's free environment and converts screen recordings directly to GIF or MP4 — no environment setup, no software installation, just a browser.
+When you share a tool or project on GitHub or social media, attaching a demo GIF or video makes a real difference in how well it lands. But the moment you try to convert a screen recording, you run into the usual friction: SaaS tools need a paid plan for fine-grained quality settings, and local GUI apps have a habit of breaking whenever the OS updates.
 
-**[New Feature]** The tool now includes an **optional zoom feature** that lets you highlight specific moments in your screen recordings. Perfect for drawing attention to key interactions in demo videos.
+So I built a tool that runs ffmpeg inside Google Colab's free environment and converts screen recordings directly to GIF or MP4. Everything runs in the browser — no environment setup, no software to install.
 
 {/* truncate */}
 
 ### What I Built
 
 <Admonition type="tip" title="🚀 Try It Now">
-  No setup required. Click the links below to run it in your browser instantly.
+  No setup required. Open the link below and run it directly in your browser.
 
   <ul>
     <li style={{ marginBottom: '12px' }}>
       ⚡️ Run in Google Colab<br/>
-      <a href="https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_en.ipynb" target="_blank" rel="noopener noreferrer">Make Demo GIF / MP4</a><br/>
-      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Just open the link and run the cells from top to bottom.</small>
+      <a href="https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_en.ipynb" target="_blank" rel="noopener noreferrer">Make Demo GIF / MP4 (English)</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Click the link and run cells from top to bottom — that's all it takes.</small>
     </li>
     <li>
       🐙 View the code on GitHub<br/>
       <a href="https://github.com/hiroaki-com/colab-video-converter" target="_blank" rel="noopener noreferrer">hiroaki-com/colab-video-converter</a><br/>
-      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Browse the source code, or leave a Star / Fork.</small>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Browse the source, leave a Star, or fork it.</small>
     </li>
   </ul>
 </Admonition>
 
 <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-  <img
-    src="https://github.com/user-attachments/assets/c7ecf5d8-2225-43d8-9063-f89199389e82"
+  <video
+    src="https://github.com/user-attachments/assets/be5716ec-69ed-48f8-b48d-a61abf8dd1d3"
     alt="Make Demo GIF / MP4 demo"
     style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
   />
 </div>
 
 ### Why I Built This
 
-Embedding a GIF in a GitHub README noticeably improves a project's first impression. Because visitors can instantly see the tool in action, I think it also increases the chances they'll actually read the page.
+Adding a GIF to a GitHub README noticeably improves first impressions. Seeing something in motion immediately tells visitors what a project actually does, and I think it meaningfully increases the chance they keep reading.
 
-That said, the process of converting a screen recording to GIF has always been quietly tedious.
+That said, converting a screen recording to a GIF has always been quietly annoying.
 
-- **SaaS tools**: Convenient because everything runs in the browser, but fine-grained quality settings often require a paid plan.
-- **Local GUI apps**: Some are downloadable and usable, but they tend to break with OS updates and become a maintenance headache.
-- **Using FFmpeg directly**: The most flexible option, but looking up the right options every time is a drag. I always forget how to write the `palettegen` + `paletteuse` combination.
+SaaS tools are convenient because they run in the browser, but fine-grained quality control tends to sit behind a paid plan. Local GUI apps work until they don't — an OS update often breaks them, and keeping them working takes ongoing effort.
 
-As an engineer, getting up to speed on video conversion tools isn't where my learning should go, and paying ongoing SaaS fees didn't sit right either. I figured I'd rather build something myself that I could reuse however I wanted.
+As an engineer, spending time learning a video conversion tool isn't the point, and paying a recurring subscription for it feels like overkill. I figured I might as well build something I could reuse however I want.
 
-Google Colab lets you run FFmpeg for free, and building a UI inside a notebook means I never have to type the same commands again. That was the idea behind this tool.
+Google Colab can run ffmpeg for free, and building a UI directly in the notebook means settings are handled through a GUI without ever touching the command line. That was the idea behind this tool.
 
 ### How to Use It
 
-No Python code required. Just run the cells from top to bottom and interact with the UI.
+Run cells from top to bottom and interact with the UI as prompted. No Python code required.
 
 #### ① Setup
 
-Run the first cell. FFmpeg installs automatically.
+Running the first cell installs ffmpeg automatically. A `_ffmpeg` helper function is also defined here to make error output easier to handle.
 
-#### ② Upload Your Video
+#### ② Upload Videos
 
-A file selection dialog opens — choose the video(s) you want to convert. Select multiple files if you want to merge them together.
+A file selection dialog opens. Select the video file(s) you want to convert. Selecting multiple files enables merging.
 
 Supported input formats: `.mov` `.mp4` `.avi` `.mkv` `.webm`
 
-#### ③ Set the Merge Order (for multiple files)
+#### ③ Set Merge Order (Multiple Files Only)
 
-If you uploaded multiple videos, use the dropdowns to specify the order they should be merged. This step is skipped automatically for a single file.
+If you uploaded multiple videos, use the dropdowns to specify the merge order. This step is skipped automatically for a single file.
 
-#### ④ Configure Output Format, Quality, and Speed
+#### ④ Configure Format, Quality, and Speed
 
-Use the radio buttons to select your output format and quality.
+Use the radio buttons to choose an output format and quality level.
 
 **Choosing an Output Format**
 
 | Format | Characteristics | Best For | Not Ideal For |
 |:---|:---|:---|:---|
-| GIF | Auto-plays, loops, works in any Markdown renderer. 256 colors, larger file size. | GitHub README, Zenn / Qiita | Size-constrained environments |
-| MP4 (H.264) | High quality, small file size, full color. Requires a media player. | X / Slack / GitHub README (click-to-play) | Scenarios requiring auto-play or looping |
+| GIF | Auto-plays, loops, works in any Markdown renderer. 256 colors, larger file | GitHub README, Zenn / Qiita | Size-constrained environments |
+| MP4 (H.264) | High quality, small file size, full color. Requires a media player. **No audio** | X / Slack / GitHub README (click-to-play) | Scenarios requiring auto-play or looping |
 
 **GIF Quality Presets**
 
@@ -107,63 +108,79 @@ Use the radio buttons to select your output format and quality.
 | Lightweight | 28 | Smaller file size |
 | Custom | 0–51 | Fine-grained control |
 
-You can also adjust playback speed. Bumping a long recording to 1.5x or 2.0x is a great way to condense it into a tighter demo.
+Playback speed is also adjustable. Speeding up a long recording to 1.5x or 2.0x makes for a more compact demo.
 
 #### ⑤ Generate Preview
 
-Press the play button (▶) to generate a preview. This creates a preview video at the same resolution and frame rate as your final output, allowing you to check timestamps for zoom settings. If you want to tweak the settings and regenerate the preview, just change the settings in step ④ and re-run this cell — no need to start from the top.
+Run the cell to generate a preview. The preview is rendered at the same resolution and frame rate as the final output, so you can use it to identify exact timestamps for zoom configuration. To regenerate the preview after changing settings, adjust step ④ and re-run this cell — no need to start from the beginning.
 
-The preview uses a fast encoding preset and excludes audio to speed up generation.
+The preview is generated using the fast preset with no audio. Playback speed changes (via the `setpts` filter) are already applied at this stage.
 
 #### ⑥ Review Preview
 
-The preview video plays directly in the notebook with playback controls. Use the play/pause controls to identify the exact timestamps where you want to apply zoom effects. Note down these times — you'll need them for the next step if you want to add zoom.
+The preview video appears inside the notebook with playback controls. Play and pause to find the exact timestamps where you want to apply zoom effects.
 
 #### ⑦ Zoom Settings (Optional)
 
-**New Feature**: You can now add zoom effects to highlight specific moments in your demo video.
+You can add zoom effects to highlight specific moments in your demo.
 
-How it works:
-1. Check the "Add zoom" checkbox to enable the zoom feature
-2. Click "+ Add Zoom Event" to add a new zoom configuration
-3. For each zoom event, configure:
-   - **Zoom area**: Select from a 3×3 grid (top-left, center, bottom-right, etc.)
-   - **Max zoom**: Peak zoom multiplier (1.1× to 5.0×)
-   - **Start (s)**: Timestamp when zoom begins
-   - **In (s)**: Duration to ramp from 1× to peak zoom
-   - **Hold (s)**: Duration to hold at peak zoom
-   - **Out (s)**: Duration to ramp from peak zoom back to 1×
+<div style={{ textAlign: 'center', marginBottom: '24px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/3a64c2e1-2534-4290-b476-a49d0dae01c0"
+    alt="Zoom feature demo"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
 
-**Example Timeline**: If you set Start=5.0, In=0.3, Hold=1.0, Out=0.3, the zoom will:
-- Start at 5.0 seconds
-- Zoom in from 1× to max over 0.3 seconds (5.0 → 5.3s)
-- Hold at max zoom for 1.0 seconds (5.3 → 6.3s)
-- Zoom out from max to 1× over 0.3 seconds (6.3 → 6.6s)
-- Return to normal playback after 6.6 seconds
+How to use:
+1. Check "Add zoom" — the first zoom event is added automatically
+2. Play the embedded preview video and pause at the scene you want to zoom
+3. Click "📍 Record this position as start time" to apply the current playback position to the selected event's start time
+4. Use the "Target event" dropdown to switch which event you're recording to
+5. Click "+ Add Zoom Event" to add more zoom points. The next event's start time is automatically calculated from the end of the previous one
+6. Configure each event:
+   - **Zoom area**: select from the 3×3 grid (top-left, center, bottom-right, etc.)
+   - **Max zoom level**: peak magnification (1.1x – 5.0x)
+   - **Start (sec)**: when the zoom begins (can be set via the 📍 button)
+   - **In (sec)**: time to ramp from 1x to peak zoom
+   - **Hold (sec)**: time to hold at peak zoom
+   - **Out (sec)**: time to ramp back down to 1x
+
+**Timeline example**: with Start=5.0, In=0.3, Hold=1.0, Out=0.3:
+- Zoom begins at 5.0 seconds
+- Ramps from 1x to peak over 0.3 seconds (5.0 → 5.3 sec)
+- Holds at peak for 1.0 second (5.3 → 6.3 sec)
+- Ramps back to 1x over 0.3 seconds (6.3 → 6.6 sec)
+- Normal playback resumes after 6.6 seconds
 
 **Tips**:
-- You can add multiple zoom events — perfect for highlighting several key moments
-- Make sure zoom events don't overlap in time
-- The 3×3 grid makes it easy to zoom into UI elements at specific screen positions
-- Uncheck "Add zoom" to disable all zoom effects and return to standard output
+- If zoom events overlap in time, an error is reported when step ⑧ runs
+- The 3×3 grid makes it straightforward to zoom in on a specific UI element
+- Unchecking "Add zoom" disables all zoom effects without deleting your settings
 
-**Use Cases**:
-- Drawing attention to a button click in a UI walkthrough
-- Highlighting code changes in an editor
-- Emphasizing specific data in a dashboard demo
-- Zooming into form fields during an input demonstration
+**Use cases**:
+- Draw attention to a button click in a UI walkthrough
+- Highlight a code change in an editor
+- Zoom in on specific data points in a dashboard demo
+- Focus on a form field during an input demo
 
-#### ⑧ Final Export
+#### ⑧ Final Output
 
-Press the play button (▶) to generate the final output with all your settings applied, including any zoom effects you configured. If you want to adjust zoom settings and re-export, just modify step ⑦ and re-run this cell.
+Run the cell to generate the final output with all settings applied, including any zoom effects. To adjust zoom and re-export, modify step ⑦ and re-run this cell.
 
-The final export uses:
-- **For GIF**: Full palette generation with your chosen dithering method
-- **For MP4**: Slow preset for maximum compression efficiency (with audio if enabled)
+If the resolution settings in step ④ were changed after running step ⑤, an error is raised here prompting you to regenerate the preview. This prevents mismatches between the preview and final output.
+
+Final output behavior:
+- **GIF**: full palette generation using the selected dithering method
+- **MP4**: re-encoded with the slow preset for maximum compression efficiency (no audio)
 
 #### ⑨ Save
 
-Select a save destination using the radio buttons and run the cell.
+Select a destination using the radio buttons, then run the cell.
 
 | Destination | Description |
 |:---|:---|
@@ -171,80 +188,86 @@ Select a save destination using the radio buttons and run the cell.
 | Save to Google Drive | Auto-copied to the specified path (includes mount step) |
 | Both | Executes both options simultaneously |
 
-### Key Features and Technical Notes
+### Technical Notes
 
-A few things I put thought into:
+A few implementation details worth highlighting.
 
 - **High-quality GIF conversion**
 
-  GIF output quality depends heavily on FFmpeg filter configuration. This tool uses a two-pass `palettegen` + `paletteuse` approach:
-```
-  [0:v] fps=15,scale=960:-1:flags=lanczos,split [a][b];
-  [a] palettegen=max_colors=256:stats_mode=full [p];
-  [b][p] paletteuse=dither=floyd_steinberg:diff_mode=rectangle
-```
+    GIF output quality depends heavily on ffmpeg filter configuration. This tool uses a two-pass approach combining `palettegen` and `paletteuse`.
 
-  The `lanczos` filter improves resize quality, and `floyd_steinberg` dithering produces smoother color gradients. Custom mode also supports `bayer` dithering, letting you tune the quality-vs-file-size tradeoff.
+    ```
+    [0:v] fps=15,scale=960:-1:flags=lanczos,split [a][b];
+    [a] palettegen=max_colors=256:stats_mode=full [p];
+    [b][p] paletteuse=dither=floyd_steinberg:diff_mode=rectangle
+    ```
+
+    The `lanczos` filter improves resize quality, and `floyd_steinberg` dithering produces smooth color gradients. Custom mode also supports `bayer` dithering for a different file size vs. quality tradeoff.
 
 - **Automatic file size warning**
 
-  If a GIF exceeds 15 MB, the notebook automatically displays a warning with suggestions for reducing the size. Since GitHub's GIF limit is 10 MB, this lets you catch the issue before trying to embed it in a README.
+    If a GIF exceeds 15 MB, the notebook displays a warning automatically with guidance on how to reduce it. GitHub's GIF size limit is 10 MB, so catching this before you try to embed it in a README is useful.
 
 - **Playback speed adjustment**
 
-  Speed is controlled with the `setpts` filter. Bumping a longer recording to 1.5x or 2.0x also meaningfully reduces file size.
-```python
-  speed_filter = f'setpts={1/speed:.4f}*PTS,'  # e.g., 1.5x speed → setpts=0.6667*PTS
-```
+    Speed is controlled via the `setpts` filter. Bumping a long recording to 1.5x or 2.0x noticeably reduces file size. Since speed is applied during preview generation (step ⑤), the final output (step ⑧) can reuse the preview footage directly.
+
+    ```python
+    speed_filter = f'setpts=PTS/{speed}'  # 1.5x speed → setpts=PTS/1.5
+    ```
 
 - **Merging multiple videos**
 
-  Uses FFmpeg's concat with `-c copy` to copy the codec without re-encoding, so merging is fast. The dropdown UI lets you freely specify the merge order.
+    ffmpeg's concat muxer handles merging with `-c copy`, skipping re-encoding entirely for fast results. The dropdown UI lets you specify merge order freely. Filenames containing special characters are escaped correctly.
 
 - **Separated preview and final output**
 
-  The workflow is now split into preview generation (step ⑤) and final export (step ⑧). This lets you review the exact timestamps in a full-quality preview before configuring zoom effects, and you can iterate on zoom settings without re-generating the base video.
+    The workflow is split into preview generation (step ⑤) and final output (step ⑧). This lets you confirm exact timestamps on a full-quality preview before configuring zoom, and iterate on zoom settings without regenerating the base video. Step ⑧ also checks that resolution settings haven't changed since the preview was generated, preventing silent configuration mismatches.
 
-- **Zoom functionality with FFmpeg zoompan filter**
+- **Zoom via FFmpeg's zoompan filter**
 
-  The zoom feature uses FFmpeg's `zoompan` filter to create smooth, dynamic zoom effects. Each zoom event is converted into a series of mathematical expressions that control the zoom level, x-position, and y-position frame-by-frame:
+    Zoom is implemented using ffmpeg's `zoompan` filter, which generates smooth, frame-accurate zoom animations. Each zoom event is translated into expressions that control zoom level, x position, and y position on a per-frame basis.
 
-  ```python
-  # Example: Zoom into the center (area 5) with max zoom 2.0x
-  # Timeline: start=5.0, in=0.3, hold=1.0, out=0.3
-  # → Zoom from 1x to 2x over 0.3s, hold 2x for 1.0s, return to 1x over 0.3s
-  
-  zoompan=z='if(gte(on,150),if(lt(on,159),(1+(2.0-1)*(on-150)/9),\
-              if(lt(on,189),2.0,\
-              if(lt(on,198),(2.0-(2.0-1)*(on-189)/9),1))),1)':
-          x='if(between(on,150,198),max(0,min(iw-iw/zoom,480-iw/(2*zoom))),0)':
-          y='if(between(on,150,198),max(0,min(ih-ih/zoom,270-ih/(2*zoom))),0)':
-          d=1:s=960x540:fps=15
-  ```
+    One constraint with `zoompan` is that the `z` variable cannot be referenced inside the `x` and `y` expressions. This was addressed by inlining `z_expr` directly into the coordinate expressions, which fixes a zoom-center drift issue present in earlier versions.
 
-  The tool automatically:
-  - Converts timestamps to frame numbers based on the video's FPS
-  - Calculates zoom center coordinates from the 3×3 grid position
-  - Generates smooth interpolation curves for zoom in/out transitions
-  - Handles multiple overlapping zoom events with proper precedence
+    ```python
+    # Example: zoom to center (area 5) at 2.0x peak
+    # Timeline: Start=5.0, In=0.3, Hold=1.0, Out=0.3
+    # → ramps to 2x over 0.3s, holds for 1.0s, ramps back over 0.3s
 
-- **Audio tempo adjustment for speed changes**
+    zoompan=z='if(gte(on,150),if(lt(on,159),(1+(2.0-1)*(on-150)/9),\
+                if(lt(on,189),2.0,\
+                if(lt(on,198),(2.0-(2.0-1)*(on-189)/9),1))),1)':
+            x='if(between(on,150,198),floor(max(0,min(iw-iw/(z_expr),480-iw/(2*(z_expr))))),0)':
+            y='if(between(on,150,198),floor(max(0,min(ih-ih/(z_expr),270-ih/(2*(z_expr))))),0)':
+            d=1:s=960x540:fps=15
+    ```
 
-  When playback speed is adjusted for MP4 output with audio enabled, the tool uses FFmpeg's `atempo` filter. Since `atempo` only supports 0.5× to 2.0× per filter instance, the tool chains multiple filters for speeds outside this range:
+    The tool automatically:
+    - Converts timestamps to frame numbers based on the video's FPS
+    - Calculates zoom center coordinates from the 3×3 grid position
+    - Generates smooth interpolation curves for zoom-in and zoom-out transitions
+    - Sorts zoom events by start time and reports overlaps as errors before any output is generated
 
-  ```python
-  # Example: 3.0x speed requires two atempo filters
-  # 3.0 = 2.0 × 1.5
-  speed_filter = 'atempo=2.0,atempo=1.5'
-  ```
+- **Start time recording button**
+
+    A preview video is embedded directly in step ⑦'s cell. Pausing it at any point and clicking the button immediately applies the current playback position to the selected event's start time. This uses `google.colab.kernel.invokeFunction` to invoke a Python callback from JavaScript.
+
+    ```python
+    def _record_position(time):
+        if _zoom_start_widgets and record_target_sel.value is not None:
+            _zoom_start_widgets[record_target_sel.value].value = round(float(time), 2)
+
+    colab_output.register_callback('record_position', _record_position)
+    ```
 
 - **Efficient preview workflow**
 
-  The preview (step ⑤) is generated with the `fast` preset to speed up iteration. The final export (step ⑧) then uses the `slow` preset for maximum compression efficiency. If no zoom effects are configured, step ⑧ can reuse the preview's video stream directly with `-c:v copy`, making the final export nearly instantaneous.
+    The preview (step ⑤) is generated with the `fast` preset, keeping iteration quick. The final output (step ⑧) uses the `slow` preset for maximum compression efficiency. When no zoom is configured, step ⑧ re-encodes the preview footage directly, so the final output completes quickly.
 
 ### Platform Size Limits
 
-Limits vary by platform, so here's a reference. Zenn's 3 MB cap is quite strict — a realistic target is the SNS / Lightweight preset (640px / 10fps / 128 colors) combined with 1.5x playback speed.
+Limits vary by platform. Zenn's 3 MB cap is particularly tight — the SNS / Lightweight preset (640px / 10fps / 128 colors) combined with 1.5x playback speed is a realistic target for clearing it.
 
 | Platform | Supported Formats | Size Limit |
 |:---|:---|:---|
@@ -254,13 +277,13 @@ Limits vary by platform, so here's a reference. Zenn's 3 MB cap is quite strict 
 | X (standard) | MP4 / MOV | 512 MB |
 | Slack | GIF / MP4 / MOV and more | 1 GB |
 
-### Wrapping Up
+### Closing
 
-Three things aligned: I was tired of looking up FFmpeg commands every time, I didn't want to keep paying for a SaaS conversion tool, and I didn't want to install yet another local app. So I built this myself.
+Not wanting to pay a subscription for a conversion tool, and not wanting to install extra software locally — those two things together were enough motivation to build this myself.
 
-Packaging it as a Google Colab notebook means it runs in any browser, anywhere, with a GUI for all the settings. The new zoom feature makes it even easier to create professional-looking demo videos that highlight exactly what matters. Personally, attaching GIFs to READMEs has gotten dramatically easier since I started using it.
+Packaging it as a Google Colab notebook means it runs anywhere with a browser, with all settings handled through a GUI. The zoom update made the feature significantly more usable: start times can now be set by pausing the preview and clicking a button, and overlap detection means you can add multiple zoom points without worrying about configuration mistakes. Personally, embedding GIFs in READMEs has felt a lot less tedious since putting this together.
 
-If you've ever thought "converting demo videos is such a pain every time" or "I wish I could emphasize specific moments in my screen recordings," I hope this helps.
+If you've ever found yourself thinking "converting demo videos is such a chore" or "I wish I could highlight that one interaction more clearly," I hope this is useful.
 
 <ShareButtons />
 
