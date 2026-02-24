@@ -1,0 +1,65 @@
+---
+title: "Make Demo GIF / MP4 にズーム機能を追加しました"
+date: "2026-02-24"
+description: "画面録画の任意の箇所をズームアップして強調できる機能を追加しました。プレビューを見ながらボタン一つで開始位置を記録でき、設定はすべてノートブックのUI上で完結します。"
+authors: [hk]
+tags: [release, ffmpeg, google-colab, gif, mp4, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/f273c631-0655-4c28-8575-5a5e21c69b8f"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
+
+先日リリースした [Make Demo GIF / MP4](https://hkdocs.com/blog/2026/02/19/release-colab-video-converter/) にズーム機能を追加しました。画面録画の特定の操作に注目させたいとき、GIFやMP4をそのまま貼るだけでは伝わりにくい場面があります。重要なボタン操作や入力フィールドを自然にズームアップして強調できるオプション機能として実装しています。
+
+{/* truncate */}
+
+### 追加した機能
+
+ズームは「ズームイン → キープ → ズームアウト」の3フェーズで構成されます。画面を3×3のグリッドで9つのエリアに分割し、どのエリアを拡大するかをトグルボタンで選択します。最大倍率（1.1倍〜5.0倍）と各フェーズの継続時間を指定することで、なめらかな拡大・縮小アニメーションが生成されます。
+
+複数のズームポイントを設定することもできます。「＋ Zoomイベント追加」ボタンで任意の数だけ追加でき、時間が重複する設定をした場合は実行前にエラーで通知されます。
+
+### 開始位置の記録
+
+ズーム設定で一番手間がかかるのは、強調したいシーンの秒数を調べて手入力する作業です。これを解消するために、セル内のプレビュー動画と「📍 この開始位置を記録」ボタンを組み合わせた仕組みを用意しました。
+
+プレビュー動画を任意の位置で止めてボタンを押すと、その再生位置がドロップダウンで選択中のイベントの開始時刻に直接反映されます。秒数をメモして入力し直す作業がなくなります。
+
+### 使い方の流れ
+
+既存のワークフローに対してセル⑦での操作が加わるだけです。ズームを使わない場合は「ズームを追加する」にチェックを入れなければ、これまでと同じ手順で変換できます。
+
+1. ⑤でプレビューを生成する
+2. ⑦のプレビュー動画でズームしたい場面を見つけて一時停止
+3. 「📍 この開始位置を記録」ボタンを押して開始時刻を反映
+4. ズームエリア・倍率・各フェーズの時間を設定
+5. ⑧で最終出力を生成する
+
+### 使い始める
+
+環境構築は不要です。以下のColabリンクを開き、セルを上から順に実行してください。
+
+- Google Colab で実行する: [Make Demo GIF / MP4（日本語版）](https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_ja.ipynb)
+- ソースコードを見る: [hiroaki-com/colab-video-converter on GitHub](https://github.com/hiroaki-com/colab-video-converter)
+
+フィードバックやPull Requestはいずれも歓迎します。
+
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
