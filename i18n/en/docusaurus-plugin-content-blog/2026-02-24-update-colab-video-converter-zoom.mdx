@@ -1,0 +1,64 @@
+---
+title: "Zoom Feature Added to Make Demo GIF / MP4"
+date: "2026-02-24"
+description: "You can now zoom in on any part of your screen recording to draw attention to key interactions. Start times can be recorded with a single button click while watching the preview, and all settings are handled entirely through the notebook UI."
+authors: [hk]
+tags: [release, ffmpeg, google-colab, gif, mp4, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/3a64c2e1-2534-4290-b476-a49d0dae01c0"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
+
+[Make Demo GIF / MP4](https://hkdocs.com/en/blog/2026/02/19/release-colab-video-converter/), released earlier this month, now includes a zoom feature. When you want to draw attention to a specific interaction in a screen recording, simply dropping in a GIF or MP4 does not always communicate what matters. This update adds an optional zoom effect that smoothly magnifies any area of the video to highlight button clicks, form inputs, or other key UI moments.
+
+{/* truncate */}
+
+## What Was Added
+
+Zoom is structured as three phases: zoom-in → hold → zoom-out. The screen is divided into a 3×3 grid of nine areas, and you select which area to magnify using toggle buttons. Set the peak zoom level (1.1x – 5.0x) and the duration for each phase, and the tool generates a smooth scaling animation.
+
+Multiple zoom points can be configured. Use the "+ Add Zoom Event" button to add as many as you need. If any events overlap in time, an error is reported before the final output runs.
+
+## Recording the Start Time
+
+The most tedious part of configuring zoom is finding the exact timestamp of the scene you want to highlight and typing it in manually. To address this, a preview video is embedded directly in the cell alongside a "📍 Record this position as start time" button.
+
+Pause the preview at the moment you want to zoom, click the button, and the current playback position is applied to the selected event's start time immediately. No more scrubbing, noting numbers, and re-entering them by hand.
+
+## How It Fits Into the Workflow
+
+The only change to the existing workflow is the operations in Step ⑦. If you do not need zoom, leaving "Add zoom" unchecked keeps everything exactly as before.
+
+1. Generate a preview in Step ⑤
+2. In Step ⑦, play the preview and pause at the scene you want to zoom
+3. Click "📍 Record this position as start time" to apply the timestamp
+4. Set the zoom area, peak level, and phase durations
+5. Run Step ⑧ to generate the final output
+
+## Getting Started
+
+No setup required. Open the Colab link below and run the cells from top to bottom.
+
+- Run in Google Colab: [Make Demo GIF / MP4 (English)](https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_en.ipynb)
+- View the source: [hiroaki-com/colab-video-converter on GitHub](https://github.com/hiroaki-com/colab-video-converter)
+
+Feedback and pull requests are welcome.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
