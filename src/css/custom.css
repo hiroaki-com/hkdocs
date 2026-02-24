@@ -421,3 +421,14 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
     margin-right: 0.4rem;
   }
 }
+
+/* Blogの右TOCを消す */
+.blog-wrapper .col.col--2 {
+  display: none;
+}
+
+/* 本文を最大まで広げる */
+.blog-wrapper .col.col--7 {
+  flex: 1;
+  max-width: 100%;
+}
