@@ -1,13 +1,16 @@
+# =============================================================================
+# tags.yml 管理ルール
+# [ja]  : blog/ および docs/ のfrontmatterでのみ使用
+# [en]  : i18n/en/ 以下のfrontmatterでのみ使用
+# [all] : 固有名詞・技術ブランド名。ロケール問わず共通使用可
+# =============================================================================
+
 # -----------------------------------------------------------------------------
-# Docusaurus & Frameworks
+# Docusaurus & Frameworks [all]
 # -----------------------------------------------------------------------------
-Docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurusのセットアップ、カスタマイズ、機能に関する記事。
 docusaurus:
   label: Docusaurus
-  permalink: /docusaurus-lower
+  permalink: /docusaurus
   description: Docusaurusのセットアップ、カスタマイズ、機能に関する記事。
 react:
   label: React
@@ -21,26 +24,52 @@ frontmatter:
   label: Frontmatter
   permalink: /frontmatter
   description: MarkdownファイルのFrontmatterの利用や設定に関する記事。
+mermaid:
+  label: Mermaid
+  permalink: /mermaid
+  description: Mermaid.jsを使ったダイアグラム作成に関する記事。
+markdown:
+  label: Markdown
+  permalink: /markdown
+  description: Markdownの記法や活用に関する記事。
+visualization:
+  label: Visualization
+  permalink: /visualization
+  description: データや情報の可視化に関する記事。
+announcement-bar:
+  label: Announcement Bar
+  permalink: /announcement-bar
+  description: Docusaurusのアナウンスバーに関する記事。
+configuration:
+  label: Configuration
+  permalink: /configuration
+  description: 設定ファイルやオプションに関する記事。
+'getting-started':
+  label: Getting Started
+  permalink: /getting-started
+  description: 入門・はじめの一歩に関する記事。
 
 # -----------------------------------------------------------------------------
-# Cloud & DevOps
+# Cloud & DevOps [all]
 # -----------------------------------------------------------------------------
 'google cloud':
   label: Google Cloud
   permalink: /google-cloud
   description: Google Cloud Platform (GCP) に関する記事。
-'cloud run':
+cloud-run:
   label: Cloud Run
   permalink: /cloud-run
   description: Google Cloud Runへのアプリケーションのデプロイに関する記事。
 cloudrun:
-  label: Cloud Run
-  permalink: /cloudrun-alt
-  description: Google Cloud Runへのアプリケーションのデプロイに関する記事。
-cloud-run:
-  label: Cloud Run
-  permalink: /cloud-run-hyphen
-  description: Google Cloud Runへのアプリケーションのデプロイに関する記事。
+  label: Cloud Run (Legacy)
+  permalink: /cloudrun
+  description: Cloud Runの旧タグ（cloudrunキー使用の既存記事との互換用）。
+  # 注意: frontmatterに cloudrun を使用している記事（routing/deploymentの記事）が存在するため残す
+  #       該当記事のfrontmatter修正後に削除可能
+gcp:
+  label: GCP
+  permalink: /gcp
+  description: Google Cloud Platform全般に関する記事。
 'artifact registry':
   label: Artifact Registry
   permalink: /artifact-registry
@@ -49,6 +78,14 @@ cloud-run:
   label: Cost Optimization
   permalink: /cost-optimization
   description: クラウド利用におけるコスト最適化に関する記事。
+dns:
+  label: DNS
+  permalink: /dns
+  description: DNS設定に関する記事。
+value-domain:
+  label: Value Domain
+  permalink: /value-domain
+  description: Value Domainを使ったドメイン設定に関する記事。
 docker:
   label: Docker
   permalink: /docker
@@ -83,7 +120,7 @@ decap-cms:
   description: 継続的インテグレーション・継続的デリバリーに関する記事。
 
 # -----------------------------------------------------------------------------
-# Internationalization (i18n)
+# Internationalization (i18n) [all]
 # -----------------------------------------------------------------------------
 i18n:
   label: i18n
@@ -95,7 +132,7 @@ routing:
   description: DocusaurusやWebアプリケーションにおけるルーティング管理に関する記事。
 
 # -----------------------------------------------------------------------------
-# Search & Analytics
+# Search & Analytics [all]
 # -----------------------------------------------------------------------------
 Algolia:
   label: Algolia
@@ -109,6 +146,10 @@ Crawler:
   label: Crawler
   permalink: /crawler
   description: Webクローラーの動作や設定に関する記事。
+search:
+  label: Search
+  permalink: /search
+  description: サイト内検索の実装や設定に関する記事。
 'Google Analytics':
   label: Google Analytics
   permalink: /google-analytics
@@ -123,7 +164,7 @@ gtag:
   description: gtag.jsを使用したトラッキングの実装に関する記事。
 
 # -----------------------------------------------------------------------------
-# Web Development & UI/UX
+# Web Development & UI/UX [all]
 # -----------------------------------------------------------------------------
 css:
   label: CSS
@@ -137,14 +178,14 @@ svg:
   label: SVG
   permalink: /svg
   description: アイコンやイラストでのSVGの利用に関する記事。
-icon:
-  label: Icon
-  permalink: /icon
-  description: ウェブデザインにおけるアイコン（SVG、CSSなど）の利用に関する記事。
-アイコン:
-  label: アイコン
-  permalink: /アイコン
-  description: アイコン（SVG、CSSなど）の利用に関する記事。
+api:
+  label: API
+  permalink: /api
+  description: Web APIの利用・実装に関する記事。
+'github star':
+  label: GitHub Star
+  permalink: /github-star
+  description: GitHubスターボタンの実装に関する記事。
 performance:
   label: Performance
   permalink: /performance
@@ -161,18 +202,36 @@ localStorage:
   label: localStorage
   permalink: /localstorage
   description: ブラウザのlocalStorage APIを利用したクライアントサイドのデータ永続化に関する記事。
+javascript:
+  label: JavaScript
+  permalink: /javascript
+  description: JavaScriptの実装やテクニックに関する記事。
+
+# [en]
 'browser-feature':
   label: Browser Feature
   permalink: /browser-feature
-  description: 各種WebブラウザのAPIや機能に関する議論。
-ブラウザ機能:
-  label: ブラウザ機能
-  permalink: /ブラウザ機能
   description: 各種WebブラウザのAPIや機能に関する議論。
 'lz-string':
   label: lz-string
   permalink: /lz-string
   description: lz-stringライブラリを使用した文字列の圧縮・伸張に関する記事。
+icon:
+  label: Icon
+  permalink: /icon
+  description: ウェブデザインにおけるアイコン（SVG、CSSなど）の利用に関する記事。
+
+# [ja]
+ブラウザ機能:
+  label: ブラウザ機能
+  permalink: /ブラウザ機能
+  description: 各種WebブラウザのAPIや機能に関する議論。
+アイコン:
+  label: アイコン
+  permalink: /アイコン
+  description: アイコン（SVG、CSSなど）の利用に関する記事。
+
+# [all]
 'Twitter API':
   label: Twitter API
   permalink: /twitter-api
@@ -181,13 +240,9 @@ localStorage:
   label: Twitter Card
   permalink: /twitter-card
   description: Twitter/Xでリッチなリンクプレビューを表示するTwitter Cardの設定に関する記事。
-javascript:
-  label: JavaScript
-  permalink: /javascript
-  description: JavaScriptの実装やテクニックに関する記事。
 
 # -----------------------------------------------------------------------------
-# Development Tools & Languages
+# Development Tools & Languages [all]
 # -----------------------------------------------------------------------------
 github:
   label: GitHub
@@ -201,6 +256,10 @@ vscode:
   label: VS Code
   permalink: /vscode
   description: Visual Studio Codeの設定や拡張機能に関する記事。
+cursor:
+  label: Cursor
+  permalink: /cursor
+  description: AIコードエディタCursorに関する記事。
 python:
   label: Python
   permalink: /python
@@ -209,9 +268,13 @@ development:
   label: Development
   permalink: /development
   description: ソフトウェア開発全般に関する記事。
+automation:
+  label: Automation
+  permalink: /automation
+  description: 自動化スクリプトやワークフローに関する記事。
 
 # -----------------------------------------------------------------------------
-# Google Colab & AI/ML
+# Google Colab & AI/ML [all]
 # -----------------------------------------------------------------------------
 google-colab:
   label: Google Colab
@@ -225,6 +288,10 @@ llm:
   label: LLM
   permalink: /llm
   description: 大規模言語モデル（LLM）の活用や評価に関する記事。
+local-llm:
+  label: Local LLM
+  permalink: /local-llm
+  description: ローカルで動作するLLMに関する記事。
 benchmark:
   label: Benchmark
   permalink: /benchmark
@@ -237,6 +304,26 @@ release:
   label: Release
   permalink: /release
   description: プロダクトや機能のリリースに関する記事。
+notebooklm:
+  label: NotebookLM
+  permalink: /notebooklm
+  description: Google NotebookLMの活用に関する記事。
+rag:
+  label: RAG
+  permalink: /rag
+  description: RAG（Retrieval-Augmented Generation）に関する記事。
+claude-projects:
+  label: Claude Projects
+  permalink: /claude-projects
+  description: Anthropic Claude Projectsの活用に関する記事。
+ML:
+  label: ML
+  permalink: /ml
+  description: 機械学習（Machine Learning）に関する記事。
+'Machine Learning':
+  label: Machine Learning
+  permalink: /machine-learning
+  description: 機械学習に関する記事。
 ffmpeg:
   label: FFmpeg
   permalink: /ffmpeg
@@ -249,6 +336,26 @@ mp4:
   label: MP4
   permalink: /mp4
   description: MP4動画の処理や変換に関する記事。
+demo-video:
+  label: Demo Video
+  permalink: /demo-video
+  description: デモ動画の作成に関する記事。
+
+# -----------------------------------------------------------------------------
+# Google Docs [all]
+# -----------------------------------------------------------------------------
+'Google Docs':
+  label: Google Docs
+  permalink: /google-docs
+  description: Google Docsの操作・自動化に関する記事。
+'Apps Script':
+  label: Apps Script
+  permalink: /apps-script
+  description: Google Apps Scriptに関する記事。
+GAS:
+  label: GAS
+  permalink: /gas
+  description: Google Apps Script (GAS) に関する記事。
 
 # -----------------------------------------------------------------------------
 # Architecture & Best Practices
@@ -257,10 +364,8 @@ mp4:
   label: 12 Factor App
   permalink: /12factor
   description: The Twelve-Factor Appの原則に関する記事。
-'The Twelve Factors':
-  label: The Twelve Factors
-  permalink: /the-twelve-factors
-  description: The Twelve-Factor Appの各原則に関する記事。
+
+# [en]
 twelve-principles:
   label: Twelve Principles
   permalink: /twelve-principles
@@ -269,17 +374,15 @@ cheatsheet:
   label: Cheatsheet
   permalink: /cheatsheet
   description: 技術的なチートシートやクイックリファレンスに関する記事。
+
+# [ja]
 12の原則:
   label: 12の原則
   permalink: /12の原則
   description: The Twelve-Factor Appの12の原則に関する記事。
-12の法則:
-  label: 12の法則
-  permalink: /12の法則
-  description: The Twelve-Factor Appの12の法則に関する記事。
 
 # -----------------------------------------------------------------------------
-# Security & Account
+# Security & Account [all]
 # -----------------------------------------------------------------------------
 mfa:
   label: MFA
@@ -317,10 +420,6 @@ cleanup:
   label: Cleanup
   permalink: /cleanup
   description: 不要ファイルやリソースの整理・削除に関する記事。
-maintenance:
-  label: Maintenance
-  permalink: /maintenance
-  description: システムやアプリケーションのメンテナンスに関する記事。
 macOS:
   label: macOS
   permalink: /macos
@@ -329,6 +428,12 @@ macOS:
   label: Screen Recording
   permalink: /screen-recording
   description: 画面収録ファイルの管理に関する記事。
+
+# [en]
+maintenance:
+  label: Maintenance
+  permalink: /maintenance
+  description: システムやアプリケーションのメンテナンスに関する記事。
 'disk space':
   label: Disk Space
   permalink: /disk-space
@@ -337,6 +442,8 @@ macOS:
   label: Slow Mac
   permalink: /slow-mac
   description: Macの動作が重い場合の対処法に関する記事。
+
+# [ja]
 ディスク容量:
   label: ディスク容量
   permalink: /ディスク容量
@@ -357,10 +464,14 @@ Mac重い:
 # -----------------------------------------------------------------------------
 # Mac - Desktop & Display
 # -----------------------------------------------------------------------------
-wallpaper:
-  label: Wallpaper
-  permalink: /wallpaper
-  description: 壁紙の設定や管理に関する記事。
+mac:
+  label: macOS
+  permalink: /mac
+  description: macOSのTIPSや設定に関する記事。
+bug:
+  label: Bug
+  permalink: /bug
+  description: バグや不具合の報告・対処に関する記事。
 desktop:
   label: Desktop
   permalink: /desktop
@@ -369,10 +480,14 @@ finder:
   label: Finder
   permalink: /finder
   description: macOSのFinderに関する記事。
-bug:
-  label: Bug
-  permalink: /bug
-  description: バグや不具合の報告・対処に関する記事。
+
+# [en]
+wallpaper:
+  label: Wallpaper
+  permalink: /wallpaper
+  description: 壁紙の設定や管理に関する記事。
+
+# [ja]
 壁紙:
   label: 壁紙
   permalink: /壁紙
@@ -381,6 +496,24 @@ bug:
   label: 壁紙設定
   permalink: /壁紙設定
   description: macOSの壁紙設定に関する記事。
+
+# -----------------------------------------------------------------------------
+# Keyboard & Input [all]
+# -----------------------------------------------------------------------------
+productivity:
+  label: Productivity
+  permalink: /productivity
+  description: 生産性向上に関するツールやテクニック。
+
+# [en]
+accent-mark:
+  label: Accent Mark
+  permalink: /accent-mark
+  description: アクセント記号の入力や設定に関する記事。
+accent-menu:
+  label: Accent Menu
+  permalink: /accent-menu
+  description: macOSのアクセントメニューに関する記事。
 
 # -----------------------------------------------------------------------------
 # Network & Travel
@@ -393,6 +526,12 @@ WiFi:
   label: WiFi
   permalink: /wifi
   description: Wi-Fi接続や設定に関する記事。
+japan-travel:
+  label: Japan Travel
+  permalink: /japan-travel
+  description: 日本旅行に関するTIPSやガイドに関する記事。
+
+# [en]
 'captive portal':
   label: Captive Portal
   permalink: /captive-portal
@@ -401,10 +540,8 @@ network:
   label: Network
   permalink: /network
   description: ネットワーク設定やトラブルシューティングに関する記事。
-japan-travel:
-  label: Japan Travel
-  permalink: /japan-travel
-  description: 日本旅行に関するTIPSやガイドに関する記事。
+
+# [ja]
 公衆WiFi:
   label: 公衆WiFi
   permalink: /公衆wifi
@@ -419,54 +556,57 @@ japan-travel:
   description: ネットワーク設定やトラブルシューティングに関する記事。
 
 # -----------------------------------------------------------------------------
-# Others
+# Tutorial
 # -----------------------------------------------------------------------------
-mac:
-  label: macOS
-  permalink: /mac
-  description: macOSのTIPSや設定に関する記事。
-'accent mark':
-  label: Accent Mark
-  permalink: /accent-mark
-  description: アクセント記号の入力や設定に関する記事。
-'accent menu':
-  label: Accent Menu
-  permalink: /accent-menu
-  description: macOSのアクセントメニューに関する記事。
-'accent-mark':
-  label: Accent Mark
-  permalink: /accent-mark-alt
-  description: アクセント記号の入力や設定に関する記事。
-'accent-menu':
-  label: Accent Menu
-  permalink: /accent-menu-alt
-  description: macOSのアクセントメニューに関する記事。
-productivity:
-  label: Productivity
-  permalink: /productivity
-  description: 生産性向上に関するツールやテクニック。
-チュートリアル:
-  label: チュートリアル
-  permalink: /チュートリアル
-  description: 特定の技術やツールの導入手順を解説するチュートリアル記事。
+# [en]
 tutorial:
   label: Tutorial
   permalink: /tutorial
   description: Tutorial articles explaining the setup steps for specific technologies or tools.
 
+# [ja]
+チュートリアル:
+  label: チュートリアル
+  permalink: /チュートリアル
+  description: 特定の技術やツールの導入手順を解説するチュートリアル記事。
+
 # -----------------------------------------------------------------------------
 # Exams
 # -----------------------------------------------------------------------------
-'passed-exam':
-  label: Passed Exam
-  permalink: /passed-exam
-  description: 資格試験の合格体験記や考察。
-'exam-review':
-  label: Exam Review
-  permalink: /exam-review
-  description: 資格試験のレビューや対策のヒント。
 certification:
   label: Certification
   permalink: /certification
   description: プロフェッショナル認定資格に関する情報。
+
+# [en]
+'pass-report':
+  label: Pass Report
+  permalink: /pass-report
+  description: Exam pass reports and experiences.
+'study-guide':
+  label: Study Guide
+  permalink: /study-guide
+  description: Study guides for certification exams.
+'case-study':
+  label: Case Study
+  permalink: /case-study
+  description: Case studies for certification exams.
+'Professional Cloud Architect':
+  label: Professional Cloud Architect
+  permalink: /professional-cloud-architect
+  description: Google Cloud Professional Cloud Architect試験に関する記事。
+
+# [ja]
+認定資格:
+  label: 認定資格
+  permalink: /認定資格
+  description: Google Cloud認定資格に関する記事。
+合格記:
+  label: 合格記
+  permalink: /合格記
+  description: 資格試験の合格体験記。
+ケーススタディ:
+  label: ケーススタディ
+  permalink: /ケーススタディ
+  description: 試験のケーススタディに関する記事。
   
