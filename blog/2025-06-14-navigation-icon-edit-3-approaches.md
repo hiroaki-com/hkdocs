@@ -1,7 +1,7 @@
 ---
 title: Docusaurus ナビゲーションアイコン編集：3つのアプローチ
-authors: [hk] # 執筆者名に置き換えてください
-tags: [docusaurus, アイコン, css, svg] # 適切なタグに置き換えてください
+authors: [hk]
+tags: [docusaurus, アイコン, css, svg]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
