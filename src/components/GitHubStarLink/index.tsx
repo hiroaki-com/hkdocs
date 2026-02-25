@@ -70,7 +70,7 @@ export default function GitHubStarLink({
         <Translate
           id="component.GitHubStarLink.text"
           description="The text asking for a GitHub star support">
-          このサイトがお役に立ったら🌟で応援お願いします🙏
+          当サイトがお役に立ったら ⭐️ の応援お願いします🙏
         </Translate>
       </span>
       <a
