@@ -24,6 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding: 1rem 1.5rem;
   margin-bottom: 1rem;
   background-color: var(--ifm-background-color);
   border-radius: var(--ifm-global-radius);
@@ -81,6 +82,7 @@
   background-color: var(--ifm-background-color);
   border-radius: var(--ifm-global-radius);
   box-shadow: var(--ifm-global-shadow-sm);
+  border: 1px solid var(--ifm-color-emphasis-100);
 }
 
 /* 大カテゴリのタイトル */
@@ -100,6 +102,7 @@
   /* メインセクションより少し暗い色にし、視覚的な階層を作る */
   background-color: var(--ifm-background-color-subtle);
   border-radius: var(--ifm-global-radius);
+  border: 1px solid var(--ifm-color-emphasis-100);
 }
 
 /* サブカテゴリのタイトル */
@@ -145,12 +148,14 @@
 [data-theme='dark'] .majorCategorySection {
   background-color: var(--ifm-color-emphasis-100);
   box-shadow: none;
+  border-color: transparent;
 }
 
 /* ダークモード: サブカテゴリのセクション背景 */
 [data-theme='dark'] .subCategorySection {
   /* ベース背景と同じ色にし、セクション内で沈んだように見せる */
   background-color: var(--ifm-background-color);
+  border-color: transparent;
 }
 
 /* ダークモード: カードの影 */
@@ -194,7 +199,7 @@
   color: var(--ifm-color-primary);
 }
 
-.sectionHeading:hover .anchorLink {
+.anchorContainer:hover .anchorLink {
   opacity: 1;
 }
 
