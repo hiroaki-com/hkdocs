@@ -1,7 +1,7 @@
 ---
 title: Macのキー長押しで連続入力（キーリピート）を有効にする方法
 authors: [hk]
-tags: [mac, accent mark, accent menu, productivity]
+tags: [mac, accent-mark, accent-menu, productivity]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

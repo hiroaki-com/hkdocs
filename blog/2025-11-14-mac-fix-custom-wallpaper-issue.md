@@ -1,7 +1,7 @@
 ---
 title: macOSにおけるカスタム「壁紙」設定が反映されない・不安定な問題の解決手順
 authors: [hk]
-tags: [mac, wallpaper, desktop, finder, bug, 壁紙, 壁紙設定]
+tags: [mac, 壁紙, 壁紙設定, desktop, finder, bug]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

@@ -1,7 +1,7 @@
 ---
 title: How I Freed Up 109GB of Disk Space on My M1 Mac | Cleaning Up the ScreenRecordings Folder
 authors: [hk]
-tags: [mac, storage, terminal, cleanup, maintenance, macOS, screen recording, disk space, slow mac, performance]
+tags: [mac, macOS, storage, terminal, cleanup, maintenance, screen recording, disk space, slow mac, performance]
 ---
 
 ![System Settings Storage Screen](/img/mac_storage_settings_cleanup.png)
