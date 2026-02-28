@@ -1,0 +1,221 @@
+---
+title: Google ColabのGPUでOllamaを動かして、無料のLLMサーバーを立てる。
+authors: [hk]
+tags: [ollama, google-colab, ngrok, llm, claude-code, continue, python, automation]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-server" />
+
+Claude CodeやContinueなどのコーディングアシスタントを使っていると、「APIのコストが気になる」「コードを外部サービスに送りたくない」という場面が出てきます。また、「ローカルLLMを手軽に試してみたいけど、手元のGPUでは遅くて使い物にならない」という悩みもあります。
+
+そこで、Google ColabのGPUでOllamaを動かし、ngrokでエンドポイントを公開することで、完全無料・プライバシー保護のローカルLLMサーバーをブラウザだけで立てられるノートブックを作りました。
+
+{/* truncate */}
+
+### 作ったもの
+
+<Admonition type="tip" title="🚀 今すぐ試す">
+  環境構築不要。以下のリンクからブラウザ上ですぐに実行できます。
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Google Colab で実行する<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/colab-ollama-server/blob/main/ollama_colab_free_server_ja.ipynb" target="_blank" rel="noopener noreferrer">Ollama Colab Free Server（日本語版）</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>モデルを選んでセルを上から実行するだけです。</small>
+    </li>
+    <li>
+      🐙 GitHub でコードを見る<br/>
+      <a href="https://github.com/hiroaki-com/colab-ollama-server" target="_blank" rel="noopener noreferrer">hiroaki-com/colab-ollama-server</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>ソースコードの確認や、Star / Fork はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+{/* TODO: デモ動画をここに追加 */}
+
+### なぜこれを作ったのか
+
+以前作った[ローカルLLMの比較ベンチマークツール](/docs/tech/google-colab/google-colab-ollama-multi-model-benchmarker/)を使ううちに、「気に入ったモデルをそのままClaude CodeやContinueのバックエンドとして使えたら」と思ったのが出発点です。
+
+動機は三つあります。APIコストの削減（特にリファクタリングなどトークンをたくさん使う作業）、コードを外部サービスに送りたくないというプライバシー面の懸念、そして手元のMacではGPUが非力でローカルOllamaの推論が実用速度に達しないという問題です。Google ColabのT4 GPUを使えばこれらをまとめて解決できると考えました。
+
+「Colabでサーバーを立てて、ngrokでトンネルを掘る」構成はシンプルですが、毎回コマンドを打つのは手間なので、モデル選択からサーバー起動・接続設定の表示まで一気に完結するノートブックにまとめました。
+
+### 使い方
+
+セルを上から順に実行するだけです。
+
+#### 事前準備
+
+ngrokの無料アカウントが必要です。[ngrokのダッシュボード](https://dashboard.ngrok.com/get-started/your-authtoken)でアカウントを作成し、認証トークンを取得しておいてください。
+
+#### 1. Runtime の設定
+
+Google ColabでノートブックをひらいたらRuntime > Change runtime type > **T4 GPU** を選択します。CPU環境でも動きますが、推論速度が大幅に落ちるのでGPUを推奨します。
+
+#### 2. Model Registry でモデルを選択
+
+最初のセル（Model Registry）を実行すると、モデル一覧がラジオボタンで表示されます。デフォルトでいくつかのモデルが登録されていますが、テキストフィールドを直接編集すれば好きなモデルを追加できます。
+
+```python
+model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, deepseek-r1:8b"
+```
+
+モデル名は [https://ollama.com/search](https://ollama.com/search) で確認できます。T4 GPU環境でのモデルサイズの目安は以下のとおりです。
+
+| サイズ | 速度 | 備考 |
+|:---:|:---:|:---|
+| 8B | 高速 | 推奨 |
+| 14B | 中速 | 実用範囲 |
+| 20B+ | 低速 | 非推奨 |
+
+#### 3. Server セルで起動
+
+次のセル（Server）に取得したngrokトークンを貼り付けて実行します。実行すると以下が自動で行われます。
+
+1. `zstd`・Ollama・`pyngrok` のインストール
+2. Ollamaサーバーの起動とヘルスチェック
+3. ngrokトンネルの確立
+4. 選択したモデルのpull（初回は5〜15分程度）
+
+完了するとターミナルに接続設定が自動出力されます。
+
+```
+ENDPOINT : https://xxxx.ngrok-free.app
+```
+
+#### 4. 接続先ツールの設定
+
+出力されたエンドポイントURLを各ツールに設定すれば完了です。
+
+**Continue Extension（`~/.continue/config.yaml`）**
+
+```yaml
+models:
+  - title: qwen3:8b
+    provider: ollama
+    model: qwen3:8b
+    apiBase: https://xxxx.ngrok-free.app
+    contextLength: 16384
+```
+
+**Claude Code（環境変数）**
+
+```bash
+export ANTHROPIC_BASE_URL=https://xxxx.ngrok-free.app
+export ANTHROPIC_API_KEY=dummy
+claude --model qwen3:8b
+```
+
+<Admonition type="info" title="Anthropic プロトコルについて">
+  Ollama v0.14.0 以降、Anthropic Messages API（<code>/v1/messages</code>）に公式対応しています。<code>ANTHROPIC_BASE_URL</code> を本サーバーのエンドポイントに設定することで、OpenAI互換レイヤーを経由する迂回なしに Claude Code から直接接続できます。
+</Admonition>
+
+**OpenAI互換クライアント（Codex CLI等）**
+
+ベースURLの末尾に `/v1` を追加することで利用できます。
+
+```
+https://xxxx.ngrok-free.app/v1
+```
+
+<Admonition type="caution" title="接続検証について">
+  記載している各ツール（Continue、Claude Code、OpenAI互換クライアント）との接続は動作確認済みです。ただし、各ツール側の仕様変更やアップデートにより、将来的に接続できなくなる可能性があります。接続がうまくいかない場合は各ツールの最新ドキュメントも合わせてご確認ください。
+</Admonition>
+
+### 主な機能と技術的なポイント
+
+実装時に工夫した点をいくつか紹介します。
+
+- **モデル選択UIのシンプル化**
+
+    最初のセル（Model Registry）でモデルリストをカンマ区切りで自由に編集でき、実行するとラジオボタンで選択UIが表示されます。コードを直接触らなくてもモデルの追加・切り替えができるよう、入力と選択を2ステップで分けた構成にしました。
+
+- **接続設定の自動出力**
+
+    サーバー起動完了後、Continue用のYAML設定とClaude Code用の環境変数コマンドを自動でターミナルに出力します。コピー&ペーストするだけで各ツールへ接続できるようにしており、エンドポイントURLを手動で組み立てる手間を省いています。
+
+- **シェルインジェクション対策**
+
+    `subprocess.Popen` や `subprocess.run` でモデル名をそのまま渡す実装は、入力値次第でシェルインジェクションのリスクがあります。そこで、正規表現でモデル名を事前検証し、許可した文字列パターン以外は例外を投げるようにしました。
+
+    ```python
+    if not re.fullmatch(r'[a-zA-Z0-9._:/-]+', selected_model):
+        raise ValueError(f"モデル名が不正です: {selected_model}")
+    ```
+
+    Ollamaの公式モデル名はすべてこのパターンに収まるため、実用上の制限はありません。
+
+- **ヘルスチェックによる起動待機**
+
+    Ollamaのサーバー起動は非同期なので、`subprocess.Popen` 直後にAPIを叩いても接続拒否されます。最大30回、1秒間隔で `/api/tags` エンドポイントにポーリングし、200が返ってきたら次の処理に進む実装にしました。タイムアウトが来ても起動しない場合はRuntimeErrorを投げます。
+
+    ```python
+    for _ in range(MAX_HEALTH_RETRIES):
+        try:
+            if requests.get("http://0.0.0.0:11434/api/tags", timeout=HEALTH_CHECK_TIMEOUT).status_code == 200:
+                break
+        except requests.exceptions.RequestException:
+            pass
+        time.sleep(1)
+    else:
+        raise RuntimeError("⚠️ Ollama サーバーの起動確認に失敗しました。")
+    ```
+
+- **前セッションのngrokトンネルの解放**
+
+    `ngrok.connect()` の前に `ngrok.kill()` を呼んでいます。Colabのセッションを再起動せずにServerセルだけを再実行したとき、前セッションのトンネルが残っていると接続数の上限（無料プランは1トンネル）に引っかかるためです。
+
+- **モデルのKeep Alive設定**
+
+    `OLLAMA_KEEP_ALIVE=24h` を環境変数に設定しています。デフォルトだとモデルがアイドル時にメモリからアンロードされ、次のリクエスト時に再ロードが発生します。Colabのセッション中はメモリに乗せ続けることで、レスポンスの初回遅延を防いでいます。
+
+- **稼働時間のリアルタイム表示**
+
+    サーバー起動後は `\r` でカーソルを行頭に戻しながら経過時間を上書き表示し続けます。ポーリング間隔は30秒で、Colabのセッションがアイドルでタイムアウトしにくくする副次効果もあります。
+
+    ```python
+    while True:
+        elapsed_min = int((time.time() - start_time) / 60)
+        print(f"\r  ● Running  稼働中: {elapsed_min}分経過 | {public_url}", end="")
+        time.sleep(STATUS_POLL_INTERVAL)
+    ```
+
+### やってみてわかったこと
+
+いくつか試してみて気づいた点を共有します。
+
+**軽量モデルの選定目安**
+
+T4 GPUで実際に使うなら、8B前後のモデルが応答速度と品質のバランスが取りやすいです。どのモデルが自分のユースケースに合うかを事前に確かめたい場合は、[複数モデルを一括比較できるベンチマークツール](/docs/tech/google-colab/google-colab-ollama-multi-model-benchmarker/)も活用してみてください。
+
+**OllamaはAnthropicプロトコルにネイティブ対応している**
+
+Ollama v0.14.0 以降、`/v1/messages`（Anthropic Messages API）に公式対応しています。以前は「OpenAI互換に変換して迂回する」という方法が使われることもありましたが、現在はその必要はありません。`ANTHROPIC_BASE_URL` にOllamaのエンドポイントをそのまま指定するだけで、Claude CodeからOllamaプロバイダーへ直接接続できます。
+
+### まとめ
+
+「APIコストを抑えたい」「コードを外部に送りたくない」「ローカルLLMを手軽に試したい」という動機から作りました。
+
+Google Colabのノートブックという形にしたことで、ローカルのGPU環境がなくても、ブラウザだけで無料のLLMサーバーを立てられます。モデルの選択から接続設定の表示まで自動化しているので、Colabを開いてセルを実行するだけで数分以内にClaude CodeやContinueから接続できる状態になります。
+
+同じように「ローカルLLMを試したいけど手元のGPUが非力」「APIコストを気にせずコーディングアシスタントを使いたい」と考えている方の参考になれば幸いです。
+
+まずどのモデルが自分のユースケースに合うかを確かめたい場合は、[複数モデルを一括比較できるベンチマークツール](/docs/tech/google-colab/google-colab-ollama-multi-model-benchmarker/)も合わせてご活用ください。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-server" />
+
+### 参考文献
+
+- [Ollama Model Library](https://ollama.com/search)
+- [Ollama × Claude（Anthropicプロトコル対応）](https://ollama.com/blog/claude)
+- [ngrok Documentation](https://ngrok.com/docs)
+- [pyngrok](https://pyngrok.readthedocs.io/)
+- [ipywidgets Documentation](https://ipywidgets.readthedocs.io/)
+- [無料のGoogle Colab環境で複数のローカルLLMモデルをお試し比較テストしたい。](/docs/tech/google-colab/google-colab-ollama-multi-model-benchmarker/)
