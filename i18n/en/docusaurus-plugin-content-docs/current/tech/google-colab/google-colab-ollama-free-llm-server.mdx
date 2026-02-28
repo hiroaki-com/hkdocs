@@ -127,6 +127,35 @@ https://xxxx.ngrok-free.app/v1
   Connectivity with each tool listed here (Continue, Claude Code, OpenAI-compatible clients) has been verified. However, future updates or specification changes on the tool side may break compatibility. If you run into issues, please also consult each tool's latest documentation.
 </Admonition>
 
+### Architecture
+
+The diagram below shows how a request travels from the client to the model.
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant E as ngrok Edge
+    participant A as ngrok Agent
+    participant O as Ollama Server
+    participant M as Model (VRAM)
+    C->>E: HTTPS POST /api/generate
+    E->>A: Reverse Tunnel (TLS)
+    A->>O: TCP :11434
+    O->>M: Inference (T4 GPU)
+    M-->>O: tokens
+    O-->>A: stream response
+    A-->>E: tunnel
+    E-->>C: HTTPS response
+```
+
+| Component | Role |
+|:---|:---|
+| **Client** | The connecting tool — Continue, Claude Code, etc. |
+| **ngrok Edge** | ngrok's cloud endpoint; provides a public HTTPS URL |
+| **ngrok Agent** | The pyngrok process running on Colab, established via `ngrok.connect(11434)` |
+| **Ollama Server** | Local server started with `OLLAMA_HOST=0.0.0.0:11434` (`OLLAMA_KEEP_ALIVE=24h`) |
+| **Model (VRAM)** | The model loaded into T4 GPU VRAM; generates tokens incrementally on `/api/generate` |
+
 ### Implementation highlights
 
 A few things worth noting about the implementation.

@@ -14,6 +14,9 @@ importers:
       '@docusaurus/preset-classic':
         specifier: 3.8.0
         version: 3.8.0(@algolia/client-search@5.28.0)(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.6.3)
+      '@docusaurus/theme-mermaid':
+        specifier: ^3.8.0
+        version: 3.8.0(@docusaurus/plugin-content-docs@3.8.0(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3))(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)
       '@mdx-js/react':
         specifier: ^3.0.0
         version: 3.1.0(@types/react@19.1.8)(react@19.1.0)
@@ -1169,6 +1172,13 @@ packages:
     engines: {node: '>=18.0'}
     peerDependencies:
       '@docusaurus/plugin-content-docs': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+
+  '@docusaurus/theme-mermaid@3.8.0':
+    resolution: {integrity: sha512-ou0NJM37p4xrVuFaZp8qFe5Z/qBq9LuyRTP4KKRa0u2J3zC4f3saBJDgc56FyvvN1OsmU0189KGEPUjTr6hFxg==}
+    engines: {node: '>=18.0'}
+    peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
@@ -7158,6 +7168,37 @@ snapshots:
       - esbuild
       - supports-color
       - uglify-js
+      - webpack-cli
+
+  '@docusaurus/theme-mermaid@3.8.0(@docusaurus/plugin-content-docs@3.8.0(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3))(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)':
+    dependencies:
+      '@docusaurus/core': 3.8.0(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)
+      '@docusaurus/module-type-aliases': 3.8.0(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@docusaurus/theme-common': 3.8.0(@docusaurus/plugin-content-docs@3.8.0(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@docusaurus/types': 3.8.0(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@docusaurus/utils-validation': 3.8.0(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      mermaid: 11.12.2
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@docusaurus/faster'
+      - '@docusaurus/plugin-content-docs'
+      - '@mdx-js/react'
+      - '@parcel/css'
+      - '@rspack/core'
+      - '@swc/core'
+      - '@swc/css'
+      - acorn
+      - bufferutil
+      - csso
+      - debug
+      - esbuild
+      - lightningcss
+      - supports-color
+      - typescript
+      - uglify-js
+      - utf-8-validate
       - webpack-cli
 
   '@docusaurus/theme-search-algolia@3.8.0(@algolia/client-search@5.28.0)(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.6.3)':
