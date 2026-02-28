@@ -16,6 +16,10 @@ const config: Config = {
     v4: true,
   },
 
+  markdown: {
+    mermaid: true,
+  },
+
   trailingSlash: true,
   url: 'https://hkdocs.com/',
   baseUrl: '/',
@@ -41,6 +45,8 @@ const config: Config = {
       },
     },
   },
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   presets: [
     [
