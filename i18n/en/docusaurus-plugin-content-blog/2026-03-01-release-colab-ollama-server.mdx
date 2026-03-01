@@ -1,0 +1,60 @@
+---
+title: "Releasing \"Ollama Colab Free Server\" — Run Ollama on Google Colab as a Free LLM Server"
+date: "2026-03-01"
+description: "A open-source notebook that runs Ollama on Google Colab's free T4 GPU and exposes it as an LLM server — connect from Claude Code or Continue in minutes, right from your browser."
+authors: [hk]
+tags: [release, ollama, llm, google-colab, ngrok, claude-code, continue, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-server" />
+
+Today I'm releasing **Ollama Colab Free Server**, an open-source notebook that runs Ollama on Google Colab's free GPU and makes it instantly available as a backend for Claude Code and Continue. Execute the cells top to bottom, and a publicly accessible LLM server is up within minutes.
+
+{/* truncate */}
+
+### Background
+
+Coding assistants like Claude Code and Continue are powerful, but API costs can add up quickly — and there's always the concern of sending your code to an external service. At the same time, local Ollama on a machine with a weak GPU rarely reaches practical inference speeds.
+
+This notebook bridges that gap. By running Ollama on Google Colab's free T4 GPU and exposing it via ngrok, you get a fully free LLM server — no local setup, no data sent to external APIs — accessible entirely from your browser.
+
+### Features
+
+The notebook is designed to **work without writing any code**. In the first cell (Model Registry), enter model names as a comma-separated list and edit freely. Running the cell displays a radio button UI to pick the model you want.
+
+In the second cell (Server), paste your ngrok token and run. The following steps execute automatically: install Ollama and dependencies, start the Ollama server, establish the ngrok tunnel, and pull the selected model (5–15 minutes on first run). Once complete, the endpoint URL along with ready-to-use config snippets for Continue and Claude Code are printed directly to the terminal.
+
+OpenAI-compatible clients such as Codex CLI are also supported — just append `/v1` to the base URL.
+
+### Supported Tools
+
+- **Continue** (VS Code / JetBrains extension): set the endpoint URL as `apiBase`
+- **Claude Code**: set `ANTHROPIC_BASE_URL` to the endpoint (Ollama v0.14.0+ natively supports the Anthropic Messages API)
+- **OpenAI-compatible clients**: use the endpoint URL + `/v1`
+
+### Model Size Guide for T4
+
+The practical range on Google Colab's T4 GPU is 8B to 14B models. Models of 20B or more see significant slowdowns, so choosing a size that matches your use case matters. If you want to benchmark candidates first, [Ollama Multi-Model Benchmarker](/en/docs/tech/google-colab/google-colab-ollama-multi-model-benchmarker/) lets you compare multiple models at once.
+
+### Get Started
+
+No local environment needed. Just have a free ngrok account and your auth token ready.
+
+- **Run on Google Colab**: [Ollama Colab Free Server (English)](https://colab.research.google.com/github/hiroaki-com/colab-ollama-server/blob/main/ollama_colab_free_server_en.ipynb)
+- **View the source**: [hiroaki-com/colab-ollama-server on GitHub](https://github.com/hiroaki-com/colab-ollama-server/blob/main/README.EN.md)
+
+Feedback and Pull Requests are welcome.
+
+### Technical Details
+
+For architecture, implementation notes, and internals (health checks, shell injection mitigation, ngrok tunnel management, etc.), see the full documentation:
+
+- [Run Ollama on Google Colab GPU as a Free LLM Server](https://hkdocs.com/en/docs/tech/google-colab/google-colab-ollama-free-llm-server/)
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-server" />
