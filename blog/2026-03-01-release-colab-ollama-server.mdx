@@ -1,0 +1,60 @@
+---
+title: "Google ColabをOllamaサーバーとして使えるノートブック「Ollama Colab Free Server」をリリースしました"
+date: "2026-03-01"
+description: "Google Colabの無料T4 GPU上でOllamaを動かし、Claude CodeやContinueから即座に接続できる無料LLMサーバーをブラウザだけで立てられるノートブックを公開しました。"
+authors: [hk]
+tags: [release, ollama, llm, google-colab, ngrok, claude-code, continue, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-server" />
+
+本日、Google Colabの無料GPU上でOllamaを動かし、Claude CodeやContinueのバックエンドとして即座に利用できるオープンソースノートブック **Ollama Colab Free Server** を公開しました。セルを上から実行するだけで、数分以内に外部公開LLMサーバーが立ち上がります。
+
+{/* truncate */}
+
+### 背景
+
+Claude CodeやContinueなどのコーディングアシスタントは便利ですが、APIコストが積み上がる点と、コードを外部サービスに送ることへのプライバシー面の懸念が気になる場面があります。かといって、手元のGPUが非力だとローカルOllamaの推論は実用速度に届きません。
+
+このノートブックはそのギャップを埋めます。Google Colabの無料T4 GPUでOllamaを動かし、ngrokでエンドポイントを公開することで、セットアップ不要・完全無料・外部へのデータ送信なしのLLMサーバーをブラウザだけで立てられます。
+
+### 主な機能
+
+**コードを書かずに完結する設計**になっています。最初のセル（Model Registry）でモデル名をカンマ区切りで入力・編集し、表示されるラジオボタンから使いたいモデルを選ぶだけです。
+
+次のセル（Server）にngrokのトークンを貼り付けて実行すると、Ollamaのインストール、サーバー起動、ngrokトンネルの確立、モデルのpullが順番に自動実行されます。完了後は接続に必要なエンドポイントURLと、ContinueおよびClaude Code向けの設定スニペットがそのままターミナルに出力されます。
+
+OpenAI互換クライアント（Codex CLI等）への対応も考慮しており、ベースURLの末尾に `/v1` を追加するだけで利用できます。
+
+### 接続できるツール
+
+- **Continue**（VS Code / JetBrains 拡張）: `apiBase` にエンドポイントURLを指定するだけ
+- **Claude Code**: `ANTHROPIC_BASE_URL` にエンドポイントを設定して利用（Ollama v0.14.0以降はAnthropicプロトコルにネイティブ対応）
+- **OpenAI互換クライアント**: エンドポイントURL + `/v1` で接続
+
+### T4環境でのモデル選定の目安
+
+Google ColabのT4 GPUで実用的に動作するのは8Bから14Bのモデルです。20B以上は生成速度が大幅に落ちるため、用途に合わせたサイズ選定をおすすめします。どのモデルが自分のユースケースに合うかを事前に確認したい場合は、[Ollama Multi-Model Benchmarker](/docs/tech/google-colab/google-colab-ollama-multi-model-benchmarker/)も活用してみてください。
+
+### 使い始める
+
+環境構築は不要です。ngrokの無料アカウントと認証トークンだけ用意してください。
+
+- **Google Colab で実行する**: [Ollama Colab Free Server（日本語版）](https://colab.research.google.com/github/hiroaki-com/colab-ollama-server/blob/main/ollama_colab_free_server_ja.ipynb)
+- **ソースコードを見る**: [hiroaki-com/colab-ollama-server on GitHub](https://github.com/hiroaki-com/colab-ollama-server)
+
+フィードバックやPull Requestはいずれも歓迎します。
+
+### 技術的な詳細
+
+アーキテクチャや実装の詳細については、以下のドキュメントにまとめています。
+
+- [Google ColabのGPUでOllamaを動かして、無料のLLMサーバーを立てる。](https://hkdocs.com/docs/tech/google-colab/google-colab-ollama-free-llm-server/)
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-server" />
