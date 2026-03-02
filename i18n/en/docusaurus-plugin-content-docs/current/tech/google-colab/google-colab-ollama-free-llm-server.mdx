@@ -35,7 +35,17 @@ This notebook solves all of that: run Ollama on Google Colab's GPU, expose the e
   </ul>
 </Admonition>
 
-{/* TODO: Add demo video here */}
+<div style={{ textAlign: 'center', marginBottom: '24px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/b40c8d63-ad0d-4149-993f-a11f12b4e58a"
+    alt="Ollama Colab Free Server Demo"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
 
 ### Why I built this
 
@@ -44,88 +54,6 @@ The starting point was a [benchmarking tool I built earlier for comparing local 
 Three motivations drove the project: reducing API costs (especially for token-heavy tasks like refactoring), keeping code out of external services for privacy, and the fact that my local Mac's GPU isn't powerful enough for practical Ollama inference. Google Colab's T4 GPU, available for free, seemed like the right answer to all three.
 
 The setup — spin up a server on Colab, tunnel it through ngrok — is simple in principle, but typing commands every time is tedious. So I wrapped the whole flow, from model selection to server startup and connection config output, into a single notebook.
-
-### How to use it
-
-Just run the cells from top to bottom.
-
-#### Prerequisites
-
-You'll need a free ngrok account. Create one at the [ngrok dashboard](https://dashboard.ngrok.com/get-started/your-authtoken) and grab your auth token.
-
-#### 1. Set the runtime
-
-Open the notebook in Google Colab and go to Runtime > Change runtime type > select **T4 GPU**. CPU mode works too, but inference will be significantly slower, so GPU is strongly recommended.
-
-#### 2. Select a model in Model Registry
-
-Running the first cell (Model Registry) displays a radio button UI with the available models. The list comes with a few defaults, but you can edit the text field directly to add any model you want.
-
-```python
-model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, deepseek-r1:8b"
-```
-
-Official model names can be found at [https://ollama.com/search](https://ollama.com/search). Here's a rough guide to model size performance on a T4 GPU:
-
-| Size | Speed | Notes |
-|:---:|:---:|:---|
-| 8B | Fast | Recommended |
-| 14B | Moderate | Practical range |
-| 20B+ | Slow | Not recommended |
-
-#### 3. Launch the Server cell
-
-Paste your ngrok token into the Server cell and run it. The following steps are automated:
-
-1. Install `zstd`, Ollama, and `pyngrok`
-2. Start the Ollama server and run a health check
-3. Establish the ngrok tunnel
-4. Pull the selected model (first run: roughly 5–15 minutes)
-
-Once complete, the connection config is printed automatically in the terminal:
-
-```
-ENDPOINT : https://xxxx.ngrok-free.app
-```
-
-#### 4. Configure your client tool
-
-Just paste the endpoint URL into your tool of choice.
-
-**Continue Extension (`~/.continue/config.yaml`)**
-
-```yaml
-models:
-  - title: qwen3:8b
-    provider: ollama
-    model: qwen3:8b
-    apiBase: https://xxxx.ngrok-free.app
-    contextLength: 16384
-```
-
-**Claude Code (shell env)**
-
-```bash
-export ANTHROPIC_BASE_URL=https://xxxx.ngrok-free.app
-export ANTHROPIC_API_KEY=dummy
-claude --model qwen3:8b
-```
-
-<Admonition type="info" title="About the Anthropic protocol">
-  Since Ollama v0.14.0, the Anthropic Messages API (<code>/v1/messages</code>) is officially supported. There's no need to route through an OpenAI-compatible layer — setting <code>ANTHROPIC_BASE_URL</code> to this server's endpoint connects Claude Code directly to Ollama.
-</Admonition>
-
-**OpenAI-Compatible Clients (e.g. Codex CLI)**
-
-Append `/v1` to the base URL:
-
-```
-https://xxxx.ngrok-free.app/v1
-```
-
-<Admonition type="caution" title="Compatibility note">
-  Connectivity with each tool listed here (Continue, Claude Code, OpenAI-compatible clients) has been verified. However, future updates or specification changes on the tool side may break compatibility. If you run into issues, please also consult each tool's latest documentation.
-</Admonition>
 
 ### Architecture
 
@@ -223,6 +151,88 @@ On a T4 GPU, models around 8B parameters tend to strike the best balance of resp
 **Ollama has native Anthropic protocol support**
 
 Since v0.14.0, Ollama officially supports the Anthropic Messages API (`/v1/messages`). The old workaround of converting through an OpenAI-compatible layer is no longer necessary — just point `ANTHROPIC_BASE_URL` at the Ollama endpoint and Claude Code connects directly.
+
+### How to use it
+
+Just run the cells from top to bottom.
+
+#### Prerequisites
+
+You'll need a free ngrok account. Create one at the [ngrok dashboard](https://dashboard.ngrok.com/get-started/your-authtoken) and grab your auth token.
+
+#### 1. Set the runtime
+
+Open the notebook in Google Colab and go to Runtime > Change runtime type > select **T4 GPU**. CPU mode works too, but inference will be significantly slower, so GPU is strongly recommended.
+
+#### 2. Select a model in Model Registry
+
+Running the first cell (Model Registry) displays a radio button UI with the available models. The list comes with a few defaults, but you can edit the text field directly to add any model you want.
+
+```python
+model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, deepseek-r1:8b"
+```
+
+Official model names can be found at [https://ollama.com/search](https://ollama.com/search). Here's a rough guide to model size performance on a T4 GPU:
+
+| Size | Speed | Notes |
+|:---:|:---:|:---|
+| 8B | Fast | Recommended |
+| 14B | Moderate | Practical range |
+| 20B+ | Slow | Not recommended |
+
+#### 3. Launch the Server cell
+
+Paste your ngrok token into the Server cell and run it. The following steps are automated:
+
+1. Install `zstd`, Ollama, and `pyngrok`
+2. Start the Ollama server and run a health check
+3. Establish the ngrok tunnel
+4. Pull the selected model (first run: roughly 5–15 minutes)
+
+Once complete, the connection config is printed automatically in the terminal:
+
+```
+ENDPOINT : https://xxxx.ngrok-free.app
+```
+
+#### 4. Configure your client tool
+
+Just paste the endpoint URL into your tool of choice.
+
+**Continue Extension (`~/.continue/config.yaml`)**
+
+```yaml
+models:
+  - title: qwen3:8b
+    provider: ollama
+    model: qwen3:8b
+    apiBase: https://xxxx.ngrok-free.app
+    contextLength: 16384
+```
+
+**Claude Code (shell env)**
+
+```bash
+export ANTHROPIC_BASE_URL=https://xxxx.ngrok-free.app
+export ANTHROPIC_API_KEY=dummy
+claude --model qwen3:8b
+```
+
+<Admonition type="info" title="About the Anthropic protocol">
+  Since Ollama v0.14.0, the Anthropic Messages API (<code>/v1/messages</code>) is officially supported. There's no need to route through an OpenAI-compatible layer — setting <code>ANTHROPIC_BASE_URL</code> to this server's endpoint connects Claude Code directly to Ollama.
+</Admonition>
+
+**OpenAI-Compatible Clients (e.g. Codex CLI)**
+
+Append `/v1` to the base URL:
+
+```
+https://xxxx.ngrok-free.app/v1
+```
+
+<Admonition type="caution" title="Compatibility note">
+  Connectivity with each tool listed here (Continue, Claude Code, OpenAI-compatible clients) has been verified. However, future updates or specification changes on the tool side may break compatibility. If you run into issues, please also consult each tool's latest documentation.
+</Admonition>
 
 ### Wrapping up
 
