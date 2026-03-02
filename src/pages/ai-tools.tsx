@@ -226,7 +226,7 @@ export default function AIToolsPage(): JSX.Element {
             </h1>
             <p>
               <Translate id="aiTools.page.subheading">
-                個人開発・業務効率化に使えるAIツール
+                個人開発・業務効率化に使えるAIツールのリンク集です。
               </Translate>
             </p>
           </div>
