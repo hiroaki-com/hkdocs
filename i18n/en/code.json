@@ -756,6 +756,12 @@
   "aiTools.tool.programming.claudeCode.desc": {
     "message": "A command-line tool that allows developers to delegate coding tasks directly to Claude from the terminal. Provides AI assistance integrated into development workflows, from code generation to debugging."
   },
+  "aiTools.tool.programming.codex.title": {
+    "message": "ChatGPT Codex"
+  },
+  "aiTools.tool.programming.codex.desc": {
+    "message": "A cloud-based AI software engineering agent provided by OpenAI. It can asynchronously execute multiple parallel tasks such as feature implementation, bug fixes, and PR reviews, integrating with GitHub repositories and operating in isolated cloud environments."
+  },
   "aiTools.tool.aiDev.openaiPlatform.title": {
     "message": "OpenAI Platform"
   },
@@ -768,6 +774,24 @@
   "aiTools.tool.aiDev.ollama.desc": {
     "message": "A tool for easily running open-source LLMs in local environments. Supports various models including Llama, Mistral, and Gemma, enabling AI development while maintaining privacy."
   },
+  "aiTools.tool.aiDev.mcp.title": {
+    "message": "Model Context Protocol (MCP)"
+  },
+  "aiTools.tool.aiDev.mcp.desc": {
+    "message": "An open standard protocol for connecting AI applications with external data sources and tools. By combining compatible MCP servers and clients, files, databases, and external APIs can be connected to AI systems through a standardized interface."
+  },
+  "aiTools.tool.aiDev.anthropicAcademy.title": {
+    "message": "Anthropic Academy"
+  },
+  "aiTools.tool.aiDev.anthropicAcademy.desc": {
+    "message": "The official learning platform by Anthropic for mastering Claude. It offers structured courses for free, covering Claude 101, Claude API implementation, and even building MCP servers."
+  },
+  "aiTools.tool.aiDev.unsloth.title": {
+    "message": "Unsloth"
+  },
+  "aiTools.tool.aiDev.unsloth.desc": {
+    "message": "An open-source library for LLM fine-tuning and reinforcement learning with maximized GPU efficiency. It achieves up to 30× speed improvements compared to Flash Attention 2 and up to 90% VRAM reduction, enabling LoRA and full fine-tuning of major models even on consumer GPUs such as Google Colab."
+  },  
   "homepage.features.news.description": {
     "message": "A list of websites useful for daily information gathering."
   },
