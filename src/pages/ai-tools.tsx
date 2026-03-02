@@ -83,6 +83,11 @@ const aiToolsData: AIToolCategoryData[] = [
         title: { id: 'aiTools.tool.programming.claudeCode.title', message: 'Claude Code' }, 
         description: { id: 'aiTools.tool.programming.claudeCode.desc', message: 'ターミナルから直接Claudeにコーディング作業を委譲できるコマンドラインツール。コード生成からデバッグまで、開発ワークフローに統合された形でAI支援を受けられる。' }
       },
+      { 
+        href: 'https://chatgpt.com/codex', 
+        title: { id: 'aiTools.tool.programming.codex.title', message: 'ChatGPT Codex' }, 
+        description: { id: 'aiTools.tool.programming.codex.desc', message: 'OpenAIが提供するクラウドベースのAIソフトウェアエンジニアリングエージェント。機能追加・バグ修正・PRレビューなどのタスクを複数並列で非同期実行でき、GitHubリポジトリと連携してクラウド上の隔離環境で動作する。' }
+      },
     ],
   },
   {
@@ -113,6 +118,21 @@ const aiToolsData: AIToolCategoryData[] = [
         href: 'https://ollama.com/', 
         title: { id: 'aiTools.tool.aiDev.ollama.title', message: 'Ollama' }, 
         description: { id: 'aiTools.tool.aiDev.ollama.desc', message: 'オープンソースのLLMをローカル環境で簡単に実行できるツール。Llama、Mistral、Gemmaなど多様なモデルに対応し、プライバシーを保ちながらAI開発が可能。' }
+      },
+      { 
+        href: 'https://modelcontextprotocol.io/docs/getting-started/intro', 
+        title: { id: 'aiTools.tool.aiDev.mcp.title', message: 'Model Context Protocol (MCP)' }, 
+        description: { id: 'aiTools.tool.aiDev.mcp.desc', message: 'AIアプリと外部のデータソース・ツールを接続するためのオープン標準プロトコル。対応するMCPサーバーとクライアントを組み合わせることで、ファイル・データベース・外部APIなどをAIに標準化された方法で接続できる。' }
+      },
+      { 
+        href: 'https://anthropic.skilljar.com/', 
+        title: { id: 'aiTools.tool.aiDev.anthropicAcademy.title', message: 'Anthropic Academy' }, 
+        description: { id: 'aiTools.tool.aiDev.anthropicAcademy.desc', message: 'AnthropicによるClaude活用の公式学習プラットフォーム。Claude 101やClaude APIの実装、MCPサーバー構築まで、体系的なコースを無料で提供している。' }
+      },
+      { 
+        href: 'https://unsloth.ai/', 
+        title: { id: 'aiTools.tool.aiDev.unsloth.title', message: 'Unsloth' }, 
+        description: { id: 'aiTools.tool.aiDev.unsloth.desc', message: 'LLMのファインチューニングと強化学習をGPU効率を最大化して実現するオープンソースライブラリ。Flash Attention 2比で最大30倍の速度向上と最大90%のVRAM削減を実現し、Google Colabなどのコンシューマー向けGPU環境でも主要モデルのLoRA・フルファインチューニングが可能。' }
       },
     ],
   },
