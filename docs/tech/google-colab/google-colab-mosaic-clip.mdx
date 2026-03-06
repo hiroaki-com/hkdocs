@@ -1,0 +1,220 @@
+---
+title: 動画の任意範囲にモザイクをかけてMP4で出力するツールをGoogle Colabで作りました。
+authors: [hk]
+tags: [ffmpeg, google-colab, mosaic, privacy, python, ipywidgets, pillow]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-mosaic-clip" />
+
+開発したツールや社内ドキュメントを紹介するとき、画面録画やスクリーンショットをそのまま使いたいのに、APIキーやアカウント情報が映り込んでいてそのまま出せない、という経験は誰しもあると思います。
+
+そこで、Google Colabの無料環境でffmpegとPillowを動かして、動画の任意の時間範囲・任意の位置に、GUIの操作だけでモザイクまたは単色マスクをかけてMP4で出力できるツールを作りました。デモ動画や技術記事用のスクリーンキャストなど、比較的サイズの小さい動画を手軽に処理することを想定した簡易ツールです。
+
+{/* truncate */}
+
+### 作ったもの
+
+<Admonition type="tip" title="🚀 今すぐ試す">
+  面倒な環境構築は不要です。以下のリンクからブラウザ上ですぐに実行できます。
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Google Colab で実行する<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/colab-mosaic-clip/blob/main/mosaic_clip_ja.ipynb" target="_blank" rel="noopener noreferrer">Colab Mosaic Clip（日本語版）</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>クリックして再生ボタンを上から順に押すだけで動きます。</small>
+    </li>
+    <li>
+      🐙 GitHub でコードを見る<br/>
+      <a href="https://github.com/hiroaki-com/colab-mosaic-clip" target="_blank" rel="noopener noreferrer">hiroaki-com/colab-mosaic-clip</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>ソースコードの確認や、Star / Fork はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+<div style={{ textAlign: 'center', marginBottom: '24px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/0c5b0ee4-e73c-4e62-8fac-a351ec8fb391"
+    alt="Colab Mosaic Clip デモ"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
+
+### なぜこれを作ったのか
+
+以前、[デモ動画をGIF・MP4に変換するツール](https://hkdocs.com/docs/tech/google-colab/google-colab-demo-gif-mp4-converter/)をGoogle Colabで作りました。そのツールを実際に使っていると、「モザイク処理もセットでできると嬉しい」という場面が出てきました。
+
+ただ、既存ツールへの機能追加はコードの複雑化を招くため、専用ツールとして分離して作ることにしました。ローカルへの動画編集ソフトの導入は環境汚染や習得コストの面から避けたかったので、同じくGoogle Colabで完結させる方針にしています。
+
+### 主な機能と技術的なポイント
+
+いくつか工夫した点を紹介します。
+
+- **ffprobeによる動画メタデータの取得**
+
+    > **ffprobe** はFFmpegに付属するメディア解析ツールです。動画・音声ファイルの解像度・フレームレート・再生時間などのメタデータをコマンドラインで取得できます。
+
+    動画アップロード直後に`ffprobe`で解像度・FPS・再生時間を取得し、`state`辞書に格納しています。FPSは`r_frame_rate`フィールドから`num/den`の分数形式で返ってくるため、ゼロ除算ガードを入れながら`float`に変換しています。
+
+    ```python
+    res = subprocess.run(
+        ['ffprobe', '-v', 'error', '-select_streams', 'v:0',
+         '-show_entries', 'stream=width,height,r_frame_rate',
+         '-of', 'csv=p=0', src],
+        capture_output=True, text=True
+    )
+    num, den = parts[2].split('/')
+    state['fps'] = float(num) / float(den) if float(den) != 0 else 30.0
+    ```
+
+    取得した解像度はCanvas上の座標スケーリングにも使うため、この値の精度が後のモザイク位置の精度に直結します。
+
+- **HTML Canvas + JavaScriptによるインタラクティブなモザイク指定UI**
+
+    > **HTML Canvas** はブラウザ上でピクセル単位の描画や座標ベースのインタラクションを実装するためのHTML要素です。Colab上のノートブックセルにHTMLを直接レンダリングできる仕組みを活用しています。
+
+    フレーム画像の上に透明なHTML Canvasを重ねて、クリック・ドラッグ操作をJavaScriptで処理しています。クリック座標は表示サイズと元動画の解像度の比率でスケーリングして、ピクセル単位の正確な位置をPython側に渡しています。
+
+    枠の追加・移動・リサイズの判定はマウスダウン時に行い、マウスアップのタイミングで`google.colab.kernel.invokeFunction`を呼び出してPython側のコールバックに座標を渡しています。
+
+    ```python
+    colab_output.register_callback('mz_click',  mz_click)
+    colab_output.register_callback('mz_move',   mz_move)
+    colab_output.register_callback('mz_resize', mz_resize)
+    ```
+
+    マウスカーソルも状況に応じて切り替わります。枠の内側では`grab`、右下のリサイズハンドル上では`nw-resize`、追加モード時は`crosshair`で、`onmousemove`イベントで制御しています。
+
+- **動画プレイヤーのbase64埋め込みと再生位置の記録ボタン**
+
+    > **base64** はバイナリデータをASCII文字列に変換するエンコード方式です。HTMLの`<video>`タグの`src`属性にbase64文字列を直接埋め込むことで、ファイルパスを経由せずにノートブック内でそのまま動画を再生できます。
+
+    アップロードされた動画ファイルをbase64エンコードしてipywidgets HTMLの`<video>`タグに直接埋め込んでいます。「📍 開始秒を記録」「📍 終了秒を記録」ボタンを押すと、`video.currentTime`をJavaScriptで取得し、`google.colab.kernel.invokeFunction`でPython側のウィジェットに反映します。開始秒の記録時はフレーム抽出まで同時に走るため、ボタン1つで「時間記録→フレーム表示→Canvas更新」が完結します。
+
+    ```python
+    def mz_set_start(t):
+        range_start.value = round(float(t), 2)
+        _on_show_frame(round(float(t), 4))  # フレーム抽出も同時実行
+
+    colab_output.register_callback('mz_set_start', mz_set_start)
+    colab_output.register_callback('mz_set_end',   mz_set_end)
+    ```
+
+- **PillowによるリアルタイムプレビューとFFmpegによる最終書き出しの分離**
+
+    > **Pillow（PIL）** はPythonの画像処理ライブラリです。ピクセル単位の操作・トリミング・リサイズ・合成などを手軽に扱えます。
+
+    プレビュー（👁 配色を確認）はPillowで処理しています。フレーム画像を読み込み、選択枠ごとにモザイクまたは単色塗りつぶしを適用して、結果をJPEGでbase64エンコードし、Canvasの背景画像として差し替えています。RGBAレイヤーを別途生成してモザイク枠の輪郭・中心点・リサイズハンドルを描画し、`alpha_composite`で合成してからCanvas上に表示しています。
+
+    ```python
+    def _apply_mosaic_pil(img, sel):
+        # モザイク: ブロックサイズで縮小→拡大（Nearest Neighbor）
+        block  = max(_MIN_MOSAIC_BLOCK_PX, sel.get('granularity', 4))
+        region = img.crop((x0, y0, x1, y1))
+        small  = region.resize((max(1, rw // block), max(1, rh // block)), PILImage.NEAREST)
+        mosaic = small.resize((rw, rh), PILImage.NEAREST)
+        img.paste(mosaic, (x0, y0))
+    ```
+
+    モザイクはNearestNeighborで対象領域を縮小→拡大することでピクセル化を実現しています。最終書き出しはFFmpegの`filter_complex`に任せることで、プレビューの軽快さと書き出しの処理品質を両立しています。
+
+- **FFmpegのfilter_complexによるoverlay方式のモザイク適用**
+
+    > **FFmpeg filter_complex** は複数のフィルターを組み合わせて動画・音声を処理するための仕組みです。入力ストリームを分岐・合流させながらチェーン状に処理を記述できます。
+
+    `_build_filter_complex`関数が選択枠の数に応じてフィルター文字列を動的に組み立て、1回の`ffmpeg`コマンドで複数箇所のモザイクを同時処理します。
+
+    モザイクパターンでは対象領域をcropしてNearest Neighborで縮小→拡大（ピクセル化）し、単色パターンでは指定色のカラーブロックを生成します。いずれも`overlay`フィルターの`enable='between(t,start,end)'`オプションで指定した時間範囲だけ映像に重ねることで、区間限定のモザイクを実現しています。
+
+    ```
+    # モザイクパターンの場合
+    [0:v]crop={cw}:{ch}:{x0}:{y0},scale=iw/{block}:ih/{block}:flags=neighbor,
+              scale=iw*{block}:ih*{block}:flags=neighbor[mz0];
+
+    # 単色パターンの場合
+    color=c=#{clr}:size={cw}x{ch}[mz0];
+
+    # 共通: overlayで時間範囲を限定して重ねる
+    [0:v][mz0]overlay={x0}:{y0}:enable='between(t,{t_start},{t_end})'[tmp0];
+    [tmp0][mz1]overlay=...[tmp1];
+    ...
+    [tmpN]scale=trunc({scale}/2)*2:-2:flags=lanczos[vout]
+    ```
+
+    書き出しには`libx264`（CRF 23 / preset slow）を使用し、音声は`-map 0:a?`で元動画の音声が存在する場合のみAACでそのままコピーします。
+
+- **状態管理をdictで一元化**
+
+    複数のUI操作・コールバック・セル間共有が絡む実装なので、動画パス・解像度・FPS・選択枠の一覧などをすべて`state`辞書で管理しています。
+
+    ```python
+    state = {
+        'source':         None,   # アップロードされた動画ファイルのパス
+        'orig_w':         0,      # 元動画の横幅（px）
+        'orig_h':         0,      # 元動画の縦幅（px）
+        'fps':            30.0,   # 元動画のFPS
+        'selections':     [],     # モザイク枠の一覧
+        'last_output':    None,   # 直前の書き出しファイルパス
+        'preview_hidden': True,   # 👁 プレビューの表示/非表示状態
+    }
+    ```
+
+    グローバル変数を使わず`state`に集約することで、セルを再実行したときの状態の不整合が起きにくくなります。また、リサイズ操作でスライダーを更新する際は`_slider_sync`フラグを立てて`observe`コールバックの多重起動を防いでいます。
+
+- **ffmpegの進捗をリアルタイム表示**
+
+    > **subprocess** はPythonから外部プロセスを起動・制御するための標準ライブラリです。`Popen`を使うと標準出力・標準エラーをストリームとして逐次読み取ることができます。
+
+    `ffmpeg`のオプション`-progress pipe:1`を使って進捗をstdoutに出力させ、Pythonで逐次パースしています。フレーム数・処理FPS・速度をインラインで更新するので、処理中でも状況が把握できます。stderrは別スレッドで非同期に読み続けることでプロセスのバッファブロッキングを防ぎ、エラー発生時にはメッセージをまとめて出力します。
+
+    ```python
+    def _ffmpeg_progress(args, label='処理'):
+        cmd = ['ffmpeg', '-y', '-loglevel', 'error', '-progress', 'pipe:1'] + [str(a) for a in args]
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        def _drain_stderr():
+            for line in proc.stderr:
+                stderr_lines.append(line)
+        threading.Thread(target=_drain_stderr, daemon=True).start()
+        for line in proc.stdout:
+            if line == 'progress=continue':
+                print(f'⏳ {label} — フレーム: {frame_v} / 速度: {speed_v}', end='\r')
+    ```
+
+### 使い方
+
+セルを上から順に実行して、UIを操作するだけです。Pythonのコードを書く必要はありません。
+
+1. セットアップ: ffmpegとPillowが自動でインストールされます。初回のみ実行が必要です。
+2. 動画アップロード: 動画ファイルを選択してアップロードします。対応形式は `.mov` `.mp4` `.avi` `.mkv` `.webm` です。
+3. 時間範囲の指定: 動画を再生しながら「開始秒を記録」「終了秒を記録」ボタンを押して、モザイクをかけたい区間を指定します。
+4. モザイク位置の指定: 開始秒のフレーム画像が表示されるので、クリックでモザイク枠を追加します。ドラッグで移動・リサイズが可能で、複数箇所への同時指定にも対応しています。モザイクと単色の2パターンから選択できます。
+5. 書き出し: 出力横幅（240〜1920px）を設定して書き出しを実行します。MP4（H.264）形式で出力され、完了後にプレビューで仕上がりを確認できます。
+6. 保存: ローカルへのダウンロードまたはGoogle Driveへの保存（あるいは両方）を選択して完了です。
+
+詳細な操作手順は [README](https://github.com/hiroaki-com/colab-mosaic-clip) を参照してください。
+
+### まとめ
+
+デモ動画変換ツールを使う中でモザイク処理の必要性を感じたことがきっかけで、専用ツールとして独立させました。Google Colabのノートブックという形にしたことで、ブラウザさえあればどこでも使えて、時間範囲の指定もモザイク位置の指定もすべてGUI操作で完結します。Canvas上でのインタラクティブなUI実装は手間がかかりましたが、「クリックして枠を置くだけ」という体験にこだわったことで、実際に使うときのストレスをかなり減らせた気がしています。
+
+同じように「デモ動画の一部だけモザイクをかけたい」と感じている方の参考になれば幸いです。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-mosaic-clip" />
+
+### 参考文献
+
+- [FFmpeg Documentation](https://ffmpeg.org/documentation.html)
+- [FFmpeg Filters: overlay](https://ffmpeg.org/ffmpeg-filters.html#overlay)
+- [FFmpeg Filters: crop](https://ffmpeg.org/ffmpeg-filters.html#crop)
+- [Google Colab](https://colab.research.google.com/)
+- [ipywidgets Documentation](https://ipywidgets.readthedocs.io/)
+- [Pillow Documentation](https://pillow.readthedocs.io/)
