@@ -1,0 +1,222 @@
+---
+title: Apply a mosaic to any video region on Google Colab and export as MP4.
+authors: [hk]
+tags: [ffmpeg, google-colab, mosaic, privacy, python, ipywidgets, pillow]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-mosaic-clip" />
+
+Anyone who has tried to share a screen recording or screenshot while documenting a tool or internal process has probably run into this problem: API keys or account information are visible in the footage, so you can't publish it as-is.
+
+To solve this, I built a tool that runs ffmpeg and Pillow in the free Google Colab environment. It lets you apply a mosaic or solid-color mask to any time range and any region of a video — entirely through a GUI — and export the result as an MP4. It is designed as a lightweight utility for relatively small videos such as demo clips and screencasts for technical articles.
+
+{/* truncate */}
+
+### What I Built
+
+<Admonition type="tip" title="🚀 Try It Now">
+  No setup required. You can run it directly in your browser via the links below.
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Run on Google Colab<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/colab-mosaic-clip/blob/main/mosaic_clip_en.ipynb" target="_blank" rel="noopener noreferrer">Colab Mosaic Clip (English)</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Just click the link and run the cells from top to bottom.</small>
+    </li>
+    <li>
+      🐙 View the code on GitHub<br/>
+      <a href="https://github.com/hiroaki-com/colab-mosaic-clip" target="_blank" rel="noopener noreferrer">hiroaki-com/colab-mosaic-clip</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Browse the source code, or give it a Star / Fork.</small>
+    </li>
+  </ul>
+</Admonition>
+
+<div style={{ textAlign: 'center', marginBottom: '24px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/984e6d25-5342-4532-be71-c32714989bd3"
+    alt="Colab Mosaic Clip demo"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
+
+### Why I Built This
+
+I previously built [a tool for converting demo videos to GIF and MP4](https://hkdocs.com/docs/tech/google-colab/google-colab-demo-gif-mp4-converter/) on Google Colab. {/* TODO: replace with the English-localized URL for this page if one exists */} While actually using that tool, I kept hitting situations where it would have been great to have mosaic processing built in as well.
+
+However, adding the feature to the existing tool would have complicated the codebase, so I decided to build it as a dedicated, separate tool. Since I wanted to avoid installing video editing software locally — both to keep my environment clean and to avoid a learning curve — I chose to keep everything running in Google Colab, just as before.
+
+### Key Features and Technical Highlights
+
+Here are some of the notable implementation details.
+
+- **Retrieving video metadata with ffprobe**
+
+    > **ffprobe** is a media analysis tool bundled with FFmpeg. It retrieves metadata such as resolution, frame rate, and duration of video and audio files from the command line.
+
+    Immediately after a video is uploaded, `ffprobe` fetches the resolution, FPS, and duration and stores them in a `state` dictionary. FPS is returned from the `r_frame_rate` field as a `num/den` fraction, so it is converted to a `float` with a zero-division guard.
+
+    ```python
+    res = subprocess.run(
+        ['ffprobe', '-v', 'error', '-select_streams', 'v:0',
+         '-show_entries', 'stream=width,height,r_frame_rate',
+         '-of', 'csv=p=0', src],
+        capture_output=True, text=True
+    )
+    num, den = parts[2].split('/')
+    state['fps'] = float(num) / float(den) if float(den) != 0 else 30.0
+    ```
+
+    Because the retrieved resolution is also used for coordinate scaling on the Canvas, the accuracy of this value directly affects the precision of the mosaic position.
+
+- **Interactive mosaic placement UI using HTML Canvas + JavaScript**
+
+    > **HTML Canvas** is an HTML element for implementing pixel-level drawing and coordinate-based interaction in the browser. This tool takes advantage of Colab's ability to render HTML directly inside notebook cells.
+
+    A transparent HTML Canvas is layered on top of the frame image, and click/drag interactions are handled by JavaScript. Click coordinates are scaled by the ratio between the display size and the original video resolution, so exact pixel positions are passed to the Python side.
+
+    Add, move, and resize logic is evaluated on mouse-down, and on mouse-up `google.colab.kernel.invokeFunction` is called to pass the coordinates to a Python callback.
+
+    ```python
+    colab_output.register_callback('mz_click',  mz_click)
+    colab_output.register_callback('mz_move',   mz_move)
+    colab_output.register_callback('mz_resize', mz_resize)
+    ```
+
+    The mouse cursor also changes contextually: `grab` inside a region, `nw-resize` over the bottom-right resize handle, and `crosshair` in add mode — all controlled via the `onmousemove` event.
+
+- **Base64-embedded video player and timestamp record buttons**
+
+    > **Base64** is an encoding scheme that converts binary data into ASCII strings. By embedding a base64 string directly in the `src` attribute of an HTML `<video>` tag, the video can be played inside the notebook without relying on a file path.
+
+    The uploaded video file is base64-encoded and embedded directly into an ipywidgets HTML `<video>` tag. Pressing the "📍 Record Start" or "📍 Record End" button retrieves `video.currentTime` via JavaScript and reflects it in the Python-side widget using `google.colab.kernel.invokeFunction`. Because pressing the start button also triggers frame extraction simultaneously, one button click completes the full flow of "record time → display frame → update Canvas."
+
+    ```python
+    def mz_set_start(t):
+        range_start.value = round(float(t), 2)
+        _on_show_frame(round(float(t), 4))  # also triggers frame extraction
+
+    colab_output.register_callback('mz_set_start', mz_set_start)
+    colab_output.register_callback('mz_set_end',   mz_set_end)
+    ```
+
+- **Separating real-time preview (Pillow) from final export (FFmpeg)**
+
+    > **Pillow (PIL)** is a Python image processing library that makes it easy to perform pixel-level operations, cropping, resizing, and compositing.
+
+    The preview (👁 Check appearance) is handled by Pillow. It loads the frame image, applies the mosaic or solid-color fill to each selected region, JPEG-encodes the result as base64, and swaps it in as the Canvas background image. An RGBA layer is generated separately to draw region outlines, center points, and resize handles, which are then composited onto the Canvas using `alpha_composite`.
+
+    ```python
+    def _apply_mosaic_pil(img, sel):
+        # Mosaic: shrink by block size → enlarge (Nearest Neighbor)
+        block  = max(_MIN_MOSAIC_BLOCK_PX, sel.get('granularity', 4))
+        region = img.crop((x0, y0, x1, y1))
+        small  = region.resize((max(1, rw // block), max(1, rh // block)), PILImage.NEAREST)
+        mosaic = small.resize((rw, rh), PILImage.NEAREST)
+        img.paste(mosaic, (x0, y0))
+    ```
+
+    The mosaic effect is achieved by shrinking the target region with Nearest Neighbor and then enlarging it back, creating a pixelation effect. The final export is delegated to FFmpeg's `filter_complex`, achieving both a snappy preview experience and high-quality output.
+
+- **Mosaic application via FFmpeg filter_complex overlay**
+
+    > **FFmpeg filter_complex** is a mechanism for processing video and audio by combining multiple filters. It lets you describe a chain of processing steps while branching and merging input streams.
+
+    The `_build_filter_complex` function dynamically assembles a filter string based on the number of selected regions, processing all mosaic areas simultaneously in a single `ffmpeg` command.
+
+    For the mosaic pattern, the target region is cropped and pixelated by scaling down then up with Nearest Neighbor. For the solid pattern, a color block of the specified color is generated. In both cases, the `overlay` filter's `enable='between(t,start,end)'` option is used to overlay the effect only within the specified time range, achieving time-limited mosaics.
+
+    ```
+    # Mosaic pattern
+    [0:v]crop={cw}:{ch}:{x0}:{y0},scale=iw/{block}:ih/{block}:flags=neighbor,
+              scale=iw*{block}:ih*{block}:flags=neighbor[mz0];
+
+    # Solid pattern
+    color=c=#{clr}:size={cw}x{ch}[mz0];
+
+    # Common: overlay limited to the time range
+    [0:v][mz0]overlay={x0}:{y0}:enable='between(t,{t_start},{t_end})'[tmp0];
+    [tmp0][mz1]overlay=...[tmp1];
+    ...
+    [tmpN]scale=trunc({scale}/2)*2:-2:flags=lanczos[vout]
+    ```
+
+    The export uses `libx264` (CRF 23 / preset slow), and audio is handled with `-map 0:a?` so that the source audio is copied as AAC only when it exists in the original video.
+
+- **Centralized state management with a dict**
+
+    Because the implementation involves multiple UI interactions, callbacks, and cross-cell sharing, all data — including the video path, resolution, FPS, and list of selected regions — is managed in a single `state` dictionary.
+
+    ```python
+    state = {
+        'source':         None,   # path to the uploaded video file
+        'orig_w':         0,      # original video width (px)
+        'orig_h':         0,      # original video height (px)
+        'fps':            30.0,   # original video FPS
+        'selections':     [],     # list of mosaic regions
+        'last_output':    None,   # path of the most recently exported file
+        'preview_hidden': True,   # 👁 preview show/hide state
+    }
+    ```
+
+    By consolidating everything into `state` rather than using global variables, state inconsistencies caused by re-running cells are minimized. Additionally, a `_slider_sync` flag is set when updating sliders during resize operations to prevent the `observe` callback from firing multiple times.
+
+- **Real-time FFmpeg progress display**
+
+    > **subprocess** is a Python standard library module for launching and controlling external processes. Using `Popen`, you can read stdout and stderr as streams incrementally.
+
+    The `ffmpeg` option `-progress pipe:1` is used to output progress to stdout, which Python then parses incrementally. Frame count, processing FPS, and speed are updated inline, so you can monitor the status even while processing is running. stderr is read asynchronously on a separate thread to prevent process buffer blocking, and any error messages are printed together if an error occurs.
+
+    ```python
+    def _ffmpeg_progress(args, label='Processing'):
+        cmd = ['ffmpeg', '-y', '-loglevel', 'error', '-progress', 'pipe:1'] + [str(a) for a in args]
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        def _drain_stderr():
+            for line in proc.stderr:
+                stderr_lines.append(line)
+        threading.Thread(target=_drain_stderr, daemon=True).start()
+        for line in proc.stdout:
+            if line == 'progress=continue':
+                print(f'⏳ {label} — Frame: {frame_v} / Speed: {speed_v}', end='\r')
+    ```
+
+### How to Use It
+
+Just run the cells from top to bottom and operate the UI. No Python code needed.
+
+1. **Setup**: ffmpeg and Pillow are installed automatically. This only needs to be run once.
+2. **Upload video**: Select and upload your video file. Supported formats: `.mov` `.mp4` `.avi` `.mkv` `.webm`.
+3. **Set the time range**: Play the video and press the "Record Start" and "Record End" buttons to mark the interval where you want the mosaic applied.
+4. **Place mosaic regions**: The frame at the start time is displayed — click on it to add mosaic regions. Drag to move or resize them. Multiple regions can be specified simultaneously. You can choose between two patterns: mosaic and solid color.
+5. **Export**: Set the output width (240–1920 px) and run the export. The output is saved as an MP4 (H.264) file, and you can check the result in the preview after it completes.
+6. **Save**: Choose to download locally, save to Google Drive, or both.
+
+For detailed instructions, see the [README](https://github.com/hiroaki-com/colab-mosaic-clip).
+
+### Wrap-Up
+
+This tool started from a genuine need I felt while using my demo video conversion tool — mosaic processing would have made it much more useful. By building it as a dedicated Colab notebook, it works anywhere there's a browser, and both time range selection and mosaic placement are handled entirely through the GUI.
+
+Implementing the interactive UI on Canvas took considerable effort, but the focus on a "just click to place a region" experience paid off — it substantially reduces friction when actually using the tool.
+
+I hope this is helpful for anyone else who has wanted to quickly mosaic out a portion of a demo video.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-mosaic-clip" />
+
+### References
+
+- [FFmpeg Documentation](https://ffmpeg.org/documentation.html)
+- [FFmpeg Filters: overlay](https://ffmpeg.org/ffmpeg-filters.html#overlay)
+- [FFmpeg Filters: crop](https://ffmpeg.org/ffmpeg-filters.html#crop)
+- [Google Colab](https://colab.research.google.com/)
+- [ipywidgets Documentation](https://ipywidgets.readthedocs.io/)
+- [Pillow Documentation](https://pillow.readthedocs.io/)
