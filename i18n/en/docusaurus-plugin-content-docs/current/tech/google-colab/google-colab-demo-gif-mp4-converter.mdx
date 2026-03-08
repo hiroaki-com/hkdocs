@@ -10,7 +10,12 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <GitHubStarLink repo="hiroaki-com/colab-video-converter" />
 
-*🗓 2026/02/24 — Zoom feature overhauled. Start times can now be recorded automatically while the preview plays, and overlapping zoom events are detected and blocked.*
+#### Changelog
+
+| Date | Changes |
+|:---|:---|
+| 2026/03/08 | Applied `# @title` / `# @markdown` form mode to all cells.<br/>Overhauled zoom UI:<br/>• Added "🏁 Record end position" button to allow direct end-time input<br/>• Hold duration is now calculated automatically<br/>• Added collapsible event panels and selection highlighting |
+| 2026/02/24 | Zoom feature overhauled.<br/>Start times can now be recorded automatically during preview playback.<br/>Overlapping zoom events are detected and prevented. |
 
 When you share a tool or project on GitHub or social media, attaching a demo GIF or video makes a real difference in how well it lands. But the moment you try to convert a screen recording, you run into the usual friction: SaaS tools need a paid plan for fine-grained quality settings, and local GUI apps have a habit of breaking whenever the OS updates.
 
@@ -63,23 +68,23 @@ Google Colab can run ffmpeg for free, and building a UI directly in the notebook
 
 ### How to Use It
 
-Run cells from top to bottom and interact with the UI as prompted. No Python code required.
+Run cells from top to bottom and interact with the UI as prompted. No Python code required. Each cell has `# @title` form mode applied, so running in Colab's form view gives a clean, focused interface.
 
-#### ① Setup
+#### 1. Setup
 
-Running the first cell installs ffmpeg automatically. A `_ffmpeg` helper function is also defined here to make error output easier to handle.
+Running the first cell installs ffmpeg automatically. A `_ffmpeg` helper function is also defined here to make error output easier to handle. This only needs to be run once.
 
-#### ② Upload Videos
+#### 2. Upload Videos
 
 A file selection dialog opens. Select the video file(s) you want to convert. Selecting multiple files enables merging.
 
 Supported input formats: `.mov` `.mp4` `.avi` `.mkv` `.webm`
 
-#### ③ Set Merge Order (Multiple Files Only)
+#### 3. Set Merge Order (Multiple Files Only)
 
 If you uploaded multiple videos, use the dropdowns to specify the merge order. This step is skipped automatically for a single file.
 
-#### ④ Configure Format, Quality, and Speed
+#### 4. Configure Format, Quality, and Speed
 
 Use the radio buttons to choose an output format and quality level.
 
@@ -110,17 +115,17 @@ Use the radio buttons to choose an output format and quality level.
 
 Playback speed is also adjustable. Speeding up a long recording to 1.5x or 2.0x makes for a more compact demo.
 
-#### ⑤ Generate Preview
+#### 5. Generate Preview
 
-Run the cell to generate a preview. The preview is rendered at the same resolution and frame rate as the final output, so you can use it to identify exact timestamps for zoom configuration. To regenerate the preview after changing settings, adjust step ④ and re-run this cell — no need to start from the beginning.
+Run the cell to generate a preview. The preview is rendered at the same resolution and frame rate as the final output, so you can use it to identify exact timestamps for zoom configuration. To regenerate the preview after changing settings, adjust the format and quality settings and re-run this cell — no need to start from the beginning.
 
 The preview is generated using the fast preset with no audio. Playback speed changes (via the `setpts` filter) are already applied at this stage.
 
-#### ⑥ Review Preview
+#### 6. Review Preview
 
 The preview video appears inside the notebook with playback controls. Play and pause to find the exact timestamps where you want to apply zoom effects.
 
-#### ⑦ Zoom Settings (Optional)
+#### 7. Zoom Settings (Optional)
 
 You can add zoom effects to highlight specific moments in your demo.
 
@@ -139,26 +144,27 @@ You can add zoom effects to highlight specific moments in your demo.
 How to use:
 1. Check "Add zoom" — the first zoom event is added automatically
 2. Play the embedded preview video and pause at the scene you want to zoom
-3. Click "📍 Record this position as start time" to apply the current playback position to the selected event's start time
-4. Use the "Target event" dropdown to switch which event you're recording to
-5. Click "+ Add Zoom Event" to add more zoom points. The next event's start time is automatically calculated from the end of the previous one
-6. Configure each event:
+3. Click "📍 Record start position" to apply the current playback position to the selected event's start time
+4. Pause at the scene where you want the zoom to end, then click "🏁 Record end position" to set the end time. The hold duration (time spent at peak zoom) is calculated automatically from the in and out durations
+5. Each event's header can be collapsed by clicking it. Use the "Set as target event" button or the dropdown to switch which event you're recording to — the active event is highlighted with a green border
+6. Click "+ Add Zoom Event" to add more zoom points. Adding a new event collapses existing ones automatically, and the next event's start time is calculated from the end of the previous one
+7. Configure each event:
    - **Zoom area**: select from the 3×3 grid (top-left, center, bottom-right, etc.)
    - **Max zoom level**: peak magnification (1.1x – 5.0x)
    - **Start (sec)**: when the zoom begins (can be set via the 📍 button)
    - **In (sec)**: time to ramp from 1x to peak zoom
-   - **Hold (sec)**: time to hold at peak zoom
    - **Out (sec)**: time to ramp back down to 1x
+   - **End (sec)**: when the zoom effect fully ends (can be set via the 🏁 button). Hold duration is auto-calculated as `End − Start − In − Out`
 
-**Timeline example**: with Start=5.0, In=0.3, Hold=1.0, Out=0.3:
+**Timeline example**: with Start=5.0, In=0.3, Out=0.3, End=6.6:
 - Zoom begins at 5.0 seconds
 - Ramps from 1x to peak over 0.3 seconds (5.0 → 5.3 sec)
-- Holds at peak for 1.0 second (5.3 → 6.3 sec)
+- Holds at peak for 1.0 second (5.3 → 6.3 sec) ← auto-calculated
 - Ramps back to 1x over 0.3 seconds (6.3 → 6.6 sec)
 - Normal playback resumes after 6.6 seconds
 
 **Tips**:
-- If zoom events overlap in time, an error is reported when step ⑧ runs
+- If zoom events overlap in time, an error is reported when the final output runs
 - The 3×3 grid makes it straightforward to zoom in on a specific UI element
 - Unchecking "Add zoom" disables all zoom effects without deleting your settings
 
@@ -168,25 +174,29 @@ How to use:
 - Zoom in on specific data points in a dashboard demo
 - Focus on a form field during an input demo
 
-#### ⑧ Final Output
+#### 8. Final Output
 
-Run the cell to generate the final output with all settings applied, including any zoom effects. To adjust zoom and re-export, modify step ⑦ and re-run this cell.
+Run the cell to generate the final output with all settings applied, including any zoom effects. To adjust zoom and re-export, modify the zoom settings and re-run this cell.
 
-If the resolution settings in step ④ were changed after running step ⑤, an error is raised here prompting you to regenerate the preview. This prevents mismatches between the preview and final output.
+If the resolution settings were changed after generating the preview, an error is raised here prompting you to regenerate the preview. This prevents mismatches between the preview and final output.
 
 Final output behavior:
 - **GIF**: full palette generation using the selected dithering method
 - **MP4**: re-encoded with the slow preset for maximum compression efficiency (no audio)
 
-#### ⑨ Save
+#### 9. Select Save Destination
 
-Select a destination using the radio buttons, then run the cell.
+Select a destination using the radio buttons.
 
 | Destination | Description |
 |:---|:---|
 | Download locally | Saved via the browser download dialog |
 | Save to Google Drive | Auto-copied to the specified path (includes mount step) |
 | Both | Executes both options simultaneously |
+
+#### 10. Save
+
+Run this cell to write the file to the selected destination. Separating destination selection and the save action makes it easier to review your choice before committing.
 
 ### Technical Notes
 
@@ -210,7 +220,7 @@ A few implementation details worth highlighting.
 
 - **Playback speed adjustment**
 
-    Speed is controlled via the `setpts` filter. Bumping a long recording to 1.5x or 2.0x noticeably reduces file size. Since speed is applied during preview generation (step ⑤), the final output (step ⑧) can reuse the preview footage directly.
+    Speed is controlled via the `setpts` filter. Bumping a long recording to 1.5x or 2.0x noticeably reduces file size. Since speed is applied during preview generation, the final output can reuse the preview footage directly.
 
     ```python
     speed_filter = f'setpts=PTS/{speed}'  # 1.5x speed → setpts=PTS/1.5
@@ -222,7 +232,7 @@ A few implementation details worth highlighting.
 
 - **Separated preview and final output**
 
-    The workflow is split into preview generation (step ⑤) and final output (step ⑧). This lets you confirm exact timestamps on a full-quality preview before configuring zoom, and iterate on zoom settings without regenerating the base video. Step ⑧ also checks that resolution settings haven't changed since the preview was generated, preventing silent configuration mismatches.
+    The workflow is split into preview generation and final output. This lets you confirm exact timestamps on a full-quality preview before configuring zoom, and iterate on zoom settings without regenerating the base video. The final output step also checks that resolution settings haven't changed since the preview was generated, preventing silent configuration mismatches.
 
 - **Zoom via FFmpeg's zoompan filter**
 
@@ -232,8 +242,7 @@ A few implementation details worth highlighting.
 
     ```python
     # Example: zoom to center (area 5) at 2.0x peak
-    # Timeline: Start=5.0, In=0.3, Hold=1.0, Out=0.3
-    # → ramps to 2x over 0.3s, holds for 1.0s, ramps back over 0.3s
+    # Timeline: Start=5.0, In=0.3, Out=0.3, End=6.6 (Hold=1.0 auto-calculated)
 
     zoompan=z='if(gte(on,150),if(lt(on,159),(1+(2.0-1)*(on-150)/9),\
                 if(lt(on,189),2.0,\
@@ -249,21 +258,30 @@ A few implementation details worth highlighting.
     - Generates smooth interpolation curves for zoom-in and zoom-out transitions
     - Sorts zoom events by start time and reports overlaps as errors before any output is generated
 
-- **Start time recording button**
+- **Start and end position recording buttons**
 
-    A preview video is embedded directly in step ⑦'s cell. Pausing it at any point and clicking the button immediately applies the current playback position to the selected event's start time. This uses `google.colab.kernel.invokeFunction` to invoke a Python callback from JavaScript.
+    A preview video is embedded directly in the zoom settings cell. Pausing it at any point and clicking a button immediately applies the current playback position to the selected event. "📍 Record start position" sets the start time; the new "🏁 Record end position" button sets the end time. Both use `google.colab.kernel.invokeFunction` to invoke Python callbacks from JavaScript.
 
     ```python
     def _record_position(time):
         if _zoom_start_widgets and record_target_sel.value is not None:
             _zoom_start_widgets[record_target_sel.value].value = round(float(time), 2)
 
-    colab_output.register_callback('record_position', _record_position)
+    def _record_end_position(time):
+        if _zoom_end_widgets and record_target_sel.value is not None:
+            _zoom_end_widgets[record_target_sel.value].value = round(float(time), 2)
+
+    colab_output.register_callback('record_position',     _record_position)
+    colab_output.register_callback('record_end_position', _record_end_position)
     ```
+
+- **Collapsible event panels with highlight**
+
+    To keep multiple zoom events manageable, each event is wrapped in a collapsible container. Adding a new event automatically collapses existing ones, and the currently targeted event is highlighted with a green border. The "Set as target event" button switches the recording target to any event at any time.
 
 - **Efficient preview workflow**
 
-    The preview (step ⑤) is generated with the `fast` preset, keeping iteration quick. The final output (step ⑧) uses the `slow` preset for maximum compression efficiency. When no zoom is configured, step ⑧ re-encodes the preview footage directly, so the final output completes quickly.
+    Preview generation uses the `fast` preset, keeping iteration quick. The final output uses the `slow` preset for maximum compression efficiency. When no zoom is configured, the final output re-encodes the preview footage directly, so it completes quickly.
 
 ### Platform Size Limits
 
@@ -281,7 +299,7 @@ Limits vary by platform. Zenn's 3 MB cap is particularly tight — the SNS / Lig
 
 Not wanting to pay a subscription for a conversion tool, and not wanting to install extra software locally — those two things together were enough motivation to build this myself.
 
-Packaging it as a Google Colab notebook means it runs anywhere with a browser, with all settings handled through a GUI. The zoom update made the feature significantly more usable: start times can now be set by pausing the preview and clicking a button, and overlap detection means you can add multiple zoom points without worrying about configuration mistakes. Personally, embedding GIFs in READMEs has felt a lot less tedious since putting this together.
+Packaging it as a Google Colab notebook means it runs anywhere with a browser, with all settings handled through a GUI. This update makes zoom configuration noticeably smoother: end times can now be recorded by pausing the preview and clicking a button, eliminating the need to calculate hold duration by hand. The collapsible panels and highlight make managing multiple zoom events much less cluttered. Personally, embedding GIFs in READMEs has felt a lot less tedious since putting this together.
 
 If you've ever found yourself thinking "converting demo videos is such a chore" or "I wish I could highlight that one interaction more clearly," I hope this is useful.
 
