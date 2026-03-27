@@ -10,6 +10,20 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
 
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
+    aria-label="Chat Demo"
+    style={{ maxWidth: '100%'}}
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+  />
+</div>
+
+
 LLM services like ChatGPT and Claude are incredibly convenient, but there are moments when you hesitate to type in confidential business information or personal content. At the same time, new local LLM models keep appearing and there's a natural urge to try them out casually. Yet spinning up Ollama on a local GPU is a high bar — the setup effort and hardware cost are both real obstacles.
 
 So I built a tool that runs Ollama on Google Colab's GPU and delivers a private LLM chat environment, entirely self-contained within a single notebook, with zero conversation data sent to any external API. Just run the cells top to bottom — no code to write, from server startup to chat UI, everything is ready to go.

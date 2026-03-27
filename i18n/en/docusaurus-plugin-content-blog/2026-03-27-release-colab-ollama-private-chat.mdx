@@ -10,6 +10,20 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
 
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
+    aria-label="Chat Demo"
+    style={{ maxWidth: '100%'}}
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+  />
+</div>
+
+
 ChatGPT and Claude are great tools, but do you ever hesitate before typing something work-related or personal into them? On the other hand, setting up a local GPU environment to run Ollama yourself is a steep barrier in terms of both effort and cost.
 
 So I built a private LLM chat environment using Google Colab's free GPU — one that never sends conversation logs outside the instance — and packaged it into a single notebook. Run the cells from top to bottom, and it's ready to go.
