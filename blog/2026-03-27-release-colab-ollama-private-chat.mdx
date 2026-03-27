@@ -10,6 +10,19 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
 
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
+    aria-label="Chat Demo"
+    style={{ maxWidth: '100%'}}
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+  />
+</div>
+
 ChatGPTやClaudeは優秀ですが、仕事の文章や個人的な内容を入力するとき、少し躊躇することはないでしょうか。かといって、ローカルにGPU環境を用意してOllamaを動かすのは、ハードルが高い。
 
 そこで、Google ColabのGPUを使い、会話ログを一切外部に送らずに使えるプライベートなLLMチャット環境をノートブック1本で作りました。セルを上から順に実行するだけで動き始めます。
