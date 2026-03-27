@@ -1,0 +1,79 @@
+---
+title: Google ColabのGPUで動く、ログを残さないプライベートLLMチャットツールをリリースしました。
+authors: [hk]
+tags: [ollama, google-colab, llm, cloudflare-tunnel, fastapi, privacy]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
+
+ChatGPTやClaudeは優秀ですが、仕事の文章や個人的な内容を入力するとき、少し躊躇することはないでしょうか。かといって、ローカルにGPU環境を用意してOllamaを動かすのは、ハードルが高い。
+
+そこで、Google ColabのGPUを使い、会話ログを一切外部に送らずに使えるプライベートなLLMチャット環境をノートブック1本で作りました。セルを上から順に実行するだけで動き始めます。
+
+{/* truncate */}
+
+<Admonition type="tip" title="🚀 今すぐ試す">
+  環境構築は不要です。以下のリンクからブラウザ上ですぐに実行できます。
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Google Colab で実行する<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/colab-ollama-private-chat/blob/main/ollama_colab_private_chat_ja.ipynb" target="_blank" rel="noopener noreferrer">Ollama Colab Private Chat（日本語版）</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>クリックしてセルを上から順に実行するだけで動きます。</small>
+    </li>
+    <li>
+      🐙 GitHub でコードを見る<br/>
+      <a href="https://github.com/hiroaki-com/colab-ollama-private-chat" target="_blank" rel="noopener noreferrer">hiroaki-com/colab-ollama-private-chat</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>ソースコードの確認や、Star / Fork はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+### こんな場面で使えます
+
+- 業務上の機密文書を要約・添削したいが、外部サービスには送りたくない
+- 個人的な悩みや日記を整理するのにLLMを使いたい
+- 最新のローカルLLMモデルをすぐ試してみたい
+- GPUのない手元のPCでも、ブラウザ一つでLLMを動かしたい
+
+いずれも、このノートブック一つで対応できます。
+
+### 3つの特徴
+
+会話ログをどこにも保存しないステートレス設計になっています。ブラウザをリロードすれば即座に消去され、Colabのインスタンス外にデータが出ることはありません。
+
+Google ColabのT4 GPUを使うため、完全無料で動きます。OpenAIやAnthropicのAPIキーも不要で、外部サービスへの依存がありません。
+
+セルを上から順に実行するだけで、Ollamaのインストールからモデルのダウンロード、チャットUIの起動まで全工程が完結します。途中でコードを書く必要はありません。
+
+### チャットUIは2種類
+
+Colabのセル出力内で動く `Inline モード` と、ブラウザの別タブで開く `Standalone モード` を用意しています。
+
+Inlineモードはデフォルトの `Direct`（Colabカーネル内部通信）と `Tunnel（Backup）`（Cloudflare Tunnel経由）をワンクリックで切り替えられます。普段はDirectで十分高速に動作します。
+
+Standaloneモードはスマートフォンを含む他の端末からもアクセスできる専用URLが発行されます。画面全体を使った快適なUI で、自分のPCから離れた場所でも使えます。
+
+### 使い方
+
+3ステップで始められます。
+
+1. `Model Registry` セルでモデルを選択する。[ollama.com/search](https://ollama.com/search) から好きなモデルをカンマ区切りで入力し、ラジオボタンで一つ選びます。
+2. `Server` セルを実行する。Ollamaの起動、モデルのダウンロード、Cloudflare Tunnelの確立が自動で走ります。初回のみモデルのダウンロードに数分かかります。
+3. `Chat UI` セルを実行してチャットを開始する。InlineかStandaloneのどちらかを選んで実行するだけです。
+
+`num_ctx` パラメーターでコンテキスト長を変更できます（デフォルト4096トークン）。モデルサイズとVRAMのバランスを見ながら調整してください。
+
+### 技術的な実装について
+
+Ollamaのサーバー管理、Cloudflare Tunnelによるアクセス経路の確保、Colabの制約に合わせたストリーミング設計など、各コンポーネントをどう組み合わせたかについては別途まとめています。
+
+→ [技術解説記事：OllamaとCloudflare TunnelでColabにプライベートLLMチャット環境を作りました。](https://hkdocs.com/docs/tech/google-colab/google-colab-ollama-private-chat-for-local-llm/)
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
