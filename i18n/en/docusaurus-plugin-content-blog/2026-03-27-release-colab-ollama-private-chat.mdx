@@ -1,0 +1,79 @@
+---
+title: I Released a Private LLM Chat Tool That Runs on Google Colab's GPU and Stores No Logs.
+authors: [hk]
+tags: [ollama, google-colab, llm, cloudflare-tunnel, fastapi, privacy]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
+
+ChatGPT and Claude are great tools, but do you ever hesitate before typing something work-related or personal into them? On the other hand, setting up a local GPU environment to run Ollama yourself is a steep barrier in terms of both effort and cost.
+
+So I built a private LLM chat environment using Google Colab's free GPU — one that never sends conversation logs outside the instance — and packaged it into a single notebook. Run the cells from top to bottom, and it's ready to go.
+
+{/* truncate */}
+
+<Admonition type="tip" title="🚀 Try It Now">
+  No setup required. You can run it in your browser right away.
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      ⚡️ Open in Google Colab<br/>
+      <a href="https://colab.research.google.com/github/hiroaki-com/colab-ollama-private-chat/blob/main/ollama_colab_private_chat_en.ipynb" target="_blank" rel="noopener noreferrer">Ollama Colab Private Chat</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Just click and run the cells from top to bottom.</small>
+    </li>
+    <li>
+      🐙 View the code on GitHub<br/>
+      <a href="https://github.com/hiroaki-com/colab-ollama-private-chat" target="_blank" rel="noopener noreferrer">hiroaki-com/colab-ollama-private-chat</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Browse the source, leave a Star, or fork it.</small>
+    </li>
+  </ul>
+</Admonition>
+
+### When This Comes in Handy
+
+- You want to summarize or proofread confidential work documents, but not send them to an external service
+- You want to use an LLM to organize personal thoughts or a journal
+- You want to try out the latest local LLM models without any friction
+- You want to run an LLM in a browser, even on a machine with no GPU
+
+This notebook handles all of the above.
+
+### Three Key Features
+
+The chat is stateless by design — no logs are stored anywhere. A browser reload wipes everything instantly, and no data ever leaves the Colab instance.
+
+Because it runs on Google Colab's T4 GPU, it's completely free. No OpenAI or Anthropic API key required, and no dependency on any external service.
+
+Running the cells from top to bottom handles everything: installing Ollama, downloading the model, and launching the chat UI. No code to write.
+
+### Two Chat UI Modes
+
+The `Inline mode` runs inside the Colab cell output, while the `Standalone mode` opens as a full page in a separate browser tab.
+
+In Inline mode, you can switch with one click between `Direct` (Colab kernel internal communication) and `Tunnel (Backup)` (via Cloudflare Tunnel). Direct is fast and stable for everyday use.
+
+Standalone mode issues a dedicated URL accessible from any device, including smartphones. It offers a comfortable full-screen UI you can use away from your main PC.
+
+### How to Use It
+
+Three steps to get started.
+
+1. Run the `Model Registry` cell and select a model. Enter your preferred model names as a comma-separated list — find them at [ollama.com/search](https://ollama.com/search) — then select one with the radio button.
+2. Run the `Server` cell. Ollama startup, model download, and Cloudflare Tunnel setup all happen automatically. The first run takes a few minutes for the model download.
+3. Run a `Chat UI` cell to start chatting. Choose either Inline or Standalone and run it.
+
+You can adjust the context length with the `num_ctx` parameter (default: 4096 tokens). Tune it based on the model size and available VRAM.
+
+### About the Technical Implementation
+
+For details on how the components fit together — Ollama server management, Cloudflare Tunnel routing, and the streaming design tailored to Colab's constraints — I've written a separate technical article.
+
+→ [Technical Deep Dive: I Built a Private LLM Chat Environment on Colab with Ollama and Cloudflare Tunnel.](https://hkdocs.com/en/docs/tech/google-colab/google-colab-ollama-private-chat-for-local-llm/)
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
