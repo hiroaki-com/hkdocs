@@ -1,0 +1,62 @@
+---
+title: "Make Demo GIF / MP4 にBGM追加機能を追加しました"
+date: "2026-03-28"
+description: "画面録画のMP4出力時にYouTubeからBGMを追加できる機能を追加しました。直感的なスライダー操作での調整や、ライセンスの自動チェック機能などを搭載し、ノートブック上で設定が完結します。"
+authors: [hk]
+tags: [release, ffmpeg, google-colab, mp4, youtube, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/1f75efd8-aa61-4fee-bf34-6076ba6a790c"
+    style={{ maxWidth: '70%', borderRadius: '0' }}
+    autoPlay
+    loop
+    controls
+    playsInline
+  />
+</div>
+
+先日追加したズーム機能に続き、[Make Demo GIF / MP4](https://hkdocs.com/blog/2026/02/19/release-colab-video-converter/) にBGM追加機能を追加しました。無音の操作デモ動画にBGMをつけることで、より視聴者の関心を惹くMP4を作成できるようになります。
+
+{/* truncate */}
+
+### 追加した機能
+
+BGM設定セルにYouTubeのURLを指定するだけで、自動で音源をダウンロードしてデモ動画に合成できます。開始位置、再生速度、音量といった各種パラメータは、ノートブック上のスライダーを使って直感的に調整可能です。
+
+動画の長さに対してダウンロードした音声が短い場合は自動で最後まで再生後にループし、音声が長い場合は動画の終了時刻に合わせて自動でカットされます。外部の動画編集ソフトを使って音声の長さを微調整する手間はかかりません。
+
+### ライセンス情報の自動チェック
+
+YouTubeから音源をダウンロードする際、メタデータを解析して楽曲のライセンス状況を画面上にバッジとして表示する機能を搭載しました。
+
+概要欄の記載やタイトルから、商用楽曲の可能性、NCSなどのフリー素材、Creative Commonsなどを自動で判定します。意図しない著作権侵害のリスクに気づきやすくなるようサポートします。
+
+### 使い方の流れ
+
+出力フォーマットにMP4を選択している場合のみ有効になります。
+
+1. 「BGM設定」セルで「BGMを追加する」にチェックを入れる
+2. YouTubeのURLを入力してダウンロードボタンを押す
+3. 表示されるオーディオプレイヤーで音声を確認しながら、開始位置・速度・音量を設定
+4. 最終出力セルを実行してMP4を生成する
+
+### 使い始める
+
+環境構築は不要です。以下のColabリンクを開き、セルを上から順に実行してください。
+
+- Google Colab で実行する: [Make Demo GIF / MP4（日本語版）](https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_ja.ipynb)
+- ソースコードを見る: [hiroaki-com/colab-video-converter on GitHub](https://github.com/hiroaki-com/colab-video-converter)
+
+フィードバックやPull Requestはいずれも歓迎します。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />

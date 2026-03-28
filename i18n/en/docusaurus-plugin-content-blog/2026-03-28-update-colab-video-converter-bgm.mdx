@@ -1,0 +1,62 @@
+---
+title: "Added BGM Feature to Make Demo GIF / MP4"
+date: "2026-03-28"
+description: "We've added a feature to include background music (BGM) from YouTube when exporting screen recordings as MP4. Features include intuitive slider controls for adjustments and automatic license checking, allowing you to configure everything directly within the notebook."
+authors: [hk]
+tags: [release, ffmpeg, google-colab, mp4, youtube, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/1f75efd8-aa61-4fee-bf34-6076ba6a790c"
+    style={{ maxWidth: '70%', borderRadius: '0' }}
+    autoPlay
+    loop
+    controls
+    playsInline
+  />
+</div>
+
+Following the recently added zoom feature, we have added a BGM feature to [Make Demo GIF / MP4](https://hkdocs.com/en/blog/2026/02/19/release-colab-video-converter/). By adding background music to silent demo videos, you can create more engaging MP4s for your viewers.
+
+{/* truncate */}
+
+### Added Features
+
+Just by specifying a YouTube URL in the BGM settings cell, it automatically downloads the audio and merges it with your demo video. Various parameters such as start position, playback speed, and volume can be intuitively adjusted using sliders right in the notebook.
+
+If the downloaded audio is shorter than the video, it automatically loops until the end. If the audio is longer, it is automatically trimmed to match the video's end time. There is no longer a need for the hassle of fine-tuning audio length using external video editing software.
+
+### Automatic License Checking
+
+When downloading audio from YouTube, we've implemented a feature that analyzes the metadata and displays the track's license status as a badge on the screen.
+
+Based on the description and title, it automatically determines whether the track is potentially commercial, royalty-free (like NCS), Creative Commons, and more. This helps you easily notice and avoid unintentional copyright infringement risks.
+
+### How to Use
+
+This feature is only enabled when MP4 is selected as the output format.
+
+1. Check "Add BGM" in the "BGM Settings" cell.
+2. Enter the YouTube URL and click the download button.
+3. Set the start position, speed, and volume while previewing the audio with the displayed audio player.
+4. Run the final output cell to generate the MP4.
+
+### Getting Started
+
+No environment setup is required. Open the Colab link below and run the cells in order from the top.
+
+- Run on Google Colab: [Make Demo GIF / MP4 (English Version)](https://colab.research.google.com/github/hiroaki-com/colab-video-converter/blob/main/make_demo_gif_mp4_en.ipynb)
+- View source code: [hiroaki-com/colab-video-converter on GitHub](https://github.com/hiroaki-com/colab-video-converter/blob/main/README_EN.md)
+
+Feedback and Pull Requests are always welcome!
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-video-converter" />
