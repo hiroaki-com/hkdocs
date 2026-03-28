@@ -15,8 +15,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 <div style={{ textAlign: 'center', marginBottom: '32px' }}>
   <video
     src="https://github.com/user-attachments/assets/0c5b0ee4-e73c-4e62-8fac-a351ec8fb391"
-    alt="Colab Mosaic Clip デモ"
-    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    style={{ maxWidth: '70%', borderRadius: '0' }}
     autoPlay
     loop
     muted
