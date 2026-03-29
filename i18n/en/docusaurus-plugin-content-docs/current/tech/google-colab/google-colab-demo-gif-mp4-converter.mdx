@@ -1,7 +1,7 @@
 ---
 title: I built a tool on Google Colab to easily create demo videos and convert them into GIFs or MP4s.
 authors: [hk]
-tags: [ffmpeg, google-colab, gif, mp4, python, automation, demo-video]
+tags: [ffmpeg, google-colab, gif, mp4, python, automation, demo-video, yt-dlp]
 ---
 
 import Admonition from '@theme/Admonition';
@@ -14,6 +14,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 | Date | Changes |
 |:---|:---|
+| 2026/03/29 | Added BGM feature (MP4 output only).<br/>• Download audio from a YouTube URL and merge it into the final MP4 with configurable start position, speed, and volume<br/>• Advanced license auto-detection via metadata analysis<br/>• Slider changes reflected in the audio player in real time |
 | 2026/03/08 | Applied `# @title` / `# @markdown` form mode to all cells.<br/>Overhauled zoom UI:<br/>• Added "🏁 Record end position" button to allow direct end-time input<br/>• Hold duration is now calculated automatically<br/>• Added collapsible event panels and selection highlighting |
 | 2026/02/24 | Zoom feature overhauled.<br/>Start times can now be recorded automatically during preview playback.<br/>Overlapping zoom events are detected and prevented. |
 
@@ -72,7 +73,7 @@ Run cells from top to bottom and interact with the UI as prompted. No Python cod
 
 #### 1. Setup
 
-Running the first cell installs ffmpeg automatically. A `_ffmpeg` helper function is also defined here to make error output easier to handle. This only needs to be run once.
+Running the first cell installs ffmpeg and yt-dlp automatically. A `_ffmpeg` helper function is also defined here to make error output easier to handle. This only needs to be run once.
 
 #### 2. Upload Videos
 
@@ -93,7 +94,7 @@ Use the radio buttons to choose an output format and quality level.
 | Format | Characteristics | Best For | Not Ideal For |
 |:---|:---|:---|:---|
 | GIF | Auto-plays, loops, works in any Markdown renderer. 256 colors, larger file | GitHub README, Zenn / Qiita | Size-constrained environments |
-| MP4 (H.264) | High quality, small file size, full color. Requires a media player. **No audio** | X / Slack / GitHub README (click-to-play) | Scenarios requiring auto-play or looping |
+| MP4 (H.264) | High quality, small file size, full color. Requires a media player. | X / Slack / GitHub README (click-to-play) | Scenarios requiring auto-play or looping |
 
 **GIF Quality Presets**
 
@@ -174,17 +175,57 @@ How to use:
 - Zoom in on specific data points in a dashboard demo
 - Focus on a form field during an input demo
 
-#### 8. Final Output
+#### 8. BGM Settings (Optional — MP4 Output Only)
 
-Run the cell to generate the final output with all settings applied, including any zoom effects. To adjust zoom and re-export, modify the zoom settings and re-run this cell.
+When exporting as MP4, you can add background music sourced from a YouTube video.
+
+<div style={{ textAlign: 'center', marginBottom: '24px' }}>
+  <video
+    src="https://github.com/user-attachments/assets/1f75efd8-aa61-4fee-bf34-6076ba6a790c"
+    alt="BGM feature demo"
+    style={{ maxWidth: '100%', borderRadius: '8px' }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
+
+How to use:
+1. Check "Add BGM" — the option is disabled when GIF is selected
+2. Enter a YouTube URL and click "Download". The tool fetches metadata first, then downloads the audio
+3. Preview the downloaded audio and adjust the following settings:
+   - **Start position (sec)**: which point in the audio to begin playback from. Click "📍 Record start position" while the audio is playing to apply the current position
+   - **⚡ Speed**: playback speed of the BGM itself (0.5x – 2.0x)
+   - **🔊 Volume**: adjust from 0.0 to 1.0 — slider changes are reflected in the audio player in real time
+4. Run step ⑨ to generate the final output
+
+**Auto loop / cut**: If the audio remaining from the start position (after speed adjustment) is shorter than the video, it loops automatically. If it's longer, it is cut at the point the video ends.
+
+**License detection**: Metadata is analyzed at download time and a badge is displayed to indicate the likely copyright status:
+
+| Badge | Condition |
+|:---|:---|
+| 🚫 Commercial track detected | `artist` / `track` metadata fields are present |
+| 🚫 Official license notice found | Description contains "Licensed to YouTube by" |
+| ✅ Likely royalty-free | Title or uploader name contains keywords like NCS, No Copyright, etc. |
+| ✅ Creative Commons | License field contains a CC identifier |
+| ⚠️ License unknown | None of the above conditions match |
+
+In all cases, please verify usage rights yourself before publishing.
+
+#### 9. Final Output
+
+Run the cell to generate the final output with all settings applied, including zoom effects and BGM. To adjust zoom and re-export, modify the zoom settings and re-run this cell.
 
 If the resolution settings were changed after generating the preview, an error is raised here prompting you to regenerate the preview. This prevents mismatches between the preview and final output.
 
 Final output behavior:
 - **GIF**: full palette generation using the selected dithering method
-- **MP4**: re-encoded with the slow preset for maximum compression efficiency (no audio)
+- **MP4 (no BGM)**: re-encoded with the slow preset for maximum compression efficiency (no audio)
+- **MP4 (with BGM)**: audio with speed and volume applied is merged in. Automatically loops or cuts to match the video length
 
-#### 9. Select Save Destination
+#### 10. Select Save Destination
 
 Select a destination using the radio buttons.
 
@@ -194,7 +235,7 @@ Select a destination using the radio buttons.
 | Save to Google Drive | Auto-copied to the specified path (includes mount step) |
 | Both | Executes both options simultaneously |
 
-#### 10. Save
+#### 11. Save
 
 Run this cell to write the file to the selected destination. Separating destination selection and the save action makes it easier to review your choice before committing.
 
@@ -203,6 +244,8 @@ Run this cell to write the file to the selected destination. Separating destinat
 A few implementation details worth highlighting.
 
 - **High-quality GIF conversion**
+
+    > **palettegen / paletteuse** are FFmpeg's dedicated two-pass GIF filters. `palettegen` analyzes the entire video to generate an optimal 256-color palette, and `paletteuse` applies that palette when rendering each frame. Compared to single-pass conversion, color fidelity improves significantly.
 
     GIF output quality depends heavily on ffmpeg filter configuration. This tool uses a two-pass approach combining `palettegen` and `paletteuse`.
 
@@ -216,9 +259,13 @@ A few implementation details worth highlighting.
 
 - **Automatic file size warning**
 
+    > **os.path.getsize()** is a function from Python's standard `os` library that returns the size of a given file in bytes. It requires no external dependencies, making it well-suited for a quick size check immediately after conversion.
+
     If a GIF exceeds 15 MB, the notebook displays a warning automatically with guidance on how to reduce it. GitHub's GIF size limit is 10 MB, so catching this before you try to embed it in a README is useful.
 
 - **Playback speed adjustment**
+
+    > **setpts** (Set Presentation Timestamps) is an FFmpeg video filter that changes playback speed by rewriting the timestamp of each frame. Dividing by a factor greater than 1 speeds up playback — for example, `PTS/1.5` produces 1.5x speed. When audio is present, the `atempo` filter must also be applied separately to match.
 
     Speed is controlled via the `setpts` filter. Bumping a long recording to 1.5x or 2.0x noticeably reduces file size. Since speed is applied during preview generation, the final output can reuse the preview footage directly.
 
@@ -228,13 +275,19 @@ A few implementation details worth highlighting.
 
 - **Merging multiple videos**
 
+    > **FFmpeg concat demuxer** is the mechanism for joining multiple video files sequentially. Combined with the `-c copy` option, it copies video and audio streams without re-encoding, resulting in fast, lossless merges.
+
     ffmpeg's concat muxer handles merging with `-c copy`, skipping re-encoding entirely for fast results. The dropdown UI lets you specify merge order freely. Filenames containing special characters are escaped correctly.
 
 - **Separated preview and final output**
 
+    > **FFmpeg `-preset` option** controls the tradeoff between encoding speed and compression efficiency. `fast` encodes quickly at the cost of slightly larger files, while `slow` takes more time to achieve the best compression ratio. Using the appropriate preset at each stage means fast iteration during review and high-quality output at the end.
+
     The workflow is split into preview generation and final output. This lets you confirm exact timestamps on a full-quality preview before configuring zoom, and iterate on zoom settings without regenerating the base video. The final output step also checks that resolution settings haven't changed since the preview was generated, preventing silent configuration mismatches.
 
 - **Zoom via FFmpeg's zoompan filter**
+
+    > **zoompan** is an FFmpeg video filter that produces dynamic pan-and-zoom effects by specifying zoom level (z), x position, and y position per frame using mathematical expressions. Built-in variables like `on` (frame number) and `iw` / `ih` (input width / height) can be used inside these expressions, enabling complex timeline-driven zoom behavior.
 
     Zoom is implemented using ffmpeg's `zoompan` filter, which generates smooth, frame-accurate zoom animations. Each zoom event is translated into expressions that control zoom level, x position, and y position on a per-frame basis.
 
@@ -260,7 +313,9 @@ A few implementation details worth highlighting.
 
 - **Start and end position recording buttons**
 
-    A preview video is embedded directly in the zoom settings cell. Pausing it at any point and clicking a button immediately applies the current playback position to the selected event. "📍 Record start position" sets the start time; the new "🏁 Record end position" button sets the end time. Both use `google.colab.kernel.invokeFunction` to invoke Python callbacks from JavaScript.
+    > **google.colab.kernel.invokeFunction** is a Google Colab-specific API that allows JavaScript running in cell output to call Python functions. Register a function with `colab_output.register_callback('name', fn)`, then invoke it from an HTML `onclick` handler using `google.colab.kernel.invokeFunction('name', [args], {})`.
+
+    A preview video is embedded directly in the zoom settings cell. Pausing it at any point and clicking a button immediately applies the current playback position to the selected event. Both "📍 Record start position" and "🏁 Record end position" use `google.colab.kernel.invokeFunction` to invoke Python callbacks from JavaScript.
 
     ```python
     def _record_position(time):
@@ -277,9 +332,76 @@ A few implementation details worth highlighting.
 
 - **Collapsible event panels with highlight**
 
+    > **ipywidgets** is a library for rendering interactive UI widgets inside Jupyter notebooks and Google Colab. `VBox` and `HBox` handle layout composition, and `Layout` objects apply CSS-equivalent styling. Properties can be updated dynamically in Python, and the UI reflects changes immediately without any page reload.
+
     To keep multiple zoom events manageable, each event is wrapped in a collapsible container. Adding a new event automatically collapses existing ones, and the currently targeted event is highlighted with a green border. The "Set as target event" button switches the recording target to any event at any time.
 
+- **BGM synthesis: `atempo` filter and stream looping**
+
+    > **atempo** is an FFmpeg audio filter that changes playback speed without altering pitch (time-stretching). Its accepted range is 0.5x to 2.0x in a single pass; larger changes require chaining, e.g. `atempo=2.0,atempo=2.0`. **`-stream_loop -1`** repeats an input stream indefinitely, and combined with `-t` to set a duration limit, it handles "loop if too short, cut if too long" in a single command without any branching logic.
+
+    The BGM feature works in two stages. First, speed and volume adjustments are applied to the downloaded audio to produce an intermediate file. That file is then merged with the video.
+
+    ```python
+    # Apply speed and volume, write intermediate file
+    _ffmpeg(
+        '-ss', start_pos,
+        '-i', bgm_raw_path,
+        '-vn', '-af', f'atempo={speed},volume={vol}',
+        '-c:a', 'aac', '-b:a', '128k', '-ac', '2',
+        'bgm_segment.aac'
+    )
+
+    # -stream_loop -1 + -t {dur}: loop if short, cut if long — one command, no branching
+    _ffmpeg(
+        '-i', 'preview.mp4',
+        '-stream_loop', '-1', '-i', 'bgm_segment.aac',
+        '-t', vid_dur,
+        *VIDEO_ARGS, *AUDIO_ARGS,
+        OUTPUT_NAME
+    )
+    ```
+
+    Speed adjustment uses ffmpeg's `atempo` filter. Because `atempo` only accepts values between 0.5 and 2.0, the UI slider range is set to match. Looping and cutting are handled together using `-stream_loop -1` (infinite loop) and `-t {video duration}` (cut at that point), with no conditional logic needed.
+
+- **Real-time slider preview**
+
+    > **Widget.observe()** is an event listener provided by ipywidgets that monitors property changes on a widget and fires a callback when they occur. Specifying `names='value'` restricts it to value changes only. Calling `display(Javascript(...))` inside a callback injects JavaScript into the Colab cell output, enabling direct DOM manipulation.
+
+    Moving the speed or volume slider is immediately reflected in the notebook's audio player. The `observe` callback fires `display(Javascript(...))` to update the player. A guard condition ensures JavaScript is only injected when the player actually exists, preventing unnecessary accumulation of cell output.
+
+    ```python
+    def _on_bgm_speed_change(change):
+        _update_duration_hint()
+        if bgm_audio_ready:
+            display(Javascript(
+                f"var a=document.getElementById('bgm_audio_player');"
+                f"if(a) a.playbackRate={change['new']};"
+            ))
+
+    bgm_speed_slider.observe(_on_bgm_speed_change, names='value')
+    ```
+
+    The audio player's initial values are applied using the `oncanplay` event, which fires once the audio is ready to play. An `_init` flag prevents the initialization block from running more than once.
+
+    ```html
+    <audio id="bgm_audio_player" controls
+      oncanplay="if(!this._init){
+        this.volume={vol};
+        this.playbackRate={speed};
+        this._init=true;
+      }">
+    ```
+
+- **License auto-detection via metadata**
+
+    > **yt-dlp `--dump-json`** writes a video's metadata as JSON to standard output without downloading the actual file. It's fast and returns a rich set of fields including `title`, `uploader`, `artist`, `track`, `license`, and `description`.
+
+    Metadata fetched via yt-dlp's `--dump-json` is analyzed to assess copyright risk in order of specificity: presence of `artist` / `track` fields (set by YouTube for commercially distributed music), the string "Licensed to YouTube by" in the description, and keyword matching against the title and uploader name for royalty-free signals (NCS, nocopyright, etc.). Since metadata alone isn't a reliable indicator, the result is displayed as a reference badge rather than a definitive determination.
+
 - **Efficient preview workflow**
+
+    > **FFmpeg `-preset` option (libx264)** offers a range from `ultrafast` to `veryslow`, trading encoding speed for compression efficiency. Faster presets use less CPU but produce somewhat larger files; slower presets spend more time to achieve higher compression. The difference in file size between `slow` and `fast` at the same CRF value is noticeable.
 
     Preview generation uses the `fast` preset, keeping iteration quick. The final output uses the `slow` preset for maximum compression efficiency. When no zoom is configured, the final output re-encodes the preview footage directly, so it completes quickly.
 
@@ -299,9 +421,9 @@ Limits vary by platform. Zenn's 3 MB cap is particularly tight — the SNS / Lig
 
 Not wanting to pay a subscription for a conversion tool, and not wanting to install extra software locally — those two things together were enough motivation to build this myself.
 
-Packaging it as a Google Colab notebook means it runs anywhere with a browser, with all settings handled through a GUI. This update makes zoom configuration noticeably smoother: end times can now be recorded by pausing the preview and clicking a button, eliminating the need to calculate hold duration by hand. The collapsible panels and highlight make managing multiple zoom events much less cluttered. Personally, embedding GIFs in READMEs has felt a lot less tedious since putting this together.
+Packaging it as a Google Colab notebook means it runs anywhere with a browser, with all settings handled through a GUI. This update adds BGM support: paste a YouTube URL, download the audio, and adjust start position, speed, and volume with sliders before merging it into the final MP4. Slider changes reflect in the audio player in real time, so you can hear the balance while you're setting it. Personally, being able to add a bit of music to a demo video without leaving the notebook has made the whole workflow feel a lot more self-contained.
 
-If you've ever found yourself thinking "converting demo videos is such a chore" or "I wish I could highlight that one interaction more clearly," I hope this is useful.
+If you've ever found yourself thinking "converting demo videos is such a chore," "I wish I could highlight that one interaction more clearly," or "I want to add some background music to make this demo more engaging," I hope this is useful.
 
 <ShareButtons />
 
@@ -313,5 +435,7 @@ If you've ever found yourself thinking "converting demo videos is such a chore" 
 - [FFmpeg Filters: palettegen](https://ffmpeg.org/ffmpeg-filters.html#palettegen)
 - [FFmpeg Filters: paletteuse](https://ffmpeg.org/ffmpeg-filters.html#paletteuse)
 - [FFmpeg Filters: zoompan](https://ffmpeg.org/ffmpeg-filters.html#zoompan)
+- [FFmpeg Filters: atempo](https://ffmpeg.org/ffmpeg-filters.html#atempo)
+- [yt-dlp Documentation](https://github.com/yt-dlp/yt-dlp)
 - [Google Colab](https://colab.research.google.com/)
 - [ipywidgets Documentation](https://ipywidgets.readthedocs.io/)
