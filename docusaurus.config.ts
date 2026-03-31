@@ -8,7 +8,7 @@ const math = require('remark-math');
 const katex = require('rehype-katex');
 
 const config: Config = {
-  title: 'HkDocs',
+  title: 'HKDocs',
   tagline: 'My Knowledge Imprint',
   favicon: 'img/favicon.ico',
 
@@ -138,6 +138,7 @@ const config: Config = {
       logo: {
         alt: 'Hk Docs Logo',
         src: 'img/logo.svg',
+        srcDark: 'img/logo.svg', // 同じファイルを指定するだけでOK
       },
       hideOnScroll: true,
       items: [
