@@ -236,13 +236,13 @@ h2.title_dz1C {
 h1[class^='heroTitle_'] {
   font-family: 'Cinzel', serif;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
 }
 
 p[class^='heroSubtitle_'] {
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: 'Noto Sans JP', serif;
+  font-weight: 500;
+  letter-spacing: 0.07em;
 }
 
 /* --- DocCard Title --- */
