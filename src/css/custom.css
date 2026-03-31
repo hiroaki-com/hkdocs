@@ -139,6 +139,15 @@ html {
  * -------------------------------------------------------------------------- */
 
 /* --- Navbar --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&display=swap');
+
+.navbar__title {
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
 .navbar__logo img {
   height: 1.7rem;
   transform: translateY(2px);
@@ -219,9 +228,21 @@ h2.title_dz1C {
 }
 
 /* --- Hero Banner --- */
-.hero--primary .hero__title,
+/* .hero--primary .hero__title,
 .hero--primary .hero__subtitle {
   color: #ffffff;
+} */
+
+h1[class^='heroTitle_'] {
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+p[class^='heroSubtitle_'] {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
 }
 
 /* --- DocCard Title --- */
