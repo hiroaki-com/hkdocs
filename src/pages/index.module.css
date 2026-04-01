@@ -1,4 +1,9 @@
-/* ヒーローセクション */
+/*
+ * Homepage Styles
+ * index.tsx の各コンポーネントに対応するCSSモジュール
+ */
+
+/* --- Hero Section --- */
 .heroBanner {
   padding: 2rem;
   text-align: center;
@@ -28,11 +33,11 @@
 }
 
 .heroSubtitle {
-  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 300;
   line-height: 1.5;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   color: var(--ifm-font-color-secondary);
   max-width: 600px;
   margin-left: auto;
@@ -46,11 +51,13 @@
   }
 
   .heroSubtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
 
-/* サイトコントロールセクション（言語 + テーマ 横並び） */
+/* --- Site Controls Section --- */
+
+/* 言語切り替えとテーマトグルのラッパー */
 .siteControlsSection {
   display: flex;
   justify-content: center;
@@ -60,8 +67,7 @@
   border-bottom: 1px solid var(--ifm-color-emphasis-100);
 }
 
-/* ── トラック共通スタイル（言語切り替え・テーマトグル） ──
-   両コンポーネントで完全に一致する外枠スタイルをグループ化 */
+/* トラック（背景枠）共通スタイル: 言語切り替え・テーマトグル */
 .localeSwitchTrack,
 .themeToggleTrack {
   display: flex;
@@ -80,7 +86,7 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* テーマトグル: ボタン固有スタイル */
+/* テーマトグル: ボタントラック固有スタイル */
 .themeToggleTrack {
   cursor: pointer;
   appearance: none;
@@ -93,7 +99,7 @@
   outline-offset: 2px;
 }
 
-/* 言語切り替え: ボタン */
+/* 言語切り替え: ボタン固有スタイル */
 .localeButton {
   display: inline-flex;
   align-items: center;
@@ -114,8 +120,7 @@
   text-decoration: none;
 }
 
-/* ── アクティブピル共通スタイル（言語切り替え・テーマトグル） ──
-   両コンポーネントで完全に一致する浮き上がりスタイルをグループ化 */
+/* アクティブ要素共通スタイル: 選択された言語・テーマのピル（浮き上がり表現） */
 .localeButtonActive,
 .themeTogglePillActive {
   background: rgba(255, 255, 255, 0.85);
@@ -151,7 +156,7 @@
   color: rgba(255, 255, 255, 0.92) !important;
 }
 
-/* テーマトグル: 各アイコンピル */
+/* テーマトグル: 各アイコンのピルスタイル */
 .themeTogglePill {
   display: flex;
   align-items: center;
