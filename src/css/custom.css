@@ -1,6 +1,5 @@
 /**
- * Docusaurus
- * Global Custom CSS
+ * Docusaurus Global Custom CSS
  *
  * Table of Contents:
  * 1. Theme Variables (:root, [data-theme='dark'])
@@ -8,15 +7,16 @@
  * 3. Component Overrides
  * 4. Navbar Icon Links
  * 5. Navbar Menu Icons
+ * 6. Page Layout Adjustments
  */
 
-/* CSS仕様に従い @import はすべてのスタイルルールより前に配置する */
+/* CSS仕様により @import は先頭に配置 */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Noto+Sans+JP:wght@500&display=swap');
 
 /*
  * 1. Theme Variables
  * -------------------------------------------------------------------------- */
- :root {
+:root {
   /* --- Typography --- */
   --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', Monaco, Consolas, monospace;
@@ -143,7 +143,6 @@ html {
  * -------------------------------------------------------------------------- */
 
 /* --- Navbar --- */
-
 .navbar__title {
   font-family: 'Cinzel', serif;
   font-weight: 800;
@@ -218,6 +217,7 @@ html {
 }
 
 /* --- Headings --- */
+/* Docusaurusの動的クラス名（ハッシュ付き）へのスタイル適用 */
 h1 {
   font-size: var(--ifm-heading-font-size-1);
   line-height: var(--ifm-heading-line-height);
@@ -230,6 +230,7 @@ h2.title_dz1C {
 }
 
 /* --- DocCard Title --- */
+/* Docusaurusの動的クラス名（ハッシュ付き）へのスタイル適用 */
 a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   font-size: var(--doc-card-title-font-size);
 }
@@ -251,6 +252,7 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   color: #a4c5ed;
 }
 
+/* 動的クラス名（ハッシュ付き）へのスタイル適用 */
 .theme-announcement-bar div[class*='announcementBarContent_'],
 .theme-announcement-bar div[class*='announcementBarContent_'] p {
   color: inherit;
@@ -416,7 +418,7 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   background-image: var(--user-circle-icon);
 }
 
-/* レスポンシブ対応: モバイルでアイコンサイズを調整 */
+/* レスポンシブ対応: モバイルでのアイコンサイズ縮小 */
 @media (max-width: 996px) {
   .navbar__link[href*="/docs/"]:before,
   .navbar__link[href*="/blog"]:before,
@@ -427,12 +429,16 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   }
 }
 
-/* Blogの右TOCを消す */
+/*
+ * 6. Page Layout Adjustments
+ * -------------------------------------------------------------------------- */
+
+/* ブログレイアウト: 右側の目次(TOC)を非表示 */
 .blog-wrapper .col.col--2 {
   display: none;
 }
 
-/* 本文を最大まで広げる */
+/* ブログレイアウト: 本文エリアを最大幅に拡張 */
 .blog-wrapper .col.col--7 {
   flex: 1;
   max-width: 100%;
