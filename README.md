@@ -7,9 +7,13 @@
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 
+
+<img width="727" height="98" alt="hkdocs_bg_logo_20260401" src="https://github.com/user-attachments/assets/626ac925-25dd-4b66-981a-e50498aa0ee2" />
+
+
 技術ブログ、作業整理、日記などを集約した個人用のナレッジベースサイトです。Docusaurusで構築し、Google Cloud Run上でホストしています。
 
-👉 *[https://hkdocs.com/](https://hkdocs.com/)*
+🌐 [https://hkdocs.com/](https://hkdocs.com/)
 
 🔤 [English README](./README.en.md)
 

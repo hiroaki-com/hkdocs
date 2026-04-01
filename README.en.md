@@ -7,9 +7,13 @@
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 
+
+<img width="727" height="98" alt="hkdocs_bg_logo_20260401" src="https://github.com/user-attachments/assets/f2c297ab-a3d8-48b9-992c-99cb874bc4fd" />
+
+
 A personal knowledge base that consolidates a tech blog, work notes, and a diary. Built with Docusaurus and hosted on Google Cloud Run.
 
-👉 *[https://hkdocs.com/](https://hkdocs.com/)*
+🌐 [https://hkdocs.com/](https://hkdocs.com/)
 
 🇯🇵 [日本語 Readme](./README.md)
 
