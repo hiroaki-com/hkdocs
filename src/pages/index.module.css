@@ -28,7 +28,7 @@
 }
 
 .heroSubtitle {
-  font-family: 'Noto Sans JP', serif;
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5;
@@ -60,8 +60,10 @@
   border-bottom: 1px solid var(--ifm-color-emphasis-100);
 }
 
-/* 言語切り替え: トラック（外枠）*/
-.localeSwitchTrack {
+/* ── トラック共通スタイル（言語切り替え・テーマトグル） ──
+   両コンポーネントで完全に一致する外枠スタイルをグループ化 */
+.localeSwitchTrack,
+.themeToggleTrack {
   display: flex;
   align-items: center;
   padding: 3px;
@@ -72,12 +74,26 @@
   -webkit-backdrop-filter: blur(12px);
 }
 
-[data-theme='dark'] .localeSwitchTrack {
+[data-theme='dark'] .localeSwitchTrack,
+[data-theme='dark'] .themeToggleTrack {
   border-color: rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* テーマトグルのピルと高さ・フォントサイズを統一 */
+/* テーマトグル: ボタン固有スタイル */
+.themeToggleTrack {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.themeToggleTrack:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* 言語切り替え: ボタン */
 .localeButton {
   display: inline-flex;
   align-items: center;
@@ -98,8 +114,10 @@
   text-decoration: none;
 }
 
-/* 言語切り替え: スライドするピル */
-.localeButtonActive {
+/* ── アクティブピル共通スタイル（言語切り替え・テーマトグル） ──
+   両コンポーネントで完全に一致する浮き上がりスタイルをグループ化 */
+.localeButtonActive,
+.themeTogglePillActive {
   background: rgba(255, 255, 255, 0.85);
   box-shadow:
     0 1px 4px rgba(0, 0, 0, 0.12),
@@ -107,6 +125,19 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+[data-theme='dark'] .localeButtonActive,
+[data-theme='dark'] .themeTogglePillActive {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* 言語切り替え: アクティブピル固有スタイル */
+.localeButtonActive {
   color: var(--ifm-color-emphasis-800) !important;
   font-weight: 600;
   cursor: default;
@@ -117,38 +148,7 @@
 }
 
 [data-theme='dark'] .localeButtonActive {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 1px 4px rgba(0, 0, 0, 0.4),
-    0 1px 2px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.92) !important;
-}
-
-/* テーマトグル: トラック（外枠） — 言語切り替えと同一仕様 */
-.themeToggleTrack {
-  display: flex;
-  align-items: center;
-  padding: 3px;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-}
-
-[data-theme='dark'] .themeToggleTrack {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.themeToggleTrack:focus-visible {
-  outline: 2px solid var(--ifm-color-primary);
-  outline-offset: 2px;
 }
 
 /* テーマトグル: 各アイコンピル */
@@ -166,23 +166,11 @@
     color 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* テーマトグル: アクティブなピル — 言語切り替えと同一仕様 */
+/* テーマトグル: アクティブピル固有スタイル */
 .themeTogglePillActive {
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow:
-    0 1px 4px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   color: var(--ifm-color-emphasis-700);
 }
 
 [data-theme='dark'] .themeTogglePillActive {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 1px 4px rgba(0, 0, 0, 0.4),
-    0 1px 2px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.88);
 }
