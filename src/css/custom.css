@@ -10,6 +10,9 @@
  * 5. Navbar Menu Icons
  */
 
+/* CSS仕様に従い @import はすべてのスタイルルールより前に配置する */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Noto+Sans+JP:wght@500&display=swap');
+
 /*
  * 1. Theme Variables
  * -------------------------------------------------------------------------- */
@@ -140,8 +143,6 @@ html {
  * -------------------------------------------------------------------------- */
 
 /* --- Navbar --- */
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&display=swap');
 
 .navbar__title {
   font-family: 'Cinzel', serif;
