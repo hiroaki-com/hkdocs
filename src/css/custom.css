@@ -13,7 +13,7 @@
 /*
  * 1. Theme Variables
  * -------------------------------------------------------------------------- */
-:root {
+ :root {
   /* --- Typography --- */
   --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', Monaco, Consolas, monospace;
@@ -130,6 +130,7 @@
 /*
  * 2. Global Styles
  * -------------------------------------------------------------------------- */
+
 html {
   background-color: var(--ifm-background-color);
 }
@@ -225,24 +226,6 @@ h2.title_rsdE,
 h2.title_dz1C {
   font-size: var(--ifm-heading-font-size-2-rsdE);
   line-height: var(--ifm-heading-line-height);
-}
-
-/* --- Hero Banner --- */
-/* .hero--primary .hero__title,
-.hero--primary .hero__subtitle {
-  color: #ffffff;
-} */
-
-h1[class^='heroTitle_'] {
-  font-family: 'Cinzel', serif;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-}
-
-p[class^='heroSubtitle_'] {
-  font-family: 'Noto Sans JP', serif;
-  font-weight: 500;
-  letter-spacing: 0.07em;
 }
 
 /* --- DocCard Title --- */
