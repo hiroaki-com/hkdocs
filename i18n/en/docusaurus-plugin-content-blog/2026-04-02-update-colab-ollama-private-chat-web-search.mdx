@@ -1,0 +1,65 @@
+---
+title: "Web Search RAG Added to Ollama Colab Private Chat"
+date: "2026-04-02"
+description: "Web search RAG powered by DuckDuckGo is now available in both the Inline and Standalone chat UIs. A single toggle in the chat interface enables it, letting LLM responses reflect the latest search results."
+authors: [hk]
+tags: [release, ollama, google-colab, llm, rag, duckduckgo, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
+
+[Ollama Colab Private Chat](https://github.com/hiroaki-com/colab-ollama-private-chat) now supports Web Search RAG. Just flip the **🔍 Web Search** toggle in the chat UI to include DuckDuckGo search results as context when sending messages to the LLM.
+
+{/* truncate */}
+
+### What's New
+
+**Web Search Toggle**
+
+A **🔍 Web Search** toggle button has been added to both the Inline and Standalone chat UIs. It is off by default, so existing behavior is completely unchanged — search only runs when you explicitly enable it.
+
+**LLM-Optimized Query Generation**
+
+Rather than sending the user's raw input directly to the search engine, the local LLM first extracts a concise keyword query from the message before searching. This keeps search accuracy high even when questions are written in natural, conversational language.
+
+**Source Citations Below Responses**
+
+After each LLM response, the titles and links of the referenced search results are displayed as a source list, so you can verify the basis of any answer right in the chat.
+
+**TTL Cache**
+
+Search results for identical queries are cached for 5 minutes, reducing the number of requests sent to DuckDuckGo even when the same topic is asked about repeatedly.
+
+### Web Search Configuration Parameters
+
+The following parameters have been added to the top of the `Server` cell and can be adjusted via the Colab form.
+
+| Parameter | Description | Default |
+|:---|:---|:---|
+| `SEARCH_MAX_RESULTS` | Maximum number of search results to retrieve | 5 |
+| `SEARCH_BODY_LENGTH` | Maximum number of characters extracted from each result body | 300 |
+| `SEARCH_TIME_LIMIT` | Time-range filter for search results | No limit |
+| `SEARCH_REGION` | Region / language for search results | English |
+
+### Other Changes
+
+- The default value of `num_ctx` has been raised from 4096 to **8192**. A longer context window is now the default to accommodate search results being injected as RAG context.
+- The `Model Registry`, `Server`, and `Chat UI — Standalone` cells are now collapsed (`collapsed`) by default, improving notebook readability.
+- Inline mode streaming and Tunnel mode connection handling have been refactored and simplified.
+
+### Getting Started
+
+No environment setup is required. Open the Colab link below and run the cells from top to bottom.
+
+- Run on Google Colab: [Ollama Colab Private Chat (English)](https://colab.research.google.com/github/hiroaki-com/colab-ollama-private-chat/blob/main/ollama_colab_private_chat_en.ipynb)
+- Browse the source: [hiroaki-com/colab-ollama-private-chat on GitHub](https://github.com/hiroaki-com/colab-ollama-private-chat)
+
+Feedback and Pull Requests are always welcome.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
