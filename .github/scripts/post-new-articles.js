@@ -11,7 +11,6 @@ const ARTICLE_PREFIX = '🚨: ';
 const LOG_PREFIX = '[PostToX]';
 const TARGET_DIRS = ['blog/', 'docs/'];
 const TARGET_EXTS = ['.md', '.mdx'];
-const DEPLOYMENT_WAIT_MS = 180000;
 const URL_VERIFICATION_RETRY_COUNT = 5;
 const URL_VERIFICATION_RETRY_DELAY_MS = 30000;
 
@@ -248,8 +247,6 @@ async function main() {
   }
   
   console.log(`${LOG_PREFIX} Found ${newContentFiles.length} new content file(s) to process:`, newContentFiles);
-  console.log(`${LOG_PREFIX} Waiting ${DEPLOYMENT_WAIT_MS / 1000}s for deployment to complete...`);
-  await new Promise(resolve => setTimeout(resolve, DEPLOYMENT_WAIT_MS));
 
   for (const file of newContentFiles) {
     await processArticleFile(file);
