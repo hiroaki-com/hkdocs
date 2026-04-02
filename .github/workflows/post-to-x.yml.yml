@@ -52,4 +52,6 @@ jobs:
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
           SITE_URL: ${{ secrets.SITE_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
         run: node ./.github/scripts/post-new-articles.js
+        
