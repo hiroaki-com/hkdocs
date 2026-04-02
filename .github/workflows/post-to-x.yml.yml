@@ -1,6 +1,5 @@
 # .github/workflows/post-to-x.yml
 name: Post New Articles to X
-
 on:
   push:
     branches:
@@ -11,7 +10,8 @@ on:
       - 'docs/**.md'
       - 'docs/**.mdx'
       - '!diary/**'
-
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 jobs:
   post_to_x:
     runs-on: ubuntu-latest
@@ -21,35 +21,29 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           # スクリプトがコミット間の差分を取得するためにGit履歴全体が必要
           fetch-depth: 0
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-
       - name: Enable Corepack and Set up PNPM
         run: |
           corepack enable
           corepack prepare pnpm@10.11.0 --activate
         shell: bash
-
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-
       - name: Wait for Site Deployment
         # Cloud Runへのデプロイが完了するのを待つために3分間待機
         run: |
           echo "Waiting 3 minutes for the site deployment to complete..."
           sleep 180
         shell: bash
-
       - name: Find New Posts and Post to X
         env:
           X_API_KEY: ${{ secrets.X_API_KEY }}
