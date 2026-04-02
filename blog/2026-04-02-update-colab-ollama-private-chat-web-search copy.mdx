@@ -1,0 +1,65 @@
+---
+title: "Ollama Colab Private Chat にWeb検索RAG機能を追加しました"
+date: "2026-04-02"
+description: "DuckDuckGoを使ったWeb検索RAG機能をInline・Standaloneの両UIに追加しました。チャット画面のトグルボタン一つで有効化でき、LLMの回答に最新の検索結果を反映させることができます。"
+authors: [hk]
+tags: [release, ollama, google-colab, llm, rag, duckduckgo, open-source]
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
+
+[Ollama Colab Private Chat](https://github.com/hiroaki-com/colab-ollama-private-chat) にWeb検索RAG機能を追加しました。チャットUIに追加した「🔍 Web検索」トグルをオンにするだけで、DuckDuckGoの検索結果をコンテキストに加えてLLMへ送信できます。
+
+{/* truncate */}
+
+### 追加した機能
+
+**Web検索トグル**
+
+Inline・Standaloneどちらのチャット画面にも「🔍 Web検索」トグルボタンを追加しました。オフ（デフォルト）のままでは従来通り動作し、オンにした場合のみ検索が実行されます。
+
+**LLMによるクエリ最適化**
+
+ユーザーの入力をそのまま検索に使うのではなく、ローカルLLMが入力文から検索エンジン向けの短いキーワードを自動で抽出してから検索します。自然な文章で質問しても、検索精度が落ちにくい設計です。
+
+**検索結果のソース表示**
+
+LLMの回答の下に、参照した検索結果のタイトルとリンクを出典リストとして表示します。回答の根拠をその場で確認できます。
+
+**TTLキャッシュ**
+
+同じクエリに対する検索結果は5分間キャッシュされます。繰り返し質問してもDuckDuckGoへのリクエスト数を抑えられます。
+
+### Web検索の設定パラメーター
+
+`Server` セルの上部に、以下のパラメーターを追加しました。Colabのフォームから変更できます。
+
+| パラメーター | 説明 | デフォルト |
+|:---|:---|:---|
+| `SEARCH_MAX_RESULTS` | 取得する検索結果の最大件数 | 5 |
+| `SEARCH_BODY_LENGTH` | 各検索結果から切り出す本文の最大文字数 | 300 |
+| `SEARCH_TIME_LIMIT` | 検索対象の期間フィルター | 制限なし |
+| `SEARCH_REGION` | 検索対象の地域・言語 | 日本語 |
+
+### その他の変更
+
+- `num_ctx` のデフォルト値を 4096 から **8192** に変更しました。RAGで検索結果をコンテキストに追加するため、より長いコンテキスト長をデフォルトにしています。
+- `Model Registry` と `Server`、`Chat UI — Standalone` の各セルを折り畳み表示（`collapsed`）に変更し、ノートブックの見通しを改善しました。
+- Inline モードのストリーミング処理とTunnelモードの接続まわりを整理・簡略化しました。
+
+### 使い始める
+
+環境構築は不要です。以下のColabリンクを開き、セルを上から順に実行してください。
+
+- Google Colab で実行する: [Ollama Colab Private Chat（日本語版）](https://colab.research.google.com/github/hiroaki-com/colab-ollama-private-chat/blob/main/ollama_colab_private_chat_ja.ipynb)
+- ソースコードを見る: [hiroaki-com/colab-ollama-private-chat on GitHub](https://github.com/hiroaki-com/colab-ollama-private-chat)
+
+フィードバックやPull Requestはいずれも歓迎します。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
