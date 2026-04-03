@@ -19,7 +19,7 @@ II. 使用技術スタック
     - テーマ: `@docusaurus/preset-classic`
   * 言語: TypeScript `~5.6.2`
   * UIライブラリ: React `v19.0.0`
-  * Node.js: `v22.16.0` (`.nvmrc` ファイルでバージョンを規定)
+  * Node.js: `v22.22.2` (`.nvmrc` ファイルでバージョンを規定)
   * パッケージマネージャ: pnpm `v10.11.0` (Corepack経由で管理)
   * コンテナ化: Docker, Docker Compose
   * ソースコード管理: GitHub
@@ -96,10 +96,10 @@ V. 構成詳細: コンテナ化 (Docker)
 
   * `Dockerfile` (本番用):
     - マルチステージビルドを採用し、最終的なイメージサイズを削減。
-      - `builder` ステージ: `node:22.16.0-alpine`をベースに、`pnpm install`で
+      - `builder` ステージ: `node:22.22.2-alpine`をベースに、`pnpm install`で
         依存関係をインストールし、`pnpm build`でサイトをビルド。
         `pnpm prune --prod`で本番に不要なパッケージを削除。
-      - 最終ステージ: `node:22.16.0-alpine`をベースに、`builder`ステージから
+      - 最終ステージ: `node:22.22.2-alpine`をベースに、`builder`ステージから
         ビルド成果物 (`build`ディレクトリ)と本番用の`node_modules`のみをコピー。
     - セキュリティ: 非rootユーザー (`node`)でアプリケーションを実行。
     - ヘルスチェック: `HEALTHCHECK`命令により、Cloud Runがコンテナの正常性を監視。
