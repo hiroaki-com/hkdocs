@@ -1,0 +1,56 @@
+name: "[Test] Post to X"
+# 用途: X API の疎通確認・ソーシャルカード表示の手動テスト
+# 新規記事を作成せず、任意のURLで実際のXへ投稿テストができる
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_url:
+        description: "投稿するURL（ソーシャルカード確認用）"
+        required: false
+        default: "https://hkdocs.com/blog/"
+        type: string
+      custom_message:
+        description: "カスタムメッセージ（省略時はデフォルトメッセージを使用）"
+        required: false
+        default: ""
+        type: string
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  test_post_to_x:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+
+      - name: Enable Corepack and Set up PNPM
+        shell: bash
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.11.0 --activate
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Post Test Message to X
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          TEST_POST_URL: ${{ inputs.post_url }}
+          TEST_CUSTOM_MESSAGE: ${{ inputs.custom_message }}
+          GITHUB_STEP_SUMMARY: ${{ env.GITHUB_STEP_SUMMARY }}
+        run: node ./.github/scripts/test-post-to-x.js
