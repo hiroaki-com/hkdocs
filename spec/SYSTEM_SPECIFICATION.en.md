@@ -20,7 +20,7 @@ II. Technology Stack
     - Theme: `@docusaurus/preset-classic`
   * Language: TypeScript `~5.6.2`
   * UI Library: React `v19.0.0`
-  * Node.js: `v22.16.0` (version specified in the `.nvmrc` file)
+  * Node.js: `v22.22.2` (version specified in the `.nvmrc` file)
   * Package Manager: pnpm `v10.11.0` (managed via Corepack)
   * Containerization: Docker, Docker Compose
   * Source Code Management: GitHub
@@ -104,10 +104,10 @@ V. Configuration Details: Containerization (Docker)
 
   * `Dockerfile` (for Production):
     - Uses a multi-stage build to reduce the final image size.
-      - `builder` stage: Based on `node:22.16.0-alpine`, it installs dependencies
+      - `builder` stage: Based on `node:22.22.2-alpine`, it installs dependencies
         with `pnpm install` and builds the site with `pnpm build`.
         `pnpm prune --prod` removes packages unnecessary for production.
-      - Final stage: Based on `node:22.16.0-alpine`, it copies only the build
+      - Final stage: Based on `node:22.22.2-alpine`, it copies only the build
         artifacts (`build` directory) and production `node_modules` from the
         `builder` stage.
     - Security: Runs the application as a non-root user (`node`).
