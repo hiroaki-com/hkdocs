@@ -1,6 +1,6 @@
 # ---- Builder Stage ----
 # Base image: Node.js Alpine
-FROM node:22.16.0-alpine AS builder
+FROM node:22.22.2-alpine AS builder
 WORKDIR /app
 
 # Enable Corepack to use pnpm version from package.json's "packageManager" field
@@ -24,7 +24,7 @@ RUN pnpm prune --prod
 
 # ---- Final Stage ----
 # Base image: Node.js Alpine
-FROM node:22.16.0-alpine
+FROM node:22.22.2-alpine
 WORKDIR /app
 
 # Install curl for health checks (as root before switching user)
