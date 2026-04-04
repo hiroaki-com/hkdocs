@@ -3,6 +3,7 @@ title: "動画の任意範囲にモザイクをかけるGoogle Colabツール「
 date: "2026-03-06"
 description: "動画の任意の時間範囲・任意の位置にモザイクまたは単色マスクをかけてMP4で出力するオープンソースツールのリリースを発表します。ブラウザ上のGUI操作だけで完結し、環境構築は不要です。"
 authors: [hk]
+video_asset: "https://github.com/user-attachments/assets/0c5b0ee4-e73c-4e62-8fac-a351ec8fb391"
 tags: [release, ffmpeg, google-colab, mosaic, privacy, open-source]
 ---
 
