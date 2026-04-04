@@ -1,5 +1,5 @@
 .section {
-  padding: 1.5rem var(--ifm-spacing-horizontal, 1rem) 1.25rem;
+  padding: 0 var(--ifm-spacing-horizontal, 1rem) 1.25rem;
   border-bottom: 1px solid var(--ifm-color-emphasis-100);
 }
 
