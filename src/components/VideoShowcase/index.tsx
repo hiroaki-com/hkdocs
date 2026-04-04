@@ -12,15 +12,9 @@ type ShowcaseItem = { title: string; url: string; video_asset: string };
 const items = rawItems as ShowcaseItem[];
 const INTERVAL = 3000;
 
-const ChevronLeft = () => (
+const Chevron = ({ direction }: { direction: 'left' | 'right' }) => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <polyline points="15 18 9 12 15 6" />
-  </svg>
-);
-
-const ChevronRight = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <polyline points="9 18 15 12 9 6" />
+    <polyline points={direction === 'left' ? '15 18 9 12 15 6' : '9 18 15 12 9 6'} />
   </svg>
 );
 
@@ -49,6 +43,7 @@ export default function VideoShowcase(): JSX.Element | null {
         <div className={styles.slider}>
           <div className={styles.track} style={{ transform: `translateX(-${index * 100}%)` }}>
             {items.map((item) => {
+              // GIF判定で逆転：拡張子なしURLはvideo扱い
               const isGif = /\.gif$/i.test(item.video_asset);
               return (
                 <Link key={item.url} to={item.url} className={styles.slide}>
@@ -69,10 +64,10 @@ export default function VideoShowcase(): JSX.Element | null {
         {multi && (
           <>
             <button className={clsx(styles.arrow, styles.arrowPrev)} onClick={() => go(index - 1)} aria-label="前へ">
-              <ChevronLeft />
+              <Chevron direction="left" />
             </button>
             <button className={clsx(styles.arrow, styles.arrowNext)} onClick={() => go(index + 1)} aria-label="次へ">
-              <ChevronRight />
+              <Chevron direction="right" />
             </button>
           </>
         )}
