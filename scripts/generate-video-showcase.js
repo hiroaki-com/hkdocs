@@ -5,7 +5,10 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const BLOG_DIR = path.join(__dirname, '../blog');
+const BLOG_DIRS = {
+  ja: path.join(__dirname, '../blog'),
+  en: path.join(__dirname, '../i18n/en/docusaurus-plugin-content-blog'),
+};
 const OUTPUT_FILE = path.join(__dirname, '../src/data/video-showcase.json');
 
 /**
@@ -25,22 +28,34 @@ function resolveUrl(filename, frontmatter) {
   return `/blog/${filename.replace(/\.(md|mdx)$/, '')}`;
 }
 
-const files = fs.readdirSync(BLOG_DIR).filter((f) => /\.(md|mdx)$/.test(f));
+const result = {};
+let totalItems = 0;
 
-const items = files
-  .map((filename) => {
-    const raw = fs.readFileSync(path.join(BLOG_DIR, filename), 'utf8');
-    const { data } = matter(raw);
-    if (!data.video_asset) return null;
-    return {
-      title: data.title ?? filename,
-      url: resolveUrl(filename, data),
-      video_asset: data.video_asset,
-    };
-  })
-  .filter(Boolean)
-  .sort((a, b) => b.url.localeCompare(a.url)); // newest first
+for (const [locale, dir] of Object.entries(BLOG_DIRS)) {
+  if (!fs.existsSync(dir)) {
+    result[locale] = [];
+    continue;
+  }
+
+  const files = fs.readdirSync(dir).filter((f) => /\.(md|mdx)$/.test(f));
+
+  result[locale] = files
+    .map((filename) => {
+      const raw = fs.readFileSync(path.join(dir, filename), 'utf8');
+      const { data } = matter(raw);
+      if (!data.video_asset) return null;
+      return {
+        title: data.title ?? filename,
+        url: resolveUrl(filename, data),
+        video_asset: data.video_asset,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.url.localeCompare(a.url)); // newest first
+
+  totalItems += result[locale].length;
+}
 
 fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
-fs.writeFileSync(OUTPUT_FILE, JSON.stringify(items, null, 2) + '\n');
-console.log(`[video-showcase] generated ${items.length} item(s) → ${OUTPUT_FILE}`);
+fs.writeFileSync(OUTPUT_FILE, JSON.stringify(result, null, 2) + '\n');
+console.log(`[video-showcase] generated ${totalItems} item(s) → ${OUTPUT_FILE}`);
