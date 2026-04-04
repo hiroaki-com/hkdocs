@@ -46,7 +46,6 @@ const MoonIcon = () => (
 );
 
 function ThemeToggle(): JSX.Element {
-  // lazy initializer で初期値を確定させ、マウント後の余分なレンダーを排除
   const [isDark, setIsDark] = useState(
     () => typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
   );
