@@ -5,6 +5,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useLocation } from '@docusaurus/router';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import VideoShowcase from '@site/src/components/VideoShowcase';
 import Heading from '@theme/Heading';
 import { translate } from '@docusaurus/Translate';
 
@@ -45,11 +46,12 @@ const MoonIcon = () => (
 );
 
 function ThemeToggle(): JSX.Element {
-  const [isDark, setIsDark] = useState(false);
+  // lazy initializer で初期値を確定させ、マウント後の余分なレンダーを排除
+  const [isDark, setIsDark] = useState(
+    () => typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
+  );
 
   useEffect(() => {
-    setIsDark(document.documentElement.getAttribute('data-theme') === 'dark');
-
     const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.getAttribute('data-theme') === 'dark');
     });
@@ -137,6 +139,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <SiteControlsSection />
+        <VideoShowcase />
         <HomepageFeatures />
       </main>
     </Layout>
