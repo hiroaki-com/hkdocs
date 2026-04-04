@@ -1,32 +1,66 @@
-[
-  {
-    "title": "Ollama Colab Private Chat にWeb検索RAG機能を追加しました",
-    "url": "/blog/2026/04/02/update-colab-ollama-private-chat-web-search",
-    "video_asset": "https://github.com/user-attachments/assets/c4feb357-516b-41da-aa17-8844c5c7b3a8"
-  },
-  {
-    "title": "Make Demo GIF / MP4 にBGM追加機能を追加しました",
-    "url": "/blog/2026/03/28/update-colab-video-converter-bgm",
-    "video_asset": "https://github.com/user-attachments/assets/1f75efd8-aa61-4fee-bf34-6076ba6a790c"
-  },
-  {
-    "title": "Google ColabのGPUで動く、ログを残さないプライベートLLMチャットツールをリリースしました。",
-    "url": "/blog/2026/03/27/release-colab-ollama-private-chat",
-    "video_asset": "https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
-  },
-  {
-    "title": "動画の任意範囲にモザイクをかけるGoogle Colabツール「Colab Mosaic Clip」をリリースしました",
-    "url": "/blog/2026/03/06/release-colab-mosaic-clip",
-    "video_asset": "https://github.com/user-attachments/assets/0c5b0ee4-e73c-4e62-8fac-a351ec8fb391"
-  },
-  {
-    "title": "Google ColabをOllamaサーバーとして使えるノートブック「Ollama Colab Free Server」をリリースしました",
-    "url": "/blog/2026/03/01/release-colab-ollama-server",
-    "video_asset": "https://github.com/user-attachments/assets/98084bb4-6eb0-4e47-850b-f1bae0311c70"
-  },
-  {
-    "title": "Make Demo GIF / MP4 にズーム機能を追加しました",
-    "url": "/blog/2026/02/24/update-colab-video-converter-zoom",
-    "video_asset": "https://github.com/user-attachments/assets/f273c631-0655-4c28-8575-5a5e21c69b8f"
-  }
-]
+{
+  "ja": [
+    {
+      "title": "Ollama Colab Private Chat にWeb検索RAG機能を追加しました",
+      "url": "/blog/2026/04/02/update-colab-ollama-private-chat-web-search",
+      "video_asset": "https://github.com/user-attachments/assets/c4feb357-516b-41da-aa17-8844c5c7b3a8"
+    },
+    {
+      "title": "Make Demo GIF / MP4 にBGM追加機能を追加しました",
+      "url": "/blog/2026/03/28/update-colab-video-converter-bgm",
+      "video_asset": "https://github.com/user-attachments/assets/1f75efd8-aa61-4fee-bf34-6076ba6a790c"
+    },
+    {
+      "title": "Google ColabのGPUで動く、ログを残さないプライベートLLMチャットツールをリリースしました。",
+      "url": "/blog/2026/03/27/release-colab-ollama-private-chat",
+      "video_asset": "https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
+    },
+    {
+      "title": "動画の任意範囲にモザイクをかけるGoogle Colabツール「Colab Mosaic Clip」をリリースしました",
+      "url": "/blog/2026/03/06/release-colab-mosaic-clip",
+      "video_asset": "https://github.com/user-attachments/assets/0c5b0ee4-e73c-4e62-8fac-a351ec8fb391"
+    },
+    {
+      "title": "Google ColabをOllamaサーバーとして使えるノートブック「Ollama Colab Free Server」をリリースしました",
+      "url": "/blog/2026/03/01/release-colab-ollama-server",
+      "video_asset": "https://github.com/user-attachments/assets/98084bb4-6eb0-4e47-850b-f1bae0311c70"
+    },
+    {
+      "title": "Make Demo GIF / MP4 にズーム機能を追加しました",
+      "url": "/blog/2026/02/24/update-colab-video-converter-zoom",
+      "video_asset": "https://github.com/user-attachments/assets/f273c631-0655-4c28-8575-5a5e21c69b8f"
+    }
+  ],
+  "en": [
+    {
+      "title": "Web Search RAG Added to Ollama Colab Private Chat",
+      "url": "/blog/2026/04/02/update-colab-ollama-private-chat-web-search",
+      "video_asset": "https://github.com/user-attachments/assets/c4feb357-516b-41da-aa17-8844c5c7b3a8"
+    },
+    {
+      "title": "Added BGM Feature to Make Demo GIF / MP4",
+      "url": "/blog/2026/03/28/update-colab-video-converter-bgm",
+      "video_asset": "https://github.com/user-attachments/assets/1f75efd8-aa61-4fee-bf34-6076ba6a790c"
+    },
+    {
+      "title": "I Released a Private LLM Chat Tool That Runs on Google Colab's GPU and Stores No Logs.",
+      "url": "/blog/2026/03/27/release-colab-ollama-private-chat",
+      "video_asset": "https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
+    },
+    {
+      "title": "Releasing Colab Mosaic Clip — a Google Colab tool for applying mosaics to any region of a video",
+      "url": "/blog/2026/03/06/release-colab-mosaic-clip",
+      "video_asset": "https://github.com/user-attachments/assets/984e6d25-5342-4532-be71-c32714989bd3"
+    },
+    {
+      "title": "Releasing \"Ollama Colab Free Server\" — Run Ollama on Google Colab as a Free LLM Server",
+      "url": "/blog/2026/03/01/release-colab-ollama-server",
+      "video_asset": "https://github.com/user-attachments/assets/b40c8d63-ad0d-4149-993f-a11f12b4e58a"
+    },
+    {
+      "title": "Zoom Feature Added to Make Demo GIF / MP4",
+      "url": "/blog/2026/02/24/update-colab-video-converter-zoom",
+      "video_asset": "https://github.com/user-attachments/assets/3a64c2e1-2534-4290-b476-a49d0dae01c0"
+    }
+  ]
+}
