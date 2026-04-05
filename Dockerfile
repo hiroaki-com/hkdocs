@@ -8,7 +8,7 @@ WORKDIR /app
 RUN corepack enable pnpm
 
 # Copy package manifests for optimized layer caching
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install all dependencies (including devDependencies for build)
 RUN pnpm install --frozen-lockfile
@@ -26,9 +26,6 @@ RUN pnpm prune --prod
 # Base image: Node.js Alpine
 FROM node:22.22.2-alpine
 WORKDIR /app
-
-# Install curl for health checks (as root before switching user)
-RUN apk add --no-cache curl
 
 # Enable Corepack to use pnpm version from package.json's "packageManager" field
 # This ensures 'pnpm run serve' can find the correct pnpm version
@@ -53,10 +50,6 @@ COPY --from=builder --chown=node:node /app/package.json ./package.json
 
 # Expose application port
 EXPOSE 8080
-
-# Application health check for Cloud Run
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD curl -f http://localhost:8080/ || exit 1
 
 # Start application using "serve" script from package.json
 # Assumes "scripts": { "serve": "serve -s build -l tcp://0.0.0.0:${PORT:-8080}" } in package.json
