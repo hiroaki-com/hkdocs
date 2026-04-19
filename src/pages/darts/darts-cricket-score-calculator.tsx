@@ -64,8 +64,8 @@ type Player = { name: string; score: number; marks: Record<string, number> };
 
 type Game = {
   players: Player[];
-  cp: number;       // current player index
-  du: number;       // darts used this turn
+  cp: number;
+  du: number;
   mult: number;
   darts: DartThrow[];
   over: boolean;
@@ -83,6 +83,7 @@ const CSS = `
   padding: 2rem 1rem;
   background-color: transparent;
   min-height: calc(100vh - var(--ifm-navbar-height, 60px));
+  overflow-x: hidden;
 }
 
 .dc-setup {
@@ -119,17 +120,30 @@ const CSS = `
   margin-right: auto;
 }
 
-.dc-sh { display: grid; gap: 0 12px; margin-bottom: 16px; }
-.dc-sc { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 12px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+/* Sticky wrapper keeps score header + board visible while scrolling input panel */
+.dc-sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ifm-background-color);
+  padding-top: 6px;
+  padding-bottom: 4px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dc-sh { display: grid; gap: 0 12px; margin-bottom: 8px; }
+.dc-sc { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 12px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); min-width: 0; }
 .dc-sc.active { border-color: var(--ifm-color-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
 .dc-sn { font-size: 14px; color: var(--ifm-color-emphasis-700); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-sn.active { color: var(--ifm-color-primary); font-weight: 700; }
 .dc-rem { font-size: 28px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.1; }
 
-.dc-board { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); overflow: hidden; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+.dc-board { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); overflow: hidden; margin-bottom: 10px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
 .dc-board-row { display: grid; border-bottom: 1px solid var(--ifm-color-emphasis-200); align-items: center; min-height: 48px; }
 .dc-board-row:last-child { border-bottom: none; }
-.dc-board-cell { display: flex; align-items: center; gap: 4px; padding: 6px 8px; }
+.dc-board-cell { display: flex; align-items: center; gap: 4px; padding: 6px 8px; min-width: 0; }
 .dc-board-cell.left { justify-content: flex-end; }
 .dc-board-cell.right { justify-content: flex-start; }
 .dc-board-target { text-align: center; font-size: 16px; font-weight: 700; color: var(--ifm-font-color-base); }
@@ -205,31 +219,35 @@ const CSS = `
 .dc-wb1:active { transform: scale(0.98); }
 
 @media(max-width: 480px) {
-  .darts-cricket-container { padding: 1rem 0.5rem; --dc-tgt-w: 42px; }
+  .darts-cricket-container { padding: 0.5rem 0.5rem; --dc-tgt-w: 38px; }
   .dc-setup { padding: 20px 16px; }
   .dc-stitle { font-size: 20px; }
-  .dc-sh { gap: 0 8px; margin-bottom: 12px; }
-  .dc-sc { padding: 8px 4px; }
-  .dc-rem { font-size: 22px; }
-  .dc-board { margin-bottom: 12px; }
-  .dc-board-row { min-height: 40px; }
-  .dc-board-cell { padding: 4px 2px; gap: 2px; }
-  .dc-board-target { font-size: 14px; }
-  .dc-mark { width: 14px; font-size: 14px; }
-  .dc-mark-3 { font-size: 16px; }
-  .dc-mark-plus { font-size: 10px; margin: 0 1px; }
-  .dc-tp { padding: 12px; margin-bottom: 12px; }
+  .dc-sticky-top { padding-top: 4px; padding-bottom: 2px; }
+  .dc-sh { gap: 0 6px; margin-bottom: 6px; }
+  .dc-sc { padding: 6px 4px; }
+  .dc-rem { font-size: 18px; }
+  .dc-sn { font-size: 11px; }
+  /* Compact board rows on mobile to reduce sticky height */
+  .dc-board { margin-bottom: 8px; }
+  .dc-board-row { min-height: 32px; }
+  .dc-board-cell { padding: 2px 2px; gap: 1px; }
+  .dc-board-target { font-size: 12px; }
+  .dc-mark { width: 12px; font-size: 12px; }
+  .dc-mark-3 { font-size: 13px; }
+  .dc-mark-plus { font-size: 9px; margin: 0 1px; }
+  .dc-tp { padding: 10px 12px; margin-bottom: 10px; }
   .dc-tpl { font-size: 14px; }
-  .dc-ip { padding: 16px 12px; }
-  .dc-mr { gap: 6px; }
-  .dc-np { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .dc-ar { gap: 6px; }
-  .dc-nb, .dc-mb, .dc-ab { padding: 10px 4px; font-size: 13px; min-height: 44px; }
-  .dc-nn { font-size: 16px; }
+  .dc-ip { padding: 12px 10px; }
+  .dc-mr { gap: 5px; }
+  .dc-np { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+  .dc-ar { gap: 5px; }
+  .dc-nb, .dc-mb, .dc-ab { padding: 9px 4px; font-size: 13px; min-height: 44px; }
+  .dc-nn { font-size: 15px; }
+  .dc-nv { font-size: 11px; }
 }
 
 @media(min-width: 481px) and (max-width: 768px) {
-  .darts-cricket-container { padding: 1.5rem 1rem; }
+  .darts-cricket-container { padding: 1rem 1rem; }
   .dc-np { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -465,8 +483,11 @@ function DartsCricketApp({ t }: { t: T }) {
     const winTitle = g.winner !== null ? t.winTitle(g.players[g.winner].name) : t.drawTitle;
     return (
       <div className="darts-cricket-container">
-        {scoreHeader}
-        {scoreboard}
+        {/* Sticky top: score header + board stays visible */}
+        <div className="dc-sticky-top">
+          {scoreHeader}
+          {scoreboard}
+        </div>
         <div className="dc-ww">
           <div className="dc-wm">
             <div className="dc-wt">{winTitle}</div>
@@ -488,8 +509,11 @@ function DartsCricketApp({ t }: { t: T }) {
 
   return (
     <div className="darts-cricket-container">
-      {scoreHeader}
-      {scoreboard}
+      {/* Sticky top: score header + board stays visible while scrolling input panel */}
+      <div className="dc-sticky-top">
+        {scoreHeader}
+        {scoreboard}
+      </div>
 
       <div className="dc-tp">
         <div className="dc-tt">
