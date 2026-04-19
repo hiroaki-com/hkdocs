@@ -137,7 +137,6 @@ const CSS = `
   margin-right: auto;
 }
 
-/* Sticky score area: stays visible while scrolling input panel */
 .d01-sh {
   display: grid;
   gap: 12px;
@@ -158,9 +157,9 @@ const CSS = `
 .d01-hint { font-size: 13px; color: var(--ifm-color-success); margin-top: 4px; min-height: 18px; font-weight: 600; }
 .d01-avg { font-size: 12px; color: var(--ifm-color-emphasis-500); margin-top: 4px; }
 
-.d01-tp { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
-.d01-tt { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.d01-tpl { font-size: 16px; font-weight: 600; color: var(--ifm-font-color-base); }
+.d01-tp { position: relative; background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+.d01-tt { display: flex; align-items: center; margin-bottom: 12px; }
+.d01-tpl { position: absolute; top: 16px; right: 16px; font-size: 14px; font-weight: 600; color: var(--ifm-color-emphasis-600); white-space: nowrap; }
 .d01-dots { display: flex; gap: 8px; flex-shrink: 0; }
 .d01-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--ifm-color-emphasis-300); transition: all 0.2s ease; }
 .d01-dot.used { background: var(--ifm-color-emphasis-600); border-color: var(--ifm-color-emphasis-600); }
@@ -228,7 +227,6 @@ const CSS = `
   .d01-setup { padding: 20px 16px; }
   .d01-stitle { font-size: 20px; }
 
-  /* 2-column grid for score cards; compact height */
   .d01-sh { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 6px 0 2px; margin-bottom: 10px; }
   .d01-sc { padding: 8px 6px; }
   .d01-rem { font-size: 26px; }
@@ -237,7 +235,7 @@ const CSS = `
   .d01-sn { font-size: 12px; }
 
   .d01-tp { padding: 10px 12px; margin-bottom: 10px; }
-  .d01-tpl { font-size: 14px; }
+  .d01-tpl { top: 10px; right: 12px; font-size: 12px; }
   .d01-ip { padding: 12px 10px; }
   .d01-np { grid-template-columns: repeat(4, 1fr); gap: 5px; }
   .d01-mr, .d01-sr, .d01-ar { gap: 5px; }
@@ -482,8 +480,9 @@ function GameView({ game, cfg, t, canUndo, onThrow, onMiss, onEndTurn, onUndo, o
       <ScoreCards players={players} cp={cp} over={false} cfg={cfg} t={t} />
 
       <div className="d01-tp">
+        {/* ラウンド表記: 右上に常時固定表示 */}
+        <div className="d01-tpl">{t.roundLabel(round, cfg.turnLimit, players[cp].name)}</div>
         <div className="d01-tt">
-          <div className="d01-tpl">{t.roundLabel(round, cfg.turnLimit, players[cp].name)}</div>
           <div className="d01-dots">
             {[0, 1, 2].map(i => <span key={i} className={`d01-dot ${i < du ? 'used' : 'rem'}`} />)}
           </div>
