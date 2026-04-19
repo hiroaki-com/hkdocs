@@ -3,33 +3,31 @@ import Layout from '@theme/Layout';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-// --- 定数 ---
 const TARGETS: (number | 'B')[] = [20, 19, 18, 17, 16, 15, 'B'];
 const TV: Record<string, number> = { 20: 20, 19: 19, 18: 18, 17: 17, 16: 16, 15: 15, B: 25 };
 const MULT_LABELS: Record<number, string> = { 1: 'Single', 2: 'Double', 3: 'Triple' };
 
-// --- i18n ---
 const I18N = {
   ja: {
-    pageTitle: 'クリケット ダーツ スコア計算',
-    title: 'クリケット ダーツ',
+    pageTitle: 'クリケット ダーツ スコア計算機',
+    title: 'クリケット Game',
     subtitle: '2〜4人対戦 · 20〜15 + Bull',
-    numPlayers: '対戦人数',
+    numPlayers: 'プレイヤー数',
     playerLabel: (n: number) => `プレイヤー ${n}`,
     nPeople: (n: number) => `${n}人`,
-    maxTurns: '最大ターン数（1ターン＝3投）',
+    maxTurns: 'ターン数制限',
     start: 'ゲーム開始',
     undo: '戻す',
-    endTurn: 'ターン終了',
+    endTurn: 'プレイヤーチェンジ',
     settings: '設定に戻る',
     settingsConfirm: '設定画面に戻りますか？\n現在のゲーム進行は失われます。',
     bull: 'Bull',
     miss: 'Miss',
     noDart: '—',
-    turnLabel: (cur: number, max: number) => `Turn ${cur}/${max}`,
-    winTitle: (name: string) => `🎯 ${name} の勝利！`,
+    turnLabel: (cur: number, max: number) => `R${cur}/${max}`,
+    winTitle: (name: string) => `${name} の勝利！`,
     drawTitle: '引き分け',
-    playAgain: 'もう一度プレイ',
+    playAgain: '設定に戻る',
     pts: (n: number) => `+${n}pts`,
   },
   en: {
@@ -39,26 +37,25 @@ const I18N = {
     numPlayers: 'Players',
     playerLabel: (n: number) => `Player ${n}`,
     nPeople: (n: number) => `${n}`,
-    maxTurns: 'Max Turns (1 turn = 3 darts)',
+    maxTurns: 'Turn Limit',
     start: 'Start Game',
     undo: 'Undo',
-    endTurn: 'End Turn',
+    endTurn: 'Next Player',
     settings: 'Settings',
     settingsConfirm: 'Return to settings?\nCurrent game progress will be lost.',
     bull: 'Bull',
     miss: 'Miss',
     noDart: '—',
-    turnLabel: (cur: number, max: number) => `Turn ${cur}/${max}`,
-    winTitle: (name: string) => `🎯 ${name} Wins!`,
+    turnLabel: (cur: number, max: number) => `R${cur}/${max}`,
+    winTitle: (name: string) => `${name} Wins!`,
     drawTitle: 'Draw',
-    playAgain: 'Play Again',
+    playAgain: 'Settings',
     pts: (n: number) => `+${n}pts`,
   },
 } as const;
 
 type T = (typeof I18N)['ja' | 'en'];
 
-// --- 型 ---
 type DartThrow =
   | { miss: true }
   | { miss: false; mult: number; t: number | 'B'; pts: number };
@@ -77,80 +74,206 @@ type Game = {
   maxTurns: number;
 };
 
-// --- ゲームロジック ---
-function freshPlayers(names: string[]): Player[] {
-  return names.map(name => ({
-    name,
+const CSS = `
+.darts-cricket-container {
+  --dc-tgt-w: 54px;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: transparent;
+  min-height: calc(100vh - var(--ifm-navbar-height, 60px));
+}
+
+.dc-setup {
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius, 8px);
+  padding: 32px;
+  box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05));
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.dc-stitle { font-size: 24px; font-weight: 700; color: var(--ifm-heading-color); margin-bottom: 8px; text-align: center; }
+.dc-ssub { font-size: 14px; color: var(--ifm-color-emphasis-600); text-align: center; margin-bottom: 32px; }
+.dc-row { margin-bottom: 20px; }
+.dc-lbl { font-size: 14px; font-weight: 600; color: var(--ifm-color-emphasis-700); margin-bottom: 8px; }
+.dc-seg { display: flex; gap: 8px; }
+.dc-seg-btn { flex: 1; padding: 10px; border-radius: var(--ifm-button-border-radius, 6px); border: 1px solid var(--ifm-color-emphasis-300); background: var(--ifm-background-color); cursor: pointer; font-size: 14px; font-weight: 600; color: var(--ifm-font-color-base); text-align: center; transition: all 0.15s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+.dc-seg-btn.sel { background: var(--ifm-color-primary); border-color: var(--ifm-color-primary); color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+.dc-seg-btn:hover:not(.sel) { background: var(--ifm-color-emphasis-100); border-color: var(--ifm-color-emphasis-400); }
+.dc-seg-btn:active { transform: scale(0.96); }
+
+.dc-inp { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-300); border-radius: var(--ifm-button-border-radius, 6px); padding: 10px 12px; font-size: 15px; color: var(--ifm-font-color-base); width: 100%; transition: all 0.2s ease; }
+.dc-inp:focus { outline: none; border-color: var(--ifm-color-primary); box-shadow: 0 0 0 2px rgba(var(--ifm-color-primary-rgb), 0.2); }
+
+.dc-start { width: 100%; padding: 14px; border-radius: var(--ifm-button-border-radius, 6px); border: none; background: var(--ifm-color-primary); cursor: pointer; font-size: 16px; font-weight: 700; color: #fff; margin-top: 24px; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.dc-start:hover { background: var(--ifm-color-primary-dark); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+.dc-start:active { transform: scale(0.98); }
+
+.dc-sh, .dc-board, .dc-tp, .dc-ip, .dc-ww {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dc-sh { display: grid; gap: 0 12px; margin-bottom: 16px; }
+.dc-sc { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 12px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+.dc-sc.active { border-color: var(--ifm-color-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.dc-sn { font-size: 14px; color: var(--ifm-color-emphasis-700); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dc-sn.active { color: var(--ifm-color-primary); font-weight: 700; }
+.dc-rem { font-size: 28px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.1; }
+
+.dc-board { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); overflow: hidden; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+.dc-board-row { display: grid; border-bottom: 1px solid var(--ifm-color-emphasis-200); align-items: center; min-height: 48px; }
+.dc-board-row:last-child { border-bottom: none; }
+.dc-board-cell { display: flex; align-items: center; gap: 4px; padding: 6px 8px; }
+.dc-board-cell.left { justify-content: flex-end; }
+.dc-board-cell.right { justify-content: flex-start; }
+.dc-board-target { text-align: center; font-size: 16px; font-weight: 700; color: var(--ifm-font-color-base); }
+.dc-board-target.closed { color: var(--ifm-color-emphasis-400); text-decoration: line-through; }
+
+.dc-mark { font-family: sans-serif; font-weight: bold; font-size: 16px; line-height: 1; display: inline-block; width: 16px; text-align: center; }
+.dc-mark-1 { color: var(--ifm-font-color-base); }
+.dc-mark-2 { color: var(--ifm-font-color-base); }
+.dc-mark-3 { color: var(--ifm-color-success); font-size: 18px; }
+.dc-mark-plus { font-size: 12px; font-weight: bold; color: var(--ifm-color-danger); margin: 0 2px; }
+
+.dc-tp { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+.dc-tt { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.dc-tpl { font-size: 16px; font-weight: 600; color: var(--ifm-font-color-base); }
+.dc-tpl-sub { font-size: 13px; color: var(--ifm-color-emphasis-500); font-weight: 400; margin-left: 8px; }
+.dc-dots { display: flex; gap: 8px; flex-shrink: 0; }
+.dc-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--ifm-color-emphasis-300); transition: all 0.2s ease; }
+.dc-dot.used { background: var(--ifm-color-emphasis-600); border-color: var(--ifm-color-emphasis-600); }
+.dc-dot.rem { background: var(--ifm-color-primary-lightest); border-color: var(--ifm-color-primary-light); }
+.dc-dl { display: flex; gap: 8px; flex-wrap: wrap; min-height: 28px; align-items: center; }
+.dc-chip { font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: var(--ifm-button-border-radius, 6px); background: var(--ifm-color-emphasis-100); border: 1px solid var(--ifm-color-emphasis-200); color: var(--ifm-font-color-base); }
+.dc-chip.miss { color: var(--ifm-color-emphasis-500); }
+.dc-nd { font-size: 14px; color: var(--ifm-color-emphasis-400); }
+
+.dc-ip { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 24px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+.dc-mr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+
+.dc-mb, .dc-nb, .dc-ab, .dc-wb2 {
+  padding: 12px 8px;
+  border-radius: var(--ifm-button-border-radius, 6px);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ifm-font-color-base);
+  text-align: center;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.dc-mb, .dc-ab, .dc-wb2 { flex-direction: row; }
+
+.dc-mb:hover:not(.sel), .dc-nb:hover:not(:disabled), .dc-ab:hover:not(:disabled), .dc-wb2:hover { background: var(--ifm-color-emphasis-100); border-color: var(--ifm-color-emphasis-400); }
+.dc-mb:active, .dc-nb:active:not(:disabled), .dc-ab:active:not(:disabled), .dc-wb2:active { transform: scale(0.96); }
+.dc-mb.sel { background: var(--ifm-color-primary); border-color: var(--ifm-color-primary); color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+
+.dc-np { display: grid; gap: 8px; margin-bottom: 16px; }
+.dc-nb:disabled { opacity: 0.4; cursor: not-allowed; background: var(--ifm-color-emphasis-100); box-shadow: none; transform: none; }
+.dc-nb.over { opacity: 0.35; }
+.dc-nn { font-size: 18px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.2; }
+.dc-nv { font-size: 12px; color: var(--ifm-color-emphasis-500); margin-top: 2px; }
+
+.dc-ar { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 8px; }
+.dc-ab:disabled { opacity: 0.4; cursor: not-allowed; background: var(--ifm-color-emphasis-100); box-shadow: none; transform: none; }
+.dc-ab.undo { color: var(--ifm-color-danger); border-color: var(--ifm-color-danger); }
+.dc-ab.undo:hover:not(:disabled) { background: rgba(var(--ifm-color-danger-rgb), 0.1); }
+.dc-ab.ghost { color: var(--ifm-color-emphasis-600); }
+.dc-ab.hi { background: var(--ifm-color-primary); color: #fff; border-color: var(--ifm-color-primary); box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+.dc-ab.hi:hover { background: var(--ifm-color-primary-dark); }
+
+.dc-ww { min-height: 340px; background: var(--ifm-background-color-subtle, var(--ifm-color-emphasis-100)); display: flex; align-items: center; justify-content: center; border-radius: var(--ifm-global-radius, 8px); margin-bottom: 16px; border: 1px solid var(--ifm-color-emphasis-200); }
+.dc-wm { background: var(--ifm-background-color); border-radius: 12px; padding: 32px 28px; max-width: 360px; width: 90%; text-align: center; border: 1px solid var(--ifm-color-emphasis-200); box-shadow: 0 8px 16px -4px rgba(0,0,0,0.1); }
+.dc-wt { font-size: 24px; font-weight: 700; color: var(--ifm-heading-color); margin-bottom: 12px; }
+.dc-ws { font-size: 14px; color: var(--ifm-color-emphasis-700); margin-bottom: 32px; line-height: 1.8; }
+.dc-wbs { display: flex; flex-direction: column; gap: 12px; }
+.dc-wb1 { width: 100%; padding: 14px; border-radius: var(--ifm-button-border-radius, 6px); border: none; background: var(--ifm-color-primary); cursor: pointer; font-size: 15px; font-weight: 700; color: #fff; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.dc-wb1:hover { background: var(--ifm-color-primary-dark); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+.dc-wb1:active { transform: scale(0.98); }
+
+@media(max-width: 480px) {
+  .darts-cricket-container { padding: 1rem 0.5rem; --dc-tgt-w: 42px; }
+  .dc-setup { padding: 20px 16px; }
+  .dc-stitle { font-size: 20px; }
+  .dc-sh { gap: 0 8px; margin-bottom: 12px; }
+  .dc-sc { padding: 8px 4px; }
+  .dc-rem { font-size: 22px; }
+  .dc-board { margin-bottom: 12px; }
+  .dc-board-row { min-height: 40px; }
+  .dc-board-cell { padding: 4px 2px; gap: 2px; }
+  .dc-board-target { font-size: 14px; }
+  .dc-mark { width: 14px; font-size: 14px; }
+  .dc-mark-3 { font-size: 16px; }
+  .dc-mark-plus { font-size: 10px; margin: 0 1px; }
+  .dc-tp { padding: 12px; margin-bottom: 12px; }
+  .dc-tpl { font-size: 14px; }
+  .dc-ip { padding: 16px 12px; }
+  .dc-mr { gap: 6px; }
+  .dc-np { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .dc-ar { gap: 6px; }
+  .dc-nb, .dc-mb, .dc-ab { padding: 10px 4px; font-size: 13px; min-height: 44px; }
+  .dc-nn { font-size: 16px; }
+}
+
+@media(min-width: 481px) and (max-width: 768px) {
+  .darts-cricket-container { padding: 1.5rem 1rem; }
+  .dc-np { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media(min-width: 769px) {
+  .dc-np { grid-template-columns: repeat(8, 1fr); }
+  .dc-board-row { min-height: 52px; }
+  .dc-board-target { font-size: 18px; }
+  .dc-mark { width: 18px; font-size: 18px; }
+  .dc-mark-3 { font-size: 20px; }
+}
+`;
+
+function freshPlayers(names: string[], t: T): Player[] {
+  return names.map((name, i) => ({
+    name: name.trim() || t.playerLabel(i + 1),
     score: 0,
     marks: { 20: 0, 19: 0, 18: 0, 17: 0, 16: 0, 15: 0, B: 0 },
   }));
 }
 
 function checkWin(players: Player[]): number | null {
-  for (let pi = 0; pi < players.length; pi++) {
-    const p = players[pi];
-    if (
-      TARGETS.every(t => p.marks[String(t)] >= 3) &&
-      players.every((op, i) => i === pi || p.score >= op.score)
-    ) return pi;
-  }
-  return null;
+  const idx = players.findIndex((p, pi) =>
+    TARGETS.every(t => p.marks[String(t)] >= 3) &&
+    players.every((op, i) => i === pi || p.score >= op.score)
+  );
+  return idx === -1 ? null : idx;
 }
 
 function cloneGame(g: Game): Game {
   return JSON.parse(JSON.stringify(g));
 }
 
-// --- スタイルユーティリティ (IFM変数でライト/ダークモード対応) ---
-const S = {
-  card: {
-    background: 'var(--ifm-background-color)',
-    border: '1px solid var(--ifm-color-emphasis-300)',
-    borderRadius: 8,
-  } as React.CSSProperties,
-  btnBase: {
-    padding: '8px 6px',
-    borderRadius: 6,
-    border: '1px solid var(--ifm-color-emphasis-300)',
-    background: 'var(--ifm-color-emphasis-100)',
-    cursor: 'pointer',
-    fontSize: 13,
-    fontWeight: 500,
-    color: 'var(--ifm-font-color-base)',
-    textAlign: 'center',
-    transition: 'background 0.15s',
-  } as React.CSSProperties,
-  btnActive: {
-    padding: '8px 6px',
-    borderRadius: 6,
-    border: '1px solid var(--ifm-color-primary-light)',
-    background: 'var(--ifm-color-primary-lightest)',
-    cursor: 'pointer',
-    fontSize: 13,
-    fontWeight: 600,
-    color: 'var(--ifm-color-primary)',
-    textAlign: 'center',
-  } as React.CSSProperties,
-};
-
-// --- マーク表示: / X ⊗ ---
 function MarkDisplay({ n }: { n: number }) {
   if (n === 0) return null;
-  const style: React.CSSProperties = { fontSize: 16, fontWeight: 600, lineHeight: 1 };
-  if (n === 1) return <span style={{ ...style, color: 'var(--ifm-font-color-base)' }}>/</span>;
-  if (n === 2) return <span style={{ ...style, color: 'var(--ifm-font-color-base)' }}>X</span>;
-  return <span style={{ fontSize: 17, color: 'var(--ifm-color-success)', lineHeight: 1 }}>⊗</span>;
+  if (n === 1) return <span className="dc-mark dc-mark-1">/</span>;
+  if (n === 2) return <span className="dc-mark dc-mark-2">X</span>;
+  return <span className="dc-mark dc-mark-3">⊗</span>;
 }
 
-// --- メインゲームコンポーネント ---
-function DartsCricketApp() {
-  const { i18n: { currentLocale } } = useDocusaurusContext();
-  const t: T = I18N[currentLocale === 'en' ? 'en' : 'ja'];
-
+function DartsCricketApp({ t }: { t: T }) {
   const [phase, setPhase] = useState<'setup' | 'game'>('setup');
   const [playerCount, setPlayerCount] = useState(2);
-  const [names, setNames] = useState(['Player 1', 'Player 2', 'Player 3', 'Player 4']);
-  const [maxTurns, setMaxTurns] = useState(8);
+  const [names, setNames] = useState(['', '', '', '']);
+  const [maxTurns, setMaxTurns] = useState(20);
   const [game, setGame] = useState<Game | null>(null);
   const [history, setHistory] = useState<string[]>([]);
 
@@ -159,7 +282,7 @@ function DartsCricketApp() {
 
   const startGame = () => {
     setGame({
-      players: freshPlayers(names.slice(0, playerCount)),
+      players: freshPlayers(names.slice(0, playerCount), t),
       cp: 0, du: 0, mult: 1, darts: [], over: false, winner: null, turn: 1, maxTurns,
     });
     setHistory([]);
@@ -178,7 +301,7 @@ function DartsCricketApp() {
 
   const throwDart = (target: number | 'B', mult: number) => {
     if (!game || game.du >= 3 || game.over) return;
-    if (target === 'B' && mult === 3) return; // Triple Bull は無効
+    if (target === 'B' && mult === 3) return;
 
     withSnapshot(g => {
       const tk = String(target);
@@ -212,7 +335,6 @@ function DartsCricketApp() {
       g.cp = (g.cp + 1) % g.players.length;
       g.du = 0; g.darts = []; g.mult = 1;
 
-      // 最大ターン数超過で強制終了
       if (g.cp === 0 && g.turn > g.maxTurns) {
         g.over = true;
         let max = -1, ws: number[] = [];
@@ -232,60 +354,42 @@ function DartsCricketApp() {
     setHistory(h => h.slice(0, -1));
   };
 
-  // --- セットアップ画面 ---
   if (phase === 'setup') {
     return (
-      <main style={{ padding: '1.5rem 1rem' }}>
-        <div style={{ maxWidth: 480, margin: '0 auto' }}>
-          <div style={{ ...S.card, padding: 24 }}>
-            <div style={{ fontSize: 20, fontWeight: 700, textAlign: 'center', color: 'var(--ifm-font-color-base)', marginBottom: 4 }}>
-              {t.title}
-            </div>
-            <div style={{ fontSize: 13, color: 'var(--ifm-color-emphasis-600)', textAlign: 'center', marginBottom: 24 }}>
-              {t.subtitle}
-            </div>
+      <div className="darts-cricket-container">
+        <div className="dc-setup">
+          <div className="dc-stitle">{t.title}</div>
+          <div className="dc-ssub">{t.subtitle}</div>
 
-            <div style={{ marginBottom: 14 }}>
-              <label style={{ fontSize: 13, fontWeight: 500, color: 'var(--ifm-color-emphasis-700)' }}>{t.numPlayers}</label>
-              <div style={{ display: 'flex', gap: 6, marginTop: 4 }}>
-                {([2, 3, 4] as const).map(n => (
-                  <button key={n} style={{ flex: 1, ...(playerCount === n ? S.btnActive : S.btnBase) }}
-                    onClick={() => setPlayerCount(n)}>
-                    {t.nPeople(n)}
-                  </button>
-                ))}
-              </div>
+          <div className="dc-row">
+            <div className="dc-lbl">{t.numPlayers}</div>
+            <div className="dc-seg">
+              {([2, 3, 4] as const).map(n => (
+                <button key={n} className={`dc-seg-btn${playerCount === n ? ' sel' : ''}`}
+                  onClick={() => setPlayerCount(n)}>
+                  {t.nPeople(n)}
+                </button>
+              ))}
             </div>
-
-            {Array.from({ length: playerCount }, (_, i) => (
-              <div key={i} style={{ marginBottom: 10 }}>
-                <label style={{ fontSize: 13, fontWeight: 500, color: 'var(--ifm-color-emphasis-700)' }}>
-                  {t.playerLabel(i + 1)}
-                </label>
-                <input
-                  value={names[i]}
-                  onChange={e => updateName(i, e.target.value)}
-                  style={{ display: 'block', width: '100%', marginTop: 4, padding: '8px 10px', fontSize: 14, borderRadius: 6, border: '1px solid var(--ifm-color-emphasis-300)', background: 'var(--ifm-color-emphasis-100)', color: 'var(--ifm-font-color-base)' }}
-                />
-              </div>
-            ))}
-
-            <div style={{ marginBottom: 14 }}>
-              <label style={{ fontSize: 13, fontWeight: 500, color: 'var(--ifm-color-emphasis-700)' }}>{t.maxTurns}</label>
-              <input
-                type="number" min={1} value={maxTurns}
-                onChange={e => setMaxTurns(Math.max(1, parseInt(e.target.value) || 8))}
-                style={{ display: 'block', width: '100%', marginTop: 4, padding: '8px 10px', fontSize: 14, borderRadius: 6, border: '1px solid var(--ifm-color-emphasis-300)', background: 'var(--ifm-color-emphasis-100)', color: 'var(--ifm-font-color-base)' }}
-              />
-            </div>
-
-            <button onClick={startGame}
-              style={{ ...S.btnActive, width: '100%', padding: 12, fontSize: 14, fontWeight: 700, marginTop: 4 }}>
-              {t.start}
-            </button>
           </div>
+
+          <div className="dc-row">
+            <div className="dc-lbl">{t.maxTurns}</div>
+            <input type="number" className="dc-inp" value={maxTurns} min={1}
+              onChange={e => setMaxTurns(Math.max(1, parseInt(e.target.value, 10) || 1))} />
+          </div>
+
+          {Array.from({ length: playerCount }, (_, i) => (
+            <div key={i} className="dc-row">
+              <div className="dc-lbl">{t.playerLabel(i + 1)}</div>
+              <input className="dc-inp" value={names[i]} placeholder={t.playerLabel(i + 1)}
+                onChange={e => updateName(i, e.target.value)} />
+            </div>
+          ))}
+
+          <button className="dc-start" onClick={startGame}>{t.start}</button>
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -293,61 +397,61 @@ function DartsCricketApp() {
   const g = game;
   const pc = g.players.length;
   const cp = g.cp;
-  const half = Math.ceil(pc / 2);
+  const colCount = pc > 2 ? 2 : 1;
+  const gridCols = `repeat(${colCount}, 1fr) var(--dc-tgt-w, 54px) repeat(${colCount}, 1fr)`;
   const needChange = g.du >= 3;
 
-  // --- スコアヘッダー ---
+  const renderHeader = (idx: number) => {
+    if (idx >= pc) return <div key={`empty-h-${idx}`} />;
+    const p = g.players[idx];
+    const isActive = cp === idx && !g.over;
+    return (
+      <div key={idx} className={`dc-sc${isActive ? ' active' : ''}`}>
+        <div className={`dc-sn${isActive ? ' active' : ''}`}>{p.name}</div>
+        <div className="dc-rem">{p.score}</div>
+      </div>
+    );
+  };
+
   const scoreHeader = (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${pc}, 1fr)`, gap: 8, marginBottom: 10 }}>
-      {g.players.map((p, i) => (
-        <div key={i} style={{
-          ...S.card,
-          padding: '10px 8px',
-          textAlign: 'center',
-          border: cp === i && !g.over ? '2px solid var(--ifm-color-primary)' : '1px solid var(--ifm-color-emphasis-300)',
-        }}>
-          <div style={{ fontSize: 12, marginBottom: 2, fontWeight: cp === i && !g.over ? 600 : 400, color: cp === i && !g.over ? 'var(--ifm-color-primary)' : 'var(--ifm-color-emphasis-600)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {p.name}
-          </div>
-          <div style={{ fontSize: 26, fontWeight: 600, color: 'var(--ifm-font-color-base)', lineHeight: 1.1 }}>
-            {p.score}
-          </div>
-        </div>
-      ))}
+    <div className="dc-sh" style={{ gridTemplateColumns: gridCols }}>
+      {Array.from({ length: colCount }).map((_, i) => renderHeader(i))}
+      <div />
+      {Array.from({ length: colCount }).map((_, i) => renderHeader(colCount + i))}
     </div>
   );
 
-  // --- スコアボード ---
   const scoreboard = (
-    <div style={{ ...S.card, padding: 0, overflow: 'hidden', marginBottom: 10 }}>
+    <div className="dc-board">
       {TARGETS.map(target => {
         const tk = String(target);
         const allClosed = g.players.every(p => p.marks[tk] >= 3);
         const anyOpen = g.players.some(p => p.marks[tk] < 3);
         const tLabel = target === 'B' ? t.bull : String(target);
-        const gridCols = `repeat(${half}, 1fr) 54px repeat(${pc - half}, 1fr)`;
 
         return (
-          <div key={tk} style={{ display: 'grid', gridTemplateColumns: gridCols, borderBottom: '1px solid var(--ifm-color-emphasis-200)', alignItems: 'center', minHeight: 40 }}>
-            {Array.from({ length: half }, (_, i) => {
+          <div key={tk} className="dc-board-row" style={{ gridTemplateColumns: gridCols }}>
+            {Array.from({ length: colCount }).map((_, i) => {
+              if (i >= pc) return <div key={`empty-l-${i}`} />;
               const m = g.players[i].marks[tk];
               return (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row-reverse', gap: 3, padding: '6px 8px' }}>
-                  {m >= 3 && anyOpen && <span style={{ fontSize: 13, fontWeight: 'bold', color: 'var(--ifm-color-danger)', margin: '0 2px' }}>+</span>}
+                <div key={i} className="dc-board-cell left">
+                  {m >= 3 && anyOpen && <span className="dc-mark-plus">+</span>}
                   <MarkDisplay n={m} />
                 </div>
               );
             })}
-            <div style={{ textAlign: 'center', fontSize: 15, fontWeight: 600, color: allClosed ? 'var(--ifm-color-emphasis-400)' : 'var(--ifm-font-color-base)', textDecoration: allClosed ? 'line-through' : 'none' }}>
+            <div className={`dc-board-target${allClosed ? ' closed' : ''}`}>
               {tLabel}
             </div>
-            {Array.from({ length: pc - half }, (_, idx) => {
-              const i = half + idx;
-              const m = g.players[i].marks[tk];
+            {Array.from({ length: colCount }).map((_, i) => {
+              const idx = colCount + i;
+              if (idx >= pc) return <div key={`empty-r-${idx}`} />;
+              const m = g.players[idx].marks[tk];
               return (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3, padding: '6px 8px' }}>
+                <div key={idx} className="dc-board-cell right">
                   <MarkDisplay n={m} />
-                  {m >= 3 && anyOpen && <span style={{ fontSize: 13, fontWeight: 'bold', color: 'var(--ifm-color-danger)', margin: '0 2px' }}>+</span>}
+                  {m >= 3 && anyOpen && <span className="dc-mark-plus">+</span>}
                 </div>
               );
             })}
@@ -357,139 +461,124 @@ function DartsCricketApp() {
     </div>
   );
 
-  // --- 終了画面 ---
   if (g.over) {
     const winTitle = g.winner !== null ? t.winTitle(g.players[g.winner].name) : t.drawTitle;
     return (
-      <main style={{ padding: '1.5rem 1rem' }}>
-        <div style={{ maxWidth: 480, margin: '0 auto' }}>
-          {scoreHeader}
-          {scoreboard}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 160, background: 'var(--ifm-color-emphasis-100)', borderRadius: 10 }}>
-            <div style={{ ...S.card, maxWidth: 280, width: '90%', textAlign: 'center', padding: 24, boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
-              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--ifm-font-color-base)', marginBottom: 8 }}>{winTitle}</div>
-              <div style={{ fontSize: 13, color: 'var(--ifm-color-emphasis-600)', marginBottom: 20, lineHeight: 1.6 }}>
-                {g.players.map(p => `${p.name}: ${p.score}pts`).join(' / ')}
-              </div>
-              <button style={{ ...S.btnActive, width: '100%', padding: 10, fontSize: 14, fontWeight: 600 }} onClick={resetGame}>
+      <div className="darts-cricket-container">
+        {scoreHeader}
+        {scoreboard}
+        <div className="dc-ww">
+          <div className="dc-wm">
+            <div className="dc-wt">{winTitle}</div>
+            <div className="dc-ws">
+              {g.players.map((p, i) => (
+                <span key={i}>{p.name}: {p.score}pts<br/></span>
+              ))}
+            </div>
+            <div className="dc-wbs">
+              <button className="dc-wb1" onClick={resetGame}>
                 {t.playAgain}
               </button>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
-  // --- ゲーム画面 ---
   return (
-    <main style={{ padding: '1.5rem 1rem' }}>
-      <div style={{ maxWidth: 480, margin: '0 auto' }}>
-        {scoreHeader}
-        {scoreboard}
+    <div className="darts-cricket-container">
+      {scoreHeader}
+      {scoreboard}
 
-        {/* ターン情報パネル */}
-        <div style={{ ...S.card, padding: '10px 12px', marginBottom: 10 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ifm-font-color-base)' }}>
-              {g.players[cp].name}
-              <span style={{ fontSize: 12, color: 'var(--ifm-color-emphasis-600)', fontWeight: 400, marginLeft: 6 }}>
-                {t.turnLabel(g.turn, g.maxTurns)}
-              </span>
-            </div>
-            <div style={{ display: 'flex', gap: 5 }}>
-              {[0, 1, 2].map(i => (
-                <span key={i} style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', border: '1.5px solid var(--ifm-color-emphasis-300)', background: i < g.du ? 'var(--ifm-color-emphasis-600)' : 'var(--ifm-color-primary-lightest)' }} />
-              ))}
-            </div>
+      <div className="dc-tp">
+        <div className="dc-tt">
+          <div className="dc-tpl">
+            {g.players[cp].name}
+            <span className="dc-tpl-sub">{t.turnLabel(g.turn, g.maxTurns)}</span>
           </div>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', minHeight: 22, alignItems: 'center' }}>
-            {g.darts.length === 0 ? (
-              <span style={{ fontSize: 12, color: 'var(--ifm-color-emphasis-400)' }}>{t.noDart}</span>
-            ) : g.darts.map((d, i) => {
-              if (d.miss) return (
-                <span key={i} style={{ fontSize: 12, padding: '2px 8px', borderRadius: 6, background: 'var(--ifm-color-emphasis-100)', border: '1px solid var(--ifm-color-emphasis-200)', color: 'var(--ifm-color-emphasis-500)' }}>
-                  {t.miss}
-                </span>
-              );
-              const tl = d.t === 'B' ? t.bull : String(d.t);
-              const ptsStr = d.pts > 0 ? ` (${t.pts(d.pts)})` : '';
-              return (
-                <span key={i} style={{ fontSize: 12, padding: '2px 8px', borderRadius: 6, background: 'var(--ifm-color-emphasis-100)', border: '1px solid var(--ifm-color-emphasis-200)', color: 'var(--ifm-font-color-base)' }}>
-                  {MULT_LABELS[d.mult]} {tl}{ptsStr}
-                </span>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* 入力パネル */}
-        <div style={{ ...S.card, padding: 12 }}>
-          {/* マルチプライヤー選択 */}
-          <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
-            {[1, 2, 3].map(m => (
-              <button key={m} style={{ flex: 1, ...(g.mult === m ? S.btnActive : S.btnBase) }}
-                onClick={() => setGame({ ...g, mult: m })}>
-                {MULT_LABELS[m]}
-              </button>
+          <div className="dc-dots">
+            {[0, 1, 2].map(i => (
+              <span key={i} className={`dc-dot ${i < g.du ? 'used' : 'rem'}`} />
             ))}
           </div>
-
-          {/* ターゲットボタン (Miss含め4列グリッド) */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginBottom: 8 }}>
-            {TARGETS.map(target => {
-              const tk = String(target);
-              const tLabel = target === 'B' ? t.bull : String(target);
-              const isInvalidBull = target === 'B' && g.mult === 3;
-              const allClosed = g.players.every(p => p.marks[tk] >= 3);
-              const disabled = allClosed || isInvalidBull || needChange;
-              const pts = isInvalidBull ? '-' : `${TV[tk] * g.mult}pts`;
-              return (
-                <button key={tk} disabled={disabled}
-                  style={{ ...S.btnBase, padding: '8px 4px', opacity: disabled ? 0.4 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
-                  onClick={() => throwDart(target, g.mult)}>
-                  <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--ifm-font-color-base)' }}>{tLabel}</div>
-                  <div style={{ fontSize: 10, color: 'var(--ifm-color-emphasis-600)', marginTop: 1 }}>{pts}</div>
-                </button>
-              );
-            })}
-            <button disabled={needChange}
-              style={{ ...S.btnBase, padding: '8px 4px', opacity: needChange ? 0.4 : 1, cursor: needChange ? 'not-allowed' : 'pointer' }}
-              onClick={miss}>
-              <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--ifm-font-color-base)' }}>{t.miss}</div>
-              <div style={{ fontSize: 10, color: 'var(--ifm-color-emphasis-600)', marginTop: 1 }}>-</div>
-            </button>
-          </div>
-
-          {/* アクションボタン行 */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 6 }}>
-            <button disabled={history.length === 0} onClick={undo}
-              style={{ ...S.btnBase, color: 'var(--ifm-color-danger)', borderColor: 'var(--ifm-color-danger)', opacity: history.length ? 1 : 0.3, cursor: history.length ? 'pointer' : 'not-allowed' }}>
-              {t.undo}
-            </button>
-            <button onClick={endTurn}
-              style={{ ...(needChange ? S.btnActive : S.btnBase), fontSize: 14, fontWeight: 600 }}>
-              {t.endTurn}
-            </button>
-            <button style={S.btnBase}
-              onClick={() => { if (window.confirm(t.settingsConfirm)) resetGame(); }}>
-              {t.settings}
-            </button>
-          </div>
+        </div>
+        <div className="dc-dl">
+          {g.darts.length === 0 ? (
+            <span className="dc-nd">{t.noDart}</span>
+          ) : g.darts.map((d, i) => {
+            if (d.miss) return (
+              <span key={i} className="dc-chip miss">{t.miss}</span>
+            );
+            const tl = d.t === 'B' ? t.bull : String(d.t);
+            const ptsStr = d.pts > 0 ? ` (${t.pts(d.pts)})` : '';
+            return (
+              <span key={i} className="dc-chip">
+                {MULT_LABELS[d.mult]} {tl}{ptsStr}
+              </span>
+            );
+          })}
         </div>
       </div>
-    </main>
+
+      <div className="dc-ip">
+        <div className="dc-mr">
+          {[1, 2, 3].map(m => (
+            <button key={m} className={`dc-mb${g.mult === m ? ' sel' : ''}`}
+              onClick={() => setGame({ ...g, mult: m })}>
+              {MULT_LABELS[m]}
+            </button>
+          ))}
+        </div>
+
+        <div className="dc-np">
+          {TARGETS.map(target => {
+            const tk = String(target);
+            const tLabel = target === 'B' ? t.bull : String(target);
+            const isInvalidBull = target === 'B' && g.mult === 3;
+            const allClosed = g.players.every(p => p.marks[tk] >= 3);
+            const disabled = allClosed || isInvalidBull || needChange;
+            const pts = isInvalidBull ? '-' : `${TV[tk] * g.mult}pts`;
+            return (
+              <button key={tk} disabled={disabled} className={`dc-nb ${disabled ? 'over' : ''}`}
+                onClick={() => throwDart(target, g.mult)}>
+                <div className="dc-nn">{tLabel}</div>
+                <div className="dc-nv">{pts}</div>
+              </button>
+            );
+          })}
+          <button disabled={needChange} className={`dc-nb ${needChange ? 'over' : ''}`} onClick={miss}>
+            <div className="dc-nn">{t.miss}</div>
+            <div className="dc-nv">-</div>
+          </button>
+        </div>
+
+        <div className="dc-ar">
+          <button className="dc-ab undo" disabled={history.length === 0} onClick={undo}>
+            {t.undo}
+          </button>
+          <button className={`dc-ab${needChange ? ' hi' : ''}`} onClick={endTurn}>
+            {t.endTurn}
+          </button>
+          <button className="dc-ab ghost"
+            onClick={() => { if (window.confirm(t.settingsConfirm)) resetGame(); }}>
+            {t.settings}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
 export default function DartsCricketPage() {
+  const { i18n: { currentLocale } } = useDocusaurusContext();
+  const t: T = I18N[currentLocale === 'en' ? 'en' : 'ja'];
+
   return (
-    <Layout
-      title="Cricket Darts Score Calculator"
-      description="2–4 player cricket darts score calculator supporting 20–15 and Bull targets."
-    >
+    <Layout title={t.pageTitle} description={t.subtitle}>
+      <style>{CSS}</style>
       <BrowserOnly fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>}>
-        {() => <DartsCricketApp />}
+        {() => <DartsCricketApp t={t} />}
       </BrowserOnly>
     </Layout>
   );
