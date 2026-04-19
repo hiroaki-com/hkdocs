@@ -29,6 +29,11 @@
       "title": "Make Demo GIF / MP4 にズーム機能を追加しました",
       "url": "/blog/2026/02/24/update-colab-video-converter-zoom",
       "video_asset": "https://github.com/user-attachments/assets/f273c631-0655-4c28-8575-5a5e21c69b8f"
+    },
+    {
+      "title": "OllamaとCloudflare TunnelでColabにプライベートLLMチャット環境を作りました。",
+      "url": "/docs/tech/google-colab/google-colab-ollama-private-chat-for-local-llm",
+      "video_asset": "https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
     }
   ],
   "en": [
@@ -61,6 +66,11 @@
       "title": "Zoom Feature Added to Make Demo GIF / MP4",
       "url": "/blog/2026/02/24/update-colab-video-converter-zoom",
       "video_asset": "https://github.com/user-attachments/assets/3a64c2e1-2534-4290-b476-a49d0dae01c0"
+    },
+    {
+      "title": "I Built a Private LLM Chat Environment on Colab with Ollama and Cloudflare Tunnel.",
+      "url": "/docs/tech/google-colab/google-colab-ollama-private-chat-for-local-llm",
+      "video_asset": "https://github.com/user-attachments/assets/c6e13476-5acc-4a16-ba42-b7dae86225f2"
     }
   ]
 }
