@@ -2224,7 +2224,7 @@
       "message": "If this site helped you, please support us with a star! 🌟",
       "description": "The text asking for a GitHub star support"
   },
-"videoShowcase.prev": {
+  "videoShowcase.prev": {
     "message": "Previous",
     "description": "Aria label for the previous slide button in VideoShowcase"
   },
@@ -2235,5 +2235,269 @@
   "videoShowcase.slide": {
     "message": "Slide {n}",
     "description": "Aria label for dot navigation buttons in VideoShowcase"
-  }  
+  },
+  "page.darts-top.title": {
+    "message": "Darts Calculator App - 01 & Cricket Score Management",
+    "description": "Page title for the darts top page"
+  },
+  "page.darts-top.description": {
+    "message": "A free darts score calculation app that requires no installation. Easily calculate and track your 01 and Cricket scores right in your browser.",
+    "description": "Meta description for the darts top page"
+  },
+  "page.darts-top.h1": {
+    "message": "Free Browser-based Darts Calculator App",
+    "description": "Main heading and schema name for the darts top page"
+  },
+  "page.darts-top.keywords": {
+    "message": "darts, calculator, app, score, 01, zero one, cricket, free, browser",
+    "description": "Meta keywords for the darts top page"
+  },
+  "page.darts-top.intro.desc": {
+    "message": "Easily calculate and manage scores for the classic '01' and 'Cricket' games, and enjoy playing darts at home.",
+    "description": "Introductory description text on the darts top page"
+  },
+  "page.darts-top.01.title": {
+    "message": "01 Game",
+    "description": "Title for the 01 game card"
+  },
+  "page.darts-top.01.button": {
+    "message": "Play 01 Game",
+    "description": "Button text to play the 01 game"
+  },
+  "page.darts-top.01.imageAlt": {
+    "message": "Darts score calculation screen for 01 game",
+    "description": "Alt text for the 01 game image"
+  },
+  "page.darts-top.cricket.title": {
+    "message": "Cricket",
+    "description": "Title for the cricket game card"
+  },
+  "page.darts-top.cricket.button": {
+    "message": "Play Cricket",
+    "description": "Button text to play the cricket game"
+  },
+  "page.darts-top.cricket.imageAlt": {
+    "message": "Darts score calculation screen for cricket game",
+    "description": "Alt text for the cricket game image"
+  },
+  "darts01.pageTitle": {
+    "message": "01 Darts Score Calculator",
+    "description": "Page title for 01 Darts Score Calculator"
+  },
+  "darts01.pageDesc": {
+    "message": "Score calculator for 01 darts (301/501/701). Supports single, double and master out.",
+    "description": "Page description"
+  },
+  "darts01.setupTitle": {
+    "message": "01 Darts",
+    "description": "Title for the setup screen"
+  },
+  "darts01.setupSub": {
+    "message": "{n} Players",
+    "description": "Subtitle showing number of players"
+  },
+  "darts01.numPlayers": {
+    "message": "Players",
+    "description": "Label for number of players selection"
+  },
+  "darts01.gameType": {
+    "message": "Game Type",
+    "description": "Label for game type selection (301/501/701)"
+  },
+  "darts01.outLabel": {
+    "message": "Out",
+    "description": "Label for out rule selection"
+  },
+  "darts01.outSingle": {
+    "message": "Single",
+    "description": "Single out rule label"
+  },
+  "darts01.outDouble": {
+    "message": "Double",
+    "description": "Double out rule label"
+  },
+  "darts01.outMaster": {
+    "message": "Master",
+    "description": "Master out rule label"
+  },
+  "darts01.bullLabel": {
+    "message": "Bull Option",
+    "description": "Label for bull option selection"
+  },
+  "darts01.turnLimit": {
+    "message": "Turn Limit",
+    "description": "Label for turn limit input"
+  },
+  "darts01.playerName": {
+    "message": "Player {n}",
+    "description": "Placeholder or default name for players"
+  },
+  "darts01.start": {
+    "message": "Start Game",
+    "description": "Button text to start the game"
+  },
+  "darts01.multSingle": {
+    "message": "Single",
+    "description": "Single multiplier text"
+  },
+  "darts01.multDouble": {
+    "message": "Double",
+    "description": "Double multiplier text"
+  },
+  "darts01.multTriple": {
+    "message": "Triple",
+    "description": "Triple multiplier text"
+  },
+  "darts01.roundLabel": {
+    "message": "R{round}/{limit} — {name}",
+    "description": "Display format for current round, limit and current player name"
+  },
+  "darts01.miss": {
+    "message": "Miss",
+    "description": "Button to register a missed dart"
+  },
+  "darts01.undo": {
+    "message": "Undo",
+    "description": "Button to undo the last action"
+  },
+  "darts01.nextPlayer": {
+    "message": "Next Player",
+    "description": "Button to end turn and proceed to the next player"
+  },
+  "darts01.settings": {
+    "message": "Settings",
+    "description": "Button to go back to settings during a game"
+  },
+  "darts01.settingsConfirm": {
+    "message": "Return to settings?\nCurrent game progress will be lost.",
+    "description": "Confirmation message when attempting to go back to settings"
+  },
+  "darts01.hintInRange": {
+    "message": "In range",
+    "description": "Hint shown when the player's score is within checkout range"
+  },
+  "darts01.winTitle": {
+    "message": "{name} Wins!",
+    "description": "Title shown when a player wins the game"
+  },
+  "darts01.draw": {
+    "message": "Draw",
+    "description": "Title shown when the game ends in a draw"
+  },
+  "darts01.finish": {
+    "message": "Finish:",
+    "description": "Label indicating the winning dart throw"
+  },
+  "darts01.rematch": {
+    "message": "Rematch (same settings)",
+    "description": "Button to rematch with the current game settings"
+  },
+  "darts01.back": {
+    "message": "Settings",
+    "description": "Button to return to settings from the victory screen"
+  },
+  "darts01.logBust": {
+    "message": "BUST: {name} (back to {rem})",
+    "description": "Log message indicating a player busted"
+  },
+  "darts01.logThrow": {
+    "message": "{name}: {lbl} = {pts}pts → {rem} left",
+    "description": "Log message recording a player's dart throw"
+  },
+  "darts01.logMiss": {
+    "message": "{name}: Miss",
+    "description": "Log message recording a player's missed dart"
+  },  
+  "cricketDarts.pageTitle": {
+    "message": "Cricket Darts Score Calculator",
+    "description": "Page title for the application"
+  },
+  "cricketDarts.title": {
+    "message": "Cricket Darts",
+    "description": "Main title of the game"
+  },
+  "cricketDarts.subtitle": {
+    "message": "2–4 Players · 20–15 + Bull",
+    "description": "Subtitle explaining game rules"
+  },
+  "cricketDarts.numPlayers": {
+    "message": "Players",
+    "description": "Label for the number of players selection"
+  },
+  "cricketDarts.playerLabel": {
+    "message": "Player {n}",
+    "description": "Default label for a player, e.g. Player 1"
+  },
+  "cricketDarts.nPeople": {
+    "message": "{n}",
+    "description": "Label displaying the number of people"
+  },
+  "cricketDarts.maxTurns": {
+    "message": "Turn Limit",
+    "description": "Label for the maximum turns input"
+  },
+  "cricketDarts.start": {
+    "message": "Start Game",
+    "description": "Button text to start the game"
+  },
+  "cricketDarts.undo": {
+    "message": "Undo",
+    "description": "Button text to undo the last action"
+  },
+  "cricketDarts.endTurn": {
+    "message": "Next Player",
+    "description": "Button text to end current turn and switch to next player"
+  },
+  "cricketDarts.settings": {
+    "message": "Settings",
+    "description": "Button text to go back to the settings screen"
+  },
+  "cricketDarts.settingsConfirm": {
+    "message": "Return to settings?\nCurrent game progress will be lost.",
+    "description": "Confirmation message when going back to settings during an active game"
+  },
+  "cricketDarts.bull": {
+    "message": "Bull",
+    "description": "Label for the Bullseye target"
+  },
+  "cricketDarts.miss": {
+    "message": "Miss",
+    "description": "Label for a missed dart"
+  },
+  "cricketDarts.noDart": {
+    "message": "—",
+    "description": "Placeholder text when no dart has been thrown yet"
+  },
+  "cricketDarts.turnLabel": {
+    "message": "R{cur}/{max}",
+    "description": "Label for current round and max rounds, e.g. R1/20"
+  },
+  "cricketDarts.winTitle": {
+    "message": "{name} Wins!",
+    "description": "Title shown when a player wins the game"
+  },
+  "cricketDarts.drawTitle": {
+    "message": "Draw",
+    "description": "Title shown when the game ends in a draw"
+  },
+  "cricketDarts.playAgain": {
+    "message": "Settings",
+    "description": "Button text to play again and return to settings"
+  },
+  "cricketDarts.pts": {
+    "message": "+{n}pts",
+    "description": "Label for points scored, e.g. +15pts"
+  },
+  "cricketDarts.multSingle": {
+    "message": "Single",
+    "description": "Label for single multiplier"
+  },
+  "cricketDarts.multDouble": {
+    "message": "Double",
+    "description": "Label for double multiplier"
+  },
+  "cricketDarts.multTriple": {
+    "message": "Triple",
+    "description": "Label for triple multiplier"
+  }
 }
