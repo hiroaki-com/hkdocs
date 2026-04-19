@@ -114,33 +114,62 @@ const CSS = `
 .dc-start:hover { background: var(--ifm-color-primary-dark); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
 .dc-start:active { transform: scale(0.98); }
 
-.dc-sh, .dc-board, .dc-tp, .dc-ip, .dc-ww {
+/* Unified header card: score grid + turn info merged */
+.dc-sh-wrap {
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius, 8px);
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05));
+}
+
+.dc-board, .dc-ip, .dc-ww {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Sticky wrapper keeps score header + board visible while scrolling input panel */
+/* Sticky wrapper keeps unified header + board visible while scrolling input panel */
 .dc-sticky-top {
   position: sticky;
   top: 0;
   z-index: 10;
   background: var(--ifm-background-color);
-  padding-top: 6px;
-  padding-bottom: 4px;
+  padding: 8px 0;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.dc-sh { display: grid; gap: 0 12px; margin-bottom: 8px; }
-.dc-sc { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 12px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); min-width: 0; }
-.dc-sc.active { border-color: var(--ifm-color-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
-.dc-sn { font-size: 14px; color: var(--ifm-color-emphasis-700); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dc-sh { display: grid; gap: 0 8px; }
+.dc-sc { background: var(--ifm-color-emphasis-50, var(--ifm-color-emphasis-100)); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 10px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; min-width: 0; }
+.dc-sc.active { border-color: var(--ifm-color-primary); background: var(--ifm-background-color); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.dc-sn { font-size: 13px; color: var(--ifm-color-emphasis-700); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-sn.active { color: var(--ifm-color-primary); font-weight: 700; }
-.dc-rem { font-size: 28px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.1; }
+.dc-rem { font-size: 24px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.1; }
+.dc-turn-lbl { font-size: 16px; color: var(--ifm-color-emphasis-400); font-weight: 500; flex-shrink: 0; margin-left: auto; }
 
-.dc-board { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); overflow: hidden; margin-bottom: 10px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+/* Turn row integrated inside header card */
+.dc-turn-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ifm-color-emphasis-100);
+  min-height: 24px;
+}
+.dc-dots { display: flex; gap: 6px; flex-shrink: 0; }
+.dc-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ifm-color-emphasis-300); transition: all 0.2s ease; }
+.dc-dot.used { background: var(--ifm-color-emphasis-600); border-color: var(--ifm-color-emphasis-600); }
+.dc-dot.rem { background: var(--ifm-color-primary-lightest); border-color: var(--ifm-color-primary-light); }
+.dc-dl { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; flex: 1; min-width: 0; }
+.dc-chip { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: var(--ifm-button-border-radius, 6px); background: var(--ifm-color-emphasis-100); border: 1px solid var(--ifm-color-emphasis-200); color: var(--ifm-font-color-base); }
+.dc-chip.miss { color: var(--ifm-color-emphasis-500); }
+.dc-nd { font-size: 13px; color: var(--ifm-color-emphasis-400); }
+
+.dc-board { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); overflow: hidden; margin-bottom: 8px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
 .dc-board-row { display: grid; border-bottom: 1px solid var(--ifm-color-emphasis-200); align-items: center; min-height: 48px; }
 .dc-board-row:last-child { border-bottom: none; }
 .dc-board-cell { display: flex; align-items: center; gap: 4px; padding: 6px 8px; min-width: 0; }
@@ -155,21 +184,8 @@ const CSS = `
 .dc-mark-3 { color: var(--ifm-color-success); font-size: 18px; }
 .dc-mark-plus { font-size: 12px; font-weight: bold; color: var(--ifm-color-danger); margin: 0 2px; }
 
-.dc-tp { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
-.dc-tt { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.dc-tpl { font-size: 16px; font-weight: 600; color: var(--ifm-font-color-base); }
-.dc-tpl-sub { font-size: 13px; color: var(--ifm-color-emphasis-500); font-weight: 400; margin-left: 8px; }
-.dc-dots { display: flex; gap: 8px; flex-shrink: 0; }
-.dc-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--ifm-color-emphasis-300); transition: all 0.2s ease; }
-.dc-dot.used { background: var(--ifm-color-emphasis-600); border-color: var(--ifm-color-emphasis-600); }
-.dc-dot.rem { background: var(--ifm-color-primary-lightest); border-color: var(--ifm-color-primary-light); }
-.dc-dl { display: flex; gap: 8px; flex-wrap: wrap; min-height: 28px; align-items: center; }
-.dc-chip { font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: var(--ifm-button-border-radius, 6px); background: var(--ifm-color-emphasis-100); border: 1px solid var(--ifm-color-emphasis-200); color: var(--ifm-font-color-base); }
-.dc-chip.miss { color: var(--ifm-color-emphasis-500); }
-.dc-nd { font-size: 14px; color: var(--ifm-color-emphasis-400); }
-
-.dc-ip { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 24px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
-.dc-mr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+.dc-ip { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 20px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
+.dc-mr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
 
 .dc-mb, .dc-nb, .dc-ab, .dc-wb2 {
   padding: 12px 8px;
@@ -195,7 +211,7 @@ const CSS = `
 .dc-mb:active, .dc-nb:active:not(:disabled), .dc-ab:active:not(:disabled), .dc-wb2:active { transform: scale(0.96); }
 .dc-mb.sel { background: var(--ifm-color-primary); border-color: var(--ifm-color-primary); color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
 
-.dc-np { display: grid; gap: 8px; margin-bottom: 16px; }
+.dc-np { display: grid; gap: 8px; margin-bottom: 12px; }
 .dc-nb:disabled { opacity: 0.4; cursor: not-allowed; background: var(--ifm-color-emphasis-100); box-shadow: none; transform: none; }
 .dc-nb.over { opacity: 0.35; }
 .dc-nn { font-size: 18px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.2; }
@@ -222,26 +238,27 @@ const CSS = `
   .darts-cricket-container { padding: 0.5rem 0.5rem; --dc-tgt-w: 38px; }
   .dc-setup { padding: 20px 16px; }
   .dc-stitle { font-size: 20px; }
-  .dc-sticky-top { padding-top: 4px; padding-bottom: 2px; }
-  .dc-sh { gap: 0 6px; margin-bottom: 6px; }
+  .dc-sticky-top { padding: 4px 0; }
+  .dc-sh-wrap { padding: 8px; margin-bottom: 4px; }
+  .dc-sh { gap: 0 4px; }
   .dc-sc { padding: 6px 4px; }
   .dc-rem { font-size: 18px; }
   .dc-sn { font-size: 11px; }
+  .dc-turn-row { margin-top: 8px; padding-top: 8px; gap: 8px; }
+  .dc-dot { width: 10px; height: 10px; }
   /* Compact board rows on mobile to reduce sticky height */
-  .dc-board { margin-bottom: 8px; }
+  .dc-board { margin-bottom: 6px; }
   .dc-board-row { min-height: 32px; }
-  .dc-board-cell { padding: 2px 2px; gap: 1px; }
+  .dc-board-cell { padding: 2px 4px; gap: 2px; }
   .dc-board-target { font-size: 12px; }
   .dc-mark { width: 12px; font-size: 12px; }
   .dc-mark-3 { font-size: 13px; }
   .dc-mark-plus { font-size: 9px; margin: 0 1px; }
-  .dc-tp { padding: 10px 12px; margin-bottom: 10px; }
-  .dc-tpl { font-size: 14px; }
-  .dc-ip { padding: 12px 10px; }
-  .dc-mr { gap: 5px; }
-  .dc-np { grid-template-columns: repeat(4, 1fr); gap: 5px; }
-  .dc-ar { gap: 5px; }
-  .dc-nb, .dc-mb, .dc-ab { padding: 9px 4px; font-size: 13px; min-height: 44px; }
+  .dc-ip { padding: 12px; }
+  .dc-mr { gap: 4px; margin-bottom: 12px; }
+  .dc-np { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 12px; }
+  .dc-ar { gap: 4px; }
+  .dc-nb, .dc-mb, .dc-ab { padding: 10px 4px; font-size: 13px; min-height: 44px; }
   .dc-nn { font-size: 15px; }
   .dc-nv { font-size: 11px; }
 }
@@ -417,6 +434,7 @@ function DartsCricketApp({ t }: { t: T }) {
   const cp = g.cp;
   const colCount = pc > 2 ? 2 : 1;
   const gridCols = `repeat(${colCount}, 1fr) var(--dc-tgt-w, 54px) repeat(${colCount}, 1fr)`;
+  const headerGridCols = `repeat(${colCount}, 1fr) 16px repeat(${colCount}, 1fr)`;
   const needChange = g.du >= 3;
 
   const renderHeader = (idx: number) => {
@@ -431,11 +449,40 @@ function DartsCricketApp({ t }: { t: T }) {
     );
   };
 
+  // Unified header: score cards + dart turn info in one card
   const scoreHeader = (
-    <div className="dc-sh" style={{ gridTemplateColumns: gridCols }}>
-      {Array.from({ length: colCount }).map((_, i) => renderHeader(i))}
-      <div />
-      {Array.from({ length: colCount }).map((_, i) => renderHeader(colCount + i))}
+    <div className="dc-sh-wrap">
+      <div className="dc-sh" style={{ gridTemplateColumns: headerGridCols }}>
+        {Array.from({ length: colCount }).map((_, i) => renderHeader(i))}
+        <div />
+        {Array.from({ length: colCount }).map((_, i) => renderHeader(colCount + i))}
+      </div>
+      {!g.over && (
+        <div className="dc-turn-row">
+          <div className="dc-dots">
+            {[0, 1, 2].map(i => (
+              <span key={i} className={`dc-dot ${i < g.du ? 'used' : 'rem'}`} />
+            ))}
+          </div>
+          <div className="dc-dl">
+            {g.darts.length === 0 ? (
+              <span className="dc-nd">{t.noDart}</span>
+            ) : g.darts.map((d, i) => {
+              if (d.miss) return (
+                <span key={i} className="dc-chip miss">{t.miss}</span>
+              );
+              const tl = d.t === 'B' ? t.bull : String(d.t);
+              const ptsStr = d.pts > 0 ? ` (${t.pts(d.pts)})` : '';
+              return (
+                <span key={i} className="dc-chip">
+                  {MULT_LABELS[d.mult]} {tl}{ptsStr}
+                </span>
+              );
+            })}
+          </div>
+          <span className="dc-turn-lbl">{t.turnLabel(g.turn, g.maxTurns)}</span>
+        </div>
+      )}
     </div>
   );
 
@@ -483,7 +530,6 @@ function DartsCricketApp({ t }: { t: T }) {
     const winTitle = g.winner !== null ? t.winTitle(g.players[g.winner].name) : t.drawTitle;
     return (
       <div className="darts-cricket-container">
-        {/* Sticky top: score header + board stays visible */}
         <div className="dc-sticky-top">
           {scoreHeader}
           {scoreboard}
@@ -509,40 +555,10 @@ function DartsCricketApp({ t }: { t: T }) {
 
   return (
     <div className="darts-cricket-container">
-      {/* Sticky top: score header + board stays visible while scrolling input panel */}
+      {/* Sticky top: unified header (scores + turn info) + scoreboard */}
       <div className="dc-sticky-top">
         {scoreHeader}
         {scoreboard}
-      </div>
-
-      <div className="dc-tp">
-        <div className="dc-tt">
-          <div className="dc-tpl">
-            {g.players[cp].name}
-            <span className="dc-tpl-sub">{t.turnLabel(g.turn, g.maxTurns)}</span>
-          </div>
-          <div className="dc-dots">
-            {[0, 1, 2].map(i => (
-              <span key={i} className={`dc-dot ${i < g.du ? 'used' : 'rem'}`} />
-            ))}
-          </div>
-        </div>
-        <div className="dc-dl">
-          {g.darts.length === 0 ? (
-            <span className="dc-nd">{t.noDart}</span>
-          ) : g.darts.map((d, i) => {
-            if (d.miss) return (
-              <span key={i} className="dc-chip miss">{t.miss}</span>
-            );
-            const tl = d.t === 'B' ? t.bull : String(d.t);
-            const ptsStr = d.pts > 0 ? ` (${t.pts(d.pts)})` : '';
-            return (
-              <span key={i} className="dc-chip">
-                {MULT_LABELS[d.mult]} {tl}{ptsStr}
-              </span>
-            );
-          })}
-        </div>
       </div>
 
       <div className="dc-ip">
