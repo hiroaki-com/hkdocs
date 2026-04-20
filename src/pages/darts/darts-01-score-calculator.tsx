@@ -223,26 +223,42 @@ const CSS = `
 .d01-wb1 { margin-top: 0; }
 
 @media (max-width: 480px) {
-  .darts01-container { padding: 0.5rem 0.5rem; }
+  .darts01-container { padding: 0.4rem 0.4rem; }
   .d01-setup { padding: 20px 16px; }
   .d01-stitle { font-size: 20px; }
 
-  .d01-sh { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 6px 0 2px; margin-bottom: 10px; }
-  .d01-sc { padding: 8px 6px; }
-  .d01-rem { font-size: 26px; }
-  .d01-hint { font-size: 11px; min-height: 14px; }
-  .d01-avg { font-size: 11px; }
+  /* スコアカード: AVG非表示・縦padding縮小 */
+  .d01-sh { grid-template-columns: repeat(2, 1fr); gap: 5px; padding: 4px 0 2px; margin-bottom: 6px; }
+  .d01-sc { padding: 6px 5px; }
+  .d01-rem { font-size: 22px; }
+  .d01-hint { font-size: 11px; min-height: 13px; }
+  .d01-avg { display: none; }
   .d01-sn { font-size: 12px; }
 
-  .d01-tp { padding: 10px 12px; margin-bottom: 10px; }
-  .d01-tpl { top: 10px; right: 12px; font-size: 12px; }
-  .d01-ip { padding: 12px 10px; }
-  .d01-np { grid-template-columns: repeat(4, 1fr); gap: 5px; }
-  .d01-mr, .d01-sr, .d01-ar { gap: 5px; }
-  .d01-nb, .d01-sb, .d01-mb, .d01-ab, .d01-seg-btn { padding: 9px 4px; font-size: 13px; }
-  .d01-nb { min-height: 48px; }
-  .d01-nn { font-size: 15px; }
-  .d01-nv { font-size: 11px; }
+  /* ターンパネル: padding・margin縮小 */
+  .d01-tp { padding: 7px 10px; margin-bottom: 6px; }
+  .d01-tpl { top: 7px; right: 10px; font-size: 12px; }
+  .d01-tt { margin-bottom: 8px; }
+  .d01-dl { min-height: 22px; gap: 5px; }
+  .d01-chip { font-size: 12px; padding: 3px 9px; }
+
+  /* 入力パネル: padding・セクション間margin縮小 */
+  .d01-ip { padding: 9px 8px; }
+  .d01-mr { gap: 4px; margin-bottom: 8px; }
+  .d01-np { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 8px; }
+  .d01-sr { gap: 4px; margin-bottom: 8px; }
+  .d01-ar { gap: 4px; }
+
+  /* ボタン全般: padding縮小 */
+  .d01-nb, .d01-sb, .d01-mb, .d01-ab, .d01-seg-btn { padding: 7px 4px; font-size: 13px; }
+
+  /* 数字ボタン: 高さ縮小（5行×8px節約=40px） */
+  .d01-nb { min-height: 40px; }
+  .d01-nn { font-size: 14px; }
+  .d01-nv { font-size: 10px; margin-top: 1px; }
+
+  /* ログ: margin-top縮小 */
+  .d01-log { margin-top: 8px; font-size: 13px; min-height: 16px; }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {

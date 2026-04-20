@@ -6,6 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 const TARGETS: (number | 'B')[] = [20, 19, 18, 17, 16, 15, 'B'];
 const TV: Record<string, number> = { 20: 20, 19: 19, 18: 18, 17: 17, 16: 16, 15: 15, B: 25 };
 const MULT_LABELS: Record<number, string> = { 1: 'Single', 2: 'Double', 3: 'Triple' };
+const MULT_SHORT: Record<number, string> = { 1: 'S', 2: 'D', 3: 'T' };
 
 const I18N = {
   ja: {
@@ -235,32 +236,43 @@ const CSS = `
 .dc-wb1:active { transform: scale(0.98); }
 
 @media(max-width: 480px) {
-  .darts-cricket-container { padding: 0.5rem 0.5rem; --dc-tgt-w: 38px; }
+  .darts-cricket-container { padding: 0.25rem 0.5rem; --dc-tgt-w: 38px; }
   .dc-setup { padding: 20px 16px; }
   .dc-stitle { font-size: 20px; }
-  .dc-sticky-top { padding: 4px 0; }
-  .dc-sh-wrap { padding: 8px; margin-bottom: 4px; }
+
+  /* Sticky header: tighter vertical rhythm */
+  .dc-sticky-top { padding: 3px 0; }
+  .dc-sh-wrap { padding: 6px; margin-bottom: 3px; }
   .dc-sh { gap: 0 4px; }
-  .dc-sc { padding: 6px 4px; }
-  .dc-rem { font-size: 18px; }
-  .dc-sn { font-size: 11px; }
-  .dc-turn-row { margin-top: 8px; padding-top: 8px; gap: 8px; }
-  .dc-dot { width: 10px; height: 10px; }
-  /* Compact board rows on mobile to reduce sticky height */
-  .dc-board { margin-bottom: 6px; }
-  .dc-board-row { min-height: 32px; }
-  .dc-board-cell { padding: 2px 4px; gap: 2px; }
-  .dc-board-target { font-size: 12px; }
-  .dc-mark { width: 12px; font-size: 12px; }
-  .dc-mark-3 { font-size: 13px; }
+  .dc-sc { padding: 5px 4px; }
+  .dc-rem { font-size: 16px; }
+  .dc-sn { font-size: 10px; }
+
+  /* Turn row: compact */
+  .dc-turn-row { margin-top: 6px; padding-top: 6px; gap: 6px; min-height: 20px; }
+  .dc-dot { width: 9px; height: 9px; }
+  .dc-chip { font-size: 11px; padding: 2px 7px; }
+  .dc-turn-lbl { font-size: 13px; }
+
+  /* Scoreboard rows: minimal height */
+  .dc-board { margin-bottom: 3px; }
+  .dc-board-row { min-height: 28px; }
+  .dc-board-cell { padding: 1px 4px; gap: 2px; }
+  .dc-board-target { font-size: 11px; }
+  .dc-mark { width: 11px; font-size: 11px; }
+  .dc-mark-3 { font-size: 12px; }
   .dc-mark-plus { font-size: 9px; margin: 0 1px; }
-  .dc-ip { padding: 12px; }
-  .dc-mr { gap: 4px; margin-bottom: 12px; }
-  .dc-np { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 12px; }
+
+  /* Input panel: tighter spacing */
+  .dc-ip { padding: 8px; }
+  .dc-mr { gap: 4px; margin-bottom: 6px; }
+  .dc-np { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 6px; }
   .dc-ar { gap: 4px; }
-  .dc-nb, .dc-mb, .dc-ab { padding: 10px 4px; font-size: 13px; min-height: 44px; }
-  .dc-nn { font-size: 15px; }
-  .dc-nv { font-size: 11px; }
+
+  /* Buttons: reduced vertical padding, consistent touch target */
+  .dc-nb, .dc-mb, .dc-ab { padding: 7px 4px; font-size: 13px; min-height: 40px; }
+  .dc-nn { font-size: 14px; }
+  .dc-nv { font-size: 10px; margin-top: 1px; }
 }
 
 @media(min-width: 481px) and (max-width: 768px) {
@@ -449,7 +461,6 @@ function DartsCricketApp({ t }: { t: T }) {
     );
   };
 
-  // Unified header: score cards + dart turn info in one card
   const scoreHeader = (
     <div className="dc-sh-wrap">
       <div className="dc-sh" style={{ gridTemplateColumns: headerGridCols }}>
@@ -472,10 +483,11 @@ function DartsCricketApp({ t }: { t: T }) {
                 <span key={i} className="dc-chip miss">{t.miss}</span>
               );
               const tl = d.t === 'B' ? t.bull : String(d.t);
-              const ptsStr = d.pts > 0 ? ` (${t.pts(d.pts)})` : '';
+              // S/D/T prefix instead of Single/Double/Triple for compact display
+              const ptsStr = d.pts > 0 ? `(${t.pts(d.pts)})` : '';
               return (
                 <span key={i} className="dc-chip">
-                  {MULT_LABELS[d.mult]} {tl}{ptsStr}
+                  {MULT_SHORT[d.mult]}{tl}{ptsStr ? ' ' + ptsStr : ''}
                 </span>
               );
             })}
