@@ -1,0 +1,85 @@
+---
+title: 登録・ダウンロード不要。ブラウザですぐに使える無料のダーツ計算ツール（01＆クリケット）をリリースしました。
+authors: [hk]
+tags: [darts, calculator, web-app, tools, react, docusaurus]
+image: "/img/darts-01-img.png"
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' }}>
+  <img src="/img/darts-01-img.png" alt="01ゲームのダーツスコア計算画面" style={{ maxWidth: '100%', width: '360px', borderRadius: 'var(--ifm-global-radius)', border: '1px solid var(--ifm-color-emphasis-200)' }} />
+  <img src="/img/darts-cricket-img.png" alt="クリケットのダーツスコア計算画面" style={{ maxWidth: '100%', width: '360px', borderRadius: 'var(--ifm-global-radius)', border: '1px solid var(--ifm-color-emphasis-200)' }} />
+</div>
+
+自宅にハードダーツボードがあり、これまでは点数計算を頭でやりながら投げていました。しかし、友人と遊んだときにきちんとした計算ツールが必要になり探してみたところ、スマホアプリのインストールが必要だったり、アカウント登録が求められたりと、サクッと使えるものが意外と見つかりませんでした。
+
+そこで、ダウンロードも登録も不要で、ブラウザを開くだけですぐに使えるシンプルな「ダーツ計算用ブラウザアプリ」を自作し、個人サイトで公開しました。定番の01（ゼロワン）とクリケットのスコア管理に完全対応しています。
+
+{/* truncate */}
+
+<Admonition type="tip" title="今すぐ試す">
+  アプリのインストールや面倒な登録は一切不要です。以下のリンクからブラウザ上ですぐに実行できます。
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      🎯 01 ゲーム<br/>
+      <a href="https://hkdocs.com/darts/darts-01-score-calculator/" target="_blank" rel="noopener noreferrer">Darts 01 Score Calculator</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>クリックしてすぐプレイを開始できます。</small>
+    </li>
+    <li style={{ marginBottom: '12px' }}>
+      🏏 クリケット<br/>
+      <a href="https://hkdocs.com/darts/darts-cricket-score-calculator/" target="_blank" rel="noopener noreferrer">Darts Cricket Score Calculator</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>クリケットのスコア計算やマーク管理はこちらから。</small>
+    </li>
+    <li>
+      🐙 GitHub でコードを見る<br/>
+      <a href="https://github.com/hiroaki-com/hkdocs" target="_blank" rel="noopener noreferrer">hiroaki-com/hkdocs</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>ソースコードの確認や、Star / Fork はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+### こんな場面で使えます
+
+- 自宅のダーツボードで友人と対戦するとき、スムーズに点数を管理したい
+- ハードダーツ（スティールダーツ）の練習で、手元でサクッと点数計算をしたい
+- スマホの容量を気にせず、ブラウザのブックマークから一瞬でツールを呼び出したい
+
+いずれも、今回公開したツールにアクセスするだけで対応できます。
+
+### 3つの特徴
+
+アプリのインストールや会員登録は一切不要です。スマートフォン、タブレット、PCのどの端末からでも、ブラウザでURLにアクセスするだけで即座に利用を開始できます。
+
+入力したスコアやゲームの進行状況は外部のサーバーに送信されず、すべてブラウザ上で処理が完結します。そのため、通信環境を気にすることなくオフラインに近い感覚でサクサクと動作します。
+
+ダーツを投げながらでも直感的に操作しやすいよう、ボタンの配置や表示の大きさにこだわったシンプルなUIを採用しています。
+
+### 各ゲームツールの特徴
+
+現在はダーツの定番である2種類のゲームに対応しており、それぞれのルールに合わせた専用UIを用意しています。
+
+#### 01（ゼロワン）ゲーム
+
+入力したスコアを現在の持ち点から自動で引き算していく計算機です。
+
+目標スコアからの減算をスムーズに行えるため、アレンジ（上がり目の計算）に集中してプレイできます。残り点数をオーバーしてしまった際のバスト（Bust）時の処理も手軽に行えるようにしています。
+
+また、ダーツを3本投げ終わったあとにサッとスコアを入力できるよう、押しやすいボタン配置を採用し、次のラウンドへの移行を妨げないシンプルな入力UIにこだわりました。
+
+#### クリケット
+
+15〜20とブルのみを使用する「クリケット」の複雑なスコア状況を可視化・管理できるツールです。
+
+各ナンバーに対するシングル・ダブル・トリプルのマーク状況を直感的に入力できる専用のインターフェースを用意しました。3マークによる「オープン」、その後の得点加算、そして全員が3マークした際の「クローズ」といったクリケット特有の進行を自動で計算します。
+
+現在どのナンバーがオープンしているか、誰が何点リードしているかがひと目でわかるため、「プッシュ（加点）するか、クローズ（陣地潰し）するか」といった戦略を立てながら、自宅で本格的なダーツを楽しめます。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
