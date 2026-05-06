@@ -42,7 +42,7 @@ collections:
       - label: "タグ"
         name: "tags"
         widget: "list"
-        default:[]
+        default: []
       - label: "本文"
         name: "body"
         widget: "markdown"
