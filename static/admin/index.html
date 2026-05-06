@@ -24,11 +24,9 @@
       [class*=StyledModal]{
         width:90dvw!important;
         width:90%!important;
-      }
-      [class*=LibraryTitle]{
+      }[class*=LibraryTitle]{
         display:none!important;
-      }
-      [class*=CollectionTopNewButton]{
+      }[class*=CollectionTopNewButton]{
         padding:0 10px!important;
         height:auto!important;
       }
@@ -36,8 +34,7 @@
         overflow-x:auto!important;
         height:fit-content!important;
         padding-bottom:10px!important;
-      }
-      [class*=BackCollection]{
+      }[class*=BackCollection]{
         display:none!important;
       }
       [class*=ControlPaneContainer]{
@@ -45,14 +42,12 @@
       }
       [class*=BackCollection],[class*=BackStatus]{
         font-size:.6rem!important;
-      }
-      [class*=AppHeaderContent],[class*=AppMainContainer]{
+      }[class*=AppHeaderContent],[class*=AppMainContainer]{
         margin-right:0!important;
         margin-left:0!important;
         min-width:calc(100vw - 24px)!important;
         max-width:100vw!important;
-      }
-      [class*=AppHeaderContent]{
+      }[class*=AppHeaderContent]{
         display:flex!important;
         justify-content:space-between!important;
       }
@@ -96,18 +91,15 @@
       [class*=CollectionContainer]{
         display:flex!important;
         flex-direction:column!important;
-      }
-      [class*=SidebarContainer]{
+      }[class*=SidebarContainer]{
         position:initial!important;
         width:initial!important;
-      }
-      [class*=CollectionMain]{
+      }[class*=CollectionMain]{
         padding-left:0!important;
         margin-top:20px!important;
       }
 
-      /* iOS自動ズーム防止 */
-      [data-slate-editor="true"],
+      /* iOS自動ズーム防止 */[data-slate-editor="true"],
       [role="textbox"],
       .cm-editor,
       input,
@@ -138,10 +130,56 @@
 </head>
 <body>
 
+  <!-- Decap CMSのカスタムウィジェットが依存するReactを先に読み込む -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
+    // ==========================================
+    // カスタムウィジェット「dynamic_title」の登録
+    // ==========================================
+    const { useEffect } = React;
+
+    const DynamicTitleControl = (props) => {
+      useEffect(() => {
+        // 新規作成時（まだ値が入っていない時）のみ処理
+        if (!props.value) {
+          const d = new Date();
+          const year = d.getFullYear();
+          const month = String(d.getMonth() + 1).padStart(2, '0');
+          const day = String(d.getDate()).padStart(2, '0');
+          const today = `${year}-${month}-${day}`;
+          
+          // YMLで指定した接尾辞（サフィックス）を取得。未指定ならデフォルト値を使用
+          const suffix = props.field.get('default_suffix') || " 天気、体調";
+          
+          // 今日の日付＋接尾辞の文字列を自動で入力欄にセット
+          props.onChange(`${today}${suffix}`);
+        }
+      },[]);
+
+      // 入力欄のUIを生成 (生のReact要素として作成)
+      return React.createElement('input', {
+        type: 'text',
+        id: props.forID,
+        className: props.classNameWrapper,
+        value: props.value || '',
+        onChange: (e) => props.onChange(e.target.value)
+      });
+    };
+
+    const DynamicTitlePreview = (props) => {
+      return React.createElement('div', {}, props.value);
+    };
+
+    // CMSにウィジェットを登録
+    CMS.registerWidget('dynamic_title', DynamicTitleControl, DynamicTitlePreview);
+
+    // ==========================================
+    // 既存のスクリプト（プルツーリフレッシュ防止等）
+    // ==========================================
     (function() {
       // プルツーリフレッシュを防止するJavaScript処理
       function preventPullToRefresh() {
