@@ -27,8 +27,10 @@ collections:
     fields:
       - label: "タイトル"
         name: "title"
-        widget: "string"
-        default: "2026-01-01 天気、体調"
+        # stringウィジェットから動的日付入力用のカスタムウィジェットに変更
+        widget: "dynamic_title"
+        # 自動入力する今日の日付の後ろに結合する文字列を指定
+        default_suffix: " 天気、体調"
       - label: "Authors"
         name: "authors"
         widget: "hidden"
@@ -40,7 +42,7 @@ collections:
       - label: "タグ"
         name: "tags"
         widget: "list"
-        default: []
+        default:[]
       - label: "本文"
         name: "body"
         widget: "markdown"
