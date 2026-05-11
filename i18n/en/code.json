@@ -1814,6 +1814,14 @@
     "message": "Python 3 Docs",
     "description": "Title for Python 3 Docs"
   },
+  "links.site.backend.stripe.desc": {
+    "message": "API documentation for implementing online payments and subscription management.",
+    "description": "Description for Stripe Docs"
+  },
+  "links.site.backend.stripe.title": {
+    "message": "Stripe Docs",
+    "description": "Title for Stripe Docs"
+  },
   "links.site.cloud.docker.desc": {
     "message": "The de facto standard for container virtualization technology. Official documentation.",
     "description": "Description for Docker Docs"

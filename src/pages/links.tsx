@@ -36,6 +36,7 @@ const linksData: LinkCategoryData[] = [
       { href: 'https://nodejs.org/docs/', title: { id: 'links.site.backend.node.title', message: 'Node.js Docs' }, description: { id: 'links.site.backend.node.desc', message: '非同期イベント駆動型のJavaScript実行環境の公式ドキュメント。' } },
       { href: 'https://nestjs.com/', title: { id: 'links.site.backend.nestjs.title', message: 'NestJS' }, description: { id: 'links.site.backend.nestjs.desc', message: '効率的でスケーラブルなサーバーサイドアプリケーションを構築するためのNode.jsフレームワーク。' } },
       { href: 'https://www.openapis.org/', title: { id: 'links.site.backend.openapi.title', message: 'OpenAPI Specification' }, description: { id: 'links.site.backend.openapi.desc', message: 'RESTful APIを記述するための標準仕様。エコシステムが豊富。' } },
+      { href: 'https://docs.stripe.com/', title: { id: 'links.site.backend.stripe.title', message: 'Stripe Docs' }, description: { id: 'links.site.backend.stripe.desc', message: 'オンライン決済やサブスクリプション管理を実装するためのAPIドキュメント。' } },
     ],
   },
   {
