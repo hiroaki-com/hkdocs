@@ -2245,11 +2245,11 @@
     "description": "Aria label for dot navigation buttons in VideoShowcase"
   },
   "page.darts-top.title": {
-    "message": "Darts Calculator App - 01 & Cricket Score Management",
+    "message": "Darts Calculator App - 01, Cricket & Count-Up Score Management",
     "description": "Page title for the darts top page"
   },
   "page.darts-top.description": {
-    "message": "A free darts score calculation app that requires no installation. Easily calculate and track your 01 and Cricket scores right in your browser.",
+    "message": "A free darts score calculation app that requires no installation. Easily calculate and track your 01, Cricket, and Count-Up scores right in your browser.",
     "description": "Meta description for the darts top page"
   },
   "page.darts-top.h1": {
@@ -2257,11 +2257,11 @@
     "description": "Main heading and schema name for the darts top page"
   },
   "page.darts-top.keywords": {
-    "message": "darts, calculator, app, score, 01, zero one, cricket, free, browser",
+    "message": "darts, calculator, app, score, 01, zero one, cricket, count-up, free, browser",
     "description": "Meta keywords for the darts top page"
   },
   "page.darts-top.intro.desc": {
-    "message": "Easily calculate and manage scores for the classic '01' and 'Cricket' games, and enjoy playing darts at home.",
+    "message": "Easily calculate and manage scores for the classic '01', 'Cricket', and 'Count-Up' games, and enjoy playing darts at home.",
     "description": "Introductory description text on the darts top page"
   },
   "page.darts-top.01.title": {
@@ -2287,6 +2287,18 @@
   "page.darts-top.cricket.imageAlt": {
     "message": "Darts score calculation screen for cricket game",
     "description": "Alt text for the cricket game image"
+  },
+  "page.darts-top.countup.title": {
+    "message": "Count-Up",
+    "description": "Title for the count-up game card"
+  },
+  "page.darts-top.countup.button": {
+    "message": "Play Count-Up",
+    "description": "Button text to play the count-up game"
+  },
+  "page.darts-top.countup.imageAlt": {
+    "message": "Darts score calculation screen for count-up game",
+    "description": "Alt text for the count-up game image"
   },
   "darts01.pageTitle": {
     "message": "01 Darts Score Calculator",
