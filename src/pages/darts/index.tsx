@@ -46,6 +46,16 @@ const GAME_CARDS = [
     imageAltMsg: 'クリケットのダーツスコア計算画面',
     to: '/darts/darts-cricket-score-calculator',
   },
+  {
+    titleId: 'page.darts-top.countup.title',
+    titleMsg: 'カウントアップ',
+    buttonId: 'page.darts-top.countup.button',
+    buttonMsg: 'カウントアップをプレイ',
+    imageSrc: '/img/darts-countup-img.png',
+    imageAltId: 'page.darts-top.countup.imageAlt',
+    imageAltMsg: 'カウントアップのダーツスコア計算画面',
+    to: '/darts/darts-countup-score-calculator',
+  },
 ] as const;
 
 export default function DartsTop(): JSX.Element {
@@ -56,13 +66,13 @@ export default function DartsTop(): JSX.Element {
 
   const pageTitle = translate({
     id: 'page.darts-top.title',
-    message: 'ダーツ計算アプリ - 01 & クリケット スコア管理',
+    message: 'ダーツ計算アプリ - 01・クリケット・カウントアップ スコア管理',
   });
 
   const pageDescription = translate({
     id: 'page.darts-top.description',
     message:
-      'インストール不要で使える無料のダーツスコア計算アプリ。01（ゼロワン）やクリケットのスコアをブラウザで簡単に計算・記録できます。',
+      'インストール不要で使える無料のダーツスコア計算アプリ。01（ゼロワン）、クリケット、カウントアップのスコアをブラウザで簡単に計算・記録できます。',
   });
 
   const schema = useMemo(
@@ -104,7 +114,7 @@ export default function DartsTop(): JSX.Element {
             content={translate({
               id: 'page.darts-top.keywords',
               message:
-                'ダーツ, 計算, アプリ, スコア, 01, ゼロワン, クリケット, 無料, ブラウザ',
+                'ダーツ, 計算, アプリ, スコア, 01, ゼロワン, クリケット, カウントアップ, 無料, ブラウザ',
             })}
           />
         }
@@ -128,7 +138,7 @@ export default function DartsTop(): JSX.Element {
               style={{ color: 'var(--ifm-font-color-secondary)' }}
             >
               <Translate id="page.darts-top.intro.desc">
-                定番「01」と「クリケット」のスコアを簡単に計算・管理して自宅でダーツを楽しもう
+                定番の「01」「クリケット」「カウントアップ」のスコアを簡単に計算・管理して自宅でダーツを楽しもう
               </Translate>
             </p>
 
@@ -140,7 +150,7 @@ export default function DartsTop(): JSX.Element {
           </div>
         </div>
 
-        <div className="row">
+        <div className="row" style={{ justifyContent: 'center' }}>
           {GAME_CARDS.map(
             ({
               titleId,
@@ -154,7 +164,7 @@ export default function DartsTop(): JSX.Element {
             }) => (
               <div
                 key={to}
-                className="col col--6 margin-bottom--lg"
+                className="col col--4 margin-bottom--lg"
               >
                 <div
                   className="card shadow--md"
