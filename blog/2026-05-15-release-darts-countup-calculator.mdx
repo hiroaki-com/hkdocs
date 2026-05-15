@@ -1,0 +1,71 @@
+---
+title: 登録・ダウンロード不要。ブラウザですぐに使えるダーツ計算ツールに「カウントアップ」を追加しました。
+authors: [hk]
+tags: [darts, calculator, web-app, tools, react, docusaurus]
+image: "/img/darts-countup-img.png"
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' }}>
+  <img src="/img/darts-countup-img.png" alt="カウントアップのダーツスコア計算画面" style={{ maxWidth: '100%', width: '360px', borderRadius: 'var(--ifm-global-radius)', border: '1px solid var(--ifm-color-emphasis-200)' }} />
+</div>
+
+前回リリースした「01（ゼロワン）」と「クリケット」のダーツ計算用ブラウザアプリに続き、新たに「カウントアップ（Count-Up）」のスコア計算ツールを追加しました。
+
+01やクリケットは戦略性が高く楽しいゲームですが、ダーツの基礎練習や、ルールを覚えたての初心者と一緒に遊ぶ際には、シンプルに合計得点を競うカウントアップが最適です。これまでと同様に、アプリのインストールやアカウント登録は一切不要。ブラウザを開くだけですぐに利用できます。
+
+{/* truncate */}
+
+<Admonition type="tip" title="今すぐ試す">
+  アプリのインストールや面倒な登録は一切不要です。以下のリンクからブラウザ上ですぐに実行できます。
+
+  <ul>
+    <li style={{ marginBottom: '12px' }}>
+      🎯 カウントアップ<br/>
+      <a href="https://hkdocs.com/darts/darts-countup-score-calculator/" target="_blank" rel="noopener noreferrer">Darts Count-Up Score Calculator</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>基礎練習やスコアアタックに最適なカウントアップはこちら。</small>
+    </li>
+    <li style={{ marginBottom: '12px' }}>
+      🎯 01 ゲーム<br/>
+      <a href="https://hkdocs.com/darts/darts-01-score-calculator/" target="_blank" rel="noopener noreferrer">Darts 01 Score Calculator</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>持ち点から減らしていく01ゲームはこちら。</small>
+    </li>
+    <li style={{ marginBottom: '12px' }}>
+      🏏 クリケット<br/>
+      <a href="https://hkdocs.com/darts/darts-cricket-score-calculator/" target="_blank" rel="noopener noreferrer">Darts Cricket Score Calculator</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>戦略的な陣取りゲーム、クリケットはこちら。</small>
+    </li>
+    <li>
+      🐙 GitHub でコードを見る<br/>
+      <a href="https://github.com/hiroaki-com/hkdocs" target="_blank" rel="noopener noreferrer">hiroaki-com/hkdocs</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>ソースコードの確認や、Star / Fork はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+### こんな場面で使えます
+
+- 一人で自宅のダーツボードに向かって、ひたすらハイスコアを狙う基礎練習に
+- 初心者を交えたパーティープレイで、複雑なルールなしに純粋に点数を競いたいときに
+- スマホの容量を気にせず、ブラウザのブックマークから一瞬でツールを呼び出したいときに
+
+### ツールの特徴（共通）
+
+既存のゲーム同様、スマートフォン、タブレット、PCのどの端末からでもアクセスするだけで即座に利用を開始できます。入力したスコアはすべてブラウザ上で処理されるため、通信遅延などのストレスなく、オフラインに近い感覚でサクサクと動作します。
+
+### カウントアップ機能の特徴
+
+「カウントアップ」は、決められたラウンド数（通常は8ラウンド・合計24投）で獲得した総得点を競う、最もシンプルで基礎的なゲームです。
+
+今回の計算ツールでは、このシンプルなルールを最大限に活かすため、ダーツを投げながらでも直感的に操作できる入力UIを用意しました。1ラウンド3投の記録をスムーズに行えるのはもちろん、シングル・ダブル・トリプル・ブルの入力や、現在のアベレージ（平均点）のリアルタイム表示にも対応しています。
+
+一人でストイックに練習する場合でも、複数人でワイワイ遊ぶ場合でも、テンポよくスコアを記録・管理することができます。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" />
