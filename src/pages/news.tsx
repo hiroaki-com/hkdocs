@@ -315,7 +315,7 @@ export default function NewsPage(): JSX.Element {
           </details>
         ))}
         <div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
-          <GitHubStarLink repo="hiroaki-com/hkdocs" />
+          <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
         </div>
         <div style={{ marginBottom: '3rem' }}>
           <ShareButtons />

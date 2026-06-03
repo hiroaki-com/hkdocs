@@ -7,7 +7,7 @@ tags: [docusaurus, react, typescript, performance, ux, lz-string]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 ### ブラウザメモ機能：URL共有とUI/UX改善の実装記録
@@ -114,4 +114,4 @@ const MemoTextarea = React.memo(({ initialText, onSave, isMinimized, ... }) => {
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

@@ -7,7 +7,7 @@ tags: [google cloud, artifact registry, cloud run, docker, cost-optimization]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 ### Artifact Registryで膨らむストレージ料金への対策
@@ -98,4 +98,4 @@ Artifact Registryでは保持ポリシーが優先されるため、この2つ�
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

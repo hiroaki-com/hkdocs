@@ -1,0 +1,64 @@
+.supportButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  background-color: #ffc107;
+  color: #2d2000;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.supportButton:hover {
+  text-decoration: none;
+  color: #2d2000;
+  background-color: #ffca2c;
+  border-color: rgba(27, 31, 35, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  fill: #f0f6fc;
+  flex-shrink: 0;
+  transition: fill 0.2s ease;
+}
+
+.supportButton:hover .icon {
+  fill: #e3b341;
+}
+
+.text {
+  white-space: nowrap;
+}
+
+html[data-theme='dark'] .supportButton {
+  background-color: #ffc107;
+  color: #1a1000;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .supportButton:hover {
+  color: #1a1000;
+  background-color: #ffca2c;
+  border-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .icon {
+  fill: #f0f6fc;
+}
+
+html[data-theme='dark'] .supportButton:hover .icon {
+  fill: #e3b341;
+}

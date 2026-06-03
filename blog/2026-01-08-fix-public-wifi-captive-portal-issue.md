@@ -7,7 +7,7 @@ tags: [mac, iPhone, WiFi, 公衆WiFi, キャプティブポータル, ネット�
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 ### 1. はじめに
@@ -120,4 +120,4 @@ Macと同様に、iPhoneでも接続履歴を整理することで効果が期�
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

@@ -7,7 +7,7 @@ tags: [docusaurus, アイコン, css, svg]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 この記事では、Docusaurusサイトのナビゲーションバーにアイコンや特定の記号を表示させるための主要な編集パターンを3つ整理します。
@@ -165,4 +165,4 @@ Docusaurusのナビゲーションアイテム設定オブジェクトが持つ 
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

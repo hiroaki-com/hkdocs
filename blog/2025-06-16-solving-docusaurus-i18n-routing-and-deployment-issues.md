@@ -7,7 +7,7 @@ tags: [docusaurus, i18n, routing, deployment, docker, cloudrun]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 この記事では、Docusaurus v3 で構築したサイトに国際化（i18n）機能を追加した際、直面した2つの厄介な問題、「**クライアントサイドのルーティング崩壊**」と「**Cloud Runでのコンテナ起動失敗**」について、その原因特定から解決までの道のりを記録したものです。
@@ -137,4 +137,4 @@ pnpm serve
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
