@@ -7,7 +7,7 @@ tags: [docusaurus, react, typescript, localStorage, ブラウザ機能]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 この記事では、DocusaurusサイトにReactとTypeScriptを利用して、クライアントサイドで動作するシンプルなブラウザメモ機能を実装した際の主要な仕様と技術的ポイントを整理。
@@ -109,4 +109,4 @@ UI/UXの細かな調整（高さ調整ロジック、ホバーエフェクトな
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
