@@ -7,7 +7,7 @@ tags: [google-colab, github, vscode, git, python, development]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 Google Colabで作成したPythonコードを、MacBookのVSCodeとGitHubを使って本格的な開発フローに移行するための実践的な手順を解説します。これまでColab上でのみ開発を行っていた方が、GitHubでのバージョン管理とローカルVSCodeでの快適な編集環境を構築し、より効率的な開発体制を整えるための具体的なステップを紹介します。
@@ -146,7 +146,7 @@ git push origin main
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 ##### 参考文献
 

@@ -7,7 +7,7 @@ tags: [docker, docker-compose]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 この記事では、Docusaurusのローカル環境開発時のために、`Docker Compose`を導入した際の手順を整理します。
@@ -148,4 +148,4 @@ pnpm-debug.log*
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

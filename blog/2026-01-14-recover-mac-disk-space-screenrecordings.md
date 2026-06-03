@@ -7,7 +7,7 @@ tags: [mac, macOS, storage, terminal, cleanup, screen recording, ディスク容
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 ![システム設定のストレージ画面](/img/mac_storage_settings_cleanup.png)
@@ -123,4 +123,4 @@ Filesystem     Size   Used   Avail Capacity
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 const TARGETS: (number | 'B')[] = [20, 19, 18, 17, 16, 15, 'B'];
 const TV: Record<string, number> = { 20: 20, 19: 19, 18: 18, 17: 17, 16: 16, 15: 15, B: 25 };
@@ -435,6 +436,7 @@ function DartsCricketApp({ t }: { t: T }) {
           ))}
 
           <button className="dc-start" onClick={startGame}>{t.start}</button>
+          <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
         </div>
       </div>
     );
