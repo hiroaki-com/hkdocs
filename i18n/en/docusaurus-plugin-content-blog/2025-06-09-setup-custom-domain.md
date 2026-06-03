@@ -122,4 +122,4 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

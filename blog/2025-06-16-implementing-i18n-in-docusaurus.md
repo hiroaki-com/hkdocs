@@ -7,7 +7,7 @@ tags: [docusaurus, i18n]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 この記事では、Docusaurus で構築したサイトに多言語対応（i18n）機能を実装し、日本語（デフォルト）と英語のコンテンツを切り替えられるように設定した際の手順を整理します。
@@ -188,4 +188,4 @@ pnpm start
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

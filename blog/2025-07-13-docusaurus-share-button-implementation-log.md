@@ -7,7 +7,7 @@ tags: [docusaurus, react, typescript, css-modules, ui/ux]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 ### シェアボタンを実装する
@@ -137,4 +137,4 @@ const TwitterShareButton = OriginalTwitterShareButton as any;
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

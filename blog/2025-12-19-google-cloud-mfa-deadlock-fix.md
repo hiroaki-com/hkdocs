@@ -7,7 +7,7 @@ tags: [google cloud, mfa, security, troubleshooting, billing, account recovery]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 ### 0. 【解決編】その後の経緯と結論（2025年12月更新）
@@ -157,4 +157,4 @@ Google Cloudコンソールアクセス ＞ [Go to settings] ＞ パスワード
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

@@ -403,7 +403,7 @@ function MemoApp() {
       <h1 style={{ fontSize: '1.5rem' }}><Translate id="page.browser-memo.h1">ブラウザメモ帳</Translate></h1>
       
       <div style={{ margin: '0.5rem 0 1rem 0' }}>
-        <GitHubStarLink repo="hiroaki-com/hkdocs" />
+        <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
       </div>
 
       <p style={{ fontSize: '0.7em' }}><Translate id="page.browser-memo.intro">すぐに使える高機能でシンプルなブラウザメモ帳です。Markdown、Mermaidプレビュー、URL共有に対応。入力内容はすべてお使いのブラウザにのみ自動保存されるため、安全にご利用いただけます。</Translate></p>
@@ -435,7 +435,7 @@ function MemoApp() {
       </section>
 
       <div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
-        <GitHubStarLink repo="hiroaki-com/hkdocs" />
+        <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
       </div>
 
       <div style={{ marginBottom: '3rem' }}>

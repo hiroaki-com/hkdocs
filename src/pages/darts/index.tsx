@@ -128,7 +128,7 @@ export default function DartsTop(): JSX.Element {
         </h1>
 
         <div style={{ margin: '0.5rem 0 1.5rem' }}>
-          <GitHubStarLink repo="hiroaki-com/hkdocs" />
+          <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
         </div>
 
         <div className="row" style={{ justifyContent: 'center' }}>
@@ -235,7 +235,6 @@ export default function DartsTop(): JSX.Element {
             marginBottom: '1rem',
           }}
         >
-          <GitHubStarLink repo="hiroaki-com/hkdocs" />
         </div>
 
         <div style={{ marginBottom: '3rem' }}>

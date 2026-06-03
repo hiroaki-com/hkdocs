@@ -7,7 +7,7 @@ tags: [mac, accent-mark, accent-menu, productivity]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
 ### Macで快適な文字入力を取り戻す
@@ -98,4 +98,4 @@ defaults write -g ApplePressAndHoldEnabled -bool true
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />

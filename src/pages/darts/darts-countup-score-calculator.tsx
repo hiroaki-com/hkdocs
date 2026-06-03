@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 type T = {
   pageTitle: string;
@@ -362,6 +363,7 @@ function SetupView({ cfg, t, onChange, onStart }: {
       ))}
 
       <button type="button" className="dcu-start" onClick={onStart}>{t.start}</button>
+      <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
     </div>
   );
 }

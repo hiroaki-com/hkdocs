@@ -7,7 +7,7 @@ tags: [docusaurus]
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 この記事では、Google Cloud Run でホスティングしている 当サイト（Docusaurus）に、Value Domain で取得したカスタムドメイン `hkdocs.com` を設定した際の手順を整理します。
 
@@ -124,4 +124,4 @@ Docusaurus の設定変更を反映させるため、サイトを再ビルドし
 
 <ShareButtons />
 
-<GitHubStarLink repo="hiroaki-com/hkdocs" />
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
