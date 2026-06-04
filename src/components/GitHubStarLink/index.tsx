@@ -71,7 +71,7 @@ export default function GitHubStarLink({
         <Translate
           id="component.GitHubStarLink.text"
           description="The text asking for a GitHub star support">
-          当サイトがお役に立ちましたらご支援の程、お願い致します
+          当サイトがお役に立ちましたら、ご支援の程お願い致します
         </Translate>
       </span>
       <div className={styles.actions}>
