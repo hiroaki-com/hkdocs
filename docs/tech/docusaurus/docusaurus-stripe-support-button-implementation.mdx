@@ -1,0 +1,175 @@
+---
+slug: docusaurus-stripe-support-button
+title: 'DocusaurusにStripe支援ボタンを実装した備忘録'
+sidebar_position: 21
+authors: [hk]
+tags: [docusaurus, react, typescript, stripe, ui/ux, i18n]
+---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import Admonition from '@theme/Admonition';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
+
+HKdocsの継続的な開発・運用費を賄うため、Stripe Payment Linkを使った寄付（投げ銭）ボタンを実装しました。
+
+フロントエンドのみで完結し、シークレットキーを一切コードに含めずOSSとして安全に公開できる設計を優先しました。この記事では、技術選定の背景・設計上の判断・実装の詳細について記録します。
+
+### 支援手段の技術選定
+
+複数の選択肢を検討した結果、StripeとGitHub Sponsorsの2つを採用しました。
+
+採用した手段は次のとおりです。Stripeはカスタマイズ性が高く、Apple Pay・Google Pay・多通貨など国際決済にも対応しており、Payment Link方式ではシークレットキーの管理が不要なためOSSとして安全に公開できます。GitHub Sponsorsはリポジトリページへの設置を目的として別途設定済みです。
+
+不採用とした手段については、PayPayはQRコード方式で個人情報が非表示になる点は評価できるものの、UIの自由度が低く採用を見送りました。Buy Me a Coffeeは心理的ハードルが低く導入も簡単ですが、金額の自由度やボタンのカスタマイズ性にやや制約があります。PayPal DonateはUIが古くUXの柔軟性に欠けるため候補外としました。
+
+### 設計方針：Stripe Payment Linkを採用した理由
+
+通常のStripe実装にはサーバーサイドでのAPIキー処理が必要ですが、Payment LinkはStripeダッシュボードで事前に発行したURLへ遷移させるだけで決済が完結します。
+
+:::info[設計方針]
+「クリックでStripeのホスト済み決済ページへ遷移する」というシンプルなフローを採用し、シークレットキーのコード管理とバックエンド処理を両方排除しました。
+Apple Pay・Google Pay・多言語・多通貨への対応はStripe側が自動で担うため、実装コストを最小化しながら世界中のユーザーへ適切な決済体験を提供できます。
+:::
+
+通常のStripe実装と比較すると次のとおりです。
+
+| 比較軸 | Stripe通常実装 | Stripe Payment Link（今回） |
+|---|---|---|
+| サーバーサイド処理 | 必要 | 不要 |
+| APIキーの管理 | 要（シークレットキー） | 不要 |
+| OSSとしての公開 | リスクあり | 安全 |
+| 多言語・多通貨 | 自前実装 | Stripe側で自動対応 |
+| Apple Pay / Google Pay | 自前実装 | Stripe側で自動対応 |
+
+### 実装ファイルの詳細
+
+実装は以下のファイルで行いました。
+
+<ul>
+  <li><code>src/components/SupportButton/index.tsx</code>（新規作成）</li>
+  <li><code>src/components/SupportButton/styles.module.css</code>（新規作成）</li>
+  <li><code>src/components/GitHubStarLink/index.tsx</code>（<code>showSupportButton</code> prop追加）</li>
+  <li><code>src/components/GitHubStarLink/styles.module.css</code>（<code>.actions</code> クラス追記）</li>
+  <li><code>i18n/en/code.json</code>（英語翻訳キー追記）</li>
+</ul>
+
+以下、技術的なハイライトです。
+
+#### 1. SupportButton コンポーネント (`index.tsx`)
+
+コンポーネント本体はシンプルです。Payment LinkのURLを `paymentLink` 定数として一元管理し、`lucide-react` の `Coffee` アイコンと組み合わせたリンクボタンとして実装しました。
+
+```tsx title="src/components/SupportButton/index.tsx"
+import React from 'react';
+import Translate from '@docusaurus/Translate';
+import { Coffee } from 'lucide-react';
+import styles from './styles.module.css';
+
+export default function SupportButton(): React.JSX.Element {
+  const paymentLink = 'https://donate.stripe.com/cNidRaf8J2zQcWHgKids400';
+
+  return (
+    <a
+      href={paymentLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.supportButton}
+    >
+      <Coffee className={styles.icon} size={18} />
+      <span className={styles.text}>
+        <Translate
+          id="support.button.text"
+          description="The text for the project support button"
+        >
+          支援する
+        </Translate>
+      </span>
+    </a>
+  );
+}
+```
+
+Payment Linkを変更したい場合は `paymentLink` 定数を更新するだけで全箇所に即反映されます。
+
+#### 2. GitHubStarLink への統合 (`index.tsx`)
+
+既存の `GitHubStarLink` に最小限の変更で `SupportButton` を組み込みました。`showSupportButton` propを追加し、デフォルトを `false` とすることで既存の呼び出し箇所への影響をゼロにしています。
+
+```tsx title="src/components/GitHubStarLink/index.tsx（変更箇所）"
+interface GitHubStarLinkProps {
+  repo: string;
+  showCount?: boolean;
+  showSupportButton?: boolean;
+}
+
+export default function GitHubStarLink({
+  repo,
+  showCount = true,
+  showSupportButton = false,
+}: GitHubStarLinkProps) {
+  // ...
+
+  return (
+    <div className={styles.container}>
+      {/* ... */}
+      <div className={styles.actions}>
+        <a href={`https://github.com/${repo}`} /* ... */>
+          {/* GitHubスターボタン */}
+        </a>
+        {showSupportButton && <SupportButton />}
+      </div>
+    </div>
+  );
+}
+```
+
+#### 3. スタイリングとi18n対応
+
+`GitHubStarLink/styles.module.css` に `.actions` クラスを追記し、GitHubスターボタンと支援ボタンをFlexboxで横並びにしました。画面幅が狭い場合は自動で折り返す（縦積みになる）レスポンシブ設計です。
+
+`SupportButton/styles.module.css` ではベースカラーにイエロー系（`#FFC107`）を採用し、ライト・ダークモード両方でコントラストが保たれるよう配色を調整しています。ホバー時には `transform: translateY(-1px)` によるわずかな浮き上がりをCSSトランジションで実装しました。
+
+i18n対応は `@docusaurus/Translate` を使用しています。新規追加した `SupportButton` の翻訳ID `support.button.text`（日本語デフォルト：「支援する」）を `i18n/en/code.json` に追記し、サイトの表示言語に応じて自動切り替えされるようにしました。
+
+### コンポーネントの使用方法
+
+:::warning[インポート位置の注意]
+`import` 文は必ずFront Matterの直下（ファイル最上部）に記述してください。`<!-- truncate -->` マーカーより下に記述すると、ブログ一覧ページ生成時にコンポーネント解決エラーが発生することがあります。
+:::
+
+GitHubスターボタンと横並びで表示する場合（通常）
+
+```mdx
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
+```
+
+支援ボタンのみ単独で使用する場合
+
+```mdx
+import SupportButton from '@site/src/components/SupportButton';
+
+<SupportButton />
+```
+
+### まとめ
+
+フロントエンドのみで完結するStripe Payment Linkと、独立コンポーネントによる疎結合な設計の組み合わせで、既存実装への影響ゼロで支援機能を追加できました。
+
+今後とも当サイトをどこかで見かけた際には、何卒よろしくお願いします。
+
+<Admonition type="note" title="参考文献">
+
+- [Stripe Payment Links](https://stripe.com/jp/payments/payment-links)
+- [Stripe Docs](https://docs.stripe.com/)
+- [Docusaurus Docs: MDX and React Components](https://docusaurus.io/docs/markdown-features/react)
+- [Docusaurus i18n: Translate](https://docusaurus.io/docs/docusaurus-core/#translate)
+- [lucide-react: Coffee icon](https://lucide.dev/icons/coffee)
+
+</Admonition>
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
+<ShareButtons />
