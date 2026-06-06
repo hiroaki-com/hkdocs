@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
 
-# Docusaurus の showLastUpdateTime を利用しているため、
-# 最終更新日は Git のコミット日時から自動取得する。
-# 手動で固定したい場合は以下を有効化する。
+# Docusaurus の showLastUpdateTime は Git 履歴を利用するが、
+# HKDocs は Docker ビルド時に .git を除外しているため本番では利用できない。
+# 更新日時を表示する場合は、以下の date を手動で更新して有効化すること。
 #
-# last_update:
-#   date: 2025-07-10
+last_update:
+  date: 2026-06-05
 ---
 
 # Tech Intro
