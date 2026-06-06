@@ -947,6 +947,14 @@
     "message": "Arab News",
     "description": "Title for the Arab News site"
   },
+  "news.site.int.ge.axios.title": {
+    "message": "Axios",
+    "description": "Title for Axios"
+  },
+  "news.site.int.ge.axios.desc": {
+    "message": "A digital media outlet founded in the U.S. in 2017 by former Politico executives. It covers politics, business, and technology, distributing concise articles in a bullet-point format.",
+    "description": "Description for Axios"
+  },
   "news.site.int.ge.bi.desc": {
     "message": "Founded in the U.S. in 2007 by Henry Blodget and operated by Axel Springer SE. It delivers business and technology news with high speed and has multiple international editions worldwide.",
     "description": "Description for Business Insider"
@@ -1058,6 +1066,14 @@
   "news.site.int.ge.sputnik.title": {
     "message": "Sputnik",
     "description": "Title for Sputnik"
+  },
+  "news.site.int.ge.wapo.title": {
+    "message": "The Washington Post",
+    "description": "Title for The Washington Post"
+  },
+  "news.site.int.ge.wapo.desc": {
+    "message": "Founded in Washington, D.C., U.S. in 1877. After a long period of ownership by the Graham family, it came under the personal ownership of Amazon founder Jeff Bezos in 2013. A national newspaper with a primary focus on political, policy, and investigative reporting.",
+    "description": "Description for The Washington Post"
   },
   "news.site.int.ge.wsj.desc": {
     "message": "Founded in the U.S. in 1889 by Charles Dow and others. Operated by Dow Jones & Company, a subsidiary of News Corp. It is characterized by high-quality investigative reporting in the business and financial sectors.",
