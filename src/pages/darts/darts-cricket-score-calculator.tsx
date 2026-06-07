@@ -145,12 +145,12 @@ const CSS = `
 }
 
 .dc-sh { display: grid; gap: 0 8px; }
-.dc-sc { background: var(--ifm-color-emphasis-50, var(--ifm-color-emphasis-100)); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 10px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; min-width: 0; }
+.dc-sc { background: var(--ifm-color-emphasis-50, var(--ifm-color-emphasis-100)); border: 2px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 10px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; min-width: 0; }
 .dc-sc.active { border-color: var(--ifm-color-primary); background: var(--ifm-background-color); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 .dc-sn { font-size: 13px; color: var(--ifm-color-emphasis-700); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-sn.active { color: var(--ifm-color-primary); font-weight: 700; }
 .dc-rem { font-size: 24px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.1; }
-.dc-turn-lbl { font-size: 16px; color: var(--ifm-color-emphasis-400); font-weight: 500; flex-shrink: 0; margin-left: auto; }
+.dc-turn-lbl { font-size: 16px; color: var(--ifm-color-emphasis-400); font-weight: 777; flex-shrink: 0; margin-left: auto; }
 
 /* Turn row integrated inside header card */
 .dc-turn-row {
@@ -178,13 +178,14 @@ const CSS = `
 .dc-board-cell.left { justify-content: flex-end; }
 .dc-board-cell.right { justify-content: flex-start; }
 .dc-board-target { text-align: center; font-size: 16px; font-weight: 700; color: var(--ifm-font-color-base); }
-.dc-board-target.closed { color: var(--ifm-color-emphasis-400); text-decoration: line-through; }
 
-.dc-mark { font-family: sans-serif; font-weight: bold; font-size: 16px; line-height: 1; display: inline-block; width: 16px; text-align: center; }
-.dc-mark-1 { color: var(--ifm-font-color-base); }
-.dc-mark-2 { color: var(--ifm-font-color-base); }
-.dc-mark-3 { color: var(--ifm-color-success); font-size: 18px; }
+.dc-mark { display: block; width: 26px; height: 26px; flex-shrink: 0; }
 .dc-mark-plus { font-size: 12px; font-weight: bold; color: var(--ifm-color-danger); margin: 0 2px; }
+
+/* CLOSE overlay: dimmed number with centered label when a target is fully closed */
+.dc-close-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+.dc-close-num { opacity: 0.22; }
+.dc-close-text { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 9.5px; font-weight: 700; letter-spacing: 0.02em; color: var(--ifm-color-emphasis-700); white-space: nowrap; }
 
 .dc-ip { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 20px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
 .dc-mr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
@@ -240,6 +241,8 @@ const CSS = `
   .darts-cricket-container { padding: 0.25rem 0.5rem; --dc-tgt-w: 38px; }
   .dc-setup { padding: 20px 16px; }
   .dc-stitle { font-size: 20px; }
+  .dc-close-text { font-size: 8px; letter-spacing: 0; }
+
 
   /* Sticky header: tighter vertical rhythm */
   .dc-sticky-top { padding: 3px 0; }
@@ -260,8 +263,8 @@ const CSS = `
   .dc-board-row { min-height: 28px; }
   .dc-board-cell { padding: 1px 4px; gap: 2px; }
   .dc-board-target { font-size: 11px; }
-  .dc-mark { width: 11px; font-size: 11px; }
-  .dc-mark-3 { font-size: 12px; }
+  .dc-mark { width: 22px; height: 22px; }
+  .dc-close-text { font-size: 6.5px; letter-spacing: 0; }
   .dc-mark-plus { font-size: 9px; margin: 0 1px; }
 
   /* Input panel: tighter spacing */
@@ -285,8 +288,8 @@ const CSS = `
   .dc-np { grid-template-columns: repeat(8, 1fr); }
   .dc-board-row { min-height: 52px; }
   .dc-board-target { font-size: 18px; }
-  .dc-mark { width: 18px; font-size: 18px; }
-  .dc-mark-3 { font-size: 20px; }
+  .dc-mark { width: 30px; height: 30px; }
+  .dc-close-text { font-size: 11px; }
 }
 `;
 
@@ -310,11 +313,26 @@ function cloneGame(g: Game): Game {
   return JSON.parse(JSON.stringify(g));
 }
 
-function MarkDisplay({ n }: { n: number }) {
-  if (n === 0) return null;
-  if (n === 1) return <span className="dc-mark dc-mark-1">/</span>;
-  if (n === 2) return <span className="dc-mark dc-mark-2">X</span>;
-  return <span className="dc-mark dc-mark-3">⊗</span>;
+const MARK_COLORS: Record<'green' | 'red', string> = { green: '#22B14C', red: '#E83030' };
+
+// Cricket marks per spec: 1hit "/", 2hit "×", 3hit "×" + circumscribed circle (close).
+// At 3 hits the lines extend to the circle's vertices (7↔45). Color is positional:
+// green for the left side of the number, red for the right side.
+function MarkDisplay({ n, color }: { n: number; color: 'green' | 'red' }) {
+  if (n <= 0) return null;
+  const stroke = MARK_COLORS[color];
+  const closed = n >= 3;
+  const lo = closed ? 7 : 14;
+  const hi = closed ? 45 : 38;
+  return (
+    <svg className="dc-mark" viewBox="0 0 52 52" aria-hidden="true">
+      {closed && <circle cx="26" cy="26" r="19" fill="none" stroke={stroke} strokeWidth="5.5" />}
+      <line x1={lo} y1={hi} x2={hi} y2={lo} stroke={stroke} strokeWidth="5.5" strokeLinecap="round" />
+      {n >= 2 && (
+        <line x1={lo} y1={lo} x2={hi} y2={hi} stroke={stroke} strokeWidth="5.5" strokeLinecap="round" />
+      )}
+    </svg>
+  );
 }
 
 function DartsCricketApp({ t }: { t: T }) {
@@ -516,12 +534,17 @@ function DartsCricketApp({ t }: { t: T }) {
               return (
                 <div key={i} className="dc-board-cell left">
                   {m >= 3 && anyOpen && <span className="dc-mark-plus">+</span>}
-                  <MarkDisplay n={m} />
+                  <MarkDisplay n={m} color="green" />
                 </div>
               );
             })}
-            <div className={`dc-board-target${allClosed ? ' closed' : ''}`}>
-              {tLabel}
+            <div className="dc-board-target">
+              {allClosed ? (
+                <span className="dc-close-wrap">
+                  <span className="dc-close-num">{tLabel}</span>
+                  <span className="dc-close-text">CLOSE</span>
+                </span>
+              ) : tLabel}
             </div>
             {Array.from({ length: colCount }).map((_, i) => {
               const idx = colCount + i;
@@ -529,7 +552,7 @@ function DartsCricketApp({ t }: { t: T }) {
               const m = g.players[idx].marks[tk];
               return (
                 <div key={idx} className="dc-board-cell right">
-                  <MarkDisplay n={m} />
+                  <MarkDisplay n={m} color="red" />
                   {m >= 3 && anyOpen && <span className="dc-mark-plus">+</span>}
                 </div>
               );

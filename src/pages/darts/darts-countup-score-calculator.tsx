@@ -132,7 +132,7 @@ const CSS = `
   padding: 8px 0 4px;
 }
 
-.dcu-sc { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); min-width: 0; }
+.dcu-sc { background: var(--ifm-background-color); border: 2px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); min-width: 0; }
 .dcu-sc.active { border-color: var(--ifm-color-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
 .dcu-sn { font-size: 14px; color: var(--ifm-color-emphasis-700); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dcu-sn.active { color: var(--ifm-color-primary); font-weight: 700; }
@@ -141,7 +141,7 @@ const CSS = `
 
 .dcu-tp { position: relative; background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
 .dcu-tt { display: flex; align-items: center; margin-bottom: 12px; }
-.dcu-tpl { position: absolute; top: 16px; right: 16px; font-size: 14px; font-weight: 600; color: var(--ifm-color-emphasis-600); white-space: nowrap; }
+.dcu-tpl { position: absolute; top: 16px; right: 16px; font-size: 14px; font-weight: 888; color: var(--ifm-color-emphasis-600); white-space: nowrap; }
 .dcu-dots { display: flex; gap: 8px; flex-shrink: 0; }
 .dcu-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--ifm-color-emphasis-300); transition: all 0.2s ease; }
 .dcu-dot.used { background: var(--ifm-color-emphasis-600); border-color: var(--ifm-color-emphasis-600); }
