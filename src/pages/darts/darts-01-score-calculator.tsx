@@ -25,6 +25,7 @@ type T = {
   miss: string;
   undo: string;
   nextPlayer: string;
+  nextRound: string;
   settings: string;
   settingsConfirm: string;
   hintInRange: string;
@@ -43,7 +44,7 @@ const I18N: Record<'ja' | 'en', T> = {
     pageTitle: '01 Game スコア計算機',
     pageDesc: '01 Game（301/501/701）用スコア計算ツール。シングル・ダブル・マスターアウト対応。',
     setupTitle: '01 Game',
-    setupSub: (n: number) => `${n}人対戦`,
+    setupSub: (n: number) => (n === 1 ? '1人プレイ' : `${n}人対戦`),
     numPlayers: 'プレイヤー数',
     gameType: 'ゲームタイプ',
     outLabel: 'アウト',
@@ -54,7 +55,7 @@ const I18N: Record<'ja' | 'en', T> = {
     start: 'ゲーム開始',
     multSingle: 'シングル', multDouble: 'ダブル', multTriple: 'トリプル',
     roundLabel: (round: number, limit: number, name: string) => `R${round}/${limit} — ${name}`,
-    miss: 'ミス', undo: '戻す', nextPlayer: 'プレイヤーチェンジ', settings: '設定',
+    miss: 'ミス', undo: '戻す', nextPlayer: 'プレイヤーチェンジ', nextRound: '次のラウンド', settings: '設定',
     settingsConfirm: '設定画面に戻りますか？\n現在のゲーム進行は失われます。',
     hintInRange: '圏内',
     winTitle: (name: string) => `${name}の勝利`,
@@ -69,7 +70,7 @@ const I18N: Record<'ja' | 'en', T> = {
     pageTitle: '01 Darts Score Calculator',
     pageDesc: 'Score calculator for 01 darts (301/501/701). Supports single, double and master out.',
     setupTitle: '01 Darts',
-    setupSub: (n: number) => `${n} Players`,
+    setupSub: (n: number) => (n === 1 ? '1 Player' : `${n} Players`),
     numPlayers: 'Players',
     gameType: 'Game Type',
     outLabel: 'Out',
@@ -80,7 +81,7 @@ const I18N: Record<'ja' | 'en', T> = {
     start: 'Start Game',
     multSingle: 'Single', multDouble: 'Double', multTriple: 'Triple',
     roundLabel: (round: number, limit: number, name: string) => `R${round}/${limit} — ${name}`,
-    miss: 'Miss', undo: 'Undo', nextPlayer: 'Next Player', settings: 'Settings',
+    miss: 'Miss', undo: 'Undo', nextPlayer: 'Next Player', nextRound: 'Next Round', settings: 'Settings',
     settingsConfirm: 'Return to settings?\nCurrent game progress will be lost.',
     hintInRange: 'In range',
     winTitle: (name: string) => `${name} Wins!`,
@@ -149,7 +150,7 @@ const CSS = `
   padding: 8px 0 4px;
 }
 
-.d01-sc { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); min-width: 0; }
+.d01-sc { background: var(--ifm-background-color); border: 2px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); min-width: 0; }
 .d01-sc.active { border-color: var(--ifm-color-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
 .d01-sn { font-size: 14px; color: var(--ifm-color-emphasis-700); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .d01-sn.active { color: var(--ifm-color-primary); font-weight: 700; }
@@ -160,7 +161,7 @@ const CSS = `
 
 .d01-tp { position: relative; background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
 .d01-tt { display: flex; align-items: center; margin-bottom: 12px; }
-.d01-tpl { position: absolute; top: 16px; right: 16px; font-size: 14px; font-weight: 600; color: var(--ifm-color-emphasis-600); white-space: nowrap; }
+.d01-tpl { position: absolute; top: 16px; right: 16px; font-size: 14px; font-weight: 888; color: var(--ifm-color-emphasis-600); white-space: nowrap; }
 .d01-dots { display: flex; gap: 8px; flex-shrink: 0; }
 .d01-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--ifm-color-emphasis-300); transition: all 0.2s ease; }
 .d01-dot.used { background: var(--ifm-color-emphasis-600); border-color: var(--ifm-color-emphasis-600); }
@@ -389,7 +390,7 @@ function SetupView({ cfg, t, onChange, onStart }: {
       <div className="d01-row">
         <div className="d01-lbl">{t.numPlayers}</div>
         <div className="d01-seg">
-          {[2, 3, 4].map(n => (
+          {[1, 2, 3, 4].map(n => (
             <button type="button" key={n} className={`d01-seg-btn${cfg.playerCount === n ? ' sel' : ''}`}
               onClick={() => onChange('playerCount', n)}>{n}</button>
           ))}
@@ -550,7 +551,7 @@ function GameView({ game, cfg, t, canUndo, onThrow, onMiss, onEndTurn, onUndo, o
 
         <div className="d01-ar">
           <button type="button" className="d01-ab undo" onClick={onUndo} disabled={!canUndo}>{t.undo}</button>
-          <button type="button" className={`d01-ab${needChange ? ' hi' : ''}`} onClick={onEndTurn}>{t.nextPlayer}</button>
+          <button type="button" className={`d01-ab${needChange ? ' hi' : ''}`} onClick={onEndTurn}>{cfg.playerCount === 1 ? t.nextRound : t.nextPlayer}</button>
           <button type="button" className="d01-ab ghost"
             onClick={() => { if (window.confirm(t.settingsConfirm)) onReset(); }}>
             {t.settings}
