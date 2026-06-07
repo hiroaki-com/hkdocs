@@ -15,6 +15,7 @@ import {
   Newspaper,
   LibrarySquare, // 資料集用のアイコン
   Bot, // AIツール集用のアイコン
+  Target,
   type LucideProps,
 } from 'lucide-react';
 
@@ -29,6 +30,7 @@ const IconBrowserMemo: SvgIconType = NotebookPen;
 const IconNews: SvgIconType = Newspaper;
 const IconLinks: SvgIconType = LibrarySquare;
 const IconAITools: SvgIconType = Bot;
+const IconDarts: SvgIconType = Target;
 
 type FeatureCardProps = {
   title: string;
@@ -163,6 +165,19 @@ export default function HomepageFeatures(): JSX.Element {
               </Translate>
             }
             link="/browser-memo"
+          />
+          <FeatureCard
+            title={translate({
+              id: 'homepage.features.darts.title',
+              message: 'ダーツ',
+            })}
+            Icon={IconDarts}
+            description={
+              <Translate id="homepage.features.darts.description">
+                趣味のダーツスコア計算ツールです。
+              </Translate>
+            }
+            link="/darts"
           />
           <FeatureCard
             title={translate({

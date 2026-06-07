@@ -11,6 +11,12 @@
   "homepage.features.browserMemo.title": {
     "message": "Browser Memo"
   },
+  "homepage.features.darts.description": {
+    "message": "A darts score calculator for my hobby."
+  },
+  "homepage.features.darts.title": {
+    "message": "Darts"
+  },
   "homepage.features.diary.description": {
     "message": "A diary written to help me understand myself."
   },
