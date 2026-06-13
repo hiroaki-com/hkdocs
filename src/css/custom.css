@@ -452,3 +452,15 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   flex: 1;
   max-width: 100%;
 }
+
+/* ブログサイドバー: 文字サイズを小さく調整 */
+.blog-wrapper aside [class*='sidebarItemList'] {
+  font-size: 0.7rem;
+}
+
+/* Docs（Tech） Sidebar: 文字サイズを小さく調整 */
+.menu__link {
+  font-size: 0.7rem;
+  transition: var(--ifm-transition-fast);
+  border-radius: var(--ifm-global-radius);
+}
