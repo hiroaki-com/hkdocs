@@ -216,6 +216,15 @@ const config: Config = {
             { label: 'GitHub', href: 'https://github.com/hiroaki-com/hkdocs' },
           ],
         },
+        {
+          title: 'Legal',
+          items: [
+            { label: 'プライバシーポリシー', to: '/legal/privacy-policy' },
+            ...(process.env.DOCUSAURUS_CURRENT_LOCALE !== 'en'
+              ? [{ label: '特定商取引法に基づく表記', to: '/legal/tokusho' }]
+              : []),
+          ],
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} hkdocs. All Rights Reserved.<br>The code is licensed under MIT, and the content is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
     },
