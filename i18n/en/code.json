@@ -1008,7 +1008,23 @@
   "news.site.int.ge.fox.title": {
     "message": "Fox News",
     "description": "Title for Fox News"
+  },  
+  "news.site.int.ge.ft.desc": {
+    "message": "Founded in the UK in 1888 by James Sheridan and others. It has been a subsidiary of Nikkei Inc. since 2015. The UK's benchmark stock index, the FTSE 100, takes its name from a joint venture between the newspaper and the London Stock Exchange.",
+    "description": "Description for Financial Times"
   },
+  "news.site.int.ge.ft.title": {
+    "message": "Financial Times",
+    "description": "Title for Financial Times"
+  },
+  "news.site.int.ge.guardian.desc": {
+    "message": "Originally founded in the UK in 1821 as the Manchester Guardian. The U.S. edition of a major liberal newspaper operated by the non-profit Scott Trust.",
+    "description": "Description for The Guardian US"
+  },
+  "news.site.int.ge.guardian.title": {
+    "message": "The Guardian US",
+    "description": "Title for The Guardian US"
+  },  
   "news.site.int.ge.khaleejtimes.desc": {
     "message": "Founded in 1978, it is the longest-running English-language daily newspaper in the United Arab Emirates (UAE). Based in Dubai, it provides comprehensive coverage of Gulf and international news.",
     "description": "Description for the Khaleej Times site"
