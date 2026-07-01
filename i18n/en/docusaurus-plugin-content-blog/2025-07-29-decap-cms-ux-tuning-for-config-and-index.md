@@ -2,6 +2,7 @@
 title: Optimizing Decap CMS UX with config.yml and index.html Improvements
 authors: [hk]
 tags: [docusaurus, decap-cms, ux, css, javascript]
+description: "A guide to customizing Decap CMS config.yml and index.html for better UX, covering mobile usability improvements and streamlined field defaults."
 ---
 
 In a previous article, I explained [how to integrate Decap CMS into a Docusaurus site](i18n/en/docusaurus-plugin-content-blog/2025-07-27-docusaurus-decap-cms-with-cloud-run-and-netlify.md). While the integration established a foundation for content updates, I felt there was room for improvement in daily use, especially regarding mobile usability and the efficiency of routine data entry.

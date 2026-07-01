@@ -2,6 +2,7 @@
 title: 'Editing Docusaurus Navigation Icons: Three Approaches'
 authors: [hk]
 tags: [docusaurus, icon, css, svg]
+description: "A guide covering three approaches to displaying icons in the Docusaurus navbar: CSS, SVG, and image, organized by implementation pattern."
 ---
 
 This article outlines three main patterns for displaying icons or specific symbols in the navigation bar of a Docusaurus site.

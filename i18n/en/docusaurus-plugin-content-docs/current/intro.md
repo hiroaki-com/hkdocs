@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "The Tech section of HKDocs — a collection of documents organizing firsthand technical insights and notes by topic."
 ---
 
 # Tech Intro

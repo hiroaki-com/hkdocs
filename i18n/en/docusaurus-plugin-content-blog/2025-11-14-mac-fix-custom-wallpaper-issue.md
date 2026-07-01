@@ -2,6 +2,7 @@
 title: How to Fix Custom Wallpaper Not Applying or Resetting on macOS
 authors: [hk]
 tags: [mac, wallpaper, desktop, finder, bug, troubleshooting]
+description: "How to fix macOS custom wallpaper settings that don't apply or reset after reboot, using Finder instead of System Settings."
 ---
 
 ### 1. Overview

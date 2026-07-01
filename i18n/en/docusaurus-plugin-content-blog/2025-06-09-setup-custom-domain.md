@@ -2,6 +2,7 @@
 title: How to Set Up a Custom Domain on Cloud Run for a Docusaurus Site with Value Domain
 authors: [hk]
 tags: [docusaurus]
+description: "Step-by-step guide to setting up a custom domain on a Docusaurus site hosted on Google Cloud Run using Value Domain, from DNS to Cloud Run mapping."
 ---
 
 This article outlines the steps to set up the custom domain `hkdocs.com`, purchased from Value Domain, for this Docusaurus site hosted on Google Cloud Run.
