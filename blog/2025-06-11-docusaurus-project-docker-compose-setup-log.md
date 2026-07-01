@@ -2,6 +2,7 @@
 title: DocusaurusプロジェクトへDockerCompose導入した記録
 authors: [hk]
 tags: [docker, docker-compose]
+description: "Docusaurus プロジェクトの開発環境を Docker Compose で構築した際の手順と技術的ポイントをまとめた備忘録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

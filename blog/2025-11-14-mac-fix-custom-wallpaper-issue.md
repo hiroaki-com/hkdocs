@@ -2,6 +2,7 @@
 title: macOSにおけるカスタム「壁紙」設定が反映されない・不安定な問題の解決手順
 authors: [hk]
 tags: [mac, 壁紙, 壁紙設定, desktop, finder, bug]
+description: "macOS でカスタム壁紙の設定が反映されない・再起動後にリセットされる問題の解決手順。Finder からの設定方法とキャッシュのクリア方法を解説します。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

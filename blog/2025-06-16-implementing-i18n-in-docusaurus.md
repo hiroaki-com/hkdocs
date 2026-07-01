@@ -2,6 +2,7 @@
 title: Docusaurus サイトを多言語対応 (i18n) するための実装手順
 authors: [hk]
 tags: [docusaurus, i18n]
+description: "Docusaurus サイトに日本語・英語の多言語対応（i18n）を実装する手順を解説します。Docker 環境でのコマンドや本番デプロイ前の動作確認方法も含む実践的な備忘録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

@@ -2,6 +2,7 @@
 title: Google Colab を GitHub 連携するための手順
 authors: [hk]
 tags: [google-colab, github, vscode, git, python, development]
+description: "Google Colab で作成した Python コードを GitHub 経由でローカル環境（VSCode・Cursor）と連携する手順。バージョン管理と快適なローカル編集環境を構築するための実践的なガイドです。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

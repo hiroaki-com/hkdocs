@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "HKDocs の Tech セクション概要。私が実際に経験した技術的な知見や備忘録をトピック別で格納したドキュメント集です。"
 
 # Docusaurus の showLastUpdateTime は Git 履歴を利用するが、
 # HKDocs は Docker ビルド時に .git を除外しているため本番では利用できない。

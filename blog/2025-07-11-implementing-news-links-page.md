@@ -2,6 +2,7 @@
 title: Docusaurusで多言語対応ニュースリンク集ページを作成
 authors: [hk]
 tags: [docusaurus, react, typescript, i18n, css-modules, ui/ux]
+description: "Docusaurus サイトに国内外のニュースサイトを一覧できるニュースページを実装した備忘録。React・TypeScript・CSS Modules を使った i18n 対応ページの実装記録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
