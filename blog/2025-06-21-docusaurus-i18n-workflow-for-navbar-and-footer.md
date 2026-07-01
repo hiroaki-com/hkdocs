@@ -2,6 +2,7 @@
 title: Docusaurusのナビゲーションバーとフッターを国際化（i18n）する手順
 authors: [hk]
 tags: [docusaurus, i18n, react, typescript, workflow]
+description: "Docusaurus サイトのナビゲーションバーとフッターを多言語化（i18n）する手順の備忘録。翻訳ファイルの配置から動作確認まで具体的なワークフローを整理します。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

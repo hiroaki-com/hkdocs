@@ -2,6 +2,7 @@
 title: Docusaurus サイト内ブラウザメモ機能の実装記録
 authors: [hk]
 tags: [docusaurus, react, typescript, localStorage, ブラウザ機能]
+description: "Docusaurus サイトに React と TypeScript を使い localStorage を活用したブラウザメモ機能を実装した際の仕様と技術的ポイントをまとめた記録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

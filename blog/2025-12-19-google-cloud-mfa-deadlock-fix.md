@@ -2,6 +2,7 @@
 title: 【深刻な問題】Google Cloud MFA義務化によるログイン不可ループの解決の糸口
 authors: [hk]
 tags: [google cloud, mfa, security, troubleshooting, billing, account recovery]
+description: "Google Cloud の MFA 義務化によりログイン不可ループに陥った問題の解決記録。サポートへの連絡方法と最終的な解決の経緯をまとめた実体験の記録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
