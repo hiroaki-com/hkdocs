@@ -44,8 +44,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 ![Google Cloud MFA Login Barrier](/img/google_cloud_access_blocked_1.png)
 
-<!-- truncate -->
-
 ### 2. 環境・前提
 
 今回の事象が発生した環境およびアカウントの状況は以下の通りです。
