@@ -2,6 +2,7 @@
 title: Optimize Costs by Automatically Deleting Old Docker Images in Artifact Registry
 authors: [hk]
 tags: [google cloud, artifact registry, cloud-run, docker, cost-optimization]
+description: "A guide to using Google Cloud Artifact Registry cleanup policies to automatically delete old Docker images and continuously optimize storage costs."
 ---
 
 ### Tackling Rising Storage Costs in Artifact Registry

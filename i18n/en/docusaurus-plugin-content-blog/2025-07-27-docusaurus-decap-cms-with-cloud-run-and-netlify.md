@@ -2,6 +2,7 @@
 title: A Record of Integrating Decap CMS with a Docusaurus Site on Cloud Run
 authors: [hk]
 tags: [docusaurus, decap-cms, netlify, cloud-run, ci/cd]
+description: "A guide to adding Decap CMS to a Docusaurus site on Cloud Run — using a hybrid setup where Netlify serves the CMS UI and Cloud Run serves the public site."
 ---
 
 To streamline content management for this site, I integrated the headless CMS, Decap CMS (formerly Netlify CMS). This article documents the implementation process, the technical decisions made, and the solutions to problems I encountered.

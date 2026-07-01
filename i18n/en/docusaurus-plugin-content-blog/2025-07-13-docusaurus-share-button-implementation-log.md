@@ -2,6 +2,7 @@
 title: 'Implementing Share Buttons in Docusaurus: A Log and Troubleshooting Guide'
 authors: [hk]
 tags: [docusaurus, react, typescript, css-modules, ui/ux]
+description: "A guide to implementing SNS share buttons (X, Hatena Bookmarks, etc.) on Docusaurus articles, including the CSS Modules component design decisions."
 ---
 
 ### Implementing the Share Buttons
