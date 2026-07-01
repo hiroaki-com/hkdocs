@@ -1,7 +1,7 @@
 ---
 title: Claude Code のドキュメントを .git/info/exclude で公開せず運用する — 除外設定と履歴管理の設計記録
 authors: [hk]
-tags: [claude code, llm, git, 個人開発, 運用]
+tags: [claude-code, llm, git, 個人開発, 運用]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

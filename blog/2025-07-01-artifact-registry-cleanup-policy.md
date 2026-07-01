@@ -1,7 +1,7 @@
 ---
 title: Artifact Registryの古いDockerイメージを自動削除してコスト節約
 authors: [hk]
-tags: [google cloud, artifact registry, cloud run, docker, cost-optimization]
+tags: [google cloud, artifact registry, cloud-run, docker, cost-optimization]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
