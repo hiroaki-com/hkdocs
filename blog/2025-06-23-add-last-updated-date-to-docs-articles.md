@@ -2,6 +2,7 @@
 title: DocusaurusのDocs記事に 最終更新日 を表示する簡単な方法
 authors: [hk]
 tags: [docusaurus, frontmatter]
+description: "Docusaurus の Docs ページに最終更新日を表示する方法の解説。Git 履歴に依存せず CI/CD 設定変更も不要な、フロントマターを利用したシンプルな実装方法です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

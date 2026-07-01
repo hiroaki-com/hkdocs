@@ -2,6 +2,7 @@
 title: Claude Code のドキュメントを .git/info/exclude で公開せず運用する — 除外設定と履歴管理の設計記録
 authors: [hk]
 tags: [claude-code, llm, git, 個人開発, 運用]
+description: "個人 OSS リポジトリへの Claude Code 導入時、AI 用設定ファイルを .git/info/exclude で管理して公開リポジトリに残さない設計記録と、分散しがちな履歴管理の整理方法です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

@@ -2,6 +2,7 @@
 title: Cloud Run上のDocusaurusサイトにDecap CMSを導入した記録
 authors: [hk]
 tags: [docusaurus, decap-cms, netlify, cloud-run, ci/cd]
+description: "Cloud Run でホスティングした Docusaurus サイトに Decap CMS を導入した記録。Netlify で CMS 管理画面・Cloud Run で公開サイトをホストするハイブリッド構成の解説です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

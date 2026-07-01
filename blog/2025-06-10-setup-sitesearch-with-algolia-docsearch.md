@@ -2,6 +2,7 @@
 title: DocusaurusにAlgolia DocSearchを組み込む方法
 authors: [hk]
 tags: [docusaurus]
+description: "Docusaurus サイトに Algolia DocSearch を組み込んでサイト内検索を実装する手順と課題解決の記録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

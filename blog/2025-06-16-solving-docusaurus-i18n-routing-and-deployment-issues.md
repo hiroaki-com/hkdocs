@@ -2,6 +2,7 @@
 title: Docusaurusのi18n導入で発生したルーティングとデプロイの問題解決録
 authors: [hk]
 tags: [docusaurus, i18n, routing, deployment, docker, cloudrun]
+description: "Docusaurus v3 の i18n 導入時に発生したクライアントサイドのルーティング崩壊と Cloud Run でのコンテナ起動失敗という2つの問題を解決した記録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
