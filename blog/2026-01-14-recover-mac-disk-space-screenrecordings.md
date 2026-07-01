@@ -2,6 +2,7 @@
 title: M1 Macのストレージ空き容量を109GB確保した話｜ScreenRecordingsフォルダの整理
 authors: [hk]
 tags: [mac, macOS, storage, terminal, cleanup, screen recording, ディスク容量, メンテナンス, Mac重い, パソコン重い]
+description: "M1 Mac で ScreenRecordings 隠しフォルダが 109GB を占有していた問題を解決した記録。ターミナルを使ってシステムの不要ファイルを安全に整理する手順を解説します。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

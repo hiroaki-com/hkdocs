@@ -2,6 +2,7 @@
 title: Cloud Run と Value Domain で Docusaurus サイトにカスタムドメインを設定する手順
 authors: [hk]
 tags: [docusaurus]
+description: "Google Cloud Run でホスティングした Docusaurus サイトに Value Domain のカスタムドメインを設定する手順。DNS 設定から Cloud Run マッピングまでの実践的な記録です。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

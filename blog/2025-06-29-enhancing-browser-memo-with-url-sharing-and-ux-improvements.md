@@ -2,6 +2,7 @@
 title: ブラウザメモ機能：URL共有とUX改善の実装記録
 authors: [hk]
 tags: [docusaurus, react, typescript, performance, ux, lz-string]
+description: "Docusaurus のブラウザメモ機能に URL 共有機能と UX 改善を実装した記録。lz-string を使ったメモの URL 共有とパフォーマンス最適化の技術的ポイントをまとめます。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
