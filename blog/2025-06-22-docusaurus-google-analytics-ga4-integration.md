@@ -1,7 +1,7 @@
 ---
 title: DocusaurusにGoogle Analytics (GA4)を導入する
 authors: [hk]
-tags: [Docusaurus, Google Analytics, GA4, gtag]
+tags: [docusaurus, Google Analytics, GA4, gtag]
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';

@@ -609,4 +609,70 @@ certification:
   label: ケーススタディ
   permalink: /ケーススタディ
   description: 試験のケーススタディに関する記事。
+
+# -----------------------------------------------------------------------------
+# AI / LLM ツール・OSS リリース関連 [all]
+# -----------------------------------------------------------------------------
+claude-code:
+  label: Claude Code
+  permalink: /claude-code
+  description: Anthropic Claude Code の設定・運用に関する記事。
+continue:
+  label: Continue
+  permalink: /continue
+  description: Continue（AIコーディング拡張）の活用に関する記事。
+ngrok:
+  label: ngrok
+  permalink: /ngrok
+  description: ngrok を使ったトンネリング・公開に関する記事。
+cloudflare-tunnel:
+  label: Cloudflare Tunnel
+  permalink: /cloudflare-tunnel
+  description: Cloudflare Tunnel を使った公開・接続に関する記事。
+fastapi:
+  label: FastAPI
+  permalink: /fastapi
+  description: FastAPI を使ったAPI・サーバー実装に関する記事。
+privacy:
+  label: Privacy
+  permalink: /privacy
+  description: プライバシー保護・ローカル完結の仕組みに関する記事。
+mosaic:
+  label: Mosaic
+  permalink: /mosaic
+  description: 画像のモザイク・匿名化処理に関する記事。
+darts:
+  label: Darts
+  permalink: /darts
+  description: ダーツ関連の計算ツール・Webアプリに関する記事。
+calculator:
+  label: Calculator
+  permalink: /calculator
+  description: 計算ツール・電卓系Webアプリに関する記事。
+web-app:
+  label: Web App
+  permalink: /web-app
+  description: ブラウザで完結するWebアプリケーションに関する記事。
+tools:
+  label: Tools
+  permalink: /tools
+  description: 各種ユーティリティ・ツールの紹介に関する記事。
+duckduckgo:
+  label: DuckDuckGo
+  permalink: /duckduckgo
+  description: DuckDuckGo を使った検索連携に関する記事。
+youtube:
+  label: YouTube
+  permalink: /youtube
+  description: YouTube 連携・動画関連の機能に関する記事。
+
+# [ja]
+個人開発:
+  label: 個人開発
+  permalink: /個人開発
+  description: 一人開発・個人OSSの運用や工夫に関する記事。
+運用:
+  label: 運用
+  permalink: /運用
+  description: プロジェクトの運用・保守・ワークフローに関する記事。
   
