@@ -2,6 +2,7 @@
 title: Procedure for Implementing Multi-language (i18n) Support on a Docusaurus Site
 authors: [hk]
 tags: [docusaurus, i18n]
+description: "A guide to adding Japanese/English multilingual support (i18n) to a Docusaurus site, with Docker commands and pre-deployment verification tips."
 ---
 
 This article organizes the steps I took to implement multi-language support (i18n) on a Docusaurus site, enabling content switching between Japanese (default) and English.

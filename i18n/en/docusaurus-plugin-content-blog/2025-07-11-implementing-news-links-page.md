@@ -2,6 +2,7 @@
 title: Creating a Multilingual News Links Page in Docusaurus
 authors: [hk]
 tags: [docusaurus, react, typescript, i18n, css-modules, ui/ux]
+description: "A guide to implementing a news links page in Docusaurus with React, TypeScript, and CSS Modules, with full i18n support for domestic and international news."
 ---
 
 This article outlines the key considerations and technical details involved in implementing a "News Page" on a Docusaurus site, designed to list domestic and international news sources.

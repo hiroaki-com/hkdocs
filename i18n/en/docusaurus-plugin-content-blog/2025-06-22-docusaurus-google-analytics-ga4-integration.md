@@ -2,6 +2,7 @@
 title: Integrating Google Analytics (GA4) with Docusaurus
 authors: [hk]
 tags: [docusaurus, Google Analytics, GA4, gtag]
+description: "A guide to integrating Google Analytics 4 (GA4) into a Docusaurus site for traffic analytics, covering the gtag plugin configuration."
 ---
 
 This post outlines the setup procedure for integrating Google Analytics 4 (GA4) into our Docusaurus site for traffic analysis, serving as a technical memo.

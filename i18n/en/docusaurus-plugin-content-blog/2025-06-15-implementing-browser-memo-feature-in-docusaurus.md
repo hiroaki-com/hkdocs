@@ -2,6 +2,7 @@
 title: A Record of Implementing an In-Site Browser Memo Feature in Docusaurus
 authors: [hk]
 tags: [docusaurus, react, typescript, localStorage, browser-feature]
+description: "A guide to implementing a browser-based memo feature in Docusaurus using React, TypeScript, and localStorage, covering the spec and key technical points."
 ---
 
 This article organizes the main specifications and technical points from when I implemented a simple, client-side browser memo feature on a Docusaurus site using React and TypeScript.

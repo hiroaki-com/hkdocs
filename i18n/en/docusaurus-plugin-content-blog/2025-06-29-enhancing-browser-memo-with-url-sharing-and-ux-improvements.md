@@ -2,6 +2,7 @@
 title: "Browser Memo Feature: A Log of URL Sharing and UX Improvements"
 authors: [hk]
 tags: [docusaurus, react, typescript, performance, ux, lz-string]
+description: "A guide to adding URL sharing and UX improvements to the Docusaurus browser memo feature, using lz-string for compressed URL-encoded memo sharing."
 ---
 
 ### Browser Memo Feature: A Log of URL Sharing and UI/UX Improvements

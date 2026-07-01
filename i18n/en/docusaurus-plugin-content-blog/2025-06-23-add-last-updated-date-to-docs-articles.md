@@ -3,6 +3,7 @@ title: A Simple Way to Display 'Last Updated' on Docusaurus Docs Articles
 last_update:
   date: '2025-06-23'
 tags: [docusaurus, frontmatter]
+description: "A guide to displaying a last-updated date on Docusaurus Docs pages using front matter — no Git history or CI/CD changes needed."
 ---
 
 This post outlines a simple implementation for displaying a "Last Updated" date on our Docusaurus documentation articles to indicate the freshness of the information.

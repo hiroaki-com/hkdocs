@@ -2,6 +2,7 @@
 title: How to Integrate Algolia DocSearch with Docusaurus
 authors: [hk]
 tags: [docusaurus]
+description: "A guide to adding Algolia DocSearch to a Docusaurus site for site search, covering the setup process and troubleshooting steps."
 ---
 
 This article organizes the steps and troubleshooting process I went through when setting up a site search feature using Algolia DocSearch.
