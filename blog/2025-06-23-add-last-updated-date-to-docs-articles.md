@@ -1,7 +1,6 @@
 ---
 title: DocusaurusのDocs記事に 最終更新日 を表示する簡単な方法
-last_update:
-  date: '2025-06-23'
+authors: [hk]
 tags: [docusaurus, frontmatter]
 ---
 
