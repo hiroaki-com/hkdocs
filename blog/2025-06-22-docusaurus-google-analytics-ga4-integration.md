@@ -1,7 +1,7 @@
 ---
 title: DocusaurusにGoogle Analytics (GA4)を導入する
 authors: [hk]
-tags: [docusaurus, Google Analytics, GA4, gtag]
+tags: [docusaurus, Google Analytics]
 description: "Docusaurus サイトに Google Analytics 4（GA4）を導入してアクセス解析を行うための設定手順をまとめた備忘録です。gtag プラグインの設定方法を解説します。"
 ---
 

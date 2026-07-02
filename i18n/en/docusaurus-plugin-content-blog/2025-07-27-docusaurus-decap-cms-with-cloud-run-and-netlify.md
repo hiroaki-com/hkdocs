@@ -1,7 +1,7 @@
 ---
 title: A Record of Integrating Decap CMS with a Docusaurus Site on Cloud Run
 authors: [hk]
-tags: [docusaurus, decap-cms, netlify, cloud-run, ci/cd]
+tags: [docusaurus, decap-cms, ci/cd, cloud-run]
 description: "A guide to adding Decap CMS to a Docusaurus site on Cloud Run — using a hybrid setup where Netlify serves the CMS UI and Cloud Run serves the public site."
 ---
 
@@ -17,7 +17,7 @@ Ultimately, I settled on a slightly unusual hybrid architecture: the CMS admin p
     -   URL: `https://[your-custom-domain].com/`
     -   Role: Hosts the static site, maintaining the existing CI/CD pipeline.
 
-I hope this article will be helpful for anyone considering a similar setup.
+I hope this article will be helpful for anyone considering a similar setup. For subsequent operational improvements, see [Optimizing the Decap CMS UX by improving config.yml and index.html](/i18n/en/docusaurus-plugin-content-blog/2025-07-29-decap-cms-ux-tuning-for-config-and-index.md).
 
 <!-- truncate -->
 

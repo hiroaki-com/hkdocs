@@ -1,7 +1,7 @@
 ---
 title: Optimizing Decap CMS UX with config.yml and index.html Improvements
 authors: [hk]
-tags: [docusaurus, decap-cms, ux, css, javascript]
+tags: [docusaurus, decap-cms, ui/ux, css, typescript]
 description: "A guide to customizing Decap CMS config.yml and index.html for better UX, covering mobile usability improvements and streamlined field defaults."
 ---
 

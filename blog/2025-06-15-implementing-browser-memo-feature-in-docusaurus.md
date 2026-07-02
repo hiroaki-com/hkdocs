@@ -1,7 +1,7 @@
 ---
 title: Docusaurus サイト内ブラウザメモ機能の実装記録
 authors: [hk]
-tags: [docusaurus, react, typescript, localStorage, ブラウザ機能]
+tags: [docusaurus, react, typescript, web-app]
 description: "Docusaurus サイトに React と TypeScript を使い localStorage を活用したブラウザメモ機能を実装した際の仕様と技術的ポイントをまとめた記録です。"
 ---
 
@@ -12,6 +12,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 
 この記事では、DocusaurusサイトにReactとTypeScriptを利用して、クライアントサイドで動作するシンプルなブラウザメモ機能を実装した際の主要な仕様と技術的ポイントを整理。
+
+なお、本機能はその後 [URL共有機能とUX改善](/blog/2025-06-29-enhancing-browser-memo-with-url-sharing-and-ux-improvements.md) で大幅に拡張しています。
 
 #### 1. 基本機能と目的
 

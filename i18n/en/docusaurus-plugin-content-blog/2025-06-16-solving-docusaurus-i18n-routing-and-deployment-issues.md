@@ -1,11 +1,13 @@
 ---
 title: A Log of Solving Routing and Deployment Issues with Docusaurus i18n
 authors: [hk]
-tags: [docusaurus, i18n, routing, deployment, docker, cloudrun]
+tags: [docusaurus, i18n, ci/cd, docker, cloud-run]
 description: "A guide to resolving two problems encountered when adding i18n to Docusaurus v3: client-side routing breakage and container startup failure on Cloud Run."
 ---
 
 This article is a record of the journey from identifying to resolving two tricky problems I encountered when adding internationalization (i18n) to a site built with Docusaurus v3: "**client-side routing collapse**" and "**container startup failure on Cloud Run**."
+
+The basic i18n setup steps are covered in [Procedure for Implementing Multi-language (i18n) Support on a Docusaurus Site](/i18n/en/docusaurus-plugin-content-blog/2025-06-16-implementing-i18n-in-docusaurus.md).
 
 **Prerequisites:**
 

@@ -3,6 +3,7 @@ import type { JSX } from 'react';
 import clsx from 'clsx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useLocation } from '@docusaurus/router';
+import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import VideoShowcase from '@site/src/components/VideoShowcase';
@@ -125,7 +126,13 @@ function SiteControlsSection(): JSX.Element {
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
+  const { siteConfig, i18n: { currentLocale, defaultLocale } } = useDocusaurusContext();
+
+  const metaTitle = translate({
+    id: 'homepage.meta.title',
+    message: '技術ブログ・学習メモ・便利ツール',
+    description: 'The meta title suffix for the homepage (site name is appended automatically)',
+  });
 
   const metaDescription = translate({
     id: 'homepage.meta.description',
@@ -133,8 +140,30 @@ export default function Home(): JSX.Element {
     description: 'The meta description for the homepage',
   });
 
+  const localePrefix = currentLocale === defaultLocale ? '' : `${currentLocale}/`;
+  const siteUrl = `${siteConfig.url}${localePrefix}`;
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.title,
+    url: siteUrl,
+    inLanguage: currentLocale,
+    publisher: {
+      '@type': 'Person',
+      name: 'hk',
+      url: `${siteUrl}profile/`,
+    },
+  };
+
   return (
-    <Layout title={siteConfig.title} description={metaDescription}>
+    <Layout title={metaTitle} description={metaDescription}>
+      <Head
+        children={
+          <script type="application/ld+json">
+            {JSON.stringify(websiteSchema)}
+          </script>
+        }
+      />
       <HomepageHeader />
       <main>
         <SiteControlsSection />

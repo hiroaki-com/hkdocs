@@ -1,7 +1,7 @@
 ---
 title: Docusaurusのi18n導入で発生したルーティングとデプロイの問題解決録
 authors: [hk]
-tags: [docusaurus, i18n, routing, deployment, docker, cloudrun]
+tags: [docusaurus, i18n, ci/cd, docker, cloud-run]
 description: "Docusaurus v3 の i18n 導入時に発生したクライアントサイドのルーティング崩壊と Cloud Run でのコンテナ起動失敗という2つの問題を解決した記録です。"
 ---
 
@@ -12,6 +12,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 
 この記事では、Docusaurus v3 で構築したサイトに国際化（i18n）機能を追加した際、直面した2つの厄介な問題、「**クライアントサイドのルーティング崩壊**」と「**Cloud Runでのコンテナ起動失敗**」について、その原因特定から解決までの道のりを記録したものです。
+
+i18n の基本的な導入手順は [Docusaurus サイトを多言語対応するための実装手順](/blog/2025-06-16-implementing-i18n-in-docusaurus.md) にまとめています。
 
 **前提環境:**
 

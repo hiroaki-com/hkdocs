@@ -1,7 +1,7 @@
 ---
 title: How to Fix Custom Wallpaper Not Applying or Resetting on macOS
 authors: [hk]
-tags: [mac, wallpaper, desktop, finder, bug, troubleshooting]
+tags: [mac, troubleshooting]
 description: "How to fix macOS custom wallpaper settings that don't apply or reset after reboot, using Finder instead of System Settings."
 ---
 
@@ -9,7 +9,7 @@ description: "How to fix macOS custom wallpaper settings that don't apply or res
 
 This article provides a step-by-step solution for an issue on MacBooks where custom image files set as wallpaper (Desktop Picture) through System Settings are not applied correctly or are reset after a restart. After struggling with this minor but persistent issue for years, I finally found a solution and wanted to share it.
 
-![Wallpaper settings failing to apply from the System Settings menu](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.png)
+![Wallpaper settings failing to apply from the System Settings menu](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.webp)
 
 <!-- truncate -->
 
@@ -29,9 +29,9 @@ When trying to set a custom image as wallpaper on my MacBook, I encountered the 
 2.  **Settings Resetting:** Even if the setting was successful temporarily, the custom wallpaper would disappear and revert to the default one after restarting the MacBook.
 3.  **Low Reproducibility:** The process was unreliable; sometimes it worked, and other times it failed no matter how many times I tried.
 
-![The Wallpaper menu in System Settings](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.png)
+![The Wallpaper menu in System Settings](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.webp)
 
-![The file selection screen from System Settings](/img/mac-wallpaper-fix_1-2_mac-system-settings-wallpaper-select-file.png)
+![The file selection screen from System Settings](/img/mac-wallpaper-fix_1-2_mac-system-settings-wallpaper-select-file.webp)
 
 
 ### 4. What I Tried and the Results
@@ -63,11 +63,11 @@ Following these steps will bypass the issue and set your wallpaper correctly.
 5.  From the "Services" submenu, choose "**Set Desktop Picture**".
 
 
-![Selecting the target image file for the wallpaper in Finder](/img/mac-wallpaper-fix_2-1_mac-finder-select-wallpaper-image.png)
+![Selecting the target image file for the wallpaper in Finder](/img/mac-wallpaper-fix_2-1_mac-finder-select-wallpaper-image.webp)
 
-![Setting the wallpaper from the "Services" menu in Finder](/img/mac-wallpaper-fix_2-2_mac-set-wallpaper-from-service.png)
+![Setting the wallpaper from the "Services" menu in Finder](/img/mac-wallpaper-fix_2-2_mac-set-wallpaper-from-service.webp)
 
-![The desktop after the wallpaper has been successfully set](/img/mac-wallpaper-fix_2-3_mac-wallpaper-setting-success.png)
+![The desktop after the wallpaper has been successfully set](/img/mac-wallpaper-fix_2-3_mac-wallpaper-setting-success.webp)
 
 
 ### 6. (For Reference) Why Does This Method Work Reliably?
