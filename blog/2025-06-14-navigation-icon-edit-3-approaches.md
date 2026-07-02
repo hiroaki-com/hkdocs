@@ -13,6 +13,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事では、Docusaurusサイトのナビゲーションバーにアイコンや特定の記号を表示させるための主要な編集パターンを3つ整理します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/navigation-icon-edit-3-approaches/) を参照してください。
+
 
 #### 1. テキスト・記号による表示
 

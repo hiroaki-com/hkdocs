@@ -21,6 +21,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 本記事では、**URLによるメモ共有機能の実装**と、その過程で行った**UI/UX改善**の技術的ポイントを整理します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/enhancing-browser-memo-with-url-sharing-and-ux-improvements/) を参照してください。
+
 <!-- truncate -->
 
 #### 1. 新機能の概要と改善点

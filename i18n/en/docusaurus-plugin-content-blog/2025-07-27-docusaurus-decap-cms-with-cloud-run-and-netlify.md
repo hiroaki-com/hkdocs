@@ -19,6 +19,8 @@ Ultimately, I settled on a slightly unusual hybrid architecture: the CMS admin p
 
 I hope this article will be helpful for anyone considering a similar setup. For subsequent operational improvements, see [Optimizing the Decap CMS UX by improving config.yml and index.html](/i18n/en/docusaurus-plugin-content-blog/2025-07-29-decap-cms-ux-tuning-for-config-and-index.md).
 
+Note that this article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/docusaurus-decap-cms-with-cloud-run-and-netlify/).
+
 <!-- truncate -->
 
 #### References

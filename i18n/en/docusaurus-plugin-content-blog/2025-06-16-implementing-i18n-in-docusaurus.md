@@ -11,6 +11,8 @@ Based on the official documentation, this guide also includes practical tips for
 
 See also the [record of solving the routing and deployment issues](/i18n/en/docusaurus-plugin-content-blog/2025-06-16-solving-docusaurus-i18n-routing-and-deployment-issues.md) that arose afterward, and the [procedure for internationalizing the navbar and footer](/i18n/en/docusaurus-plugin-content-blog/2025-06-21-docusaurus-i18n-workflow-for-navbar-and-footer.md).
 
+Note that this article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/implementing-i18n-in-docusaurus/).
+
 **Prerequisites:**
 
 *   **Site Generator:** Docusaurus (project already set up)
