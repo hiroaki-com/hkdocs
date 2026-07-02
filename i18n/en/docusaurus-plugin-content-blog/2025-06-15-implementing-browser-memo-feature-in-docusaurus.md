@@ -9,6 +9,8 @@ This article organizes the main specifications and technical points from when I 
 
 This feature was later significantly extended in [URL Sharing and UX Improvements](/i18n/en/docusaurus-plugin-content-blog/2025-06-29-enhancing-browser-memo-with-url-sharing-and-ux-improvements.md).
 
+Note that this article is a record from the time of implementation; for the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/implementing-browser-memo-feature-in-docusaurus/).
+
 #### 1. Basic Features and Purpose
 
 To provide a feature that allows users to easily create and save text memos in their browser, with the content persisting on subsequent visits.

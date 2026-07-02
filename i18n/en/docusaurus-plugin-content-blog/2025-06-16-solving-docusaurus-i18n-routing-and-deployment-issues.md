@@ -9,6 +9,8 @@ This article is a record of the journey from identifying to resolving two tricky
 
 The basic i18n setup steps are covered in [Procedure for Implementing Multi-language (i18n) Support on a Docusaurus Site](/i18n/en/docusaurus-plugin-content-blog/2025-06-16-implementing-i18n-in-docusaurus.md).
 
+Note that this article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/solving-docusaurus-i18n-routing-and-deployment-issues/).
+
 **Prerequisites:**
 
 *   **Site Generator:** Docusaurus v3

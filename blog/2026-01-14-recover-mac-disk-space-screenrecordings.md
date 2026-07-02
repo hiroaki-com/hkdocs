@@ -23,6 +23,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 本記事では、このストレージ圧迫の原因を特定した経緯と、Macの空き容量を確保した際の手順を記録として残します。
 
+**Mac関連の他の記事**: [キーリピートを有効にする](/blog/2025/06/29/mac-enable-key-repeat/) ・ [カスタム壁紙が反映されない問題](/blog/2025/11/14/mac-fix-custom-wallpaper-issue/) ・ [公衆WiFiの認証画面問題](/blog/2026/01/08/fix-public-wifi-captive-portal-issue/)
+
 <!-- truncate -->
 
 ![システム設定のストレージ画面](/img/mac_storage_settings_cleanup.png)

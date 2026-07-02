@@ -19,6 +19,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 本記事では、私の実体験をもとに、MacとiPhoneで不要なWiFi履歴を整理・削除することで、認証画面の表示を改善し、公衆WiFiへスムーズに接続するための手順を解説します。
 
+**Mac関連の他の記事**: [キーリピートを有効にする](/blog/2025/06/29/mac-enable-key-repeat/) ・ [カスタム壁紙が反映されない問題](/blog/2025/11/14/mac-fix-custom-wallpaper-issue/) ・ [ストレージ空き容量の確保](/blog/2026/01/14/recover-mac-disk-space-screenrecordings/)
+
 ![公衆WiFiの認証画面（キャプティブポータル）の例](/img/captiveportal_01_popup.webp)
 
 <!-- truncate -->

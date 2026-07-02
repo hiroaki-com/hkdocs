@@ -7,6 +7,8 @@ description: "A guide to customizing Decap CMS config.yml and index.html for bet
 
 In a previous article, I explained [how to integrate Decap CMS into a Docusaurus site](i18n/en/docusaurus-plugin-content-blog/2025-07-27-docusaurus-decap-cms-with-cloud-run-and-netlify.md). While the integration established a foundation for content updates, I felt there was room for improvement in daily use, especially regarding mobile usability and the efficiency of routine data entry.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/decap-cms-ux-tuning-for-config-and-index/).
+
 This article introduces the practical customizations I applied to [**`static/admin/config.yml`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/config.yml) and [**`static/admin/index.html`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/index.html) to address these challenges.
 
 -   **Optimizing `config.yml`**: Settings to reduce manual input and prevent errors.

@@ -7,6 +7,8 @@ description: "A guide to setting up a Docker Compose development environment for
 
 This article organizes the steps I took to introduce `Docker Compose` for the local development environment of a Docusaurus project.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/docusaurus-project-docker-compose-setup-log/).
+
 Background:
 
 To standardize the local development environment and simplify setup, I introduced Docker Compose to my Docusaurus (`v3.8.0`) project. Before this, I was running Node.js (`v22.16.0`) and pnpm (`v10.11`) by installing them directly on each developer's local machine.

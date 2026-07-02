@@ -7,6 +7,8 @@ description: "A guide to syncing Google Colab notebooks with GitHub and connecti
 
 This guide provides practical steps for transitioning Python code created in Google Colab to a full-scale development workflow using MacBook VSCode and GitHub. For those who have been developing exclusively on Colab, this tutorial introduces specific steps to build version control with GitHub and a comfortable editing environment with local VSCode, establishing a more efficient development system.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/google-colab/google-colab-github-integration-guide/).
+
 - **Repository Setup**: Building the receiving environment on GitHub
 - **Initial Integration**: Safe code migration from Colab to GitHub
 - **Local Environment**: VSCode editing environment setup

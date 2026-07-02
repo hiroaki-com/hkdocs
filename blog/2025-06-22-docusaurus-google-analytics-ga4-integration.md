@@ -13,6 +13,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 Docusaurusで構築した当サイトにGoogle Analytics 4 (GA4) を導入し、アクセス解析を行うための設定手順を備忘録として整理します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/docusaurus-google-analytics-ga4-integration/) を参照してください。
+
 **機能:**
 *   DocusaurusサイトにGoogle Analytics 4 (GA4) を導入。
 *   サイト全体のアクセス解析を可能に。

@@ -7,6 +7,8 @@ description: "A guide to implementing a news links page in Docusaurus with React
 
 This article outlines the key considerations and technical details involved in implementing a "News Page" on a Docusaurus site, designed to list domestic and international news sources.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/implementing-news-links-page/).
+
 #### 1. Page Purpose and Key Features
 
 The primary goal was to build a personal information hub for quick access to reliable news sources. The page is built as a static site, emphasizing fast performance, usability, and maintainability.

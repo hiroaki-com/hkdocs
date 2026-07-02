@@ -7,6 +7,8 @@ description: "A guide covering three approaches to displaying icons in the Docus
 
 This article outlines three main patterns for displaying icons or specific symbols in the navigation bar of a Docusaurus site.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/navigation-icon-edit-3-approaches/).
+
 #### 1. Displaying with Text and Symbols
 
 This is the most direct and simple method for displaying icons or symbols in navigation items. It is achieved by writing directly into the `label` property within the Docusaurus configuration file.

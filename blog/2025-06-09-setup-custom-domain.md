@@ -12,6 +12,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事では、Google Cloud Run でホスティングしている 当サイト（Docusaurus）に、Value Domain で取得したカスタムドメイン `hkdocs.com` を設定した際の手順を整理します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/setup-custom-domain/) を参照してください。
+
 **前提環境:**
 
 *   **ドメイン:** `hkdocs.com` ([Value Domain](https://www.value-domain.com/) で取得済み)

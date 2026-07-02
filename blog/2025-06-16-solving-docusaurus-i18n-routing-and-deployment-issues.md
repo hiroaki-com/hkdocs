@@ -15,6 +15,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 i18n の基本的な導入手順は [Docusaurus サイトを多言語対応するための実装手順](/blog/2025-06-16-implementing-i18n-in-docusaurus.md) にまとめています。
 
+また、本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/solving-docusaurus-i18n-routing-and-deployment-issues/) を参照してください。
+
 **前提環境:**
 
 *   **サイトジェネレーター:** Docusaurus v3
