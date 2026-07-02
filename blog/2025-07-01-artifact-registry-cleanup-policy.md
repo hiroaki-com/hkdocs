@@ -1,7 +1,8 @@
 ---
 title: Artifact Registryの古いDockerイメージを自動削除してコスト節約
 authors: [hk]
-tags: [google cloud, artifact registry, cloud-run, docker, cost-optimization]
+tags: [google cloud, cloud-run, docker]
+image: /img/cleanup_policy_1.png
 description: "Google Cloud Artifact Registry のクリーンアップポリシー機能を使い、古い Docker イメージを自動削除してストレージコストを継続的に最適化する手順の解説です。"
 ---
 

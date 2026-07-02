@@ -1,7 +1,7 @@
 ---
 title: Decap CMSのUXを最適化する config.yml と index.html の改善
 authors: [hk]
-tags: [docusaurus, decap-cms, ux, css, javascript]
+tags: [docusaurus, decap-cms, ui/ux, css, typescript]
 description: "Decap CMS の config.yml と index.html をカスタマイズして UX を改善した記録。モバイル操作性の向上と定型入力の効率化を図る実践的なチューニング方法を解説します。"
 ---
 

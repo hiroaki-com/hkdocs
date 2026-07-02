@@ -1,7 +1,8 @@
 ---
 title: Macのキー長押しで連続入力（キーリピート）を有効にする方法
 authors: [hk]
-tags: [mac, accent-mark, accent-menu, productivity]
+tags: [mac]
+image: /img/accent_menu.png
 description: "Mac でキーを長押しした際にアクセントメニューが表示される問題を解決し、キーリピート（連続入力）を有効にする設定方法の解説です。"
 ---
 

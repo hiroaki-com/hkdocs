@@ -1,9 +1,12 @@
 # robots.txt for hkdocs.com
 # Site: https://hkdocs.com/
-# Updated: 2026-01-07
+# Updated: 2026-07-02
 User-agent: *
 # Disallow admin interface (Decap CMS)
 Disallow: /admin/
+# Exclude diary from search (low-value pages; untranslated /en/diary/ also causes lang mismatch)
+Disallow: /diary/
+Disallow: /en/diary/
 # Allow everything else
 Allow: /
 # Sitemaps

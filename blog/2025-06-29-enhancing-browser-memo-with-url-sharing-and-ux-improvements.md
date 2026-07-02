@@ -1,7 +1,7 @@
 ---
 title: ブラウザメモ機能：URL共有とUX改善の実装記録
 authors: [hk]
-tags: [docusaurus, react, typescript, performance, ux, lz-string]
+tags: [docusaurus, react, typescript, performance, ui/ux, web-app]
 description: "Docusaurus のブラウザメモ機能に URL 共有機能と UX 改善を実装した記録。lz-string を使ったメモの URL 共有とパフォーマンス最適化の技術的ポイントをまとめます。"
 ---
 
@@ -15,7 +15,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 #### はじめに
 
-以前に実装した [ブラウザメモ](/browser-memo) 機能 について
+以前に実装した [ブラウザメモ](/browser-memo) 機能（[初回実装の記録](/blog/2025-06-15-implementing-browser-memo-feature-in-docusaurus.md)）について
 
 これまでの使用感や競合サービスの調査の結果、大幅な機能改善を実施。
 

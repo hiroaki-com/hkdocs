@@ -594,6 +594,10 @@
   "homepage.features.aiTools.description": {
     "message": "A collection of AI tools for development and productivity."
   },
+  "homepage.meta.title": {
+    "message": "Tech Blog, Study Notes & Handy Tools",
+    "description": "The meta title suffix for the homepage (site name is appended automatically)"
+  },
   "homepage.meta.description": {
     "message": "This is a technical blog where I share what I learn through my daily experiences. It also provides tools such as a browser-based notepad, a list of news sites, and collections of links to technical resources and research papers.",
     "description": "The meta description for the homepage"

@@ -1,7 +1,7 @@
 ---
 title: Fixing Captive Portal Issues｜Tips to Improve Public WiFi Connection Performance
 authors: [hk]
-tags: [mac, iPhone, WiFi, captive portal, network, bug]
+tags: [mac, network, troubleshooting]
 description: "How to fix captive portal pages not appearing on public WiFi by clearing saved WiFi history on Mac and iPhone for smoother connections."
 ---
 
@@ -13,7 +13,7 @@ I frequently struggled with this issue while working remotely, feeling the stres
 
 Based on my personal experience, this article explains how to organize and delete unnecessary WiFi history on both Mac and iPhone. This simple maintenance can improve the speed at which the login screen appears and ensure smooth connections to public WiFi.
 
-![Example of Public WiFi Authentication Screen (Captive Portal)](/img/captiveportal_01_popup.png)
+![Example of Public WiFi Authentication Screen (Captive Portal)](/img/captiveportal_01_popup.webp)
 
 <!-- truncate -->
 
@@ -59,12 +59,12 @@ Select "**Wi-Fi Settings...**" from the menu.
 
 This will launch the "System Settings" app and take you directly to the Wi-Fi settings screen.
 
-![Navigate to settings from the Wi-Fi icon in the menu bar](/img/captiveportal_02_settings_navigation.png)
+![Navigate to settings from the Wi-Fi icon in the menu bar](/img/captiveportal_02_settings_navigation.webp)
 
 #### Step 2: Open Advanced Settings
 Once the Wi-Fi settings screen is open, scroll down to the bottom and click the "**Advanced...**" button in the bottom right.
 
-![The "Advanced..." button in Wi-Fi settings](/img/captiveportal_03_advanced_button.png)
+![The "Advanced..." button in Wi-Fi settings](/img/captiveportal_03_advanced_button.webp)
 
 #### Step 3: Remove Unnecessary Networks
 A list of "Known Networks" (WiFi networks you have connected to in the past) will be displayed.
@@ -76,7 +76,7 @@ A list of "Known Networks" (WiFi networks you have connected to in the past) wil
 
 *Note: You can also select multiple networks by holding down the `Command ⌘` key and delete them all at once.*
 
-![Selecting and removing unnecessary WiFi network history](/img/captiveportal_04_remove_networks.png)
+![Selecting and removing unnecessary WiFi network history](/img/captiveportal_04_remove_networks.webp)
 
 ### 5. (Reference) How to Distinguish Which History to Delete
 

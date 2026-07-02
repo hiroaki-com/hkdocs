@@ -1,7 +1,7 @@
 ---
 title: "Keeping Claude Code Docs Out of the Public Repo with .git/info/exclude — A Design Log on Exclusion and History Management"
 authors: [hk]
-tags: [claude-code, llm, git, 個人開発, 運用]
+tags: [claude-code, llm, git, 個人開発]
 description: "A design record for managing Claude Code config files locally via .git/info/exclude without committing them to a public OSS repository."
 ---
 

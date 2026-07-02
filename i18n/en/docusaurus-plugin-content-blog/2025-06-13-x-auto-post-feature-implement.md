@@ -1,7 +1,7 @@
 ---
 title: A Record of Implementing a GitHub Action to Detect New Articles and Post Them to X as Twitter Cards
 authors: [hk]
-tags: [GitHub Actions, Twitter API, Twitter Card, docusaurus]
+tags: [ci/cd, automation, docusaurus]
 description: "A guide to auto-posting new blog articles to X (formerly Twitter) as Twitter Cards via GitHub Actions, including the implementation and troubleshooting steps."
 ---
 
