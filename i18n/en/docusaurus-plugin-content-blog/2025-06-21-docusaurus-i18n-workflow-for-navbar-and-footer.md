@@ -1,11 +1,13 @@
 ---
 title: How to Internationalize the Docusaurus Navbar and Footer
 authors: [hk]
-tags: [docusaurus, i18n, react, typescript, workflow]
+tags: [docusaurus, i18n, react, typescript, ci/cd]
 description: "A guide to localizing the Docusaurus navbar and footer, covering the translation file placement and workflow through to verification."
 ---
 
 This post is a memo organizing the process of internationalizing (i18n) the main UI components of a Docusaurus site: the `navbar` and `footer`.
+
+For the basic i18n setup, see [Procedure for Implementing Multi-language (i18n) Support on a Docusaurus Site](/i18n/en/docusaurus-plugin-content-blog/2025-06-16-implementing-i18n-in-docusaurus.md).
 
 #### 1. Purpose
 

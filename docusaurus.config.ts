@@ -27,7 +27,7 @@ const config: Config = {
   organizationName: 'hiroaki-com',
   projectName: 'hkdocs',
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
   // 国際化（i18n）設定
@@ -80,6 +80,23 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        sitemap: {
+          // 更新日時シグナルを付与（changefreq/priority はGoogleがほぼ無視するため出力しない）
+          lastmod: 'date',
+          changefreq: null,
+          priority: null,
+          // 薄いページ（タグ/ページネーション/検索）と検索対象外の日記を除外し、実質コンテンツへクロールを集中。
+          // tags/page は常に /blog|/docs 配下にネストするため /**/ で ja・en 両方に効くが、
+          // ルート直下の /diary/・/search/ は /**/ が先頭でマッチしないため ja・en を明示的に列挙する。
+          ignorePatterns: [
+            '/**/tags/**',
+            '/**/page/**',
+            '/search/**',
+            '/en/search/**',
+            '/diary/**',
+            '/en/diary/**',
+          ],
         },
       } satisfies Preset.Options,
     ],

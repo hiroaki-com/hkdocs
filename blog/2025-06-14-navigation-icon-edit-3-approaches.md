@@ -1,7 +1,7 @@
 ---
 title: Docusaurus ナビゲーションアイコン編集：3つのアプローチ
 authors: [hk]
-tags: [docusaurus, アイコン, css, svg]
+tags: [docusaurus, css]
 description: "Docusaurus のナビゲーションバーにアイコンを表示させる3つのアプローチ（CSS・SVG・画像）を実装パターン別に整理した備忘録です。"
 ---
 

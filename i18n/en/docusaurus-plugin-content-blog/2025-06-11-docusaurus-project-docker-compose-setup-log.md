@@ -1,7 +1,7 @@
 ---
 title: A Record of Introducing Docker Compose to a Docusaurus Project
 authors: [hk]
-tags: [docker, docker-compose]
+tags: [docker]
 description: "A guide to setting up a Docker Compose development environment for a Docusaurus project, covering the setup steps and key technical points."
 ---
 

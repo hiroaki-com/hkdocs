@@ -1,7 +1,7 @@
 ---
 title: Docusaurusのナビゲーションバーとフッターを国際化（i18n）する手順
 authors: [hk]
-tags: [docusaurus, i18n, react, typescript, workflow]
+tags: [docusaurus, i18n, react, typescript, ci/cd]
 description: "Docusaurus サイトのナビゲーションバーとフッターを多言語化（i18n）する手順の備忘録。翻訳ファイルの配置から動作確認まで具体的なワークフローを整理します。"
 ---
 
@@ -12,6 +12,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 
 Docusaurusサイトの主要UI、`ナビゲーションバー`と`フッター`を国際化（i18n）編集した際の備忘録として整理します。
+
+基本的な i18n の導入手順は [Docusaurus サイトを多言語対応するための実装手順](/blog/2025-06-16-implementing-i18n-in-docusaurus.md) を参照してください。
 
 #### 1. 目的
 

@@ -1,7 +1,7 @@
 ---
 title: Docusaurusにシェアボタンを実装した記録とトラブルシューティングの備忘録
 authors: [hk]
-tags: [docusaurus, react, typescript, css-modules, ui/ux]
+tags: [docusaurus, react, typescript, css, ui/ux]
 description: "Docusaurus の各記事に X（Twitter）・はてなブックマーク等の SNS シェアボタンを実装した記録。CSS Modules を使ったコンポーネント設計の技術的判断をまとめます。"
 ---
 

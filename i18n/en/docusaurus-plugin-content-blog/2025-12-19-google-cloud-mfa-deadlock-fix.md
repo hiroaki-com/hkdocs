@@ -1,7 +1,8 @@
 ---
 title: "Critical Issue: How to Break the Google Cloud MFA Login Loop"
 authors: [hk]
-tags: [google cloud, mfa, security, troubleshooting, billing, account recovery]
+tags: [google cloud, security, troubleshooting]
+image: /img/google_cloud_access_blocked_1.png
 description: "A firsthand account of getting locked out of Google Cloud due to mandatory MFA, the resolution process through support, and the final outcome."
 ---
 
