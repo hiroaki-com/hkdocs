@@ -25,6 +25,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事が、同様の構成を検討している方の参考になれば幸いです。なお、導入後の運用改善については [Decap CMS の config.yml と index.html を最適化した記録](/blog/2025-07-29-decap-cms-ux-tuning-for-config-and-index.md) にまとめています。
 
+また、本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/docusaurus-decap-cms-with-cloud-run-and-netlify/) を参照してください。
+
 <!-- truncate -->
 
 #### 参考文献

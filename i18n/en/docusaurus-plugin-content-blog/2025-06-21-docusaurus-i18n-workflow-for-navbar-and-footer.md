@@ -9,6 +9,8 @@ This post is a memo organizing the process of internationalizing (i18n) the main
 
 For the basic i18n setup, see [Procedure for Implementing Multi-language (i18n) Support on a Docusaurus Site](/i18n/en/docusaurus-plugin-content-blog/2025-06-16-implementing-i18n-in-docusaurus.md).
 
+Note that this article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/docusaurus-i18n-workflow-for-navbar-and-footer/).
+
 #### 1. Purpose
 
 The Docusaurus i18n feature is a mechanism for making site text multi-lingual. This time, I'll explain the process of adding new items to the `navbar` and `footer` and translating them from Japanese (the default) to English.

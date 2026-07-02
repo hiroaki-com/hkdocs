@@ -7,6 +7,8 @@ description: "A guide to auto-posting new blog articles to X (formerly Twitter) 
 
 This article organizes the procedures and troubleshooting records from when I implemented a GitHub Action to detect new articles and post them to X as Twitter Cards.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/x-auto-post-feature-implement/).
+
 Feature:
 Detect new posts with GitHub Actions and post them to X as Twitter Cards.
 

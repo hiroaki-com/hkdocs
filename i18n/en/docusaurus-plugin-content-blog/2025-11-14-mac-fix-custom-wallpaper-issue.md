@@ -9,6 +9,8 @@ description: "How to fix macOS custom wallpaper settings that don't apply or res
 
 This article provides a step-by-step solution for an issue on MacBooks where custom image files set as wallpaper (Desktop Picture) through System Settings are not applied correctly or are reset after a restart. After struggling with this minor but persistent issue for years, I finally found a solution and wanted to share it.
 
+**More Mac articles**: [Enabling key repeat](/en/blog/2025/06/29/mac-enable-key-repeat/) · [Reclaiming 109GB of disk space](/en/blog/2026/01/14/recover-mac-disk-space-screenrecordings/) · [Fixing public Wi-Fi captive portals](/en/blog/2026/01/08/fix-public-wifi-captive-portal-issue/)
+
 ![Wallpaper settings failing to apply from the System Settings menu](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.webp)
 
 <!-- truncate -->

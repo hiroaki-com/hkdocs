@@ -13,6 +13,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事では、Docusaurusのローカル環境開発時のために、`Docker Compose`を導入した際の手順を整理します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/docusaurus-project-docker-compose-setup-log/) を参照してください。
+
 背景：
 
 ローカル開発環境の統一とセットアップの簡略化を目的とし、Docusaurus (`v3.8.0`) プロジェクトにDocker Composeを導入した。導入前は、Node.js (`v22.16.0`) およびpnpm (`v10.11`) を開発者のローカルマシンに直接インストールして運用していた。

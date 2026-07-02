@@ -15,6 +15,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 なお、本機能はその後 [URL共有機能とUX改善](/blog/2025-06-29-enhancing-browser-memo-with-url-sharing-and-ux-improvements.md) で大幅に拡張しています。
 
+また、本記事は実装当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/implementing-browser-memo-feature-in-docusaurus/) にまとめています。
+
 #### 1. 基本機能と目的
 
 ユーザーがブラウザ上で手軽にテキストメモを作成・保存し、次回訪問時にも内容を保持できる機能の提供。

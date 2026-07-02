@@ -17,6 +17,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 完成したコンポーネントの特長は、ページのタイトルとURLを自動で取得する点です。これにより、一度設置すれば、記事ごとに特別な設定を追加する必要がなく、メンテナンスの手間がかかりません。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/docusaurus-share-button-implementation-log/) を参照してください。
+
 <!-- truncate -->
 
 #### 実装方針の選択
