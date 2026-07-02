@@ -13,6 +13,8 @@ I frequently struggled with this issue while working remotely, feeling the stres
 
 Based on my personal experience, this article explains how to organize and delete unnecessary WiFi history on both Mac and iPhone. This simple maintenance can improve the speed at which the login screen appears and ensure smooth connections to public WiFi.
 
+**More Mac articles**: [Enabling key repeat](/en/blog/2025/06/29/mac-enable-key-repeat/) · [Fixing custom wallpaper issues](/en/blog/2025/11/14/mac-fix-custom-wallpaper-issue/) · [Reclaiming 109GB of disk space](/en/blog/2026/01/14/recover-mac-disk-space-screenrecordings/)
+
 ![Example of Public WiFi Authentication Screen (Captive Portal)](/img/captiveportal_01_popup.webp)
 
 <!-- truncate -->

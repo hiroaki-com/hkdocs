@@ -10,6 +10,8 @@ This post outlines a simple implementation for displaying a "Last Updated" date 
 Unlike the `Blog` folder, the `Docs` folder does not display creation dates by default, so we decided to add this feature.
 We opted for a method using Front Matter, which doesn't rely on Git history and requires no changes to our CI/CD setup.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/add-last-updated-date-to-docs-articles/).
+
 **References:**
 - https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#last_update
 

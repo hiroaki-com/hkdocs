@@ -17,6 +17,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 なお、導入後に発生した [ルーティング崩壊とデプロイ失敗の解決録](/blog/2025-06-16-solving-docusaurus-i18n-routing-and-deployment-issues.md) や、[ナビゲーションバー・フッターの国際化手順](/blog/2025-06-21-docusaurus-i18n-workflow-for-navbar-and-footer.md) も併せて参照してください。
 
+また、本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/implementing-i18n-in-docusaurus/) を参照してください。
+
 **前提環境:**
 
 *   **サイトジェネレーター:** Docusaurus (プロジェクトセットアップ済み)

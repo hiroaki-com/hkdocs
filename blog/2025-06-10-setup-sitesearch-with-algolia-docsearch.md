@@ -13,6 +13,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事では、Algolia DocSearch を使用して、サイト内検索機能を設定した際の手順と課題解決の経緯を整理します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/setup-sitesearch-with-algolia-docsearch/) を参照してください。
+
 ### DocusaurusにAlgolia DocSearchを実装した際の記録
 
 参考：

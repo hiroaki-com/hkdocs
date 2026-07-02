@@ -13,6 +13,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 Google Colabで作成したPythonコードを、MacBookのVSCodeとGitHubを使って本格的な開発フローに移行するための実践的な手順を解説します。これまでColab上でのみ開発を行っていた方が、GitHubでのバージョン管理とローカルVSCodeでの快適な編集環境を構築し、より効率的な開発体制を整えるための具体的なステップを紹介します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/google-colab/google-colab-github-integration-guide/) を参照してください。
+
 - **リポジトリの準備**: GitHub上での受け入れ環境の構築
 - **初回連携**: ColabからGitHubへの安全なコード移行
 - **ローカル環境**: VSCodeでの編集環境セットアップ

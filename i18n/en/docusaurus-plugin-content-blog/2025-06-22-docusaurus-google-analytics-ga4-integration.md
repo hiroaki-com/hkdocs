@@ -7,6 +7,8 @@ description: "A guide to integrating Google Analytics 4 (GA4) into a Docusaurus 
 
 This post outlines the setup procedure for integrating Google Analytics 4 (GA4) into our Docusaurus site for traffic analysis, serving as a technical memo.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/docusaurus-google-analytics-ga4-integration/).
+
 **Features:**
 *   Integrate Google Analytics 4 (GA4) with a Docusaurus site.
 *   Enable site-wide traffic analysis.

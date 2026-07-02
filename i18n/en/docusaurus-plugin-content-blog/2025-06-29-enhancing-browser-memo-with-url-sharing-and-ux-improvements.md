@@ -15,6 +15,8 @@ Based on user experience and analysis of competing services, I have implemented 
 
 This article outlines the key technical points of **implementing a URL-based memo sharing feature** and the **UI/UX improvements** made in the process.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/enhancing-browser-memo-with-url-sharing-and-ux-improvements/).
+
 Related:
 - [Previous Post:A Record of Implementing an In-Site Browser Memo Feature in Docusaurus](/i18n/en/docusaurus-plugin-content-blog/2025-06-15-implementing-browser-memo-feature-in-docusaurus.md)
 

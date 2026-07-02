@@ -16,6 +16,8 @@ This is a handy macOS feature called "`Press and Hold`," but it can hinder your 
 
 This article provides a clear, step-by-step guide on how to disable this `accent menu` and enable traditional key repeat, even for those unfamiliar with macOS.
 
+**More Mac articles**: [Fixing custom wallpaper issues](/en/blog/2025/11/14/mac-fix-custom-wallpaper-issue/) · [Reclaiming 109GB of disk space](/en/blog/2026/01/14/recover-mac-disk-space-screenrecordings/) · [Fixing public Wi-Fi captive portals](/en/blog/2026/01/08/fix-public-wifi-captive-portal-issue/)
+
 *This guide has been tested on the following environment:*
 *   **Mac:** M1, 2020
 *   **macOS:** Sonoma 15.1 (24B83)

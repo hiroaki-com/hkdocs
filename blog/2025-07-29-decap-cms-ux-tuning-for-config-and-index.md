@@ -15,6 +15,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事では、それらの課題を解決するために[**`static/admin/config.yml`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/config.yml)と[**`static/admin/index.html`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/index.html)に施した、より実践的なカスタマイズの内容を紹介します。
 
+また、本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/decap-cms-ux-tuning-for-config-and-index/) を参照してください。
+
 -   **`config.yml`の最適化**: 入力の手間を減らし、ミスを防ぐための設定
 -   **`index.html`の改造**: モバイルでの操作性を向上させるCSSとJavaScriptの追加
 

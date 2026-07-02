@@ -15,6 +15,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 `Docsフォルダ`には、`Blogフォルダ`のように、作成日など日付の記載がデフォルトではされないようなので追加することを決定しました。
 Gitの履歴に依存せず、CI/CDの設定変更も不要な、Front Matterを利用した方法の採用しました。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/add-last-updated-date-to-docs-articles/) を参照してください。
+
 **参考資料:**
 - https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#last_update
 

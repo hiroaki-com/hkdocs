@@ -13,6 +13,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事では、Github Actions 新規の記事を検知し、TwitterカードとしてXへPOSTする実装した際の手順とトラブルシューティングの記録を整理します。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/x-auto-post-feature-implement/) を参照してください。
+
 機能：
 Github Actions で新規投稿を検知し、TwitterカードとしてXへPOSTする
 

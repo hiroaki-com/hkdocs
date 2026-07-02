@@ -15,6 +15,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 本記事では、MacBookで任意の画像ファイルを壁紙（デスクトップピクチャ）として設定する際、システム設定からの操作では反映が不安定であったり、再起動後に設定がリセットされてしまう事象に対する、解決手順をまとめたものです。地味に長年困っていた本件の解決法が分かったので共有いたします。
 
+**Mac関連の他の記事**: [キーリピートを有効にする](/blog/2025/06/29/mac-enable-key-repeat/) ・ [ストレージ空き容量の確保](/blog/2026/01/14/recover-mac-disk-space-screenrecordings/) ・ [公衆WiFiの認証画面問題](/blog/2026/01/08/fix-public-wifi-captive-portal-issue/)
+
 ![システム設定の壁紙メニューからだと壁紙設定が反映されない](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.webp)
 
 <!-- truncate -->

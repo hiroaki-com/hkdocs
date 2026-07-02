@@ -7,6 +7,8 @@ description: "A guide to adding Algolia DocSearch to a Docusaurus site for site 
 
 This article organizes the steps and troubleshooting process I went through when setting up a site search feature using Algolia DocSearch.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/setup-sitesearch-with-algolia-docsearch/).
+
 ### A Record of Implementing Algolia DocSearch in Docusaurus
 
 References:

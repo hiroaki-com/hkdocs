@@ -14,6 +14,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 以前の記事で、[DocusaurusサイトにDecap CMSを導入した方法](docs/tech/docusaurus/docusaurus-decap-cms-with-cloud-run-and-netlify.mdx)について解説しました。導入によってコンテンツ更新の基盤は整いましたが、実際に日々利用する中で、特にモバイル環境での使い勝手や定型入力の効率化に改善の余地があると感じていました。
 
+本記事は継続的にメンテナンスしている手順書です。執筆当時の背景や試行錯誤の記録は [ブログ版の記事](/blog/2025/07/29/decap-cms-ux-tuning-for-config-and-index/) を参照してください。
+
 この記事では、それらの課題を解決するために[**`static/admin/config.yml`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/config.yml)と[**`static/admin/index.html`**](https://github.com/hiroaki-com/hkdocs/blob/main/static/admin/index.html)に施した、より実践的なカスタマイズの内容を紹介します。
 
 -   **`config.yml`の最適化**: 入力の手間を減らし、ミスを防ぐための設定

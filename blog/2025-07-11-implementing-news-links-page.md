@@ -13,6 +13,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 この記事では、Docusaurusサイト内に、国内外のニュースサイトを一覧できる「ニュースページ」を実装した際の整理をします。
 
+本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/implementing-news-links-page/) を参照してください。
+
 #### 1. ページの目的と主要機能
 
 個人的な情報収集の起点として、信頼できるニュースソースへ素早くアクセスできるページの構築が目的。すべて静的ページとしてビルドし、高速な表示や利便性、メンテナンス性を重視しました。。

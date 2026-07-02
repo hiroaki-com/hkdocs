@@ -11,6 +11,8 @@ I've added share buttons to each article on this site for social media sharing. 
 
 A key feature of the final component is its ability to automatically fetch the page title and URL. This means that once it's set up, there's no need for special configurations on a per-article basis, which minimizes maintenance.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/docusaurus-share-button-implementation-log/).
+
 <!-- truncate -->
 
 #### Choosing the Implementation Strategy

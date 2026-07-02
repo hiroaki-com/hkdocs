@@ -7,6 +7,8 @@ description: "Step-by-step guide to setting up a custom domain on a Docusaurus s
 
 This article outlines the steps to set up the custom domain `hkdocs.com`, purchased from Value Domain, for this Docusaurus site hosted on Google Cloud Run.
 
+This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/setup-custom-domain/).
+
 **Prerequisites:**
 
 *   **Domain:** `hkdocs.com` (already purchased from [Value Domain](https://www.value-domain.com/))
