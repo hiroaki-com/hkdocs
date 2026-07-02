@@ -9,6 +9,8 @@ This article organizes the steps I took to implement multi-language support (i18
 
 Based on the official documentation, this guide also includes practical tips for real-world scenarios, such as commands for a Docker environment and reliable methods for verifying functionality before deployment.
 
+See also the [record of solving the routing and deployment issues](/i18n/en/docusaurus-plugin-content-blog/2025-06-16-solving-docusaurus-i18n-routing-and-deployment-issues.md) that arose afterward, and the [procedure for internationalizing the navbar and footer](/i18n/en/docusaurus-plugin-content-blog/2025-06-21-docusaurus-i18n-workflow-for-navbar-and-footer.md).
+
 **Prerequisites:**
 
 *   **Site Generator:** Docusaurus (project already set up)

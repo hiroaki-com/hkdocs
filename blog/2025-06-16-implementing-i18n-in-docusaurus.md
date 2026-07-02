@@ -15,6 +15,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 公式ドキュメントを参考にしつつ、Docker 環境でのコマンドや、デプロイ前の確実な動作確認方法など、実践で役立つポイントも交えて解説します。
 
+なお、導入後に発生した [ルーティング崩壊とデプロイ失敗の解決録](/blog/2025-06-16-solving-docusaurus-i18n-routing-and-deployment-issues.md) や、[ナビゲーションバー・フッターの国際化手順](/blog/2025-06-21-docusaurus-i18n-workflow-for-navbar-and-footer.md) も併せて参照してください。
+
 **前提環境:**
 
 *   **サイトジェネレーター:** Docusaurus (プロジェクトセットアップ済み)

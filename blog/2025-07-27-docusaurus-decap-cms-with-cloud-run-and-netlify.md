@@ -1,7 +1,7 @@
 ---
 title: Cloud Run上のDocusaurusサイトにDecap CMSを導入した記録
 authors: [hk]
-tags: [docusaurus, decap-cms, netlify, cloud-run, ci/cd]
+tags: [docusaurus, decap-cms, ci/cd, cloud-run]
 description: "Cloud Run でホスティングした Docusaurus サイトに Decap CMS を導入した記録。Netlify で CMS 管理画面・Cloud Run で公開サイトをホストするハイブリッド構成の解説です。"
 ---
 
@@ -23,7 +23,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
     -   URL: `https://[your-custom-domain].com/`
     -   役割: 静的サイトをホストします。既存のCI/CDパイプラインは維持されます。
 
-この記事が、同様の構成を検討している方の参考になれば幸いです。
+この記事が、同様の構成を検討している方の参考になれば幸いです。なお、導入後の運用改善については [Decap CMS の config.yml と index.html を最適化した記録](/blog/2025-07-29-decap-cms-ux-tuning-for-config-and-index.md) にまとめています。
 
 <!-- truncate -->
 

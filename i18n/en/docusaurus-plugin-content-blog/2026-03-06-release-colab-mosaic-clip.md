@@ -4,7 +4,7 @@ date: "2026-03-06"
 description: "Announcing the release of an open-source tool that applies a mosaic or solid-color mask to any time range and region of a video and exports it as MP4. Everything runs in a browser-based GUI — no setup required."
 authors: [hk]
 video_asset: "https://github.com/user-attachments/assets/984e6d25-5342-4532-be71-c32714989bd3"
-tags: [release, ffmpeg, google-colab, mosaic, privacy, open-source]
+tags: [open-source, python, google-colab, privacy]
 ---
 
 import Admonition from '@theme/Admonition';
