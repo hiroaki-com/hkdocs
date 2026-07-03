@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import { ptsFor, labelFor, deepClone } from './_logic';
+import CalculatorNav from './_CalculatorNav';
 
 type T = {
   pageTitle: string;
@@ -301,18 +302,6 @@ const DEFAULT_CFG: Cfg = {
   names: ['Player 1', 'Player 2', 'Player 3', 'Player 4'],
 };
 
-function ptsFor(num: number | 'B', mult: number, bullType: number): number {
-  if (num === 'B') return bullType === 1 || mult === 2 ? 50 : 25;
-  return (num as number) * mult;
-}
-
-function labelFor(num: number | 'B', mult: number): string {
-  if (num === 'B') return mult === 2 ? 'D-Bull' : 'Bull';
-  if (mult === 2) return 'D' + num;
-  if (mult === 3) return 'T' + num;
-  return String(num);
-}
-
 function checkoutHint(rem: number, cfg: Cfg, t: T): string {
   if (rem <= 0 || rem > 60) return '';
   if (cfg.bullType === 1 && rem === 50) return 'Bull';
@@ -353,10 +342,6 @@ function newGame(cfg: Cfg): GameState {
     turnStart: Array(cfg.playerCount).fill(cfg.gameType),
     darts: [], log: '', busted: false, over: false, winner: null, finishDart: null, round: 1,
   };
-}
-
-function deepClone(g: GameState): GameState {
-  return JSON.parse(JSON.stringify(g));
 }
 
 function ScoreCards({ players, cp, over, cfg, t }: { players: Player[]; cp: number; over: boolean; cfg: Cfg; t: T }) {
@@ -699,17 +684,7 @@ export default function Darts01() {
             onReset={handleReset} onSetMult={handleSetMult}
           />
         )}
-        <nav
-          aria-label={currentLocale === 'en' ? 'Other darts calculators' : 'ほかのダーツ計算機'}
-          style={{ margin: '2.5rem auto 1.5rem', textAlign: 'center', fontSize: '0.9em' }}
-        >
-          <span style={{ opacity: 0.7 }}>{currentLocale === 'en' ? 'More darts calculators: ' : 'ほかのダーツ計算機: '}</span>
-          <Link to="/darts/">{currentLocale === 'en' ? 'Darts home' : '計算機トップ'}</Link>
-          {' · '}
-          <Link to="/darts/darts-cricket-score-calculator/">{currentLocale === 'en' ? 'Cricket' : 'クリケット'}</Link>
-          {' · '}
-          <Link to="/darts/darts-countup-score-calculator/">{currentLocale === 'en' ? 'Count-Up' : 'カウントアップ'}</Link>
-        </nav>
+        <CalculatorNav current="01" />
       </div>
     </Layout>
   );
