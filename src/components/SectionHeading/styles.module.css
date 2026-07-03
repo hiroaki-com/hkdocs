@@ -1,0 +1,32 @@
+/* アンカーリンク付き見出しのためのスタイル */
+.anchorContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.anchorLink {
+  position: absolute;
+  left: 100%;
+  padding-left: 0.25em;
+  top: 0;
+  opacity: 0;
+  transition: var(--ifm-transition-fast);
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+}
+
+.anchorContainer:hover .anchorLink {
+  opacity: 1;
+}
+
+.anchorLink:hover {
+  color: var(--ifm-color-primary-dark);
+}
+
+/* アコーディオンのマーカー(▼)を非表示 */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
