@@ -201,7 +201,7 @@ const newsData: MajorCategoryData[] = [
  * ホバー時にアンカーリンク('#')を表示する見出しコンポーネント
  */
 const SectionHeading = ({ as: Component, id, className, children }: { as: 'h2' | 'h3'; id: string; className: string; children: ReactNode }) => (
-  <Component id={id} className={`${className} ${styles.sectionHeading}`}>
+  <Component id={id} className={className}>
     <span className={styles.anchorContainer}>
       {children}
       <a

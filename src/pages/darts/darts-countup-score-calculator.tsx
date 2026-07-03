@@ -457,7 +457,7 @@ function GameView({ game, cfg, t, canUndo, onThrow, onMiss, onEndTurn, onUndo, o
           {Array.from({ length: 20 }, (_, i) => i + 1).map(n => {
             const v = ptsFor(n, mult, cfg.bullType);
             return (
-              <button type="button" key={n} className={`dcu-nb${needChange ? ' over' : ''}`} onClick={() => { if (!needChange) onThrow(n, mult); }}>
+              <button type="button" key={n} className={`dcu-nb${needChange ? ' over' : ''}`} onClick={() => onThrow(n, mult)}>
                 <div className="dcu-nn">{n}</div>
                 <div className="dcu-nv">{v}pts</div>
               </button>
@@ -467,10 +467,10 @@ function GameView({ game, cfg, t, canUndo, onThrow, onMiss, onEndTurn, onUndo, o
 
         <div className="dcu-sr">
           <button type="button" className={`dcu-sb${needChange || isInvalidBull ? ' over' : ''}`}
-            onClick={() => { if (!needChange && !isInvalidBull) onThrow('B', mult); }} disabled={isInvalidBull}>
+            onClick={() => onThrow('B', mult)} disabled={isInvalidBull}>
             Bull ({isInvalidBull ? '—' : `${bv}pts`})
           </button>
-          <button type="button" className={`dcu-sb${needChange ? ' over' : ''}`} onClick={() => { if (!needChange) onMiss(); }}>
+          <button type="button" className={`dcu-sb${needChange ? ' over' : ''}`} onClick={onMiss}>
             {t.miss}
           </button>
         </div>
