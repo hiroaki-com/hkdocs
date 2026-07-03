@@ -1,7 +1,9 @@
-import React, { JSX, ReactNode } from 'react';
+import React, { JSX } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import LinksCard from '@site/src/components/LinksCard';
+import SectionHeading from '@site/src/components/SectionHeading';
+import { escapeCsvField, downloadCsv } from '@site/src/lib/csv';
 import styles from './news.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Download } from 'lucide-react';
@@ -197,34 +199,7 @@ const newsData: MajorCategoryData[] = [
   },
 ];
 
-/**
- * ホバー時にアンカーリンク('#')を表示する見出しコンポーネント
- */
-const SectionHeading = ({ as: Component, id, className, children }: { as: 'h2' | 'h3'; id: string; className: string; children: ReactNode }) => (
-  <Component id={id} className={className}>
-    <span className={styles.anchorContainer}>
-      {children}
-      <a
-        className={styles.anchorLink}
-        href={`#${id}`}
-        aria-label={translate({
-          id: 'theme.common.headingLinkTitle',
-          message: 'この見出しへの固定リンク',
-        })}>
-        #
-      </a>
-    </span>
-  </Component>
-);
-
 export default function NewsPage(): JSX.Element {
-  const escapeCsvField = (field: string): string => {
-    if (/[",\n]/.test(field)) {
-      return `"${field.replace(/"/g, '""')}"`;
-    }
-    return field;
-  };
-
   const handleDownload = () => {
     const header = [
       translate({ id: 'news.download.header.siteName', message: 'SiteName' }),
@@ -240,14 +215,7 @@ export default function NewsPage(): JSX.Element {
       return [escapeCsvField(siteTitle), site.href].join(',');
     });
 
-    const csvContent = [header, ...rows].join('\n');
-    const blob = new Blob([`\uFEFF${csvContent}`], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.setAttribute('download', 'hkdocs-news-sites.csv');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    downloadCsv('hkdocs-news-sites.csv', header, rows);
   };
 
   return (
