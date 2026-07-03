@@ -10,7 +10,7 @@ const DefaultIcon = (): JSX.Element => (
 
 type Props = {
   href: string;
-  title: React.ReactNode;
+  title: string;
   description: React.ReactNode;
 };
 
@@ -35,8 +35,6 @@ export default function LinksCard({ href, title, description }: Props): JSX.Elem
     }
   };
 
-  const altText = typeof title === 'string' ? title : 'ニュースサイト';
-
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
       <div className={styles.card}>
@@ -46,7 +44,7 @@ export default function LinksCard({ href, title, description }: Props): JSX.Elem
           ) : (
             <img
               src={faviconSources[sourceIndex]}
-              alt={`${altText} のファビコン`}
+              alt={`${title} のファビコン`}
               className={styles.image}
               onError={handleError}
               loading="lazy"

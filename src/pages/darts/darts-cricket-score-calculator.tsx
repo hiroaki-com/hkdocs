@@ -193,7 +193,7 @@ const CSS = `
 .dc-ip { background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 20px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
 .dc-mr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
 
-.dc-mb, .dc-nb, .dc-ab, .dc-wb2 {
+.dc-mb, .dc-nb, .dc-ab {
   padding: 12px 8px;
   border-radius: var(--ifm-button-border-radius, 6px);
   border: 1px solid var(--ifm-color-emphasis-300);
@@ -211,10 +211,10 @@ const CSS = `
   justify-content: center;
   user-select: none;
 }
-.dc-mb, .dc-ab, .dc-wb2 { flex-direction: row; }
+.dc-mb, .dc-ab { flex-direction: row; }
 
-.dc-mb:hover:not(.sel), .dc-nb:hover:not(:disabled), .dc-ab:hover:not(:disabled), .dc-wb2:hover { background: var(--ifm-color-emphasis-100); border-color: var(--ifm-color-emphasis-400); }
-.dc-mb:active, .dc-nb:active:not(:disabled), .dc-ab:active:not(:disabled), .dc-wb2:active { transform: scale(0.96); }
+.dc-mb:hover:not(.sel), .dc-nb:hover:not(:disabled), .dc-ab:hover:not(:disabled) { background: var(--ifm-color-emphasis-100); border-color: var(--ifm-color-emphasis-400); }
+.dc-mb:active, .dc-nb:active:not(:disabled), .dc-ab:active:not(:disabled) { transform: scale(0.96); }
 .dc-mb.sel { background: var(--ifm-color-primary); border-color: var(--ifm-color-primary); color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
 
 .dc-np { display: grid; gap: 8px; margin-bottom: 12px; }
