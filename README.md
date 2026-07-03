@@ -82,6 +82,7 @@ graph LR
 │   └── css/              # カスタムCSS
 ├── static/               # 静的アセット (画像、CMS設定など)
 │   └── admin/            # Decap CMS（コンテンツ管理システム）の設定
+├── scripts/              # ビルド前処理スクリプト (動画ショーケース生成など)
 ├── spec/                 # システム仕様書
 ├── Dockerfile            # 本番環境用Dockerfile (Cloud Run)
 ├── Dockerfile.dev        # 開発環境用Dockerfile
