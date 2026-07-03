@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import type { JSX } from 'react';
 import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
@@ -7,23 +7,7 @@ import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
-
-const useJsonLdSchema = (schema: Record<string, unknown> | null) => {
-  useEffect(() => {
-    if (!schema) return;
-
-    const id = `json-ld-${schema['@type'] ?? 'custom'}`;
-    const script = Object.assign(document.createElement('script'), {
-      type: 'application/ld+json',
-      id,
-      innerHTML: JSON.stringify(schema),
-    });
-
-    document.head.appendChild(script);
-
-    return () => document.getElementById(id)?.remove();
-  }, [schema]);
-};
+import useJsonLdSchema from '@site/src/hooks/useJsonLdSchema';
 
 const GAME_CARDS = [
   {

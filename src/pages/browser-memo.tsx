@@ -11,6 +11,7 @@ import 'github-markdown-css/github-markdown.css';
 import ShareButtons from '@site/src/components/ShareButtons';
 import mermaid from 'mermaid';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import useJsonLdSchema from '@site/src/hooks/useJsonLdSchema';
 
 // --- 定数定義 ---
 const MEMO_COUNT = 5;
@@ -444,27 +445,6 @@ function MemoApp() {
     </main>
   );
 }
-
-const useJsonLdSchema = (schema: object | null) => {
-  useEffect(() => {
-    if (!schema) return;
-    
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    const id = `json-ld-${schema['@type'] || 'custom'}`;
-    script.id = id;
-    script.innerHTML = JSON.stringify(schema);
-    
-    document.head.appendChild(script);
-
-    return () => {
-      const existingScript = document.getElementById(id);
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
-  }, [schema]);
-};
 
 function MemoPageContent() {
   const { siteConfig, i18n: { currentLocale } } = useDocusaurusContext();
