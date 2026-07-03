@@ -51,6 +51,6 @@ COPY --from=builder --chown=node:node /app/package.json ./package.json
 # Expose application port
 EXPOSE 8080
 
-# Start application using "serve" script from package.json
-# Assumes "scripts": { "serve": "serve -s build -l tcp://0.0.0.0:${PORT:-8080}" } in package.json
+# Start application using the "serve" script from package.json
+# ("serve": "http-server ./build --single", listens on port 8080 by default)
 CMD ["pnpm", "run", "serve"]

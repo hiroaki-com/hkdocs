@@ -82,6 +82,7 @@ graph LR
 │   └── css/              # Custom CSS
 ├── static/               # Static assets (images, CMS config, etc.)
 │   └── admin/            # Decap CMS (Content Management System) configuration
+├── scripts/              # Pre-build scripts (e.g., video showcase generation)
 ├── spec/                 # System specifications
 ├── Dockerfile            # Dockerfile for production (Cloud Run)
 ├── Dockerfile.dev        # Dockerfile for development
