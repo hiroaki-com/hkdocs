@@ -1,8 +1,8 @@
 ---
-title: 公衆WiFiの認証画面が出ない問題を解決｜公衆WiFiの接続パフォーマンスを改善するTIPS
+title: キャプティブポータルとは？公衆WiFiの認証画面が出ない問題の解決法｜Mac・iPhoneのWiFi接続を改善
 authors: [hk]
 tags: [mac, network, troubleshooting]
-description: "公衆 WiFi の認証画面（キャプティブポータル）が表示されない問題の解決法。Mac・iPhone で過去の WiFi 接続履歴を整理・削除することでスムーズな接続を実現する手順を解説します。"
+description: "キャプティブポータル（公衆 WiFi の認証画面）が表示されず繋がらない問題の解決法。Mac・iPhone で過去の WiFi 接続履歴を整理・削除し、認証画面をスムーズに表示させる手順を解説します。"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
