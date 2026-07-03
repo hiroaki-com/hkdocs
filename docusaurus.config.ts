@@ -114,8 +114,8 @@ const config: Config = {
         blogDescription: '体調など雑多な日常の記録',
         showReadingTime: false,
         authorsMapPath: '../blog/authors.yml',
-          blogSidebarTitle: 'All posts',
-          blogSidebarCount: 'ALL',
+        blogSidebarTitle: 'All posts',
+        blogSidebarCount: 'ALL',
       } satisfies PluginContentBlog.Options,
     ],
   ],
@@ -156,7 +156,6 @@ const config: Config = {
       logo: {
         alt: 'Hk Docs Logo',
         src: 'img/logo.svg',
-        srcDark: 'img/logo.svg', // 同じファイルを指定するだけでOK
       },
       hideOnScroll: true,
       items: [
