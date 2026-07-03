@@ -15,7 +15,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 **🌸 合格：2025年03月30日**
 
----
 ### 合格記
 
 <Admonition type="note" title="2025/03/30 合格記">
@@ -47,16 +46,15 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 </ul>
 </Admonition>
 
----
-
 ### 受験情報 2025年3月30日
 
 - 試験名: Google Cloud Professional Cloud DevOps Engineer
 - 日付: 2025年03月30日
 - 時刻: 15:45 (JST)
 
----
-<Admonition type="tip" title="受験当日のTODO（PSE / PNE / PDE / PCA 受験時の成功事例） ⭐️">
+#### 受験当日のTODO（PSE / PNE / PDE / PCA 受験時の成功事例） ⭐️
+
+<Admonition type="tip">
 
 **前日**
 - [x] しっかり寝る
@@ -85,21 +83,18 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 	- 見直しの時間を確保するよう意識する
 </Admonition>
 
----
-
 ### 🔥受験に向けた戦略🔥
 
 - 公式の参考資料を読む
 	- [認定試験一覧](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
 
-##### 学習戦略：
+#### 学習戦略
 
 - 重要資料
 	- [公式](https://cloud.google.com/learn/certification/cloud-devops-engineer/)
 	- 💡[SRE Book Updates, by Topic](https://sre.google/resources/book-update/)｜Google SRE の 書籍３冊含むまとめ資料が無料で読めるので必読
 		- [sre.google/books](http://sre.google/books)｜3冊をオンラインで無料に読める
 	- [ビルドを高速化する際のベスト プラクティス](https://cloud.google.com/build/docs/optimize-builds/speeding-up-builds?hl=ja#caching_directories_with_google_cloud_storage%20%20https://cloud.google.com/build/docs/speeding-up-builds)
-
 
 - 問題集
 	- [Wizlab](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-cloud-devops-engineer/385/pt) の無料問題：Free Test だけ学習
@@ -122,19 +117,15 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 		- [x] Practice Test 2｜2025/03/29｜81%
 		- [x] Practice Test 3｜2025/03/29｜72%
 
-
 	- [模擬試験](https://docs.google.com/forms/d/e/1FAIpQLSdpk564uiDvdnqqyPoVjgpBp0TEtgScSFuDV7YQvRSumwUyoQ/viewform)
 		- [ ] 2025/03/24｜70%
 			- Question 12 - 問題集と模擬試験の回答が違う可能性あり
 		- [ ] ｜｜
 
-
 - 暇があれば、Google SRE の記事を読む
 	- [ ] [SRE Book Updates, by Topic](https://sre.google/resources/book-update/)
 
----
-
-##### 苦手項目
+### 苦手項目
 
 [プライベート プール](https://cloud.google.com/build/docs/private-pools/private-pools-overview?hl=ja#overview_of_default_pools_and_private_pools)の概要｜Cloud Build
 >**プライベート プール**は、**プライベート ネットワーク内のリソースへのアクセス**など、ビルド環境のカスタマイズを強化するワーカーのプライベート専用プールです。デフォルト プールと同様に、プライベート プールも Cloud Build によってホスト、フルマネージドされ、ゼロまでスケールアップまたはスケールダウンできます。インフラストラクチャの設定、アップグレード、スケーリングは不要です。プライベート プールはお客様固有のリソースであるため、さまざまな方法で構成できます。
@@ -152,10 +143,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 >
 > テストには[ステージング組織](https://cloud.google.com/architecture/identity/best-practices-for-planning?hl=ja#use_a_separate_staging_organization)を**使用しないで**ください。ステージング環境では、本番環境の組織と同様の IAM ポリシーと組織のポリシーを使用する必要があります。そのため、ステージング環境に本番環境と同じ制限が適用される可能性があります。同時に、テストを許可するためにポリシーを緩和すると、ステージング組織の目的が損なわれます。
 
-
 [images](https://cloud.google.com/build/docs/build-config-file-schema?hl=ja#images)｜Cloud Build 
 > ビルド構成ファイルの **`images` フィールド**には、Cloud Build が Artifact Registry または Container Registry に push する 1 つ以上の Linux **Docker イメージ**を指定します。Linux Docker イメージを生成せずにタスクを実行するビルドがあるかもしれませんが、イメージをビルドしてレジストリにプッシュしない場合、イメージはビルド完了時に破棄されます。指定されたイメージがビルド時に生成されない場合、ビルドは失敗します。 イメージの保存の詳細については、[Artifact Registry にアーティファクトを保存する](https://cloud.google.com/build/docs/building/store-artifacts-in-artifact-registry?hl=ja)をご覧ください。
-
 
 [artifacts](https://cloud.google.com/build/docs/build-config-file-schema?hl=ja#artifacts)｜Cloud Build 
 > ビルド構成ファイルの **`artifacts` フィールド**には、Cloud Storage に保存する 1 つ以上の**コンテナ以外**のアーティファクトを指定します。コンテナ以外のアーティファクトを保存する詳細については、[Cloud Storage へのビルド アーティファクトの保存](https://cloud.google.com/build/docs/building/store-artifacts-in-cloud-storage?hl=ja)をご覧ください。
@@ -166,7 +155,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
  [エージェント ポリシー](https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent/managing-agent-policies?hl=ja)｜Google Cloud CLI
 > エージェント ポリシーの作成と管理は、**Google Cloud CLI** の gcloud beta compute instances ops-agents policies コマンド グループまたは agent-policy Terraform モジュールを使用して行います。エージェント ポリシーは、Compute Engine の VM Manager ツールスイートを使用して **OS ポリシーを管理**します。このポリシーでは、Google Cloud Observability エージェント（Ops エージェント、従来の Monitoring エージェント、従来の Logging エージェント）などのソフトウェア構成のデプロイとメンテナンスを自動化できます。>
-
 
 [Cloud Storage バケットに状態を保存するように Terraform](https://cloud.google.com/docs/terraform/resource-management/managing-infrastructure-as-code?hl=ja#configuring_terraform_to_store_state_in_a_cloud_storage_bucket) を構成｜Terraform
 > デフォルトでは、Terraform はローカルの `terraform.tfstate` という名前のファイルに状態を保存します。多くのユーザーが Terraform を同時に実行していて、各マシンが現在のインフラストラクチャを独自に理解している場合は特に、このデフォルト構成が原因でチームでの Terraform の使用が難しくなる場合があります。
@@ -183,16 +171,12 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 [Triggering on Pub/Sub Messages](https://spinnaker.io/docs/guides/user/pipeline/triggers/pubsub/)｜Spinnaker
 > Pub/SubとSpinnakerがコラボされていることを認識
 
-
 [create_before_destroy](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#create_before_destroy)｜Terraform
 > create_before_destroy (bool) - デフォルトでは、TerraformがリモートAPIの制限によりインプレースで更新できないリソース引数を変更する必要がある場合、Terraformは既存のオブジェクトを削除し、その後、新しい設定済み引数で新しい置き換えオブジェクトを作成します。
 > 
 > create_before_destroyメタ引数はこの動作を変更し、置き換えオブジェクトが最初に作成され、その後に元のオブジェクトが削除されるようにします。
 
-
----
-
-##### HTTP ステータスエラー番号 一覧
+### HTTP ステータスエラー番号一覧
 
 | **HTTP ステータスエラー番号** | **エラーメッセージ**            | **場面/原因**                          |
 | ------------------- | ----------------------- | ---------------------------------- |
@@ -207,9 +191,9 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 | **503**             | `Service Unavailable`   | サービス停止中やメンテナンス中、サーバが一時的に使用不可       |
 | **504**             | `Gateway Timeout`       | リクエストがタイムアウトした場合（例: 長時間待機後にタイムアウト） |
 
----
+### 開発者メモ：Udemy Invalid URLs レポート
 
-<Admonition type="info" title="開発者メモ: Udemy Invalid URLs レポート">
+<Admonition type="info">
 2025/03/29 報告完了
 
 **Practice Test 2: Still Invalid URLs References**
@@ -222,8 +206,6 @@ You oversee an application operating within Google Kubernetes Engine (GKE) and e
 Your organization aims to elevate the availability target of an application from 99.9% to 99.99% with a $2,000 investment. ...
 ```
 </Admonition>
-
-
 
 <ShareButtons />
 

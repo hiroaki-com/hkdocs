@@ -46,8 +46,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
     
 - 参考: [Google Cloudの暗号通貨マイニング検出ベストプラクティス](https://cloud.google.com/security-command-center/docs/cryptomining-detection-best-practices?hl=ja)
 
----
-
 **IAMの時間制御:**
 
 - Cloud Schedulerを使用して、指定した日時や間隔でHTTPリクエストを発行し、Cloud RunやCloud Functionsを自動的に呼び出すことができます。これにより、特定の時間帯にのみアクセス権を付与するなど、時間ベースのアクセス制御が可能となります。
@@ -55,8 +53,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 - ポイント:
     - Cloud Schedulerの再試行設定により、実行失敗時のリトライも簡単に制御できます。
     - IAMロールの付与や削除など、アクセス権の管理をプログラムで実装可能です。
-
----
 
 **外部キー管理に関する問題:**
 
@@ -68,8 +64,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
     - ハッシュ化は、データを一方向に変換し、復号不可にする手法です。これにより、元のデータを復元できなくなります。
     - 注意: 確定的暗号化は、同じ入力に対して常に同じ出力を生成するため、復号可能ですが、ハッシュ化とは異なります。
 
----
-
 **Container Registry（Artifact Registry）の機能:**
 
 - Artifact Registryは、Container Registryの後継として、コンテナイメージやその他のパッケージの管理を提供します。脆弱性スキャンやモニタリング機能が統合されています。
@@ -77,8 +71,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 - ポイント:
     - Artifact RegistryのArtifact Analysisで脆弱性スキャンを実施できます。
     - モニタリング機能は、Cloud Security Command Center (SCC)やGoogle Cloud Monitoringを使用して実装します。
-
----
 
 **Cloud Security Command Center (SCC) のユースケース:**
 
@@ -92,9 +84,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
     - 統合: BigQueryやPub/Subへのエクスポートを通じて、外部のセキュリティシステムと連携します。
         
 - 参考: [Security Command Centerの概要](https://cloud.google.com/security-command-center/docs/security-command-center-overview)
-    
-
----
 
 **模擬試験問題の出題事例:**
 
@@ -121,8 +110,9 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 準備：
 - 政府発行の運転免許証
 - クレジット カード
+
 ### 🔥受験に向けた戦略🔥
- 
+
 - [whizlabs.com](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-cloud-security-engineer/301) をマスターする
 	- １周完了：2025/01/14
 	- ２周完了：2025/01/17
@@ -142,10 +132,11 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 - [FWの優先度](https://cloud.google.com/firewall/docs/firewalls?hl=ja#priority_order_for_firewall_rules) - 初期優先度：1000
 - VPCフローログの適用単位はVPC（サブネットよりもベター）
 
----
+### 問題集作成用メモ
 
 <Admonition type="info" title="問題集作成用プロンプトメモ">
-##### 応用問題生成のTIPS
+
+#### 応用問題生成のTIPS
 
 2024/12/14 
 
@@ -161,7 +152,6 @@ GPTs で試験範囲に準じた基礎問題集を生成する
 ↓
 Gemini（studio）へSystemプロンプトを設定の上、順次応用問題に改善していく
 </Admonition>
-
 
 <ShareButtons />
 
