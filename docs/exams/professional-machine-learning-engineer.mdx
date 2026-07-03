@@ -51,7 +51,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 - Vertex AI Workbench
 - Vertex AI Vizier
 - TensorFlow Lite（複数）
-- TensorFlow の AIアクセサレータ（TPU/GPU/CPU）の選定に関する問題
+- TensorFlow の AIアクセラレータ（TPU/GPU/CPU）の選定に関する問題
 - データパイプライン／CI・CDの技術選定／設計に関する問題
 - Scikit-learn から google cloud への移行？移植？に関する問題
 - Request-Response Logging /サンプリングレートの調整に関する問題
@@ -452,7 +452,7 @@ Q(s, a) \leftarrow (1 - \alpha) Q(s, a) + \alpha \left( R(s, a) + \gamma \max_{a
     ※ モデルの汎用性を確認するための手法。データを複数のサブセットに分けて学習・検証を繰り返し、過学習を防ぎ、モデルの性能を安定的に評価する。
 - [nested cross-validation](https://www.google.co.jp/search?sca_esv=3efceaf071fd96ef&sxsrf=AHTn8zqrCto43jpV7zSORelfrY6Sr6GPTg:1744614908726&q=nested+cross-validation&udm=2&fbs=ABzOT_DEpBzaHaQPd4v0Pv-nliGvR65uQsP8EiW5BkdlyNSEfT5KiKXnSW8Gms-WN4s-7SAjW49dUWc3WGew2dsI2-VbB2kZruIS79SgUPiKSMjnG6jDPXEV8THIf_sDePWkj7blizcxQklbnE1RQ0ncOcuUu8ep8A8bBygWz5P6CTqDoxNNQdrUxKzjEQH8_RkH1dCdQ08uRMECbjolMPgA-dOaUXXlwcOu0o2blYk1o5EFDhvNOH4&sa=X&ved=2ahUKEwj16p3__NaMAxWhYPUHHcUKMbwQtKgLegQIFxAB&biw=902&bih=691&dpr=2.2#vhid=-QYUvBI-y_Q1cM&vssid=mosaic)（ネストされた交差検証）は、ハイパーパラメータの最適化を行う際に、データリーケージ（**データ漏洩**）を防ぎ、より信頼性の高い性能評価を行いたい場合に適する。2重の交差検証ループ（インナー／アウター）を実施。
 - [**What-If Tool**](https://www.google.com/search?q=What-If+Tool) (What-Ifツール)
-    ※ モデルの性能をさまざまな入力に対してテストし、データの特徴の重要性を分析し、複数のモデルやデータセットにおけるモデルの挙動を視覚化。GoolgeのOSS。
+    ※ モデルの性能をさまざまな入力に対してテストし、データの特徴の重要性を分析し、複数のモデルやデータセットにおけるモデルの挙動を視覚化。GoogleのOSS。
 - [**Learning Interpretability Tool (LIT)**](https://www.google.com/search?q=Learning+Interpretability+Tool+LIT) (学習解釈ツール)
     ※ モデルの予測や学習過程を視覚的に解釈するためのツール。特徴量の重要度やモデルの挙動を説明可能にする。
 - [**Integrated gradients**](https://www.google.co.jp/search?q=Integrated+gradients&sca_esv=c4fe9279b750d491&biw=1108&bih=691&sxsrf=AHTn8zqaFkN52m2VDP2xIBOLmJ0WJ-g68w%3A1743567757535&ei=jbvsZ7uvINDi1e8PtNLhiQE&ved=0ahUKEwj7qdGGwLiMAxVQcfUHHTRpOBEQ4dUDCBA&uact=5&oq=Integrated+gradients&gs_lp=Egxnd3Mtd2l6LXNlcnAiFEludGVncmF0ZWQgZ3JhZGllbnRzMgQQIxgnMgwQIxiABBgTGCcYigUyBRAAGIAEMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeMgQQABgeSNViULBhWLBhcAJ4AZABAJgBeaABeaoBAzAuMbgBA8gBAPgBAZgCA6ACgwHCAgcQIxiwAxgnwgIKEAAYsAMY1gQYR5gDAIgGAZAGCpIHAzIuMaAH6QayBwMwLjG4B30&sclient=gws-wiz-serp)（統合勾配方式｜[Google cloud](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview?hl=ja#integrated-gradients) ）
@@ -729,7 +729,7 @@ API管理システム（サイドカー モード構成例）
 
 **出題傾向**
 - MLパイプライン／データ処理に関する問題多数
-- GeminiやLabmaなどの最近のMODELのAPI選定に関する問題も出題された
+- GeminiやLlamaなどの最近のMODELのAPI選定に関する問題も出題された
 - TensorFlow I/O
 - パイプライン ~ モニタリング の技術選定の問題少々
 - パフォーマンスチューニングのための対象選定の問題多数（TPU/GPU..）
@@ -768,5 +768,7 @@ Subject: Improvement Request regarding Google Cloud Certification Professional M
 
 
 <ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
