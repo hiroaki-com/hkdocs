@@ -1,6 +1,6 @@
 /**
- * ai-tools.module.css
- * links.module.css とデザイン/レイアウトを統一
+ * directoryPage.module.css
+ * カード一覧形式のディレクトリページ(ai-tools / links)で共有するレイアウト
  */
 
 /* ==========================================================================
@@ -186,7 +186,7 @@
     border-radius: 0;
     max-width: none;
   }
-  
+
   /* ヘッダーを縦積みに変更 */
   .pageHeader {
     flex-direction: column;
@@ -195,12 +195,12 @@
     margin: 0 0 1rem 0;
     border-radius: 0;
   }
-  
+
   /* ダウンロードボタンを非表示 */
   .downloadButton {
     display: none;
   }
-  
+
   .pageHeader h1 {
     font-size: 1.5rem;
   }
@@ -219,7 +219,7 @@
     gap: 0.75rem;
     padding: 0.75rem;
   }
-  
+
   /* セクションの余白と角丸を調整 */
   .majorCategorySection {
     padding: 1rem;
