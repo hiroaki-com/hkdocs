@@ -180,7 +180,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 > 
 
 [Cloud Trace と Zipkin の使用](https://cloud.google.com/trace/docs/zipkin?hl=ja#frequently_asked_questions) 
-> Zipkin サーバーは、アプリケーションが Zipkin でインストゥルメントされているが、独自のトレース バックエンドを実行したくない場合や、**Cloud Trace の高度な分析ツールを利用したい**とう場合に役立ちます。
+> Zipkin サーバーは、アプリケーションが Zipkin でインストゥルメントされているが、独自のトレース バックエンドを実行したくない場合や、**Cloud Trace の高度な分析ツールを利用したい**という場合に役立ちます。
 
 [GKE：ベストプラクティス：推奨](https://cloud.google.com/blog/products/containers-kubernetes/best-practices-for-creating-a-highly-available-gke-cluster?hl=en)
 > **リージョンクラスター**は、**3つのKubernetesコントロールプレーンクォーラム**で構成され、ゾーンクラスターがクラスターのコントロールプレーンAPIに提供できる**よりも高い可用性**を提供します。また、コントロールプレーンが利用できない場合、ノードで実行されている既存のワークロードは影響を受けませんが、一部のアプリケーションはクラスターAPIの可用性に大きく依存しています。これらのワークロードには、リージョンクラスタートポロジを使用することをお勧めします。
@@ -230,7 +230,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 > 枠には**関数**の名前が付き、その幅はその**関数の合計 CPU 時間の測定値**に相対した長さになります。
 
 
-[リクエスト レートを徐々に増やす](https://cloud.google.com/storage/docs/request-rate?hl=ja#ramp-up)：Cloud Strage
+[リクエスト レートを徐々に増やす](https://cloud.google.com/storage/docs/request-rate?hl=ja#ramp-up)：Cloud Storage
 > Cloud Storage の自動スケーリングを常に最適に機能させるためには、高いリクエスト レートが数日間なかったバケットや、オブジェクト キーの新しい範囲を持つバケットのリクエスト レートを徐々に増やす必要があります。毎秒の書き込みリクエストが 1,000 件未満、または読み取りリクエストが 5,000 件未満のリクエスト レートについては、増やす必要はありません。リクエスト レートがこれらのしきい値を超えると予想される場合は、しきい値より低いまたは近いリクエスト レートから徐々にレートを上げていきます。ただし、20 分間でレートが倍にならないようにする必要があります。
 > レイテンシやエラーレートの増大などの問題が発生した場合は、一時的にリクエスト レートの段階的な増加を中止するか、リクエスト レートを減らして、Cloud Storage でバケットがスケーリングされるまでもうしばらく待ってみます。**指数バックオフ**を使用して[リクエストを再試行](https://cloud.google.com/storage/docs/retry-strategy?hl=ja)するのは、次のようなときです。
  - `408` と `429` のレスポンス コードでエラーが発生する。
