@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import { deepClone } from './_logic';
+import CalculatorNav from './_CalculatorNav';
 
 const TARGETS: (number | 'B')[] = [20, 19, 18, 17, 16, 15, 'B'];
 const TV: Record<string, number> = { 20: 20, 19: 19, 18: 18, 17: 17, 16: 16, 15: 15, B: 25 };
@@ -312,10 +313,6 @@ function checkWin(players: Player[]): number | null {
   return idx === -1 ? null : idx;
 }
 
-function cloneGame(g: Game): Game {
-  return JSON.parse(JSON.stringify(g));
-}
-
 const MARK_COLORS: Record<'green' | 'red', string> = { green: '#22B14C', red: '#E83030' };
 
 // Cricket marks per spec: 1hit "/", 2hit "×", 3hit "×" + circumscribed circle (close).
@@ -364,7 +361,7 @@ function DartsCricketApp({ t }: { t: T }) {
     setGame(prev => {
       if (!prev) return prev;
       setHistory(h => [...h, JSON.stringify(prev)]);
-      return fn(cloneGame(prev));
+      return fn(deepClone(prev));
     });
   };
 
@@ -660,17 +657,7 @@ export default function DartsCricketPage() {
       <BrowserOnly fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>}>
         {() => <DartsCricketApp t={t} />}
       </BrowserOnly>
-      <nav
-        aria-label={currentLocale === 'en' ? 'Other darts calculators' : 'ほかのダーツ計算機'}
-        style={{ margin: '2.5rem auto 1.5rem', textAlign: 'center', fontSize: '0.9em' }}
-      >
-        <span style={{ opacity: 0.7 }}>{currentLocale === 'en' ? 'More darts calculators: ' : 'ほかのダーツ計算機: '}</span>
-        <Link to="/darts/">{currentLocale === 'en' ? 'Darts home' : '計算機トップ'}</Link>
-        {' · '}
-        <Link to="/darts/darts-01-score-calculator/">{currentLocale === 'en' ? '01' : '01ゲーム'}</Link>
-        {' · '}
-        <Link to="/darts/darts-countup-score-calculator/">{currentLocale === 'en' ? 'Count-Up' : 'カウントアップ'}</Link>
-      </nav>
+      <CalculatorNav current="cricket" />
     </Layout>
   );
 }
