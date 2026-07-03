@@ -40,11 +40,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 {/* truncate */}
 
---- 
-
 **試験概要：**
 - https://cloud.google.com/learn/certification/cloud-database-engineer?hl=ja
-
 
 ### 受験情報 2025年3月7日
 
@@ -54,14 +51,12 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 - 日付: 2025年03月07日
 - 時刻: 15:00 (JST) 
 
----
-
 ### 🔥受験に向けた戦略🔥
 
 - 公式の参考資料を読む
 	- https://cloud.google.com/learn/certification/cloud-database-engineer?hl=ja
 
-##### 学習戦略：
+#### 学習戦略
 
 - 参考資料
 	- 公式
@@ -75,7 +70,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 		- OLD｜[Practice Exams | Google Cloud Database Engineer (GCP)](https://www.udemy.com/course/practice-exams-google-professional-cloud-database-engineer/?couponCode=ST5MT020225BROW)
 		- New｜[Google Professional Cloud Database Engineer - GCP - Exams](https://www.udemy.com/course/google-professional-cloud-database-engineer-exams/)
 			- [返金方法](https://www.udemy.com/dashboard/purchase-history/)：Request a Refund 
-
 
 	- Wizlab の無料問題だけ学習
 		- [Free Test ](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-database-engineer/2556)
@@ -109,19 +103,16 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 		- [x] Practice Test 5
 		- [x] Practice Test 6
 
-
 	-  [公式模試](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform?hl=ja) にトライする
 		- → 模擬試験について：問題集で網羅されているため以後不要
 			- 100 %：2025/02/13
 			- 95%：2025/03/02
 
-
 - [ ] アーキテクチャーセンターの記事を読む
 	- https://cloud.google.com/architecture/databases?hl=ja
 		- [x] 2025/02/13
----
 
-##### 苦手項目
+### 苦手項目
 
 [リードレプリカ](https://cloud.google.com/sql/docs/mysql/replication?hl=ja#read-replicas) Cloud SQL 
 > リードレプリカを使用して Cloud SQL インスタンスから作業をオフロードします。リードレプリカとは、**プライマリ インスタンスの正確なコピー**です。プライマリ インスタンスのデータやその他の変更は、リードレプリカで**ほぼリアルタイムで更新**されます。
@@ -158,7 +149,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 [Firestore の概要](https://cloud.google.com/firestore/docs/overview?hl=ja)
 > Firestore は、Firebase と Google Cloud からのモバイル、ウェブ、サーバー開発に対応した、柔軟でスケーラブルなデータベースです。 リアルタイム リスナーを介してクライアント アプリ間でデータを同期し、モバイルとウェブの**オフライン サポート**を提供します。これにより、ネットワーク **レイテンシやインターネット接続に関係なく機能する**レスポンシブ アプリを構築できます。
 
-
 [Google Cloud に移行する: 大規模なデータセットを転送する ](https://cloud.google.com/architecture/migration-to-google-cloud-transferring-your-large-datasets?hl=ja)
 > **データ転送の時間やメジャーパターンなど時間があれば一読すべきまとめ記事**
 
@@ -170,10 +160,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 > 1. **リードレプリカからエクスポート**を取得します。エクスポートを**頻繁に**（毎日またはそれ以上の頻度で）行う場合、エクスポートされる**データ量が少な**ければ、これが適切な選択肢になります。
 > 2. **サーバーレス エクスポート**（Cloud SQL ServerLessエクスポート）を使用します。**大規模**なデータベースの **1 回限りのエクスポート**を作成する場合は、これが適切な選択肢になります。
 
-
 [Google Cloud VMware Engine](https://cloud.google.com/vmware-engine/docs/overview?hl=ja)
 > Google Cloud VMware Engine は、 Google Cloudで VMware プラットフォームを運用できるフルマネージド サービスです。VMware Engine では、クラウド消費モデルのメリットを享受し総所有コストを低減できるように、VMware 運用の継続性を実現します。
-
 
 [デフォルトのメンテナンスの時間枠](https://cloud.google.com/sql/docs/mysql/maintenance?hl=ja#default-windows)：**Default maintenance windows**（Cloud SQL）
 > インスタンスのトラフィック処理量が最も少ない時間帯（日曜日の深夜 0 時頃）にメンテナンスを行いたいと考えています。また、年末商戦の繁忙期はメンテナンスを避ける必要があります。この場合、本番環境のインスタンスのメンテナンスを次のように設定
@@ -188,7 +176,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 [Query Insights](https://cloud.google.com/sql/docs/mysql/using-query-insights?hl=ja#introduction) ：Cloud SQL
 > Query Insights では、Cloud SQL データベースに対する**クエリ パフォーマンス**の問題を検出、診断、防止できます。直感的なモニタリングをサポートし、検出するだけでなくパフォーマンスの問題の根本原因の特定に役立つ診断情報を提供します。
 
-
 [Spanner : LIKE 非推奨](https://cloud.google.com/spanner/docs/sql-best-practices?hl=ja#param-like)
 > Spanner はパラメータ化された LIKE パターンを実行時まで評価しないので、**すべての行を読み取って LIKE 式で評価し、一致しない行を除外しなければなりません**。
 > LIKE パターンの形式が foo%（たとえば、固定文字列で始まり、単一のワイルドカード パーセントで終わる）で、列にインデックスが付けられている場合、**LIKE の代わりに** STARTS_WITH を使用します。このオプションを使用すると、Spanner はクエリ実行プランをより効果的に最適化できます。
@@ -196,10 +183,8 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 [並列レプリケーションを構成する](https://cloud.google.com/sql/docs/mysql/replication/manage-replicas?hl=ja#configuring-parallel-replication)：Cloud SQL
 > レプリケーション ラグは、リードレプリカの更新がプライマリ インスタンスの更新よりも遅れた場合に発生します。このセクションでは、ユーザーが**並列レプリケーションを有効にして、レプリケーション ラグを減らす**
 
-
 [高可用性を有効または無効にする （Cloud SQL）](https://cloud.google.com/sql/docs/mysql/configure-ha?hl=ja#ha-existing)
 > インスタンスの高可用性は、インスタンスを作成するときに構成することも、**既存のインスタンスで有効**にすることもできます。`gcloud sql instances patch INSTANCE_NAME \ ...`
-
 
 [SSD ストレージと HDD ストレージを切り替える](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd?hl=ja#switching)：Cloud SQL
 > Cloud SQL インスタンスを作成した後は、そのインスタンスでの SSD ストレージまたは HDD ストレージの選択は**変更できません。**
@@ -208,7 +193,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 [HDD ストレージのユースケース](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd?hl=ja#when-in-doubt-ssd)：Cloud SQL
 > 10 TB 以上のデータを保存する予定である。
 > ※ 大量のデータを保存しない限り、HDD によるコスト削減はごくわずかです。**10 TB 以上のデータを保存する場合以外**は、**HDD ストレージの使用を検討する必要はありません。**
-
 
 [Rotate server CA certificates](https://cloud.google.com/sql/docs/mysql/manage-ssl-instance#rotate)：Cloud SQL
 > - 新しいサーバーを作成します。
@@ -228,17 +212,14 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 [パフォーマンスオーバーヘッドなしで Cloud SQL からデータをエクスポート](https://cloud.google.com/blog/products/databases/introducing-cloud-sql-serverless-exports?hl=en)
 >  [Cloud SQL](https://cloud.google.com/sql/) ： [Serverless Exports](https://cloud.google.com/sql/docs/mysql/import-export/exporting#standard-offload)の新しい機能を起動しました。 ServerLessエクスポートを使用すると、PerformanceまたはRisksのリスクに影響を与えずに、MySQLおよびPostgreSQLデータベースインスタンスからデータをエクスポートできます。 
 
-
 [ファイル システムとパーティションのサイズを変更する](https://cloud.google.com/compute/docs/disks/resize-persistent-disk?hl=ja#resize_partitions)：GCE
 > 非ブート データディスク上のファイル システムのサイズを変更します。
 > **ext4** を使用している場合は、**resize2fs** コマンドを使用してファイル システムを拡張します。
 > `sudo resize2fs /dev/DEVICE_NAME`
 
-
 [自動フェイルオーバー](https://cloud.google.com/bigtable/docs/failovers?hl=ja#automatic)：Bigtable
 > アプリのプロファイルで複数クラスタ ルーティングを使用している場合、
 > Bigtable は自動的にフェイルオーバーを処理します。最も近いクラスタがリクエストを処理できない場合、Bigtable は対応可能な最も近いクラスタにトラフィックをルーティングします。
-
 
 [移行元インスタンスを構成する](https://cloud.google.com/database-migration/docs/postgres/configure-source-database?hl=ja#configure-your-source-instance-postgres)｜Database Migration Service  > PostgreSQL
 > 移行元インスタンスに pglogical パッケージをインストールし、 shared_preload_libraries 変数に含まれていることを確認します。
@@ -255,7 +236,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 [スキーマ更新のパフォーマンス](https://cloud.google.com/spanner/docs/schema-updates?hl=ja#performance)：Cloud Spanner
 > Spanner の**スキーマの更新**には、**ダウンタイムは必要ありません**。DDL 文のバッチを Spanner データベースに対して発行した場合、Spanner が更新を[長時間実行オペレーション](https://cloud.google.com/spanner/docs/manage-long-running-operations?hl=ja)として適用する間も、中断なくデータベースでの書き込みと読み取りを続けることができます。
 
-
 [クロスリージョン レプリカ](https://cloud.google.com/sql/docs/mysql/replication/cross-region-replicas?hl=ja#regional_migration)：Cloud SQL｜データ移行
 > クロスリージョン レプリカを使用すると、最小限のダウンタイムでデータベースを別のリージョンに移行できます。通常は、別のリージョンにレプリカを作成し、レプリケーションが完了したらレプリカを昇格させ、新しく昇格したインスタンスにクライアントをリダイレクトします。
 
@@ -263,7 +243,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 > Anthos clusters on bare metal は、ベアメタル向け Google Distributed Cloud（ソフトウェアのみ）になりました。詳細については、プロダクトの概要をご覧ください。
 > 
 > Google Distributed Cloud は、Google Cloud の**インフラストラクチャ**とサービスをお客様のデータセンター（**オンプレ**）に拡張する Google のソリューションです。Google Distributed Cloud は、Google 提供のハードウェア上で動作する接続された構成とエアギャップのある構成の両方で使用できます。
-
 
 [外部サーバーにデータを移行する](https://cloud.google.com/sql/docs/mysql/migrate-data?hl=ja#migrating-to-external)｜Cloud SQL データ移行
 > データのプライマリ コピーを Cloud SQL から**外部サーバー**に最小限のダウンタイムで移行するには、**外部サーバーを外部レプリカ**としてセットアップしてから、その外部サーバーのレプリカになるように Cloud SQL インスタンスを降格します。
@@ -290,7 +269,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 > **Cloud SQL Auth Proxy** は、**sidecar パターン**で（Pod をアプリケーションと共有する追加のコンテナとして）動作させることをおすすめします。次のいくつかの理由から、これを個別のサービスとして実行するよりも、この方法をおすすめします。
 > >SQL トラフィックがローカルで公開されないようにします。Cloud SQL Auth Proxy は送信接続を暗号化しますが、受信接続の公開を制限する必要があります。
 
-
 [レプリケーション構成の例](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja)｜Bigtable
 > このページでは、Bigtable レプリケーションの一般的なユースケースについて説明し、これらのユースケースをサポートするために使用できる設定を紹介します。
 > - [バッチ分析ワークロードを他のアプリケーションから分離する](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#batch-vs-serve)
@@ -299,11 +277,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 > - [高可用性とリージョンの復元力を維持する](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#regional-failover)
 > - [ユーザーの近くにデータを保存する](https://cloud.google.com/bigtable/docs/replication-settings?hl=ja#near-users)
 
-
-
-
-
-##### Cloud SQLにおけるHTTPステータスエラーを簡潔にまとめた表
+### Cloud SQLにおけるHTTPステータスエラー一覧
 
 | **HTTP ステータスエラー番号** | **エラーメッセージ**            | **場面/原因**                          |
 | ------------------- | ----------------------- | ---------------------------------- |
@@ -318,10 +292,9 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 | **503**             | `Service Unavailable`   | サービス停止中やメンテナンス中、サーバが一時的に使用不可       |
 | **504**             | `Gateway Timeout`       | リクエストがタイムアウトした場合（例: 長時間待機後にタイムアウト） |
 
+### 受験当日のTODO（PSE / PNE / PDE / PCA 受験時の成功事例） ⭐️
 
----
-
-<Admonition type="tip" title="受験当日のTODO（PSE / PNE / PDE / PCA 受験時の成功事例） ⭐️">
+<Admonition type="tip">
 
 前日
 - [x] しっかり寝る
@@ -348,7 +321,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 	- [x] 選択肢から読むことを意識する
 	- [x] 見直しの時間を確保するよう意識する
 </Admonition>
-
 
 <ShareButtons />
 
