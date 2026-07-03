@@ -4,7 +4,7 @@ import Head from '@docusaurus/Head';
 import LinksCard from '@site/src/components/LinksCard'; // --- news page と共通化 ---
 import SectionHeading from '@site/src/components/SectionHeading';
 import { escapeCsvField, downloadCsv } from '@site/src/lib/csv';
-import styles from './links.module.css';
+import styles from './directoryPage.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Download } from 'lucide-react';
 import ShareButtons from '@site/src/components/ShareButtons';
