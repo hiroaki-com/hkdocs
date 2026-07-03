@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
@@ -599,6 +600,17 @@ export default function DartsCountUp() {
             onReset={handleReset} onSetMult={handleSetMult}
           />
         )}
+        <nav
+          aria-label={currentLocale === 'en' ? 'Other darts calculators' : 'ほかのダーツ計算機'}
+          style={{ margin: '2.5rem auto 1.5rem', textAlign: 'center', fontSize: '0.9em' }}
+        >
+          <span style={{ opacity: 0.7 }}>{currentLocale === 'en' ? 'More darts calculators: ' : 'ほかのダーツ計算機: '}</span>
+          <Link to="/darts/">{currentLocale === 'en' ? 'Darts home' : '計算機トップ'}</Link>
+          {' · '}
+          <Link to="/darts/darts-01-score-calculator/">{currentLocale === 'en' ? '01' : '01ゲーム'}</Link>
+          {' · '}
+          <Link to="/darts/darts-cricket-score-calculator/">{currentLocale === 'en' ? 'Cricket' : 'クリケット'}</Link>
+        </nav>
       </div>
     </Layout>
   );
