@@ -60,7 +60,6 @@
 
   /* --- Focus --- */
   --ifm-focus-ring-color: var(--ifm-color-primary-lighter);
-  --ifm-focus-ring-width: 2px;
 
   /* --- Components: Light Mode --- */
   --ifm-background-color: #ffffff;
@@ -166,12 +165,6 @@ html {
 }
 
 /* --- Doc Sidebar --- */
-.menu__link {
-  font-size: 0.9rem;
-  transition: var(--ifm-transition-fast);
-  border-radius: var(--ifm-global-radius);
-}
-
 .menu__link:hover {
   transform: translateY(-1px);
 }
