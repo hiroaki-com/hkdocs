@@ -33,8 +33,8 @@ type T = {
 
 const I18N: Record<'ja' | 'en', T> = {
   ja: {
-    pageTitle: 'Count-Up スコア計算機',
-    pageDesc: 'ダーツのカウントアップ（Count-Up）用スコア計算ツール。',
+    pageTitle: 'ダーツ カウントアップ スコア計算機｜無料・インストール不要',
+    pageDesc: 'ダーツのカウントアップ（Count-Up）用の無料スコア計算ツール。インストール不要でブラウザですぐ記録・計算できます。',
     setupTitle: 'Count-Up',
     setupSub: (n: number) => n === 1 ? 'シングルプレイ' : `${n}人対戦`,
     numPlayers: 'プレイヤー数',
@@ -54,8 +54,8 @@ const I18N: Record<'ja' | 'en', T> = {
     logMiss: (name: string) => `${name}: ミス`,
   },
   en: {
-    pageTitle: 'Count-Up Darts Score Calculator',
-    pageDesc: 'Score calculator for Count-Up darts.',
+    pageTitle: 'Count-Up Darts Score Calculator — Free, No Install',
+    pageDesc: 'Free Count-Up darts score calculator. Track and total your scores in the browser — no install required.',
     setupTitle: 'Count-Up',
     setupSub: (n: number) => n === 1 ? 'Single Player' : `${n} Players`,
     numPlayers: 'Players',

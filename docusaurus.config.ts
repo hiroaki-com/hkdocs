@@ -86,11 +86,12 @@ const config: Config = {
           lastmod: 'date',
           changefreq: null,
           priority: null,
-          // 薄いページ（タグ/ページネーション/検索）と検索対象外の日記を除外し、実質コンテンツへクロールを集中。
-          // tags/page は常に /blog|/docs 配下にネストするため /**/ で ja・en 両方に効くが、
+          // 薄いページ（タグ/著者/ページネーション/検索）と検索対象外の日記を除外し、実質コンテンツへクロールを集中。
+          // tags/page/authors は常に /blog|/docs 配下にネストするため /**/ で ja・en 両方に効くが、
           // ルート直下の /diary/・/search/ は /**/ が先頭でマッチしないため ja・en を明示的に列挙する。
           ignorePatterns: [
             '/**/tags/**',
+            '/**/authors/**',
             '/**/page/**',
             '/search/**',
             '/en/search/**',
