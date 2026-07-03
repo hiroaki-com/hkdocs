@@ -1,8 +1,8 @@
 ---
-title: Fixing Captive Portal Issues｜Tips to Improve Public WiFi Connection Performance
+title: What Is a Captive Portal? Fixing the Login Page Not Appearing on Public WiFi｜Mac & iPhone
 authors: [hk]
 tags: [mac, network, troubleshooting]
-description: "How to fix captive portal pages not appearing on public WiFi by clearing saved WiFi history on Mac and iPhone for smoother connections."
+description: "What a captive portal is and how to fix its login page not appearing on public WiFi. Clear saved WiFi history on Mac and iPhone to restore smooth authentication."
 ---
 
 ### 1. Introduction

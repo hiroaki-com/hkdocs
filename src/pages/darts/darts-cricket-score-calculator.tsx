@@ -11,7 +11,8 @@ const MULT_SHORT: Record<number, string> = { 1: 'S', 2: 'D', 3: 'T' };
 
 const I18N = {
   ja: {
-    pageTitle: 'クリケット ダーツ スコア計算機',
+    pageTitle: 'クリケット ダーツ スコア計算機｜2〜4人対戦・無料',
+    pageDesc: 'ダーツのクリケット用の無料スコア計算ツール。2〜4人対戦・20〜15＋ブルに対応。インストール不要でブラウザですぐ使えます。',
     title: 'クリケット Game',
     subtitle: '2〜4人対戦 · 20〜15 + Bull',
     numPlayers: 'プレイヤー数',
@@ -33,7 +34,8 @@ const I18N = {
     pts: (n: number) => `+${n}pts`,
   },
   en: {
-    pageTitle: 'Cricket Darts Score Calculator',
+    pageTitle: 'Cricket Darts Score Calculator — 2–4 Players, Free',
+    pageDesc: 'Free Cricket darts score calculator for 2–4 players (20–15 + Bull). Runs in your browser — no install required.',
     title: 'Cricket Darts',
     subtitle: '2–4 Players · 20–15 + Bull',
     numPlayers: 'Players',
@@ -652,7 +654,7 @@ export default function DartsCricketPage() {
   const t: T = I18N[currentLocale === 'en' ? 'en' : 'ja'];
 
   return (
-    <Layout title={t.pageTitle} description={t.subtitle}>
+    <Layout title={t.pageTitle} description={t.pageDesc}>
       <style>{CSS}</style>
       <BrowserOnly fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>}>
         {() => <DartsCricketApp t={t} />}

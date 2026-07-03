@@ -41,8 +41,8 @@ type T = {
 
 const I18N: Record<'ja' | 'en', T> = {
   ja: {
-    pageTitle: '01 Game スコア計算機',
-    pageDesc: '01 Game（301/501/701）用スコア計算ツール。シングル・ダブル・マスターアウト対応。',
+    pageTitle: 'ダーツ 01 スコア計算機｜301/501/701対応・無料',
+    pageDesc: 'ダーツ 01（301/501/701）用の無料スコア計算ツール。シングル・ダブル・マスターアウト対応、インストール不要でブラウザですぐ使えます。',
     setupTitle: '01 Game',
     setupSub: (n: number) => (n === 1 ? '1人プレイ' : `${n}人対戦`),
     numPlayers: 'プレイヤー数',
@@ -67,8 +67,8 @@ const I18N: Record<'ja' | 'en', T> = {
     logMiss: (name: string) => `${name}: ミス`,
   },
   en: {
-    pageTitle: '01 Darts Score Calculator',
-    pageDesc: 'Score calculator for 01 darts (301/501/701). Supports single, double and master out.',
+    pageTitle: 'Darts 01 Score Calculator (301/501/701) — Free, No Install',
+    pageDesc: 'Free 01 darts score calculator (301/501/701) with single, double and master out. Runs in your browser — no install required.',
     setupTitle: '01 Darts',
     setupSub: (n: number) => (n === 1 ? '1 Player' : `${n} Players`),
     numPlayers: 'Players',
