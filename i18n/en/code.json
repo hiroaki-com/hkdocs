@@ -1005,6 +1005,14 @@
     "message": "Deutsche Welle",
     "description": "Title for Deutsche Welle"
   },
+  "news.site.int.ge.finviznews.desc": {
+    "message": "The news section of Finviz, a financial information site founded in 2007 by Juraj Duris. It aggregates news headlines on markets, stocks, ETFs, and cryptocurrencies from multiple outlets such as Bloomberg, Reuters, and CNBC in chronological order.",
+    "description": "Description for Finviz News"
+  },
+  "news.site.int.ge.finviznews.title": {
+    "message": "Finviz News",
+    "description": "Title for Finviz News"
+  },
   "news.site.int.ge.fox.desc": {
     "message": "Founded in the U.S. in 1996 by Rupert Murdoch and operated by Fox News Media. Known for its conservative perspective, it is a cable news network with high viewership in the United States.",
     "description": "Description for Fox News"
@@ -1213,6 +1221,22 @@
     "message": "ProPublica",
     "description": "Title for ProPublica"
   },
+  "news.site.int.ss.twittrend.desc": {
+    "message": "Operated by CEEG Inc. A service that displays trends on X (formerly Twitter) by region and time period. Users can check real-time and past trends for major U.S. cities and various countries. Japanese and Korean versions are also available.",
+    "description": "Description for Twittrend (US)"
+  },
+  "news.site.int.ss.twittrend.title": {
+    "message": "Twittrend (US)",
+    "description": "Title for Twittrend (US)"
+  },
+  "news.site.int.ss.xarticles.desc": {
+    "message": "Operated by Abderahmane Hellal. A curated directory that collects long-form articles published on X (formerly Twitter), classified into numerous categories such as AI, technology, finance, and business. Articles can be searched and browsed by category or keyword.",
+    "description": "Description for Xarticl.es"
+  },
+  "news.site.int.ss.xarticles.title": {
+    "message": "Xarticl.es",
+    "description": "Title for Xarticl.es"
+  },
   "news.site.int.ts.geekwire.desc": {
     "message": "Reports on technology, startups, and innovation, with a focus on Seattle and the Pacific Northwest.",
     "description": "Description for GeekWire"
@@ -1260,6 +1284,14 @@
   "news.site.int.ts.techmeme.title": {
     "message": "Techmeme",
     "description": "The title for Techmeme on the news page"
+  },
+  "news.site.int.ts.techtwitter.desc": {
+    "message": "A curation site that organizes posts from notable accounts on X (formerly Twitter) by topic, covering themes such as AI, startups, and web development. It also provides lists of tech accounts to follow.",
+    "description": "Description for Tech Twitter"
+  },
+  "news.site.int.ts.techtwitter.title": {
+    "message": "Tech Twitter",
+    "description": "Title for Tech Twitter"
   },
   "news.site.int.ts.wired.desc": {
     "message": "Founded in the U.S. in 1993 by Louis Rossetto and others, operated by Condé Nast. A media outlet that has influenced the world with its style of deeply exploring the impact of technology on culture, economy, and politics, and contemplating the future.",
