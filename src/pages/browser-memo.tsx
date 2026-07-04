@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import Layout from '@theme/Layout';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Share2, ClipboardCopy, Check, Trash2, ChevronUp, ChevronDown, Eye } from 'lucide-react';
@@ -446,7 +445,7 @@ function MemoApp() {
   );
 }
 
-function MemoPageContent() {
+export default function BrowserMemoPage() {
   const { siteConfig, i18n: { currentLocale } } = useDocusaurusContext();
   
   const pageTitle = translate({ id: 'page.browser-memo.title', message: '高機能ブラウザメモ帳 - Markdown・URL共有対応・インストール不要' });
@@ -495,23 +494,13 @@ function MemoPageContent() {
   
   return (
     <Layout title={pageTitle} description={pageDescription}>
-      <MemoApp />
-    </Layout>
-  );
-}
-
-export default function MemoPageWrapper() {
-  return (
-    <>
       {/* JavaScriptが無効な環境向けのフォールバックメッセージ */}
       <noscript>
         <div style={{ padding: '20px', margin: '20px auto', maxWidth: '800px', textAlign: 'center', backgroundColor: '#fffbe5', color: '#5c4800', border: '1px solid #f0c400', borderRadius: '8px' }}>
           このブラウザメモ帳のすべての機能を利用するには、お使いのブラウザでJavaScriptを有効にしてください。
         </div>
       </noscript>
-      <BrowserOnly fallback={<div style={{padding: '2rem', textAlign: 'center'}}>Loading...</div>}>
-        {() => <MemoPageContent />}
-      </BrowserOnly>
-    </>
+      <MemoApp />
+    </Layout>
   );
 }
