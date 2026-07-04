@@ -150,6 +150,7 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://sputniknews.com/', title: { id: 'news.site.int.ge.sputnik.title', message: 'Sputnik' }, description: { id: 'news.site.int.ge.sputnik.desc', message: '2014年にロシア政府が国営通信社再編の一環として設立。国営メディアグループ「ロシア・セゴドニャ」が運営。30以上の言語でニュースやラジオを配信し、ロシアの公式見解を伝達。' } },
           { href: 'https://kyivindependent.com/', title: { id: 'news.site.int.ge.kyivindependent.title', message: 'Kyiv Independent' }, description: { id: 'news.site.int.ge.kyivindependent.desc', message: '2021年にKyiv Postの元ジャーナリストらによって設立されたウクライナの独立系英字ニュースメディア。ロシアのウクライナ侵攻に関する報道で国際的に知られ、調査報道に重点。' } },
           { href: 'https://polymarket.com/', title: { id: 'news.site.int.ge.polymarket.title', message: 'Polymarket' }, description: { id: 'news.site.int.ge.polymarket.desc', message: '2020年にShayne Coplanが設立。ブロックチェーン技術を活用した予測市場プラットフォーム。ユーザーは政治、経済、時事問題など様々なイベントの結果に賭けることで、集合知による未来予測を形成する。' } },
+          { href: 'https://finviz.com/news', title: { id: 'news.site.int.ge.finviznews.title', message: 'Finviz News' }, description: { id: 'news.site.int.ge.finviznews.desc', message: '2007年にJuraj Durisが設立した金融情報サイトFinvizのニュースセクション。Bloomberg、Reuters、CNBCなど複数の媒体から、市場・株式・ETF・仮想通貨に関するニュースの見出しを時系列で集約して提供する。' } },
         ],
       },
       {
@@ -163,7 +164,8 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://techcrunch.com/', title: { id: 'news.site.int.ts.techcrunch.title', message: 'TechCrunch' }, description: { id: 'news.site.int.ts.techcrunch.desc', message: '2005年にマイケル・アーリントンが米国で設立。Yahoo Inc.が運営。スタートアップとテクノロジー業界の動向を報じる代表的メディアで、大規模カンファレンス「Disrupt」を主催。' } },
           { href: 'https://www.geekwire.com/', title: { id: 'news.site.int.ts.geekwire.title', message: 'GeekWire' }, description: { id: 'news.site.int.ts.geekwire.desc', message: 'シアトルと太平洋岸北西部を中心に、テクノロジー、スタートアップ、イノベーションのニュースを報道。' } },
           { href: 'https://digiday.com/', title: { id: 'news.site.int.ge.digiday.title', message: 'Digiday' }, description: { id: 'news.site.int.ge.digiday.desc', message: 'デジタルメディア、マーケティング、広告、リテールの変革を掘り下げる専門メディアの国際版。' } },
-          { href: 'https://www.techmeme.com/', title: { id: 'news.site.int.ts.techmeme.title', message: 'Techmeme' }, description: { id: 'news.site.int.ts.techmeme.desc', message: 'テクノロジー業界のニュースを人間とアルゴリズムを組み合わせて集約するアグリゲーター。' } }
+          { href: 'https://www.techmeme.com/', title: { id: 'news.site.int.ts.techmeme.title', message: 'Techmeme' }, description: { id: 'news.site.int.ts.techmeme.desc', message: 'テクノロジー業界のニュースを人間とアルゴリズムを組み合わせて集約するアグリゲーター。' } },
+          { href: 'https://www.techtwitter.com/', title: { id: 'news.site.int.ts.techtwitter.title', message: 'Tech Twitter' }, description: { id: 'news.site.int.ts.techtwitter.desc', message: 'X（旧Twitter）上のAI、スタートアップ、Web開発などのテーマについて、著名なアカウントの投稿をトピック別に整理して紹介するキュレーションサイト。フォロー先となる技術系アカウントの一覧も提供する。' } }
         ],
       },
       {
@@ -193,6 +195,8 @@ const newsData: MajorCategoryData[] = [
           { href: 'https://www.themarshallproject.org', title: { id: 'news.site.int.ss.marshall.title', message: 'The Marshall Project' }, description: { id: 'news.site.int.ss.marshall.desc', message: '2014年にニール・バースキーが米国で設立。米国の刑事司法制度に特化した非営利の報道機関で、制度の不平等さに対する国民の意識向上を目指す。' } },
           { href: 'https://theintercept.com', title: { id: 'news.site.int.ss.intercept.title', message: 'The Intercept' }, description: { id: 'news.site.int.ss.intercept.desc', message: '2014年にグレン・グリーンウォルドらが設立。First Look Mediaが運営。エドワード・スノーデン文書の報道を機に、国家監視、戦争、人権問題などについて対立を恐れないジャーナリズムを掲げる。' } },
           { href: 'https://www.occrp.org', title: { id: 'news.site.int.ss.occrp.title', message: 'OCCRP' }, description: { id: 'news.site.int.ss.occrp.desc', message: '2006年にドリュー・サリバンとポール・ラドゥが設立。組織犯罪と汚職に特化した調査報道ジャーナリストの国際的な非営利ネットワーク。世界中のメディアと協力して国境を越えた不正を追及。' } },
+          { href: 'https://xarticl.es/', title: { id: 'news.site.int.ss.xarticles.title', message: 'Xarticl.es' }, description: { id: 'news.site.int.ss.xarticles.desc', message: 'Abderahmane Hellalが運営。X（旧Twitter）上で公開された長文記事を、AI、テクノロジー、金融、ビジネスなど多数のカテゴリー別に分類して収録するキュレーションディレクトリ。カテゴリーやキーワードから記事を検索・閲覧できる。' } },
+          { href: 'https://twittrend.us/', title: { id: 'news.site.int.ss.twittrend.title', message: 'Twittrend (US)' }, description: { id: 'news.site.int.ss.twittrend.desc', message: 'CEEG Inc.が運営。X（旧Twitter）のトレンドを地域別・時間帯別に一覧表示するサービス。米国の主要都市や各国について、リアルタイムおよび過去のトレンドを確認できる。日本語版・韓国語版も提供する。' } },
         ],
       },
     ],
