@@ -45,6 +45,7 @@
   --ifm-heading-font-size-1: 1.7rem;
   --ifm-heading-font-size-2-rsdE: 1.5rem;
   --doc-card-title-font-size: 0.80rem;
+  --doc-card-description-font-size: 0.75rem;
   --ifm-container-width-xl: 1280px;
 
   /* --- Border Radius --- */
@@ -222,6 +223,21 @@ h2.title_dz1C {
 /* Docusaurusの動的クラス名（ハッシュ付き）へのスタイル適用 */
 a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   font-size: var(--doc-card-title-font-size);
+  /* 標準の text--truncate（1行省略）を打ち消し、タイトルを折り返し全表示にする */
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* --- DocCard Description --- */
+/* 標準の text--truncate（1行省略）を打ち消し、複数行（3行）まで表示する */
+a[class*='cardContainer_'] p[class*='cardDescription_'] {
+  font-size: var(--doc-card-description-font-size);
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 /* --- Announcement Bar --- */
