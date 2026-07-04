@@ -40,25 +40,23 @@ There were many questions I had seen before. Also, the question trends did not d
 
 {/* truncate */}
 
---- 
-
 **Exam Overview:**
 - https://cloud.google.com/learn/certification/cloud-database-engineer
 
-
 ### Exam Information - March 7, 2025
-Exam Name: Professional Cloud Database Engineer
-On-site exam at Yoshiya Building 7F
-March 7, 2025, 3:00 PM (JST) 
 
----
+- Exam Name: Professional Cloud Database Engineer
+- Format: On-site exam
+- Venue: Yoshiya Building 7F
+- Date: March 7, 2025
+- Time: 3:00 PM (JST)
 
 ### 🔥Strategy for the Exam🔥
 
 - Read the official reference materials
 	- https://cloud.google.com/learn/certification/cloud-database-engineer
 
-##### Study Strategy:
+#### Study Strategy
 
 - Reference Materials
 	- Official
@@ -72,7 +70,6 @@ March 7, 2025, 3:00 PM (JST)
 		- OLD｜[Practice Exams | Google Cloud Database Engineer (GCP)](https://www.udemy.com/course/practice-exams-google-professional-cloud-database-engineer/?couponCode=ST5MT020225BROW)
 		- New｜[Google Professional Cloud Database Engineer - GCP - Exams](https://www.udemy.com/course/google-professional-cloud-database-engineer-exams/)
 			- [Refund Method](https://www.udemy.com/dashboard/purchase-history/): Request a Refund 
-
 
 	- Studied only the free questions from Whizlabs
 		- [Free Test ](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-database-engineer/2556)
@@ -106,19 +103,16 @@ March 7, 2025, 3:00 PM (JST)
 		- [x] Practice Test 5
 		- [x] Practice Test 6
 
-
 	- Try the [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSe55cAg8a3NzgV_QCJ2_F75NAyE44Z-XuVB6oPJXaWnI5UBIQ/viewform)
 		- → About the practice exam: It's covered by the question sets, so no longer needed.
 			- 100 %: 2025/02/13
 			- 95%: 2025/03/02
 
-
 - [ ] Read articles from the Architecture Center
 	- https://cloud.google.com/architecture/databases
 		- [x] 2025/02/13
----
 
-##### Weak Areas
+### Weak Areas
 
 [Read replicas](https://cloud.google.com/sql/docs/mysql/replication#read-replicas) Cloud SQL 
 > You use read replicas to offload work from a Cloud SQL instance. A read replica is an **exact copy of the primary instance**. Data and other changes on the primary instance are updated in **near real time** on the read replica.
@@ -155,7 +149,6 @@ Check the status of current (**in-progress**) operations (Cloud SQL)
 [Firestore overview](https://cloud.google.com/firestore/docs/overview)
 > Firestore is a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud. It keeps your data in sync across client apps through realtime listeners and offers **offline support** for mobile and web so you can build responsive apps that **work regardless of network latency or Internet connectivity**.
 
-
 [Migrating to Google Cloud: Transferring your large datasets](https://cloud.google.com/architecture/migration-to-google-cloud-transferring-your-large-datasets)
 > **A summary article worth reading if you have time, covering data transfer times, major patterns, etc.**
 
@@ -167,10 +160,8 @@ Minimizing performance impact of exports (Cloud SQL)
 > 1. **Take the export from a read replica.** If you export **frequently** (daily or more often), and the **amount of data** to be exported is **small**, this can be a good option.
 > 2. **Use serverless export.** If you are creating a **one-time export** of a **large** database, this can be a good option.
 
-
 [Google Cloud VMware Engine](https://cloud.google.com/vmware-engine/docs/overview)
 > Google Cloud VMware Engine is a fully managed service that lets you run the VMware platform in Google Cloud. VMware Engine provides continuity for your VMware operations while enabling the benefits of a cloud consumption model and lowering your total cost of ownership.
-
 
 [Default maintenance windows](https://cloud.google.com/sql/docs/mysql/maintenance#default-windows) (Cloud SQL)
 > You want maintenance to occur during the time when your instance has the least amount of traffic, which is around midnight on Sunday. You also need to avoid maintenance during the busy holiday season. In this case, you would set the maintenance for your production instance as follows
@@ -185,7 +176,6 @@ Minimizing performance impact of exports (Cloud SQL)
 [Query Insights](https://cloud.google.com/sql/docs/mysql/using-query-insights#introduction) : Cloud SQL
 > Query Insights helps you detect, diagnose, and prevent **query performance** problems for Cloud SQL databases. It supports intuitive monitoring and provides diagnostic information that helps you go beyond detection to find the root cause of performance problems.
 
-
 [Spanner: LIKE discouraged](https://cloud.google.com/spanner/docs/sql-best-practices#param-like)
 > Because Spanner does not evaluate a parameterized LIKE pattern until execution time, it **must read all rows and evaluate them against the LIKE expression to filter out the rows that don't match**.
 > When a LIKE pattern has the form `foo%` (for example, a fixed string followed by a single wildcard percent), and the column is indexed, use **`STARTS_WITH` instead of `LIKE`**. This option enables Spanner to optimize the query execution plan more effectively.
@@ -193,10 +183,8 @@ Minimizing performance impact of exports (Cloud SQL)
 [Configure parallel replication](https://cloud.google.com/sql/docs/mysql/replication/manage-replicas#configuring-parallel-replication): Cloud SQL
 > Replication lag can happen when the read replica updates lag behind the primary instance updates. This section shows how you can **enable parallel replication to reduce replication lag**.
 
-
 [Enable or disable high availability (Cloud SQL)](https://cloud.google.com/sql/docs/mysql/configure-ha#ha-existing)
 > You can configure high availability for an instance when you create it, or you can **enable it for an existing instance**. `gcloud sql instances patch INSTANCE_NAME \ ...`
-
 
 [Switching between SSD and HDD storage](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd#switching): Cloud SQL
 > After you create a Cloud SQL instance, the choice of SSD or HDD storage for that instance is **permanent.**
@@ -205,7 +193,6 @@ Minimizing performance impact of exports (Cloud SQL)
 [HDD storage use cases](https://cloud.google.com/sql/docs/mysql/choosing-ssd-hdd#when-in-doubt-ssd): Cloud SQL
 > You plan to store 10 TB of data or more.
 > ...The cost savings of HDD are minimal unless you are storing a large amount of data. **Unless you plan to store more than 10 TB of data, you don't need to consider using HDD storage.**
-
 
 [Rotate server CA certificates](https://cloud.google.com/sql/docs/mysql/manage-ssl-instance#rotate): Cloud SQL
 > - Create a new server CA certificate.
@@ -225,17 +212,14 @@ Minimizing performance impact of exports (Cloud SQL)
 [Export data from Cloud SQL without performance overhead](https://cloud.google.com/blog/products/databases/introducing-cloud-sql-serverless-exports?hl=en)
 > We are excited to launch a new feature in [Cloud SQL](https://cloud.google.com/sql/): [Serverless Exports](https://cloud.google.com/sql/docs/mysql/import-export/exporting#standard-offload). With Serverless Exports, you can export data from your MySQL and PostgreSQL database instances without any impact on performance or risks to availability. 
 
-
 [Resize file systems and partitions](https://cloud.google.com/compute/docs/disks/resize-persistent-disk#resize_partitions): GCE
 > Resize the file system on a non-boot data disk.
 > If you are using **ext4**, use the **resize2fs** command to expand the file system.
 > `sudo resize2fs /dev/DEVICE_NAME`
 
-
 [Automatic failovers](https://cloud.google.com/bigtable/docs/failovers#automatic): Bigtable
 > When your app profile uses multi-cluster routing,
 > Bigtable handles failovers for you automatically. If the closest cluster cannot handle a request, Bigtable routes the traffic to the closest cluster that can.
-
 
 [Configure the source instance](https://cloud.google.com/database-migration/docs/postgres/configure-source-database#configure-your-source-instance-postgres)｜Database Migration Service  > PostgreSQL
 > Install the pglogical package on your source instance, and ensure that it's included in the shared_preload_libraries variable.
@@ -252,7 +236,6 @@ Minimizing performance impact of exports (Cloud SQL)
 [Performance of schema updates](https://cloud.google.com/spanner/docs/schema-updates#performance): Cloud Spanner
 > Spanner **schema updates** require **no downtime**. When you issue a batch of DDL statements to a Spanner database, you can continue to write to and read from the database without interruption while Spanner applies the update as a [long-running operation](https://cloud.google.com/spanner/docs/manage-long-running-operations).
 
-
 [Cross-region replicas](https://cloud.google.com/sql/docs/mysql/replication/cross-region-replicas#regional_migration): Cloud SQL｜Data Migration
 > You can use cross-region replicas to migrate a database to another region with minimal downtime. The general procedure is to create a replica in another region, wait for replication to complete, promote the replica, and then redirect clients to the newly promoted instance.
 
@@ -260,7 +243,6 @@ Minimizing performance impact of exports (Cloud SQL)
 > Anthos clusters on bare metal is now Google Distributed Cloud for bare metal (software-only). To learn more, see the product overview.
 > 
 > Google Distributed Cloud is Google's solution for extending Google Cloud's **infrastructure** and services to your data centers (**on-premises**). Google Distributed Cloud is available in both connected and air-gapped configurations running on Google-provided hardware.
-
 
 [Migrating data to an external server](https://cloud.google.com/sql/docs/mysql/migrate-data#migrating-to-external)｜Cloud SQL Data Migration
 > To migrate the primary copy of your data from Cloud SQL to an **external server** with minimal downtime, set up the **external server as an external replica**, and then demote the Cloud SQL instance to be a replica of that external server.
@@ -287,7 +269,6 @@ Minimizing performance impact of exports (Cloud SQL)
 > We recommend running the **Cloud SQL Auth Proxy** in the **sidecar pattern** (as an additional container sharing a Pod with your application). We recommend this method over running it as a separate Service for several reasons:
 > >Prevents exposing your SQL traffic locally: The Cloud SQL Auth Proxy encrypts outgoing connections, but you need to limit exposure for incoming connections.
 
-
 [Example replication configurations](https://cloud.google.com/bigtable/docs/replication-settings)｜Bigtable
 > This page explains common use cases for Bigtable replication and shows the settings you can use to support those use cases.
 > - [Isolate batch analytics workloads from other applications](https://cloud.google.com/bigtable/docs/replication-settings#batch-vs-serve)
@@ -296,11 +277,7 @@ Minimizing performance impact of exports (Cloud SQL)
 > - [Maintain high availability and regional resilience](https://cloud.google.com/bigtable/docs/replication-settings#regional-failover)
 > - [Keep data near your users](https://cloud.google.com/bigtable/docs/replication-settings#near-users)
 
-
-
-
-
-##### Summary of Cloud SQL HTTP Status Errors
+### Cloud SQL HTTP Status Error List
 
 | **HTTP Status Code** | **Error Message**         | **Context/Cause**                                                  |
 | -------------------- | ------------------------- | ------------------------------------------------------------------ |
@@ -315,10 +292,9 @@ Minimizing performance impact of exports (Cloud SQL)
 | **503**              | `Service Unavailable`     | The service is down, under maintenance, or temporarily unavailable.      |
 | **504**              | `Gateway Timeout`         | The request timed out (e.g., after a long wait).                  |
 
+### Exam Day TODO (Success story from my PSE / PNE / PDE / PCA exams) ⭐️
 
----
-
-<Admonition type="tip" title="Exam Day TODO (Success story from my PSE / PNE / PDE / PCA exams) ⭐️">
+<Admonition type="tip">
 
 The day before
 - [x] Get a good night's sleep
@@ -345,7 +321,6 @@ On the day
 	- [x] Make a conscious effort to read the options first
 	- [x] Be mindful of leaving time for review
 </Admonition>
-
 
 <ShareButtons />
 

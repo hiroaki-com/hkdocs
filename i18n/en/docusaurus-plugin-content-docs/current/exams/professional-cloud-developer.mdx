@@ -43,32 +43,29 @@ I felt many questions had answer choices that were difficult to narrow down unle
 
 {/* truncate */}
 
----
-
 **Exam Overview:**
 - [Professional Cloud Developer](https://cloud.google.com/learn/certification/cloud-developer)
 
-
 ### Exam Information - February 27, 2025
-Exam Name: **Google Cloud Certified - Professional Cloud Developer**
-Remote Proctor: Home
-Clock Icon: February 27, 2025 (Thursday) 12:15 PM (UTC+09:00)
+
+- Exam Name: **Google Cloud Certified - Professional Cloud Developer**
+- Format: Remote Proctor (Home)
+- Date/Time: February 27, 2025 (Thursday) 12:15 PM (UTC+09:00)
+
 <Admonition type="danger" title="Warning">
 Depending on my strained back, I might not be able to set up my room, so I need to consider rescheduling early.
 </Admonition>
 
-##### Exam Day
+#### Exam Day
 
 - Wait for the exam to start on the login page to prepare.
 	- Have my ID ready.
 - Review official documentation and weak areas until the exam begins.
 
-##### Post-Exam TODO
+#### Post-Exam TODO
 <Admonition type="danger" title="Emergency">The relevant Udemy course was deleted.</Admonition>
 - [ ] Request a refund for each course after the exam.
 - [ ] Write down my reflections on the exam.
-
----
 
 ### 🔥Strategy for the Exam🔥
 
@@ -77,7 +74,7 @@ Depending on my strained back, I might not be able to set up my room, so I need 
 	- [Troubleshooting page | GKE](https://cloud.google.com/kubernetes-engine/docs/troubleshooting)
 	- [Google Cloud whitepapers](https://cloud.google.com/whitepapers)
 
-##### Study Strategy：
+#### Study Strategy
 
 - Reference Materials
 
@@ -115,7 +112,6 @@ Depending on my strained back, I might not be able to set up my room, so I need 
 		- [x] Practice Test 4
 		- [ ] Practice Test 5
 
-
 	-  Try the [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSfFeB8zBNi2q-ar0V7iIguhk2e6P-UkrJ8OJfg6n0k6HcYLDQ/viewform)
 		- → Regarding the practice exam: It's covered by the other question sets, so no longer needed.
 			- 76.92%: 2025/02/25
@@ -127,10 +123,7 @@ Depending on my strained back, I might not be able to set up my room, so I need 
 - [ ] Read GCE articles in the Architecture Center
 	- [Resources for application development](https://cloud.google.com/architecture/application-development#canary_test_pattern) 
 
-
----
-
-##### Weak Areas
+### Weak Areas
 
 [**Cursors**, limits, and offsets](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets)｜Datastore 
 > **Query cursors** let an application retrieve a query's results in convenient batches **without incurring the overhead** of a query offset.
@@ -139,14 +132,11 @@ Depending on my strained back, I might not be able to set up my room, so I need 
 - ❌`SELECT * FROM books LIMIT 10 OFFSET 20;`
 - ⭕️`SELECT * FROM books WHERE id > last_id ORDER BY id LIMIT 10;`
 
-
 [Debug issues with the serial console](https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-ssh-errors#debug_with_serial_console)：Compute Engine
 > We recommend that you **check the serial console logs for connection errors**. You can access the serial console as the root user from your local workstation using a browser. This approach is helpful **if you cannot log in using SSH**, or if the instance doesn't have a network connection.
 
-
 [Accessing a private cluster with Cloud Shell](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#cloud_shell)：GKE・Cloud Shell
 > The private cluster created in the Using auto-generated subnets section, private-cluster-1, has a public endpoint and has authorized networks enabled. To access the cluster by using Cloud Shell, you must **add the external IP address of Cloud Shell to the cluster's list of authorized networks**.
-
 
 [View the image vulnerabilities](https://cloud.google.com/artifact-analysis/docs/scan-os-automatically#view_the_image_vulnerabilities)：Artifact Registry 
 > **Artifact Analysis scans new images uploaded to Artifact Registry**. This scan extracts information about system packages in the container. You can view the vulnerability occurrences for images in a registry using the Google Cloud console, the Google Cloud CLI, or the **Container Analysis API**. If vulnerabilities are present in an image, you can view the details.
@@ -159,10 +149,8 @@ Depending on my strained back, I might not be able to set up my room, so I need 
 > To enable **separation of duties**, you can run Cloud KMS in its **own project** (for example, your-key-project). Depending on how strict your separation requirements are, you can either:
 	- (Recommended) Create your-key-project **without an owner** at the project level, and designate an **Organization Admin**, granted at the **organization level**. Unlike an owner, an Organization Admin cannot directly manage or use keys. They are limited to setting IAM policies that limit who can manage and use keys. Using an organization-level node can help further limit permissions on projects in the organization.
 
-
 [Traffic management (Traffic Director)](https://cloud.google.com/service-mesh/docs/overview#traffic_management)：Cloud Service Mesh
 > Cloud Service Mesh maintains a service registry of all services in the mesh, by name and their respective endpoints. It maintains this list to manage traffic flows (IP addresses of Kubernetes Pods, IP addresses of Compute Engine VMs in managed instance groups, etc.). The mesh uses this service registry to route traffic to the appropriate endpoints by running a proxy along with your services. Proxyless gRPC workloads can also be used in parallel with workloads that use Envoy proxies.
-
 
 [Instance metadata server](https://cloud.google.com/run/docs/container-contract#metadata-server)：Cloud Run
 > A Cloud Run instance exposes a metadata server that you can use to get details about your container, such as the project ID, region, instance ID, or service accounts. You can also use the metadata server to generate **identity tokens for the service**. To access the metadata server's data, send an HTTP request to the http://metadata.google.internal/ endpoint with the Metadata-Flavor: Google header.
@@ -190,7 +178,6 @@ Depending on my strained back, I might not be able to set up my room, so I need 
 >
 > If you **set an initialization period value that is significantly longer** than the time it takes for an instance to initialize, the autoscaler might ignore legitimate utilization data. This might cause the autoscaler to underestimate the required size of your group, which can **delay a scale out**.
 
-
 [Gateway API resources](https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api#gateway_resources)：GKE networking
 > The diagram is helpful.
 
@@ -208,11 +195,9 @@ Network isolation options: GKE
 >- Use **Cloud NAT** to allow **GKE Pods** to access resources with public IP addresses. With Cloud NAT, Pods are not directly exposed to the internet, but can access resources that are on the internet, which improves your cluster's overall security posture.
 > 
 
-
 [GKE cluster architecture](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture) 
 > The configuration diagram is helpful.
 > 
-
 
 [Writing container logs](https://cloud.google.com/run/docs/logging#container-logs)：Cloud Run logs
 > When you write logs from your service or job, they are picked up automatically by Cloud Logging, as long as the logs are written to any of these locations:
@@ -223,12 +208,9 @@ Network isolation options: GKE
 > 
 > Most developers are expected to write logs using **standard output** and **standard error**.
 
-
-
 [Flame graphs](https://cloud.google.com/profiler/docs/concepts-flame)：Cloud Profiler
 > Cloud Profiler displays the profiling data in a flame graph. A flame graph uses screen space more efficiently than a tree or other graph and presents a large amount of information in a compact, readable format.
 > The frames are named by **function**, and their width is relative to the **measurement of total CPU time for that function**.
-
 
 [Ramp up the request rate gradually](https://cloud.google.com/storage/docs/request-rate#ramp-up)：Cloud Storage
 > To ensure that Cloud Storage autoscaling always performs optimally, you should gradually ramp up the request rate for any bucket that hasn't had a high request rate for several days, or for any bucket that has a new range of object keys. You don't need to ramp up your request rate if it is less than 1,000 write requests per second or 5,000 read requests per second. If you expect your request rate to go above these thresholds, you should start with a request rate below or near the thresholds and gradually increase the rate, making sure to not double the rate faster than every 20 minutes.
@@ -246,7 +228,6 @@ Check the diagram.
 > Two instances of Cloud SQL, a **primary** instance and a **standby** instance, reside in two **separate zones** within a **single region** (the primary region). The instances are kept in sync using regional persistent disks.
 > 
 > One instance of Cloud SQL, a cross-region **read replica**, resides in a **second region** (the secondary region). For DR, the cross-region read replica is configured to be kept in sync with the primary instance using read replica settings (using asynchronous replication).
-
 
 <ShareButtons />
 
