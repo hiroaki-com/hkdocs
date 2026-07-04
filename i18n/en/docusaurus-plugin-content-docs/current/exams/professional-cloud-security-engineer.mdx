@@ -45,8 +45,6 @@ Time: I completed the first pass in about 70 out of 120 minutes and was able to 
     
 - Reference: [Cryptomining detection best practices on Google Cloud](https://cloud.google.com/security-command-center/docs/cryptomining-detection-best-practices)
 
----
-
 **Time-based IAM Control:**
 
 - You can use Cloud Scheduler to issue HTTP requests at specified times or intervals, automatically invoking Cloud Run or Cloud Functions. This enables time-based access control, such as granting access rights only during specific time windows.
@@ -54,8 +52,6 @@ Time: I completed the first pass in about 70 out of 120 minutes and was able to 
 - Points:
     - Cloud Scheduler's retry settings make it easy to control retries upon execution failure.
     - You can programmatically manage access rights, such as granting or revoking IAM roles.
-
----
 
 **Questions about External Key Management:**
 
@@ -67,8 +63,6 @@ Time: I completed the first pass in about 70 out of 120 minutes and was able to 
     - Hashing is a one-way transformation of data that makes it non-decryptable. This prevents the original data from being recovered.
     - Note: Deterministic encryption always produces the same output for the same input and is decryptable, which is different from hashing.
 
----
-
 **Container Registry (Artifact Registry) Features:**
 
 - Artifact Registry, the successor to Container Registry, provides management for container images and other packages. It integrates vulnerability scanning and monitoring features.
@@ -76,8 +70,6 @@ Time: I completed the first pass in about 70 out of 120 minutes and was able to 
 - Points:
     - You can perform vulnerability scanning with Artifact Analysis in Artifact Registry.
     - Monitoring features are implemented using Cloud Security Command Center (SCC) or Google Cloud Monitoring.
-
----
 
 **Cloud Security Command Center (SCC) Use Cases:**
 
@@ -91,9 +83,6 @@ Time: I completed the first pass in about 70 out of 120 minutes and was able to 
     - Integration: Integrate with external security systems through exports to BigQuery or Pub/Sub.
         
 - Reference: [Security Command Center overview](https://cloud.google.com/security-command-center/docs/security-command-center-overview)
-    
-
----
 
 **Example from the Practice Exam:**
 
@@ -112,15 +101,16 @@ Time: I completed the first pass in about 70 out of 120 minutes and was able to 
 
 ### Exam Information - January 17, 2025
 
-**Exam Name: Google Cloud Certified - Professional Cloud Security Engineer (Japanese)**
-**Exam Date/Time: January 17, 2025, 3:30 PM**
-**Location: Kita-ku Kita 7-jo Nishi 5-chome 8-1, Kita 7-jo Yoshiya Building 4F**
+- Exam Name: Google Cloud Certified - Professional Cloud Security Engineer (Japanese)
+- Date/Time: January 17, 2025, 3:30 PM
+- Location: Kita-ku Kita 7-jo Nishi 5-chome 8-1, Kita 7-jo Yoshiya Building 4F
 
 Preparation:
 - Government-issued driver's license
 - Credit card
+
 ### 🔥Strategy for the Exam🔥
- 
+
 - Master [whizlabs.com](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-cloud-security-engineer/301)
 	- 1st pass completed: 2025/01/14
 	- 2nd pass completed: 2025/01/17
@@ -140,10 +130,11 @@ New Topics
 - [Firewall priority](https://cloud.google.com/firewall/docs/firewalls#priority_order_for_firewall_rules) - Default priority: 1000
 - VPC Flow Logs are applied at the VPC level (better than subnet).
 
----
+### Practice Question Memo
 
 <Admonition type="info" title="Prompt Memo for Creating Practice Questions">
-##### TIPS for Generating Advanced Questions
+
+#### TIPS for Generating Advanced Questions
 
 2024/12/14 
 
@@ -159,7 +150,6 @@ Generate a basic question set based on the exam scope using GPTs.
 ↓
 Improve them into advanced questions in Gemini (Studio) after setting up a System Prompt.
 </Admonition>
-
 
 <ShareButtons />
 
