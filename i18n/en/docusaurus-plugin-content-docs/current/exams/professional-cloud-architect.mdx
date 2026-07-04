@@ -22,12 +22,11 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 {/* truncate */}
 
 ### Exam Information - January 31, 2025
-Exam Name: Google Cloud Certified - Professional Cloud Architect (Japanese)
-Date: January 31, 2025
-Time: 01:45 PM
-Taken at a test center
 
----
+- Exam Name: Google Cloud Certified - Professional Cloud Architect (Japanese)
+- Format: Taken at a test center
+- Date: January 31, 2025
+- Time: 01:45 PM
 
 ### Post-Exam Reflections 🌸
 
@@ -62,7 +61,7 @@ There were also questions about VM migration. It wasn't just that they were diff
  - Understand the four cases from the [Official Case Studies](https://services.google.com/fh/files/misc/professional_cloud_architect_exam_guide_english.pdf).
 - [Case studies - Professional Cloud Architect](/docs/exams/case-studies)
 
-##### TODO on Exam Day (Success story from my PSE / PNE exams) ⭐️
+#### TODO on Exam Day (Success story from my PSE / PNE exams) ⭐️
 The day before
 - Get a good night's sleep
     - [x] Set up eye mask, earplugs, and pillow
@@ -86,8 +85,7 @@ On the day
 	- Make a conscious effort to read the options first
 	- Be mindful of leaving time for review
 
-
-##### Study Strategy:
+#### Study Strategy
 
 - Go through practice question sets repeatedly
 	- Review (focus on incorrect answers)
@@ -111,13 +109,11 @@ On the day
 	-  Product List DOCS: https://cloud.google.com/products
 	-  Actual Services: https://console.cloud.google.com/products?inv=1&invt=AboG6g&project=pollman-x
 
-
-##### Weak Areas
+#### Weak Areas
 - GCE
 	- Managed Instance Groups
 	- Instances
 	- [What is a Shielded VM?](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm)
-
 
 - [Direct Peering overview](https://cloud.google.com/network-connectivity/docs/direct-peering)
 > 	Direct Peering exists outside of Google Cloud. Unless you need to access Google Workspace applications, the recommended way to access Google Cloud is by using [Dedicated Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/dedicated-overview) or [Partner Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect/concepts/partner-overview).
@@ -146,7 +142,6 @@ On the day
 - [Default encryption at rest](https://cloud.google.com/docs/security/encryption/default-encryption#encryption_at_the_storage_device_layer)
 >	Google encrypts data at rest using the AES algorithm. All data at the storage level is encrypted by the DEK, which uses AES-256 by default, with the exception of a few Persistent Disks that were created before 2015 that use AES-128. AES is widely used because both AES-256 and AES-128 are recommended by the National Institute of Standards and Technology (NIST) for long-term storage use. AES is often part of customer compliance requirements.
 
-
 - [Node Taints for GPU Preemptible VMs](https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms#node_taints_for_gpu_preemptible_vms)
 >	`nvidia.com/gpu=present:NoSchedule` taint
 
@@ -156,7 +151,6 @@ On the day
 - [Increase the size of a persistent disk](https://cloud.google.com/compute/docs/disks/resize-persistent-disk)
 >	If you are using `ext4`, run the `resize2fs` command.
 >	You don't need to restart the VM after this process. You can now use the additional disk space to store your data.
-
 
 - [Monitoring an instance with Cloud Monitoring (Spanner)](https://cloud.google.com/spanner/docs/monitoring-cloud#create-charts)
 >	You can see correlations between a Spanner instance's **CPU utilization and latency**. This might indicate that you need to add compute capacity to your instance, or that some of your queries have high CPU utilization.
@@ -175,19 +169,17 @@ On the day
 >	- The packet's source is within the IP ranges specified by the local traffic selector.
 >	- The packet's destination is within the IP ranges specified by the remote traffic selector.
 
-
 - [Creating a private cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters)	
 >In a private cluster, nodes have internal IP addresses only, which isolates the nodes and Pods from the internet by default. Client access to the control plane can be configured to be disallowed, restricted, or unrestricted.	
 
 >Private clusters must be VPC-native clusters. VPC-native clusters do not support legacy networks.
-
 
 - Difficult Topics: Old
 	- Connect / Access
 		- [Blog Post (Japanese)](https://zenn.dev/cloud_ace/articles/e483362103d7f6)
 		- [Official Community Post](https://www.googlecloudcommunity.com/gc/Infrastructure-Compute-Storage/private-service-access-vs-private-service-connect-vs-private/m-p/760591)
 
----
+### Self-Study Memo
 
 <Admonition type="info" title="Self-Study_Prompt Memo for Creating Practice Questions">
 
@@ -208,7 +200,7 @@ What is the most common concept used for state management in streaming processin
 ``
 ```
 
-##### Self-Study_GPTs Tips
+#### Self-Study_GPTs Tips
 
 Most effective measure for long text generation:
 - If the output becomes garbled, **create a new page** and prompt again.
@@ -227,7 +219,7 @@ Standard best practice:
 	- → In GPTs, you can register instructions in advance, so aim for clear instructions at that stage.
 	- → It's also important to supplement the pre-registered instructions on the work screen.
 
-##### Self-Study_TIPS for Generating Advanced Questions
+#### Self-Study_TIPS for Generating Advanced Questions
 
 2024/12/14 
 
@@ -243,7 +235,6 @@ Generate a basic question set based on the exam scope using GPTs.
 ↓
 Improve them into advanced questions in Gemini (Studio) after setting up a System Prompt.
 </Admonition>
-
 
 <ShareButtons />
 
