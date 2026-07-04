@@ -31,6 +31,8 @@
   --ifm-color-primary-light: #42a5f5;
   --ifm-color-primary-lighter: #64b5f6;
   --ifm-color-primary-lightest: #90caf9;
+  /* rgba() で使うための primary の RGB 成分（#1e88e5） */
+  --ifm-color-primary-rgb: 30, 136, 229;
 
   /* --- Fonts: Light Mode --- */
   --ifm-font-color-base: #24292e;
@@ -95,6 +97,8 @@
   --ifm-color-primary-light: #8fb3e3;
   --ifm-color-primary-lighter: #a4c5ed;
   --ifm-color-primary-lightest: #bad8f6;
+  /* rgba() で使うための primary の RGB 成分（#7aa0da） */
+  --ifm-color-primary-rgb: 122, 160, 218;
 
   /* --- Fonts: Dark Mode --- */
   --ifm-font-color-base: #c9d1d9;
