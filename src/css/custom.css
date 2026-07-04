@@ -71,7 +71,10 @@
   --ifm-code-background: #f6f8fa;
   --docusaurus-highlighted-code-line-bg: rgba(30, 136, 229, 0.1);
 
-  /* --- Icon SVG Definitions (Light Mode) --- */
+  /* アイコン色: mask の塗り色をテーマ別に切替（以下のアイコン定義自体は色非依存） */
+  --hk-icon-color: #24292e;
+
+  /* --- Icon SVG Definitions (mask 用・色非依存) --- */
   --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
   --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292e' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
   
@@ -118,21 +121,8 @@
   --ifm-code-background: #0d1117;
   --docusaurus-highlighted-code-line-bg: rgba(143, 179, 227, 0.13);
 
-  /* --- Icon SVG Definitions (Dark Mode) --- */
-  --github-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
-  --x-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 7.184L18.901 1.153Zm-1.653 19.57h2.6l-13.8-19.57H4.076l13.172 19.57Z'/%3E%3C/svg%3E");
-  
-  /* --- Navbar Menu Icon SVG Definitions (Dark Mode) --- */
-  --book-text-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20'/%3E%3C/svg%3E");
-  --rss-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 11a9 9 0 0 1 9 9'/%3E%3Cpath d='M4 4a16 16 0 0 1 16 16'/%3E%3Ccircle cx='5' cy='19' r='1'/%3E%3C/svg%3E");
-  --list-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 6h13'/%3E%3Cpath d='M8 12h13'/%3E%3Cpath d='M8 18h13'/%3E%3Cpath d='M3 6h.01'/%3E%3Cpath d='M3 12h.01'/%3E%3Cpath d='M3 18h.01'/%3E%3C/svg%3E");
-  --clock-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12,6 12,12 16,14'/%3E%3C/svg%3E");
-  --newspaper-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'/%3E%3Cpath d='M18 14h-8'/%3E%3Cpath d='M15 18h-5'/%3E%3Cpath d='M10 6h8v4h-8V6Z'/%3E%3C/svg%3E");
-  --library-square-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M7 7v10'/%3E%3Cpath d='M11 7v10'/%3E%3Cpath d='m15 7 2 10'/%3E%3C/svg%3E");
-  --bot-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 8V4H8'/%3E%3Crect width='16' height='12' x='4' y='8' rx='2'/%3E%3Cpath d='m9 16 0 0'/%3E%3Cpath d='m15 16 0 0'/%3E%3C/svg%3E");
-  --notebook-pen-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4'/%3E%3Cpath d='M2 6h4'/%3E%3Cpath d='M2 10h4'/%3E%3Cpath d='M2 14h4'/%3E%3Cpath d='M2 18h4'/%3E%3Cpath d='M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z'/%3E%3C/svg%3E");
-  --user-circle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3Cpath d='M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662'/%3E%3C/svg%3E");
-  --darts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Ccircle cx='12' cy='12' r='6'/%3E%3Ccircle cx='12' cy='12' r='2'/%3E%3C/svg%3E");
+  /* アイコンは mask で塗るため、ダークはアイコン色のみ切替（重複定義を撤廃） */
+  --hk-icon-color: #ffffff;
 }
 
 /*
@@ -266,9 +256,13 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   display: block;
   width: 22px;
   height: 22px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  background-color: var(--hk-icon-color);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
   transition: var(--ifm-transition-fast);
 }
 
@@ -279,11 +273,13 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
 }
 
 .header-github-link::before {
-  background-image: var(--github-icon);
+  -webkit-mask-image: var(--github-icon);
+  mask-image: var(--github-icon);
 }
 
 .header-x-link::before {
-  background-image: var(--x-icon);
+  -webkit-mask-image: var(--x-icon);
+  mask-image: var(--x-icon);
 }
 
 /*
@@ -328,8 +324,11 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   width: 16px;
   height: 16px;
   margin-right: 0.5rem;
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-color: var(--hk-icon-color);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   vertical-align: middle;
   flex-shrink: 0;
 }
@@ -337,13 +336,15 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
 /* Tech (BookText icon) */
 .navbar__link[href*="/docs/"]:before,
 .menu__link[href*="/docs/"]:before {
-  background-image: var(--book-text-icon);
+  -webkit-mask-image: var(--book-text-icon);
+  mask-image: var(--book-text-icon);
 }
 
 /* ブログ (RSS icon) */
 .navbar__link[href*="/blog"]:before,
 .menu__link[href*="/blog"]:before {
-  background-image: var(--rss-icon);
+  -webkit-mask-image: var(--rss-icon);
+  mask-image: var(--rss-icon);
 }
 
 /* その他ドロップダウン (List icon) - デスクトップのみ */
@@ -354,9 +355,13 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
     width: 16px;
     height: 16px;
     margin-right: 0.5rem;
-    background-image: var(--list-icon);
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-color: var(--hk-icon-color);
+    -webkit-mask-image: var(--list-icon);
+    mask-image: var(--list-icon);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
     vertical-align: middle;
     flex-shrink: 0;
   }
@@ -382,8 +387,11 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
   width: 14px;
   height: 14px;
   margin-right: 0.5rem;
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-color: var(--hk-icon-color);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   vertical-align: middle;
   flex-shrink: 0;
 }
@@ -391,37 +399,44 @@ a[class*='cardContainer_'] h2[class*='cardTitle_'] {
 /* 個別アイコン指定 */
 .dropdown__menu .dropdown__link[href*="/diary"]:before,
 .menu__link[href*="/diary"]:before {
-  background-image: var(--clock-icon);
+  -webkit-mask-image: var(--clock-icon);
+  mask-image: var(--clock-icon);
 }
 
 .dropdown__menu .dropdown__link[href*="/news"]:before,
 .menu__link[href*="/news"]:before {
-  background-image: var(--newspaper-icon);
+  -webkit-mask-image: var(--newspaper-icon);
+  mask-image: var(--newspaper-icon);
 }
 
 .dropdown__menu .dropdown__link[href*="/links"]:before,
 .menu__link[href*="/links"]:before {
-  background-image: var(--library-square-icon);
+  -webkit-mask-image: var(--library-square-icon);
+  mask-image: var(--library-square-icon);
 }
 
 .dropdown__menu .dropdown__link[href*="/ai-tools"]:before,
 .menu__link[href*="/ai-tools"]:before {
-  background-image: var(--bot-icon);
+  -webkit-mask-image: var(--bot-icon);
+  mask-image: var(--bot-icon);
 }
 
 .dropdown__menu .dropdown__link[href*="/browser-memo"]:before,
 .menu__link[href*="/browser-memo"]:before {
-  background-image: var(--notebook-pen-icon);
+  -webkit-mask-image: var(--notebook-pen-icon);
+  mask-image: var(--notebook-pen-icon);
 }
 
 .dropdown__menu .dropdown__link[href*="/darts"]:before,
 .menu__link[href*="/darts"]:before {
-  background-image: var(--darts-icon);
+  -webkit-mask-image: var(--darts-icon);
+  mask-image: var(--darts-icon);
 }
 
 .dropdown__menu .dropdown__link[href*="/profile"]:before,
 .menu__link[href*="/profile"]:before {
-  background-image: var(--user-circle-icon);
+  -webkit-mask-image: var(--user-circle-icon);
+  mask-image: var(--user-circle-icon);
 }
 
 /* レスポンシブ対応: モバイルでのアイコンサイズ縮小 */
