@@ -15,7 +15,6 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 **🌸 Passed: March 30, 2025**
 
----
 ### Passing Memo
 
 <Admonition type="note" title="Passing Memo for March 30, 2025">
@@ -47,16 +46,15 @@ Got through it despite the baptism by fire of a doubleheader.
 </ul>
 </Admonition>
 
----
+### Exam Information - March 30, 2025
 
-### Exam Information - March 30, 2025 → 🌸Passed🌸
-
-Exam Name: Professional Cloud DevOps Engineer
+- Exam Name: Professional Cloud DevOps Engineer
 - Date: March 30, 2025
 - Time: 03:45 PM
 
----
-<Admonition type="tip" title="Exam Day TODO (Success story from my PSE / PNE / PDE / PCA exams) ⭐️">
+#### Exam Day TODO (Success story from my PSE / PNE / PDE / PCA exams) ⭐️
+
+<Admonition type="tip">
 
 **The Day Before**
 - [x] Get a good night's sleep
@@ -85,21 +83,18 @@ Exam Name: Professional Cloud DevOps Engineer
 	- Be mindful of leaving time for review
 </Admonition>
 
----
-
 ### 🔥Strategy for the Exam🔥
 
 - Read the official reference materials
 	- [Which Google Cloud certification is right for you?](https://cloud.google.com/blog/topics/training-certifications/which-google-cloud-certification-exam-should-you-take?hl=en)
 
-##### Study Strategy:
+#### Study Strategy
 
 - Important Materials
 	- [Official Guide](https://cloud.google.com/learn/certification/cloud-devops-engineer/)
 	- 💡[SRE Book Updates, by Topic](https://sre.google/resources/book-update/)｜A must-read collection of materials, including three Google SRE books, available for free.
 		- [sre.google/books](http://sre.google/books)｜Read all 3 books online for free.
 	- [Best practices for speeding up builds](https://cloud.google.com/build/docs/optimize-builds/speeding-up-builds#caching_directories_with_google_cloud_storage%20%20https://cloud.google.com/build/docs/speeding-up-builds)
-
 
 - Practice Questions
 	- [Whizlabs](https://www.whizlabs.com/learn/course/google-cloud-certified-professional-cloud-devops-engineer/385/pt) Free Questions: Study only the Free Test.
@@ -122,19 +117,15 @@ Exam Name: Professional Cloud DevOps Engineer
 		- [x] Practice Test 2｜2025/03/29｜81%
 		- [x] Practice Test 3｜2025/03/29｜72%
 
-
 	- [Official Practice Exam](https://docs.google.com/forms/d/e/1FAIpQLSdpk564uiDvdnqqyPoVjgpBp0TEtgScSFuDV7YQvRSumwUyoQ/viewform)
 		- [ ] 2025/03/24｜70%
 			- Question 12 - Possible discrepancy between practice set and official exam answers.
 		- [ ] ｜｜
 
-
 - If I have time, read Google SRE articles
 	- [ ] [SRE Book Updates, by Topic](https://sre.google/resources/book-update/)
 
----
-
-##### Weak Areas
+### Weak Areas
 
 [Overview of private pools](https://cloud.google.com/build/docs/private-pools/private-pools-overview#overview_of_default_pools_and_private_pools)｜Cloud Build
 >**Private pools** are a private, dedicated pool of workers that offer greater customization over the build environment, including the ability to **access resources in a private network**. Similar to default pools, private pools are hosted and fully managed by Cloud Build, and can scale up to or down to zero. You don't need to set up, upgrade, or scale any infrastructure. Since private pools are customer-specific resources, you can configure them in more ways.
@@ -152,10 +143,8 @@ Exam Name: Professional Cloud DevOps Engineer
 >
 > **Don't use** the [staging organization](https://cloud.google.com/architecture/identity/best-practices-for-planning#use_a_separate_staging_organization) for testing. The staging environment should have IAM policies and organization policies that are similar to your production organization. Consequently, the staging environment might have the same restrictions that are applied to your production environment. At the same time, if you relax policies to allow for testing, the purpose of the staging organization is defeated.
 
-
 [images](https://cloud.google.com/build/docs/build-config-file-schema#images)｜Cloud Build 
 > The **`images` field** in the build config file specifies one or more Linux **Docker images** that Cloud Build will push to Artifact Registry or Container Registry. You might have a build that runs tasks without producing a Linux Docker image, but if you build images and don't push them to a registry, the images are discarded on build completion. If a specified image isn't produced at build time, the build will fail. For more information on storing images, see [Storing artifacts in Artifact Registry](https://cloud.google.com/build/docs/building/store-artifacts-in-artifact-registry).
-
 
 [artifacts](https://cloud.google.com/build/docs/build-config-file-schema#artifacts)｜Cloud Build 
 > The **`artifacts` field** in the build config file specifies one or more **non-container** artifacts to store in Cloud Storage. For more information on storing non-container artifacts, see [Storing build artifacts in Cloud Storage](https://cloud.google.com/build/docs/building/store-artifacts-in-cloud-storage).
@@ -182,16 +171,12 @@ Exam Name: Professional Cloud DevOps Engineer
 [Triggering on Pub/Sub Messages](https://spinnaker.io/docs/guides/user/pipeline/triggers/pubsub/)｜Spinnaker
 > Note that Pub/Sub and Spinnaker can be integrated.
 
-
 [create_before_destroy](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#create_before_destroy)｜Terraform
 > `create_before_destroy (bool)` - By default, when Terraform must change a resource argument that cannot be updated in-place due to remote API limitations, Terraform will instead destroy the existing object and then create a new replacement object with the new configured arguments.
 > 
 > The `create_before_destroy` meta-argument changes this behavior so that the replacement object is created first, and the existing object is destroyed after the replacement is created.
 
-
----
-
-##### HTTP Status Code List
+### HTTP Status Code List
 
 | **HTTP Status Code** | **Error Message**         | **Context/Cause**                                                  |
 | -------------------- | ------------------------- | ------------------------------------------------------------------ |
@@ -206,9 +191,9 @@ Exam Name: Professional Cloud DevOps Engineer
 | **503**              | `Service Unavailable`     | The service is down, under maintenance, or temporarily unavailable.      |
 | **504**              | `Gateway Timeout`         | The request timed out (e.g., after a long wait).                  |
 
----
+### Developer Memo: Udemy Invalid URLs Report
 
-<Admonition type="info" title="Developer Memo: Udemy Invalid URLs Report">
+<Admonition type="info">
 Reported on 2025/03/29
 
 **Practice Test 2: Still Invalid URLs References**
@@ -221,7 +206,6 @@ You oversee an application operating within Google Kubernetes Engine (GKE) and e
 Your organization aims to elevate the availability target of an application from 99.9% to 99.99% with a $2,000 investment. ...
 ```
 </Admonition>
-
 
 <ShareButtons />
 
