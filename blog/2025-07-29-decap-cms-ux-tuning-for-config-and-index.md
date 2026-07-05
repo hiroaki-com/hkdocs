@@ -22,7 +22,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 これらのチューニングによって、PCはもちろん、スマートフォンからでも快適に記事を更新できる環境を構築しました。GitベースのCMSが持つカスタマイズ性の高さを活かした一例として、参考になれば幸いです。
 
-<!-- truncate -->
+{/* truncate */}
 
 ### **1. `config.yml`による運用効率の向上**
 

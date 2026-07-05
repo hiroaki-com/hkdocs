@@ -17,7 +17,7 @@ When I introduced Claude Code into a personal OSS repository I develop and maint
 The target is a solo-developed (personal OSS) repository, with branch protection requiring PRs and CI already configured on `main` / `develop`. Claude Code is used from within the editor, and the main tasks are refactoring, writing articles, and improving features — repetitive work that mostly stays local.
 :::
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Exclusion Settings and a Look at Their Use Cases
 

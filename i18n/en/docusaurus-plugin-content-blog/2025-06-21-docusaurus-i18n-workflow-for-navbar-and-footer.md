@@ -15,7 +15,7 @@ Note that this article is a record from when it was written. For the continuousl
 
 The Docusaurus i18n feature is a mechanism for making site text multi-lingual. This time, I'll explain the process of adding new items to the `navbar` and `footer` and translating them from Japanese (the default) to English.
 
-<!-- truncate -->
+{/* truncate */}
 
 1.  Centralized Management of Original Text
     All original text for translation is managed within the `docusaurus.config.ts` file. This allows for a single point of reference for the site's structure and wording.

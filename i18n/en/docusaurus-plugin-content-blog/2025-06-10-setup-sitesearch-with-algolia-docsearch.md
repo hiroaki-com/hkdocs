@@ -18,7 +18,7 @@ References:
 Service Used:
 - [Algolia DocSearch](https://docsearch.algolia.com/)
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 1. Applying for Algolia DocSearch
 

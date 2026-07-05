@@ -20,7 +20,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 *   **ホスティング:** Google Cloud Run
 *   **サイトジェネレーター:** Docusaurus
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Docusaurus 設定ファイルの更新
 

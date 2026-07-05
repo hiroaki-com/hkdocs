@@ -17,7 +17,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 対象は一人開発（個人 OSS）のリポジトリで、`main` / `develop` に PR・CI 必須のブランチ保護が設定済みの状態です。Claude Code はエディタ上から利用しており、主なタスクはリファクタリング・記事執筆・機能改善といった、反復的でローカル完結の作業が中心です。
 :::
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. 除外設定とそのユースケースの検討
 

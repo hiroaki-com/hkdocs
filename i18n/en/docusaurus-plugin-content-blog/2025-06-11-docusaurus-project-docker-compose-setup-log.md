@@ -13,7 +13,7 @@ Background:
 
 To standardize the local development environment and simplify setup, I introduced Docker Compose to my Docusaurus (`v3.8.0`) project. Before this, I was running Node.js (`v22.16.0`) and pnpm (`v10.11`) by installing them directly on each developer's local machine.
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 1. Creating the Development Dockerfile (`Dockerfile.dev`)
 

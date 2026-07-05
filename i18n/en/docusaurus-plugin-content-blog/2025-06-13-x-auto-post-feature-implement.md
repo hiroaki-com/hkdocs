@@ -12,7 +12,7 @@ This article is a record from when it was written. For the continuously maintain
 Feature:
 Detect new posts with GitHub Actions and post them to X as Twitter Cards.
 
-<!-- truncate -->
+{/* truncate */}
 
 References:
 Twitter API v2

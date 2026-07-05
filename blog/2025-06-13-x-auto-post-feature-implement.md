@@ -18,7 +18,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 機能：
 Github Actions で新規投稿を検知し、TwitterカードとしてXへPOSTする
 
-<!-- truncate -->
+{/* truncate */}
 
 参考：
 Twitter API v2

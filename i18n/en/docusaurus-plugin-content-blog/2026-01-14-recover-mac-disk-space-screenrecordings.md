@@ -19,7 +19,7 @@ In this article, I will share the story of how I identified the cause of this st
 
 **More Mac articles**: [Enabling key repeat](/en/blog/2025/06/29/mac-enable-key-repeat/) · [Fixing custom wallpaper issues](/en/blog/2025/11/14/mac-fix-custom-wallpaper-issue/) · [Fixing public Wi-Fi captive portals](/en/blog/2026/01/08/fix-public-wifi-captive-portal-issue/)
 
-<!-- truncate -->
+{/* truncate */}
 
 ![System Settings Storage Screen](/img/mac_storage_settings_cleanup.png)
 

@@ -13,7 +13,7 @@ This article is a record from when it was written. For the continuously maintain
 
 The primary goal was to build a personal information hub for quick access to reliable news sources. The page is built as a static site, emphasizing fast performance, usability, and maintainability.
 
-<!-- truncate -->
+{/* truncate */}
 
 1.  **Systematic Categorization**
     News sites are categorized into sections like "General & Economy" and "Technology." HTML's `<details>` tag is used to allow each category to be collapsed, ensuring a clean and organized view.

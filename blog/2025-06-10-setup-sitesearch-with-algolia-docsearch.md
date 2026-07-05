@@ -24,7 +24,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 採用サービス：
 - [Algolia DocSearch](https://docsearch.algolia.com/)
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 1. Algolia DocSearchへの申請
 

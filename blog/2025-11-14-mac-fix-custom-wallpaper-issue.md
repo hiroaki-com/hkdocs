@@ -19,7 +19,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 ![システム設定の壁紙メニューからだと壁紙設定が反映されない](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.webp)
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 2. 検証環境
 

@@ -15,7 +15,7 @@ This article is a record from when it was written. For the continuously maintain
 *   **Hosting:** Google Cloud Run
 *   **Site Generator:** Docusaurus
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Update the Docusaurus Configuration File
 

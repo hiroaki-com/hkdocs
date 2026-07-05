@@ -14,7 +14,7 @@ This article introduces how to solve this problem using Artifact Registry's "Cle
 
 *This guide is based on the Google Cloud Console UI as of July 2025.*
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Choosing a Strategy
 

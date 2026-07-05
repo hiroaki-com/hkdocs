@@ -20,7 +20,7 @@ However, immediately after the support interaction ended—**approximately 7 day
 
 Based on the login history, the presumed factor for resolution is: **"By refraining from login attempts for a certain period, the system's security lock was automatically lifted."**
 
-<!-- truncate -->
+{/* truncate */}
 
 **[Key Learnings]**
 1. **Prioritize Official Documentation Steps**

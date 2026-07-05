@@ -18,7 +18,7 @@ Note that this article is a record from when it was written. For the continuousl
 *   **Development & Deployment:** Docker, GitHub Actions
 *   **Package Manager:** pnpm
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. The Problems I Encountered
 

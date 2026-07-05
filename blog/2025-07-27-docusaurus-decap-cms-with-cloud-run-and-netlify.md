@@ -27,7 +27,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 また、本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/docusaurus-decap-cms-with-cloud-run-and-netlify/) を参照してください。
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 参考文献
 

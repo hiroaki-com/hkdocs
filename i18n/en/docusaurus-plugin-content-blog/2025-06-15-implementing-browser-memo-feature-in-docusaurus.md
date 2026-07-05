@@ -16,7 +16,7 @@ Note that this article is a record from the time of implementation; for the cont
 To provide a feature that allows users to easily create and save text memos in their browser, with the content persisting on subsequent visits.
 The focus is on ease of use and responsiveness by having everything run entirely on the client-side (using the browser's localStorage) without any server-side processing.
 
-<!-- truncate -->
+{/* truncate */}
 
 1.  **Memo Persistence**
     The entered memo content is automatically saved to the user's browser `localStorage`. This allows the previous content to be restored even if the browser is reloaded or closed and reopened.
