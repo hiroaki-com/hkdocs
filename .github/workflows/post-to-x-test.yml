@@ -30,16 +30,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # package.jsonの"packageManager"フィールドからpnpmのバージョンを読み込む
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22.16.0"
-
-      - name: Enable Corepack and Set up PNPM
-        shell: bash
-        run: |
-          corepack enable
-          corepack prepare pnpm@10.11.0 --activate
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile

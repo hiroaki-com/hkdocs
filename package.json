@@ -21,18 +21,18 @@
     "@docusaurus/core": "3.8.0",
     "@docusaurus/preset-classic": "3.8.0",
     "@docusaurus/theme-mermaid": "^3.8.0",
-    "@mdx-js/react": "^3.0.0",
+    "@mdx-js/react": "^3.1.1",
     "clsx": "^2.0.0",
-    "github-markdown-css": "^5.8.1",
+    "github-markdown-css": "^5.9.0",
     "http-server": "^14.1.1",
     "lucide-react": "^0.514.0",
     "lz-string": "^1.5.0",
-    "mermaid": "^11.12.2",
+    "mermaid": "^11.16.0",
     "prism-react-renderer": "^2.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "react-markdown": "^10.1.0",
-    "react-share": "^5.2.2",
+    "react-share": "^5.3.0",
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0"
@@ -42,7 +42,7 @@
     "@docusaurus/tsconfig": "3.8.0",
     "@docusaurus/types": "3.8.0",
     "gray-matter": "^4.0.3",
-    "twitter-api-v2": "^1.23.2",
+    "twitter-api-v2": "^1.29.0",
     "typescript": "~5.6.2"
   },
   "browserslist": {
@@ -58,7 +58,7 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=22"
   },
-  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
+  "packageManager": "pnpm@10.34.4+sha512.8768be55200ae3f2226b6527fcca2687e14bc4e5f12d7721a0f25da3df47915177058648db4177baf348120fa0ba2752d8d8d93f6beaf1fe64ae18da8de961af"
 }
