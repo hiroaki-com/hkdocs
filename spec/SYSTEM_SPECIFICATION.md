@@ -131,8 +131,10 @@ V. 構成詳細: コンテナ化 (Docker)
     - セキュリティ: 非rootユーザー (`node`)でアプリケーションを実行。
     - ヘルスチェック: Dockerfileに明示的な`HEALTHCHECK`命令は設けず、Cloud Run側の
       標準ヘルスチェック (8080番ポートへの起動プローブ) に委ねる。
-    - 起動コマンド: `CMD ["pnpm", "run", "serve"]` を使用
-      (`package.json`の`"serve": "http-server ./build --single"`を実行し、8080番で待受)。
+    - 起動コマンド: `CMD ["node", "node_modules/http-server/bin/http-server", "./build", "--single", "-p", "8080"]`
+      で`http-server`を直接起動（`package.json`の`serve`スクリプトと同等・8080番で待受）。
+      実行時に pnpm/Corepack を経由しない（pnpm 11 の実行前 deps 検証が lockfile 非搭載の
+      本番イメージで自動 install を試み起動失敗するため。コールドスタート時の registry 依存も排除）。
 
   * `docker-compose.yml` (ローカル開発用):
     - `README.md`で推奨されている開発手法。

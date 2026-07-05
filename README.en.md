@@ -1,9 +1,9 @@
 <img width="727" height="98" alt="hkdocs_bg_logo_20260401" src="https://github.com/user-attachments/assets/f2c297ab-a3d8-48b9-992c-99cb874bc4fd" />
 
 [![Build Status](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml/badge.svg)](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml)
-[![Docusaurus](https://img.shields.io/badge/Docusaurus-v3.8.0-blue?logo=docusaurus)](https://docusaurus.io/)
-[![Node.js](https://img.shields.io/badge/Node.js-v22.22.2-green?logo=nodedotjs)](https://nodejs.org/)
-[![pnpm](https://img.shields.io/badge/pnpm-v10.11.0-orange?logo=pnpm)](https://pnpm.io/)
+[![Docusaurus](https://img.shields.io/badge/Docusaurus-v3.10.1-blue?logo=docusaurus)](https://docusaurus.io/)
+[![Node.js](https://img.shields.io/badge/Node.js-v24.18.0-green?logo=nodedotjs)](https://nodejs.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-v11.10.0-orange?logo=pnpm)](https://pnpm.io/)
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -34,10 +34,10 @@ A personal knowledge base that consolidates a tech blog, work notes, and a diary
 
 | Category             | Technology / Service                                                              |
 | -------------------- | --------------------------------------------------------------------------------- |
-| Framework            | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
+| Framework            | [Docusaurus](https://docusaurus.io/) `v3.10.1`                                     |
 | Language             | [TypeScript](https://www.typescriptlang.org/)                                     |
 | UI Library           | [React](https://reactjs.org/) `v19`                                               |
-| Package Manager      | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
+| Package Manager      | [pnpm](https://pnpm.io/) `v11.10.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
 | Containerization     | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
 | Hosting              | [Google Cloud Run](https://cloud.google.com/run)                                  |
 | CI/CD                | [GitHub Actions](https://github.com/features/actions)                             |
@@ -98,7 +98,7 @@ graph LR
 
 - [Git](https://git-scm.com/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Recommended)
-- Or, for a local environment: [nvm](https://github.com/nvm-sh/nvm) and Node.js `v22.22.2`
+- Or, for a local environment: [nvm](https://github.com/nvm-sh/nvm) and Node.js `v24.18.0`
 
 ### Installation
 

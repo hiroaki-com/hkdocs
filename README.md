@@ -1,9 +1,9 @@
 <img width="727" height="98" alt="hkdocs_bg_logo_20260401" src="https://github.com/user-attachments/assets/626ac925-25dd-4b66-981a-e50498aa0ee2" />
 
 [![Build Status](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml/badge.svg)](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml)
-[![Docusaurus](https://img.shields.io/badge/Docusaurus-v3.8.0-blue?logo=docusaurus)](https://docusaurus.io/)
-[![Node.js](https://img.shields.io/badge/Node.js-v22.22.2-green?logo=nodedotjs)](https://nodejs.org/)
-[![pnpm](https://img.shields.io/badge/pnpm-v10.11.0-orange?logo=pnpm)](https://pnpm.io/)
+[![Docusaurus](https://img.shields.io/badge/Docusaurus-v3.10.1-blue?logo=docusaurus)](https://docusaurus.io/)
+[![Node.js](https://img.shields.io/badge/Node.js-v24.18.0-green?logo=nodedotjs)](https://nodejs.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-v11.10.0-orange?logo=pnpm)](https://pnpm.io/)
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -34,10 +34,10 @@
 
 | カテゴリ         | 技術・サービス                                                                    |
 | ---------------- | --------------------------------------------------------------------------------- |
-| フレームワーク   | [Docusaurus](https://docusaurus.io/) `v3.8.0`                                     |
+| フレームワーク   | [Docusaurus](https://docusaurus.io/) `v3.10.1`                                     |
 | 言語             | [TypeScript](https://www.typescriptlang.org/)                                     |
 | UIライブラリ     | [React](https://reactjs.org/) `v19`                                               |
-| パッケージ管理   | [pnpm](https://pnpm.io/) `v10.11.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
+| パッケージ管理   | [pnpm](https://pnpm.io/) `v11.10.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
 | コンテナ化       | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
 | ホスティング     | [Google Cloud Run](https://cloud.google.com/run)                                  |
 | CI/CD            | [GitHub Actions](https://github.com/features/actions)                             |
@@ -98,7 +98,7 @@ graph LR
 
 - [Git](https://git-scm.com/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (推奨)
-- または、ローカル環境用の [nvm](https://github.com/nvm-sh/nvm) と Node.js `v22.22.2`
+- または、ローカル環境用の [nvm](https://github.com/nvm-sh/nvm) と Node.js `v24.18.0`
 
 #### インストール
 
