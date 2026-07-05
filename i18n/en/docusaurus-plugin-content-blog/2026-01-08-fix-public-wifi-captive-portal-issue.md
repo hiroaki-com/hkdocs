@@ -17,7 +17,7 @@ Based on my personal experience, this article explains how to organize and delet
 
 ![Example of Public WiFi Authentication Screen (Captive Portal)](/img/captiveportal_01_popup.webp)
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 2. Verification Environment
 

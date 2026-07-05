@@ -13,11 +13,26 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   future: {
-    v4: true,
+    // v4: true は 3.10 で fasterByDefault も有効化し @docusaurus/faster(Rspack) を要求するため、
+    // webpack を維持する目的で faster のみ無効化して展開（他フラグは v4 既定=true のまま）。
+    // Rspack/SWC への切替は v4 GA 時にまとめて実施（YAGNI）。
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      useCssCascadeLayers: true,
+      siteStorageNamespacing: true,
+      mdx1CompatDisabledByDefault: true,
+      fasterByDefault: false,
+    },
   },
 
   markdown: {
     mermaid: true,
+    // v4 (mdx1CompatDisabledByDefault) に完全準拠。全 .md/.mdx の <!-- --> コメントは
+    // {/* */} へ移行済み（truncate マーカー含む）。mdx1Compat の互換保持は不要。
+    hooks: {
+      // 3.9 で onBrokenMarkdownLinks（トップレベル）が非推奨→ここへ移設
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 
   trailingSlash: true,
@@ -28,7 +43,6 @@ const config: Config = {
   projectName: 'hkdocs',
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   // 国際化（i18n）設定
   i18n: {

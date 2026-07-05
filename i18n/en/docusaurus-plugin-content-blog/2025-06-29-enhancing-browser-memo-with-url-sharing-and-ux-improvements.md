@@ -20,7 +20,7 @@ This article is a record from when it was written. For the continuously maintain
 Related:
 - [Previous Post:A Record of Implementing an In-Site Browser Memo Feature in Docusaurus](/i18n/en/docusaurus-plugin-content-blog/2025-06-15-implementing-browser-memo-feature-in-docusaurus.md)
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 1. Overview of New Features and Improvements
 

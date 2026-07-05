@@ -15,7 +15,7 @@ This article is a record from when it was written. For the continuously maintain
 **References:**
 - https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#last_update
 
-<!-- truncate -->
+{/* truncate */}
 
 **Prerequisites:**
 

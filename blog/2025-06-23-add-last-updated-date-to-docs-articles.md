@@ -20,7 +20,7 @@ Gitの履歴に依存せず、CI/CDの設定変更も不要な、Front Matterを
 **参考資料:**
 - https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#last_update
 
-<!-- truncate -->
+{/* truncate */}
 
 **前提環境:**
 

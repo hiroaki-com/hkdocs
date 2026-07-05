@@ -17,13 +17,16 @@ I. Basic Information
 
 II. Technology Stack
 --------------------
-  * Framework: Docusaurus `v3.8.0`
+  * Framework: Docusaurus `v3.10.1`
     - Theme: `@docusaurus/preset-classic`
     - Diagrams: `@docusaurus/theme-mermaid` (Mermaid diagrams)
-    - Forward compatibility: `future.v4` enabled to prepare for the migration to
-      Docusaurus v4.
-  * Language: TypeScript `~5.6.2`
-  * UI Library: React `v19.0.0`
+    - Forward compatibility: individual `future.v4` flags enabled to prepare for the
+      migration to Docusaurus v4, except `fasterByDefault` (webpack retained; the
+      Rspack/SWC switch is deferred to the v4 GA). Fully compliant with v4 behavior
+      including `mdx1CompatDisabledByDefault` (all `<!-- -->` comments across `.md`/`.mdx`,
+      the truncate marker included, migrated to `{/* */}`).
+  * Language: TypeScript `~5.9.3`
+  * UI Library: React `v19.2.7`
   * Key Libraries:
     - Math rendering: `remark-math` / `rehype-katex` (KaTeX stylesheet loaded from CDN)
     - Markdown extensions: `remark-gfm`, `react-markdown` (for the browser memo preview)
@@ -33,7 +36,7 @@ II. Technology Stack
     - Styling: `github-markdown-css`, `clsx`
     - Syntax highlighting: `prism-react-renderer`
   * Node.js: `v22.22.2` (version specified in the `.nvmrc` file)
-  * Package Manager: pnpm `v10.11.0` (managed via Corepack)
+  * Package Manager: pnpm `v10.34.4` (managed via Corepack)
   * Containerization: Docker, Docker Compose
   * Source Code Management: GitHub
   * Hosting (Google Cloud)

@@ -19,7 +19,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 ローカル開発環境の統一とセットアップの簡略化を目的とし、Docusaurus (`v3.8.0`) プロジェクトにDocker Composeを導入した。導入前は、Node.js (`v22.16.0`) およびpnpm (`v10.11`) を開発者のローカルマシンに直接インストールして運用していた。
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 1. 開発用Dockerfileの作成 (`Dockerfile.dev`)
 

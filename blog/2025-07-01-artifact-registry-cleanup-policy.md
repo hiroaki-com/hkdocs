@@ -20,7 +20,7 @@ GitHub ActionsなどでCI/CDを組み、Google Cloud Runへデプロイする運
 
 *本記事は、Google Cloud Consoleの2025年7月時点のUIを元に解説。*
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. 方針の検討と決定
 

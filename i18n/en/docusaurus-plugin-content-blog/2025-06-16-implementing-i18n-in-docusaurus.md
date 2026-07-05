@@ -19,7 +19,7 @@ Note that this article is a record from when it was written. For the continuousl
 *   **Development Environment:** Docker (local environment commands are also provided)
 *   **Goal:** To support two languages: Japanese (`ja`) and English (`en`)
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Update the Docusaurus Configuration File (`docusaurus.config.ts`)
 

@@ -23,7 +23,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 ![公衆WiFiの認証画面（キャプティブポータル）の例](/img/captiveportal_01_popup.webp)
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 2. 検証環境
 

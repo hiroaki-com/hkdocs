@@ -14,7 +14,7 @@ This article is a record from when it was written. For the continuously maintain
 - **Local Environment**: VSCode editing environment setup
 - **Operational Workflow**: Establishing daily development cycles
 
-<!-- truncate -->
+{/* truncate */}
 
 ## Current Situation and Goals
 

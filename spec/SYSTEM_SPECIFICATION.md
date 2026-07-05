@@ -17,12 +17,14 @@ I. 基本情報
 
 II. 使用技術スタック
 -------------------
-  * フレームワーク: Docusaurus `v3.8.0`
+  * フレームワーク: Docusaurus `v3.10.1`
     - テーマ: `@docusaurus/preset-classic`
     - 図表: `@docusaurus/theme-mermaid` (Mermaidダイアグラム)
-    - 前方互換: `future.v4` を有効化し、Docusaurus v4 への移行に備える。
-  * 言語: TypeScript `~5.6.2`
-  * UIライブラリ: React `v19.0.0`
+    - 前方互換: `future.v4` の各フラグを有効化し v4 移行に備える。ただし `fasterByDefault` は無効
+      （webpack を維持し Rspack/SWC 切替は v4 GA 時に実施）。`mdx1CompatDisabledByDefault` を含め v4 挙動へ
+      完全準拠済み（全 `.md`/`.mdx` の `<!-- -->` コメントを `{/* */}` へ移行、truncate マーカー含む）。
+  * 言語: TypeScript `~5.9.3`
+  * UIライブラリ: React `v19.2.7`
   * 主要ライブラリ:
     - 数式表示: `remark-math` / `rehype-katex` (KaTeXスタイルシートをCDNから読込)
     - Markdown拡張: `remark-gfm`, `react-markdown` (ブラウザメモのプレビュー用)
@@ -32,7 +34,7 @@ II. 使用技術スタック
     - スタイル: `github-markdown-css`, `clsx`
     - シンタックスハイライト: `prism-react-renderer`
   * Node.js: `v22.22.2` (`.nvmrc` ファイルでバージョンを規定)
-  * パッケージマネージャ: pnpm `v10.11.0` (Corepack経由で管理)
+  * パッケージマネージャ: pnpm `v10.34.4` (Corepack経由で管理)
   * コンテナ化: Docker, Docker Compose
   * ソースコード管理: GitHub
   * ホスティング (Google Cloud)

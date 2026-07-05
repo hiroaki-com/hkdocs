@@ -16,7 +16,7 @@ This article introduces the practical customizations I applied to [**`static/adm
 
 These tunings have created an environment where I can comfortably update articles not only from a PC but also from a smartphone. I hope this serves as a useful example of leveraging the high customizability of a Git-based CMS.
 
-<!-- truncate -->
+{/* truncate */}
 
 ### **1. Improving Operational Efficiency with `config.yml`**
 

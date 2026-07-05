@@ -19,7 +19,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/docusaurus-share-button-implementation-log/) を参照してください。
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 実装方針の選択
 

@@ -23,7 +23,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 本記事は執筆当時の記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/enhancing-browser-memo-with-url-sharing-and-ux-improvements/) を参照してください。
 
-<!-- truncate -->
+{/* truncate */}
 
 #### 1. 新機能の概要と改善点
 

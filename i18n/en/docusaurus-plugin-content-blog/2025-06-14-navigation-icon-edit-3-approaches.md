@@ -13,7 +13,7 @@ This article is a record from when it was written. For the continuously maintain
 
 This is the most direct and simple method for displaying icons or symbols in navigation items. It is achieved by writing directly into the `label` property within the Docusaurus configuration file.
 
-<!-- truncate -->
+{/* truncate */}
 
 1.  **Edit the Configuration File** (`docusaurus.config.ts`)
     In the `themeConfig.navbar.items` array, specify the desired text, emoji, or special symbol in the `label` property of the target item.

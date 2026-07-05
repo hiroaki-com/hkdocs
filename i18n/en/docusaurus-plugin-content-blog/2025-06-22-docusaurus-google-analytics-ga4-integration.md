@@ -13,7 +13,7 @@ This article is a record from when it was written. For the continuously maintain
 *   Integrate Google Analytics 4 (GA4) with a Docusaurus site.
 *   Enable site-wide traffic analysis.
 
-<!-- truncate -->
+{/* truncate */}
 
 **References:**
 *   **Docusaurus Official Documentation (gtag):** [https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag)

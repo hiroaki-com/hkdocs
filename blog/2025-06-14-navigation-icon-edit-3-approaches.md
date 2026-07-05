@@ -20,7 +20,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 ナビゲーションアイテムにアイコンや記号を表示する最も直接的かつ簡単な方法。Docusaurusの設定ファイル内で`label`プロパティに直接記述することで実現。
 
-<!-- truncate -->
+{/* truncate */}
 
 1.  **設定ファイル編集** (`docusaurus.config.ts`)
     `themeConfig.navbar.items` 配列内の対象アイテムの `label` プロパティに、表示したいテキスト、絵文字、または特殊記号を指定。

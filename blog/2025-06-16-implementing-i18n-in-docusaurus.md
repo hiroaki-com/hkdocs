@@ -25,7 +25,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 *   **開発環境:** Docker (ローカル環境のコマンドも併記)
 *   **目標:** 日本語(`ja`)と英語(`en`)の2言語に対応させる
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Docusaurus 設定ファイル (`docusaurus.config.ts`) の更新
 

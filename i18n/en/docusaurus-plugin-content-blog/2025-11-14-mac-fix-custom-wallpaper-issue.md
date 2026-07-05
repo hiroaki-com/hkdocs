@@ -13,7 +13,7 @@ This article provides a step-by-step solution for an issue on MacBooks where cus
 
 ![Wallpaper settings failing to apply from the System Settings menu](/img/mac-wallpaper-fix_1-1_mac-system-settings-wallpaper-menu.webp)
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 2. Test Environment
 

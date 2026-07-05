@@ -19,7 +19,7 @@ Docusaurusで構築した当サイトにGoogle Analytics 4 (GA4) を導入し、
 *   DocusaurusサイトにGoogle Analytics 4 (GA4) を導入。
 *   サイト全体のアクセス解析を可能に。
 
-<!-- truncate -->
+{/* truncate */}
 
 **参考:**
 *   **Docusaurus公式ドキュメント (gtag):** [https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag)

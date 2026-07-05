@@ -13,7 +13,7 @@ A key feature of the final component is its ability to automatically fetch the p
 
 This article is a record from when it was written. For the continuously maintained procedure, see the [technical documentation version](/en/docs/tech/docusaurus/docusaurus-share-button-implementation-log/).
 
-<!-- truncate -->
+{/* truncate */}
 
 #### Choosing the Implementation Strategy
 

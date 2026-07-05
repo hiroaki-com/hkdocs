@@ -22,7 +22,7 @@ This article provides a clear, step-by-step guide on how to disable this `accent
 *   **Mac:** M1, 2020
 *   **macOS:** Sonoma 15.1 (24B83)
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 1. Solution Overview
 

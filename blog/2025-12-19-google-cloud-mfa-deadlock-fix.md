@@ -26,7 +26,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 ログイン履歴から推測される解決要因は、**「一定期間ログイン試行を控えたことで、システム上のセキュリティロックが解除されたこと」**です。
 
-<!-- truncate -->
+{/* truncate */}
 
 **【学びの整理】**
 1. **公式ドキュメントの手順を最優先で実施する**
