@@ -7,7 +7,6 @@ import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
-import useJsonLdSchema from '@site/src/hooks/useJsonLdSchema';
 
 const GAME_CARDS = [
   {
@@ -69,9 +68,8 @@ export default function DartsTop(): JSX.Element {
       }),
       operatingSystem: 'Any (Web browser)',
       applicationCategory: 'SportsApplication, UtilitiesApplication',
-      url: `${siteConfig.url}${siteConfig.baseUrl}${
-        currentLocale === 'ja' ? '' : `${currentLocale}/`
-      }darts/`,
+      // baseUrl はロケール別ビルドで既に `/en/` 等を含むため、ロケール接頭辞は付けない
+      url: `${siteConfig.url}${siteConfig.baseUrl}darts/`,
       description: pageDescription,
       offers: {
         '@type': 'Offer',
@@ -87,20 +85,21 @@ export default function DartsTop(): JSX.Element {
     ]
   );
 
-  useJsonLdSchema(schema);
-
   return (
     <Layout title={pageTitle} description={pageDescription}>
       <Head
         children={
-          <meta
-            name="keywords"
-            content={translate({
-              id: 'page.darts-top.keywords',
-              message:
-                'ダーツ, 計算, アプリ, スコア, 01, ゼロワン, クリケット, カウントアップ, 無料, ブラウザ',
-            })}
-          />
+          <>
+            <meta
+              name="keywords"
+              content={translate({
+                id: 'page.darts-top.keywords',
+                message:
+                  'ダーツ, 計算, アプリ, スコア, 01, ゼロワン, クリケット, カウントアップ, 無料, ブラウザ',
+              })}
+            />
+            <script type="application/ld+json">{JSON.stringify(schema)}</script>
+          </>
         }
       />
 
