@@ -27,10 +27,6 @@ RUN pnpm prune --prod
 FROM node:24.18.0-alpine
 WORKDIR /app
 
-# Enable Corepack to use pnpm version from package.json's "packageManager" field
-# This ensures 'pnpm run serve' can find the correct pnpm version
-RUN corepack enable pnpm
-
 # Set production environment
 ENV NODE_ENV=production
 
@@ -51,6 +47,10 @@ COPY --from=builder --chown=node:node /app/package.json ./package.json
 # Expose application port
 EXPOSE 8080
 
-# Start application using the "serve" script from package.json
-# ("serve": "http-server ./build --single", listens on port 8080 by default)
-CMD ["pnpm", "run", "serve"]
+# Start http-server directly (no pnpm/corepack at runtime).
+# Rationale: pnpm 11's `pnpm run` verifies deps and auto-runs `pnpm install`
+# when pnpm-lock.yaml is absent (as in this image), crashing on the root-owned
+# /app (EACCES). Direct invocation also removes the cold-start dependency on
+# downloading pnpm from the npm registry via Corepack.
+# (equivalent to package.json "serve": "http-server ./build --single")
+CMD ["node", "node_modules/http-server/bin/http-server", "./build", "--single", "-p", "8080"]
