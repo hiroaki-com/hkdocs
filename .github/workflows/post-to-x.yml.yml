@@ -10,8 +10,6 @@ on:
       - 'docs/**.md'
       - 'docs/**.mdx'
       - '!diary/**'
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 jobs:
   post_to_x:
     runs-on: ubuntu-latest
@@ -23,17 +21,17 @@ jobs:
       contents: read
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # スクリプトがコミット間の差分を取得するためにGit履歴全体が必要
           fetch-depth: 0
       # package.jsonの"packageManager"フィールドからpnpmのバージョンを読み込む
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '22.16.0'
+          node-version-file: '.nvmrc'
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
       - name: Wait for Site Deployment
