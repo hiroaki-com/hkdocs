@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Translate, { translate } from '@docusaurus/Translate';
 import { Share2, ClipboardCopy, Check, Trash2, ChevronUp, ChevronDown, Eye } from 'lucide-react';
@@ -10,7 +11,6 @@ import 'github-markdown-css/github-markdown.css';
 import ShareButtons from '@site/src/components/ShareButtons';
 import mermaid from 'mermaid';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
-import useJsonLdSchema from '@site/src/hooks/useJsonLdSchema';
 
 // --- 定数定義 ---
 const MEMO_COUNT = 5;
@@ -452,7 +452,8 @@ export default function BrowserMemoPage() {
   const pageDescription = translate({ id: 'page.browser-memo.description', message: 'ログイン・インストール不要ですぐに使える高機能なブラウザメモ帳。Markdown・Mermaidプレビュー、URLでの簡単共有に対応。データはあなたのブラウザ内だけに保存されるため、安全でプライベートなメモ環境を提供します。' });
 
   const softwareApplicationSchema = useMemo(() => {
-    const pageUrl = `${siteConfig.url}${siteConfig.baseUrl}${currentLocale === 'ja' ? '' : currentLocale + '/'}browser-memo/`;
+    // baseUrl はロケール別ビルドで既に `/en/` 等を含むため、ロケール接頭辞は付けない
+    const pageUrl = `${siteConfig.url}${siteConfig.baseUrl}browser-memo/`;
     return {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
@@ -489,11 +490,16 @@ export default function BrowserMemoPage() {
     ]
   }), [currentLocale]);
   
-  useJsonLdSchema(softwareApplicationSchema);
-  useJsonLdSchema(faqSchema);
-  
   return (
     <Layout title={pageTitle} description={pageDescription}>
+      <Head
+        children={
+          <>
+            <script type="application/ld+json">{JSON.stringify(softwareApplicationSchema)}</script>
+            <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+          </>
+        }
+      />
       {/* JavaScriptが無効な環境向けのフォールバックメッセージ */}
       <noscript>
         <div style={{ padding: '20px', margin: '20px auto', maxWidth: '800px', textAlign: 'center', backgroundColor: '#fffbe5', color: '#5c4800', border: '1px solid #f0c400', borderRadius: '8px' }}>

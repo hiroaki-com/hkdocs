@@ -8,6 +8,7 @@ import CalculatorNav from './_CalculatorNav';
 type T = {
   pageTitle: string;
   pageDesc: string;
+  h1: string;
   setupTitle: string;
   setupSub: (n: number) => string;
   numPlayers: string;
@@ -37,6 +38,7 @@ const I18N: Record<'ja' | 'en', T> = {
   ja: {
     pageTitle: 'ダーツ カウントアップ スコア計算機｜無料・インストール不要',
     pageDesc: 'ダーツのカウントアップ（Count-Up）用の無料スコア計算ツール。インストール不要でブラウザですぐ記録・計算できます。',
+    h1: 'ダーツ カウントアップ スコア計算機',
     setupTitle: 'Count-Up',
     setupSub: (n: number) => n === 1 ? 'シングルプレイ' : `${n}人対戦`,
     numPlayers: 'プレイヤー数',
@@ -58,6 +60,7 @@ const I18N: Record<'ja' | 'en', T> = {
   en: {
     pageTitle: 'Count-Up Darts Score Calculator — Free, No Install',
     pageDesc: 'Free Count-Up darts score calculator. Track and total your scores in the browser — no install required.',
+    h1: 'Count-Up Darts Score Calculator',
     setupTitle: 'Count-Up',
     setupSub: (n: number) => n === 1 ? 'Single Player' : `${n} Players`,
     numPlayers: 'Players',
@@ -87,6 +90,14 @@ const CSS = `
   background-color: transparent;
   min-height: calc(100vh - var(--ifm-navbar-height, 60px));
   overflow-x: hidden;
+}
+
+.dcu-h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ifm-font-color-secondary);
+  margin: 1rem 0 0.5rem;
 }
 
 .dcu-setup {
@@ -571,6 +582,7 @@ export default function DartsCountUp() {
     <Layout title={t.pageTitle} description={t.pageDesc}>
       <style>{CSS}</style>
       <div className="dartscu-container">
+        <h1 className="dcu-h1">{t.h1}</h1>
         {phase === 'setup' && (
           <SetupView cfg={cfg} t={t} onChange={handleChangeCfg} onStart={handleStart} />
         )}

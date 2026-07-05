@@ -8,6 +8,7 @@ import CalculatorNav from './_CalculatorNav';
 type T = {
   pageTitle: string;
   pageDesc: string;
+  h1: string;
   setupTitle: string;
   setupSub: (n: number) => string;
   numPlayers: string;
@@ -45,6 +46,7 @@ const I18N: Record<'ja' | 'en', T> = {
   ja: {
     pageTitle: 'ダーツ 01 スコア計算機｜301/501/701対応・無料',
     pageDesc: 'ダーツ 01（301/501/701）用の無料スコア計算ツール。シングル・ダブル・マスターアウト対応、インストール不要でブラウザですぐ使えます。',
+    h1: 'ダーツ 01 スコア計算機',
     setupTitle: '01 Game',
     setupSub: (n: number) => (n === 1 ? '1人プレイ' : `${n}人対戦`),
     numPlayers: 'プレイヤー数',
@@ -71,6 +73,7 @@ const I18N: Record<'ja' | 'en', T> = {
   en: {
     pageTitle: 'Darts 01 Score Calculator (301/501/701) — Free, No Install',
     pageDesc: 'Free 01 darts score calculator (301/501/701) with single, double and master out. Runs in your browser — no install required.',
+    h1: 'Darts 01 Score Calculator',
     setupTitle: '01 Darts',
     setupSub: (n: number) => (n === 1 ? '1 Player' : `${n} Players`),
     numPlayers: 'Players',
@@ -105,6 +108,14 @@ const CSS = `
   background-color: transparent;
   min-height: calc(100vh - var(--ifm-navbar-height, 60px));
   overflow-x: hidden;
+}
+
+.d01-h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ifm-font-color-secondary);
+  margin: 1rem 0 0.5rem;
 }
 
 .d01-setup {
@@ -670,6 +681,7 @@ export default function Darts01() {
     <Layout title={t.pageTitle} description={t.pageDesc}>
       <style>{CSS}</style>
       <div className="darts01-container">
+        <h1 className="d01-h1">{t.h1}</h1>
         {phase === 'setup' && (
           <SetupView cfg={cfg} t={t} onChange={handleChangeCfg} onStart={handleStart} />
         )}

@@ -126,7 +126,7 @@ function SiteControlsSection(): JSX.Element {
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig, i18n: { currentLocale, defaultLocale } } = useDocusaurusContext();
+  const { siteConfig, i18n: { currentLocale } } = useDocusaurusContext();
 
   const metaTitle = translate({
     id: 'homepage.meta.title',
@@ -140,8 +140,8 @@ export default function Home(): JSX.Element {
     description: 'The meta description for the homepage',
   });
 
-  const localePrefix = currentLocale === defaultLocale ? '' : `${currentLocale}/`;
-  const siteUrl = `${siteConfig.url}${localePrefix}`;
+  // baseUrl はロケール別ビルドで既に `/en/` 等を含むため、ロケール接頭辞は付けない
+  const siteUrl = `${siteConfig.url}${siteConfig.baseUrl}`;
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',

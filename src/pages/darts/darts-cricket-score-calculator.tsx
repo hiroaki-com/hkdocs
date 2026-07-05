@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 import { deepClone } from './_logic';
@@ -15,6 +14,7 @@ const I18N = {
   ja: {
     pageTitle: 'クリケット ダーツ スコア計算機｜2〜4人対戦・無料',
     pageDesc: 'ダーツのクリケット用の無料スコア計算ツール。2〜4人対戦・20〜15＋ブルに対応。インストール不要でブラウザですぐ使えます。',
+    h1: 'クリケット ダーツ スコア計算機',
     title: 'クリケット Game',
     subtitle: '2〜4人対戦 · 20〜15 + Bull',
     numPlayers: 'プレイヤー数',
@@ -38,6 +38,7 @@ const I18N = {
   en: {
     pageTitle: 'Cricket Darts Score Calculator — 2–4 Players, Free',
     pageDesc: 'Free Cricket darts score calculator for 2–4 players (20–15 + Bull). Runs in your browser — no install required.',
+    h1: 'Cricket Darts Score Calculator',
     title: 'Cricket Darts',
     subtitle: '2–4 Players · 20–15 + Bull',
     numPlayers: 'Players',
@@ -90,6 +91,14 @@ const CSS = `
   background-color: transparent;
   min-height: calc(100vh - var(--ifm-navbar-height, 60px));
   overflow-x: hidden;
+}
+
+.dc-h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ifm-font-color-secondary);
+  margin: 1rem 0 0.5rem;
 }
 
 .dc-setup {
@@ -654,9 +663,8 @@ export default function DartsCricketPage() {
   return (
     <Layout title={t.pageTitle} description={t.pageDesc}>
       <style>{CSS}</style>
-      <BrowserOnly fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>}>
-        {() => <DartsCricketApp t={t} />}
-      </BrowserOnly>
+      <h1 className="dc-h1">{t.h1}</h1>
+      <DartsCricketApp t={t} />
       <CalculatorNav current="cricket" />
     </Layout>
   );
