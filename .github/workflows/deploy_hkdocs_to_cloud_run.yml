@@ -57,7 +57,6 @@ jobs:
       #
       # - name: Setup pnpm (uses version from package.json "packageManager")
       #   uses: pnpm/action-setup@v6
-      #   # version: 10.11 # Optionally override pnpm version, but usually not needed if "packageManager" is set
       #
       # - name: Install dependencies for lint/test
       #   run: pnpm install --frozen-lockfile

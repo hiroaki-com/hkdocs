@@ -144,9 +144,12 @@ V. Configuration Details: Containerization (Docker)
     - Security: Runs the application as a non-root user (`node`).
     - Health Check: The Dockerfile defines no explicit `HEALTHCHECK` instruction;
       it relies on Cloud Run's built-in health checking (a startup probe on port 8080).
-    - Start Command: `CMD ["pnpm", "run", "serve"]` (which executes
-      `"serve": "http-server ./build --single"` from `package.json`, listening on
-      port 8080).
+    - Start Command: `CMD ["node", "node_modules/http-server/bin/http-server",
+      "./build", "--single", "-p", "8080"]` — invokes `http-server` directly
+      (equivalent to the `serve` script in `package.json`, listening on port 8080).
+      pnpm/Corepack are not used at runtime (pnpm 11's pre-run dependency check
+      attempts an auto-install on the lockfile-less production image and crashes;
+      direct invocation also removes the cold-start dependency on the npm registry).
 
   * `docker-compose.yml` (for Local Development):
     - The recommended development method as per `README.md`.

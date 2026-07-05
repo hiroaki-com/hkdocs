@@ -3,8 +3,7 @@
 FROM node:24.18.0-alpine AS builder
 WORKDIR /app
 
-# Enable Corepack to use pnpm version from package.json's "packageManager" field
-# Ensure "packageManager": "pnpm@10.11.0" (or your version) is in package.json
+# Enable Corepack to use the pnpm version from package.json's "packageManager" field
 RUN corepack enable pnpm
 
 # Copy package manifests for optimized layer caching
