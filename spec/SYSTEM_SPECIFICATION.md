@@ -33,8 +33,8 @@ II. 使用技術スタック
     - アイコン: `lucide-react`
     - スタイル: `github-markdown-css`, `clsx`
     - シンタックスハイライト: `prism-react-renderer`
-  * Node.js: `v22.22.2` (`.nvmrc` ファイルでバージョンを規定)
-  * パッケージマネージャ: pnpm `v10.34.4` (Corepack経由で管理)
+  * Node.js: `v24.18.0` (`.nvmrc` ファイルでバージョンを規定)
+  * パッケージマネージャ: pnpm `v11.10.0` (Corepack経由で管理)
   * コンテナ化: Docker, Docker Compose
   * ソースコード管理: GitHub
   * ホスティング (Google Cloud)
@@ -122,10 +122,10 @@ V. 構成詳細: コンテナ化 (Docker)
 
   * `Dockerfile` (本番用):
     - マルチステージビルドを採用し、最終的なイメージサイズを削減。
-      - `builder` ステージ: `node:22.22.2-alpine`をベースに、Corepackで有効化した
+      - `builder` ステージ: `node:24.18.0-alpine`をベースに、Corepackで有効化した
         pnpmで`pnpm install --frozen-lockfile`により依存関係をインストールし、
         `pnpm build`でサイトをビルド。`pnpm prune --prod`で本番に不要なパッケージを削除。
-      - 最終ステージ: `node:22.22.2-alpine`をベースに、`builder`ステージから
+      - 最終ステージ: `node:24.18.0-alpine`をベースに、`builder`ステージから
         ビルド成果物 (`build`ディレクトリ)、本番用の`node_modules`、`package.json`のみを
         コピー。
     - セキュリティ: 非rootユーザー (`node`)でアプリケーションを実行。
