@@ -18,13 +18,13 @@ This article is a continuously maintained guide. For the background and trial-an
 
 This article serves as a guide, providing concrete steps to solve this problem and achieve an **optimal search experience that aligns with the site's display language**.
 
-:::warning Update (2026-07): An important correction to this approach
+:::warning[Update (2026-07): An important correction to this approach]
 The core claim of this article — that `contextualSearch` builds the index name (`yoursite_ja` / `yoursite_en`) from the current locale — turned out to be **incorrect** after inspecting the Docusaurus implementation. In reality, `contextualSearch` **never changes `indexName`**; it queries a single index and narrows results at query time with facetFilters such as `language:<locale>`.
 
 As a result, the language-specific indexes described here were never referenced by the frontend — only the crawler kept updating them. Based on this verification, this site has been **consolidated into a single-index setup**. Preventing mixed-language results only requires `contextualSearch: true`; splitting indexes per language is unnecessary. Per-language tuning is still possible on a single index via language arrays, e.g. `ignorePlurals: ["en"]`.
 :::
 
-:::tip What you'll achieve with this guide
+:::tip[What you'll achieve with this guide]
 *   Display search results that correspond to the site's current language (Japanese/English).
 *   Automatically route content to language-specific Algolia indexes based on the URL path (`/` or `/en/`).
 *   Improve search accuracy by configuring indexes tailored to the characteristics of each language (Japanese and English).
@@ -47,7 +47,7 @@ When integrating Docusaurus's i18n feature with Algolia using the standard confi
 | **Reduced Search Accuracy** | Optimization for language-specific characteristics (word separation, plurals, etc.) is difficult. | Accuracy is improved with settings like `ignorePlurals` tailored to each language. |
 | **Complex Management** | All language data is centralized, making language-specific analysis and adjustments difficult. | Data separation by language simplifies management and analysis. |
 
-:::danger Impact on User Experience
+:::danger[Impact on User Experience]
 Search results with mixed languages hinder users from finding the information they need and can be a major factor in them leaving the site.
 :::
 
@@ -66,7 +66,7 @@ The implementation proceeds in two steps:
 
 First, edit the Algolia crawler configuration file to define a separate crawl process (`actions`) for each language. This will route content to two different indexes based on the URL path.
 
-:::info Managing the Configuration File
+:::info[Managing the Configuration File]
 This configuration can be edited directly in the Algolia Crawler dashboard or managed locally as a `config.json` or `.js` file and applied via the [CLI](https://www.algolia.com/doc/tools/crawler/getting-started/run-crawler-on-your-own/). The following is an example in JavaScript file format.
 :::
 
@@ -205,7 +205,7 @@ const config: Config = {
 export default config;
 ```
 
-:::tip The Role of `contextualSearch: true`
+:::tip[The Role of `contextualSearch: true`]
 Enabling this option allows Docusaurus to automatically detect the current language context (`ja` or `en`). It then constructs the final index name (`yoursite_ja` or `yoursite_en`) by appending the locale ID as a suffix to the `indexName` prefix (`yoursite`) and sends the query.
 
 -   **When browsing a Japanese page** → Searches `yoursite_ja`

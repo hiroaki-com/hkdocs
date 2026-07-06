@@ -101,7 +101,7 @@ services:
 
 To optimize the Docker image build efficiency and size, the `.dockerignore` file was updated. The main exclusions include `.git`, `node_modules`, `build`, `.docusaurus`, Docker-related files themselves, deployment scripts, environment-specific files, log files, OS-specific files, and IDE configuration files.
 
-:::caution Note
+:::caution[Note]
 Since `pnpm-lock.yaml` is used by the `COPY` command inside `Dockerfile.dev`, it is not included in the `.dockerignore` file.
 :::
 
