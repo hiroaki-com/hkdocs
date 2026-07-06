@@ -1,0 +1,233 @@
+---
+title: Improving Docusaurus Algolia Search Accuracy with a Single-Index Setup
+sidebar_position: 22
+last_update:
+  date: 2026-07-06
+tags: [docusaurus, search, algolia, i18n]
+description: "A guide to improving Docusaurus + Algolia search accuracy with a single-index setup. It covers the correct behavior of contextualSearch and how to apply settings via the Crawler REST API."
+---
+
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
+
+
+A guide to resolving the accuracy decline in Docusaurus + Algolia site search — caused by **a mismatch between the index the frontend queries and the index the crawler updates** — by consolidating into a single-index setup.
+
+This article is a continuously maintained procedure. For the record of the actual investigation and trial-and-error when facing the accuracy decline, see the [blog version](/en/blog/2026/07/06/algolia-search-precision-single-index/).
+
+For adopting Algolia search itself, see [How to Integrate Algolia DocSearch into Docusaurus](/en/docs/tech/docusaurus/setup-sitesearch-with-algolia-docsearch/); for the original per-language optimization procedure (corrected by this article), see [How to Optimize Algolia Search by Language on a Docusaurus Multi-language Site](/en/docs/tech/docusaurus/docusaurus-algolia-multilingual-search-opt/).
+
+:::info Prerequisite: The correct behavior of `contextualSearch`
+Docusaurus's `contextualSearch: true` **does not change `indexName`**. It queries a single index and narrows results by language at query time with `facetFilters` (such as `language:<locale>`). Therefore, even on a multi-language site, **splitting into per-language indexes is unnecessary**; language filtering is achieved with a single index + facets. Per-language tuning is possible within a single index via language-array specifications such as `ignorePlurals: ["en"]`.
+:::
+
+{/* truncate */}
+
+### References
+
+*   Docusaurus source: [`theme-search-algolia` (`useAlgoliaContextualFacetFilters`)](https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-search-algolia/src/client/index.ts)
+*   Docusaurus official: [Contextual search](https://docusaurus.io/docs/search#contextual-search)
+*   Algolia: [`facetFilters`](https://www.algolia.com/doc/api-reference/api-parameters/facetFilters/) / [`indexLanguages`](https://www.algolia.com/doc/api-reference/api-parameters/indexLanguages/) / [`setSettings`](https://www.algolia.com/doc/api-reference/api-methods/set-settings/)
+*   Algolia: [Crawler REST API](https://www.algolia.com/doc/rest-api/crawler/)
+
+### Related Articles
+*   [How to Integrate Algolia DocSearch into Docusaurus](/en/docs/tech/docusaurus/setup-sitesearch-with-algolia-docsearch/) — The steps for adopting Algolia search.
+*   [How to Optimize Algolia Search by Language on a Docusaurus Multi-language Site](/en/docs/tech/docusaurus/docusaurus-algolia-multilingual-search-opt/) — The original "per-language index split" procedure that this article corrects.
+*   [Blog version: A record of investigating and improving the accuracy decline](/en/blog/2026/07/06/algolia-search-precision-single-index/) — The background that led to this procedure.
+
+### Diagnosis: Isolating the Accuracy Decline
+
+When search accuracy declines, before tuning, suspect a mismatch between the **queried and updated indexes**. Check the following.
+
+1.  `algolia.indexName` in `docusaurus.config.ts` (the frontend's query target).
+2.  `actions[].indexName` in the Crawler (the update target).
+3.  The last-updated timestamp and record count of each index (Algolia dashboard).
+
+If the `indexName` values don't match, or if updates to the frontend's query target have stopped, the frontend is querying a stale index. The symptom "new articles don't match / old irrelevant articles surface" is a sign of this.
+
+:::danger Beware of orphaned indexes
+If you split into per-language indexes while leaving `indexName` in `docusaurus.config.ts` set to the pre-split name, the crawler keeps updating the post-split indexes while the frontend keeps querying the old index that no one updates. This is hard to notice because the crawler itself runs normally.
+:::
+
+### Approach: Consolidate into a Single Index
+
+**Consolidate the crawler into a single index so that the frontend's query target matches the update target.** Since language filtering is handled by `contextualSearch: true` (the `language` facet), no change to `docusaurus.config.ts` is needed. Perform noise removal and language tuning at the same time as the consolidation.
+
+| Item | Recommended setting | Purpose |
+| :--- | :--- | :--- |
+| indexName | Consolidate into a single name | Match the queried and updated indexes to restore freshness |
+| exclusionPatterns | Exclude tags / authors / category / page / search, etc. | Remove noise from thin pages |
+| content | Add `article pre` to `article p, li, td` | Include code blocks in search |
+| ignorePlurals | `["en"]` | Treat plurals as identical for English only, in a single index |
+| indexLanguages / queryLanguages | `["ja", "en"]` | Dictionary segmentation for Japanese (improves compound-word accuracy) |
+| minWordSizefor1Typo / 2 | `4` / `8` | Suppress excessive typo matches in Japanese |
+
+### 1. Crawler Configuration (Single-Index Consolidation)
+
+Consolidate `actions` into a single index, and exclude noise pages with `exclusionPatterns`. Use the language check within `recordExtractor` only to switch the default value of `lvl0`; do not split the index itself.
+
+```javascript title="crawler-config.js"
+new Crawler({
+  appId: "YOUR_APP_ID",
+  apiKey: "YOUR_CRAWLER_API_KEY", // The admin API key for the crawler
+  maxUrls: 5000,
+  indexPrefix: "",
+  rateLimit: 8,
+  renderJavaScript: true,
+  startUrls: [
+    "https://your-docusaurus-site.com/",
+    "https://your-docusaurus-site.com/en/",
+  ],
+  discoveryPatterns: ["https://your-docusaurus-site.com/**"],
+  sitemaps: ["https://your-docusaurus-site.com/sitemap.xml"],
+
+  // --- Exclude noise pages ---
+  exclusionPatterns: [
+    "https://your-docusaurus-site.com/**/tags/**",
+    "https://your-docusaurus-site.com/**/authors/**",
+    "https://your-docusaurus-site.com/**/page/**",
+    "https://your-docusaurus-site.com/docs/category/**",
+    "https://your-docusaurus-site.com/en/docs/category/**",
+    "https://your-docusaurus-site.com/search/**",
+    "https://your-docusaurus-site.com/en/search/**",
+  ],
+
+  schedule: "at 21:10 on Tuesday",
+  maxDepth: 10,
+
+  // --- Consolidate into a single index ---
+  actions: [
+    {
+      indexName: "yoursite", // Consolidated into one
+      pathsToMatch: ["https://your-docusaurus-site.com/**"],
+      recordExtractor: ({ url, $, helpers }) => {
+        const isEn =
+          url.pathname === "/en" || url.pathname.startsWith("/en/");
+        const lvl0 =
+          $(
+            ".menu__link.menu__link--sublist.menu__link--active, .navbar__item.navbar__link--active",
+          )
+            .last()
+            .text() || (isEn ? "Documentation" : "Documentation");
+
+        return helpers.docsearch({
+          recordProps: {
+            lvl0: { selectors: "", defaultValue: lvl0 },
+            lvl1: ["header h1", "article h1"],
+            lvl2: "article h2",
+            lvl3: "article h3",
+            lvl4: "article h4",
+            lvl5: "article h5, article td:first-child",
+            lvl6: "article h6",
+            // Include code blocks (article pre) in the search target
+            content:
+              "article p, article li, article td:last-child, article pre",
+          },
+          aggregateContent: true,
+          recordVersion: "v3",
+        });
+      },
+    },
+  ],
+  ignoreCanonicalTo: true,
+  safetyChecks: { beforeIndexPublishing: { maxLostRecordsPercentage: 10 } },
+});
+```
+
+:::tip Don't create the language field yourself
+The `language` field automatically added by `helpers.docsearch` is enough for the `contextualSearch` facet filtering to work. There is no need to create a `lang` field yourself.
+:::
+
+### 2. Index Settings (Language Tuning)
+
+Tune within a single index using language-array specifications. `indexLanguages: ["ja", "en"]` enables dictionary segmentation for Japanese, improving compound-word search accuracy.
+
+```javascript title="index settings (injected via setSettings)"
+{
+  ignorePlurals: ["en"],           // Treat plurals as identical for English only
+  indexLanguages: ["ja", "en"],    // Enable dictionary segmentation for Japanese
+  queryLanguages: ["ja", "en"],
+  minWordSizefor1Typo: 4,          // Suppress excessive typo matches in Japanese
+  minWordSizefor2Typos: 8,
+  attributesForFaceting: ["type", "language", "docusaurus_tag"],
+  searchableAttributes: [
+    "unordered(hierarchy.lvl0)",
+    "unordered(hierarchy.lvl1)",
+    "unordered(hierarchy.lvl2)",
+    "unordered(hierarchy.lvl3)",
+    "unordered(hierarchy.lvl4)",
+    "unordered(hierarchy.lvl5)",
+    "unordered(hierarchy.lvl6)",
+    "content",
+  ],
+  customRanking: [
+    "desc(weight.pageRank)",
+    "desc(weight.level)",
+    "asc(weight.position)",
+  ],
+  removeWordsIfNoResults: "allOptional",
+}
+```
+
+:::warning `initialIndexSettings` is not automatically applied to an existing index
+`initialIndexSettings` is applied only when an index is newly created. To reflect the settings on an existing index, you must inject them directly with `setSettings` (the REST `PUT .../settings`).
+:::
+
+### 3. Frontend Configuration (No Changes Needed)
+
+As long as `contextualSearch: true` is enabled, `indexName` can remain a single name. Language filtering is performed automatically by the facet.
+
+```typescript title="docusaurus.config.ts"
+themeConfig: {
+  algolia: {
+    appId: 'YOUR_APP_ID',
+    apiKey: 'YOUR_SEARCH_ONLY_API_KEY', // Search-only key
+    indexName: 'yoursite',              // A single name is fine
+    contextualSearch: true,             // Narrow by language with the language facet
+  },
+},
+```
+
+### 4. Applying Changes via the Crawler REST API
+
+The "Review and publish" in the admin UI may be unusable when Domain Verification is disabled (the DocSearch Status field is blank). In that case, update the production config directly via the Crawler REST API. This path bypasses the UI gate, and the existing scheduled crawls run on this API configuration as well.
+
+```bash
+# Auth: --user "CRAWLER_USER_ID:CRAWLER_API_KEY"
+
+# Get config
+GET   https://crawler.algolia.com/api/1/crawlers/{crawlerId}?withConfig=true
+
+# Update config (consolidate actions into a single index + add exclusionPatterns)
+PATCH https://crawler.algolia.com/api/1/crawlers/{crawlerId}/config
+
+# Index settings (inject language tuning directly)
+PUT   https://{APP_ID}.algolia.net/1/indexes/yoursite/settings
+      # Header: X-Algolia-API-Key: <admin API key for the index>
+
+# Re-crawl (run before and after applying settings)
+POST  https://crawler.algolia.com/api/1/crawlers/{crawlerId}/reindex
+```
+
+:::warning Gotchas when applying via the API
+*   Send `recordExtractor` in the `{"__type":"function","source":"..."}` format. Sending it as a plain string results in a `validation_error`.
+*   After changing settings, always run `reindex`, then verify Before / After by running real queries with the public search key.
+:::
+
+### Operational Rules
+
+*   **Do not publish from the UI.** If the UI editor still contains old code, publishing rolls back the improvements. Make all configuration changes via the API.
+*   The Crawler API key / admin API key for the index used for the work have admin privileges, so **rotate them after the work**.
+*   After changes, run representative queries with the public search key to confirm the intended articles rank at the top and the exclusion patterns return 0 results.
+
+### Summary
+
+*   For declining search accuracy, first confirm the match between **the frontend's reference and the crawler's update target**.
+*   `contextualSearch` does not change `indexName`. Even for multiple languages, language filtering is achieved with a **single index + the `language` facet**, and splitting is generally unnecessary.
+*   Per-language tuning can be achieved within a single index via **language-array specifications** such as `ignorePlurals: ["en"]` / `indexLanguages: ["ja", "en"]`.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
