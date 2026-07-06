@@ -1,0 +1,145 @@
+---
+title: Algoliaサイト内検索の精度が落ちていた原因は「参照先と更新先のインデックス食い違い」だった
+authors: [hk]
+tags: [docusaurus, search, algolia, i18n]
+description: "Docusaurus サイトの Algolia 検索精度が低下していた原因は、フロントの検索先と Crawler の更新先インデックスの食い違いでした。contextualSearch の誤解を解いて単一インデックスへ統合し、精度を回復させた記録です。"
+---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
+
+
+サイト内検索の結果が「新しい記事はヒットしないのに、無関係な記事は誤爆する」という状態に陥っていました。調査の結果、原因は Algolia のチューニング不足ではなく、**フロントエンドが検索するインデックスと、クローラーが更新するインデックスが食い違っていた**という構造的な問題でした。
+
+本記事は、その原因調査から単一インデックスへの統合による精度回復までの記録です。継続的にメンテナンスしている手順は [技術ドキュメント版](/docs/tech/docusaurus/docusaurus-algolia-single-index-search-precision/) を参照してください。
+
+なお本記事は、当サイトの Algolia 導入・多言語化シリーズの続編にあたります。導入手順は [DocusaurusにAlgolia DocSearchを組み込む方法](/blog/2025/06/10/setup-sitesearch-with-algolia-docsearch/)、言語別最適化の当初の試みは [Docusaurus多言語サイトでAlgolia検索を言語別に最適化する方法](/blog/2025/06/24/docusaurus-algolia-multilingual-search-opt/) を参照してください。本記事は後者の方針を **単一インデックス構成へと訂正・改善** するものです。
+
+:::tip この記事で分かること
+*   Docusaurus の `contextualSearch: true` が実際には何をしているか（よくある誤解の訂正）。
+*   言語別インデックス分割が「不要かつ有害」になるケースとその見抜き方。
+*   UI が使えない状況で Crawler REST API から本番設定を直接更新する方法。
+:::
+
+{/* truncate */}
+
+### 参考資料
+
+*   Docusaurus ソース: [`theme-search-algolia`（`useAlgoliaContextualFacetFilters`）](https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-search-algolia/src/client/index.ts)
+*   Docusaurus 公式: [Contextual search](https://docusaurus.io/docs/search#contextual-search)
+*   Algolia: [`facetFilters`](https://www.algolia.com/doc/api-reference/api-parameters/facetFilters/) ／ [`indexLanguages`](https://www.algolia.com/doc/api-reference/api-parameters/indexLanguages/) ／ [`setSettings`](https://www.algolia.com/doc/api-reference/api-methods/set-settings/)
+*   Algolia: [Crawler REST API](https://www.algolia.com/doc/rest-api/crawler/)
+
+### 関連記事
+*   [DocusaurusにAlgolia DocSearchを組み込む方法](/blog/2025/06/10/setup-sitesearch-with-algolia-docsearch/) — Algolia 検索の導入手順。
+*   [Docusaurus多言語サイトでAlgolia検索を言語別に最適化する方法](/blog/2025/06/24/docusaurus-algolia-multilingual-search-opt/) — 本記事で訂正した「言語別インデックス分割」の当初案。
+*   [技術ドキュメント版：単一インデックス構成での精度改善手順](/docs/tech/docusaurus/docusaurus-algolia-single-index-search-precision/) — 本記事の手順をメンテナンスしている手順書。
+
+### 課題：新しい記事が検索に出てこない
+
+当サイトでは以前、Algolia 検索を「言語別インデックス（`yoursite_ja` / `yoursite_en`）」に分割する構成を採用していました。ところが、ある時期から検索精度の低下を体感するようになります。
+
+公開検索キーで実際にクエリを投げて確認したところ、次のような結果でした。
+
+| クエリ | 結果（Before） |
+| :--- | :--- |
+| 「カウントアップ」「ダーツ」 | 無関係な資格試験ページのみがヒット |
+| 「decap」 | 0 件 |
+
+新しめの記事がまったくヒットせず、古い無関係な記事が誤爆する。典型的な **stale（陳腐化した）インデックスを検索している** 症状でした。
+
+### 原因：参照先と更新先が食い違っていた
+
+設定を突き合わせると、原因が判明します。
+
+-   `docusaurus.config.ts` の Algolia 設定は `indexName: 'yoursite'`（分割前の単一名）のままだった。
+-   一方、クローラーは `yoursite_ja` / `yoursite_en` の 2 本しか更新していなかった。
+-   結果、`yoursite`（単一名）は言語別分割に切り替えた日以降ほぼ更新されず、**約 1 年分の記事が欠落**していた。
+
+フロントは更新の止まった `yoursite` を検索し続け、クローラーは誰も参照しない `yoursite_ja` / `yoursite_en` を更新し続けていた、という完全なすれ違いです。
+
+:::danger 死蔵インデックスは気づきにくい
+クローラーは正常に走り、言語別インデックスは日々更新されます。ダッシュボード上のレコード数も健全に見えるため、「フロントがそれを参照していない」という一点だけがブラックボックス化し、精度低下として遅れて顕在化しました。
+:::
+
+### 根本原因：`contextualSearch` の誤解
+
+なぜ食い違ったのか。出発点は `contextualSearch: true` の理解の誤りでした。
+
+当初は「`contextualSearch: true` は `indexName` にロケールを付与して `yoursite_ja` / `yoursite_en` を検索する」と考え、それを前提に言語別インデックスへ分割していました。**これは誤りです。**
+
+`@docusaurus/theme-search-algolia` のソース（`useAlgoliaContextualFacetFilters`）とビルド成果物を確認したところ、`contextualSearch` は次の挙動でした。
+
+-   **`indexName` を一切変更しない。**
+-   単一インデックスに対し、クエリ時に `facetFilters`（`language:<locale>` と `docusaurus_tag:*`）を付与して絞り込むだけ。
+
+つまり言語の出し分けは **単一インデックス + facet** で成立しており、そもそも言語別インデックスへの分割は不要だったのです。分割した 2 本はフロントから一度も参照されない「死蔵インデックス」になっていました。
+
+### 解決方針：単一インデックスへ統合する
+
+方針はシンプルです。**クローラーを単一 `yoursite` に統合し、フロントが検索する先＝更新される先を一致させる。** 言語の出し分けは既に有効な `contextualSearch: true`（`language` facet）が担うため、`docusaurus.config.ts` は変更不要です。
+
+統合と同時に、以下のノイズ除去・言語チューニングも行いました。
+
+| 項目 | 旧 | 新 | 狙い |
+| :--- | :--- | :--- | :--- |
+| indexName | `yoursite_ja` + `yoursite_en` | `yoursite` 1 本 | 参照先と更新先を一致させ鮮度を回復 |
+| exclusionPatterns | 無し | tags / authors / category / page / search 等を除外 | 薄いページのノイズ除去 |
+| content | `p, li, td` | `+ article pre` | コードブロック内も検索対象に |
+| ignorePlurals | ja=false / en=true | `["en"]` | 単一 index で英語のみ複数形を同一視 |
+| indexLanguages / queryLanguages | 無し | `["ja", "en"]` | 日本語の辞書分割（複合語精度向上） |
+| minWordSizefor1Typo / 2 | 3 / 7 | 4 / 8 | 日本語での過剰なタイポ一致を抑制 |
+
+### 適用：UI が使えず Crawler REST API から直接更新
+
+厄介だったのが適用経路です。Algolia Crawler の管理 UI にある "Review and publish" は、当該アプリの **Domain Verification が無効（DocSearch Status が空欄）** のため使用できませんでした。
+
+そこで **Crawler REST API から本番 config を直接更新**して適用しました。この経路は UI のゲートを通らず、既存の定期クロールもこの API 設定で動きます。
+
+```bash
+# 認証: --user "CRAWLER_USER_ID:CRAWLER_API_KEY"
+# 設定取得:   GET   https://crawler.algolia.com/api/1/crawlers/{crawlerId}?withConfig=true
+# 設定更新:   PATCH https://crawler.algolia.com/api/1/crawlers/{crawlerId}/config
+# 再クロール: POST  https://crawler.algolia.com/api/1/crawlers/{crawlerId}/reindex
+# 索引設定:   PUT   https://{APP_ID}.algolia.net/1/indexes/yoursite/settings
+```
+
+実施した操作は 3 ステップです。
+
+1.  `PATCH .../config` … `actions` を単一 `yoursite` に統合し、`exclusionPatterns` を追加。
+2.  `PUT .../indexes/yoursite/settings` … `indexLanguages` / `queryLanguages` / `ignorePlurals` / typo 許容などを適用。
+3.  `POST .../reindex` … 設定適用の前後で再クロールを実行。
+
+:::warning ハマりどころ 2 点
+*   `recordExtractor` は `{"__type":"function","source":"..."}` 形式で送る必要がある。プレーンな文字列で送ると `validation_error` になる。
+*   既存インデックスには `initialIndexSettings` が**自動適用されない**。設定を反映するには `setSettings`（`PUT .../settings`）で直接投入する必要がある。
+:::
+
+:::danger UI から publish しない
+Crawler の UI エディタには分割時代の旧コードが残っており、そこから publish すると改善が巻き戻ります。今後の設定変更はすべて API 経由で行い、作業に使った Crawler API / 索引用キーは管理権限のため作業後にローテーションするのが安全です。
+:::
+
+### 結果：精度が明確に回復
+
+同じ公開検索キーで再検証した結果、Before → After は明確でした。
+
+| クエリ | Before | After |
+| :--- | :--- | :--- |
+| カウントアップ | 資格試験ページのみ | 目的の記事が上位にヒット ✅ |
+| ダーツ / ダーツ計算 | 資格試験ページのみ | 記事群が上位（複合語も辞書分割でヒット）✅ |
+| decap | 0 件 | 目的の記事が上位 ✅ |
+| `/blog/tags/*`・`/diary/*` | ノイズとして混入 | 0 件（除外成功）✅ |
+
+言語チューニング適用後はヒット数が適度に絞り込まれ、日本語の無関係な部分一致も減少しました。
+
+### まとめ
+
+*   検索精度の低下は、チューニング以前に **「フロントの参照先」と「クローラーの更新先」の一致** を疑う。両者がすれ違うと、健全に見えるクローラーの裏で stale なインデックスを検索し続けることになる。
+*   Docusaurus の `contextualSearch: true` は `indexName` を変えない。言語の出し分けは **単一インデックス + `language` facet** で成立し、言語別インデックスの分割は基本的に不要。
+*   単一インデックスでも `ignorePlurals: ["en"]` や `indexLanguages: ["ja", "en"]` のように **言語配列指定** で言語別チューニングは十分に可能。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
