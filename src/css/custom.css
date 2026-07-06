@@ -213,8 +213,9 @@ h1 {
   line-height: var(--ifm-heading-line-height);
 }
 
-h2.title_rsdE,
-h2.title_dz1C {
+/* ブログ/diary 一覧の記事タイトル（h2）。ハッシュ付きクラス名は
+   Docusaurus アップグレードで変わるため、構造ベースのセレクタで指定する。 */
+.blog-list-page h2[class*='title_'] {
   font-size: var(--ifm-heading-font-size-2-rsdE);
   line-height: var(--ifm-heading-line-height);
 }
