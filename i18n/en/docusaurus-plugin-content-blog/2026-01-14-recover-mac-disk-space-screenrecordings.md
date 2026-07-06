@@ -2,11 +2,11 @@
 title: How I Freed Up 109GB of Disk Space on My M1 Mac | Cleaning Up the ScreenRecordings Folder
 authors: [hk]
 tags: [mac, performance]
-image: /img/mac_storage_settings_cleanup.png
+image: /img/mac_storage_settings_cleanup.webp
 description: "How to recover 109 GB of disk space on an M1 Mac by finding and cleaning the hidden ScreenRecordings folder using the Terminal."
 ---
 
-![System Settings Storage Screen](/img/mac_storage_settings_cleanup.png)
+![System Settings Storage Screen](/img/mac_storage_settings_cleanup.webp)
 
 ### 1. Introduction
 
@@ -21,7 +21,7 @@ In this article, I will share the story of how I identified the cause of this st
 
 {/* truncate */}
 
-![System Settings Storage Screen](/img/mac_storage_settings_cleanup.png)
+![System Settings Storage Screen](/img/mac_storage_settings_cleanup.webp)
 
 ### 2. Environment
 

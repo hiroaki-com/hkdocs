@@ -2,7 +2,7 @@
 title: "Critical Issue: How to Break the Google Cloud MFA Login Loop"
 authors: [hk]
 tags: [google cloud, security, troubleshooting]
-image: /img/google_cloud_access_blocked_1.png
+image: /img/google_cloud_access_blocked_1.webp
 description: "A firsthand account of getting locked out of Google Cloud due to mandatory MFA, the resolution process through support, and the final outcome."
 ---
 
@@ -10,7 +10,7 @@ description: "A firsthand account of getting locked out of Google Cloud due to m
 
 Regarding this issue, I have finally **successfully logged in and resolved the problem.** I would like to share the conclusion with those who visited this article facing similar circumstances.
 
-![Google Cloud MFA Login Barrier](/img/google_cloud_access_blocked_1.png)
+![Google Cloud MFA Login Barrier](/img/google_cloud_access_blocked_1.webp)
 
 #### Results of Support Consultation and Investigation
 Initially, I requested an investigation through Billing Support to a specialized team. However, it took considerable time to coordinate the scope of responsibility between departments (Billing Team ⇄ Technical Team). Ultimately, I was informed that the "Technical Team could not investigate as it was outside their scope," and the case was closed with a suggestion to use the official community forums.
@@ -40,7 +40,7 @@ This article shares a common issue and its solution regarding the inability to l
 
 Upon attempting to log in after a long interval, I was prompted to set up MFA. However, an error occurred during the identity verification required for that setup, leading to a state where I could no longer proceed. For those using the Free Tier who may be struggling to find a way to contact support, I have summarized the process and steps that led to a resolution.
 
-![Google Cloud MFA Login Barrier](/img/google_cloud_access_blocked_1.png)
+![Google Cloud MFA Login Barrier](/img/google_cloud_access_blocked_1.webp)
 
 ### 2. Environment & Prerequisites
 
@@ -64,7 +64,7 @@ When I attempted to log in to manage Google Cloud resources, a warning appeared:
 
 In short, I fell into a state where "I couldn't pass the authentication required to fix the authentication settings."
 
-![Verification Error Message](/img/google_cloud_wecouldntverifyitsyou_2.png)
+![Verification Error Message](/img/google_cloud_wecouldntverifyitsyou_2.webp)
 
 ### 4. Actions Taken and Results
 
@@ -103,7 +103,7 @@ I explained the situation and had a support ticket created using the following s
     *   **Attempted Fixes:** Mentioned that I had already tried changing devices and other self-help methods.
     *   **Urgency/Impact:** Highlighted the risk of "unintended continuous billing" due to the inability to access the management console.
 
-![Billing Support Chat Interaction](/img/google_cloud_billing_chat_flow_3.png)
+![Billing Support Chat Interaction](/img/google_cloud_billing_chat_flow_3.webp)
 
 ### 6. (Reference) Inquiry Template
 

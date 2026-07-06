@@ -2,7 +2,7 @@
 title: M1 Macのストレージ空き容量を109GB確保した話｜ScreenRecordingsフォルダの整理
 authors: [hk]
 tags: [mac]
-image: /img/mac_storage_settings_cleanup.png
+image: /img/mac_storage_settings_cleanup.webp
 description: "M1 Mac で ScreenRecordings 隠しフォルダが 109GB を占有していた問題を解決した記録。ターミナルを使ってシステムの不要ファイルを安全に整理する手順を解説します。"
 ---
 
@@ -12,7 +12,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
 
-![システム設定のストレージ画面](/img/mac_storage_settings_cleanup.png)
+![システム設定のストレージ画面](/img/mac_storage_settings_cleanup.webp)
 
 ### 1. はじめに
 
@@ -27,7 +27,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 {/* truncate */}
 
-![システム設定のストレージ画面](/img/mac_storage_settings_cleanup.png)
+![システム設定のストレージ画面](/img/mac_storage_settings_cleanup.webp)
 
 
 ### 2. 検証環境

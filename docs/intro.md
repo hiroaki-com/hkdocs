@@ -14,4 +14,4 @@ last_update:
 
 `Tech`ページでは、私が実際に経験した技術的な知見や備忘録を、日々のメモ（`Obsidian`）などから記事として整理し、トピック別で格納しています。
 
-![Hk Dog](/img/dog2.png)
+![Hk Dog](/img/dog2.webp)

@@ -7,4 +7,4 @@ description: "The Tech section of HKDocs — a collection of documents organizin
 
 On the `Tech` page, I organize and publish articles based on my firsthand technical insights and personal notes, compiled from my daily notes (`Obsidian`) and other materials, and categorize them by topic.
 
-![Hk Dog](/img/dog2.png)
+![Hk Dog](/img/dog2.webp)

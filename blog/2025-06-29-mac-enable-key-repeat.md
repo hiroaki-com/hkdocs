@@ -2,7 +2,7 @@
 title: Macのキー長押しで連続入力（キーリピート）を有効にする方法
 authors: [hk]
 tags: [mac]
-image: /img/accent_menu.png
+image: /img/accent_menu.webp
 description: "Mac でキーを長押しした際にアクセントメニューが表示される問題を解決し、キーリピート（連続入力）を有効にする設定方法の解説です。"
 ---
 
@@ -16,7 +16,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 
 Macで文章を作成したり、コードを書いたりしている時、`a`キーを長押ししたら`aaaaa...`と連続で入力されてほしいのに、以下のようなアクセント記号（例：`à`）付き文字の選択メニュー（`アクセントメニュー`）が表示されて困った経験はありませんか？
 
-![アクセントメニュー](/img/accent_menu.png)
+![アクセントメニュー](/img/accent_menu.webp)
 
 これはmacOSの「`プレスアンドホールド`」という便利な機能ですが、特にプログラミングや文章作成でキーを連続入力したい場合には、かえって作業の妨げになることがあります。
 
