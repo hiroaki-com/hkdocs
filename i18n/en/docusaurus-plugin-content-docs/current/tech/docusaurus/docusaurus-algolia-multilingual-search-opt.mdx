@@ -2,7 +2,7 @@
 title: How to Optimize Algolia Search for a Docusaurus i18n Site
 sidebar_position: 11
 last_update:
-  date: 2025-06-24
+  date: 2026-07-06
 tags: [docusaurus, search, i18n, tutorial]
 description: "A guide to fixing mixed-language search results in a multilingual Docusaurus site with Algolia, to deliver search results that match the current display language."
 ---
@@ -17,6 +17,12 @@ When implementing Algolia DocSearch on a multi-language (i18n) site built with D
 This article is a continuously maintained guide. For the background and trial-and-error from when it was first written, see the [original blog post](/en/blog/2025/06/24/docusaurus-algolia-multilingual-search-opt/).
 
 This article serves as a guide, providing concrete steps to solve this problem and achieve an **optimal search experience that aligns with the site's display language**.
+
+:::warning Update (2026-07): An important correction to this approach
+The core claim of this article — that `contextualSearch` builds the index name (`yoursite_ja` / `yoursite_en`) from the current locale — turned out to be **incorrect** after inspecting the Docusaurus implementation. In reality, `contextualSearch` **never changes `indexName`**; it queries a single index and narrows results at query time with facetFilters such as `language:<locale>`.
+
+As a result, the language-specific indexes described here were never referenced by the frontend — only the crawler kept updating them. Based on this verification, this site has been **consolidated into a single-index setup**. Preventing mixed-language results only requires `contextualSearch: true`; splitting indexes per language is unnecessary. Per-language tuning is still possible on a single index via language arrays, e.g. `ignorePlurals: ["en"]`.
+:::
 
 :::tip What you'll achieve with this guide
 *   Display search results that correspond to the site's current language (Japanese/English).
