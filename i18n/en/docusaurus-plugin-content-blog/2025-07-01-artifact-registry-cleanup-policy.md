@@ -2,7 +2,7 @@
 title: Optimize Costs by Automatically Deleting Old Docker Images in Artifact Registry
 authors: [hk]
 tags: [google cloud, cloud-run, docker]
-image: /img/cleanup_policy_1.png
+image: /img/cleanup_policy_1.webp
 description: "A guide to using Google Cloud Artifact Registry cleanup policies to automatically delete old Docker images and continuously optimize storage costs."
 ---
 
@@ -54,13 +54,13 @@ This is the core of the setup. We will create two policies in order.
 
 Click **ADD CLEANUP POLICY**. For the **Policy type**, select **Conditional deletion**. For the condition, set the **Tag state** to **Any tag state**. No other changes are needed. Click **DONE** to save.
 
-![Cleanup Policy 1](/img/cleanup_policy_1.png)
+![Cleanup Policy 1](/img/cleanup_policy_1.webp)
 
 **Policy ②: Protect the 10 Most Recent Versions**
 
 Next, click **ADD CLEANUP POLICY** again. This time, for the **Policy type**, select **Keep most recent versions**. For the **Number of recent versions to keep**, enter `10`. Click **DONE**.
 
-![Cleanup Policy 2](/img/cleanup_policy_2.png)
+![Cleanup Policy 2](/img/cleanup_policy_2.webp)
 
 With that, the rule to "target all images but keep the 10 most recent ones" is complete.
 

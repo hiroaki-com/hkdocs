@@ -2,7 +2,7 @@
 title: How to Enable Key Repeat on Mac by Disabling the Accent Menu
 authors: [hk]
 tags: [mac]
-image: /img/accent_menu.png
+image: /img/accent_menu.webp
 description: "How to disable the macOS press-and-hold accent menu and re-enable key repeat (continuous input) for comfortable typing and coding."
 ---
 
@@ -10,7 +10,7 @@ description: "How to disable the macOS press-and-hold accent menu and re-enable 
 
 When you're writing or coding on your Mac, have you ever held down a key like `a`, expecting it to repeat like `aaaaa...`, only to be interrupted by a menu of accented characters (like `à`)?
 
-![Accent Menu](/img/accent_menu.png)
+![Accent Menu](/img/accent_menu.webp)
 
 This is a handy macOS feature called "`Press and Hold`," but it can hinder your workflow, especially when you need to type the same character repeatedly for coding or writing.
 
