@@ -221,8 +221,10 @@ h1 {
 }
 
 /* --- DocCard Title --- */
-/* Docusaurusの動的クラス名（ハッシュ付き）へのスタイル適用 */
-a[class*='cardContainer_'] h2[class*='cardTitle_'] {
+/* Docusaurusの動的クラス名（ハッシュ付き）へのスタイル適用。
+   実際にフォントサイズと text--truncate を持つのは h2[cardTitle_] 直下の
+   span[cardTitleText_] のため、そちらを直接指定する。 */
+a[class*='cardContainer_'] span[class*='cardTitleText_'] {
   font-size: var(--doc-card-title-font-size);
   /* 標準の text--truncate（1行省略）を打ち消し、タイトルを折り返し全表示にする */
   white-space: normal;
