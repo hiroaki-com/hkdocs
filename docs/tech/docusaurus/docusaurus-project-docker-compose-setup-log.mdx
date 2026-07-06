@@ -102,7 +102,7 @@ services:
 
 Dockerイメージのビルド効率とイメージサイズを最適化するため、`.dockerignore`ファイルを更新しました。主な除外対象は、`.git`、`node_modules`、`build`、`.docusaurus`、Docker関連ファイル自体、デプロイ用スクリプト、環境依存ファイル、ログファイル、OS固有ファイル、IDE設定ファイルなどです。
 
-:::caution 注意
+:::caution[注意]
 `pnpm-lock.yaml`は`Dockerfile.dev`内で`COPY`コマンドにより使用するため、`.dockerignore`の除外対象には含めません。
 :::
 
