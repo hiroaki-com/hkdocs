@@ -1,0 +1,233 @@
+---
+title: DocusaurusのAlgolia検索を単一インデックス構成で精度改善する
+sidebar_position: 22
+last_update:
+  date: 2026-07-06
+tags: [docusaurus, search, algolia, i18n]
+description: "Docusaurus + Algolia の検索精度を単一インデックス構成で改善する手順書。contextualSearch の正しい挙動を踏まえ、Crawler REST API 経由で設定を適用する方法をまとめます。"
+---
+
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import ShareButtons from '@site/src/components/ShareButtons';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
+
+
+Docusaurus + Algolia のサイト内検索において、**フロントの検索先とクローラーの更新先が食い違う**ことで生じる精度低下を、単一インデックス構成へ統合して解決するための手順書です。
+
+本記事は継続的にメンテナンスしている手順書です。実際に精度低下に直面した際の調査・試行錯誤の記録は [ブログ版の記事](/blog/2026/07/06/algolia-search-precision-single-index/) を参照してください。
+
+Algolia 検索の導入自体は [DocusaurusにAlgolia DocSearchを組み込む方法](/docs/tech/docusaurus/setup-sitesearch-with-algolia-docsearch/) を、言語別最適化の当初の手順（本記事で訂正）は [Docusaurus多言語サイトでAlgolia検索を言語別に最適化する方法](/docs/tech/docusaurus/docusaurus-algolia-multilingual-search-opt/) を参照してください。
+
+:::info 前提：`contextualSearch` の正しい挙動
+Docusaurus の `contextualSearch: true` は **`indexName` を変更しません**。単一インデックスに対し、クエリ時に `facetFilters`（`language:<locale>` など）を付与して言語を絞り込みます。したがって多言語サイトでも **言語別インデックスへの分割は不要**で、単一インデックス + facet で言語の出し分けが成立します。言語別チューニングは `ignorePlurals: ["en"]` のような言語配列指定で単一インデックス内でも可能です。
+:::
+
+{/* truncate */}
+
+### 参考資料
+
+*   Docusaurus ソース: [`theme-search-algolia`（`useAlgoliaContextualFacetFilters`）](https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-search-algolia/src/client/index.ts)
+*   Docusaurus 公式: [Contextual search](https://docusaurus.io/docs/search#contextual-search)
+*   Algolia: [`facetFilters`](https://www.algolia.com/doc/api-reference/api-parameters/facetFilters/) ／ [`indexLanguages`](https://www.algolia.com/doc/api-reference/api-parameters/indexLanguages/) ／ [`setSettings`](https://www.algolia.com/doc/api-reference/api-methods/set-settings/)
+*   Algolia: [Crawler REST API](https://www.algolia.com/doc/rest-api/crawler/)
+
+### 関連記事
+*   [DocusaurusにAlgolia DocSearchを組み込む方法](/docs/tech/docusaurus/setup-sitesearch-with-algolia-docsearch/) — Algolia 検索の導入手順。
+*   [Docusaurus多言語サイトでAlgolia検索を言語別に最適化する方法](/docs/tech/docusaurus/docusaurus-algolia-multilingual-search-opt/) — 本記事で訂正した「言語別インデックス分割」の当初手順。
+*   [ブログ版：精度低下の原因調査と改善の記録](/blog/2026/07/06/algolia-search-precision-single-index/) — 本手順に至った背景。
+
+### 診断：精度低下の切り分け
+
+検索精度が低下した際は、チューニングの前に **参照先と更新先の一致** を疑う。以下を確認する。
+
+1.  `docusaurus.config.ts` の `algolia.indexName`（フロントの検索先）。
+2.  Crawler の `actions[].indexName`（更新先）。
+3.  各インデックスの最終更新日時とレコード数（Algolia ダッシュボード）。
+
+`indexName` が一致しない、あるいはフロント参照先の更新が止まっている場合、フロントは stale なインデックスを検索している。「新しい記事がヒットしない／古い無関係な記事が誤爆する」という症状はこのサインである。
+
+:::danger 死蔵インデックスに注意
+言語別インデックスへ分割したまま `docusaurus.config.ts` の `indexName` を分割前の名前に据え置くと、クローラーは分割後のインデックスを更新し続ける一方でフロントは誰も更新しない旧インデックスを検索し続ける。クローラー自体は正常に走るため気づきにくい。
+:::
+
+### 方針：単一インデックスへ統合する
+
+**クローラーを単一インデックスに統合し、フロントの検索先＝更新先を一致させる。** 言語の出し分けは `contextualSearch: true`（`language` facet）が担うため `docusaurus.config.ts` の変更は不要。統合と同時にノイズ除去と言語チューニングを行う。
+
+| 項目 | 推奨設定 | 狙い |
+| :--- | :--- | :--- |
+| indexName | 単一名に統合 | 参照先と更新先を一致させ鮮度を回復 |
+| exclusionPatterns | tags / authors / category / page / search 等を除外 | 薄いページのノイズ除去 |
+| content | `article p, li, td` に `article pre` を追加 | コードブロック内も検索対象に |
+| ignorePlurals | `["en"]` | 単一 index で英語のみ複数形を同一視 |
+| indexLanguages / queryLanguages | `["ja", "en"]` | 日本語の辞書分割（複合語精度向上） |
+| minWordSizefor1Typo / 2 | `4` / `8` | 日本語での過剰なタイポ一致を抑制 |
+
+### 1. クローラー設定（単一インデックス統合）
+
+`actions` を単一インデックスに集約し、`exclusionPatterns` でノイズページを除外する。言語の判別は `recordExtractor` 内で `lvl0` のデフォルト値の出し分けにのみ使用し、インデックス自体は分けない。
+
+```javascript title="crawler-config.js"
+new Crawler({
+  appId: "YOUR_APP_ID",
+  apiKey: "YOUR_CRAWLER_API_KEY", // クローラー用の管理者APIキー
+  maxUrls: 5000,
+  indexPrefix: "",
+  rateLimit: 8,
+  renderJavaScript: true,
+  startUrls: [
+    "https://your-docusaurus-site.com/",
+    "https://your-docusaurus-site.com/en/",
+  ],
+  discoveryPatterns: ["https://your-docusaurus-site.com/**"],
+  sitemaps: ["https://your-docusaurus-site.com/sitemap.xml"],
+
+  // --- ノイズページの除外 ---
+  exclusionPatterns: [
+    "https://your-docusaurus-site.com/**/tags/**",
+    "https://your-docusaurus-site.com/**/authors/**",
+    "https://your-docusaurus-site.com/**/page/**",
+    "https://your-docusaurus-site.com/docs/category/**",
+    "https://your-docusaurus-site.com/en/docs/category/**",
+    "https://your-docusaurus-site.com/search/**",
+    "https://your-docusaurus-site.com/en/search/**",
+  ],
+
+  schedule: "at 21:10 on Tuesday",
+  maxDepth: 10,
+
+  // --- 単一インデックスへ統合 ---
+  actions: [
+    {
+      indexName: "yoursite", // 1本に統合
+      pathsToMatch: ["https://your-docusaurus-site.com/**"],
+      recordExtractor: ({ url, $, helpers }) => {
+        const isEn =
+          url.pathname === "/en" || url.pathname.startsWith("/en/");
+        const lvl0 =
+          $(
+            ".menu__link.menu__link--sublist.menu__link--active, .navbar__item.navbar__link--active",
+          )
+            .last()
+            .text() || (isEn ? "Documentation" : "ドキュメンテーション");
+
+        return helpers.docsearch({
+          recordProps: {
+            lvl0: { selectors: "", defaultValue: lvl0 },
+            lvl1: ["header h1", "article h1"],
+            lvl2: "article h2",
+            lvl3: "article h3",
+            lvl4: "article h4",
+            lvl5: "article h5, article td:first-child",
+            lvl6: "article h6",
+            // コードブロック(article pre)も検索対象に含める
+            content:
+              "article p, article li, article td:last-child, article pre",
+          },
+          aggregateContent: true,
+          recordVersion: "v3",
+        });
+      },
+    },
+  ],
+  ignoreCanonicalTo: true,
+  safetyChecks: { beforeIndexPublishing: { maxLostRecordsPercentage: 10 } },
+});
+```
+
+:::tip 言語フィールドは自作しない
+`helpers.docsearch` が自動付与する `language` フィールドで `contextualSearch` の facet 絞り込みは成立する。`lang` を自作する必要はない。
+:::
+
+### 2. インデックス設定（言語チューニング）
+
+単一インデックス内で言語配列指定によりチューニングする。`indexLanguages: ["ja", "en"]` により日本語が辞書分割され、複合語の検索精度が向上する。
+
+```javascript title="index settings (setSettings で投入)"
+{
+  ignorePlurals: ["en"],           // 英語のみ複数形を同一視
+  indexLanguages: ["ja", "en"],    // 日本語の辞書分割を有効化
+  queryLanguages: ["ja", "en"],
+  minWordSizefor1Typo: 4,          // 日本語での過剰なタイポ一致を抑制
+  minWordSizefor2Typos: 8,
+  attributesForFaceting: ["type", "language", "docusaurus_tag"],
+  searchableAttributes: [
+    "unordered(hierarchy.lvl0)",
+    "unordered(hierarchy.lvl1)",
+    "unordered(hierarchy.lvl2)",
+    "unordered(hierarchy.lvl3)",
+    "unordered(hierarchy.lvl4)",
+    "unordered(hierarchy.lvl5)",
+    "unordered(hierarchy.lvl6)",
+    "content",
+  ],
+  customRanking: [
+    "desc(weight.pageRank)",
+    "desc(weight.level)",
+    "asc(weight.position)",
+  ],
+  removeWordsIfNoResults: "allOptional",
+}
+```
+
+:::warning `initialIndexSettings` は既存インデックスに自動適用されない
+`initialIndexSettings` はインデックス新規作成時のみ適用される。既存インデックスへ設定を反映するには `setSettings`（REST の `PUT .../settings`）で直接投入する必要がある。
+:::
+
+### 3. フロントエンド設定（変更不要）
+
+`contextualSearch: true` を有効にしておけば、`indexName` は単一名のままでよい。言語の出し分けは facet で自動的に行われる。
+
+```typescript title="docusaurus.config.ts"
+themeConfig: {
+  algolia: {
+    appId: 'YOUR_APP_ID',
+    apiKey: 'YOUR_SEARCH_ONLY_API_KEY', // 検索専用キー
+    indexName: 'yoursite',              // 単一名でよい
+    contextualSearch: true,             // language facet で言語を絞り込む
+  },
+},
+```
+
+### 4. Crawler REST API での適用
+
+管理 UI の "Review and publish" は Domain Verification が無効（DocSearch Status が空欄）の場合に使用できないことがある。その際は Crawler REST API から本番 config を直接更新する。この経路は UI のゲートを通らず、既存の定期クロールもこの API 設定で動く。
+
+```bash
+# 認証: --user "CRAWLER_USER_ID:CRAWLER_API_KEY"
+
+# 設定取得
+GET   https://crawler.algolia.com/api/1/crawlers/{crawlerId}?withConfig=true
+
+# 設定更新（actions を単一インデックスへ統合 + exclusionPatterns 追加）
+PATCH https://crawler.algolia.com/api/1/crawlers/{crawlerId}/config
+
+# 索引設定（言語チューニングを直接投入）
+PUT   https://{APP_ID}.algolia.net/1/indexes/yoursite/settings
+      # ヘッダ: X-Algolia-API-Key: <索引用の管理APIキー>
+
+# 再クロール（設定適用の前後で実行）
+POST  https://crawler.algolia.com/api/1/crawlers/{crawlerId}/reindex
+```
+
+:::warning API 適用時のハマりどころ
+*   `recordExtractor` は `{"__type":"function","source":"..."}` 形式で送る。プレーンな文字列で送ると `validation_error` になる。
+*   設定変更後は必ず `reindex` を実行し、公開検索キーで実クエリして Before / After を検証する。
+:::
+
+### 運用ルール
+
+*   **UI から publish しない。** UI エディタに旧コードが残っている場合、publish すると改善が巻き戻る。設定変更はすべて API 経由で行う。
+*   作業に使った Crawler API キー / 索引用の管理 API キーは管理権限のため、**作業後にローテーション**する。
+*   変更後は公開検索キーで代表的なクエリを投げ、意図した記事が上位に来ること・除外パターンが 0 件になることを確認する。
+
+### まとめ
+
+*   検索精度の低下は、まず **フロントの参照先とクローラーの更新先の一致** を確認する。
+*   `contextualSearch` は `indexName` を変えない。多言語でも **単一インデックス + `language` facet** で言語の出し分けが成立し、分割は基本的に不要。
+*   言語別チューニングは `ignorePlurals: ["en"]` / `indexLanguages: ["ja", "en"]` のように **言語配列指定** で単一インデックス内でも実現できる。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
