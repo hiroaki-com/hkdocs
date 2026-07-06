@@ -11,6 +11,10 @@ This article is a record from when it was written. For the continuously maintain
 
 This article organizes the specific setup steps as a technical memo to solve this problem and achieve an **optimal search experience that syncs with the site's display language**.
 
+:::warning Update (2026-07): An important correction to this approach
+This article's claim that `contextualSearch` builds the index name (`yoursite_ja` / `yoursite_en`) from the current locale was **incorrect**. In reality, `contextualSearch` never changes `indexName`; it queries a single index and narrows results at query time with facetFilters such as `language:<locale>`. This site has since been consolidated into a single-index setup. See the update note in the [technical documentation version](/en/docs/tech/docusaurus/docusaurus-algolia-multilingual-search-opt/) for details.
+:::
+
 :::tip What you can achieve with this article
 *   Filter search results to match the site's display language (Japanese/English).
 *   Automatically route content to language-specific Algolia indexes based on the URL path (`/` or `/en/`).
