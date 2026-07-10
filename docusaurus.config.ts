@@ -7,6 +7,12 @@ import type * as PluginContentBlog from '@docusaurus/plugin-content-blog';
 const math = require('remark-math');
 const katex = require('rehype-katex');
 
+// Copyright 年数: 開始年〜現在年（ビルド時評価で自動更新）。同一年なら単年表示。
+const startYear = 2025;
+const currentYear = new Date().getFullYear();
+const copyrightYears =
+  currentYear > startYear ? `${startYear} - ${currentYear}` : `${startYear}`;
+
 const config: Config = {
   title: 'HKDocs',
   tagline: 'My Knowledge Imprint',
@@ -257,7 +263,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} hkdocs. All Rights Reserved.<br>The code is licensed under MIT, and the content is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
+      copyright: `Copyright © ${copyrightYears} hkdocs. All Rights Reserved.<br>The code is licensed under MIT, and the content is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
     },
     prism: {
       theme: prismThemes.github,
