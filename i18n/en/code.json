@@ -1237,6 +1237,22 @@
     "message": "Xarticl.es",
     "description": "Title for Xarticl.es"
   },
+  "news.site.int.ts.arstechnica.desc": {
+    "message": "Founded in the U.S. in 1998 by Ken Fisher and Jon Stokes. Operated by Condé Nast since 2008. Known for in-depth technical explainers and reviews covering technology, science, and policy.",
+    "description": "Description for Ars Technica"
+  },
+  "news.site.int.ts.arstechnica.title": {
+    "message": "Ars Technica",
+    "description": "Title for Ars Technica"
+  },
+  "news.site.int.ts.cacm.desc": {
+    "message": "Founded in 1958 as the flagship publication of the ACM (Association for Computing Machinery, founded 1947). Publishes news, expert commentary, and peer-reviewed research, serving as both an academic journal and a practitioner-oriented resource for computer science. Relaunched in 2024 as a web-first, open-access publication.",
+    "description": "Description for Communications of the ACM"
+  },
+  "news.site.int.ts.cacm.title": {
+    "message": "Communications of the ACM (CACM)",
+    "description": "Title for Communications of the ACM"
+  },
   "news.site.int.ts.geekwire.desc": {
     "message": "Reports on technology, startups, and innovation, with a focus on Seattle and the Pacific Northwest.",
     "description": "Description for GeekWire"
@@ -1244,6 +1260,22 @@
   "news.site.int.ts.geekwire.title": {
     "message": "GeekWire",
     "description": "Title for GeekWire"
+  },
+  "news.site.int.ts.ieeespectrum.desc": {
+    "message": "Launched in 1964 as the flagship publication of the IEEE (Institute of Electrical and Electronics Engineers). Keeps the IEEE's more than 500,000 members informed of major trends in engineering, technology, and science. Has won multiple U.S. magazine awards.",
+    "description": "Description for IEEE Spectrum"
+  },
+  "news.site.int.ts.ieeespectrum.title": {
+    "message": "IEEE Spectrum",
+    "description": "Title for IEEE Spectrum"
+  },
+  "news.site.int.ts.infoq.desc": {
+    "message": "Founded in 2006 by Floyd Marinescu and others, operated by C4Media Inc. Delivers software development trends and best practices from a practitioner's perspective for senior developers, architects, and technical leaders. Publishes in multiple languages including English, Chinese, and Japanese, and hosts the QCon technology conference.",
+    "description": "Description for InfoQ"
+  },
+  "news.site.int.ts.infoq.title": {
+    "message": "InfoQ",
+    "description": "Title for InfoQ"
   },
   "news.site.int.ts.mit.desc": {
     "message": "Founded and operated by the Massachusetts Institute of Technology (MIT) since 1899. One of the world's most authoritative technology magazines, analyzing the commercial, political, and social impacts of emerging technologies.",
@@ -1292,6 +1324,14 @@
   "news.site.int.ts.techtwitter.title": {
     "message": "Tech Twitter",
     "description": "Title for Tech Twitter"
+  },
+  "news.site.int.ts.thenewstack.desc": {
+    "message": "Founded in the U.S. in 2014 by tech journalist Alex Williams and others. A subsidiary of Insight Partners since 2021. A developer-focused media outlet specializing in cloud-native computing, DevOps, open source, and container technologies that underpin modern application development.",
+    "description": "Description for The New Stack"
+  },
+  "news.site.int.ts.thenewstack.title": {
+    "message": "The New Stack",
+    "description": "Title for The New Stack"
   },
   "news.site.int.ts.wired.desc": {
     "message": "Founded in the U.S. in 1993 by Louis Rossetto and others, operated by Condé Nast. A media outlet that has influenced the world with its style of deeply exploring the impact of technology on culture, economy, and politics, and contemplating the future.",
