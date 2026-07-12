@@ -2016,6 +2016,14 @@
     "message": "dbt Docs",
     "description": "Title for dbt Docs"
   },
+  "links.site.data.postgresql.desc": {
+    "message": "Official documentation for the highly reliable and extensible open-source relational database.",
+    "description": "Description for PostgreSQL Docs"
+  },
+  "links.site.data.postgresql.title": {
+    "message": "PostgreSQL Docs",
+    "description": "Title for PostgreSQL Docs"
+  },
   "links.site.data.sqlzoo.desc": {
     "message": "A site where you can learn SQL practically through interactive tutorials and exercises.",
     "description": "Description for SQLZoo"
@@ -2023,6 +2031,14 @@
   "links.site.data.sqlzoo.title": {
     "message": "SQLZoo",
     "description": "Title for SQLZoo"
+  },
+  "links.site.data.supabase.desc": {
+    "message": "An open-source BaaS built on PostgreSQL, providing authentication, storage, and auto-generated APIs.",
+    "description": "Description for Supabase Docs"
+  },
+  "links.site.data.supabase.title": {
+    "message": "Supabase Docs",
+    "description": "Title for Supabase Docs"
   },
   "links.site.devtools.geeksforgeeks.desc": {
     "message": "A site rich in articles, tutorials, and problems on computer science topics.",
