@@ -1,4 +1,5 @@
 import React, { useState, JSX } from 'react';
+import { translate } from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 // ファビコンが取得できなかった場合に表示するデフォルトアイコン
@@ -44,7 +45,14 @@ export default function LinksCard({ href, title, description }: Props): JSX.Elem
           ) : (
             <img
               src={faviconSources[sourceIndex]}
-              alt={`${title} のファビコン`}
+              alt={translate(
+                {
+                  id: 'links.card.faviconAlt',
+                  message: '{title} のファビコン',
+                  description: 'Alt text for the favicon image on a link card',
+                },
+                { title },
+              )}
               className={styles.image}
               onError={handleError}
               loading="lazy"

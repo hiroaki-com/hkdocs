@@ -1635,6 +1635,10 @@
   "homepage.features.links.title": {
     "message": "Links"
   },
+  "links.card.faviconAlt": {
+    "message": "Favicon of {title}",
+    "description": "Alt text for the favicon image on a link card"
+  },
   "links.page.description": {
     "message": "A collection of useful links to technical documents and tools for development and learning."
   },
