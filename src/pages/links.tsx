@@ -88,6 +88,8 @@ const linksData: LinkCategoryData[] = [
       { href: 'https://cloud.google.com/bigquery/docs', title: { id: 'links.site.data.bigquery.title', message: 'BigQuery Docs' }, description: { id: 'links.site.data.bigquery.desc', message: 'ペタバイト級のデータを分析できるサーバーレスなデータウェアハウス。' } },
       { href: 'https://dbt.getdbt.com/docs/', title: { id: 'links.site.data.dbt.title', message: 'dbt Docs' }, description: { id: 'links.site.data.dbt.desc', message: 'データウェアハウスでのデータ変換を支援する「T」 in ELTツール。' } },
       { href: 'https://sqlzoo.net/', title: { id: 'links.site.data.sqlzoo.title', message: 'SQLZoo' }, description: { id: 'links.site.data.sqlzoo.desc', message: 'インタラクティブなチュートリアルと演習を通じてSQLを実践的に学べるサイト。' } },
+      { href: 'https://www.postgresql.org/docs/', title: { id: 'links.site.data.postgresql.title', message: 'PostgreSQL Docs' }, description: { id: 'links.site.data.postgresql.desc', message: '高い信頼性と拡張性を備えたオープンソースのリレーショナルデータベースの公式ドキュメント。' } },
+      { href: 'https://supabase.com/docs', title: { id: 'links.site.data.supabase.title', message: 'Supabase Docs' }, description: { id: 'links.site.data.supabase.desc', message: 'PostgreSQLをベースに、認証・ストレージ・自動生成APIなどを提供するオープンソースのBaaS。' } },
       { href: 'https://www.kubeflow.org/docs/', title: { id: 'links.site.ai.kubeflow.title', message: 'Kubeflow Docs' }, description: { id: 'links.site.ai.kubeflow.desc', message: 'Kubernetes上でMLワークフローをデプロイ、管理するためのプラットフォーム。' } },
       { href: 'https://www.kaggle.com/learn', title: { id: 'links.site.ai.kaggle.title', message: 'Kaggle Learn' }, description: { id: 'links.site.ai.kaggle.desc', message: 'データサイエンスのコンペ、公開データセット、学習リソースが集まる世界最大のコミュニティ。' } },
     ],
