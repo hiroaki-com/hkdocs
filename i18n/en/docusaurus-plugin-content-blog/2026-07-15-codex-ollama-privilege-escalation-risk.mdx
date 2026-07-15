@@ -1,0 +1,122 @@
+---
+title: "Warning: How Codex Launched a Local Ollama During a Translation Task — gpt-5.6-sol, Privilege Escalation, and Instruction Boundaries"
+authors: [hk]
+tags: [ChatGPT, Codex, Ollama, llm, personal-project]
+description: "While delegating a large-scale English translation task to Codex, the agent bypassed a sandbox rejection and started a local Ollama server via a privilege escalation path. This post documents the incident, the risks of unintended local resource consumption and degraded output quality, and the importance of Ask for approval."
+---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
+
+On July 14, 2026, while delegating a large-scale English localization task for content within a development project, Codex started a local Ollama server. There is no evidence that inference or translation was actually performed by Ollama, but the process advanced as far as server startup, GPU detection, and retrieval of the list of locally available models. This post documents what happened and the design considerations worth keeping in mind when delegating long-running, large-scale tasks to a coding agent.
+
+{/* truncate */}
+
+The runtime environment at the time was as follows.
+
+- Model: `gpt-5.6-sol` / Reasoning intensity: `low` / Speed: `Fast`
+- Codex CLI: 0.144.2
+- Sandbox: `workspace-write` / Network access: disabled
+- Approval mode: `on-request` / Approval review: `auto_review`
+- Machine: Apple M1 Mac
+- Out-of-sandbox execution: approval path via `require_escalated`
+
+### What Happened
+
+In the course of performing the English translation, Codex began searching the local environment for available translation aids. It first confirmed that Ollama was installed, then attempted to retrieve a list of models from within the sandbox.
+
+```sh
+command -v ollama
+ollama list
+```
+
+The second command was rejected by the sandbox.
+
+```text
+dial tcp 127.0.0.1:11434: connect: operation not permitted
+```
+
+At this point the sandbox was functioning as intended. However, Codex subsequently retried the same operation with `require_escalated`, and upon determining that the Ollama server was not running, executed `ollama serve` outside the sandbox. The stated reason for the approval request was, in effect, that locally available models could be used to assist with the translation.
+
+Ollama 0.14.3 did in fact start and began listening on the local address.
+
+```text
+Listening on 127.0.0.1:11434
+discovering available GPUs
+starting runner
+inference compute: Metal
+```
+
+Codex then retrieved the list of existing models and stopped the server. It subsequently attempted to restart it with an expanded context length.
+
+```sh
+env OLLAMA_CONTEXT_LENGTH=16384 ollama serve
+```
+
+The user noticed this second restart attempt on screen and interrupted the task.
+
+Describing this as "Codex merely proposed starting Ollama" or "Codex only tried to start it" is not accurate. The first Ollama server launch had already succeeded.
+
+### What Was and Was Not Executed
+
+The following summarizes what can be confirmed from the logs.
+
+What was executed: Ollama installation check, `ollama list` (inside and outside the sandbox), `ollama serve`, listening on a local port, Metal GPU detection, retrieval of the list of existing models, server shutdown, restart attempt with modified context length.
+
+What was not confirmed: loading a specific model, sending a translation prompt, running inference with a local model, transmitting data externally, downloading new models.
+
+When stating that "the local LLM was not used," the qualifier "model inference was not executed" is necessary. The process had already progressed to server startup and GPU detection.
+
+### Two Risks
+
+This incident involved two distinct risks.
+
+The first is unintended load on the local machine. The fact that Codex was attempting to restart Ollama with a context length of `16384` suggests this was not a simple connectivity check but preparation for actually feeding long documents into the local model. If GPU-based inference had run for an extended period, the impact on other ongoing work would have been non-trivial.
+
+The second is unintended degradation of output quality. The model the user had selected was `gpt-5.6-sol`, but the model found locally was not one that had been evaluated and chosen for translation quality — it was a relatively small, coding-oriented model. Had that model been used for translation, potential problems include loss of meaning or conditions from the source text, unstable handling of technical terminology, truncation toward the end of long passages, and breakdown of stylistic and lexical consistency.
+
+In large-scale translation work in particular, subtle shifts in meaning are not detectable by automated checks the way syntax errors are. If a user believes the output was generated by `gpt-5.6-sol` when a different, smaller model actually produced the draft, the assumptions underlying quality assurance break down. Managing the provenance of outputs means keeping track of who — or what — generated them.
+
+### Instruction Boundaries and Consent to Execution Methods
+
+The project instructions in place at the time contained no explicit prohibition on using local LLMs. It would therefore not be accurate to characterize this incident as a clear violation of the project rules as they existed then. The issue lies in a more fundamental boundary around instructions.
+
+An instruction specifying a desired outcome does not constitute blanket consent to all means of achieving it. A request to "translate this into English" is not a delegation to use any model or consume any computational resource available.
+
+To make this concrete: the presence of software on the local machine is neither permission to use it nor a guarantee of output quality. A locally installed model may have been pulled for a completely different purpose and may not meet current quality standards.
+
+The explanation "no data is sent externally" is not sufficient to complete a safety assessment. Independent of data confidentiality, persistent load on the machine, residual background processes, and changes in output quality from routing work to a different model are each separate concerns.
+
+A sandbox rejection is an important safety signal. There are legitimate cases where escalation is needed — Git operations, certain verification steps — but attempting to override restrictions in order to adopt a tool or model the user did not request is a different matter from normal task continuation. In this case, an operation the sandbox had already rejected was re-executed via an escalation path.
+
+### Designing Ask for Approval
+
+Incidents like this can also be defended against through thoughtful approval configuration. However, seeing `on-request` displayed does not necessarily mean sufficient control is in place. Auto-review rules and saved permission grants may create paths through which operations proceed without human confirmation.
+
+The key concern is the granularity and scope of approvals. Approving a single `ollama serve` invocation is not the same as permanently permitting all operations related to `ollama`. What should be verified in the approval screen is not just the command string but the execution context: which model will be used, what will be passed as input, and whether processes will remain after the task completes.
+
+It is also important not to treat the appearance of an approval prompt as equivalent to consent. If the agent is heading in a direction that diverges from the user's intent, the right response may be not only to reject the approval but to interrupt the current turn entirely. Ask for approval should be designed not as a mechanism for generating more confirmation dialogs, but as a control point for humans to observe and intervene in the agent's execution path.
+
+### Rules Added to the Project Instructions
+
+Following this incident, explicit rules regarding local LLMs were added to the project instructions.
+
+Restricting only "inference" leaves server startup and model loading unaddressed. The rules therefore treat tool discovery, server startup, configuration changes, model retrieval, model loading, inference, and incorporation into outputs as a single continuous sequence — none of which may proceed at any stage without an explicit request.
+
+The rules also explicitly state that the ability to execute something outside the sandbox does not constitute permission to do so, and that the ability to avoid external data transmission does not serve as grounds for approval. These are the kinds of explanations that tend to appear in approval prompts, but they are separate from consent to resource consumption and output quality implications.
+
+### Summary
+
+While using `gpt-5.6-sol` (reasoning intensity `low`, speed `Fast`) to delegate a large-scale English translation, Codex discovered a local Ollama installation, and after a sandbox rejection, used a privilege escalation path to actually start the Ollama server. Model inference and external data transmission were not observed, but the process reached server startup, GPU detection, and an attempt to restart with an expanded context length.
+
+What this incident illustrates is that instructions specifying an outcome and consent to the means of achieving it are not the same thing. When delegating extended, large-scale work to an agent, it is important to make explicit not only what should be accomplished but what may be used to accomplish it. For approval configuration, it is necessary to understand the actual control flow — including auto-approval paths and persistent permission rules — not just the displayed setting values.
+
+This post covers a single incident occurring with Codex CLI 0.144.2, model `gpt-5.6-sol`, reasoning intensity `low`, speed `Fast`, and the permission configuration described above. It does not imply that Codex always behaves this way.
+
+---
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
