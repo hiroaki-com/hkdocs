@@ -18,7 +18,20 @@ docker-compose.*.yml
 # Deployment scripts & environment specific files
 deploy.sh
 .env
+.env.*
 *.local
+
+# Credentials that CI may materialize in the workspace.
+# google-github-actions/auth writes gha-creds-*.json before the image is built,
+# so without these entries `COPY . .` would bake it into a GHA-cached layer.
+gha-creds-*.json
+*.pem
+*.p12
+*.pfx
+service-account*.json
+
+# Local-only agent docs (excluded from the repository via .git/info/exclude)
+.claude/
 
 # Logs
 *.log

@@ -265,7 +265,7 @@ export default function NewsPage(): JSX.Element {
         {newsData.map((majorCategory) => (
           <details key={majorCategory.id} open className={styles.majorCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
-              <SectionHeading as="h2" id={majorCategory.id} className={styles.majorCategoryTitle} children={undefined}>
+              <SectionHeading as="h2" id={majorCategory.id} className={styles.majorCategoryTitle}>
                 <Translate id={majorCategory.title.id}>
                   {majorCategory.title.message}
                 </Translate>
@@ -274,7 +274,7 @@ export default function NewsPage(): JSX.Element {
             {majorCategory.subCategories.map((subCategory) => (
               <details key={subCategory.id} open className={styles.subCategorySection}>
                 <summary style={{ cursor: 'pointer' }}>
-                  <SectionHeading as="h3" id={subCategory.id} className={styles.categoryTitle} children={undefined}>
+                  <SectionHeading as="h3" id={subCategory.id} className={styles.categoryTitle}>
                     <Translate id={subCategory.title.id}>
                       {subCategory.title.message}
                     </Translate>

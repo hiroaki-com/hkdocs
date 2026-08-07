@@ -2,6 +2,33 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
+  <!--
+    /admin/ 専用 CSP。管理画面は Git Gateway 経由で main への書込権限を扱うため、
+    スクリプトの供給元を自ドメインと Netlify Identity だけに限定する。
+    - 'unsafe-eval': decap-cms のバンドルが globalThis 補完とプレビュー処理で new Function を使う
+    - style-src 'unsafe-inline': decap-cms が実行時にスタイルを注入する
+    - frame-src blob:/data:: プレビューペインが srcdoc の iframe を生成する
+    - connect-src www.netlifystatus.com: Git Gateway の稼働状態を status_endpoint 既定値
+      （https://www.netlifystatus.com/api/v2/components.json）から取得する。遮断しても
+      decap-cms 側の catch が「正常」を返すだけで保存は壊れないが、障害検出が効かなくなる
+    Identity / Git Gateway は同一オリジンの /.netlify/* 経由のため connect-src 'self' で足りる。
+    localhost + localStorage の netlifySiteURL や local_backend で編集する場合は、その
+    オリジンを connect-src に追加しないと通信が遮断される。
+    frame-ancestors と X-Frame-Options は meta では効かないため、クリックジャッキング対策は
+    配信レイヤーでのヘッダー付与（ランブック §7-4）が必要。
+  -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-eval' https://identity.netlify.com;
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: blob: https:;
+    font-src 'self' data:;
+    connect-src 'self' https://identity.netlify.com https://api.netlify.com https://api.github.com https://www.netlifystatus.com;
+    frame-src 'self' data: blob:;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+  " />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
   <title>Content Manager</title>
   
@@ -138,45 +165,15 @@
 </head>
 <body>
 
-  
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <script>
-    (function() {
-      // プルツーリフレッシュを防止するJavaScript処理
-      function preventPullToRefresh() {
-        let startY = 0;
-        let isScrollable = false;
-        
-        document.addEventListener('touchstart', function(e) {
-          startY = e.touches[0].pageY;
-          // スクロール可能な要素かどうかをチェック
-          const target = e.target;
-          isScrollable = target.scrollTop > 0 || 
-                        target.closest('[class*="EditorContainer"]') ||
-                        target.closest('textarea') ||
-                        target.closest('[data-slate-editor]') ||
-                        target.closest('.cm-editor');
-        }, { passive: true });
-        
-        document.addEventListener('touchmove', function(e) {
-          const currentY = e.touches[0].pageY;
-          const deltaY = currentY - startY;
-          
-          // ページトップで下方向にスワイプしようとした場合のみ防止
-          if (deltaY > 0 && window.scrollY === 0 && !isScrollable) {
-            e.preventDefault();
-          }
-        }, { passive: false });
-      }
-      
-      // Netlify Identity 初期化
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("logout", () => { document.location.href = "/admin/"; });
-      }
-      
-      window.addEventListener('load', preventPullToRefresh);
-    })();
-  </script>
+
+  <!--
+    decap-cms はセルフホスト（unpkg の範囲指定 `decap-cms@^3.0.0` を廃止）。
+    版は npm レジストリの tarball integrity を検証して取り込んだ 3.15.1 で固定。
+    チャンクは currentScript.src を基点に同ディレクトリから読まれるため、
+    更新時は decap-cms/<新版>/ を追加して src を差し替え、旧ディレクトリを削除する。
+  -->
+  <script src="decap-cms/3.15.1/decap-cms.js"></script>
+
+  <script src="admin.js"></script>
 </body>
 </html>

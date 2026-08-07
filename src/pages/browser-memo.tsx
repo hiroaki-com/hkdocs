@@ -96,9 +96,13 @@ const MemoTextarea: React.FC<{
   const [text, setText] = useState(initialText);
   const [isFocused, setIsFocused] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
+  const debounceTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => { setText(initialText); }, [initialText]);
+
+  useEffect(() => () => {
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+  }, []);
 
   // テキスト量に応じて高さを動的に調整
   useEffect(() => {
@@ -166,7 +170,8 @@ const MermaidPreview: React.FC<{ chart: string }> = React.memo(({ chart }) => {
   useEffect(() => {
     if (ref.current) {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
-      mermaid.initialize({ startOnLoad: false, theme });
+      // securityLevel は既定値も 'strict' だが、共有URL由来の図表を描画するため既定値に依存せず明示する
+      mermaid.initialize({ startOnLoad: false, theme, securityLevel: 'strict' });
       ref.current.removeAttribute('data-processed');
       mermaid.run({ nodes: [ref.current] }).catch(() => {});
     }

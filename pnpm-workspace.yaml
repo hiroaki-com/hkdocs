@@ -1,3 +1,14 @@
 allowBuilds:
   core-js: true
   core-js-pure: true
+
+# 上流（Docusaurus / webpack 系）の range が修正版を許可せず重複解決されるものだけを
+# advisory の patched 版へ引き上げる。いずれも build/CI 時のみ動作する推移依存。
+# 上流が追随したら該当行を削除する。
+overrides:
+  ajv@8: ^8.20.0            # GHSA-2g4f-4pwh-qvx6
+  fast-uri: ^3.1.5          # GHSA-q3j6-qgpj-74h6 / v39h / 4c8g / v2hh / 7p8r
+  js-yaml@4: ^4.3.1         # GHSA-mh29-5h37-fv8m / h67p / 52cp / 5p4m
+  lodash: ^4.18.1           # GHSA-xxjr-mmjv-4gpg / f23m / r5fr
+  serialize-javascript: ^7.0.5  # GHSA-5c6j-r48x-rmvq / qj8w
+  webpack: ^5.109.2         # GHSA-38r7-794h-5758 / 8fgc

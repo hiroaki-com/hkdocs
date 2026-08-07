@@ -508,7 +508,7 @@ function DartsCricketApp({ t }: { t: T }) {
             {g.darts.length === 0 ? (
               <span className="dc-nd">{t.noDart}</span>
             ) : g.darts.map((d, i) => {
-              if (d.miss) return (
+              if (!('t' in d)) return (
                 <span key={i} className="dc-chip miss">{t.miss}</span>
               );
               const tl = d.t === 'B' ? t.bull : String(d.t);

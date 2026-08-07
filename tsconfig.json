@@ -1,8 +1,14 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
+  // Docusaurus と IDE の型チェックで使用する設定。
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "baseUrl": "."
   },
+  "include": [
+    "docusaurus.config.ts",
+    "sidebars.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
   "exclude": [".docusaurus", "build"]
 }
