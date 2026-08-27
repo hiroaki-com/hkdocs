@@ -1,0 +1,357 @@
+---
+title: With SQL, the Answer Alone Isn't Enough.
+authors: [hk]
+tags: [web-app]
+description: "Announcing SQL Quiz Book, a problem set for understanding how SQL processes data by mapping each clause to the way the table changes. 19 themes, 98 sets, 490 questions — 67 sets and 335 questions are free."
+---
+
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+Run a SQL query, and you get an answer.
+
+How much revenue did we make?  
+Which campaign performed best?  
+How many customers are still active?  
+Where are users dropping off?
+
+But looking at the number on the screen tells you nothing about why that number is correct.
+
+Which data made it into the aggregate?  
+What was excluded, and by which condition?  
+Did a join duplicate rows along the way?  
+Does the unit of calculation match the metric you actually wanted?
+
+SQL gives you an answer.
+
+To understand how that answer was produced, you have to look beyond the result, at everything that happens on the way there.
+
+Data is no longer something only a handful of specialists touch.
+
+As business operations have become more digital and more data-driven, it is not just engineers and data analysts who are expected to make decisions grounded in data every day. Marketers, product planners, sales teams, and people driving operational improvements are, too.
+
+And behind much of that, out of sight, sits SQL.
+
+SQL Quiz Book is a problem set for understanding how SQL processes data, by mapping each part of a query to the way the table changes.
+
+{/* truncate */}
+
+### What Makes SQL Hard?
+
+The results you get from SQL feed into all kinds of decisions.
+
+Checking business metrics.  
+Evaluating the impact of a campaign.  
+Analyzing customer behavior.  
+Deciding what to do next.
+
+What you finally see may be a table, a chart, or a single number.
+
+But how that number was built is not something you can tell from the finished result alone.
+
+SQL is a language for declaring the result you want, not the step-by-step procedure for producing it.
+
+That is one of SQL's great strengths.
+
+You do not have to write out, as a procedure, the order in which data should be read or the method by which it should be processed. You express the result you need as a query, and the database decides most of the specifics of how to execute it.
+
+The flip side is that this same property hides the middle of the process.
+
+The order in which you write SQL does not match the order in which the data is logically processed, either.
+
+So understanding SQL means more than reading the query in front of you. You have to trace:
+
+"How many rows are there right now?"  
+"Which columns exist at this point?"  
+"Which rows were matched with which?"  
+"Given this condition, what survived and what disappeared?"
+
+The difficulty of SQL is not just the number of syntax rules to learn.
+
+It is that the way the data changes shape on its way to the final number is hard to see.
+
+### Where Did That One Customer Go?
+
+Consider a simple example.
+
+`users` contains two people, Alice and Bob.  
+`orders` contains only Alice's paid order.
+
+Intending to retrieve every user along with their paid orders, you write the following SQL.
+
+```sql
+SELECT
+  users.name,
+  orders.id
+FROM users
+LEFT JOIN orders
+  ON users.id = orders.user_id
+WHERE orders.status = 'paid';
+```
+
+Run this query and Alice appears, but Bob does not.
+
+It is tempting to think that since you used a LEFT JOIN, Bob should survive even without an order.
+
+And in fact, he does survive — right up until the LEFT JOIN finishes.
+
+At that point, the table is conceptually in this state.
+
+| name  | order_id | status |
+|-------|----------|--------|
+| Alice | 101      | paid   |
+| Bob   | NULL     | NULL   |
+
+Then the WHERE clause is evaluated.
+
+For Bob's row, `orders.status = 'paid'` does not evaluate to TRUE. A comparison involving NULL yields UNKNOWN, so the row cannot pass the WHERE clause and is removed.
+
+Looking only at the final result, you can see that Bob is missing.
+
+If all you want is to fix the error, you can simply memorize that the condition belongs in the ON clause.
+
+But in real work, the fix is not the only thing that matters.
+
+That the LEFT JOIN filled Bob's row with NULLs.  
+That the row was then handed to the WHERE clause.  
+That a comparison against NULL never became TRUE.  
+And that, as a result, Bob's row was excluded.
+
+Once you understand that sequence of changes, you can reason from the same principle even when the conditions or the data change.
+
+And this distinction is not merely a piece of SQL trivia.
+
+If an analysis meant to cover "all customers" quietly drops customers with no purchase history, then retention, conversion, and customer-mix metrics all shift with it.
+
+A single condition can propagate all the way into a business decision.
+
+The correct answer in SQL shows up as a final table.
+
+Understanding SQL lives in the changes that lead to it.
+
+### What Sits Between Input and Output
+
+A typical SQL tutorial shows you three things.
+
+The input tables.  
+The finished query.  
+The result after execution.
+
+This is information you need in order to learn SQL.
+
+But how the rows and columns change on the way from input to output is often invisible.
+
+Which data was read in?  
+Which rows were matched with which?  
+What was excluded, and by which condition?  
+Into what unit were multiple rows collapsed?  
+How was a new metric computed from the original data?
+
+SQL processing is not a single leap from input table to result table.
+
+Logically, it is a sequence of small table transformations.
+
+Of course, a real database does not physically materialize the intermediate tables shown for teaching purposes.
+
+The database optimizes the query, reorders operations, and skips computations it does not need.
+
+Even so, following the table transformation that corresponds to each clause is a powerful mental model for understanding what SQL actually means.
+
+What most learning material lacks is not the right answer.
+
+It is the sequence of states that leads to that answer.
+
+### Running SQL
+
+There are many learning services where you can write SQL in the browser and run it on the spot.
+
+Write a query, run it, read the error, fix it.
+
+This is extremely effective for building real SQL skill. No amount of reading can replace the repetition of actually doing it yourself.
+
+But there are things the execution result alone will not tell you.
+
+If you got it right, nothing guarantees you know why it was right.  
+If you got it wrong, you do not know at which stage things diverged from what you expected.
+
+Add a JOIN and see what happens.  
+Throw in a DISTINCT to kill the duplicates.  
+Wrap the whole thing in a subquery.
+
+Keep iterating and you may well arrive at the result you expected.
+
+But when the volume or skew of the data changes, when NULLs appear, when the relationships between tables shift, that same SQL will not necessarily stay correct.
+
+Memorizing syntax is necessary.  
+Actually writing SQL is necessary.  
+Digging deeply into individual topics is necessary.
+
+SQL Quiz Book is not trying to replace any of that.
+
+It is trying to fill in one missing stage.
+
+Predicting what will happen before you run the query.  
+Explaining why it happened after you run it.
+
+To make that possible, it turns the middle of SQL into something you can read.
+
+### SQL Quiz Book
+
+The design of SQL Quiz Book is simple.
+
+Every question visualizes, step by step, how SQL transforms the tables.
+
+Each question moves through the same sequence: prerequisite knowledge, the problem statement, the tables involved, the expected output, a model answer, and an explanation.
+
+You start by comparing the input tables against the expected output and working out what processing is needed.
+
+Open the model answer, and you can see the table transformation that corresponds to each stage of the query.
+
+What FROM read in.  
+Which rows JOIN matched with which.  
+What WHERE kept and what it excluded.  
+Which rows GROUP BY collapsed into the same group.  
+Which columns SELECT pulled out as the final result.
+
+The goal was not an explanation that merely makes you nod along with the model answer.
+
+It is an explanation that lets you pinpoint exactly where your prediction and the actual transformation parted ways.
+
+### No Execution Environment Required
+
+SQL Quiz Book is designed around reading.
+
+Without setting up a database, you can read the problem and the tables and follow the process by which the query changes the data.
+
+The aim was a format that is easy to start with, not only for engineers who specialize in SQL, but also for business roles who consume the results of analysis.
+
+Not everyone needs to become a database expert.
+
+But if you are making decisions based on data, the ability to understand what conditions and what processing produced a number matters.
+
+None of this means that requiring no execution environment is inherently better.
+
+For interactive exercises, hands-on repetition, and deep dives into individual topics, plenty of excellent material and execution environments already exist.
+
+SQL Quiz Book does not aim to be the only thing you need to learn SQL.
+
+Understanding the structure of the processing by reading.  
+Trying it in an execution environment and confirming it yourself.  
+Going deeper with specialized material when you need to.
+
+These are not competing options. They cover different stages of learning.
+
+SQL Quiz Book is complementary material that builds the foundation for understanding SQL processing and moving on to practice.
+
+### SQL Shows Up in All Kinds of Work
+
+SQL in the real world does not arrive labeled "just a JOIN" or "just a GROUP BY."
+
+A marketer looks at the conversion rate from ad exposure to purchase.  
+A product planner compares revenue and retention by product.  
+A sales rep looks at usage patterns to find accounts that need support.  
+An operations lead watches for rising processing times or error counts.  
+A data analyst combines multiple datasets into material for a decision.  
+An engineer builds the system that delivers all of it accurately and continuously.
+
+The subject matter differs, but behind each one, data is being extracted, joined, aggregated, and transformed.
+
+In modern business, it has become difficult to separate systems from operations, or technology from decision-making.
+
+Not every business role needs to write complex SQL fluently.
+
+At the same time, when the people who use the results can understand the basic meaning of the processing behind them, conversations with engineers and analysts change, metric validation changes, and so do the decisions.
+
+SQL Quiz Book covers not only basic syntax such as JOIN and GROUP BY, but also batch processing, behavioral analysis, KPI analysis, anomaly detection, event modeling, statistical analysis, and performance optimization.
+
+Currently published: 19 themes, 98 sets, 490 questions.
+
+That said, these 490 questions are not treated as a finished product.
+
+Which themes were hard to follow?  
+What kinds of SQL cause trouble in real work?  
+Which area do you want to learn next?
+
+Based on the feedback and requests we receive from users, themes, sets, and questions will continue to be added — quickly, and at a high standard of quality.
+
+Each theme is split into fundamentals and applied material.
+
+There is no need to work through everything in a fixed order from the beginning. Pick the themes that relate to your own work and problems — JOIN, NULL, window functions, KPI analysis — and start at the level that matches your current understanding.
+
+Skip the areas you already know and go straight to the theme you need.  
+Confirm the fundamentals first, then move on to the applied material in the same theme.  
+When you run into an unfamiliar term at work, reread just that one theme.
+
+By making the individual theme the unit of learning, the structure lets you fill in the knowledge you need efficiently, without widening the scope more than necessary.
+
+You can also search by problem text, SQL function name, or technical keyword and jump straight back to the question you need. You can record your progress and flag questions you were unsure about for review.
+
+The goal was a problem set you do not solve once and put away, but come back to whenever you need a particular piece of knowledge.
+
+### The Era of LLMs Writing SQL
+
+LLMs can already generate plenty of SQL.
+
+Give them your table definitions and your goal, and even someone unfamiliar with SQL can get a working extraction query in short order.
+
+This is a change that dramatically widens the circle of people who can work with data.
+
+Going forward, some of the occasions where a human writes SQL from scratch will disappear.
+
+But a human writing SQL and a human understanding SQL are not the same thing.
+
+Is the generated SQL really extracting what you intended?  
+Is it double-counting customers or revenue?  
+Has some portion of the data been excluded by a condition?  
+Does the unit of aggregation match the business metric you wanted to check?  
+When the result changes, can you explain why?
+
+SQL can be perfectly valid as syntax and still be wrong for the business.
+
+The fact that an LLM generated it does not take on the accountability for the result.
+
+If anything, the easier SQL becomes to generate, the more people who never used to write SQL will find themselves working with generated queries and their results.
+
+Not just engineers and analysts, but the people who use those numbers to make calls about campaigns and business direction, will need to understand the processing.
+
+What matters from here is not only memorizing syntax and writing SQL quickly from scratch.
+
+It is the ability to read SQL, predict how the data will change, verify the result, and explain why.
+
+Technologies and interfaces will change, but the ability to understand how data was extracted, joined, aggregated, and transformed remains as a foundation.
+
+For a while yet, at least, it is humans and organizations who are accountable for the result.
+
+That ability to understand is exactly what SQL Quiz Book aims to build.
+
+### Start by Looking at the Middle
+
+SQL Quiz Book publishes all 98 sets and 490 questions.
+
+Of those, 67 sets and 335 questions can be read for free, including the model answers, the explanations, and the diagrams of how the tables change.
+
+For the paid sets, the problem, the prerequisite knowledge, the tables involved, and the expected output are published as well. You never have to buy before you can tell what the material is like.
+
+To read every explanation, you can choose between a Pro plan at $10 per month and a one-time purchase at $20. The content you can read is the same.
+
+But there is no need to pick a plan first.
+
+Start by opening a single question.
+
+Look at the input tables.  
+Look at the expected output.  
+Think about the SQL you would need.  
+Then follow, one step at a time, the table transformation that corresponds to the query.
+
+Once you can see the middle that used to be invisible, not only the way you read SQL but the way you read results from data will change.
+
+From memorizing correct SQL,  
+to being able to explain why the data produced that result.
+
+SQL Quiz Book is a problem set for understanding the middle of SQL through the way tables change.
+
+[https://sqlquizbook.com/en/](https://sqlquizbook.com/en/)
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
