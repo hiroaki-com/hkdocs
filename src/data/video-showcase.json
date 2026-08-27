@@ -1,6 +1,11 @@
 {
   "ja": [
     {
+      "title": "SQLは、答えだけではわからない。",
+      "url": "/blog/2026/08/27/release-sql-quiz-book",
+      "video_asset": "/video/sql-quiz-book-promo-anomaly-dark.mp4"
+    },
+    {
       "title": "Ollama Colab Private Chat にWeb検索RAG機能を追加しました",
       "url": "/blog/2026/04/02/update-colab-ollama-private-chat-web-search",
       "video_asset": "https://github.com/user-attachments/assets/c4feb357-516b-41da-aa17-8844c5c7b3a8"

@@ -3,10 +3,26 @@ title: SQLは、答えだけではわからない。
 authors: [hk]
 tags: [web-app, 個人開発]
 description: "クエリとテーブルの変化の対応からSQLの処理過程を理解するための問題集「SQL Quiz Book」を公開しました。19テーマ・98セット・490問、うち67セット・335問を無料公開しています。"
+video_asset: "/video/sql-quiz-book-promo-anomaly-dark.mp4"
 ---
 
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    poster="/video/sql-quiz-book-promo-anomaly-dark-poster.jpg"
+    style={{ maxWidth: '70%', borderRadius: '0' }}
+    autoPlay
+    loop
+    muted
+    controls
+    playsInline
+  >
+    <source src="/video/sql-quiz-book-promo-anomaly-dark.webm" type="video/webm" />
+    <source src="/video/sql-quiz-book-promo-anomaly-dark.mp4" type="video/mp4" />
+  </video>
+</div>
 
 SQLを実行すれば、答えは返ってきます。
 
@@ -16,6 +32,8 @@ SQLを実行すれば、答えは返ってきます。
 どこで利用者が離脱しているのか。
 
 しかし、表示された数字だけを見ても、その数字が正しい理由までは分かりません。
+
+{/* truncate */}
 
 どのデータが集計に含まれたのか。  
 どの条件によって除外されたのか。  
@@ -33,8 +51,6 @@ SQLは答えを返してくれます。
 その多くを、見えないところで支えているのがSQLです。
 
 SQL Quiz Bookは、SQLの処理過程を、クエリとテーブルの変化の対応から理解するための問題集です。
-
-{/* truncate */}
 
 ### SQLの難しい点とは？
 
