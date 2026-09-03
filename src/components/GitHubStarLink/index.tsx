@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Translate from '@docusaurus/Translate';
 import SupportButton from '@site/src/components/SupportButton';
+import XFollowButton from '@site/src/components/XFollowButton';
 import styles from './styles.module.css';
 
 interface GitHubStarLinkProps {
@@ -92,6 +93,7 @@ export default function GitHubStarLink({
             </div>
           )}
         </a>
+        <XFollowButton />
         {showSupportButton && <SupportButton />}
       </div>
     </div>

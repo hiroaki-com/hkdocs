@@ -162,11 +162,11 @@ const config: Config = {
     },
     image: 'img/hkdocs-social-card.jpg',
     announcementBar: { // i18n化のため、日本語と英語を以下で定義。参照：https://docusaurus.io/blog/releases/2.4#translations
-      id: 'site_release_20250601',
+      id: 'site_release_20260903',
       content:
         process.env.DOCUSAURUS_CURRENT_LOCALE === 'en'
-          ? '🚀 June 1, 2025 ~ 🚀 Our site source code is available on <a target="_blank" rel="noopener noreferrer" href="https://github.com/hiroaki-com/hkdocs/blob/develop/README.en.md#hkdocs">GitHub (OSS)</a>.'
-          : '🚀 2025/6/1 ~ 🚀 当サイトのソースコードは全て <a target="_blank" rel="noopener noreferrer" href="https://github.com/hiroaki-com/hkdocs?tab=readme-ov-file#hkdocs">GitHubで公開(OSS)</a> しております。',
+          ? '📗 Released <a href="https://hkdocs.com/en/blog/2026/08/27/release-sql-quiz-book/">SQL Quiz Book</a>, a SQL problem collection. | 🚀 June 1, 2025 ~ 🚀 Our site source code is available on <a target="_blank" rel="noopener noreferrer" href="https://github.com/hiroaki-com/hkdocs/blob/develop/README.en.md#hkdocs">GitHub (OSS)</a>.'
+          : '📗 SQLの問題集 <a href="https://hkdocs.com/blog/2026/08/27/release-sql-quiz-book/">SQL Quiz Book</a> をリリースしました。 ／ 🚀 当サイトのソースコードは全て <a target="_blank" rel="noopener noreferrer" href="https://github.com/hiroaki-com/hkdocs?tab=readme-ov-file#hkdocs">GitHubで公開(OSS)</a> しております。',
       backgroundColor: '#73a8e6',
       textColor: '#fcf3f0',
       isCloseable: true,

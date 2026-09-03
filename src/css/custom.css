@@ -266,6 +266,56 @@ a[class*='cardContainer_'] p[class*='cardDescription_'] {
   color: inherit;
 }
 
+/* 告知テキストを右から左へ流す（swizzle 不要の CSS のみで実装）。
+   コンテンツ div 自体を width:max-content + padding-left:100% にし、
+   自身の幅ぶん左へ移動させることで文字列を完全に流し切る。
+   幅を広げたコンテンツに閉じるボタンが押し出されるため、ボタンは右端へ固定する。 */
+.theme-announcement-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-announcement-bar button[class*='closeButton_'] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.theme-announcement-bar div[class*='announcementBarContent_'] {
+  flex: 0 0 auto;
+  width: max-content;
+  padding-left: 100%;
+  white-space: nowrap;
+  text-align: left;
+  animation: hk-announcement-marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.theme-announcement-bar div[class*='announcementBarContent_']:hover {
+  animation-play-state: paused;
+}
+
+@keyframes hk-announcement-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-announcement-bar div[class*='announcementBarContent_'] {
+    padding-left: 0;
+    width: auto;
+    white-space: normal;
+    text-align: center;
+    animation: none;
+  }
+}
+
 /*
  * 4. Navbar Icon Links
  * -------------------------------------------------------------------------- */
