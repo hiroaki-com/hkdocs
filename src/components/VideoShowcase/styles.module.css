@@ -108,3 +108,22 @@
   background: var(--ifm-color-primary);
   transform: scale(1.4);
 }
+
+/* デスクトップでは機能カード一覧（.container）と左右端を揃える。
+   モバイルは従来どおり画面幅いっぱいのまま。 */
+@media (min-width: 997px) {
+  .section {
+    padding-left: calc(var(--ifm-spacing-horizontal) * 2);
+    padding-right: calc(var(--ifm-spacing-horizontal) * 2);
+  }
+
+  .wrapper {
+    max-width: calc(var(--ifm-container-width) - var(--ifm-spacing-horizontal) * 2);
+  }
+}
+
+@media (min-width: 1320px) {
+  .wrapper {
+    max-width: calc(var(--ifm-container-width-xl) - var(--ifm-spacing-horizontal) * 2);
+  }
+}
