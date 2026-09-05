@@ -248,7 +248,7 @@ a[class*='cardContainer_'] p[class*='cardDescription_'] {
   background-color: #e3f2fd;
   border-bottom: 1px solid #c1d9f1;
   color: #1a5c96;
-  font-size: 0.9rem;
+  font-size: 0.98rem;
   font-weight: 500;
   padding: 0.5rem 1rem;
   text-align: center;
@@ -286,10 +286,10 @@ a[class*='cardContainer_'] p[class*='cardDescription_'] {
 .theme-announcement-bar div[class*='announcementBarContent_'] {
   flex: 0 0 auto;
   width: max-content;
-  padding-left: 100%;
+  padding-left: 30%;
   white-space: nowrap;
   text-align: left;
-  animation: hk-announcement-marquee 40s linear infinite;
+  animation: hk-announcement-marquee 22s linear infinite;
   will-change: transform;
 }
 
