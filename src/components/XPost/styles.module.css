@@ -1,0 +1,24 @@
+/**
+ * src/components/XPost/styles.module.css
+ */
+.container {
+  margin: 1.5rem 0;
+  /* widgets.js が描画するラッパーは float するため、後続の本文が回り込まないようにする */
+  clear: both;
+}
+
+/* 埋め込みラッパーの float とマージンを打ち消し、本文と同じ左端に揃える */
+.container :global(.twitter-tweet-rendered) {
+  float: none !important;
+  margin-right: 0 !important;
+}
+
+/* 埋め込みが読み込まれるまで、および JS 無効時に表示するリンク */
+.fallback {
+  max-width: 550px;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
