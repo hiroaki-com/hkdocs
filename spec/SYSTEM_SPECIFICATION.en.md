@@ -35,7 +35,7 @@ II. Technology Stack
     - Icons: `lucide-react`
     - Styling: `github-markdown-css`, `clsx`
     - Syntax highlighting: `prism-react-renderer`
-  * Node.js: `v24.18.0` (version specified in the `.nvmrc` file)
+  * Node.js: `v24.20.0` (version specified in the `.nvmrc` file)
   * Package Manager: pnpm `v11.10.0` (managed via Corepack)
   * Containerization: Docker, Docker Compose
   * Source Code Management: GitHub
@@ -134,11 +134,11 @@ V. Configuration Details: Containerization (Docker)
 
   * `Dockerfile` (for Production):
     - Uses a multi-stage build to reduce the final image size.
-      - `builder` stage: Based on `node:24.18.0-alpine`, it uses pnpm (enabled via
+      - `builder` stage: Based on `node:24.20.0-alpine`, it uses pnpm (enabled via
         Corepack) to install dependencies with `pnpm install --frozen-lockfile` and
         builds the site with `pnpm build`. `pnpm prune --prod` removes packages
         unnecessary for production.
-      - Final stage: Based on `node:24.18.0-alpine`, it copies only the build
+      - Final stage: Based on `node:24.20.0-alpine`, it copies only the build
         artifacts (`build` directory), the production `node_modules`, and
         `package.json` from the `builder` stage.
     - Security: Runs the application as a non-root user (`node`).

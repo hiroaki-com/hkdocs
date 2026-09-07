@@ -1,11 +1,11 @@
 # syntax=docker/dockerfile:1
-FROM node:24.18.0-alpine AS development
+FROM node:24.20.0-alpine AS development
 
 WORKDIR /app
 
 RUN corepack enable pnpm
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # Source code will be mounted via docker-compose.yml
