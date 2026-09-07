@@ -1,6 +1,6 @@
 # ---- Builder Stage ----
 # Base image: Node.js Alpine
-FROM node:24.18.0-alpine AS builder
+FROM node:24.20.0-alpine AS builder
 WORKDIR /app
 
 # Enable Corepack to use the pnpm version from package.json's "packageManager" field
@@ -23,7 +23,7 @@ RUN pnpm prune --prod
 
 # ---- Final Stage ----
 # Base image: Node.js Alpine
-FROM node:24.18.0-alpine
+FROM node:24.20.0-alpine
 WORKDIR /app
 
 # Set production environment
