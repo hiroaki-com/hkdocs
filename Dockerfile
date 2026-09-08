@@ -18,8 +18,16 @@ COPY . .
 # Build the Docusaurus site
 RUN pnpm build
 
-# Remove devDependencies for smaller production node_modules
-RUN pnpm prune --prod
+# ---- Runtime Dependencies Stage ----
+# The final image only serves static files, so it needs http-server alone.
+# Installing the full production tree here would ship build-time-only packages
+# (mermaid, react, @docusaurus/*) that dominate the image size.
+# The version range is read from package.json so this cannot drift from it.
+FROM node:24.20.0-alpine AS runtime-deps
+WORKDIR /srv
+COPY package.json /tmp/package.json
+RUN npm install --no-audit --no-fund --no-package-lock \
+      "http-server@$(node -p "require('/tmp/package.json').dependencies['http-server']")"
 
 # ---- Final Stage ----
 # Base image: Node.js Alpine
@@ -37,8 +45,8 @@ WORKDIR /app
 # Copy Docusaurus build output from builder stage
 COPY --from=builder --chown=node:node /app/build ./build
 
-# Copy production-ready node_modules and package.json
-COPY --from=builder --chown=node:node /app/node_modules ./node_modules
+# Copy the runtime-only node_modules (http-server) and package.json
+COPY --from=runtime-deps --chown=node:node /srv/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/package.json ./package.json
 # pnpm-lock.yaml is not strictly required in the final image if node_modules is fully populated
 # and no 'pnpm install' is run. Omitting can slightly reduce image size.
