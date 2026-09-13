@@ -100,7 +100,7 @@ jobs:
             --platform=managed \
             --region=${{ env.GCP_CLOUD_RUN_REGION }} \
             --port=8080 \
-            --allow-unauthenticated \
+            --no-invoker-iam-check \
             --quiet
             # Consider adding --cpu, --memory, --min-instances, --max-instances as needed.
             # Health checks from Dockerfile are typically auto-detected by Cloud Run.

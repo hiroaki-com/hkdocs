@@ -75,7 +75,7 @@ gcloud run deploy "${CR_SERVICE_NAME}" \
     --platform=managed \
     --region="${GCP_REGION}" \
     --port=8080 \
-    --allow-unauthenticated \
+    --no-invoker-iam-check \
     --quiet
 
 SERVICE_URL=$(gcloud run services describe "${CR_SERVICE_NAME}" --platform=managed --region="${GCP_REGION}" --format='value(status.url)')
