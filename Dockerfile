@@ -18,6 +18,10 @@ COPY . .
 # Build the Docusaurus site
 RUN pnpm build
 
+# Pre-generate .br/.gz siblings. http-server never compresses on the fly:
+# its --brotli/--gzip flags only serve an already-existing `<file>.br`/`.gz`.
+RUN node scripts/precompress-build.js
+
 # ---- Runtime Dependencies Stage ----
 # The final image only serves static files, so it needs http-server alone.
 # Installing the full production tree here would ship build-time-only packages
@@ -59,5 +63,5 @@ EXPOSE 8080
 # when pnpm-lock.yaml is absent (as in this image), crashing on the root-owned
 # /app (EACCES). Direct invocation also removes the cold-start dependency on
 # downloading pnpm from the npm registry via Corepack.
-# (equivalent to package.json "serve": "http-server ./build --single")
-CMD ["node", "node_modules/http-server/bin/http-server", "./build", "--single", "-p", "8080"]
+# (equivalent to package.json "serve")
+CMD ["node", "node_modules/http-server/bin/http-server", "./build", "--single", "--gzip", "--brotli", "-p", "8080"]
