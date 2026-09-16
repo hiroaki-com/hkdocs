@@ -1,4 +1,4 @@
-HkDocsの仕様書 (2026/07/05 版)
+HkDocsの仕様書 (2026/09/16 版)
 ===============================
 
 
@@ -155,6 +155,16 @@ VI. 構成詳細: Google Cloud (GCP)
     アプリケーションのスケーラブルなホスティングと、コンテナイメージのセキュアな管理。
     リージョンは `asia-northeast1` (東京) を使用する。
 
+  * プロジェクトと管理主体 (2026-09-16 時点):
+    - プロジェクト: `hkdocs-461605` (プロジェクト番号 `101489112208`)。
+      組織 `286146704976` (`hkdocs.com`) 配下。
+    - 請求先アカウント: `016F82-450BB8-2F5413`。
+    - 運用アカウント: `hkdocs.info@gmail.com` (`roles/owner` はこの1名のみ)。
+    - CI は Workload Identity Federation の
+      `hkdocs-cd-runner@hkdocs-461605.iam.gserviceaccount.com` が担う (SAキーは使わない)。
+    - 組織・Cloud Identity・請求先など基盤側の構成は別リポジトリ
+      `hiroaki-com/hkdocs-org` (private) が正であり、本リポジトリからは操作しない。
+
   * Artifact Registry:
     - 目的: CI/CDパイプラインでビルドされたDockerイメージを一元的に保管・管理する。
     - リポジトリ名: `hkdocs-images` (イメージ名: `hkdocs-app`)
@@ -176,7 +186,9 @@ VI. 構成詳細: Google Cloud (GCP)
       - スケーリング: 最小インスタンス数を0に設定し、リクエストがない時間帯の
         コストを削減。
       - ポート: コンテナが公開する `8080`番ポートを指定。
-      - 認証: 「未認証の呼び出しを許可」し、一般公開。
+      - 認証: `--no-invoker-iam-check` により一般公開する (IAM の invoker チェック自体を
+        無効化する方式。`allUsers` の invoker バインドは付与しない)。
+        `allUsers` を再付与するには組織ポリシーの緩和が必要なため、安易に元の方式へ戻さない。
 
 
 VII. サイト構成 (コンテンツ) - Docusaurus
@@ -269,6 +281,19 @@ IX. セキュリティと運用
       漏洩リスクを排除する。
     - GCPリソースへのアクセス権限はIAMで最小権限の原則を適用する。
     - 機密情報 (APIキー等) はGitHub Secretsに保管し、ワークフロー内で安全に利用する。
+    - 組織 `286146704976` から以下7本の組織ポリシーが全プロジェクトへ継承される (すべて enforce)。
+      `iam.managed.allowedPolicyMembers` / `iam.managed.disableServiceAccountKeyCreation` /
+      `iam.disableServiceAccountKeyUpload` / `iam.automaticIamGrantsForDefaultServiceAccounts` /
+      `storage.uniformBucketLevelAccess` / `essentialcontacts.managed.allowedContactDomains` /
+      `compute.managed.restrictProtocolForwardingCreationForTypes`。
+    - 実務上効く制約 (これらに反する変更提案は組織ポリシーで弾かれる):
+      1. サービスアカウントキーの新規作成・外部キーの持ち込みは禁止 (CIは Workload Identity
+         Federation を使う)。
+      2. 新規 Cloud Storage バケットは均一アクセス (uniform bucket-level access) が必須。
+      3. IAM に追加できるプリンシパルは `admin@hkdocs.com` / `backup-admin@hkdocs.com` と
+         Gmail 3件 (`hkdocs.info` / `pollman.x` / `sqlquizbook`) に限定される。
+    - 組織 IAM・組織ポリシー・請求先・Cloud Identity の詳細は別リポジトリ
+      `hiroaki-com/hkdocs-org` (private) が正。本リポジトリからは基盤を操作しない。
   * SEO / クロール管理:
     - `robots.txt`とロケール別サイトマップでクロール対象を制御する。
     - 構造化データ (JSON-LD) と正規化されたロケール別URLで検索エンジンの解釈を補助する。

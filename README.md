@@ -190,6 +190,26 @@ graph LR
 ./deploy.sh
 ```
 
+`deploy.sh` は、グローバルのアクティブ構成ではなく gcloud 構成 `hkdocs`
+(プロジェクト `hkdocs-461605`) を明示的に指定して動作します。実行前に、この構成が存在し
+認証済みであることを確認してください。
+
+```bash
+gcloud config configurations list
+gcloud --configuration=hkdocs config list
+```
+
+構成名が異なる環境では、`deploy.sh` 冒頭の `GCLOUD_CONFIGURATION` を変更するか、
+プロジェクトIDを環境変数で固定して実行します。
+
+```bash
+GCP_PROJECT_ID_OVERRIDE=hkdocs-461605 ./deploy.sh
+```
+
+> **注意:** 他プロジェクト (例: `sqlquizbook-prod`) への誤デプロイを防ぐため、
+> `gcloud config set` / `gcloud config configurations activate` でグローバルの
+> アクティブ構成を切り替える運用は行いません。
+
 ### ライセンス
 
 -   **コード**: このプロジェクトのソースコードは [MITライセンス](./LICENSE) の下で公開されています。

@@ -190,6 +190,26 @@ To deploy manually from your local environment, ensure the `gcloud` CLI is confi
 ./deploy.sh
 ```
 
+`deploy.sh` explicitly targets the gcloud configuration `hkdocs`
+(project `hkdocs-461605`) instead of whichever configuration happens to be active
+globally. Before running it, confirm that this configuration exists and is authenticated.
+
+```bash
+gcloud config configurations list
+gcloud --configuration=hkdocs config list
+```
+
+If your configuration is named differently, either change `GCLOUD_CONFIGURATION`
+at the top of `deploy.sh`, or pin the project ID via an environment variable.
+
+```bash
+GCP_PROJECT_ID_OVERRIDE=hkdocs-461605 ./deploy.sh
+```
+
+> **Note:** To avoid deploying to the wrong project (e.g. `sqlquizbook-prod`), do not
+> switch the global active configuration with `gcloud config set` or
+> `gcloud config configurations activate`.
+
 ## License
 
 -   **Code**: The source code of this project is licensed under the [MIT License](./LICENSE).
