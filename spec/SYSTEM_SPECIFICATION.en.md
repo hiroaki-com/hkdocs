@@ -1,4 +1,4 @@
-HkDocs Specification (As of 2026/07/05)
+HkDocs Specification (As of 2026/09/16)
 =======================================
 
 
@@ -171,6 +171,17 @@ VI. Configuration Details: Google Cloud (GCP)
     To provide scalable hosting for the application and secure management of
     container images. The `asia-northeast1` (Tokyo) region is used.
 
+  * Project and Ownership (as of 2026-09-16):
+    - Project: `hkdocs-461605` (project number `101489112208`), under
+      organization `286146704976` (`hkdocs.com`).
+    - Billing account: `016F82-450BB8-2F5413`.
+    - Operating account: `hkdocs.info@gmail.com` (the only `roles/owner`).
+    - CI runs as the Workload Identity Federation principal
+      `hkdocs-cd-runner@hkdocs-461605.iam.gserviceaccount.com` (no SA keys).
+    - The organization, Cloud Identity, and billing setup are owned by the
+      separate `hiroaki-com/hkdocs-org` repository (private); this repository
+      does not operate that layer.
+
   * Artifact Registry:
     - Objective: To centrally store and manage Docker images built by the
       CI/CD pipeline.
@@ -195,8 +206,10 @@ VI. Configuration Details: Google Cloud (GCP)
       - Scaling: Sets the minimum number of instances to 0 to reduce costs
         during periods of no traffic.
       - Port: Specifies port `8080`, which the container exposes.
-      - Authentication: "Allow unauthenticated invocations" to make the site
-        publicly accessible.
+      - Authentication: Made publicly accessible via `--no-invoker-iam-check`,
+        which disables the IAM invoker check itself; no `allUsers` invoker
+        binding is granted. Restoring an `allUsers` binding would require
+        relaxing an organization policy, so do not casually revert to it.
 
 
 VII. Site Structure (Content) - Docusaurus
@@ -305,6 +318,26 @@ IX. Security and Operations
       via IAM.
     - Stores sensitive information (e.g., API keys) in GitHub Secrets for
       secure use within workflows.
+    - Seven organization policies are inherited from organization
+      `286146704976` by every project (all enforced):
+      `iam.managed.allowedPolicyMembers` /
+      `iam.managed.disableServiceAccountKeyCreation` /
+      `iam.disableServiceAccountKeyUpload` /
+      `iam.automaticIamGrantsForDefaultServiceAccounts` /
+      `storage.uniformBucketLevelAccess` /
+      `essentialcontacts.managed.allowedContactDomains` /
+      `compute.managed.restrictProtocolForwardingCreationForTypes`.
+    - Constraints that matter in practice (proposals violating them are
+      rejected by organization policy):
+      1. Creating new service account keys or uploading external ones is
+         forbidden (CI uses Workload Identity Federation).
+      2. New Cloud Storage buckets must use uniform bucket-level access.
+      3. Principals that may be added to IAM are limited to
+         `admin@hkdocs.com` / `backup-admin@hkdocs.com` and three Gmail
+         accounts (`hkdocs.info` / `pollman.x` / `sqlquizbook`).
+    - Details of organization IAM, organization policies, billing, and Cloud
+      Identity live in `hiroaki-com/hkdocs-org` (private), which is the source
+      of truth; infrastructure is not operated from this repository.
   * SEO / Crawl Management:
     - Controls crawlable targets via `robots.txt` and per-locale sitemaps.
     - Aids search-engine interpretation with structured data (JSON-LD) and
