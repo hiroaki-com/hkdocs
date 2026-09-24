@@ -62,5 +62,9 @@
   "link.item.label.プライバシーポリシー": {
     "message": "Privacy Policy",
     "description": "The label of footer link with label=プライバシーポリシー linking to /legal/privacy-policy"
+  },
+  "link.item.label.特定商取引法に基づく表記": {
+    "message": "Legal Notice (Specified Commercial Transactions Act)",
+    "description": "The label of footer link with label=特定商取引法に基づく表記 linking to /legal/tokusho"
   }
 }
