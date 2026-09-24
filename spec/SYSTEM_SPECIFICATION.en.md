@@ -246,7 +246,7 @@ VII. Site Structure (Content) - Docusaurus
     - Profile (`profile.mdx`): A self-introduction page.
     - Legal Pages (`legal/`): Privacy Policy (`privacy-policy.mdx`) and the
       Japanese "Act on Specified Commercial Transactions" notice
-      (`tokusho.mdx`, Japanese only).
+      (`tokusho.mdx`).
   * Shared Components (`src/components/`):
     - `ShareButtons` (social sharing), `GitHubStarLink` / `SupportButton`
       (star and support prompts), `LinksCard` / `SectionHeading` (shared link-list UI),

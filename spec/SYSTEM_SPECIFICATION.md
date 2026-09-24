@@ -219,7 +219,7 @@ VII. サイト構成 (コンテンツ) - Docusaurus
       構造化データ (JSON-LD) を付与する。
     - プロフィール (`profile.mdx`): 自己紹介ページ。
     - 法務ページ (`legal/`): プライバシーポリシー (`privacy-policy.mdx`) と
-      特定商取引法に基づく表記 (`tokusho.mdx`, 日本語のみ)。
+      特定商取引法に基づく表記 (`tokusho.mdx`)。
   * 共通コンポーネント (`src/components/`):
     - `ShareButtons` (SNS共有), `GitHubStarLink` / `SupportButton` (スター・支援導線),
       `LinksCard` / `SectionHeading` (リンク一覧の共通UI), `HomepageFeatures`,
