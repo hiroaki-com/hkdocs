@@ -1,0 +1,119 @@
+---
+title: カフェのWi‑Fi、もう1時間ごとにつなぎ直さない。時間切れを自動で再接続するMac用ツール「cafe-wifi-okawari」をリリースしました。
+authors: [hk]
+tags: [mac, network, open-source, 個人開発]
+image: "/img/cafe-wifi-okawari_01_cover.webp"
+description: "カフェの無料Wi‑Fiが時間切れになっても、自動で再接続してくれるMac用の無料ツールを公開しました。ドトール・タリーズ・コメダなどに対応し、最初に1回同意するだけで、あとは作業に集中できます。"
+---
+
+import Admonition from '@theme/Admonition';
+import ThemedImage from '@theme/ThemedImage';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <img src="/img/cafe-wifi-okawari_01_cover.webp" alt="cafe-wifi-okawari のロゴ。湯気がWi‑Fiの電波になったコーヒーカップ" style={{ maxWidth: '100%', width: '600px', borderRadius: 'var(--ifm-global-radius)', border: '1px solid var(--ifm-color-emphasis-200)' }} />
+</div>
+
+カフェで作業していると、1時間ほどで急にネットが止まり、Wi‑Fiのログイン画面がまた出てくることがあります。無料Wi‑Fiの利用時間が切れたためで、そのたびに画面を開いて「同意する」を押し直すことになります。
+
+調べものの途中や、集中して書いている最中に毎回これが起きるのが地味にストレスでした。そこで、時間切れになったら自動でつなぎ直してくれるMac用のツール「**cafe-wifi-okawari**」を作り、無料で公開しました。最初にお店で1回だけ自分で同意すれば、あとはコーヒーのおかわりのように、接続を自動で継ぎ足してくれます。
+
+{/* truncate */}
+
+<Admonition type="tip" title="今すぐ試す">
+  Macの「ターミナル」に1行貼り付けるだけで導入できます。手順は下の「使い方」で紹介しています。
+
+  <ul>
+    <li>
+      ☕ 導入方法・詳しい説明<br/>
+      <a href="https://github.com/hiroaki-com/cafe-wifi-okawari" target="_blank" rel="noopener noreferrer">hiroaki-com/cafe-wifi-okawari</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>使い方・対応店舗・注意点はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+### こんな場面で使えます
+
+- カフェで1〜2時間作業するとき、途中でネットが切れて手が止まるのを避けたい
+- ログイン画面がうまく出てこず、つなぎ直しに手間取ることが多い
+- ドトールやタリーズなど、よく行くお店のWi‑Fiをもっと快適に使いたい
+
+### 3つの特徴
+
+**時間切れになっても、自動でつながり直します。**
+最初の1回だけ、いつもどおりログイン画面で規約に同意してください。以後は時間切れになるたびに、ツールが裏側で同意を送り直します。ネットが止まるのは長くても十数秒ほど（実際に試したお店では約6秒）で、気づかないうちに戻っていることがほとんどです。
+
+**状態はメニューバーのコーヒーカップでわかります。**
+画面上部のメニューバーにコーヒーカップのアイコンが表示され、今どういう状態かがひと目でわかります。クリックすると、つながっているWi‑Fiの名前や、次に時間切れになりそうな時刻の目安も確認できます。うまくつながったときは何も表示せず、自分で操作が必要なときだけお知らせします。
+
+**追加のアプリや管理者パスワードは不要です。**
+Macにもともと入っている機能だけで動きます。IDやパスワード、メールアドレスは扱わず、作者のサーバーに情報を送ることもありません。不要になったら、コマンド1行できれいに削除できます。
+
+### 対応しているお店
+
+規約に同意するだけで使える、Wi2 と USEN の無料Wi‑Fiに対応しています。
+
+| お店 | 状況 |
+|---|---|
+| ドトール・エクセルシオール | 動作確認済み |
+| すかいらーくグループ（ガストなど） | 動作確認済み |
+| タリーズ | 動作確認済み |
+| コメダ珈琲 | 動作確認済み |
+| カフェ・ド・クリエ | 動作確認済み |
+| スターバックス | 動く見込み |
+| ルノアール・ミヤマ珈琲 | 動く見込み |
+
+会員登録やメール登録、アンケートが必要なWi‑Fi（マクドナルドなど）には対応していません。動作環境は macOS 15 以降です。
+
+### 使い方
+
+#### 1. 導入する
+
+ターミナルを開き（⌘+スペースで「ターミナル」と入力）、次の1行を貼り付けて Enter を押します。
+
+```sh
+cd "$(mktemp -d)" && curl -fsSLO https://github.com/hiroaki-com/cafe-wifi-okawari/releases/latest/download/cafe-wifi-okawari.tar.gz && tar -xzf cafe-wifi-okawari.tar.gz && zsh cafe-wifi-okawari/install.sh
+```
+
+`Installed:` と表示されたら完了です。メニューバーにコーヒーカップが表示されます。
+
+#### 2. お店で1回だけ同意する
+
+お店のWi‑Fiにつなぐと、いつものログイン画面が出ます。規約を読んで「同意する」を押してください。タリーズ・コメダでは、ツールを導入したあとに同意したお店から対象になります。
+
+#### 3. あとはそのまま作業する
+
+これで準備は完了です。時間切れになっても、自動でつながり直します。
+
+### メニューバーのアイコン
+
+| アイコン | 意味 |
+|---|---|
+| <ThemedImage alt="カップ" sources={{ light: '/img/cafe-wifi-okawari_state-on.png', dark: '/img/cafe-wifi-okawari_state-on-white.png' }} width="33" height="22" /> | 動いています |
+| <ThemedImage alt="カップ ✓" sources={{ light: '/img/cafe-wifi-okawari_state-check.png', dark: '/img/cafe-wifi-okawari_state-check-white.png' }} width="33" height="22" /> | 自動でつながり直しました（10分間表示） |
+| <ThemedImage alt="カップ !" sources={{ light: '/img/cafe-wifi-okawari_state-warn.png', dark: '/img/cafe-wifi-okawari_state-warn-white.png' }} width="33" height="22" /> | ログイン画面で自分の操作が必要です |
+| <ThemedImage alt="カップ …" sources={{ light: '/img/cafe-wifi-okawari_state-wait.png', dark: '/img/cafe-wifi-okawari_state-wait-white.png' }} width="33" height="22" /> | ログイン画面での同意を待っています |
+| <ThemedImage alt="薄いカップ" sources={{ light: '/img/cafe-wifi-okawari_state-off.png', dark: '/img/cafe-wifi-okawari_state-off-white.png' }} width="33" height="22" /> | 停止しています |
+
+### 安全性とマナーについて
+
+本ツールは、ふだんお使いのユーザー権限のまま動きます。通信するのは接続確認用のAppleのページとWi‑Fiのログイン先だけで、処理の中身はすべて GitHub で公開しています。なお、無料Wi‑Fiの通信はもともと暗号化されていないため、ネットバンキングなど大事なやりとりは、これまでどおり HTTPS のサイトや VPN を使って守ってください。
+
+また、このツールは作業中のつなぎ直しの手間を減らすためのもので、お店での長居を勧めるものではありません。Wi‑Fiがつながり続けても、滞在時間などのお店のルールはそのまま適用されます。混雑しているときは早めに席を譲るなど、いつもどおりのマナーで気持ちよく使いましょう。
+
+<Admonition type="caution" title="ご利用の前に">
+  本ツールは非公式で、Wi2・USENおよび各店舗による公認はありません。最初はご自身で規約を確認して同意し、提供者の規約とお店のルールの範囲内でお使いください。また、つながり直すまでの十数秒は通信が止まるため、大事なオンライン会議の前などはご注意ください。詳しくは<a href="https://github.com/hiroaki-com/cafe-wifi-okawari/blob/main/USAGE-NOTES.md" target="_blank" rel="noopener noreferrer">利用上の注意</a>をお読みください。
+</Admonition>
+
+不要になったときは、ターミナルで `zsh ~/.local/bin/cafe-wifi-okawari-ctl uninstall` を実行すると削除できます。
+
+なお、そもそもログイン画面が表示されない場合は、[キャプティブポータルの解説記事](/blog/2026/01/08/fix-public-wifi-captive-portal-issue/)で対処法を紹介しています。
+
+まだ試せていないお店での動作報告や、不具合の報告は [GitHub の Issue](https://github.com/hiroaki-com/cafe-wifi-okawari/issues) で歓迎しています。カフェでの作業が、少しでも快適になればうれしいです。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />

@@ -1,0 +1,121 @@
+---
+title: Stop Reconnecting to Café Wi‑Fi Every Hour. Introducing "cafe-wifi-okawari", a Mac Tool That Reconnects Automatically When Your Session Times Out.
+authors: [hk]
+tags: [mac, network, open-source, 個人開発]
+image: "/img/cafe-wifi-okawari_01_cover.webp"
+description: "A free Mac tool for café Wi‑Fi in Japan that reconnects you automatically when your free session times out. It works with Doutor, Tully's, Komeda and more: accept the terms once, and keep working."
+---
+
+import Admonition from '@theme/Admonition';
+import ThemedImage from '@theme/ThemedImage';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <img src="/img/cafe-wifi-okawari_01_cover.webp" alt="The cafe-wifi-okawari logo: a coffee cup whose steam turns into Wi‑Fi waves" style={{ maxWidth: '100%', width: '600px', borderRadius: 'var(--ifm-global-radius)', border: '1px solid var(--ifm-color-emphasis-200)' }} />
+</div>
+
+When you work at a café, the internet often stops after about an hour and the Wi‑Fi login page pops up again. Your free Wi‑Fi session has timed out, and you have to open the page and press "Accept" all over again.
+
+Having this happen in the middle of research or a focused writing session was a small but constant source of stress. So I built "**cafe-wifi-okawari**", a Mac tool that reconnects you automatically when the session times out, and released it for free. Accept the terms yourself once at the shop, and the tool keeps topping up your connection, just like a coffee refill (*okawari* in Japanese).
+
+Please note that the tool is built for the free Wi‑Fi at café chains in Japan, and does not work with networks outside Japan.
+
+{/* truncate */}
+
+<Admonition type="tip" title="Try it now">
+  You can install it by pasting a single line into the Mac "Terminal" app. See "How to use it" below.
+
+  <ul>
+    <li>
+      ☕ Installation and details<br/>
+      <a href="https://github.com/hiroaki-com/cafe-wifi-okawari/blob/main/README.en.md" target="_blank" rel="noopener noreferrer">hiroaki-com/cafe-wifi-okawari</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>Usage, supported shops, and notes are all here.</small>
+    </li>
+  </ul>
+</Admonition>
+
+### When it helps
+
+- You work at a café for an hour or two and don't want the connection to drop halfway through
+- The login page often fails to appear, and reconnecting takes more effort than it should
+- You want a smoother Wi‑Fi experience at shops you visit often, such as Doutor or Tully's
+
+### Three key features
+
+**It reconnects automatically after a time-out.**
+The first time only, accept the terms on the login page as usual. After that, each time your session times out, the tool re-sends the acceptance in the background. The connection pauses for at most about ten seconds (around 6 seconds at the shops I tested), and most of the time you won't even notice.
+
+**A coffee cup in the menu bar shows the status.**
+A coffee cup icon appears in the menu bar at the top of the screen, so you can see the current state at a glance. Click it to check the Wi‑Fi you're connected to and an estimate of when the next time-out will happen. It stays quiet when everything works, and only notifies you when you need to act.
+
+**No extra apps or admin password needed.**
+It runs using only what already ships with your Mac. It does not handle IDs, passwords, or email addresses, and sends nothing to the author's servers. When you no longer need it, a single command removes it cleanly.
+
+### Supported shops
+
+It supports the free Wi2 and USEN Wi‑Fi networks (Japanese providers) that only require accepting the terms.
+
+| Shop | Status |
+|---|---|
+| Doutor / Excelsior Caffé | Tested |
+| Skylark group (Gusto, etc.) | Tested |
+| Tully's Coffee | Tested |
+| Komeda's Coffee | Tested |
+| Café de Crié | Tested |
+| Starbucks | Expected to work |
+| Renoir / Miyama Coffee | Expected to work |
+
+Networks that need a sign-up, an email address, or a survey (for example McDonald's) are not supported. It requires macOS 15 or later.
+
+### How to use it
+
+#### 1. Install
+
+Open Terminal (press ⌘+Space and type "Terminal"), paste the following line, and press Enter.
+
+```sh
+cd "$(mktemp -d)" && curl -fsSLO https://github.com/hiroaki-com/cafe-wifi-okawari/releases/latest/download/cafe-wifi-okawari.tar.gz && tar -xzf cafe-wifi-okawari.tar.gz && zsh cafe-wifi-okawari/install.sh
+```
+
+When you see `Installed:`, you're done. A coffee cup appears in the menu bar.
+
+#### 2. Accept once at the shop
+
+When you join the shop's Wi‑Fi, the usual login page appears. Read the terms and press "Accept". At Tully's and Komeda, only shops where you accept after installing the tool are covered.
+
+#### 3. Keep working
+
+That's all. When your session times out, the tool reconnects you automatically.
+
+### Menu bar icons
+
+| Icon | Meaning |
+|---|---|
+| <ThemedImage alt="Cup" sources={{ light: '/img/cafe-wifi-okawari_state-on.png', dark: '/img/cafe-wifi-okawari_state-on-white.png' }} width="33" height="22" /> | Running |
+| <ThemedImage alt="Cup ✓" sources={{ light: '/img/cafe-wifi-okawari_state-check.png', dark: '/img/cafe-wifi-okawari_state-check-white.png' }} width="33" height="22" /> | Reconnected automatically (shown for 10 minutes) |
+| <ThemedImage alt="Cup !" sources={{ light: '/img/cafe-wifi-okawari_state-warn.png', dark: '/img/cafe-wifi-okawari_state-warn-white.png' }} width="33" height="22" /> | You need to act on the login page |
+| <ThemedImage alt="Cup …" sources={{ light: '/img/cafe-wifi-okawari_state-wait.png', dark: '/img/cafe-wifi-okawari_state-wait-white.png' }} width="33" height="22" /> | Waiting for you to accept on the login page |
+| <ThemedImage alt="Faded cup" sources={{ light: '/img/cafe-wifi-okawari_state-off.png', dark: '/img/cafe-wifi-okawari_state-off-white.png' }} width="33" height="22" /> | Stopped |
+
+### Safety and manners
+
+The tool runs with your normal user permissions. It only talks to Apple's connectivity check page and the Wi‑Fi login page, and all of its code is public on GitHub. Keep in mind that free Wi‑Fi traffic is not encrypted to begin with, so keep protecting important activity such as online banking with HTTPS sites or a VPN, as you always have.
+
+Also, the tool is meant to save you the hassle of reconnecting while you work, not to encourage long stays at the shop. Even if your Wi‑Fi stays connected, the shop's rules, such as time limits, still apply. When it's crowded, give up your seat early and use it with the usual good manners.
+
+<Admonition type="caution" title="Before you use it">
+  This is an unofficial tool, and it is not endorsed by Wi2, USEN, or any of the shops. Review and accept the terms yourself the first time, and use it within the provider's terms and the shop's rules. The connection also pauses for up to about ten seconds while reconnecting, so be careful before important online meetings. For details, please read the <a href="https://github.com/hiroaki-com/cafe-wifi-okawari/blob/main/USAGE-NOTES.en.md" target="_blank" rel="noopener noreferrer">usage notes</a>.
+</Admonition>
+
+To remove it, run `zsh ~/.local/bin/cafe-wifi-okawari-ctl uninstall` in Terminal.
+
+If the login page doesn't appear at all in the first place, see [my article on captive portals](/blog/2026/01/08/fix-public-wifi-captive-portal-issue/) for fixes.
+
+Reports from shops I haven't tested yet and bug reports are welcome on [GitHub Issues](https://github.com/hiroaki-com/cafe-wifi-okawari/issues). I hope it makes your café work sessions a little more comfortable.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />
