@@ -1,0 +1,5 @@
+# Netlify (hkdocs.netlify.app) only; Cloud Run's http-server ignores this file.
+# The CMS there holds write access to main, and frame-ancestors cannot be set via <meta>.
+/admin/*
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
