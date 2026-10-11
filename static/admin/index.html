@@ -15,7 +15,7 @@
     localhost + localStorage の netlifySiteURL や local_backend で編集する場合は、その
     オリジンを connect-src に追加しないと通信が遮断される。
     frame-ancestors と X-Frame-Options は meta では効かないため、クリックジャッキング対策は
-    配信レイヤーでのヘッダー付与（ランブック §7-4）が必要。
+    static/_headers で応答ヘッダーとして付与する（管理画面を実際に配信する Netlify 側で有効）。
   -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
