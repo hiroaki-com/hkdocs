@@ -1,4 +1,4 @@
-HkDocs Specification (As of 2026/09/16)
+HkDocs Specification (As of 2026/10/11)
 =======================================
 
 
@@ -306,10 +306,10 @@ VIII. System Flow
 IX. Security and Operations
 ---------------------------
   * Access Control:
-    Sets up branch protection rules on `main` and `develop`, making a passed
-    Pull Request and CI check mandatory conditions for merging.
+    A ruleset on `main` and `develop` blocks force pushes and branch deletion.
+    Pull Requests are not mandatory, because Decap CMS commits directly to `main`.
   * Dependency Vulnerability Management:
-    Enables Dependabot to automate dependency updates. Vulnerability scanning
+    Enables Dependabot alerts and secret scanning (push protection). Vulnerability scanning
     in CI will also be considered.
   * Infrastructure Security:
     - Uses Workload Identity Federation for GCP authentication to eliminate the
