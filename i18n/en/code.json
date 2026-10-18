@@ -1716,6 +1716,14 @@
     "message": "arXiv",
     "description": "Title for arXiv"
   },
+  "links.site.academic.hfpapers.desc": {
+    "message": "Daily curation of trending AI/ML papers, with community upvotes, discussions, and links to related models and datasets.",
+    "description": "Description for Hugging Face Papers"
+  },
+  "links.site.academic.hfpapers.title": {
+    "message": "Hugging Face Papers",
+    "description": "Title for Hugging Face Papers"
+  },
   "links.site.academic.citeseerx.desc": {
     "message": "A search engine that automatically extracts and links citation information for papers in the computer and information science fields.",
     "description": "Description for CiteSeerX"
