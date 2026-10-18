@@ -141,6 +141,7 @@ const linksData: LinkCategoryData[] = [
     title: { id: 'links.majorCategory.academicResearch', message: '論文' },
     sites: [
       { href: 'https://arxiv.org/', title: { id: 'links.site.academic.arxiv.title', message: 'arXiv' }, description: { id: 'links.site.academic.arxiv.desc', message: '物理学、数学、CS等の査読前論文を無料公開するオープンアクセスの先駆的プラットフォーム。' } },
+      { href: 'https://huggingface.co/papers/', title: { id: 'links.site.academic.hfpapers.title', message: 'Hugging Face Papers' }, description: { id: 'links.site.academic.hfpapers.desc', message: 'AI・機械学習分野の注目論文を日々キュレーション。コミュニティの投票や議論、関連モデル・データセットへのリンクも提供。' } },
       { href: 'https://ieeexplore.ieee.org/', title: { id: 'links.site.academic.ieee.title', message: 'IEEE Xplore' }, description: { id: 'links.site.academic.ieee.desc', message: 'IEEE発行の電気工学・CS分野の学術雑誌、論文、技術標準を提供するデジタルライブラリ。' } },
       { href: 'https://dl.acm.org/', title: { id: 'links.site.academic.acm.title', message: 'ACM Digital Library' }, description: { id: 'links.site.academic.acm.desc', message: 'コンピューティング分野最大の学術団体ACMが発行する全論文誌や国際会議録を網羅。' } },
       { href: 'https://scholar.google.com/', title: { id: 'links.site.academic.scholar.title', message: 'Google Scholar' }, description: { id: 'links.site.academic.scholar.desc', message: 'あらゆる学術分野の論文や書籍を横断検索でき、被引用数も追跡可能な検索エンジン。' } },
