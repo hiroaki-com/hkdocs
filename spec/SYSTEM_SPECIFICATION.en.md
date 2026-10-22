@@ -35,7 +35,7 @@ II. Technology Stack
     - Icons: `lucide-react`
     - Styling: `github-markdown-css`, `clsx`
     - Syntax highlighting: `prism-react-renderer`
-  * Node.js: `v24.20.0` (version specified in the `.nvmrc` file)
+  * Node.js: `v24.22.1` (version specified in the `.nvmrc` file)
   * Package Manager: pnpm `v11.10.0` (managed via Corepack)
   * Containerization: Docker, Docker Compose
   * Source Code Management: GitHub
@@ -134,18 +134,21 @@ V. Configuration Details: Containerization (Docker)
 
   * `Dockerfile` (for Production):
     - Uses a multi-stage build to reduce the final image size.
-      - `builder` stage: Based on `node:24.20.0-alpine`, it uses pnpm (enabled via
+      - `builder` stage: Based on `node:24.22.1-alpine`, it uses pnpm (enabled via
         Corepack) to install dependencies with `pnpm install --frozen-lockfile` and
-        builds the site with `pnpm build`. `pnpm prune --prod` removes packages
-        unnecessary for production.
-      - Final stage: Based on `node:24.20.0-alpine`, it copies only the build
-        artifacts (`build` directory), the production `node_modules`, and
-        `package.json` from the `builder` stage.
+        builds the site with `pnpm build`. It then pre-generates `.br`/`.gz` files
+        with `scripts/precompress-build.js` (`http-server` does not compress on the fly).
+      - `runtime-deps` stage: Based on `node:24.22.1-alpine`, it runs `npm install`
+        for `http-server` only, using the version range from `package.json` (so
+        build-only packages such as Docusaurus stay out of the final image).
+      - Final stage: Based on `node:24.22.1-alpine`, it copies the build artifacts
+        (`build` directory) and `package.json` from the `builder` stage, and
+        `node_modules` (`http-server` only) from the `runtime-deps` stage.
     - Security: Runs the application as a non-root user (`node`).
     - Health Check: The Dockerfile defines no explicit `HEALTHCHECK` instruction;
       it relies on Cloud Run's built-in health checking (a startup probe on port 8080).
     - Start Command: `CMD ["node", "node_modules/http-server/bin/http-server",
-      "./build", "--single", "-p", "8080"]` — invokes `http-server` directly
+      "./build", "--single", "--gzip", "--brotli", "-p", "8080"]` — invokes `http-server` directly
       (equivalent to the `serve` script in `package.json`, listening on port 8080).
       pnpm/Corepack are not used at runtime (pnpm 11's pre-run dependency check
       attempts an auto-install on the lockfile-less production image and crashes;
@@ -155,7 +158,7 @@ V. Configuration Details: Containerization (Docker)
     - The recommended development method as per `README.md`.
     - Uses `Dockerfile.dev` to start a container optimized for development.
     - Enables hot reloading by volume mounting the source code (`.:/app:cached`).
-    - Port Mapping: `3000:3000`
+    - Port Mapping: `127.0.0.1:3000:3000` (not exposed to the LAN)
 
   * `.dockerignore`:
     Excludes files and directories not needed in the build context, such as

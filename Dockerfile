@@ -1,6 +1,6 @@
 # ---- Builder Stage ----
 # Base image: Node.js Alpine
-FROM node:24.20.0-alpine AS builder
+FROM node:24.22.1-alpine AS builder
 WORKDIR /app
 
 # Enable Corepack to use the pnpm version from package.json's "packageManager" field
@@ -27,7 +27,7 @@ RUN node scripts/precompress-build.js
 # Installing the full production tree here would ship build-time-only packages
 # (mermaid, react, @docusaurus/*) that dominate the image size.
 # The version range is read from package.json so this cannot drift from it.
-FROM node:24.20.0-alpine AS runtime-deps
+FROM node:24.22.1-alpine AS runtime-deps
 WORKDIR /srv
 COPY package.json /tmp/package.json
 RUN npm install --no-audit --no-fund --no-package-lock \
@@ -35,7 +35,7 @@ RUN npm install --no-audit --no-fund --no-package-lock \
 
 # ---- Final Stage ----
 # Base image: Node.js Alpine
-FROM node:24.20.0-alpine
+FROM node:24.22.1-alpine
 WORKDIR /app
 
 # Set production environment
