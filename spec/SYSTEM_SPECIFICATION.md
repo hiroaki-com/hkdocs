@@ -33,7 +33,7 @@ II. 使用技術スタック
     - アイコン: `lucide-react`
     - スタイル: `github-markdown-css`, `clsx`
     - シンタックスハイライト: `prism-react-renderer`
-  * Node.js: `v24.20.0` (`.nvmrc` ファイルでバージョンを規定)
+  * Node.js: `v24.22.1` (`.nvmrc` ファイルでバージョンを規定)
   * パッケージマネージャ: pnpm `v11.10.0` (Corepack経由で管理)
   * コンテナ化: Docker, Docker Compose
   * ソースコード管理: GitHub
@@ -122,16 +122,20 @@ V. 構成詳細: コンテナ化 (Docker)
 
   * `Dockerfile` (本番用):
     - マルチステージビルドを採用し、最終的なイメージサイズを削減。
-      - `builder` ステージ: `node:24.20.0-alpine`をベースに、Corepackで有効化した
+      - `builder` ステージ: `node:24.22.1-alpine`をベースに、Corepackで有効化した
         pnpmで`pnpm install --frozen-lockfile`により依存関係をインストールし、
-        `pnpm build`でサイトをビルド。`pnpm prune --prod`で本番に不要なパッケージを削除。
-      - 最終ステージ: `node:24.20.0-alpine`をベースに、`builder`ステージから
-        ビルド成果物 (`build`ディレクトリ)、本番用の`node_modules`、`package.json`のみを
-        コピー。
+        `pnpm build`でサイトをビルド。続けて`scripts/precompress-build.js`で
+        `.br`/`.gz`を事前生成する (`http-server`は配信時に圧縮しないため)。
+      - `runtime-deps` ステージ: `node:24.22.1-alpine`をベースに、`package.json`の
+        版範囲で`http-server`のみを`npm install`する (Docusaurus等のビルド専用
+        パッケージを最終イメージに含めないため)。
+      - 最終ステージ: `node:24.22.1-alpine`をベースに、`builder`ステージの
+        ビルド成果物 (`build`ディレクトリ) と`package.json`、`runtime-deps`ステージの
+        `node_modules` (`http-server`のみ) をコピー。
     - セキュリティ: 非rootユーザー (`node`)でアプリケーションを実行。
     - ヘルスチェック: Dockerfileに明示的な`HEALTHCHECK`命令は設けず、Cloud Run側の
       標準ヘルスチェック (8080番ポートへの起動プローブ) に委ねる。
-    - 起動コマンド: `CMD ["node", "node_modules/http-server/bin/http-server", "./build", "--single", "-p", "8080"]`
+    - 起動コマンド: `CMD ["node", "node_modules/http-server/bin/http-server", "./build", "--single", "--gzip", "--brotli", "-p", "8080"]`
       で`http-server`を直接起動（`package.json`の`serve`スクリプトと同等・8080番で待受）。
       実行時に pnpm/Corepack を経由しない（pnpm 11 の実行前 deps 検証が lockfile 非搭載の
       本番イメージで自動 install を試み起動失敗するため。コールドスタート時の registry 依存も排除）。
@@ -140,7 +144,7 @@ V. 構成詳細: コンテナ化 (Docker)
     - `README.md`で推奨されている開発手法。
     - `Dockerfile.dev` を使用し、開発に特化したコンテナを起動。
     - ソースコードをボリュームマウント (`.:/app:cached`) することで、ホットリロードを実現。
-    - ポートマッピング: `3000:3000`
+    - ポートマッピング: `127.0.0.1:3000:3000` (LANへ公開しない)
 
   * `.dockerignore`:
     `node_modules`, `.git`, `.docusaurus`など、ビルドコンテキストに不要なファイルと
