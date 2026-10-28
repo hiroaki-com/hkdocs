@@ -1,0 +1,97 @@
+---
+title: カフェのWi‑Fi、つないで大丈夫？「cafe-wifi-okawari」に通信しないネットワーク診断を追加しました
+authors: [hk]
+tags: [mac, network, security, open-source, 個人開発]
+image: "/img/cafe-wifi-okawari_01_cover.webp"
+description: "カフェの無料Wi‑Fiを自動で再接続するMac用ツール「cafe-wifi-okawari」に、ネットワークの診断を追加しました。暗号化の有無やルーターのなりすましの兆候などを通信せずに10秒ごとに見て、危ないときだけメニューバーに ⚠ でお知らせします。"
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <img src="/img/cafe-wifi-okawari_01_cover.webp" alt="cafe-wifi-okawari のロゴ。湯気がWi‑Fiの電波になったコーヒーカップ" style={{ maxWidth: '100%', width: '600px', borderRadius: 'var(--ifm-global-radius)', border: '1px solid var(--ifm-color-emphasis-200)' }} />
+</div>
+
+カフェの無料Wi‑Fiの時間切れを自動でつなぎ直すMac用ツール「[cafe-wifi-okawari](/blog/2026/10/06/release-cafe-wifi-okawari/)」に、**ネットワークの診断**を追加しました。
+
+つながり続けるのは便利ですが、カフェの無料Wi‑Fiの多くは暗号化されていません。同じWi‑Fiにいる誰かがルーターになりすましたり、自分のMacの設定が外から入りやすい状態になっていたりしても、ふだんは気づけません。そこで、今つないでいるWi‑FiとこのMacの設定を10秒ごとに見て、危ない兆候があるときだけメニューバーでお知らせするようにしました。
+
+{/* truncate */}
+
+<Admonition type="tip" title="今すぐ試す">
+  すでに使っている方は、導入のときと同じ1行をもう一度実行するだけで更新できます。同意の記録はそのまま残ります。
+
+  <ul>
+    <li>
+      ☕ 導入方法・詳しい説明<br/>
+      <a href="https://github.com/hiroaki-com/cafe-wifi-okawari#ネットワークの診断" target="_blank" rel="noopener noreferrer">hiroaki-com/cafe-wifi-okawari</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>診断の項目・限界・無効にする方法はこちらから。</small>
+    </li>
+  </ul>
+</Admonition>
+
+### こんな不安に向けた機能です
+
+- カフェのWi‑Fiで作業していて、通信を盗み見られていないか少し気になる
+- VPNを使っているつもりでも、本当に全部の通信がVPNを通っているのかわからない
+- 開発中の Ollama やファイル共有が、お店の他の人から見える状態になっていないか心配
+
+### 3つの特徴
+
+**通信しないで診断します。**
+見るのは、Macにもともと入っているコマンドで読める「今の接続情報」と「このMacの設定」だけです。外部のサーバーに問い合わせたり、お店のWi‑Fiの他の端末を調べたりはしません。診断を足しても、ツールの通信先は増えていません。
+
+**危ないときだけ、そっと知らせます。**
+ふだんはメニューの「Network Check」を見たいときに開くだけです。なりすましなどの兆候を見つけたときだけ、カップのアイコンの右に ⚠ が付きます（例: ✓⚠）。ダイアログで作業を止めることはありません。⚠ は兆候が消えても、別のWi‑Fiに移っても残るので、席を外していても見逃しません。確かめたら「Dismiss Network Warning」で消せます。
+
+**再接続の仕組みとは切り離しています。**
+診断は本体とは別のスクリプトで動き、お互いのファイルを読みません。診断が失敗しても、自動の再接続には影響しません。不要なら、診断だけを外して入れ直すこともできます。
+
+### 見ている項目
+
+メニューの「Network Check」には、次のような項目が並びます（メニューは英語のみ）。
+
+| 見るもの | 注意（黄）・危険（赤）になる例 |
+|---|---|
+| Wi‑Fiの暗号化 | 暗号化なしのWi‑Fiは注意。VPNと HTTPS のサイトだけを使うよう案内します |
+| ルーター（ゲートウェイ） | つないでいる途中にルーターの機器の番号が変わったら注意、もう一度見えたら危険（ほかの機器がルーターを名乗っている兆候） |
+| DNSサーバー | 途中でWi‑Fiが配るDNSサーバーが変わったら注意、もう一度見えたら危険（サイト名の問い合わせを横取りしている兆候） |
+| 経路 | VPNを使っているのに、一部の通信がWi‑Fiに直接出ていたら危険 |
+| プロキシ・IPv6のルーター | プロキシの自動検出や、途中で現れた・変わったIPv6のルーターは注意 |
+| ファイアウォール・AirPlay受信・共有 | ファイアウォールが無効、AirPlay受信や画面共有が有効なら注意 |
+| このMacで待ち受けているアプリ | Ollama などが同じWi‑Fiの他人から届く状態なら注意 |
+| macOSの更新・追加したルート証明書 | 更新が残っている・7日以上確認していない・自分で足したルート証明書があるときは注意 |
+
+「危険（赤）」は、ふつうのWi‑Fiでは起きないことを見たときだけにしています。1回見ただけでは注意どまりにして、一時的な揺れで赤くならないようにしました。
+
+自宅ではなかなか試せないので、実際のカフェで入店から時間切れ・自動の再接続のあとまで動かし、誤って危険と出ないことを確かめました。お店のWi‑Fiに攻撃を仕掛けるわけにはいかないので、なりすましの検出は、実際のWi‑Fiで取った接続情報に攻撃で起きる変化を1つずつ差し込んで確かめています。
+
+### 更新・使い方
+
+導入済みの方も初めての方も、ターミナルで次の1行を実行します。
+
+```sh
+cd "$(mktemp -d)" && curl -fsSLO https://github.com/hiroaki-com/cafe-wifi-okawari/releases/latest/download/cafe-wifi-okawari.tar.gz && tar -xzf cafe-wifi-okawari.tar.gz && zsh cafe-wifi-okawari/install.sh
+```
+
+`Installed:` と出たら完了です。メニューバーのカップをクリックし、「Network Check」を開くと診断の結果が見られます。設定を変えてすぐ確かめたいときは「Check Now」を押してください。
+
+診断が不要な場合は、Enter を押す前に末尾へ ` --no-netcheck` を付けて実行すると、診断だけを外して入れ直せます。
+
+### 診断でできないこと
+
+<Admonition type="caution" title="緑は「安全」の保証ではありません">
+  緑は「見た範囲で異常が見つからない」という意味です。暗号化なしのWi‑Fiでは、緑が並んでいても盗み見はありえます。また、最初からなりすましているWi‑Fiや、お店を装った偽のWi‑Fiは見分けられず、腕のある攻撃者なら診断を避けることもできます。診断は見るだけで、攻撃を防いだり設定を直したりはしません。大事なやりとりには、これまでどおり VPN と HTTPS のサイトを使ってください。
+</Admonition>
+
+このMacのMACアドレス・IPアドレスやWi‑Fiの名前は、メニューにもログにも出しません。画面共有に写っても差し支えありません。
+
+もし誤って ⚠ が出た場合や、気になる動きがあった場合は、[GitHub の Issue](https://github.com/hiroaki-com/cafe-wifi-okawari/issues) で教えていただけるとうれしいです。つながり続けるだけでなく、少し安心してカフェで作業できるようになればと思います。
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />
