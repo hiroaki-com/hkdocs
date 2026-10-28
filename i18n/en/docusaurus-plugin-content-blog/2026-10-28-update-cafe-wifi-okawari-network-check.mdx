@@ -1,0 +1,97 @@
+---
+title: Is This Café Wi‑Fi Safe to Use? "cafe-wifi-okawari" Now Includes an Offline Network Check
+authors: [hk]
+tags: [mac, network, security, open-source, 個人開発]
+image: "/img/cafe-wifi-okawari_01_cover.webp"
+description: "cafe-wifi-okawari, the Mac tool that reconnects café Wi‑Fi automatically, now includes a network check. Every 10 seconds it looks for warning signs such as missing encryption or a device impersonating the router, without any network access, and shows ⚠ in the menu bar only when something looks wrong."
+---
+
+import Admonition from '@theme/Admonition';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <img src="/img/cafe-wifi-okawari_01_cover.webp" alt="The cafe-wifi-okawari logo: a coffee cup whose steam turns into Wi‑Fi waves" style={{ maxWidth: '100%', width: '600px', borderRadius: 'var(--ifm-global-radius)', border: '1px solid var(--ifm-color-emphasis-200)' }} />
+</div>
+
+I've added a **network check** to "[cafe-wifi-okawari](/blog/2026/10/06/release-cafe-wifi-okawari/)", the Mac tool that automatically reconnects you when your free café Wi‑Fi session times out.
+
+Staying connected is convenient, but most free café Wi‑Fi is not encrypted. If someone on the same Wi‑Fi pretends to be the router, or your Mac's settings leave it open to others on the network, you normally have no way of noticing. So the tool now looks at the Wi‑Fi you're connected to and your Mac's settings every 10 seconds, and lets you know in the menu bar only when there are warning signs.
+
+{/* truncate */}
+
+<Admonition type="tip" title="Try it now">
+  If you already use the tool, just run the same line you used to install it. Your accepted shops are kept.
+
+  <ul>
+    <li>
+      ☕ Installation and details<br/>
+      <a href="https://github.com/hiroaki-com/cafe-wifi-okawari/blob/main/README.en.md#network-check" target="_blank" rel="noopener noreferrer">hiroaki-com/cafe-wifi-okawari</a><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>What it checks, its limits, and how to turn it off are all here.</small>
+    </li>
+  </ul>
+</Admonition>
+
+### Built for these worries
+
+- You work on café Wi‑Fi and wonder a little whether someone could be watching your traffic
+- You think you're using a VPN, but you're not sure all of your traffic actually goes through it
+- You're worried that Ollama or file sharing on your Mac is visible to other people at the shop
+
+### Three key features
+
+**It checks without any network access.**
+It only reads the current connection details and your Mac's settings, using commands that ship with macOS. It does not query outside servers or probe other devices on the shop's Wi‑Fi. Adding the check did not add any new destinations the tool talks to.
+
+**It only speaks up when something looks wrong.**
+Normally you just open "Network Check" in the menu when you want to look. Only when it finds signs such as impersonation does a ⚠ appear to the right of the cup icon (for example ✓⚠). No dialogs interrupt your work. The ⚠ stays even after the signs disappear or you move to another Wi‑Fi, so you won't miss it if you step away. Once you've checked, clear it with "Dismiss Network Warning".
+
+**It is kept separate from reconnection.**
+The check runs as a separate script from the main tool, and neither reads the other's files. Even if the check fails, automatic reconnection is not affected. If you don't need it, you can reinstall without just the check.
+
+### What it checks
+
+"Network Check" in the menu lists items like these.
+
+| What it looks at | Examples of notice (yellow) and risk (red) |
+|---|---|
+| Wi‑Fi encryption | Unencrypted Wi‑Fi is a notice, with advice to use only a VPN and HTTPS sites |
+| Router (gateway) | A notice if the router's hardware address changes while you're connected, and a risk if it's seen again (a sign another device is posing as the router) |
+| DNS servers | A notice if the DNS servers handed out by the Wi‑Fi change while you're connected, and a risk if it's seen again (a sign someone is intercepting site name lookups) |
+| Routes | A risk if some traffic goes straight out over Wi‑Fi while you're using a VPN |
+| Proxy and IPv6 routers | A notice for proxy auto-discovery, or IPv6 routers that appear or change mid-connection |
+| Firewall, AirPlay Receiver, sharing | A notice if the firewall is off, or AirPlay Receiver or Screen Sharing is on |
+| Apps listening on this Mac | A notice if something like Ollama can be reached by others on the same Wi‑Fi |
+| macOS updates and added root certificates | A notice if updates are pending, haven't been checked for 7 days or more, or you've added root certificates yourself |
+
+"Risk" (red) is reserved for things that don't happen on a normal Wi‑Fi network. A single sighting only counts as a notice, so a momentary glitch won't turn anything red.
+
+This is hard to test at home, so I ran it at an actual café from arrival through a time-out and the automatic reconnection, and confirmed that it didn't raise a false risk. Since attacking a shop's Wi‑Fi is out of the question, I tested impersonation detection by taking connection details from a real Wi‑Fi network and injecting the changes an attack would cause, one at a time.
+
+### Updating and using it
+
+Whether you already use the tool or are new to it, run the following line in Terminal.
+
+```sh
+cd "$(mktemp -d)" && curl -fsSLO https://github.com/hiroaki-com/cafe-wifi-okawari/releases/latest/download/cafe-wifi-okawari.tar.gz && tar -xzf cafe-wifi-okawari.tar.gz && zsh cafe-wifi-okawari/install.sh
+```
+
+When you see `Installed:`, you're done. Click the cup in the menu bar and open "Network Check" to see the results. To check right after changing a setting, press "Check Now".
+
+If you don't need the check, add ` --no-netcheck` to the end before pressing Enter to reinstall without just the check.
+
+### What the check can't do
+
+<Admonition type="caution" title="Green does not mean safe">
+  Green means "nothing unusual was found in what was checked". On unencrypted Wi‑Fi, someone could still be watching even when everything is green. It also can't tell a network that was impersonated from the start, or a fake Wi‑Fi posing as the shop's, and a skilled attacker can evade it. The check only looks; it doesn't block attacks or fix settings. For important activity, keep using a VPN and HTTPS sites as you always have.
+</Admonition>
+
+Your Mac's MAC address, IP address, and the Wi‑Fi name never appear in the menu or the log, so it's fine if the menu shows up during screen sharing.
+
+If ⚠ shows up by mistake or you notice anything odd, please let me know on [GitHub Issues](https://github.com/hiroaki-com/cafe-wifi-okawari/issues). I hope it helps you work at cafés not only without interruptions, but with a little more peace of mind.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/cafe-wifi-okawari" showSupportButton />
