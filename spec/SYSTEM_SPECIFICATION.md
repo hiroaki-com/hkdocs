@@ -34,7 +34,7 @@ II. 使用技術スタック
     - スタイル: `github-markdown-css`, `clsx`
     - シンタックスハイライト: `prism-react-renderer`
   * Node.js: `v24.22.1` (`.nvmrc` ファイルでバージョンを規定)
-  * パッケージマネージャ: pnpm `v11.10.0` (Corepack経由で管理)
+  * パッケージマネージャ: pnpm `v11.28.9` (Corepack経由で管理)
   * コンテナ化: Docker, Docker Compose
   * ソースコード管理: GitHub
   * ホスティング (Google Cloud)

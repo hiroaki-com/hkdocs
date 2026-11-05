@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml/badge.svg)](https://github.com/hiroaki-com/hkdocs/actions/workflows/deploy_hkdocs_to_cloud_run.yml)
 [![Docusaurus](https://img.shields.io/badge/Docusaurus-v3.10.1-blue?logo=docusaurus)](https://docusaurus.io/)
 [![Node.js](https://img.shields.io/badge/Node.js-v24.22.1-green?logo=nodedotjs)](https://nodejs.org/)
-[![pnpm](https://img.shields.io/badge/pnpm-v11.10.0-orange?logo=pnpm)](https://pnpm.io/)
+[![pnpm](https://img.shields.io/badge/pnpm-v11.28.9-orange?logo=pnpm)](https://pnpm.io/)
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -37,7 +37,7 @@ A personal knowledge base that consolidates a tech blog, work notes, and a diary
 | Framework            | [Docusaurus](https://docusaurus.io/) `v3.10.1`                                     |
 | Language             | [TypeScript](https://www.typescriptlang.org/)                                     |
 | UI Library           | [React](https://reactjs.org/) `v19`                                               |
-| Package Manager      | [pnpm](https://pnpm.io/) `v11.10.0` (with [Corepack](https://nodejs.org/api/corepack.html)) |
+| Package Manager      | [pnpm](https://pnpm.io/) `v11.28.9` (with [Corepack](https://nodejs.org/api/corepack.html)) |
 | Containerization     | [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) |
 | Hosting              | [Google Cloud Run](https://cloud.google.com/run)                                  |
 | CI/CD                | [GitHub Actions](https://github.com/features/actions)                             |
