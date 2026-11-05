@@ -5,7 +5,7 @@
   <!--
     /admin/ 専用 CSP。管理画面は Git Gateway 経由で main への書込権限を扱うため、
     スクリプトの供給元を自ドメインと Netlify Identity だけに限定する。
-    - 'unsafe-eval': decap-cms のバンドルが globalThis 補完とプレビュー処理で new Function を使う
+    - 'unsafe-eval': decap-cms の設定検証（ajv）が new Function を使う。外すと CMS が起動しない（3.17.3 で確認）
     - style-src 'unsafe-inline': decap-cms が実行時にスタイルを注入する
     - frame-src blob:/data:: プレビューペインが srcdoc の iframe を生成する
     - connect-src www.netlifystatus.com: Git Gateway の稼働状態を status_endpoint 既定値
@@ -168,11 +168,11 @@
 
   <!--
     decap-cms はセルフホスト（unpkg の範囲指定 `decap-cms@^3.0.0` を廃止）。
-    版は npm レジストリの tarball integrity を検証して取り込んだ 3.15.1 で固定。
+    版は npm レジストリの tarball integrity を検証して取り込んだ 3.17.3 で固定。
     チャンクは currentScript.src を基点に同ディレクトリから読まれるため、
     更新時は decap-cms/<新版>/ を追加して src を差し替え、旧ディレクトリを削除する。
   -->
-  <script src="decap-cms/3.15.1/decap-cms.js"></script>
+  <script src="decap-cms/3.17.3/decap-cms.js"></script>
 
   <script src="admin.js"></script>
 </body>
