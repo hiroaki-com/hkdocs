@@ -1109,6 +1109,22 @@
     "message": "Founded in Washington, D.C., U.S. in 1877. After a long period of ownership by the Graham family, it came under the personal ownership of Amazon founder Jeff Bezos in 2013. A national newspaper with a primary focus on political, policy, and investigative reporting.",
     "description": "Description for The Washington Post"
   },
+  "news.site.int.ge.nyt.desc": {
+    "message": "Founded in the U.S. in 1851 by Henry Jarvis Raymond and George Jones. Operated by The New York Times Company. A leading American daily newspaper known for its domestic and international investigative reporting.",
+    "description": "Description for The New York Times"
+  },
+  "news.site.int.ge.nyt.title": {
+    "message": "The New York Times",
+    "description": "Title for The New York Times"
+  },
+  "news.site.int.ge.yahoofinance.desc": {
+    "message": "A financial information site launched by Yahoo in the U.S. in 1997. It offers free market data such as stock quotes, charts, and earnings information, along with financial and economic news.",
+    "description": "Description for Yahoo Finance"
+  },
+  "news.site.int.ge.yahoofinance.title": {
+    "message": "Yahoo Finance",
+    "description": "Title for Yahoo Finance"
+  },
   "news.site.int.ge.wsj.desc": {
     "message": "Founded in the U.S. in 1889 by Charles Dow and others. Operated by Dow Jones & Company, a subsidiary of News Corp. It is characterized by high-quality investigative reporting in the business and financial sectors.",
     "description": "Description for The Wall Street Journal"
