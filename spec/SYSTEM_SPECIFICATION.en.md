@@ -36,7 +36,7 @@ II. Technology Stack
     - Styling: `github-markdown-css`, `clsx`
     - Syntax highlighting: `prism-react-renderer`
   * Node.js: `v24.22.1` (version specified in the `.nvmrc` file)
-  * Package Manager: pnpm `v11.10.0` (managed via Corepack)
+  * Package Manager: pnpm `v11.28.9` (managed via Corepack)
   * Containerization: Docker, Docker Compose
   * Source Code Management: GitHub
   * Hosting (Google Cloud)
