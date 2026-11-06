@@ -1,0 +1,123 @@
+---
+title: Read English Articles Alongside a Japanese Translation, Entirely on Your iPhone. Introducing "Yakubun", a Safari Extension.
+authors: [hk]
+tags: [privacy]
+description: "Yakubun is a free iPhone app that shows a Japanese translation alongside English web pages in Safari. Translation runs entirely on the device, so the article text is never sent anywhere. It offers four views: between lines, paragraph, word, and translation only."
+video_asset: "/video/yakubun-promo-r-16x9-dark.mp4"
+---
+
+import Admonition from '@theme/Admonition';
+import Link from '@docusaurus/Link';
+import ShareButtons from '@site/src/components/ShareButtons';
+import GitHubStarLink from '@site/src/components/GitHubStarLink';
+
+<div style={{ textAlign: 'center', marginBottom: '32px' }}>
+  <video
+    poster="/video/yakubun-promo-r-16x9-dark-poster.jpg"
+    style={{ maxWidth: '100%', borderRadius: '0' }}
+    autoPlay
+    loop
+    muted
+    controls
+    playsInline
+  >
+    <source src="/video/yakubun-promo-r-16x9-dark.webm" type="video/webm" />
+    <source src="/video/yakubun-promo-r-16x9-dark.mp4" type="video/mp4" />
+  </video>
+</div>
+
+I built "**Yakubun**" (訳文, Japanese for "translated text"), an iPhone app that lets you read English articles in Safari with a Japanese translation right alongside the original, and released it for free on the App Store.
+
+Most web page translators send the text of the page you are viewing to an external server. Reports of browser extensions quietly sending browsing data elsewhere have also become common, and I was uneasy about handing over even what I was reading.
+
+Yakubun translates entirely on the iPhone, so the text of the article you are reading is never sent anywhere.
+
+Please note that the app is available only on the Japanese App Store, its interface is in Japanese, and it translates from English to Japanese only.
+
+{/* truncate */}
+
+<Admonition type="tip" title="Try it now">
+  Free on the App Store (iPhone, iOS 26.4 or later).
+
+  <ul>
+    <li>
+      📱 Download<br/>
+      <a href="https://apps.apple.com/jp/app/id6827465815" target="_blank" rel="noopener noreferrer">訳文 on the App Store (Japan)</a>
+    </li>
+    <li>
+      📖 Getting started and FAQ<br/>
+      <Link to="/yakubun/">Yakubun Support</Link><br/>
+      <small style={{ color: 'var(--ifm-color-content-secondary)' }}>If something doesn't work, start here.</small>
+    </li>
+  </ul>
+</Admonition>
+
+### When it helps
+
+- You want to read English news and blogs while comparing the original with the translation
+- You want to grasp technical documents or papers in Japanese while checking terms in the original
+- You are studying English and want to look up unfamiliar words on the spot
+- You don't want to send the page you are reading to an external translation service
+
+### Three key features
+
+**The article text is never sent anywhere.**
+Yakubun uses Apple's translation feature built into the iPhone and translates on the device. The original text and the translation are never sent to anyone, including me as the developer, and are never stored. No account is needed. The only things saved are settings such as the view and the size of the translated text, and the app collects no data.
+
+Once the languages are downloaded, translation itself needs no network connection (in Airplane Mode, it can still translate pages that are already loaded). And because it translates without any network access, it also works on sites that restrict outgoing connections.
+
+**Four views you can switch between while translating.**
+
+| View | What it shows |
+|---|---|
+| Between lines (行間) | Keeps the original line wrapping and puts the matching translation under each line |
+| Paragraph (段落) | Puts the translation right after each paragraph (the default) |
+| Word (単語) | Puts small translations under English words. Paragraph translations are hidden, so you can practice reading the English yourself |
+| Translation only (全文) | Hides the original so you read only the translation |
+
+Switching views doesn't translate again, so the change is instant. In the paragraph and translation-only views, tapping a translation swaps the original and the translation for that paragraph only.
+
+**It stays out of your way.**
+Opening a page doesn't start translating automatically; Yakubun only shows a "訳" button at the bottom left. Once you start, it translates paragraphs nearest the screen first, including paragraphs that appear as you scroll or load later. Navigation, code, and input fields are not translated.
+
+Translations are small and gray, and their tone follows the page's text color, so they are readable on both light and dark sites. You can change their size with A− / A+ in the menu. The button can be dragged around and tucked away by swiping it off the edge of the screen.
+
+### How to use it
+
+#### 1. Download the languages
+
+Open the app and tap "言語をダウンロード" (Download languages) to install the English and Japanese translation languages. This first time is the only time you need a network connection.
+
+#### 2. Turn on the Safari extension
+
+Tap "Safari の設定を開く" (Open Safari Settings) in the app, turn on the "訳文" extension, and allow it on all websites.
+
+Access to all websites is used so that Yakubun can translate whichever page you are reading. It reads the page content only to display the translation on that page.
+
+#### 3. Tap "訳" on an English page
+
+Open an English page in Safari, tap "訳" at the bottom left, and choose a view (行間, 段落, 単語, or 全文).
+
+While translating, tap the small floating button to open the menu, where you can switch views, change the size of the translated text, or quit. "終了" (Quit) removes the translations and the menu and restores the page (the "訳" button stays).
+
+If you don't want the "訳" button to appear, open "訳文" from the button at the left end of Safari's address bar and turn off "「訳」のボタンを出す" (Show the "訳" button).
+
+### Requirements
+
+- iPhone with iOS 26.4 or later. It also works on models without Apple Intelligence (tested on an iPhone SE, 3rd generation)
+- Translation is English to Japanese only
+- Available on the Japanese App Store
+
+<Admonition type="caution" title="Before you use it">
+  <ul>
+    <li>The "訳" button does not appear on pages that are not in English.</li>
+    <li>Translations come from the iPhone's built-in translation feature and may sound unnatural depending on the context.</li>
+    <li>How data is handled is described in the <Link to="/yakubun/privacy/">privacy policy</Link>.</li>
+  </ul>
+</Admonition>
+
+For bug reports or requests, please use the email address on the [support page](/yakubun/). I hope it makes reading English articles a little easier.
+
+<ShareButtons />
+
+<GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
