@@ -1,6 +1,11 @@
 {
   "ja": [
     {
+      "title": "英語の記事を、iPhoneの中だけで対訳に。Safari機能拡張「訳文」をリリースしました。",
+      "url": "/blog/2026/11/06/release-yakubun",
+      "video_asset": "/video/yakubun-promo-r-16x9-dark.mp4"
+    },
+    {
       "title": "SQLは、答えだけではわからない。",
       "url": "/blog/2026/08/27/release-sql-quiz-book",
       "video_asset": "/video/sql-quiz-book-promo-v3-answer-1x1-dark.mp4"
@@ -42,6 +47,11 @@
     }
   ],
   "en": [
+    {
+      "title": "Read English Articles Alongside a Japanese Translation, Entirely on Your iPhone. Introducing \"Yakubun\", a Safari Extension.",
+      "url": "/blog/2026/11/06/release-yakubun",
+      "video_asset": "/video/yakubun-promo-r-16x9-dark.mp4"
+    },
     {
       "title": "With SQL, the Answer Alone Isn't Enough.",
       "url": "/blog/2026/08/27/release-sql-quiz-book",
