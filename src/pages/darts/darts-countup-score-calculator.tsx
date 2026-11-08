@@ -3,7 +3,9 @@ import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 import { ptsFor, labelFor, deepClone } from './_logic';
+import { fmt1, threeDartAvgLabel, ppdLabel, unthrownDarts } from './_stats';
 import CalculatorNav from './_CalculatorNav';
+import StatsNote from './_StatsNote';
 
 type T = {
   pageTitle: string;
@@ -93,11 +95,12 @@ const CSS = `
 }
 
 .dcu-h1 {
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
   text-align: center;
   color: var(--ifm-font-color-secondary);
-  margin: 1rem 0 0.5rem;
+  margin: 0.25rem 0 0.75rem;
 }
 
 .dcu-setup {
@@ -144,6 +147,10 @@ const CSS = `
   background: var(--ifm-background-color);
   padding: 8px 0 4px;
 }
+/* 人数ぶんの列で均等に並べる(1 人は全幅。スマホの 4 人だけ 2×2) */
+.dcu-sh[data-n="2"] { grid-template-columns: repeat(2, 1fr); }
+.dcu-sh[data-n="3"] { grid-template-columns: repeat(3, 1fr); }
+.dcu-sh[data-n="4"] { grid-template-columns: repeat(4, 1fr); }
 
 .dcu-sc { background: var(--ifm-background-color); border: 2px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; transition: all 0.2s ease; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); min-width: 0; }
 .dcu-sc.active { border-color: var(--ifm-color-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
@@ -154,7 +161,8 @@ const CSS = `
 
 .dcu-tp { position: relative; background: var(--ifm-background-color); border: 1px solid var(--ifm-color-emphasis-200); border-radius: var(--ifm-global-radius, 8px); padding: 16px; margin-bottom: 16px; box-shadow: var(--ifm-global-shadow-lw, 0 1px 3px rgba(0,0,0,0.05)); }
 .dcu-tt { display: flex; align-items: center; margin-bottom: 12px; }
-.dcu-tpl { position: absolute; top: 16px; right: 16px; font-size: 14px; font-weight: 888; color: var(--ifm-color-emphasis-600); white-space: nowrap; }
+/* 行の高さをドット(14px)に合わせたまま、名前の下がりが切れないよう上下に 2px ずつはみ出させる */
+.dcu-tpl { margin: -2px 0 -2px auto; padding-left: 12px; min-width: 0; font-size: 14px; line-height: 18px; font-weight: 700; color: var(--ifm-color-emphasis-600); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dcu-dots { display: flex; gap: 8px; flex-shrink: 0; }
 .dcu-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--ifm-color-emphasis-300); transition: all 0.2s ease; }
 .dcu-dot.used { background: var(--ifm-color-emphasis-600); border-color: var(--ifm-color-emphasis-600); }
@@ -194,8 +202,9 @@ const CSS = `
 .dcu-np { display: grid; gap: 8px; margin-bottom: 16px; }
 .dcu-nb.over, .dcu-sb.over { opacity: 0.35; cursor: default; }
 .dcu-nn { font-size: 18px; font-weight: 700; color: var(--ifm-font-color-base); }
-.dcu-nv { font-size: 12px; color: var(--ifm-color-emphasis-500); margin-top: 2px; }
+.dcu-nv { font-size: 11px; color: var(--ifm-color-emphasis-500); margin-top: 2px; }
 
+.dcu-sv { font-size: 12px; margin-left: 4px; }
 .dcu-sr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
 .dcu-sb:disabled, .dcu-ab:disabled, .dcu-seg-btn:disabled { opacity: 0.4; cursor: not-allowed; background: var(--ifm-color-emphasis-100); color: var(--ifm-color-emphasis-400); transform: none; box-shadow: none; }
 
@@ -212,22 +221,26 @@ const CSS = `
 .dcu-wm { background: var(--ifm-background-color); border-radius: 12px; padding: 32px 28px; max-width: 360px; width: 90%; text-align: center; border: 1px solid var(--ifm-color-emphasis-200); box-shadow: 0 8px 16px -4px rgba(0,0,0,0.1); }
 .dcu-wt { font-size: 24px; font-weight: 700; color: var(--ifm-heading-color); margin-bottom: 12px; }
 .dcu-ws { font-size: 15px; color: var(--ifm-color-emphasis-700); margin-bottom: 32px; line-height: 1.8; }
+.dcu-ws > span { display: block; margin-bottom: 12px; }
+.dcu-st { font-size: 12px; color: var(--ifm-color-emphasis-600); }
 .dcu-wbs { display: flex; flex-direction: column; gap: 12px; }
 .dcu-wb1 { margin-top: 0; }
 
 @media (max-width: 480px) {
   .dartscu-container { padding: 0.4rem 0.4rem; }
+  .dcu-h1 { font-size: 0.8125rem; margin: 0.25rem 0 0.5rem; }
   .dcu-setup { padding: 20px 16px; }
   .dcu-stitle { font-size: 20px; }
 
-  .dcu-sh { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 5px; padding: 4px 0 2px; margin-bottom: 6px; }
+  .dcu-sh { gap: 5px; padding: 4px 0 2px; margin-bottom: 6px; }
+  .dcu-sh[data-n="4"] { grid-template-columns: repeat(2, 1fr); }
   .dcu-sc { padding: 8px 5px; }
   .dcu-rem { font-size: 28px; }
   .dcu-avg { font-size: 11px; margin-top: 4px; }
   .dcu-sn { font-size: 12px; }
 
   .dcu-tp { padding: 7px 10px; margin-bottom: 6px; }
-  .dcu-tpl { top: 7px; right: 10px; font-size: 12px; }
+  .dcu-tpl { font-size: 12px; }
   .dcu-tt { margin-bottom: 8px; }
   .dcu-dl { min-height: 22px; gap: 5px; }
   .dcu-chip { font-size: 12px; padding: 3px 9px; }
@@ -242,19 +255,25 @@ const CSS = `
 
   .dcu-nb { min-height: 40px; }
   .dcu-nn { font-size: 14px; }
-  .dcu-nv { font-size: 10px; margin-top: 1px; }
+  .dcu-nv { font-size: 9px; margin-top: 1px; }
+  .dcu-sv { font-size: 10px; }
 
   .dcu-log { margin-top: 8px; font-size: 13px; min-height: 16px; }
+
+  /* 終了画面: 全員分のスタッツを 1 画面に収めるため、余白と行間を詰める */
+  .dcu-wm { padding: 20px 16px; }
+  .dcu-wt { font-size: 20px; margin-bottom: 8px; }
+  .dcu-ws { font-size: 14px; line-height: 1.5; margin-bottom: 16px; }
+  .dcu-ws > span { margin-bottom: 6px; }
+  .dcu-st { font-size: 11px; }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
   .dartscu-container { padding: 1rem 1rem; }
-  .dcu-sh { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
   .dcu-np { grid-template-columns: repeat(5, 1fr); }
 }
 
 @media (min-width: 769px) {
-  .dcu-sh { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
   .dcu-np { grid-template-columns: repeat(10, 1fr); }
 }
 `;
@@ -283,7 +302,7 @@ const DEFAULT_CFG: Cfg = {
 
 function avgLabel(score: number, thrown: number): string {
   if (thrown < 1) return 'AVG 0.0';
-  return 'AVG ' + ((score / thrown) * 3).toFixed(1);
+  return 'AVG ' + fmt1((score / thrown) * 3);
 }
 
 function newGame(cfg: Cfg): GameState {
@@ -296,7 +315,7 @@ function newGame(cfg: Cfg): GameState {
 
 function ScoreCards({ players, cp, over, cfg, t }: { players: Player[]; cp: number; over: boolean; cfg: Cfg; t: T }) {
   return (
-    <div className="dcu-sh">
+    <div className="dcu-sh" data-n={players.length}>
       {players.map((p, i) => {
         const isActive = cp === i && !over;
         return (
@@ -390,9 +409,9 @@ function WinView({ game, cfg, t, onRematch, onReset }: {
             {sortedPlayers.map((p, i) => (
               <span key={i}>
                 <strong>{p.name}</strong>: {p.score} pts<br/>
-                <span style={{ fontSize: '0.85em', color: 'var(--ifm-color-emphasis-600)' }}>
-                  ({avgLabel(p.score, p.thrown)})
-                </span><br /><br />
+                <span className="dcu-st">
+                  {threeDartAvgLabel(p.score, p.thrown)} · {ppdLabel(p.score, p.thrown)}
+                </span>
               </span>
             ))}
           </div>
@@ -400,6 +419,7 @@ function WinView({ game, cfg, t, onRematch, onReset }: {
             <button type="button" className="dcu-wb1" onClick={onRematch}>{t.rematch}</button>
             <button type="button" className="dcu-wb2" onClick={onReset}>{t.back}</button>
           </div>
+          <StatsNote game="countup" />
         </div>
       </div>
     </>
@@ -423,11 +443,11 @@ function GameView({ game, cfg, t, canUndo, onThrow, onMiss, onEndTurn, onUndo, o
       <ScoreCards players={players} cp={cp} over={false} cfg={cfg} t={t} />
 
       <div className="dcu-tp">
-        <div className="dcu-tpl">{t.roundLabel(round, cfg.turnLimit, players[cp].name)}</div>
         <div className="dcu-tt">
           <div className="dcu-dots">
             {[0, 1, 2].map(i => <span key={i} className={`dcu-dot ${i < du ? 'used' : 'rem'}`} />)}
           </div>
+          <div className="dcu-tpl">{t.roundLabel(round, cfg.turnLimit, players[cp].name)}</div>
         </div>
         <div className="dcu-dl">
           {darts.length > 0
@@ -464,7 +484,7 @@ function GameView({ game, cfg, t, canUndo, onThrow, onMiss, onEndTurn, onUndo, o
         <div className="dcu-sr">
           <button type="button" className={`dcu-sb${needChange || isInvalidBull ? ' over' : ''}`}
             onClick={() => onThrow('B', mult)} disabled={isInvalidBull}>
-            Bull ({isInvalidBull ? '—' : `${bv}pts`})
+            Bull<span className="dcu-sv">({isInvalidBull ? '—' : `${bv}pts`})</span>
           </button>
           <button type="button" className={`dcu-sb${needChange ? ' over' : ''}`} onClick={onMiss}>
             {t.miss}
@@ -554,6 +574,7 @@ export default function DartsCountUp() {
     if (!game || game.over) return;
     hist.current.push(JSON.stringify(game));
     const g = deepClone(game);
+    g.players[g.cp].thrown += unthrownDarts(g.darts.length);
 
     if (g.cp === g.players.length - 1 && g.round >= cfg.turnLimit) {
       g.over = true;

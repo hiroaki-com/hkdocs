@@ -4,6 +4,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
 import { deepClone } from './_logic';
 import CalculatorNav from './_CalculatorNav';
+import StatsNote from './_StatsNote';
+import { mprLabel } from './_stats';
 
 const TARGETS: (number | 'B')[] = [20, 19, 18, 17, 16, 15, 'B'];
 const TV: Record<string, number> = { 20: 20, 19: 19, 18: 18, 17: 17, 16: 16, 15: 15, B: 25 };
@@ -67,7 +69,8 @@ type DartThrow =
   | { miss: true }
   | { miss: false; mult: number; t: number | 'B'; pts: number };
 
-type Player = { name: string; score: number; marks: Record<string, number> };
+// mk: MPR 用の有効マーク数(閉じるためのマークと得点になったマーク)。rd: 終えたラウンド数。
+type Player = { name: string; score: number; marks: Record<string, number>; mk: number; rd: number };
 
 type Game = {
   players: Player[];
@@ -94,11 +97,12 @@ const CSS = `
 }
 
 .dc-h1 {
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
   text-align: center;
   color: var(--ifm-font-color-secondary);
-  margin: 1rem 0 0.5rem;
+  margin: 0.25rem 0 0.75rem;
 }
 
 .dc-setup {
@@ -163,7 +167,7 @@ const CSS = `
 .dc-sn { font-size: 13px; color: var(--ifm-color-emphasis-700); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-sn.active { color: var(--ifm-color-primary); font-weight: 700; }
 .dc-rem { font-size: 24px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.1; }
-.dc-turn-lbl { font-size: 16px; color: var(--ifm-color-emphasis-400); font-weight: 777; flex-shrink: 0; margin-left: auto; }
+.dc-turn-lbl { font-size: 16px; color: var(--ifm-color-emphasis-400); font-weight: 700; flex-shrink: 0; margin-left: auto; }
 
 /* Turn row integrated inside header card */
 .dc-turn-row {
@@ -231,7 +235,7 @@ const CSS = `
 .dc-nb:disabled { opacity: 0.4; cursor: not-allowed; background: var(--ifm-color-emphasis-100); box-shadow: none; transform: none; }
 .dc-nb.over { opacity: 0.35; }
 .dc-nn { font-size: 18px; font-weight: 700; color: var(--ifm-font-color-base); line-height: 1.2; }
-.dc-nv { font-size: 12px; color: var(--ifm-color-emphasis-500); margin-top: 2px; }
+.dc-nv { font-size: 11px; color: var(--ifm-color-emphasis-500); margin-top: 2px; }
 
 .dc-ar { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 8px; }
 .dc-ab:disabled { opacity: 0.4; cursor: not-allowed; background: var(--ifm-color-emphasis-100); box-shadow: none; transform: none; }
@@ -245,13 +249,15 @@ const CSS = `
 .dc-wm { background: var(--ifm-background-color); border-radius: 12px; padding: 32px 28px; max-width: 360px; width: 90%; text-align: center; border: 1px solid var(--ifm-color-emphasis-200); box-shadow: 0 8px 16px -4px rgba(0,0,0,0.1); }
 .dc-wt { font-size: 24px; font-weight: 700; color: var(--ifm-heading-color); margin-bottom: 12px; }
 .dc-ws { font-size: 14px; color: var(--ifm-color-emphasis-700); margin-bottom: 32px; line-height: 1.8; }
+.dc-st { font-size: 12px; }
 .dc-wbs { display: flex; flex-direction: column; gap: 12px; }
 .dc-wb1 { width: 100%; padding: 14px; border-radius: var(--ifm-button-border-radius, 6px); border: none; background: var(--ifm-color-primary); cursor: pointer; font-size: 15px; font-weight: 700; color: #fff; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 .dc-wb1:hover { background: var(--ifm-color-primary-dark); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
 .dc-wb1:active { transform: scale(0.98); }
 
 @media(max-width: 480px) {
-  .darts-cricket-container { padding: 0.25rem 0.5rem; --dc-tgt-w: 38px; }
+  .darts-cricket-container { padding: 0.4rem 0.4rem; --dc-tgt-w: 38px; }
+  .dc-h1 { font-size: 0.8125rem; margin: 0.25rem 0 0.5rem; }
   .dc-setup { padding: 20px 16px; }
   .dc-stitle { font-size: 20px; }
   .dc-close-text { font-size: 8px; letter-spacing: 0; }
@@ -289,7 +295,13 @@ const CSS = `
   /* Buttons: reduced vertical padding, consistent touch target */
   .dc-nb, .dc-mb, .dc-ab { padding: 7px 4px; font-size: 13px; min-height: 40px; }
   .dc-nn { font-size: 14px; }
-  .dc-nv { font-size: 10px; margin-top: 1px; }
+  .dc-nv { font-size: 9px; margin-top: 1px; }
+
+  /* 終了画面: スコアボードの下でも 1 画面に収まるよう、余白と行間を詰める */
+  .dc-wm { padding: 20px 16px; }
+  .dc-wt { font-size: 20px; margin-bottom: 8px; }
+  .dc-ws { font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+  .dc-st { font-size: 11px; }
 }
 
 @media(min-width: 481px) and (max-width: 768px) {
@@ -311,6 +323,8 @@ function freshPlayers(names: string[], t: T): Player[] {
     name: name.trim() || t.playerLabel(i + 1),
     score: 0,
     marks: { 20: 0, 19: 0, 18: 0, 17: 0, 16: 0, 15: 0, B: 0 },
+    mk: 0,
+    rd: 0,
   }));
 }
 
@@ -384,16 +398,16 @@ function DartsCricketApp({ t }: { t: T }) {
       const pm = g.players[p].marks;
       let hits = mult, pts = 0;
 
-      if (pm[tk] < 3) { const add = Math.min(hits, 3 - pm[tk]); pm[tk] += add; hits -= add; }
+      if (pm[tk] < 3) { const add = Math.min(hits, 3 - pm[tk]); pm[tk] += add; hits -= add; g.players[p].mk += add; }
       const anyOpen = g.players.some((op, i) => i !== p && op.marks[tk] < 3);
-      if (hits > 0 && pm[tk] >= 3 && anyOpen) { pts = hits * TV[tk]; g.players[p].score += pts; }
+      if (hits > 0 && pm[tk] >= 3 && anyOpen) { pts = hits * TV[tk]; g.players[p].score += pts; g.players[p].mk += hits; }
 
       g.darts.push({ miss: false, mult, t: target, pts });
       g.du++;
       g.mult = 1;
 
       const w = checkWin(g.players);
-      if (w !== null) { g.over = true; g.winner = w; }
+      if (w !== null) { g.over = true; g.winner = w; g.players[p].rd++; }
       return g;
     });
   };
@@ -406,6 +420,7 @@ function DartsCricketApp({ t }: { t: T }) {
   const endTurn = () => {
     if (!game || game.over) return;
     withSnapshot(g => {
+      g.players[g.cp].rd++;
       if (g.cp === g.players.length - 1) g.turn++;
       g.cp = (g.cp + 1) % g.players.length;
       g.du = 0; g.darts = []; g.mult = 1;
@@ -431,7 +446,7 @@ function DartsCricketApp({ t }: { t: T }) {
 
   if (phase === 'setup') {
     return (
-      <div className="darts-cricket-container">
+      <>
         <div className="dc-setup">
           <div className="dc-stitle">{t.title}</div>
           <div className="dc-ssub">{t.subtitle}</div>
@@ -465,7 +480,7 @@ function DartsCricketApp({ t }: { t: T }) {
           <button className="dc-start" onClick={startGame}>{t.start}</button>
           <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
         </div>
-      </div>
+      </>
     );
   }
 
@@ -575,7 +590,7 @@ function DartsCricketApp({ t }: { t: T }) {
   if (g.over) {
     const winTitle = g.winner !== null ? t.winTitle(g.players[g.winner].name) : t.drawTitle;
     return (
-      <div className="darts-cricket-container">
+      <>
         <div className="dc-sticky-top">
           {scoreHeader}
           {scoreboard}
@@ -585,7 +600,7 @@ function DartsCricketApp({ t }: { t: T }) {
             <div className="dc-wt">{winTitle}</div>
             <div className="dc-ws">
               {g.players.map((p, i) => (
-                <span key={i}>{p.name}: {p.score}pts<br/></span>
+                <span key={i}>{p.name}: {p.score}pts · <span className="dc-st">{mprLabel(p.mk, p.rd)}</span><br/></span>
               ))}
             </div>
             <div className="dc-wbs">
@@ -593,14 +608,15 @@ function DartsCricketApp({ t }: { t: T }) {
                 {t.playAgain}
               </button>
             </div>
+            <StatsNote game="cricket" />
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="darts-cricket-container">
+    <>
       {/* Sticky top: unified header (scores + turn info) + scoreboard */}
       <div className="dc-sticky-top">
         {scoreHeader}
@@ -652,7 +668,7 @@ function DartsCricketApp({ t }: { t: T }) {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -663,9 +679,11 @@ export default function DartsCricketPage() {
   return (
     <Layout title={t.pageTitle} description={t.pageDesc}>
       <style>{CSS}</style>
-      <h1 className="dc-h1">{t.h1}</h1>
-      <DartsCricketApp t={t} />
-      <CalculatorNav current="cricket" />
+      <div className="darts-cricket-container">
+        <h1 className="dc-h1">{t.h1}</h1>
+        <DartsCricketApp t={t} />
+        <CalculatorNav current="cricket" />
+      </div>
     </Layout>
   );
 }
