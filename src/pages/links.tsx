@@ -171,6 +171,135 @@ const linksData: LinkCategoryData[] = [
   },
 ];
 
+const aiToolsCategory: LinkCategoryData = {
+  id: 'ai-tools',
+  title: { id: 'links.majorCategory.aiTools', message: 'AIツール' },
+  sites: [
+    {
+      href: 'https://openai.com/chatgpt',
+      title: { id: 'aiTools.tool.aiChat.chatgpt.title', message: 'ChatGPT' },
+      description: { id: 'aiTools.tool.aiChat.chatgpt.desc', message: '人間のようなテキスト生成、複雑な質問への回答、幅広いライティングやコーディング作業の支援に優れた多用途AIチャットボット。' }
+    },
+    {
+      href: 'https://www.anthropic.com/claude',
+      title: { id: 'aiTools.tool.aiChat.claude.title', message: 'Claude' },
+      description: { id: 'aiTools.tool.aiChat.claude.desc', message: '長文の読解や複雑な推論に強く、丁寧で安全な対話を重視したAIアシスタント。最大20万トークンという非常に長い文章を一度に処理可能。' }
+    },
+    {
+      href: 'https://gemini.google.com',
+      title: { id: 'aiTools.tool.aiChat.gemini.title', message: 'Google Gemini' },
+      description: { id: 'aiTools.tool.aiChat.gemini.desc', message: 'Googleのサービス群に深く統合され、テキストやコード、画像など複数の形式のデータを理解・処理できるマルチモーダルAI。' }
+    },
+    {
+      href: 'https://copilot.microsoft.com',
+      title: { id: 'aiTools.tool.aiChat.copilot.title', message: 'Microsoft Copilot' },
+      description: { id: 'aiTools.tool.aiChat.copilot.desc', message: '最新のWeb情報に基づいた回答や画像生成が可能なAIアシスタント。WindowsやOffice製品とのネイティブな連携により日常業務でシームレスに利用可能。' }
+    },
+    {
+      href: 'https://grok.com/',
+      title: { id: 'aiTools.tool.aiChat.grok.title', message: 'Grok' },
+      description: { id: 'aiTools.tool.aiChat.grok.desc', message: 'X（旧Twitter）のリアルタイム情報に直接アクセスできるAIチャットボット。最新のソーシャルメディア動向やニュースに基づいた回答が特徴。' }
+    },
+    {
+      href: 'https://github.com/features/copilot',
+      title: { id: 'aiTools.tool.programming.githubCopilot.title', message: 'GitHub Copilot' },
+      description: { id: 'aiTools.tool.programming.githubCopilot.desc', message: '開発者のエディタ上で、AIがコードの補完や提案、関数全体の作成まで行うペアプログラマー。GitHub上の膨大なコードを学習し、文脈に応じた精度の高い提案が可能。' }
+    },
+    {
+      href: 'https://www.tabnine.com',
+      title: { id: 'aiTools.tool.programming.tabnine.title', message: 'Tabnine' },
+      description: { id: 'aiTools.tool.programming.tabnine.desc', message: 'チーム独自のコードやコーディング規則を学習し、プライバシーを重視しながらコード補完をパーソナライズするAI。ローカル環境で実行可能。' }
+    },
+    {
+      href: 'https://cursor.sh',
+      title: { id: 'aiTools.tool.programming.cursor.title', message: 'Cursor' },
+      description: { id: 'aiTools.tool.programming.cursor.desc', message: '自然言語での指示を通じて、コードの編集、リファクタリング、デバッグを行えるAIネイティブなコードエディタ。' }
+    },
+    {
+      href: 'https://sourcegraph.com/cody',
+      title: { id: 'aiTools.tool.programming.cody.title', message: 'Sourcegraph Cody' },
+      description: { id: 'aiTools.tool.programming.cody.desc', message: '大規模リポジトリを対象にしたコード検索とAI補完。複数LLMを選択可能で、1Mトークン規模のコードベースを一括処理できる。' }
+    },
+    {
+      href: 'https://code.claude.com/docs',
+      title: { id: 'aiTools.tool.programming.claudeCode.title', message: 'Claude Code' },
+      description: { id: 'aiTools.tool.programming.claudeCode.desc', message: 'ターミナルから直接Claudeにコーディング作業を委譲できるコマンドラインツール。コード生成からデバッグまで、開発ワークフローに統合された形でAI支援を受けられる。' }
+    },
+    {
+      href: 'https://chatgpt.com/codex',
+      title: { id: 'aiTools.tool.programming.codex.title', message: 'ChatGPT Codex' },
+      description: { id: 'aiTools.tool.programming.codex.desc', message: 'OpenAIが提供するクラウドベースのAIソフトウェアエンジニアリングエージェント。機能追加・バグ修正・PRレビューなどのタスクを複数並列で非同期実行でき、GitHubリポジトリと連携してクラウド上の隔離環境で動作する。' }
+    },
+    {
+      href: 'https://aistudio.google.com/',
+      title: { id: 'aiTools.tool.aiDev.aiStudio.title', message: 'Google AI Studio' },
+      description: { id: 'aiTools.tool.aiDev.aiStudio.desc', message: 'Googleの最新AIモデル（Geminiファミリー）をブラウザ上で試し、プロトタイプを開発するためのツール。プロンプトから直接コードを生成する機能が強力。' }
+    },
+    {
+      href: 'https://console.anthropic.com/',
+      title: { id: 'aiTools.tool.aiDev.anthropicConsole.title', message: 'Anthropic Console' },
+      description: { id: 'aiTools.tool.aiDev.anthropicConsole.desc', message: 'AnthropicのAIモデル（Claudeファミリー）をテストし、API経由で利用するための開発者向けプラットフォーム。長文処理能力や安全性を重視したモデルが特徴。' }
+    },
+    {
+      href: 'https://developers.openai.com/',
+      title: { id: 'aiTools.tool.aiDev.openaiPlatform.title', message: 'OpenAI Platform' },
+      description: { id: 'aiTools.tool.aiDev.openaiPlatform.desc', message: 'OpenAIのGPTモデルやDALL-E、Whisperなど多様なAIモデルをAPI経由で利用できる開発者プラットフォーム。豊富なドキュメントとサンプルコードで迅速な開発が可能。' }
+    },
+    {
+      href: 'https://python.langchain.com/docs/integrations/providers/',
+      title: { id: 'aiTools.tool.aiDev.langchain.title', message: 'LangChain' },
+      description: { id: 'aiTools.tool.aiDev.langchain.desc', message: '大規模言語モデル（LLM）を活用したアプリ開発を簡素化するPythonライブラリ。多様なAIプロバイダーやデータソースを抽象化し、一貫したインターフェースで利用可能。' }
+    },
+    {
+      href: 'https://ollama.com/',
+      title: { id: 'aiTools.tool.aiDev.ollama.title', message: 'Ollama' },
+      description: { id: 'aiTools.tool.aiDev.ollama.desc', message: 'オープンソースのLLMをローカル環境で簡単に実行できるツール。Llama、Mistral、Gemmaなど多様なモデルに対応し、プライバシーを保ちながらAI開発が可能。' }
+    },
+    {
+      href: 'https://modelcontextprotocol.io/docs/getting-started/intro',
+      title: { id: 'aiTools.tool.aiDev.mcp.title', message: 'Model Context Protocol (MCP)' },
+      description: { id: 'aiTools.tool.aiDev.mcp.desc', message: 'AIアプリと外部のデータソース・ツールを接続するためのオープン標準プロトコル。対応するMCPサーバーとクライアントを組み合わせることで、ファイル・データベース・外部APIなどをAIに標準化された方法で接続できる。' }
+    },
+    {
+      href: 'https://anthropic.skilljar.com/',
+      title: { id: 'aiTools.tool.aiDev.anthropicAcademy.title', message: 'Anthropic Academy' },
+      description: { id: 'aiTools.tool.aiDev.anthropicAcademy.desc', message: 'AnthropicによるClaude活用の公式学習プラットフォーム。Claude 101やClaude APIの実装、MCPサーバー構築まで、体系的なコースを無料で提供している。' }
+    },
+    {
+      href: 'https://unsloth.ai/',
+      title: { id: 'aiTools.tool.aiDev.unsloth.title', message: 'Unsloth' },
+      description: { id: 'aiTools.tool.aiDev.unsloth.desc', message: 'LLMのファインチューニングと強化学習をGPU効率を最大化して実現するオープンソースライブラリ。Flash Attention 2比で最大30倍の速度向上と最大90%のVRAM削減を実現し、Google Colabなどのコンシューマー向けGPU環境でも主要モデルのLoRA・フルファインチューニングが可能。' }
+    },
+    {
+      href: 'https://n8n.io',
+      title: { id: 'aiTools.tool.automation.n8n.title', message: 'n8n' },
+      description: { id: 'aiTools.tool.automation.n8n.desc', message: '視覚的なエディタを使い、複雑な複数ステップの自動化ワークフローを構築できるツール。ソースコードが公開されており、自社サーバーで運用可能。' }
+    },
+    {
+      href: 'https://www.make.com/',
+      title: { id: 'aiTools.tool.automation.make.title', message: 'Make' },
+      description: { id: 'aiTools.tool.automation.make.desc', message: 'ドラッグ＆ドロップでアプリのアイコンを繋ぎ、視覚的にワークフローを構築できる自動化プラットフォーム。複雑な分岐やループ処理も直感的に作成可能。' }
+    },
+    {
+      href: 'https://zapier.com',
+      title: { id: 'aiTools.tool.automation.zapier.title', message: 'Zapier' },
+      description: { id: 'aiTools.tool.automation.zapier.desc', message: '7,000を超える圧倒的な数のアプリ連携に対応した自動化ツール。AIがワークフローの構築を提案する機能も持ち、ワークフロー自動化の標準的なツール。' }
+    },
+    {
+      href: 'https://openclaw.ai/',
+      title: { id: 'aiTools.tool.automation.openclaw.title', message: 'OpenClaw' },
+      description: { id: 'aiTools.tool.automation.openclaw.desc', message: 'ローカル環境で動作するオープンソースのAIパーソナルアシスタント。WhatsAppやTelegram等の既存メッセージツールと連携し、タスク自動化やワークフロー管理を自律的に実行。' }
+    },
+    {
+      href: 'https://www.perplexity.ai',
+      title: { id: 'aiTools.tool.research.perplexity.title', message: 'Perplexity AI' },
+      description: { id: 'aiTools.tool.research.perplexity.desc', message: '質問に対して、ウェブ上の情報源を明記した上で、正確な答えを直接生成するAI検索エンジン。出典付きで信頼性の高い回答を対話形式で提供。' }
+    },
+  ],
+};
+
+const categories: LinkCategoryData[] = [...linksData, aiToolsCategory];
+
 export default function LinksPage(): JSX.Element {
   const handleDownload = () => {
     const header = [
@@ -178,7 +307,7 @@ export default function LinksPage(): JSX.Element {
       'URL',
     ].join(',');
 
-    const allSites = linksData.flatMap((category) => category.sites);
+    const allSites = categories.flatMap((category) => category.sites);
 
     const rows = allSites.map((site) => {
       const siteTitle = translate(site.title);
@@ -190,10 +319,11 @@ export default function LinksPage(): JSX.Element {
 
   return (
     <Layout
-      title={translate({ id: 'links.page.title', message: '資料集' })}
+      title={translate({ id: 'links.page.title', message: '技術資料集' })}
       description={translate({
         id: 'links.page.description',
-        message: '開発や学習に役立つ技術ドキュメントやツールへのリンク集です。',
+        message:
+          '開発や学習に役立つ技術ドキュメントと、個人開発・業務効率化に使えるAIツールのリンク集です。',
       })}
     >
       <Head children={''} />
@@ -201,11 +331,11 @@ export default function LinksPage(): JSX.Element {
         <div className={styles.pageHeader}>
           <div className={styles.pageHeaderTitle}>
             <h1>
-              <Translate id="links.page.heading">資料集</Translate>
+              <Translate id="links.page.heading">技術資料集</Translate>
             </h1>
             <p>
               <Translate id="links.page.subheading">
-                開発・学習のためのリファレンス
+                開発・学習のためのリファレンスとAIツール
               </Translate>
             </p>
           </div>
@@ -214,7 +344,7 @@ export default function LinksPage(): JSX.Element {
             className={styles.downloadButton}
             aria-label={translate({
               id: 'links.page.downloadButtonAriaLabel',
-              message: '資料集サイト一覧をダウンロード',
+              message: '技術資料集の一覧をダウンロード',
             })}
             title={translate({
               id: 'links.page.downloadButtonTooltip',
@@ -225,7 +355,7 @@ export default function LinksPage(): JSX.Element {
           </button>
         </div>
 
-        {linksData.map((category) => (
+        {categories.map((category) => (
           <details key={category.id} open className={styles.majorCategorySection}>
             <summary style={{ cursor: 'pointer' }}>
               <SectionHeading

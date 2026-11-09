@@ -237,10 +237,10 @@ VII. Site Structure (Content) - Docusaurus
   * Custom Pages (`src/pages/`):
     - News (`news.tsx`): Categorizes and lists links to major domestic and
       international news sites.
-    - Reference Materials (`links.tsx`): A categorized directory of external
-      links such as technical documentation (with CSV export).
-    - AI Tools (`ai-tools.tsx`): A directory of generative-AI tools organized by
-      use case (with CSV export).
+    - Tech References (`links.tsx`): A categorized directory of external links
+      such as technical documentation, with generative-AI tools listed as the
+      final "AI Tools" category. Supports CSV export. The former `/ai-tools` URL redirects to `/links/` via
+      `@docusaurus/plugin-client-redirects`.
     - Browser Memo (`browser-memo.tsx`): A browser-only memo tool. Supports
       Markdown/Mermaid preview and URL sharing via `lz-string` (state stored in the URL).
     - Darts Calculators (`darts/`): Install-free, browser-only score calculators.
@@ -254,7 +254,7 @@ VII. Site Structure (Content) - Docusaurus
     - `ShareButtons` (social sharing), `GitHubStarLink` / `SupportButton`
       (star and support prompts), `LinksCard` / `SectionHeading` (shared link-list UI),
       `HomepageFeatures`, `VideoShowcase`, and others.
-    - `src/lib/csv.ts`: CSV export utility used by the Reference Materials and AI Tools pages.
+    - `src/lib/csv.ts`: CSV export utility used by the Tech References page.
   * Multilingual Support (i18n): Managed in the `i18n/en` directory.
     Supports Japanese (default) and English, providing UI text and translation
     files for each piece of content. Locale-aware rendering is applied to items
