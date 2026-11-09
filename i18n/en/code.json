@@ -588,12 +588,6 @@
     "message": "On this page",
     "description": "The label used by the button on the collapsible TOC component"
   },
-  "homepage.features.aiTools.title": {
-    "message": "AI Tools"
-  },
-  "homepage.features.aiTools.description": {
-    "message": "A collection of AI tools for development and productivity."
-  },
   "homepage.meta.title": {
     "message": "Tech Blog, Study Notes & Handy Tools",
     "description": "The meta title suffix for the homepage (site name is appended automatically)"
@@ -601,42 +595,6 @@
   "homepage.meta.description": {
     "message": "This is a technical blog where I share what I learn through my daily experiences. It also provides tools such as a browser-based notepad, a list of news sites, and collections of links to technical resources and research papers.",
     "description": "The meta description for the homepage"
-  },
-  "aiTools.page.title": {
-    "message": "AI Tools"
-  },
-  "aiTools.page.description": {
-    "message": "A comprehensive collection of AI tools useful for development and productivity enhancement."
-  },
-  "aiTools.page.heading": {
-    "message": "AI Tools"
-  },
-  "aiTools.page.subheading": {
-    "message": "AI Tools for Development & Productivity"
-  },
-  "aiTools.page.downloadButtonAriaLabel": {
-    "message": "Download AI tools list"
-  },
-  "aiTools.page.downloadButtonTooltip": {
-    "message": "Download CSV list"
-  },
-  "aiTools.download.header.toolName": {
-    "message": "ToolName"
-  },
-  "aiTools.majorCategory.aiChat": {
-    "message": "Generative AI Chat"
-  },
-  "aiTools.majorCategory.programmingSupport": {
-    "message": "Programming Support"
-  },
-  "aiTools.majorCategory.aiDevelopmentPlatform": {
-    "message": "AI Development Platform"
-  },
-  "aiTools.majorCategory.appIntegrationAutomation": {
-    "message": "App Integration & Automation"
-  },
-  "aiTools.majorCategory.informationResearch": {
-    "message": "Information & Research"
   },
   "aiTools.tool.aiChat.chatgpt.title": {
     "message": "ChatGPT"
@@ -1646,32 +1604,35 @@
     "description": "Title for TV Tokyo BIZ"
   },
   "homepage.features.links.description": {
-    "message": "A collection of reference links helpful for development and learning."
+    "message": "Reference links and AI tools for development and learning."
   },
   "homepage.features.links.title": {
-    "message": "Links"
+    "message": "Tech References"
   },
   "links.card.faviconAlt": {
     "message": "Favicon of {title}",
     "description": "Alt text for the favicon image on a link card"
   },
   "links.page.description": {
-    "message": "A collection of useful links to technical documents and tools for development and learning."
+    "message": "A collection of technical documents for development and learning, plus AI tools for side projects and productivity."
   },
   "links.page.downloadButtonAriaLabel": {
-    "message": "Download resource site list"
+    "message": "Download tech references list"
   },
   "links.page.downloadButtonTooltip": {
     "message": "Download CSV list"
   },
   "links.page.heading": {
-    "message": "Links"
+    "message": "Tech References"
   },
   "links.page.subheading": {
-    "message": "References for Development & Learning"
+    "message": "References and AI Tools for Development & Learning"
   },
   "links.page.title": {
-    "message": "Links"
+    "message": "Tech References"
+  },
+  "links.majorCategory.aiTools": {
+    "message": "AI Tools"
   },
   "links.download.header.siteName": {
     "message": "SiteName"
@@ -2387,12 +2348,12 @@
     "description": "Title for W3C"
   },
   "component.GitHubStarLink.text": {
-      "message": "If this site helped you, please support us with 🌟 ☕️",
-      "description": "The text asking for a GitHub star support"
+    "message": "If this site helped you, please support us with 🌟 ☕️",
+    "description": "The text asking for a GitHub star support"
   },
-    "support.button.text": {
-      "message": "Support",
-      "description": "The text for the project support button"
+  "support.button.text": {
+    "message": "Support",
+    "description": "The text for the project support button"
   },
   "videoShowcase.prev": {
     "message": "Previous",

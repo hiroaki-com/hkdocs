@@ -125,6 +125,12 @@ const config: Config = {
 
   plugins: [
     [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [{ from: '/ai-tools', to: '/links/' }],
+      },
+    ],
+    [
       '@docusaurus/plugin-content-blog',
       {
         id: 'diary', // 2つ目のブログとして'diary'を定義
@@ -193,8 +199,7 @@ const config: Config = {
           items: [
             { to: '/diary', label: '日記' },
             { to: '/news', label: 'ニュース' },
-            { to: '/links', label: '資料集' },
-            { to: '/ai-tools', label: 'AIツール集' },
+            { to: '/links', label: '技術資料集' },
             { to: '/browser-memo', label: 'ブラウザメモ' },
             { to: '/darts', label: 'Darts' },
             { to: '/profile', label: 'プロフィール' },
@@ -235,8 +240,7 @@ const config: Config = {
           title: 'More',
           items: [
             { label: 'ニュース', to: '/news' },
-            { label: '資料集', to: '/links' },
-            { label: 'AIツール集', to: '/ai-tools' },
+            { label: '技術資料集', to: '/links' },
             { label: 'ブラウザメモ', to: '/browser-memo' },
             { label: 'Darts', to: '/darts' },
             { label: 'プロフィール', to: '/profile' },

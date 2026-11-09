@@ -212,10 +212,10 @@ VII. サイト構成 (コンテンツ) - Docusaurus
     Decap CMSと連携しており、Web上の管理画面 (`/admin/`) からコンテンツの作成・更新が可能。
   * カスタムページ (`src/pages/`):
     - ニュース (`news.tsx`): 国内外の主要ニュースサイトへのリンクをカテゴリ別にまとめたページ。
-    - 資料集 (`links.tsx`): 技術ドキュメント等の外部リンクをカテゴリ別に整理した一覧ページ
-      (CSVエクスポート対応)。
-    - AIツール集 (`ai-tools.tsx`): 生成AIツール等を用途別に整理した一覧ページ
-      (CSVエクスポート対応)。
+    - 技術資料集 (`links.tsx`): 技術ドキュメント等の外部リンクをカテゴリ別に整理した
+      一覧ページ。生成AIツールは「AIツール」カテゴリとして末尾に収録 (CSVエクスポート
+      対応)。旧 `/ai-tools` は `@docusaurus/plugin-client-redirects` で
+      `/links/` へ転送する。
     - ブラウザメモ (`browser-memo.tsx`): ブラウザ完結型のメモ機能。Markdown/Mermaidの
       プレビューと、`lz-string`によるURL共有 (状態のURL格納) に対応。
     - ダーツ計算アプリ (`darts/`): インストール不要のブラウザ完結型スコア計算ツール。
@@ -228,7 +228,7 @@ VII. サイト構成 (コンテンツ) - Docusaurus
     - `ShareButtons` (SNS共有), `GitHubStarLink` / `SupportButton` (スター・支援導線),
       `LinksCard` / `SectionHeading` (リンク一覧の共通UI), `HomepageFeatures`,
       `VideoShowcase` など。
-    - `src/lib/csv.ts`: 資料集・AIツール集のCSVエクスポート用ユーティリティ。
+    - `src/lib/csv.ts`: 技術資料集ページのCSVエクスポート用ユーティリティ。
   * 多言語対応 (i18n): `i18n/en`ディレクトリで管理。
     日本語(デフォルト)と英語に対応し、UIテキストと各コンテンツの翻訳ファイルを提供する。
     アナウンスバーやフッターの法務リンク等、ロケールに応じた出し分けも行う。

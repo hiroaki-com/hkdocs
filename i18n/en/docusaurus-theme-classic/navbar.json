@@ -39,16 +39,12 @@
     "message": "News",
     "description": "Navbar item with label ニュース"
   },
-  "item.label.資料集": {
-    "message": "Links",
-    "description": "Navbar item with label 資料集"
+  "item.label.技術資料集": {
+    "message": "Tech References",
+    "description": "Navbar item with label 技術資料集"
   },
   "item.label.その他": {
     "message": "Other",
     "description": "Navbar item with label その他"
-  },
-  "item.label.AIツール集": {
-    "message": "AI tools",
-    "description": "Navbar item with label AIツール集"
   }
 }
