@@ -9,6 +9,7 @@ description: "Google Colab と Cloudflare Tunnel で会話ログを外部に送�
 import Admonition from '@theme/Admonition';
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import YakubunPromo from '@site/src/components/YakubunPromo';
 
 <GitHubStarLink repo="hiroaki-com/colab-ollama-private-chat" />
 
@@ -62,6 +63,8 @@ ChatGPTやClaudeのようなLLMサービスは便利ですが、業務上の機�
 以前から、機密情報を含む可能性のある文章を外部のLLMサービスに送ることへの抵抗がありました。Ollamaを使えばモデルをローカルで動かせますが、自前のGPU環境を持っていない場合は選択肢が限られます。
 
 Google ColabにはT4 GPUが無料で使える環境があり、Ollamaはそのまま動きます。ただ、「Colabを開いてOllamaを起動してチャットする」という一連の流れを毎回手作業でやるのは現実的ではないため、一つのノートブックに全工程を閉じ込めることにしました。
+
+<YakubunPromo campaign="docs-colab-private-chat" />
 
 ### 主な機能と技術的なポイント
 

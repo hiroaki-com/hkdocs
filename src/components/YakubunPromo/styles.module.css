@@ -1,0 +1,69 @@
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 480px;
+  margin: 20px auto 0;
+  padding: 14px 32px 14px 14px;
+  text-align: left;
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-card-border-radius);
+}
+
+/* ダークモードでも読み取れるよう、QR は常に白地に置く */
+.qr {
+  flex-shrink: 0;
+  display: block;
+  width: 84px;
+  height: 84px;
+  padding: 4px;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 0.95rem;
+}
+
+.desc {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.link {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badge {
+  align-self: flex-start;
+  margin-top: 6px;
+  line-height: 0;
+}
+
+.badge img {
+  height: 40px;
+  width: auto;
+}
+
+.close {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  padding: 4px;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--ifm-color-emphasis-600);
+  cursor: pointer;
+}
