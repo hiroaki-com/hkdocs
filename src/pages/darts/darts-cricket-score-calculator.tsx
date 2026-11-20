@@ -5,6 +5,7 @@ import GitHubStarLink from '@site/src/components/GitHubStarLink';
 import { deepClone } from './_logic';
 import CalculatorNav from './_CalculatorNav';
 import StatsNote from './_StatsNote';
+import YakubunPromo from '@site/src/components/YakubunPromo';
 import { mprLabel } from './_stats';
 
 const TARGETS: (number | 'B')[] = [20, 19, 18, 17, 16, 15, 'B'];
@@ -609,6 +610,7 @@ function DartsCricketApp({ t }: { t: T }) {
               </button>
             </div>
             <StatsNote game="cricket" />
+            <YakubunPromo campaign="darts-result" />
           </div>
         </div>
       </>

@@ -6,6 +6,7 @@ import { ptsFor, labelFor, deepClone } from './_logic';
 import { fmt1, threeDartAvgLabel, ppdLabel, unthrownDarts } from './_stats';
 import CalculatorNav from './_CalculatorNav';
 import StatsNote from './_StatsNote';
+import YakubunPromo from '@site/src/components/YakubunPromo';
 
 type T = {
   pageTitle: string;
@@ -420,6 +421,7 @@ function WinView({ game, cfg, t, onRematch, onReset }: {
             <button type="button" className="dcu-wb2" onClick={onReset}>{t.back}</button>
           </div>
           <StatsNote game="countup" />
+          <YakubunPromo campaign="darts-result" />
         </div>
       </div>
     </>

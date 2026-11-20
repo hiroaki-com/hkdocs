@@ -8,6 +8,7 @@ image: /img/apple-developer-organization_01_cover.webp
 
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import YakubunPromo from '@site/src/components/YakubunPromo';
 
 <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
 
@@ -300,6 +301,8 @@ D-U-N-S の発行は前日（10/16）で、Apple の案内では D&B から Appl
 - App Store Connect のデベロッパ名：最初のアプリを登録するときに設定し、後からは変えられません。屋号にしました。
 - 組織名を変えるとき：組織名は全アプリの販売元の表示に使われます。変える場合は[組織情報の更新のフォーム](https://developer.apple.com/contact/request/update-company-information/)から依頼します。変えるとすべてのアプリの表示が変わり、元には戻せません。気軽に変えないほうがよい項目です。
 
+<YakubunPromo campaign="blog-apple-dev" placement="mid" />
+
 ## すでに個人で登録している場合
 
 今回は既存の個人メンバーシップがない状態から始めたので、この流れは経験していません。すでに個人で登録していて、後から屋号に切り替えたい場合は、[tomlife43 さんの記事](https://zenn.dev/tomlife43/articles/eee8f6b90b22a1)が詳しいです。この記事によると、D-U-N-S 番号を取ったうえでサポートに依頼する必要があり、次の 2 つは別々に依頼したそうです。
@@ -337,6 +340,8 @@ D-U-N-S の発行は前日（10/16）で、Apple の案内では D&B から Appl
 一番の山場は法人格のエラーで、待っても消えないので、すぐに相談するのが近道です。次に効いたのは、入力の表記を D&B に登録されたものに合わせることでした。私用の電話番号については、公開され得る欄には一度も書かず、開業届の控えを出すときも黒塗りにしています。
 
 先行記事のおかげで、つまずく場所をある程度予想して進められました。この記事も、同じことをする方の参考になればうれしいです。
+
+<YakubunPromo campaign="blog-apple-dev" />
 
 ---
 

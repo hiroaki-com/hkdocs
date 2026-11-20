@@ -8,6 +8,7 @@ image: /img/obsidian-x-viral-map_01_cover.webp
 
 import ShareButtons from '@site/src/components/ShareButtons';
 import GitHubStarLink from '@site/src/components/GitHubStarLink';
+import YakubunPromo from '@site/src/components/YakubunPromo';
 import XPost from '@site/src/components/XPost';
 
 <GitHubStarLink repo="hiroaki-com/hkdocs" showSupportButton />
@@ -214,6 +215,8 @@ Machina さんは、個人 Wiki を事業の GTM 知識に特殊化しました�
 逆に、後回しでよいものもはっきりしました。完璧なフォルダ設計、最初のノートの品質、道具の数です。記法の細かい部分は公式スキルに任せられますし、MCP は必要になってから足せます。
 
 今回の調査を踏まえて、自分にマッチする設計に落とし込んで行きたいと思います。
+
+<YakubunPromo campaign="blog-obsidian" />
 
 ---
 
