@@ -759,7 +759,7 @@
   },
   "aiTools.tool.aiDev.unsloth.desc": {
     "message": "An open-source library for LLM fine-tuning and reinforcement learning with maximized GPU efficiency. It achieves up to 30× speed improvements compared to Flash Attention 2 and up to 90% VRAM reduction, enabling LoRA and full fine-tuning of major models even on consumer GPUs such as Google Colab."
-  },  
+  },
   "homepage.features.news.description": {
     "message": "A list of websites useful for daily information gathering."
   },
@@ -819,10 +819,6 @@
     "message": "Press Releases",
     "description": "Category title for Japanese press release sites"
   },
-  "news.category.security-jp": {
-    "message": "Security & IT Professional",
-    "description": "Category title for Japanese security and IT professional news"
-  },
   "news.category.summary-sites-int": {
     "message": "Aggregators & Journalism",
     "description": "Category title for international news aggregators and journalism"
@@ -830,18 +826,6 @@
   "news.category.summary-sites-jp": {
     "message": "Aggregators",
     "description": "Category title for Japanese news aggregators"
-  },
-  "news.category.tech-science-int": {
-    "message": "Technology & Science",
-    "description": "Category title for international technology and science news"
-  },
-  "news.category.tech-science-jp": {
-    "message": "Technology & Science",
-    "description": "Category title for Japanese technology and science news"
-  },
-  "news.category.tv-news-jp": {
-    "message": "TV News",
-    "description": "Category title for Japanese TV news sites"
   },
   "news.site.int.ap.bbc.desc": {
     "message": "The international broadcasting arm of the British Broadcasting Corporation (BBC), established in 1932. It delivers news and documentaries to the world in over 40 languages via radio, online, and podcasts.",
@@ -947,14 +931,6 @@
     "message": "China Daily",
     "description": "Title for China Daily"
   },
-  "news.site.int.ge.digiday.desc": {
-    "message": "An international edition of a specialized media that delves into the transformation of digital media, marketing, advertising, and retail.",
-    "description": "Description for Digiday"
-  },
-  "news.site.int.ge.digiday.title": {
-    "message": "Digiday",
-    "description": "Title for Digiday"
-  },
   "news.site.int.ge.dw.desc": {
     "message": "Germany's international public broadcaster, established in 1953. Although funded by the German federal government, its editorial independence is legally guaranteed. It broadcasts news from a German and European perspective in over 30 languages.",
     "description": "Description for Deutsche Welle"
@@ -978,7 +954,7 @@
   "news.site.int.ge.fox.title": {
     "message": "Fox News",
     "description": "Title for Fox News"
-  },  
+  },
   "news.site.int.ge.ft.desc": {
     "message": "Founded in the UK in 1888 by James Sheridan and others. It has been a subsidiary of Nikkei Inc. since 2015. The UK's benchmark stock index, the FTSE 100, takes its name from a joint venture between the newspaper and the London Stock Exchange.",
     "description": "Description for Financial Times"
@@ -994,7 +970,7 @@
   "news.site.int.ge.guardian.title": {
     "message": "The Guardian US",
     "description": "Title for The Guardian US"
-  },  
+  },
   "news.site.int.ge.khaleejtimes.desc": {
     "message": "Founded in 1978, it is the longest-running English-language daily newspaper in the United Arab Emirates (UAE). Based in Dubai, it provides comprehensive coverage of Gulf and international news.",
     "description": "Description for the Khaleej Times site"
@@ -1146,7 +1122,7 @@
   "news.site.int.ss.yan.desc": {
     "message": "A primary information hub associated with the international hacktivist collective 'Anonymous.' It aggregates news from activists, leaked information, and topics often uncovered by mainstream media.",
     "description": "Description for YourAnonNews"
-  },  
+  },
   "news.site.int.ss.icij.desc": {
     "message": "A non-profit investigative reporting organization founded in the U.S. in 1997 by Charles Lewis. Known for the 'Panama Papers' and 'Pandora Papers,' it pursues wrongdoing through cross-border collaboration.",
     "description": "Description for ICIJ"
@@ -1210,110 +1186,6 @@
   "news.site.int.ss.xarticles.title": {
     "message": "Xarticl.es",
     "description": "Title for Xarticl.es"
-  },
-  "news.site.int.ts.arstechnica.desc": {
-    "message": "Founded in the U.S. in 1998 by Ken Fisher and Jon Stokes. Operated by Condé Nast since 2008. Known for in-depth technical explainers and reviews covering technology, science, and policy.",
-    "description": "Description for Ars Technica"
-  },
-  "news.site.int.ts.arstechnica.title": {
-    "message": "Ars Technica",
-    "description": "Title for Ars Technica"
-  },
-  "news.site.int.ts.cacm.desc": {
-    "message": "Founded in 1958 as the flagship publication of the ACM (Association for Computing Machinery, founded 1947). Publishes news, expert commentary, and peer-reviewed research, serving as both an academic journal and a practitioner-oriented resource for computer science. Relaunched in 2024 as a web-first, open-access publication.",
-    "description": "Description for Communications of the ACM"
-  },
-  "news.site.int.ts.cacm.title": {
-    "message": "Communications of the ACM (CACM)",
-    "description": "Title for Communications of the ACM"
-  },
-  "news.site.int.ts.geekwire.desc": {
-    "message": "Reports on technology, startups, and innovation, with a focus on Seattle and the Pacific Northwest.",
-    "description": "Description for GeekWire"
-  },
-  "news.site.int.ts.geekwire.title": {
-    "message": "GeekWire",
-    "description": "Title for GeekWire"
-  },
-  "news.site.int.ts.ieeespectrum.desc": {
-    "message": "Launched in 1964 as the flagship publication of the IEEE (Institute of Electrical and Electronics Engineers). Keeps the IEEE's more than 500,000 members informed of major trends in engineering, technology, and science. Has won multiple U.S. magazine awards.",
-    "description": "Description for IEEE Spectrum"
-  },
-  "news.site.int.ts.ieeespectrum.title": {
-    "message": "IEEE Spectrum",
-    "description": "Title for IEEE Spectrum"
-  },
-  "news.site.int.ts.infoq.desc": {
-    "message": "Founded in 2006 by Floyd Marinescu and others, operated by C4Media Inc. Delivers software development trends and best practices from a practitioner's perspective for senior developers, architects, and technical leaders. Publishes in multiple languages including English, Chinese, and Japanese, and hosts the QCon technology conference.",
-    "description": "Description for InfoQ"
-  },
-  "news.site.int.ts.infoq.title": {
-    "message": "InfoQ",
-    "description": "Title for InfoQ"
-  },
-  "news.site.int.ts.mit.desc": {
-    "message": "Founded and operated by the Massachusetts Institute of Technology (MIT) since 1899. One of the world's most authoritative technology magazines, analyzing the commercial, political, and social impacts of emerging technologies.",
-    "description": "Description for MIT Technology Review"
-  },
-  "news.site.int.ts.mit.title": {
-    "message": "MIT Technology Review",
-    "description": "Title for MIT Technology Review"
-  },
-  "news.site.int.ts.sciencedaily.desc": {
-    "message": "Daily news that delivers the latest scientific research press releases.",
-    "description": "Description for ScienceDaily"
-  },
-  "news.site.int.ts.sciencedaily.title": {
-    "message": "ScienceDaily",
-    "description": "Title for ScienceDaily"
-  },
-  "news.site.int.ts.scitech.desc": {
-    "message": "A media outlet that provides a wide range of the latest research and news in the fields of science and technology.",
-    "description": "Description for SciTechDaily"
-  },
-  "news.site.int.ts.scitech.title": {
-    "message": "SciTechDaily",
-    "description": "Title for SciTechDaily"
-  },
-  "news.site.int.ts.techcrunch.desc": {
-    "message": "Founded in the U.S. in 2005 by Michael Arrington and operated by Yahoo Inc. A leading media outlet reporting on startups and the technology industry, it hosts the large-scale conference 'Disrupt.'",
-    "description": "Description for TechCrunch"
-  },
-  "news.site.int.ts.techcrunch.title": {
-    "message": "TechCrunch",
-    "description": "Title for TechCrunch"
-  },
-  "news.site.int.ts.techmeme.desc": {
-    "message": "Founded in 2005 by Gabe Rivera. A highly influential aggregator that consolidates technology industry news using a combination of humans and algorithms.",
-    "description": "The description for Techmeme on the news page"
-  },
-  "news.site.int.ts.techmeme.title": {
-    "message": "Techmeme",
-    "description": "The title for Techmeme on the news page"
-  },
-  "news.site.int.ts.techtwitter.desc": {
-    "message": "A curation site that organizes posts from notable accounts on X (formerly Twitter) by topic, covering themes such as AI, startups, and web development. It also provides lists of tech accounts to follow.",
-    "description": "Description for Tech Twitter"
-  },
-  "news.site.int.ts.techtwitter.title": {
-    "message": "Tech Twitter",
-    "description": "Title for Tech Twitter"
-  },
-  "news.site.int.ts.thenewstack.desc": {
-    "message": "Founded in the U.S. in 2014 by tech journalist Alex Williams and others. A subsidiary of Insight Partners since 2021. A developer-focused media outlet specializing in cloud-native computing, DevOps, open source, and container technologies that underpin modern application development.",
-    "description": "Description for The New Stack"
-  },
-  "news.site.int.ts.thenewstack.title": {
-    "message": "The New Stack",
-    "description": "Title for The New Stack"
-  },
-  "news.site.int.ts.wired.desc": {
-    "message": "Founded in the U.S. in 1993 by Louis Rossetto and others, operated by Condé Nast. A media outlet that has influenced the world with its style of deeply exploring the impact of technology on culture, economy, and politics, and contemplating the future.",
-    "description": "Description for WIRED"
-  },
-  "news.site.int.ts.wired.title": {
-    "message": "WIRED",
-    "description": "Title for WIRED"
   },
   "news.site.jp.ge.bi.desc": {
     "message": "The Japanese edition of the economic media founded in the U.S. in 2007 by Henry Blodget, operated by Mediagene Inc. It primarily targets millennials and delivers news on business, finance, and technology.",
@@ -1386,7 +1258,7 @@
   "news.site.jp.ge.finviz.desc": {
     "message": "Founded by Juraj Duris in 2007. Short for Financial Visualizations. Provides market data for stocks and futures visually and intuitively using heat maps (tree maps) and screeners.",
     "description": "Description for finviz"
-  },  
+  },
   "news.site.jp.gp.47news.desc": {
     "message": "Established in 2006. Operated by ZENKOKU SHIMBUN NET Co., Ltd. Kyodo News and 52 local newspapers across Japan participate, providing news from both central and regional perspectives.",
     "description": "Description for 47NEWS"
@@ -1483,21 +1355,13 @@
     "message": "PR TIMES",
     "description": "Title for PR TIMES"
   },
-  "news.site.jp.sec.ipa.desc": {
+  "links.site.security.ipa.desc": {
     "message": "A public organization under the jurisdiction of the Ministry of Economy, Trade and Industry, established in 2004. It supports Japan's national IT strategy from a technical standpoint and is responsible for publishing the '10 Major Security Threats' and conducting the Information Technology Engineers Examination.",
     "description": "Description for IPA"
   },
-  "news.site.jp.sec.ipa.title": {
+  "links.site.security.ipa.title": {
     "message": "IPA (Information-technology Promotion Agency, Japan)",
     "description": "Title for IPA"
-  },
-  "news.site.jp.sec.secnext.desc": {
-    "message": "Launched in 2004. A professional news site for cybersecurity and personal information protection operated by News Gaia Inc. It promptly reports on incidents and vulnerabilities.",
-    "description": "Description for Security NEXT"
-  },
-  "news.site.jp.sec.secnext.title": {
-    "message": "Security NEXT",
-    "description": "Title for Security NEXT"
   },
   "news.site.jp.ss.ceek.desc": {
     "message": "A news search engine that allows cross-searching of major domestic news.",
@@ -1514,94 +1378,6 @@
   "news.site.jp.ss.googlenews.title": {
     "message": "Google News (Japan)",
     "description": "The title for Google News (Japan)"
-  },
-  "news.site.jp.ts.ascii.desc": {
-    "message": "A web media originating from 'Monthly ASCII,' founded in 1977 by Kazuhiko Nishi. Operated by KADOKAWA ASCII Research Laboratories, Inc. It has a history since the dawn of personal computers in Japan and provides timely news on PCs, IT, and gadgets.",
-    "description": "Description for ASCII.jp"
-  },
-  "news.site.jp.ts.ascii.title": {
-    "message": "ASCII.jp",
-    "description": "Title for ASCII.jp"
-  },
-  "news.site.jp.ts.cnet.desc": {
-    "message": "The Japanese version of the technology news site founded in the U.S. in 1994 by Halsey Minor and others. Operated by Asahi Interactive, Inc. It has a strong focus on IT product reviews and information on corporate solutions.",
-    "description": "Description for CNET Japan"
-  },
-  "news.site.jp.ts.cnet.title": {
-    "message": "CNET Japan",
-    "description": "Title for CNET Japan"
-  },
-  "news.site.jp.ts.gigazine.desc": {
-    "message": "Launched in 2000 by Keito Yamazaki and operated by OSA Inc. Known for its in-depth articles based on unique perspectives and detailed reporting. It covers a wide range of topics from gadget reviews to science and food culture.",
-    "description": "Description for GIGAZINE"
-  },
-  "news.site.jp.ts.gigazine.title": {
-    "message": "GIGAZINE",
-    "description": "Title for GIGAZINE"
-  },
-  "news.site.jp.ts.mit.desc": {
-    "message": "The Japanese edition of the world's oldest technology magazine, founded in 1899 by the Massachusetts Institute of Technology (MIT). Operated by KADOKAWA ASCII Research Laboratories, Inc. It analyzes the social and economic impact of new technologies.",
-    "description": "Description for MIT Technology Review Japan"
-  },
-  "news.site.jp.ts.mit.title": {
-    "message": "MIT Technology Review Japan",
-    "description": "Title for MIT Technology Review Japan"
-  },
-  "news.site.jp.ts.wired.desc": {
-    "message": "The Japanese edition of the technology culture magazine founded in the U.S. in 1993 by Louis Rossetto and others. Operated by Condé Nast Japan, it is known for exploring the impact of technology on culture, society, and lifestyle with future-oriented insights.",
-    "description": "Description for WIRED Japan"
-  },
-  "news.site.jp.ts.wired.title": {
-    "message": "WIRED Japan",
-    "description": "Title for WIRED Japan"
-  },
-  "news.site.jp.tv.asahi.desc": {
-    "message": "The news site of TV Asahi. Disseminates information from a unique perspective.",
-    "description": "Description for TV Asahi NEWS"
-  },
-  "news.site.jp.tv.asahi.title": {
-    "message": "TV Asahi NEWS",
-    "description": "Title for TV Asahi NEWS"
-  },
-  "news.site.jp.tv.fuji.desc": {
-    "message": "News distribution site by the news division of Fuji Television.",
-    "description": "Description for Fuji TV NEWS"
-  },
-  "news.site.jp.tv.fuji.title": {
-    "message": "Fuji TV NEWS",
-    "description": "Title for Fuji TV NEWS"
-  },
-  "news.site.jp.tv.nhk.desc": {
-    "message": "The comprehensive news site of the Japan Broadcasting Corporation (NHK). Provides a wide range of domestic and international news.",
-    "description": "Description for NHK NEWS WEB"
-  },
-  "news.site.jp.tv.nhk.title": {
-    "message": "NHK NEWS WEB",
-    "description": "Title for NHK NEWS WEB"
-  },
-  "news.site.jp.tv.ntv.desc": {
-    "message": "The news site of Nippon Television. Provides timely news.",
-    "description": "Description for NTV NEWS"
-  },
-  "news.site.jp.tv.ntv.title": {
-    "message": "NTV NEWS",
-    "description": "Title for NTV NEWS"
-  },
-  "news.site.jp.tv.tbs.desc": {
-    "message": "The news site of TBS Television. Reports in detail on current events and social issues.",
-    "description": "Description for TBS NEWS"
-  },
-  "news.site.jp.tv.tbs.title": {
-    "message": "TBS NEWS",
-    "description": "Title for TBS NEWS"
-  },
-  "news.site.jp.tv.tx.desc": {
-    "message": "A specialized economic and business news site from TV Tokyo.",
-    "description": "Description for TV Tokyo BIZ"
-  },
-  "news.site.jp.tv.tx.title": {
-    "message": "TV Tokyo BIZ",
-    "description": "Title for TV Tokyo BIZ"
   },
   "homepage.features.links.description": {
     "message": "Reference links and AI tools for development and learning."
@@ -1637,7 +1413,7 @@
   "links.download.header.siteName": {
     "message": "SiteName"
   },
-  "links.majorCategory.academicResearch": {
+  "news.category.academic-research-int": {
     "message": "Papers",
     "description": "Category title for academic research links"
   },
@@ -1677,155 +1453,155 @@
     "message": "Version Control",
     "description": "Category title for version control links"
   },
-  "links.site.academic.acm.desc": {
+  "news.site.int.ar.acm.desc": {
     "message": "Covers all journals and international conference proceedings published by the ACM, the largest academic society in computing.",
     "description": "Description for ACM Digital Library"
   },
-  "links.site.academic.acm.title": {
+  "news.site.int.ar.acm.title": {
     "message": "ACM Digital Library",
     "description": "Title for ACM Digital Library"
   },
-  "links.site.academic.arxiv.desc": {
+  "news.site.int.ar.arxiv.desc": {
     "message": "A pioneering open-access platform for free public access to pre-peer-reviewed papers in physics, mathematics, CS, etc.",
     "description": "Description for arXiv"
   },
-  "links.site.academic.arxiv.title": {
+  "news.site.int.ar.arxiv.title": {
     "message": "arXiv",
     "description": "Title for arXiv"
   },
-  "links.site.academic.hfpapers.desc": {
+  "news.site.int.ar.hfpapers.desc": {
     "message": "Daily curation of trending AI/ML papers, with community upvotes, discussions, and links to related models and datasets.",
     "description": "Description for Hugging Face Papers"
   },
-  "links.site.academic.hfpapers.title": {
+  "news.site.int.ar.hfpapers.title": {
     "message": "Hugging Face Papers",
     "description": "Title for Hugging Face Papers"
   },
-  "links.site.academic.citeseerx.desc": {
+  "news.site.int.ar.citeseerx.desc": {
     "message": "A search engine that automatically extracts and links citation information for papers in the computer and information science fields.",
     "description": "Description for CiteSeerX"
   },
-  "links.site.academic.citeseerx.title": {
+  "news.site.int.ar.citeseerx.title": {
     "message": "CiteSeerX",
     "description": "Title for CiteSeerX"
   },
-  "links.site.academic.dblp.desc": {
+  "news.site.int.ar.dblp.desc": {
     "message": "A bibliographic information database specializing in CS, accurately tracking researchers' paper lists and co-author networks.",
     "description": "Description for DBLP"
   },
-  "links.site.academic.dblp.title": {
+  "news.site.int.ar.dblp.title": {
     "message": "DBLP",
     "description": "Title for DBLP"
   },
-  "links.site.academic.doaj.desc": {
+  "news.site.int.ar.doaj.desc": {
     "message": "A directory that includes only high-quality, reliable open access journals that meet quality standards.",
     "description": "Description for DOAJ"
   },
-  "links.site.academic.doaj.title": {
+  "news.site.int.ar.doaj.title": {
     "message": "DOAJ",
     "description": "Title for DOAJ"
   },
-  "links.site.academic.elicit.desc": {
+  "news.site.int.ar.elicit.desc": {
     "message": "AI research assistant automates from paper search to summarization. Efficiently discover and analyze relevant papers for research questions.",
     "description": "Description for Elicit"
   },
-  "links.site.academic.elicit.title": {
+  "news.site.int.ar.elicit.title": {
     "message": "Elicit",
     "description": "Title for Elicit"
   },
-  "links.site.academic.ieee.desc": {
+  "news.site.int.ar.ieee.desc": {
     "message": "A digital library that provides academic journals, papers, and technical standards in electrical engineering and CS published by IEEE.",
     "description": "Description for IEEE Xplore"
   },
-  "links.site.academic.ieee.title": {
+  "news.site.int.ar.ieee.title": {
     "message": "IEEE Xplore",
     "description": "Title for IEEE Xplore"
   },
-  "links.site.academic.mdpi.desc": {
+  "news.site.int.ar.mdpi.desc": {
     "message": "Swiss-based multidisciplinary academic publisher. Over 390 peer-reviewed open access journals freely available under CC BY license.",
     "description": "Description for MDPI"
   },
-  "links.site.academic.mdpi.title": {
+  "news.site.int.ar.mdpi.title": {
     "message": "MDPI",
     "description": "Title for MDPI"
   },
-  "links.site.academic.medrxiv.desc": {
+  "news.site.int.ar.medrxiv.desc": {
     "message": "A preprint server specializing in medicine, clinical, and health sciences. Shares the latest research findings promptly.",
     "description": "Description for medRxiv"
   },
-  "links.site.academic.medrxiv.title": {
+  "news.site.int.ar.medrxiv.title": {
     "message": "medRxiv",
     "description": "Title for medRxiv"
   },
-  "links.site.academic.mesh.desc": {
+  "news.site.int.ar.mesh.desc": {
     "message": "Medical Subject Headings controlled vocabulary maintained by the National Library of Medicine. Hierarchically structured terms enhance literature search efficiency in PubMed and other databases.",
     "description": "Description for MeSH"
   },
-  "links.site.academic.mesh.title": {
+  "news.site.int.ar.mesh.title": {
     "message": "MeSH",
     "description": "Title for MeSH"
   },
-  "links.site.academic.pubmed.desc": {
+  "news.site.int.ar.pubmed.desc": {
     "message": "World's largest database for medical and life sciences literature. Search peer-reviewed papers including MEDLINE.",
     "description": "Description for PubMed"
   },
-  "links.site.academic.pubmed.title": {
+  "news.site.int.ar.pubmed.title": {
     "message": "PubMed",
     "description": "Title for PubMed"
   },
-  "links.site.academic.researchrabbit.desc": {
+  "news.site.int.ar.researchrabbit.desc": {
     "message": "A literature survey tool that visually explores related papers to foster new discoveries. Also known as the 'Spotify for Papers.'",
     "description": "Description for ResearchRabbit"
   },
-  "links.site.academic.researchrabbit.title": {
+  "news.site.int.ar.researchrabbit.title": {
     "message": "ResearchRabbit",
     "description": "Title for ResearchRabbit"
   },
-  "links.site.academic.scholar.desc": {
+  "news.site.int.ar.scholar.desc": {
     "message": "A search engine that allows cross-searching of papers and books in all academic fields and tracks citation counts.",
     "description": "Description for Google Scholar"
   },
-  "links.site.academic.scholar.title": {
+  "news.site.int.ar.scholar.title": {
     "message": "Google Scholar",
     "description": "Title for Google Scholar"
   },
-  "links.site.academic.scispace.desc": {
+  "news.site.int.ar.scispace.desc": {
     "message": "A platform that uses AI to assist in searching, understanding, and writing research papers, contributing to the efficiency of literature reviews.",
     "description": "Description for Scispace"
   },
-  "links.site.academic.scispace.title": {
+  "news.site.int.ar.scispace.title": {
     "message": "Scispace",
     "description": "Title for Scispace"
   },
-  "links.site.academic.semanticscholar.desc": {
+  "news.site.int.ar.semanticscholar.desc": {
     "message": "Utilizes AI to support literature searches by automatically generating paper summaries and visualizing high-impact citations.",
     "description": "Description for Semantic Scholar"
   },
-  "links.site.academic.semanticscholar.title": {
+  "news.site.int.ar.semanticscholar.title": {
     "message": "Semantic Scholar",
     "description": "Title for Semantic Scholar"
   },
-  "links.site.academic.ssrn.desc": {
+  "news.site.int.ar.ssrn.desc": {
     "message": "One of the world's largest platforms for sharing working papers and preprints, primarily in the social sciences and humanities.",
     "description": "Description for SSRN"
   },
-  "links.site.academic.ssrn.title": {
+  "news.site.int.ar.ssrn.title": {
     "message": "SSRN",
     "description": "Title for SSRN"
   },
-  "links.site.academic.techrxiv.desc": {
+  "news.site.int.ar.techrxiv.desc": {
     "message": "A preprint server for electrical engineering and CS fields, established by IEEE.",
     "description": "Description for TechRxiv"
   },
-  "links.site.academic.techrxiv.title": {
+  "news.site.int.ar.techrxiv.title": {
     "message": "TechRxiv",
     "description": "Title for TechRxiv"
   },
-  "links.site.academic.thesaurus.desc": {
+  "news.site.int.ar.thesaurus.desc": {
     "message": "Search tool for medical controlled vocabulary and MeSH terms with direct links to related PubMed articles.",
     "description": "Description for Thesaurus Browser"
   },
-  "links.site.academic.thesaurus.title": {
+  "news.site.int.ar.thesaurus.title": {
     "message": "Thesaurus Browser",
     "description": "Title for Thesaurus Browser"
   },
@@ -1988,7 +1764,7 @@
   "links.site.cloud.cloudflare.title": {
     "message": "Cloudflare Developers",
     "description": "Title for Cloudflare Developers"
-  },  
+  },
   "links.site.data.bigquery.desc": {
     "message": "A serverless data warehouse that can analyze petabytes of data.",
     "description": "Description for BigQuery Docs"
@@ -2550,7 +2326,7 @@
   "darts01.logMiss": {
     "message": "{name}: Miss",
     "description": "Log message recording a player's missed dart"
-  },  
+  },
   "cricketDarts.pageTitle": {
     "message": "Cricket Darts Score Calculator",
     "description": "Page title for the application"
