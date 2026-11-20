@@ -1,15 +1,88 @@
 .card {
   position: relative;
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: flex-start;
+  gap: 16px;
   max-width: 480px;
   margin: 20px auto 0;
-  padding: 14px 32px 14px 14px;
+  padding: 16px 32px 16px 16px;
   text-align: left;
   background: var(--ifm-card-background-color);
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: var(--ifm-card-border-radius);
+}
+
+.copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* アイコン 40px と「アプリ名 22px ＋ 補足 18px」の文字ブロックの上下をそろえる */
+.app {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  flex-shrink: 0;
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  /* 枠線ぶんで高さがずれないよう、外側に描く */
+  box-shadow: 0 0 0 1px var(--ifm-color-emphasis-200);
+}
+
+.appText {
+  display: flex;
+  flex-direction: column;
+}
+
+.appName {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.appMeta {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.title {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.desc {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 21px;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.link {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.badge {
+  margin-top: 10px;
+  line-height: 0;
+}
+
+.badge img {
+  display: block;
+  height: 40px;
+  width: auto;
 }
 
 /* ダークモードでも読み取れるよう、QR は常に白地に置く */
@@ -21,38 +94,6 @@
   padding: 4px;
   background: #fff;
   border-radius: 6px;
-}
-
-.copy {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.title {
-  font-size: 0.95rem;
-}
-
-.desc {
-  font-size: 0.8rem;
-  color: var(--ifm-color-emphasis-700);
-}
-
-.link {
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.badge {
-  align-self: flex-start;
-  margin-top: 6px;
-  line-height: 0;
-}
-
-.badge img {
-  height: 40px;
-  width: auto;
 }
 
 .close {

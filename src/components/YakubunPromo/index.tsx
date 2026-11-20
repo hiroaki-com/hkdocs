@@ -66,6 +66,7 @@ export default function YakubunPromo({
   const { i18n: { currentLocale } } = useDocusaurusContext();
   const qrSrc = useBaseUrl(`/img/yakubun-qr-${campaign}.svg`);
   const badgeSrc = useBaseUrl('/img/yakubun-app-store-badge-ja.svg');
+  const iconSrc = useBaseUrl('/img/yakubun-app-icon.png');
   const [device, setDevice] = useState<Device | null>(null);
   // StrictMode の再実行で 2 回目が「表示済み」と判定して消えないよう、判定は 1 度だけ行う
   const decided = useRef(false);
@@ -97,13 +98,17 @@ export default function YakubunPromo({
 
   return (
     <aside className={styles.card} aria-label="訳文のご案内">
-      {device === 'mac' && (
-        <img className={styles.qr} src={qrSrc} alt="App Store の「訳文」ページの QR コード" width={84} height={84} />
-      )}
       <div className={styles.copy}>
+        <div className={styles.app}>
+          <img className={styles.icon} src={iconSrc} alt="" width={40} height={40} />
+          <div className={styles.appText}>
+            <span className={styles.appName}>訳文</span>
+            <span className={styles.appMeta}>Safari 機能拡張・iPhone / iPad</span>
+          </div>
+        </div>
         <strong className={styles.title}>英語のページを日本語で。セキュリティファーストの翻訳機。</strong>
         <span className={styles.desc}>
-          Safari 機能拡張アプリ「訳文」。翻訳は端末で完結し個人情報を取得しないプライベート設計。英語の情報収集や学習にも。iPhone・iPad 向けに無料配信中です。
+          翻訳は端末で完結し、個人情報を取得しないプライベート設計。英語の情報収集や学習にも。iPhone・iPad 向けに無料配信中です。
         </span>
         {device === 'mac' ? (
           <a className={styles.link} href={appStoreUrl(`hkdocs-${slotKey}`)} target="_blank" rel="noopener noreferrer">
@@ -115,6 +120,9 @@ export default function YakubunPromo({
           </a>
         )}
       </div>
+      {device === 'mac' && (
+        <img className={styles.qr} src={qrSrc} alt="App Store の「訳文」ページの QR コード" width={84} height={84} />
+      )}
       <button type="button" className={styles.close} onClick={dismiss} aria-label="閉じる">
         ×
       </button>
