@@ -453,7 +453,7 @@ function MemoApp() {
 export default function BrowserMemoPage() {
   const { siteConfig, i18n: { currentLocale } } = useDocusaurusContext();
   
-  const pageTitle = translate({ id: 'page.browser-memo.title', message: '高機能ブラウザメモ帳 - Markdown・URL共有対応・インストール不要' });
+  const pageTitle = translate({ id: 'page.browser-memo.title', message: 'ブラウザメモ帳｜無料・登録不要、Markdown・URL共有に対応' });
   const pageDescription = translate({ id: 'page.browser-memo.description', message: 'ログイン・インストール不要ですぐに使える高機能なブラウザメモ帳。Markdown・Mermaidプレビュー、URLでの簡単共有に対応。データはあなたのブラウザ内だけに保存されるため、安全でプライベートなメモ環境を提供します。' });
 
   const softwareApplicationSchema = useMemo(() => {
