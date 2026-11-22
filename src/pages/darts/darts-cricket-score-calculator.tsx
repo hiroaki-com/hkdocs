@@ -39,8 +39,8 @@ const I18N = {
     pts: (n: number) => `+${n}pts`,
   },
   en: {
-    pageTitle: 'Cricket Darts Score Calculator — 2–4 Players, Free',
-    pageDesc: 'Free Cricket darts score calculator for 2–4 players (20–15 + Bull). Runs in your browser — no install required.',
+    pageTitle: 'Cricket Darts Scoreboard & Score Calculator — Free, 2–4 Players',
+    pageDesc: 'Free online Cricket darts scoreboard for 2–4 players (20–15 + Bull). Tracks marks and points automatically in your browser — no install or sign-up required.',
     h1: 'Cricket Darts Score Calculator',
     title: 'Cricket Darts',
     subtitle: '2–4 Players · 20–15 + Bull',
