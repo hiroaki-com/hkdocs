@@ -907,6 +907,22 @@
     "message": "A digital media outlet founded in the U.S. in 2017 by former Politico executives. It covers politics, business, and technology, distributing concise articles in a bullet-point format.",
     "description": "Description for Axios"
   },
+  "news.site.int.ge.barrons.desc": {
+    "message": "A weekly investment magazine founded in the U.S. in 1921 by Clarence Barron. Published by Dow Jones, like the WSJ. Known for in-depth stock analysis and market outlooks for investors.",
+    "description": "Description for Barron's"
+  },
+  "news.site.int.ge.barrons.title": {
+    "message": "Barron's",
+    "description": "Title for Barron's"
+  },
+  "news.site.int.ge.bbc.desc": {
+    "message": "The news division of the BBC, the UK public broadcaster founded in 1922. Funded mainly by the licence fee, with editorial independence set out in its Royal Charter. Known for international coverage from its worldwide network of correspondents.",
+    "description": "Description for BBC News"
+  },
+  "news.site.int.ge.bbc.title": {
+    "message": "BBC News",
+    "description": "Title for BBC News"
+  },
   "news.site.int.ge.bi.desc": {
     "message": "Founded in the U.S. in 2007 by Henry Blodget and operated by Axel Springer SE. It delivers business and technology news with high speed and has multiple international editions worldwide.",
     "description": "Description for Business Insider"
@@ -931,6 +947,22 @@
     "message": "China Daily",
     "description": "Title for China Daily"
   },
+  "news.site.int.ge.cnbc.desc": {
+    "message": "A business news channel launched in the U.S. in 1989 as a joint venture between NBC and Cablevision. Formerly part of NBCUniversal, it has been operated since January 2026 by Versant, the company spun off from Comcast. Known for real-time stock market coverage and interviews with business leaders.",
+    "description": "Description for CNBC"
+  },
+  "news.site.int.ge.cnbc.title": {
+    "message": "CNBC",
+    "description": "Title for CNBC"
+  },
+  "news.site.int.ge.cnn.desc": {
+    "message": "Founded in the U.S. in 1980 by Ted Turner as the world's first 24-hour news channel. Its live coverage of the Gulf War established its international reputation, and it is strong in breaking and international news.",
+    "description": "Description for CNN"
+  },
+  "news.site.int.ge.cnn.title": {
+    "message": "CNN",
+    "description": "Title for CNN"
+  },
   "news.site.int.ge.dw.desc": {
     "message": "Germany's international public broadcaster, established in 1953. Although funded by the German federal government, its editorial independence is legally guaranteed. It broadcasts news from a German and European perspective in over 30 languages.",
     "description": "Description for Deutsche Welle"
@@ -938,6 +970,14 @@
   "news.site.int.ge.dw.title": {
     "message": "Deutsche Welle",
     "description": "Title for Deutsche Welle"
+  },
+  "news.site.int.ge.economist.desc": {
+    "message": "A weekly founded in the UK in 1843 by James Wilson. Published by The Economist Group, whose largest shareholder is Exor, the Agnelli family investment company. Articles are unsigned and analyze world politics and economics from a liberal standpoint.",
+    "description": "Description for The Economist"
+  },
+  "news.site.int.ge.economist.title": {
+    "message": "The Economist",
+    "description": "Title for The Economist"
   },
   "news.site.int.ge.finviznews.desc": {
     "message": "The news section of Finviz, a financial information site founded in 2007 by Juraj Duris. It aggregates news headlines on markets, stocks, ETFs, and cryptocurrencies from multiple outlets such as Bloomberg, Reuters, and CNBC in chronological order.",
@@ -995,6 +1035,14 @@
     "message": "Le Monde (English)",
     "description": "Title for Le Monde (English)"
   },
+  "news.site.int.ge.marketwatch.desc": {
+    "message": "Founded in the U.S. in 1997 by Larry Kramer. Acquired by Dow Jones in 2005 and now part of News Corp. Delivers market data on stocks, indexes, and currencies alongside fast market news for individual investors.",
+    "description": "Description for MarketWatch"
+  },
+  "news.site.int.ge.marketwatch.title": {
+    "message": "MarketWatch",
+    "description": "Title for MarketWatch"
+  },
   "news.site.int.ge.nikkei.desc": {
     "message": "Launched in 2013 by Nikkei Inc. It reports on Asian business, economy, and politics in English from the perspective of a Japanese media outlet. Known for its specialized coverage of Asia.",
     "description": "Description for Nikkei Asia"
@@ -1002,6 +1050,14 @@
   "news.site.int.ge.nikkei.title": {
     "message": "Nikkei Asia",
     "description": "Title for Nikkei Asia"
+  },
+  "news.site.int.ge.politico.desc": {
+    "message": "Founded in the U.S. in 2007 by John F. Harris, Jim VandeHei, and others. Owned by Axel Springer SE since 2021. Specializes in Washington politics and policy, covering Congress and the White House.",
+    "description": "Description for Politico"
+  },
+  "news.site.int.ge.politico.title": {
+    "message": "Politico",
+    "description": "Title for Politico"
   },
   "news.site.int.ge.polymarket.desc": {
     "message": "Founded in 2020 by Shayne Coplan. A prediction market platform utilizing blockchain technology. Users bet on the outcomes of various events such as politics, economics, and current affairs, forming future predictions based on collective intelligence.",
@@ -1026,6 +1082,14 @@
   "news.site.int.ge.rt.title": {
     "message": "RT (Russia Today)",
     "description": "Title for RT (Russia Today)"
+  },
+  "news.site.int.ge.scmp.desc": {
+    "message": "An English-language daily founded in Hong Kong in 1903. Owned by Alibaba Group since 2016. Based in Hong Kong, it covers the politics and economy of mainland China and Asia in English.",
+    "description": "Description for South China Morning Post"
+  },
+  "news.site.int.ge.scmp.title": {
+    "message": "South China Morning Post",
+    "description": "Title for South China Morning Post"
   },
   "news.site.int.ge.sputnik.desc": {
     "message": "Established in 2014 by the Russian government as part of a restructuring of state news agencies. Operated by the state media group 'Rossiya Segodnya,' it broadcasts news and radio in over 30 languages, conveying Russia's official views.",
