@@ -108,7 +108,7 @@ export default function YakubunPromo({
         </div>
         <strong className={styles.title}>英語のページを日本語で。セキュリティファーストの翻訳機。</strong>
         <span className={styles.desc}>
-          翻訳は端末で完結し、個人情報を取得しないプライベート設計。英語の情報収集や学習にも。iPhone・iPad 向けに無料配信中です。
+          翻訳は端末で完結し、個人情報を取得しないプライベート設計。英語の情報収集や学習にも。iPhone・iPad 向けに配信中です。
         </span>
         {device === 'mac' ? (
           <a className={styles.link} href={appStoreUrl(`hkdocs-${slotKey}`)} target="_blank" rel="noopener noreferrer">
