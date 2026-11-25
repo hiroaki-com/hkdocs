@@ -129,6 +129,12 @@ export default function DartsTop(): JSX.Element {
               className="margin-bottom--lg"
               style={{ fontWeight: 'bold' }}
             >
+              <Translate id="page.darts-top.app.desc">
+                iPhone・iPad 用のアプリもあります。メドレー・2 対 2・記録と推移にも対応しています。
+              </Translate>{' '}
+              <Link to="/darts/app/">
+                <Translate id="page.darts-top.app.link">アプリについて詳しく</Translate>
+              </Link>
             </p>
           </div>
         </div>
