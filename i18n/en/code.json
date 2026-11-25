@@ -2223,6 +2223,14 @@
     "message": "darts, calculator, app, score, 01, zero one, cricket, count-up, free, browser",
     "description": "Meta keywords for the darts top page"
   },
+  "page.darts-top.app.desc": {
+    "message": "There is also an app for iPhone and iPad, with Medley, 2 vs 2 team play, and Records & Trends.",
+    "description": "Text introducing the iOS app on the darts top page"
+  },
+  "page.darts-top.app.link": {
+    "message": "Learn more about the app",
+    "description": "Link to the iOS app support page on the darts top page"
+  },
   "page.darts-top.intro.desc": {
     "message": "Easily calculate and manage scores for the classic '01', 'Cricket', and 'Count-Up' games, and enjoy playing darts at home.",
     "description": "Introductory description text on the darts top page"
